@@ -1,0 +1,84 @@
+---
+title: "Propuesta actualizada de índice de cohesión social con ELSOC"
+author: "Tomás Urzúa, Practicante del OCS"
+date: today
+lang: en
+fontsize: 14pt
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    toc-expand: 1
+    toc-title: Contenidos
+    number-sections: true
+    number-depth: 3
+    theme:
+      - ../ocs.scss
+    code-link: true
+    title-block-banner: true 
+---
+
+<style>
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+</style>
+
+<img class="logo" src="ocs-new.jpeg" width="262" height="120">
+
+<div style="text-align: justify">
+
+# Introducción
+
+Este documento tiene el objetivo de presentar una propuesta teórica y metodológica de medición de la cohesión social en Chile, utilizando los datos del estudio longitudinal [ELSOC](https://coes.cl/encuesta-panel/). La construcción de este nuevo marco de medición tomará como referencia la [anterior propuesta de medición de cohesión social con ELSOC](https://ocscoes.github.io/cohesion-elsoc/), y la [propuesta de medición de cohesión social en América Latina](https://ocs-coes.com/reportes/posts/2025_reportes_tecnico/), en orden de elaborar un insumo que permita comprender y profundizar en los factores asociados a la cohesión social en Chile.
+
+# Propuestas anteriores 
+
+## Propuesta ELSOC
+
+![](hor-elsoc.png)
+
+Este esquema de medición se compone por tres dimensiones de segundo orden: Sentido de pertenencia (1), el cual se compone por un dos indicadores; uno de identidad nacional y orgullo por el país. Calidad de la vida en el vecindario (2), construida mediante cuatro factores, en donde el único que contiene un indicador es el de confianza en vecinos. Y por último Redes sociales (3), que contiene un factor de confianza interpersonal y otro de comportamiento prosocial. 
+
+## Propuesta LAPOP
+
+![](hor-la.png)
+
+La propuesta construida principalmente con LAPOP contiene dos subdimensiones: Seguridad pública y Confianza interpersonal. La primera se conforma a partir de dos indicadores, uno que señala la seguridad objetiva medida en frecuencia de robo, mientras que la seguridad subjetiva es medida en percepción de seguridad. Confianza interpersonal se mide con un indicador basado en el grado de confianza que tiene una persona en un tercero. 
+
+# Análisis comparativo
+
+## Diferencias
+
+**1)** Las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden. 
+
+**2)** Propuesta con ELSOC es mucho más compleja en tanto tiene mayores niveles de granularidad y, consecuentemente, mayor cantidad de factores en comparación con la propuesta de LA, cuya perspectiva es más minimalista. 
+
+Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones y democracia. En la primera propuesta esta se entiende como una subdimensión compuesta de dos factores: confianza en instituciones y satisfacción con la democracia. No así, en la propuesta construida con LAPOP estos factores se entienden como dos subdimensiones independientes. 
+
+**3)** En la propuesta con ELSOC se consideran varias subdimensiones que no están presentes en el índice de LA debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, no correlacionaba con los demás factores de su dimensión. 
+
+# Nueva propuesta
+
+Esta sección se presenta la construcción de la nueva propuesta de medición de cohesión social en Chile con datos de ELSOC. 
+
+## Decisiones
+
+En principio, se proponen dos decisiones fundamentales: Eliminar la subdimensión de Sentido de pertenencia **(1)**, puesto que para la construcción de la propuesta con LAPOP se definió que era problemático comprender indicadores como orgullo nacional dentro de la cohesión social. Asimismo, se pretende incluir en la nueva propuesta una subdimensión de seguridad **(2)**, (siguiendo la propuesta con LAPOP), considerándose como uno de los elementos centrales durante el último tiempo en las discusiones relacionadas al vínculo social. 
+
+### Subdimensión de seguridad
+
+Se propone añadir una subdimensión de seguridad constituida por dos factores: Seguridad objetiva (1) y Seguridad objetiva (2). Los indicadores contemplados para esto y sus especificaciones se encuentran en la siguiente tabla. 
+
+```{r}
+#| echo: false 
+
+library(readr)
+library(DT)
+
+datos <- read_csv("../input/tables/tabla-seguridad-limpio.csv", show_col_types = FALSE)
+datatable(datos)
+```
