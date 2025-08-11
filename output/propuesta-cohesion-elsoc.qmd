@@ -33,9 +33,28 @@ format:
 
 # Introducción
 
-Este documento tiene el objetivo de presentar una propuesta teórica y metodológica de medición de la cohesión social en Chile, utilizando los datos del estudio longitudinal [ELSOC](https://coes.cl/encuesta-panel/). La construcción de este nuevo marco de medición tomará como referencia la [anterior propuesta de medición de cohesión social con ELSOC](https://ocscoes.github.io/cohesion-elsoc/), y la [propuesta de medición de cohesión social en América Latina](https://ocs-coes.com/reportes/posts/2025_reportes_tecnico/), en orden de elaborar un insumo que permita comprender y profundizar en los factores asociados a la cohesión social en Chile.
+Este documento tiene el objetivo de presentar una propuesta teórica y metodológica de medición de la cohesión social en Chile, utilizando los datos del estudio longitudinal [ELSOC](https://coes.cl/encuesta-panel/). Esta propuesta servirá de insumo para el visualizador del [Observatorio de Cohesión Social](https://ocs-coes.com/). 
+
+::: {.hidden}
+Cambiar el link del OCS al visualizador cuando esté listo
+:::
+
+La construcción de este nuevo marco de medición tomará como referencia la [anterior propuesta de medición de cohesión social con ELSOC](https://ocscoes.github.io/cohesion-elsoc/), y la [propuesta de medición de cohesión social en América Latina](https://ocs-coes.com/reportes/posts/2025_reportes_tecnico/), en orden de elaborar un insumo que permita comprender y profundizar en los factores asociados a la cohesión social en Chile. 
+
+El primer trabajo mencionado es uno de los antecedentes principales del actual trabajo, puesto que, a partir de una revisión sistemática de estudios internacionales, busca identificar los principales indicadores que posibilitan la operacionalización y medición de la cohesión social en Chile con los datos de ELSOC. El segundo documento pretende aportar en la medición de la cohesión social pero a un nivel regional, abordando la construcción técnica y metodológica para medir este fenómeno en América Latina. 
+
+El desarrollo de este documento estará guiado, primeramente, por una breve contextualización de los proyectos ligados a este producto. Luego, se presentarán las dos propuestas ya mencionadas, discutiendo sus principales similitudes y diferencias, con tal de rescatar los mayores aportes de cada una. Posteriormente, se dará a conocer la nueva propuesta en su dimensión teórica y metodológica. 
+
+# Contexto 
+
+El [Centro de Estudios de Conflicto y Cohesión Social](https://coes.cl/) es una iniciativa que surge el año 2014 con la intención de estudiar desde una perspectiva multidimensional los factores que agudizan el conflicto social y aquellos que fortalecen la cohesión social en Chile. A través del trabajo investigativo, la colaboración con instituciones públicas y la formación de capital humano avanzado, COES se presenta como un centro que busca el vínculo entre ciencia, Estado y sociedad, proponiendo diagnósticos y soluciones que contribuyan al desarrollo y bienestar del país.
+ 
 
 # Propuestas anteriores 
+
+Ambos documentos que anteceden al presente se sirvieron de la conceptualización de cohesión social de Chan et al. (2006), la cual establece dos dimensiones para la cohesión social: **Vertical** y **Horizontal**.
+
+“La cohesión social es un estado de cosas que concierte tanto a las interacciones verticales como horizontales entre los miembros de la sociedad, caracterizado por un conjunto de actitudes y normas que incluyen la confianza, el sentido de pertenencia y la voluntad de participar y ayudar, así como sus manifestaciones conductuales” (Chan et al., 2006, p. 290).
 
 ## Propuesta ELSOC
 
@@ -87,10 +106,10 @@ datatable(datos)
 
 ```{r}
 #| echo: false 
-
 library(readr)
 library(DT)
 
 datos <- read_csv("../input/tables/tabla-redes-limpio.csv", show_col_types = FALSE)
 datatable(datos)
 ```
+
