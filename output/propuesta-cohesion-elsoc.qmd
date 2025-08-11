@@ -69,7 +69,7 @@ Esta sección se presenta la construcción de la nueva propuesta de medición de
 
 En principio, se proponen dos decisiones fundamentales: Eliminar la subdimensión de Sentido de pertenencia **(1)**, puesto que para la construcción de la propuesta con LAPOP se definió que era problemático comprender indicadores como orgullo nacional dentro de la cohesión social. Asimismo, se pretende incluir en la nueva propuesta una subdimensión de seguridad **(2)**, (siguiendo la propuesta con LAPOP), considerándose como uno de los elementos centrales durante el último tiempo en las discusiones relacionadas al vínculo social. 
 
-### Subdimensión de seguridad
+### Seguridad
 
 Se propone añadir una subdimensión de seguridad constituida por dos factores: Seguridad objetiva (1) y Seguridad objetiva (2). Los indicadores contemplados para esto y sus especificaciones se encuentran en la siguiente tabla. 
 
@@ -80,5 +80,17 @@ library(readr)
 library(DT)
 
 datos <- read_csv("../input/tables/tabla-seguridad-limpio.csv", show_col_types = FALSE)
+datatable(datos)
+```
+
+### Redes sociales
+
+```{r}
+#| echo: false 
+
+library(readr)
+library(DT)
+
+datos <- read_csv("../input/tables/tabla-redes-limpio.csv", show_col_types = FALSE)
 datatable(datos)
 ```
