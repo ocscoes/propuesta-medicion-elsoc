@@ -1,0 +1,161 @@
+---
+title: "Análisis factoriales"
+author: "Tomás Urzúa, Practicante del OCS"
+date: today
+lang: en
+fontsize: 14pt
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    toc-expand: 1
+    toc-title: Contenidos
+    number-sections: true
+    number-depth: 3
+    theme:
+      - ../ocs.scss
+    code-link: true
+    title-block-banner: true 
+---
+
+# EFA
+
+```{r}
+#| label: cargar librerias
+#| echo: false
+
+pacman::p_load(corrplot, lavaan, Hmisc, psych, psy, nFactors, 
+             GPArotation, devtools, ggrepel, dplyr, sjPlot)
+```
+
+```{r}
+#| label: cargar base
+#| echo: false
+
+elsoc <- readRDS("../input/data/proc_data/elsoc_2022.RData")
+```
+
+
+## Factor seguridad
+
+Se genera un subset de datos solamente con las variables que conforman el factor de seguridad para que el análisis sea más prolijo
+
+```{r}
+elsoc_seg <- elsoc %>%
+  select(seguridad_sat, seguridad_perc, peleas_calle, asaltos, trafico_drogas)
+```
+
+Las variables se convierten a numéricas
+
+```{r}
+#| include: false 
+
+elsoc_seg <- elsoc %>%
+  select(seguridad_sat, seguridad_perc, peleas_calle, asaltos, trafico_drogas) %>%
+  mutate(across(everything(), as.numeric))
+```
+
+
+```{r}
+#| echo: false
+
+corrseg <- round(cor(elsoc_seg, use = "pairwise.complete.obs"), 2)
+corrseg
+```
+
+Se calcula la matriz de correlaciones
+```{r}
+#| label: fig-corr-seg
+#| fig-cap: Correlaciones factor seguridad
+#| fig-cap-location: bottom
+
+corrplot(corrseg,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+```{r}
+KMO(corrseg) 
+cortest.bartlett(corrseg, n = 2730)
+```
+
+
+Ya con la matriz de correlaciones lista, pasamos a realizar el EFA
+
+```{r}
+tab_fa(elsoc_seg, rotation = "varimax", show.comm = TRUE)
+```
+
+## Factor de calidad de vida en el vecindario
+
+Subset con los indicadores necesarios
+
+```{r}
+elsoc_barrio <- elsoc %>%
+  select(confianza_vecinos, barrio_ideal, barrio_integracion, barrio_identidad,
+         barrio_pertenencia, barrio_amigos, barrio_sociable, barrio_cordial,
+         barrio_colaborador, conectividad, areas_verdes, barrio_limpio,
+         cercania_actividad, cercania_escuelas, cercania_comercio,
+         cercania_familia, tamaño_vivienda, calidad_vivienda)
+```
+
+Las variables se convierten a numéricas
+
+```{r}
+#| include: false 
+
+elsoc_barrio <- elsoc %>%
+  select(confianza_vecinos, barrio_ideal, barrio_integracion, barrio_identidad,
+         barrio_pertenencia, barrio_amigos, barrio_sociable, barrio_cordial,
+         barrio_colaborador, conectividad, areas_verdes, barrio_limpio,
+         cercania_actividad, cercania_escuelas, cercania_comercio,
+         cercania_familia, tamaño_vivienda, calidad_vivienda) %>%
+  mutate(across(everything(), as.numeric))
+```
+
+
+```{r}
+#| echo: false
+
+corrbarrio <- round(cor(elsoc_barrio, use = "pairwise.complete.obs"), 2)
+corrbarrio
+```
+
+Se calcula la matriz de correlaciones
+```{r}
+#| label: fig-corr-barrio
+#| fig-cap: Correlaciones factor calidad de vida en el barrio
+#| fig-cap-location: bottom
+
+corrplot(corrbarrio,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+```{r}
+KMO(corrbarrio) 
+cortest.bartlett(corrbarrio, n = 2730)
+```
+
+```{r}
+tab_fa(elsoc_barrio, rotation = "varimax", show.comm = TRUE)
+```
+
+## Factor redes sociales (2021)
