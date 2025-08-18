@@ -1,5 +1,5 @@
 ---
-title: "Análisis factoriales"
+title: "Análisis de validación de los constructos: Resultados de EFA y CFA"
 author: "Tomás Urzúa, Practicante del OCS"
 date: today
 lang: en
@@ -7,7 +7,7 @@ fontsize: 14pt
 format:
   html:
     toc: true
-    toc-location: left
+    toc-location: right
     toc-depth: 2
     toc-expand: 1
     toc-title: Contenidos
@@ -19,19 +19,19 @@ format:
     title-block-banner: true 
 ---
 
-# EFA
+# Análisis factorial exploratorio
 
 ```{r}
 #| label: cargar librerias
 #| echo: false
 
-pacman::p_load(corrplot, lavaan, Hmisc, psych, psy, nFactors, 
-             GPArotation, devtools, ggrepel, dplyr, sjPlot)
+pacman::p_load(corrplot, lavaan, psych, psy, nFactors, 
+             GPArotation, devtools, ggrepel, dplyr, sjPlot, semTools)
 ```
 
+Cargamos la base ELSOC 2022, la cual contiene las variables correspondientes a los factores de seguridad y calidad de vida en el vecindario
 ```{r}
 #| label: cargar base
-#| echo: false
 
 elsoc <- readRDS("../input/data/proc_data/elsoc_2022.RData")
 ```
@@ -48,9 +48,7 @@ elsoc_seg <- elsoc %>%
 
 Las variables se convierten a numéricas
 
-```{r}
-#| include: false 
-
+```{r} 
 elsoc_seg <- elsoc %>%
   select(seguridad_sat, seguridad_perc, peleas_calle, asaltos, trafico_drogas) %>%
   mutate(across(everything(), as.numeric))
@@ -58,7 +56,7 @@ elsoc_seg <- elsoc %>%
 
 
 ```{r}
-#| echo: false
+#| include: false
 
 corrseg <- round(cor(elsoc_seg, use = "pairwise.complete.obs"), 2)
 corrseg
@@ -111,8 +109,6 @@ elsoc_barrio <- elsoc %>%
 Las variables se convierten a numéricas
 
 ```{r}
-#| include: false 
-
 elsoc_barrio <- elsoc %>%
   select(confianza_vecinos, barrio_ideal, barrio_integracion, barrio_identidad,
          barrio_pertenencia, barrio_amigos, barrio_sociable, barrio_cordial,
@@ -124,7 +120,7 @@ elsoc_barrio <- elsoc %>%
 
 
 ```{r}
-#| echo: false
+#| include: false
 
 corrbarrio <- round(cor(elsoc_barrio, use = "pairwise.complete.obs"), 2)
 corrbarrio
@@ -158,4 +154,164 @@ cortest.bartlett(corrbarrio, n = 2730)
 tab_fa(elsoc_barrio, rotation = "varimax", show.comm = TRUE)
 ```
 
-## Factor redes sociales (2021)
+## Factor redes sociales (ola 5)
+
+```{r}
+#| label: cargar base redes
+#| echo: false
+
+elsoc_redes <- readRDS("../input/data/proc_data/elsoc_2021.RData")
+```
+
+Seleccionamos las variables a utilizar 
+
+```{r}
+elsoc_redes <- elsoc_redes %>%
+select(confianza_gen, altruismo_gen, gente_justa, visitar_vecino,
+       reunion_pub, visita_amigos, voluntariado, donar_dinero, prestar_dinero, 
+       ayuda_trabajo)
+```
+
+Pasamos las variables a numéricas 
+
+```{r}
+elsoc_redes <- elsoc_redes %>%
+  select(confianza_gen, altruismo_gen, gente_justa, visitar_vecino,
+       reunion_pub, visita_amigos, voluntariado, donar_dinero, prestar_dinero, 
+       ayuda_trabajo) %>%
+  mutate(across(everything(), as.numeric))
+```
+
+
+```{r}
+#| include: false 
+
+corredes <- round(cor(elsoc_redes, use = "pairwise.complete.obs"), 2)
+corredes
+```
+
+Estimamos la matriz de correlaciones
+
+```{r}
+#| label: fig-corr-redes
+#| fig-cap: Correlaciones factor redes sociales
+#| fig-cap-location: bottom
+
+corrplot(corredes,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+```{r}
+KMO(corredes) 
+cortest.bartlett(corredes, n = 2740)
+```
+
+```{r}
+tab_fa(elsoc_redes, rotation = "varimax", show.comm = TRUE)
+```
+
+
+# Análisis factorial confirmatorio
+
+## Factor seguridad
+
+Especificamos el modelo tomando en cuenta la propuesta teórica del documento. 
+```{r}
+seguridad_model <- '
+subjetiva =~ seguridad_perc + seguridad_sat
+objetiva =~ peleas_calle + asaltos + trafico_drogas
+'
+```
+
+Se estima el modelo
+```{r}
+seguridad_cfa <- cfa(model = seguridad_model,
+                     data = elsoc_seg,
+                     estimator = "DWLS",
+                     ordered = TRUE,
+                     std.lv = FALSE)
+```
+
+Visualizamos los resultados
+```{r}
+summary(seguridad_cfa, standardized = TRUE, fit.measures = TRUE)
+```
+
+Cargas factoriales estandarizadas
+```{r}
+standardizedSolution(seguridad_cfa) %>% 
+  dplyr::filter(op == "=~") %>% 
+  dplyr::select(lhs, rhs, est.std)
+```
+En este modelo todas las cargas factoriales estandarizadas son altas, donde los cinco indicadores oscilan entre el 0.7 y 0.8. Todos los indicadores son explicados en buena medida por su factor latente respectivo. 
+
+
+## Factor vinculación territorial
+
+Después de haber visto los EFA, sumado a la idea de realizar una propuesta minimalista de cohesión social, es que se propone modificar la subdimensión de "calidad de vida en el vecindario" y llamarla "vinculación territorial", la cual estaría compuesta por un factor de sentido de pertenencia territorial y otro de satisfacción con el barrio.
+```{r}
+barrio_model <- '
+pertenencia =~ barrio_ideal + barrio_integracion + barrio_identidad + barrio_pertenencia
+satisfaccion =~ barrio_amigos + barrio_sociable + barrio_cordial + barrio_colaborador
+'
+```
+
+Estimación del modelo
+```{r}
+barrio_cfa <- cfa(model = barrio_model,
+                     data = elsoc_barrio,
+                     estimator = "DWLS",
+                     ordered = TRUE,
+                     std.lv = FALSE)
+```
+
+
+```{r}
+summary(barrio_cfa, standardized = TRUE, fit.measures = TRUE)
+```
+
+Cargas factoriales estandarizadas
+```{r}
+standardizedSolution(barrio_cfa) %>% 
+  dplyr::filter(op == "=~") %>% 
+  dplyr::select(lhs, rhs, est.std)
+```
+Todas las cargas factoriales son altas, rondando entre en 0.7 y 0.8, por lo que ambos factores estarían explicando consistentemente sus indicadores correspondientes. 
+
+## Factor redes sociales
+A partir del EFA y la idea de minimalizar la propuesta, se decide plantear un modelo con los mismos dos factores ya existentes: confianza interpersonal y comportamiento prosocial. La diferencia es que se reduce la cantidad de indicadores de 10 a 4, dos pertenecientes a cada factor.
+```{r}
+redes_model <- '
+confianza_inter =~ confianza_gen + altruismo_gen
+prosocial =~ reunion_pub + voluntariado
+'
+```
+
+```{r}
+redes_cfa <- cfa(model = redes_model,
+                     data = elsoc_redes,
+                     estimator = "DWLS",
+                     ordered = TRUE,
+                     std.lv = FALSE)
+```
+
+```{r}
+summary(redes_cfa, standardized = TRUE, fit.measures = TRUE)
+```
+
+Cargas factoriales estandarizadas
+```{r}
+standardizedSolution(redes_cfa) %>% 
+  dplyr::filter(op == "=~") %>% 
+  dplyr::select(lhs, rhs, est.std)
+```
+Ambos factores tienen un indicador que posee una carga factorial muy cercana a 1, por lo que se podría interpretar que tanto confianza general como reunión pública pueden ser un factor por sí solos. 

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Tomás Urzúa, Practicante del OCS">
-<meta name="dcterms.date" content="2025-08-13">
-<title>Análisis factoriales</title>
+<meta name="dcterms.date" content="2025-08-18">
+
+<title>Análisis de validación de los constructos: Resultados de EFA y CFA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -56,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="factoriales_files/libs/clipboard/clipboard.min.js"></script>
 <script src="factoriales_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="factoriales_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -66,13 +70,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="factoriales_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="factoriales_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="factoriales_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="factoriales_files/libs/bootstrap/bootstrap-bdf69c7fa60bf11014ae2bf83dec1c19.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="factoriales_files/libs/bootstrap/bootstrap-2ad4460f57a610924bb9679eacaf1831.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
 </head>
+
 <body class="quarto-light">
 
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Análisis factoriales</h1>
+      <h1 class="title">Análisis de validación de los constructos: Resultados de EFA y CFA</h1>
                       </div>
   </div>
     
@@ -89,7 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 13, 2025</p>
+        <p class="date">August 18, 2025</p>
       </div>
     </div>
     
@@ -97,69 +105,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
     
   
-  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
-<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1"><h2 id="toc-title">Contenidos</h2>
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Contenidos</h2>
    
   <ul class="collapse">
-<li>
-<a href="#efa" id="toc-efa" class="nav-link active" data-scroll-target="#efa"><span class="header-section-number">1</span> EFA</a>
+  <li><a href="#análisis-factorial-exploratorio" id="toc-análisis-factorial-exploratorio" class="nav-link active" data-scroll-target="#análisis-factorial-exploratorio"><span class="header-section-number">1</span> Análisis factorial exploratorio</a>
   <ul class="collapse">
-<li><a href="#factor-seguridad" id="toc-factor-seguridad" class="nav-link" data-scroll-target="#factor-seguridad"><span class="header-section-number">1.1</span> Factor seguridad</a></li>
+  <li><a href="#factor-seguridad" id="toc-factor-seguridad" class="nav-link" data-scroll-target="#factor-seguridad"><span class="header-section-number">1.1</span> Factor seguridad</a></li>
   <li><a href="#factor-de-calidad-de-vida-en-el-vecindario" id="toc-factor-de-calidad-de-vida-en-el-vecindario" class="nav-link" data-scroll-target="#factor-de-calidad-de-vida-en-el-vecindario"><span class="header-section-number">1.2</span> Factor de calidad de vida en el vecindario</a></li>
-  <li><a href="#factor-redes-sociales-2021" id="toc-factor-redes-sociales-2021" class="nav-link" data-scroll-target="#factor-redes-sociales-2021"><span class="header-section-number">1.3</span> Factor redes sociales (2021)</a></li>
+  <li><a href="#factor-redes-sociales-ola-5" id="toc-factor-redes-sociales-ola-5" class="nav-link" data-scroll-target="#factor-redes-sociales-ola-5"><span class="header-section-number">1.3</span> Factor redes sociales (ola 5)</a></li>
+  </ul></li>
+  <li><a href="#análisis-factorial-confirmatorio" id="toc-análisis-factorial-confirmatorio" class="nav-link" data-scroll-target="#análisis-factorial-confirmatorio"><span class="header-section-number">2</span> Análisis factorial confirmatorio</a>
+  <ul class="collapse">
+  <li><a href="#factor-seguridad-1" id="toc-factor-seguridad-1" class="nav-link" data-scroll-target="#factor-seguridad-1"><span class="header-section-number">2.1</span> Factor seguridad</a></li>
+  <li><a href="#factor-vinculación-territorial" id="toc-factor-vinculación-territorial" class="nav-link" data-scroll-target="#factor-vinculación-territorial"><span class="header-section-number">2.2</span> Factor vinculación territorial</a></li>
+  <li><a href="#factor-redes-sociales" id="toc-factor-redes-sociales" class="nav-link" data-scroll-target="#factor-redes-sociales"><span class="header-section-number">2.3</span> Factor redes sociales</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul></nav>
+</nav>
 </div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="análisis-factorial-exploratorio" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Análisis factorial exploratorio</h1>
+<p>Cargamos la base ELSOC 2022, la cual contiene las variables correspondientes a los factores de seguridad y calidad de vida en el vecindario</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elsoc <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../input/data/proc_data/elsoc_2022.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="efa" class="level1" data-number="1"><h1 data-number="1">
-<span class="header-section-number">1</span> EFA</h1>
-<section id="factor-seguridad" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="factor-seguridad">
-<span class="header-section-number">1.1</span> Factor seguridad</h2>
+<section id="factor-seguridad" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="factor-seguridad"><span class="header-section-number">1.1</span> Factor seguridad</h2>
 <p>Se genera un subset de datos solamente con las variables que conforman el factor de seguridad para que el análisis sea más prolijo</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">elsoc_seg</span> <span class="op">&lt;-</span> <span class="va">elsoc</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">seguridad_sat</span>, <span class="va">seguridad_perc</span>, <span class="va">peleas_calle</span>, <span class="va">asaltos</span>, <span class="va">trafico_drogas</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>elsoc_seg <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(seguridad_sat, seguridad_perc, peleas_calle, asaltos, trafico_drogas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Las variables se convierten a numéricas</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>               seguridad_sat seguridad_perc peleas_calle asaltos trafico_drogas
-seguridad_sat           1.00           0.60        -0.47   -0.49          -0.49
-seguridad_perc          0.60           1.00        -0.44   -0.46          -0.47
-peleas_calle           -0.47          -0.44         1.00    0.58           0.61
-asaltos                -0.49          -0.46         0.58    1.00           0.54
-trafico_drogas         -0.49          -0.47         0.61    0.54           1.00</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>elsoc_seg <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(seguridad_sat, seguridad_perc, peleas_calle, asaltos, trafico_drogas) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Se calcula la matriz de correlaciones</p>
 <div class="cell fig-cap-location-bottom">
-<div class="sourceCode" id="cb3" data-cap-location="bottom"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">corrplot</span><span class="op">(</span><span class="va">corrseg</span>,</span>
-<span>         method <span class="op">=</span> <span class="st">"color"</span>,       <span class="co"># colorea los recuadros según valor</span></span>
-<span>         col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#2761f5"</span>, <span class="st">"white"</span>, <span class="st">"#f56c27"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,  <span class="co"># blanco a rojo</span></span>
-<span>         type <span class="op">=</span> <span class="st">"upper"</span>,         <span class="co"># mostrar solo la mitad superior</span></span>
-<span>         order <span class="op">=</span> <span class="st">"original"</span>,     <span class="co"># mantener el orden de las variables</span></span>
-<span>         addCoef.col <span class="op">=</span> <span class="st">"black"</span>,  <span class="co"># añadir los valores numéricos</span></span>
-<span>         tl.col <span class="op">=</span> <span class="st">"black"</span>,       <span class="co"># color etiquetas</span></span>
-<span>         tl.srt <span class="op">=</span> <span class="fl">45</span>, </span>
-<span>         bg <span class="op">=</span> <span class="st">"white"</span>,<span class="co"># rotar etiquetas</span></span>
-<span>         number.cex <span class="op">=</span> <span class="fl">0.8</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(corrseg,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"color"</span>,       <span class="co"># colorea los recuadros según valor</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#2761f5"</span>, <span class="st">"white"</span>, <span class="st">"#f56c27"</span>))(<span class="dv">20</span>),  <span class="co"># blanco a rojo</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,         <span class="co"># mostrar solo la mitad superior</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">order =</span> <span class="st">"original"</span>,     <span class="co"># mantener el orden de las variables</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,  <span class="co"># añadir los valores numéricos</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,       <span class="co"># color etiquetas</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.srt =</span> <span class="dv">45</span>, </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">bg =</span> <span class="st">"white"</span>,<span class="co"># rotar etiquetas</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-corr-seg" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-corr-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="factoriales_files/figure-html/fig-corr-seg-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Correlaciones factor seguridad
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">KMO</span><span class="op">(</span><span class="va">corrseg</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(corrseg) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = corrseg)
@@ -168,7 +187,7 @@ MSA for each item =
  seguridad_sat seguridad_perc   peleas_calle        asaltos trafico_drogas 
           0.82           0.82           0.82           0.86           0.84 </code></pre>
 </div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">cortest.bartlett</span><span class="op">(</span><span class="va">corrseg</span>, n <span class="op">=</span> <span class="fl">2730</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(corrseg, <span class="at">n =</span> <span class="dv">2730</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$chisq
 [1] 5182.035
@@ -182,7 +201,7 @@ $df
 </div>
 <p>Ya con la matriz de correlaciones lista, pasamos a realizar el EFA</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tab_fa</span><span class="op">(</span><span class="va">elsoc_seg</span>, rotation <span class="op">=</span> <span class="st">"varimax"</span>, show.comm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_fa</span>(elsoc_seg, <span class="at">rotation =</span> <span class="st">"varimax"</span>, <span class="at">show.comm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parallel analysis suggests that the number of factors =  2  and the number of components =  NA </code></pre>
 </div>
@@ -241,162 +260,56 @@ $df
 </table>
 </div>
 </div>
-</section><section id="factor-de-calidad-de-vida-en-el-vecindario" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="factor-de-calidad-de-vida-en-el-vecindario">
-<span class="header-section-number">1.2</span> Factor de calidad de vida en el vecindario</h2>
+</section>
+<section id="factor-de-calidad-de-vida-en-el-vecindario" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="factor-de-calidad-de-vida-en-el-vecindario"><span class="header-section-number">1.2</span> Factor de calidad de vida en el vecindario</h2>
 <p>Subset con los indicadores necesarios</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">elsoc_barrio</span> <span class="op">&lt;-</span> <span class="va">elsoc</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">confianza_vecinos</span>, <span class="va">barrio_ideal</span>, <span class="va">barrio_integracion</span>, <span class="va">barrio_identidad</span>,</span>
-<span>         <span class="va">barrio_pertenencia</span>, <span class="va">barrio_amigos</span>, <span class="va">barrio_sociable</span>, <span class="va">barrio_cordial</span>,</span>
-<span>         <span class="va">barrio_colaborador</span>, <span class="va">conectividad</span>, <span class="va">areas_verdes</span>, <span class="va">barrio_limpio</span>,</span>
-<span>         <span class="va">cercania_actividad</span>, <span class="va">cercania_escuelas</span>, <span class="va">cercania_comercio</span>,</span>
-<span>         <span class="va">cercania_familia</span>, <span class="va">tamaño_vivienda</span>, <span class="va">calidad_vivienda</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>elsoc_barrio <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(confianza_vecinos, barrio_ideal, barrio_integracion, barrio_identidad,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         barrio_pertenencia, barrio_amigos, barrio_sociable, barrio_cordial,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         barrio_colaborador, conectividad, areas_verdes, barrio_limpio,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>         cercania_actividad, cercania_escuelas, cercania_comercio,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>         cercania_familia, tamaño_vivienda, calidad_vivienda)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Las variables se convierten a numéricas</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>                   confianza_vecinos barrio_ideal barrio_integracion
-confianza_vecinos               1.00         0.39               0.42
-barrio_ideal                    0.39         1.00               0.65
-barrio_integracion              0.42         0.65               1.00
-barrio_identidad                0.42         0.60               0.72
-barrio_pertenencia              0.34         0.60               0.66
-barrio_amigos                   0.40         0.39               0.50
-barrio_sociable                 0.41         0.39               0.50
-barrio_cordial                  0.44         0.45               0.53
-barrio_colaborador              0.36         0.40               0.43
-conectividad                    0.16         0.25               0.25
-areas_verdes                    0.14         0.26               0.23
-barrio_limpio                   0.20         0.37               0.30
-cercania_actividad              0.13         0.25               0.24
-cercania_escuelas               0.16         0.27               0.24
-cercania_comercio               0.15         0.22               0.19
-cercania_familia                0.15         0.19               0.24
-tamaño_vivienda                 0.19         0.27               0.22
-calidad_vivienda                0.19         0.27               0.23
-                   barrio_identidad barrio_pertenencia barrio_amigos
-confianza_vecinos              0.42               0.34          0.40
-barrio_ideal                   0.60               0.60          0.39
-barrio_integracion             0.72               0.66          0.50
-barrio_identidad               1.00               0.71          0.50
-barrio_pertenencia             0.71               1.00          0.47
-barrio_amigos                  0.50               0.47          1.00
-barrio_sociable                0.50               0.44          0.63
-barrio_cordial                 0.52               0.48          0.55
-barrio_colaborador             0.46               0.44          0.49
-conectividad                   0.22               0.24          0.16
-areas_verdes                   0.20               0.20          0.15
-barrio_limpio                  0.28               0.29          0.23
-cercania_actividad             0.23               0.26          0.15
-cercania_escuelas              0.25               0.23          0.18
-cercania_comercio              0.20               0.20          0.13
-cercania_familia               0.24               0.23          0.24
-tamaño_vivienda                0.21               0.23          0.15
-calidad_vivienda               0.20               0.22          0.14
-                   barrio_sociable barrio_cordial barrio_colaborador
-confianza_vecinos             0.41           0.44               0.36
-barrio_ideal                  0.39           0.45               0.40
-barrio_integracion            0.50           0.53               0.43
-barrio_identidad              0.50           0.52               0.46
-barrio_pertenencia            0.44           0.48               0.44
-barrio_amigos                 0.63           0.55               0.49
-barrio_sociable               1.00           0.68               0.57
-barrio_cordial                0.68           1.00               0.58
-barrio_colaborador            0.57           0.58               1.00
-conectividad                  0.20           0.23               0.20
-areas_verdes                  0.15           0.20               0.18
-barrio_limpio                 0.21           0.27               0.28
-cercania_actividad            0.16           0.16               0.16
-cercania_escuelas             0.20           0.23               0.21
-cercania_comercio             0.13           0.17               0.13
-cercania_familia              0.22           0.19               0.19
-tamaño_vivienda               0.16           0.19               0.18
-calidad_vivienda              0.17           0.20               0.20
-                   conectividad areas_verdes barrio_limpio cercania_actividad
-confianza_vecinos          0.16         0.14          0.20               0.13
-barrio_ideal               0.25         0.26          0.37               0.25
-barrio_integracion         0.25         0.23          0.30               0.24
-barrio_identidad           0.22         0.20          0.28               0.23
-barrio_pertenencia         0.24         0.20          0.29               0.26
-barrio_amigos              0.16         0.15          0.23               0.15
-barrio_sociable            0.20         0.15          0.21               0.16
-barrio_cordial             0.23         0.20          0.27               0.16
-barrio_colaborador         0.20         0.18          0.28               0.16
-conectividad               1.00         0.26          0.23               0.32
-areas_verdes               0.26         1.00          0.56               0.27
-barrio_limpio              0.23         0.56          1.00               0.29
-cercania_actividad         0.32         0.27          0.29               1.00
-cercania_escuelas          0.33         0.31          0.30               0.40
-cercania_comercio          0.37         0.27          0.23               0.35
-cercania_familia           0.21         0.17          0.14               0.26
-tamaño_vivienda            0.20         0.15          0.21               0.17
-calidad_vivienda           0.19         0.19          0.24               0.15
-                   cercania_escuelas cercania_comercio cercania_familia
-confianza_vecinos               0.16              0.15             0.15
-barrio_ideal                    0.27              0.22             0.19
-barrio_integracion              0.24              0.19             0.24
-barrio_identidad                0.25              0.20             0.24
-barrio_pertenencia              0.23              0.20             0.23
-barrio_amigos                   0.18              0.13             0.24
-barrio_sociable                 0.20              0.13             0.22
-barrio_cordial                  0.23              0.17             0.19
-barrio_colaborador              0.21              0.13             0.19
-conectividad                    0.33              0.37             0.21
-areas_verdes                    0.31              0.27             0.17
-barrio_limpio                   0.30              0.23             0.14
-cercania_actividad              0.40              0.35             0.26
-cercania_escuelas               1.00              0.53             0.26
-cercania_comercio               0.53              1.00             0.26
-cercania_familia                0.26              0.26             1.00
-tamaño_vivienda                 0.18              0.19             0.16
-calidad_vivienda                0.20              0.20             0.14
-                   tamaño_vivienda calidad_vivienda
-confianza_vecinos             0.19             0.19
-barrio_ideal                  0.27             0.27
-barrio_integracion            0.22             0.23
-barrio_identidad              0.21             0.20
-barrio_pertenencia            0.23             0.22
-barrio_amigos                 0.15             0.14
-barrio_sociable               0.16             0.17
-barrio_cordial                0.19             0.20
-barrio_colaborador            0.18             0.20
-conectividad                  0.20             0.19
-areas_verdes                  0.15             0.19
-barrio_limpio                 0.21             0.24
-cercania_actividad            0.17             0.15
-cercania_escuelas             0.18             0.20
-cercania_comercio             0.19             0.20
-cercania_familia              0.16             0.14
-tamaño_vivienda               1.00             0.59
-calidad_vivienda              0.59             1.00</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>elsoc_barrio <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(confianza_vecinos, barrio_ideal, barrio_integracion, barrio_identidad,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>         barrio_pertenencia, barrio_amigos, barrio_sociable, barrio_cordial,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         barrio_colaborador, conectividad, areas_verdes, barrio_limpio,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>         cercania_actividad, cercania_escuelas, cercania_comercio,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         cercania_familia, tamaño_vivienda, calidad_vivienda) <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Se calcula la matriz de correlaciones</p>
 <div class="cell fig-cap-location-bottom">
-<div class="sourceCode" id="cb12" data-cap-location="bottom"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">corrplot</span><span class="op">(</span><span class="va">corrbarrio</span>,</span>
-<span>         method <span class="op">=</span> <span class="st">"color"</span>,       <span class="co"># colorea los recuadros según valor</span></span>
-<span>         col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#2761f5"</span>, <span class="st">"white"</span>, <span class="st">"#f56c27"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,  <span class="co"># blanco a rojo</span></span>
-<span>         type <span class="op">=</span> <span class="st">"upper"</span>,         <span class="co"># mostrar solo la mitad superior</span></span>
-<span>         order <span class="op">=</span> <span class="st">"original"</span>,     <span class="co"># mantener el orden de las variables</span></span>
-<span>         addCoef.col <span class="op">=</span> <span class="st">"black"</span>,  <span class="co"># añadir los valores numéricos</span></span>
-<span>         tl.col <span class="op">=</span> <span class="st">"black"</span>,       <span class="co"># color etiquetas</span></span>
-<span>         tl.srt <span class="op">=</span> <span class="fl">45</span>, </span>
-<span>         bg <span class="op">=</span> <span class="st">"white"</span>,<span class="co"># rotar etiquetas</span></span>
-<span>         number.cex <span class="op">=</span> <span class="fl">0.8</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(corrbarrio,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"color"</span>,       <span class="co"># colorea los recuadros según valor</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#2761f5"</span>, <span class="st">"white"</span>, <span class="st">"#f56c27"</span>))(<span class="dv">20</span>),  <span class="co"># blanco a rojo</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,         <span class="co"># mostrar solo la mitad superior</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">order =</span> <span class="st">"original"</span>,     <span class="co"># mantener el orden de las variables</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,  <span class="co"># añadir los valores numéricos</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,       <span class="co"># color etiquetas</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.srt =</span> <span class="dv">45</span>, </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">bg =</span> <span class="st">"white"</span>,<span class="co"># rotar etiquetas</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-corr-barrio" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-corr-barrio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-barrio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="factoriales_files/figure-html/fig-corr-barrio-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-barrio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Correlaciones factor calidad de vida en el barrio
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">KMO</span><span class="op">(</span><span class="va">corrbarrio</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(corrbarrio) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = corrbarrio)
@@ -413,7 +326,7 @@ cercania_actividad  cercania_escuelas  cercania_comercio   cercania_familia
    tamaño_vivienda   calidad_vivienda 
               0.76               0.76 </code></pre>
 </div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">cortest.bartlett</span><span class="op">(</span><span class="va">corrbarrio</span>, n <span class="op">=</span> <span class="fl">2730</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(corrbarrio, <span class="at">n =</span> <span class="dv">2730</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$chisq
 [1] 19599.6
@@ -426,7 +339,7 @@ $df
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tab_fa</span><span class="op">(</span><span class="va">elsoc_barrio</span>, rotation <span class="op">=</span> <span class="st">"varimax"</span>, show.comm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_fa</span>(elsoc_barrio, <span class="at">rotation =</span> <span class="st">"varimax"</span>, <span class="at">show.comm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parallel analysis suggests that the number of factors =  5  and the number of components =  NA </code></pre>
 </div>
@@ -623,9 +536,593 @@ $df
 </table>
 </div>
 </div>
-</section><section id="factor-redes-sociales-2021" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="factor-redes-sociales-2021">
-<span class="header-section-number">1.3</span> Factor redes sociales (2021)</h2>
-</section></section></main><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+<section id="factor-redes-sociales-ola-5" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="factor-redes-sociales-ola-5"><span class="header-section-number">1.3</span> Factor redes sociales (ola 5)</h2>
+<p>Seleccionamos las variables a utilizar</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>elsoc_redes <span class="ot">&lt;-</span> elsoc_redes <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(confianza_gen, altruismo_gen, gente_justa, visitar_vecino,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>       reunion_pub, visita_amigos, voluntariado, donar_dinero, prestar_dinero, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>       ayuda_trabajo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pasamos las variables a numéricas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>elsoc_redes <span class="ot">&lt;-</span> elsoc_redes <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(confianza_gen, altruismo_gen, gente_justa, visitar_vecino,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>       reunion_pub, visita_amigos, voluntariado, donar_dinero, prestar_dinero, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>       ayuda_trabajo) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Estimamos la matriz de correlaciones</p>
+<div class="cell fig-cap-location-bottom">
+<div class="sourceCode cell-code" id="cb22" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(corredes,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"color"</span>,       <span class="co"># colorea los recuadros según valor</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#2761f5"</span>, <span class="st">"white"</span>, <span class="st">"#f56c27"</span>))(<span class="dv">20</span>),  </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,         <span class="co"># mostrar solo la mitad superior</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">order =</span> <span class="st">"original"</span>,     <span class="co"># mantener el orden de las variables</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,  <span class="co"># añadir los valores numéricos</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,       <span class="co"># color etiquetas</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.srt =</span> <span class="dv">45</span>, </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">bg =</span> <span class="st">"white"</span>,<span class="co"># rotar etiquetas</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-corr-redes" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="factoriales_files/figure-html/fig-corr-redes-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Correlaciones factor redes sociales
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(corredes) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Kaiser-Meyer-Olkin factor adequacy
+Call: KMO(r = corredes)
+Overall MSA =  0.72
+MSA for each item = 
+ confianza_gen  altruismo_gen    gente_justa visitar_vecino    reunion_pub 
+          0.54           0.54           0.51           0.70           0.77 
+ visita_amigos   voluntariado   donar_dinero prestar_dinero  ayuda_trabajo 
+          0.71           0.76           0.77           0.72           0.73 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(corredes, <span class="at">n =</span> <span class="dv">2740</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$chisq
+[1] 2126.676
+
+$p.value
+[1] 0
+
+$df
+[1] 45</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_fa</span>(elsoc_redes, <span class="at">rotation =</span> <span class="st">"varimax"</span>, <span class="at">show.comm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Parallel analysis suggests that the number of factors =  4  and the number of components =  NA </code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Factor Analysis</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">&nbsp;</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 1</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 2</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 3</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 4</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm; font-style: italic; color: #666666">Communality</td>
+</tr>
+<tr class="even">
+<td style="border-top: 1px solid black">confianza_gen</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; border-top: 1px solid black;">0.03</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; border-top: 1px solid black;">-0.04</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; border-top: 1px solid black;">-0.06</td>
+<td style="text-align: center; padding: 0.2cm; border-top: 1px solid black;">0.67</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666; border-top: 1px solid black;">0.46</td>
+</tr>
+<tr class="odd">
+<td>altruismo_gen</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.04</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.02</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.01</td>
+<td style="text-align: center; padding: 0.2cm;">0.31</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.10</td>
+</tr>
+<tr class="even">
+<td style="background-color: #eacccc">gente_justa</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; background-color: #eacccc;">0.03</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; background-color: #eacccc;">-0.03</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; background-color: #eacccc;">0.01</td>
+<td style="text-align: center; padding: 0.2cm; background-color: #eacccc;">-0.11</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666; background-color: #eacccc;">0.01</td>
+</tr>
+<tr class="odd">
+<td>visitar_vecino</td>
+<td style="text-align: center; padding: 0.2cm;">0.72</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.07</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.19</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.04</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.56</td>
+</tr>
+<tr class="even">
+<td>reunion_pub</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.23</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.10</td>
+<td style="text-align: center; padding: 0.2cm;">0.44</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.11</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.27</td>
+</tr>
+<tr class="odd">
+<td>visita_amigos</td>
+<td style="text-align: center; padding: 0.2cm;">0.44</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.18</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.21</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.12</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.29</td>
+</tr>
+<tr class="even">
+<td>voluntariado</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.13</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.11</td>
+<td style="text-align: center; padding: 0.2cm;">0.56</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.02</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.35</td>
+</tr>
+<tr class="odd">
+<td style="background-color: #eacccc">donar_dinero</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; background-color: #eacccc;">0.09</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; background-color: #eacccc;">0.28</td>
+<td style="text-align: center; padding: 0.2cm; background-color: #eacccc;">0.29</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; background-color: #eacccc;">-0.01</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666; background-color: #eacccc;">0.17</td>
+</tr>
+<tr class="even">
+<td>prestar_dinero</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.12</td>
+<td style="text-align: center; padding: 0.2cm;">0.72</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.10</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.01</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.54</td>
+</tr>
+<tr class="odd">
+<td style="background-color: #eacccc">ayuda_trabajo</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; background-color: #eacccc;">0.07</td>
+<td style="text-align: center; padding: 0.2cm; background-color: #eacccc;">0.38</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; background-color: #eacccc;">0.31</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; background-color: #eacccc;">0.06</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666; background-color: #eacccc;">0.25</td>
+</tr>
+<tr class="even">
+<td style="padding: 0.2cm; font-style: italic">Total Communalities</td>
+<td colspan="4" style="text-align: center; padding: 0.2cm; font-style: italic;"></td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic;">3.00</td>
+</tr>
+<tr class="odd">
+<td style="padding: 0.2cm; font-style: italic; border-bottom: double">Cronbach's α</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;">0.55</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;">0.47</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;">0.46</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;">0.04</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="análisis-factorial-confirmatorio" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Análisis factorial confirmatorio</h1>
+<section id="factor-seguridad-1" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="factor-seguridad-1"><span class="header-section-number">2.1</span> Factor seguridad</h2>
+<p>Especificamos el modelo tomando en cuenta la propuesta teórica del documento.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>seguridad_model <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="st">subjetiva =~ seguridad_perc + seguridad_sat</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="st">objetiva =~ peleas_calle + asaltos + trafico_drogas</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se estima el modelo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>seguridad_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> seguridad_model,</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> elsoc_seg,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">estimator =</span> <span class="st">"DWLS"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ordered =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">std.lv =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualizamos los resultados</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(seguridad_cfa, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6-19 ended normally after 18 iterations
+
+  Estimator                                       DWLS
+  Optimization method                           NLMINB
+  Number of model parameters                        26
+
+                                                  Used       Total
+  Number of observations                          2403        2730
+
+Model Test User Model:
+                                                      
+  Test statistic                                10.109
+  Degrees of freedom                                 4
+  P-value (Chi-square)                           0.039
+
+Model Test Baseline Model:
+
+  Test statistic                             18024.644
+  Degrees of freedom                                10
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       0.999
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.025
+  90 Percent confidence interval - lower         0.005
+  90 Percent confidence interval - upper         0.045
+  P-value H_0: RMSEA &lt;= 0.050                    0.982
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.012
+
+Parameter Estimates:
+
+  Parameterization                               Delta
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  subjetiva =~                                                          
+    seguridad_perc    1.000                               0.786    0.786
+    seguridad_sat     1.051    0.025   41.530    0.000    0.826    0.826
+  objetiva =~                                                           
+    peleas_calle      1.000                               0.842    0.842
+    asaltos           0.933    0.019   48.666    0.000    0.785    0.785
+    trafico_drogas    0.967    0.020   48.640    0.000    0.814    0.814
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  subjetiva ~~                                                          
+    objetiva         -0.533    0.012  -46.247    0.000   -0.806   -0.806
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    segurdd_prc|t1   -1.679    0.044  -38.053    0.000   -1.679   -1.679
+    segurdd_prc|t2   -0.766    0.028  -26.885    0.000   -0.766   -0.766
+    segurdd_prc|t3   -0.190    0.026   -7.399    0.000   -0.190   -0.190
+    segurdd_prc|t4    1.257    0.034   36.476    0.000    1.257    1.257
+    seguridd_st|t1   -1.603    0.042  -38.216    0.000   -1.603   -1.603
+    seguridd_st|t2   -0.569    0.027  -20.972    0.000   -0.569   -0.569
+    seguridd_st|t3   -0.099    0.026   -3.854    0.000   -0.099   -0.099
+    seguridd_st|t4    1.400    0.037   37.707    0.000    1.400    1.400
+    peleas_call|t1   -0.059    0.026   -2.305    0.021   -0.059   -0.059
+    peleas_call|t2    0.632    0.028   22.953    0.000    0.632    0.632
+    peleas_call|t3    1.176    0.033   35.460    0.000    1.176    1.176
+    peleas_call|t4    1.846    0.050   37.072    0.000    1.846    1.846
+    asaltos|t1       -0.453    0.027  -17.048    0.000   -0.453   -0.453
+    asaltos|t2        0.299    0.026   11.506    0.000    0.299    0.299
+    asaltos|t3        0.973    0.031   31.910    0.000    0.973    0.973
+    asaltos|t4        1.791    0.048   37.482    0.000    1.791    1.791
+    trafic_drgs|t1   -0.264    0.026  -10.207    0.000   -0.264   -0.264
+    trafic_drgs|t2    0.163    0.026    6.340    0.000    0.163    0.163
+    trafic_drgs|t3    0.564    0.027   20.813    0.000    0.564    0.564
+    trafic_drgs|t4    1.176    0.033   35.460    0.000    1.176    1.176
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .seguridad_perc    0.382                               0.382    0.382
+   .seguridad_sat     0.317                               0.317    0.317
+   .peleas_calle      0.292                               0.292    0.292
+   .asaltos           0.384                               0.384    0.384
+   .trafico_drogas    0.338                               0.338    0.338
+    subjetiva         0.618    0.018   33.953    0.000    1.000    1.000
+    objetiva          0.708    0.018   38.869    0.000    1.000    1.000</code></pre>
+</div>
+</div>
+<p>Cargas factoriales estandarizadas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">standardizedSolution</span>(seguridad_cfa) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(lhs, rhs, est.std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        lhs            rhs est.std
+1 subjetiva seguridad_perc   0.786
+2 subjetiva  seguridad_sat   0.826
+3  objetiva   peleas_calle   0.842
+4  objetiva        asaltos   0.785
+5  objetiva trafico_drogas   0.814</code></pre>
+</div>
+</div>
+<p>En este modelo todas las cargas factoriales estandarizadas son altas, donde los cinco indicadores oscilan entre el 0.7 y 0.8. Todos los indicadores son explicados en buena medida por su factor latente respectivo.</p>
+</section>
+<section id="factor-vinculación-territorial" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="factor-vinculación-territorial"><span class="header-section-number">2.2</span> Factor vinculación territorial</h2>
+<p>Después de haber visto los EFA, sumado a la idea de realizar una propuesta minimalista de cohesión social, es que se propone modificar la subdimensión de “calidad de vida en el vecindario” y llamarla “vinculación territorial”, la cual estaría compuesta por un factor de sentido de pertenencia territorial y otro de satisfacción con el barrio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>barrio_model <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="st">pertenencia =~ barrio_ideal + barrio_integracion + barrio_identidad + barrio_pertenencia</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="st">satisfaccion =~ barrio_amigos + barrio_sociable + barrio_cordial + barrio_colaborador</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Estimación del modelo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>barrio_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> barrio_model,</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> elsoc_barrio,</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">estimator =</span> <span class="st">"DWLS"</span>,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ordered =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">std.lv =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(barrio_cfa, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6-19 ended normally after 23 iterations
+
+  Estimator                                       DWLS
+  Optimization method                           NLMINB
+  Number of model parameters                        41
+
+                                                  Used       Total
+  Number of observations                          2525        2730
+
+Model Test User Model:
+                                                      
+  Test statistic                               109.585
+  Degrees of freedom                                19
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                             96965.694
+  Degrees of freedom                                28
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.999
+  Tucker-Lewis Index (TLI)                       0.999
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.043
+  90 Percent confidence interval - lower         0.036
+  90 Percent confidence interval - upper         0.052
+  P-value H_0: RMSEA &lt;= 0.050                    0.907
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.021
+
+Parameter Estimates:
+
+  Parameterization                               Delta
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  pertenencia =~                                                        
+    barrio_ideal      1.000                               0.780    0.780
+    barrio_intgrcn    1.138    0.012   95.133    0.000    0.887    0.887
+    barrio_identdd    1.149    0.011  101.252    0.000    0.896    0.896
+    barrio_pertnnc    1.105    0.011   96.742    0.000    0.861    0.861
+  satisfaccion =~                                                       
+    barrio_amigos     1.000                               0.791    0.791
+    barrio_sociabl    1.102    0.013   83.658    0.000    0.872    0.872
+    barrio_cordial    1.118    0.013   89.165    0.000    0.885    0.885
+    barrio_colbrdr    0.962    0.012   80.503    0.000    0.761    0.761
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  pertenencia ~~                                                        
+    satisfaccion      0.472    0.006   82.686    0.000    0.765    0.765
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    barrio_idel|t1   -1.982    0.054  -36.608    0.000   -1.982   -1.982
+    barrio_idel|t2   -0.999    0.030  -33.260    0.000   -0.999   -0.999
+    barrio_idel|t3   -0.572    0.026  -21.604    0.000   -0.572   -0.572
+    barrio_idel|t4    1.023    0.030   33.728    0.000    1.023    1.023
+    barr_ntgrcn|t1   -2.042    0.057  -35.847    0.000   -2.042   -2.042
+    barr_ntgrcn|t2   -1.138    0.032  -35.784    0.000   -1.138   -1.138
+    barr_ntgrcn|t3   -0.642    0.027  -23.844    0.000   -0.642   -0.642
+    barr_ntgrcn|t4    1.048    0.031   34.221    0.000    1.048    1.048
+    barri_dntdd|t1   -2.050    0.057  -35.739    0.000   -2.050   -2.050
+    barri_dntdd|t2   -1.001    0.030  -33.293    0.000   -1.001   -1.001
+    barri_dntdd|t3   -0.479    0.026  -18.405    0.000   -0.479   -0.479
+    barri_dntdd|t4    1.079    0.031   34.799    0.000    1.079    1.079
+    barr_prtnnc|t1   -2.110    0.060  -34.885    0.000   -2.110   -2.110
+    barr_prtnnc|t2   -1.090    0.031  -34.988    0.000   -1.090   -1.090
+    barr_prtnnc|t3   -0.609    0.027  -22.804    0.000   -0.609   -0.609
+    barr_prtnnc|t4    1.003    0.030   33.327    0.000    1.003    1.003
+    barrio_amgs|t1   -1.868    0.049  -37.809    0.000   -1.868   -1.868
+    barrio_amgs|t2   -0.790    0.028  -28.232    0.000   -0.790   -0.790
+    barrio_amgs|t3   -0.121    0.025   -4.834    0.000   -0.121   -0.121
+    barrio_amgs|t4    1.397    0.036   38.634    0.000    1.397    1.397
+    barrio_scbl|t1   -2.119    0.061  -34.747    0.000   -2.119   -2.119
+    barrio_scbl|t2   -1.058    0.031  -34.415    0.000   -1.058   -1.058
+    barrio_scbl|t3   -0.412    0.026  -16.009    0.000   -0.412   -0.412
+    barrio_scbl|t4    1.310    0.035   37.951    0.000    1.310    1.310
+    barrio_crdl|t1   -2.148    0.063  -34.307    0.000   -2.148   -2.148
+    barrio_crdl|t2   -1.205    0.033  -36.757    0.000   -1.205   -1.205
+    barrio_crdl|t3   -0.578    0.027  -21.798    0.000   -0.578   -0.578
+    barrio_crdl|t4    1.254    0.034   37.360    0.000    1.254    1.254
+    barr_clbrdr|t1   -1.989    0.054  -36.522    0.000   -1.989   -1.989
+    barr_clbrdr|t2   -1.058    0.031  -34.415    0.000   -1.058   -1.058
+    barr_clbrdr|t3   -0.388    0.026  -15.141    0.000   -0.388   -0.388
+    barr_clbrdr|t4    1.203    0.033   36.729    0.000    1.203    1.203
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .barrio_ideal      0.392                               0.392    0.392
+   .barrio_intgrcn    0.213                               0.213    0.213
+   .barrio_identdd    0.197                               0.197    0.197
+   .barrio_pertnnc    0.258                               0.258    0.258
+   .barrio_amigos     0.374                               0.374    0.374
+   .barrio_sociabl    0.240                               0.240    0.240
+   .barrio_cordial    0.217                               0.217    0.217
+   .barrio_colbrdr    0.421                               0.421    0.421
+    pertenencia       0.608    0.009   66.474    0.000    1.000    1.000
+    satisfaccion      0.626    0.010   59.827    0.000    1.000    1.000</code></pre>
+</div>
+</div>
+<p>Cargas factoriales estandarizadas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">standardizedSolution</span>(barrio_cfa) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(lhs, rhs, est.std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           lhs                rhs est.std
+1  pertenencia       barrio_ideal   0.780
+2  pertenencia barrio_integracion   0.887
+3  pertenencia   barrio_identidad   0.896
+4  pertenencia barrio_pertenencia   0.861
+5 satisfaccion      barrio_amigos   0.791
+6 satisfaccion    barrio_sociable   0.872
+7 satisfaccion     barrio_cordial   0.885
+8 satisfaccion barrio_colaborador   0.761</code></pre>
+</div>
+</div>
+<p>Todas las cargas factoriales son altas, rondando entre en 0.7 y 0.8, por lo que ambos factores estarían explicando consistentemente sus indicadores correspondientes.</p>
+</section>
+<section id="factor-redes-sociales" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="factor-redes-sociales"><span class="header-section-number">2.3</span> Factor redes sociales</h2>
+<p>A partir del EFA y la idea de minimalizar la propuesta, se decide plantear un modelo con los mismos dos factores ya existentes: confianza interpersonal y comportamiento prosocial. La diferencia es que se reduce la cantidad de indicadores de 10 a 4, dos pertenecientes a cada factor.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>redes_model <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="st">confianza_inter =~ confianza_gen + altruismo_gen</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="st">prosocial =~ reunion_pub + voluntariado</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>redes_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> redes_model,</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> elsoc_redes,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">estimator =</span> <span class="st">"DWLS"</span>,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ordered =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">std.lv =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(redes_cfa, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6-19 ended normally after 31 iterations
+
+  Estimator                                       DWLS
+  Optimization method                           NLMINB
+  Number of model parameters                        13
+
+                                                  Used       Total
+  Number of observations                          2724        2740
+
+Model Test User Model:
+                                                      
+  Test statistic                                 0.503
+  Degrees of freedom                                 1
+  P-value (Chi-square)                           0.478
+
+Model Test Baseline Model:
+
+  Test statistic                               520.569
+  Degrees of freedom                                 6
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       1.006
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.000
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.045
+  P-value H_0: RMSEA &lt;= 0.050                    0.972
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.007
+
+Parameter Estimates:
+
+  Parameterization                               Delta
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+Latent Variables:
+                     Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  confianza_inter =~                                                      
+    confianza_gen       1.000                               0.927    0.927
+    altruismo_gen       0.405    0.162    2.504    0.012    0.375    0.375
+  prosocial =~                                                            
+    reunion_pub         1.000                               0.920    0.920
+    voluntariado        0.530    0.206    2.571    0.010    0.487    0.487
+
+Covariances:
+                     Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  confianza_inter ~~                                                      
+    prosocial          -0.181    0.034   -5.248    0.000   -0.212   -0.212
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    confianz_gn|t1   -1.440    0.036  -40.375    0.000   -1.440   -1.440
+    confianz_gn|t2    1.973    0.052   38.125    0.000    1.973    1.973
+    altruism_gn|t1   -0.902    0.028  -32.293    0.000   -0.902   -0.902
+    altruism_gn|t2    1.494    0.037   40.586    0.000    1.494    1.494
+    reunion_pub|t1    0.662    0.026   25.425    0.000    0.662    0.662
+    reunion_pub|t2    1.234    0.032   38.555    0.000    1.234    1.234
+    voluntariad|t1    0.744    0.027   27.983    0.000    0.744    0.744
+    voluntariad|t2    1.083    0.030   36.203    0.000    1.083    1.083
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .confianza_gen     0.140                               0.140    0.140
+   .altruismo_gen     0.859                               0.859    0.859
+   .reunion_pub       0.153                               0.153    0.153
+   .voluntariado      0.762                               0.762    0.762
+    confianza_intr    0.860    0.348    2.468    0.014    1.000    1.000
+    prosocial         0.847    0.333    2.540    0.011    1.000    1.000</code></pre>
+</div>
+</div>
+<p>Cargas factoriales estandarizadas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">standardizedSolution</span>(redes_cfa) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(lhs, rhs, est.std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              lhs           rhs est.std
+1 confianza_inter confianza_gen   0.927
+2 confianza_inter altruismo_gen   0.375
+3       prosocial   reunion_pub   0.920
+4       prosocial  voluntariado   0.487</code></pre>
+</div>
+</div>
+<p>Ambos factores tienen un indicador que posee una carga factorial muy cercana a 1, por lo que se podría interpretar que tanto confianza general como reunión pública pueden ser un factor por sí solos.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1025,6 +1522,7 @@ $df
   });
   </script>
 </div> <!-- /content -->
+
 
 
 
