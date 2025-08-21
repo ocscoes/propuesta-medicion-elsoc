@@ -77,6 +77,8 @@ Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones 
 
 Esta sección se presenta la construcción de la nueva propuesta de medición de cohesión social en Chile con datos de ELSOC. 
 
+![](propuesta-hor.png)
+
 ## Decisiones
 
 En principio, se proponen dos decisiones fundamentales: Eliminar la subdimensión de Sentido de pertenencia **(1)**, puesto que para la construcción de la propuesta con LAPOP se definió que era problemático comprender indicadores como orgullo nacional dentro de la cohesión social. Asimismo, se pretende incluir en la nueva propuesta una subdimensión de seguridad **(2)**, (siguiendo la propuesta con LAPOP), considerándose como uno de los elementos centrales durante el último tiempo en las discusiones relacionadas al vínculo social. 
