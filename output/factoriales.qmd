@@ -27,6 +27,7 @@ format:
 
 pacman::p_load(corrplot, lavaan, psych, psy, nFactors, 
              GPArotation, devtools, ggrepel, dplyr, sjPlot, semTools)
+             
 ```
 
 Cargamos la base ELSOC 2022, la cual contiene las variables correspondientes a los factores de seguridad y calidad de vida en el vecindario
@@ -167,7 +168,7 @@ Seleccionamos las variables a utilizar
 
 ```{r}
 elsoc_redes <- elsoc_redes %>%
-select(confianza_gen, altruismo_gen, gente_justa, visitar_vecino,
+select(confianza_gen, altruismo_gen, visitar_vecino,
        reunion_pub, visita_amigos, voluntariado, donar_dinero, prestar_dinero, 
        ayuda_trabajo)
 ```
@@ -176,12 +177,19 @@ Pasamos las variables a numéricas
 
 ```{r}
 elsoc_redes <- elsoc_redes %>%
-  select(confianza_gen, altruismo_gen, gente_justa, visitar_vecino,
+  select(confianza_gen, altruismo_gen, visitar_vecino,
        reunion_pub, visita_amigos, voluntariado, donar_dinero, prestar_dinero, 
        ayuda_trabajo) %>%
   mutate(across(everything(), as.numeric))
 ```
 
+```{r}
+hist(elsoc_redes$confianza_gen,main="Histograma del Vector",xlab="Valor",ylab="Frecuencia",col="cyan4",border="black")
+```
+
+```{r}
+elsoc_redes$confianza_gen <- car::recode(elsoc_redes$confianza_gen, "c(1, 3)= 0; (2)=1")
+```
 
 ```{r}
 #| include: false 
@@ -288,18 +296,40 @@ standardizedSolution(barrio_cfa) %>%
 Todas las cargas factoriales son altas, rondando entre en 0.7 y 0.8, por lo que ambos factores estarían explicando consistentemente sus indicadores correspondientes. 
 
 ## Factor redes sociales
-A partir del EFA y la idea de minimalizar la propuesta, se decide plantear un modelo con los mismos dos factores ya existentes: confianza interpersonal y comportamiento prosocial. La diferencia es que se reduce la cantidad de indicadores de 10 a 4, dos pertenecientes a cada factor.
+A partir del EFA y la idea de minimalizar la propuesta, se decide plantear un modelo con tres factores: confianza interpersonal, comportamiento prosocial y apoyo económico. Se reduce la cantidad de indicadores de 10 a 6, dos pertenecientes a cada factor.
 ```{r}
-redes_model <- '
+redes_model_conf <- '
 confianza_inter =~ confianza_gen + altruismo_gen
 prosocial =~ reunion_pub + voluntariado
+economica =~ prestar_dinero + ayuda_trabajo
 '
 ```
 
 ```{r}
+redes_conf_cfa <- cfa(model = redes_model_conf,
+                     data = elsoc_redes,
+                     estimator = "WLSMV",
+                     ordered = TRUE,
+                     std.lv = FALSE)
+```
+
+```{r}
+summary(redes_conf_cfa, standardized = TRUE, fit.measures = TRUE)
+```
+
+En confianza interpersonal, el indicador de confianza generalizada posee una carga factorial muy alta (.99) en comparación de altruismo generalizado (.35), por lo que se interpreta que confianza generalizada podría ser un factor por sí solo, prescindiendo del otro indicador. Esto, en consecuencia, significa que el factor de confianza interpersonal, de la manera que está construido actualmente, no es fiable en su medición. 
+
+Por ello, probamos otro modelo excluyendo el factor de confianza interpersonal y manteniendo los factores de comportamiento prosocial y apoyo económico. 
+```{r}
+redes_model <- '
+prosocial =~ reunion_pub + voluntariado
+economica =~ prestar_dinero + ayuda_trabajo
+'
+```
+```{r}
 redes_cfa <- cfa(model = redes_model,
                      data = elsoc_redes,
-                     estimator = "DWLS",
+                     estimator = "WLSMV",
                      ordered = TRUE,
                      std.lv = FALSE)
 ```
@@ -314,4 +344,3 @@ standardizedSolution(redes_cfa) %>%
   dplyr::filter(op == "=~") %>% 
   dplyr::select(lhs, rhs, est.std)
 ```
-Ambos factores tienen un indicador que posee una carga factorial muy cercana a 1, por lo que se podría interpretar que tanto confianza general como reunión pública pueden ser un factor por sí solos. 
