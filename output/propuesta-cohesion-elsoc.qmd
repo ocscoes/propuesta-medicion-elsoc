@@ -55,7 +55,7 @@ La conceptualización de la cohesión social se inspira de la acepción de Chan 
 
 ## Propuesta LAPOP
 
-![](hor-la.png)
+![](hor-lapop.png)
 
 ## Propuesta ELSOC
 
@@ -77,15 +77,11 @@ Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones 
 
 Esta sección se presenta la construcción de la nueva propuesta de medición de cohesión social en Chile con datos de ELSOC. 
 
-![](propuesta-hor.png)
+![](propuesta-nueva.png)
 
-## Decisiones
+En comparación con la anterior propuesta hecha con ELSOC, se elimina la subdimensión de Sentido de pertenencia, puesto que para la construcción de la propuesta con LAPOP se definió que era problemático comprender indicadores como orgullo nacional dentro de la cohesión social. En su lugar, se integra un factor de pertenencia al barrio dentro de la subdimensión de vínculo territoriales. Asimismo, incluye una nueva subdimensión de seguridad (siguiendo la propuesta con LAPOP), considerándose como uno de los elementos centrales durante el último tiempo en las discusiones relacionadas al vínculo social. Por último, se mantiene la subdimensión de redes sociales pero sin el factor de confianza interpersonal puesto que no se pudo encontrar una fiabilidad de su medición con los datos disponibles. 
 
-En principio, se proponen dos decisiones fundamentales: Eliminar la subdimensión de Sentido de pertenencia **(1)**, puesto que para la construcción de la propuesta con LAPOP se definió que era problemático comprender indicadores como orgullo nacional dentro de la cohesión social. Asimismo, se pretende incluir en la nueva propuesta una subdimensión de seguridad **(2)**, (siguiendo la propuesta con LAPOP), considerándose como uno de los elementos centrales durante el último tiempo en las discusiones relacionadas al vínculo social. 
-
-### Seguridad
-
-Se propone añadir una subdimensión de seguridad constituida por dos factores: Seguridad objetiva (1) y Seguridad objetiva (2). Los indicadores contemplados para esto y sus especificaciones se encuentran en la siguiente tabla. 
+En la siguiente tabla se presenta la disponibilidad de las variables utilizadas para la construcción del índice de cohesión social. 
 
 ```{r}
 #| echo: false 
@@ -93,18 +89,10 @@ Se propone añadir una subdimensión de seguridad constituida por dos factores: 
 library(readr)
 library(DT)
 
-datos <- read_csv("../input/tables/tabla-seguridad-limpio.csv", show_col_types = FALSE)
+datos <- read_delim("../input/tables/variables-nueva-propuesta.csv", 
+                    delim = ";", 
+                    show_col_types = FALSE)
 datatable(datos)
 ```
 
-### Redes sociales
-
-```{r}
-#| echo: false 
-library(readr)
-library(DT)
-
-datos <- read_csv("../input/tables/tabla-redes-limpio.csv", show_col_types = FALSE)
-datatable(datos)
-```
 
