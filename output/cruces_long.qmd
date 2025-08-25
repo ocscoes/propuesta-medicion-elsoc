@@ -19,6 +19,7 @@ format:
     title-block-banner: true 
 ---
 
+```{=html}
 <style>
 .logo {
     position: absolute;
@@ -26,11 +27,11 @@ format:
     right: 30px;
 }
 </style>
+```
 
-<img class="logo" src="ocs-new.jpeg" width="262" height="120">
+<img src="ocs-new.jpeg" class="logo" width="262" height="120"/>
 
-<div style="text-align: justify">
-
+::: {style="text-align: justify"}
 ```{r}
 #| label: packages
 #| echo: false
@@ -86,6 +87,7 @@ elsoc_6 <- readRDS("../input/data/proc_data/elsoc_2022_mig.RData")
 # Creación de índices
 
 Se crean ambos índice de seguridad y vinculación territorial
+
 ```{r}
 #| label: seguridad subjetiva
 
@@ -141,7 +143,6 @@ elsoc_4 <- elsoc_4 %>%
 elsoc_4 <- elsoc_4 %>%
   mutate(seguridad_obj = rowMeans(select(., peleas_calle, asaltos, trafico_drogas), na.rm = TRUE))
 ```
-
 
 ```{r}
 #| label: data-full
@@ -158,7 +159,6 @@ elsoc_long <- bind_rows(elsoc_1, elsoc_2, elsoc_3, elsoc_4)
 
 ```
 
-
 ```{r}
 #| label: tendencia-plot
 #| echo: false
@@ -173,7 +173,10 @@ elsoc_long %>%
        x = "Ola", y = "Promedio")
 
 ```
+
 ```{r}
+#| label: tendencia-seguridad
+#| echo: false
 
 elsoc_long %>%
   group_by(ola) %>%
@@ -185,9 +188,10 @@ elsoc_long %>%
        x = "Ola", y = "Promedio")
 
 ```
-```
 
 ```{r}
+#| label: tendencia-seguridad
+#| echo: false
 
 elsoc_long %>%
   group_by(ola) %>%
@@ -197,10 +201,7 @@ elsoc_long %>%
   geom_point(size = 1.5) +
   labs(title = "Seguridad Objetiva en el Tiempo (ELSOC 2016-2019)",
        x = "Ola", y = "Promedio")
-
 ```
-```
-
 
 ```{r}
 #| label: tendencia-simaptia-genero
@@ -287,5 +288,4 @@ ggplot(simpatia_sexo, aes(x = ola, y = freq, color = factor(simpatia_migrantes),
   facet_wrap(~sexo) +
   theme_minimal()
 ```
-
-
+:::
