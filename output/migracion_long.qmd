@@ -1,9 +1,9 @@
 ---
-title: "Cohesión horizontal y migración: Cruces Longitudinales"
+title: "Cohesión horizontal y migración: Descriptivos Migración"
 author: "René Canales, Asistente de Investigación del OCS"
 date: today
 lang: es
-fontsize: 14pt
+fontsize: 12pt
 format:
   html:
     toc: true
@@ -99,6 +99,13 @@ elsoc_4 <- elsoc_4 %>% mutate(ola = 4)
 elsoc_long <- bind_rows(elsoc_1, elsoc_2, elsoc_3, elsoc_4)
 ```
 
+# Migración en Chile: Percepciones, desafíos y oportunidades
+
+Hasta fines de 2024, Chile alberga aproximadamente 1,9 millones de personas extranjeras, con predominio de hombres (51,1%) y concentración etaria entre 30 y 39 años. Los principales grupos son venezolanos (38%), peruanos (13,6%) y haitianos (9,8%) (SERMIG, 2024). La migración se ha convertido en un tema central de la agenda pública, no solo como desafío administrativo, sino también como eje de conflicto social y percepción ciudadana (SERMIG, 2025).
+
+Los datos muestran un empeoramiento de las actitudes hacia migrantes: un 55% percibe conflictos “muy fuertes” entre nacionales y extranjeros (El País, 2025; La Tercera, 2025), y un 70% declara alta distancia social (Activa Research, 2025). La percepción de carga económica también es elevada: 72% de los chilenos considera que los migrantes presionan los servicios públicos, frente a 18% que reconoce su aporte positivo (Panel Ciudadano, 2024).
+
+
 ```{r}
 #| label: desc-mig
 #| echo: false
@@ -143,6 +150,7 @@ ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = varia
   scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
   theme_minimal()
 ```
+La interacción ciudadana es selectiva: abierta en ámbitos laborales y escolares, pero resistente en espacios cercanos como vecindario o relaciones jerárquicas (Criteria, 2025). Niños, niñas y adolescentes migrantes presentan alta vulnerabilidad, especialmente quienes viven en situación irregular, enfrentando riesgos de exclusión educativa, violencia y precariedad (SERMIG, 2025; Políticas Migratorias, 2024).
 
 ```{r}
 #| label: desc-mig2
@@ -194,6 +202,8 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
         legend.position = "bottom")
 ```
 
+
+
 ```{r}
 #| label: desc-mig3
 #| echo: false
@@ -243,5 +253,9 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
         legend.position = "bottom")
 
 ```
+
+Persisten barreras laborales, educativas, de salud y vivienda, con discriminación estructural y limitaciones legales para la contratación de extranjeros (CENEM, 2023; UCSH, 2019; UC, 2024). Las políticas públicas muestran fragmentación institucional, carencia de coordinación y escasos recursos para abordar la integración efectiva (Espacio Público, 2023; SJM, 2022).
+
+El rechazo a migrantes está mediado por percepción de pobreza, competencia por recursos y narrativas mediáticas negativas (USACH, 2025; Ipsos, 2025). Aunque existe apoyo a derechos básicos, persiste el rechazo a derechos políticos y un 92% respalda políticas migratorias más estrictas (Panel Ciudadano, 2024). La dispersión territorial de migrantes genera tensiones locales y contribuye a desigualdades estructurales, consolidando la 
 
 :::
