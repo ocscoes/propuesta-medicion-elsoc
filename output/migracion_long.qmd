@@ -120,7 +120,8 @@ Los datos muestran un empeoramiento de las actitudes hacia migrantes: un 55% per
 
 
 ```{r}
-#| label: desc-mig
+#| label: fig-long-1
+#| fig-cap: Tendencia de variables sobre migración ELSOC (2016-2019)
 #| echo: false
 
 # Variables a graficar
@@ -158,7 +159,7 @@ ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = varia
     "desempleo_migrantes" = "#66a61e"
   ),
   labels = nombres_legibles) +
-  labs(title = "Tendencia de variables sobre migrantes (ELSOC 2016-2019)",
+  labs(title = "Tendencia de variables sobre migración (ELSOC 2016-2019)",
        x = "Ola", y = "Promedio", color = "Variable") +
   scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
   theme_minimal()
@@ -167,6 +168,7 @@ La interacción ciudadana es selectiva: abierta en ámbitos laborales y escolare
 
 ```{r}
 #| label: desc-mig2
+#| fig-cap: Distribución simplificada de respuestas ELSOC (2016-2019)
 #| echo: false
 
 # Variables a graficar (solo 3)
@@ -219,6 +221,7 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
 
 ```{r}
 #| label: desc-mig3
+#| fig-cap: Distribución simplificada de respuestas (ELSOC 2016-2019
 #| echo: false
 
 # Variables a graficar (las 2 restantes)
@@ -273,6 +276,7 @@ El rechazo a migrantes está mediado por percepción de pobreza, competencia por
 
 ```{r}
 #| label: desc-mig4
+#| fig-cap: Tendencia Variables Igualdad Migrantes
 #| echo: false
 
 # Variables a graficar
