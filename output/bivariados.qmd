@@ -63,7 +63,7 @@ elsoc_5 <- readRDS("../input/data/proc_data/elsoc_2021_mig.RData")
 #| label: tbl-descr1
 #| echo: false 
 
-elsoc_5 %>%  select(frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
+elsoc_5 %>% select(frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
          perdida_identidad, desempleo_migrantes, confianza_migrantes, 
          fomentar_migracion, igualdad_migrantes) %>% 
   haven::zap_labels() %>%
@@ -79,7 +79,7 @@ elsoc_5 %>%  select(frecuencia_migrantes, contacto_migrantes, simpatia_migrantes
 #| label: tbl-descr2
 #| echo: false 
 
-elsoc_6 %>%  select(frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
+elsoc_6 %>% select(frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
          perdida_identidad, desempleo_migrantes, confianza_migrantes, 
          fomentar_migracion, igualdad_migrantes) %>% 
   haven::zap_labels() %>%
@@ -91,7 +91,28 @@ elsoc_6 %>%  select(frecuencia_migrantes, contacto_migrantes, simpatia_migrantes
 
 # Creación de índices
 
-Se crean ambos índice de seguridad y vinculación territorial
+Para realizar los cruces de las subdimensiones de la cohesión social con migración, se construyen índices[¹] de los promedios de los indicadores que conforman los constructos validados en la sección anterior. 
+
+[¹]: Si bien, en la sección de análisis de constructos estos se entendieron como factores, para efectos prácticos de difusión se decidió aplicar una construcción de índices y no de factores, ya que esto permite que los valores se mantengan en la escala original en que fueron medidas las variables, lo cual facilita su interpretación al momento de presentar resultados. 
+
+```{r}
+#| label: comportamiento prosocial
+elsoc_5 <- elsoc_5 %>%
+  mutate(comportamiento_prosocial = rowMeans(select(., reunion_pub, voluntariado), na.rm = TRUE))
+```
+
+```{r}
+#| label: ayuda economica
+elsoc_5 <- elsoc_5 %>%
+  mutate(ayuda_economica = rowMeans(select(., prestar_dinero, ayuda_trabajo), na.rm = TRUE))
+```
+
+```{r}
+#| label: confianza interpersonal
+elsoc_5 <- elsoc_5 %>%
+  mutate(confianza_inter = rowMeans(select(., confianza_gen, altruismo_gen), na.rm = TRUE))
+```
+
 ```{r}
 #| label: seguridad subjetiva
 
@@ -118,18 +139,6 @@ elsoc_6 <- elsoc_6 %>%
   mutate(satisfaccion_barrio = rowMeans(select(., barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador), na.rm = TRUE))
 ```
 
-```{r}
-#| label: comportamiento prosocial
-elsoc_5 <- elsoc_5 %>%
-  mutate(comportamiento_prosocial = rowMeans(select(., reunion_pub, voluntariado), na.rm = TRUE))
-```
-
-```{r}
-#| label: ayuda economica
-elsoc_5 <- elsoc_5 %>%
-  mutate(ayuda_economica = rowMeans(select(., prestar_dinero, ayuda_trabajo), na.rm = TRUE))
-```
-
 # Correlaciones
 
 ## Correlación seguridad
@@ -144,14 +153,14 @@ seg_mig <- elsoc_6 %>%
          fomentar_migracion, igualdad_migrantes)
 ```
 
-### Correlación de Pearson
+### Correlación de Spearman
 ```{r}
-corrsegmig <- round(cor(seg_mig, use = "pairwise.complete.obs"), 2)
+corrsegmig <- round(cor(seg_mig, use = "pairwise.complete.obs", method = "spearman"), 2)
 ```
 
 ```{r}
 #| label: fig-corr1
-#| fig-cap: Correlaciones seguridad y migración (Pearson)
+#| fig-cap: Correlaciones seguridad y migración (Spearman)
 #| echo: false
 
 corrplot(corrsegmig,
@@ -167,7 +176,7 @@ corrplot(corrsegmig,
 )
 ```
 
-La @fig-corr1 refleja las correlaciones de Pearson entre los índices de seguridad y los indicadores de migración. Se observa la mayoría de los indicadores de migración tienen una correlación bastante baja con ambos índices de seguridad. Las asociaciones más altas las tiene la seguridad subjetiva con confianza en migrantes **(.15)** y con simpatía hacia los migrantes **(.11)**.
+La @fig-corr1 refleja las correlaciones de Spearman entre los índices de seguridad y los indicadores de migración. Se observa la mayoría de los indicadores de migración tienen una correlación bastante baja con ambos índices de seguridad. Las asociaciones más altas las tiene la seguridad subjetiva con confianza en migrantes **(.14)** y con simpatía hacia los migrantes **(.10)**.
 
 ### Correlaciones policóricas
 ```{r}
@@ -187,13 +196,15 @@ corrplot(poly_cor$rho, method = "color",
          number.cex = 0.7)
 ```
 
-En @fig-corr2 se observa una matriz de correlaciones policórica, la cual permite estimar de manera más adecuada las asociaciones entre variables ordinales en comparación de la correlación de Pearson, donde se asume que las variables son continuas. 
-
-La mayoría de las correlaciones son bajas, destacando seguridad subjetiva con desempleo debido a inmigrantes con un **-.25**, entiéndose que mientras más acuerdo hay con que la llegada de inmigrantes al país causa desempleo, menor es la sensación de seguridad. En la misma lógica se correlacionan seguridad subjetiva con pérdida de identidad, en donde, a menor seguridad subjetiva, mayor acuerdo con que los inmigrantes hacen que Chile pierda identidad. 
+En @fig-corr2 se observa una matriz de correlaciones policóricas. En este caso, la mayoría de las correlaciones son bajas, destacando seguridad subjetiva con desempleo debido a inmigrantes con un **-.25**, entiéndose que mientras más acuerdo hay con que la llegada de inmigrantes al país causa desempleo, menor es la sensación de seguridad. En la misma lógica se correlacionan seguridad subjetiva con pérdida de identidad, en donde, a menor seguridad subjetiva, mayor acuerdo con que los inmigrantes hacen que Chile pierda identidad. 
 
 
 
 ```{r}
+#| label: fig-jit1
+#| fig-cap: Jitter de desempleo por inmigrantes y sensación de seguridad
+#| echo: false 
+
 ggplot(seg_mig, aes(x = desempleo_migrantes, y = seguridad_sub)) +
   geom_jitter(width = 0.2, height = 0.2, alpha = 0.5, color = "blue") +
   labs(
@@ -204,11 +215,11 @@ ggplot(seg_mig, aes(x = desempleo_migrantes, y = seguridad_sub)) +
   theme_minimal()
 ```
 
-
+En @fig-jit1 se presenta la distribución de los valores entre seguridad subjetiva y desempleo debido a inmigrantes. Las mayores cantidades de puntos se concentran mayoritariamente en la parte superior (específicamente la categoría 4) de los valores 2 y 4 del indicador de desempleo. Esto presenta una opinión dividida en tanto que, cuando las personas perciben seguridad en su barrio, hay un grupo que está de acuerdo con que los inmigrantes causan desempleo, mientras que el otro está en desacuerdo con este enunciado. 
 
 ## Correlación vínculos territoriales
 
-### Correlación de Pearson
+### Correlación de Spearman
 ```{r}
 #| label: base índices territorio e indicadores migración
 
@@ -219,7 +230,7 @@ barrio_mig <- elsoc_6 %>%
 ```
 
 ```{r}
-corrbarriomig <- round(cor(barrio_mig, use = "pairwise.complete.obs"), 2)
+corrbarriomig <- round(cor(barrio_mig, use = "pairwise.complete.obs", , method = "spearman"), 2)
 ```
 
 
@@ -267,19 +278,20 @@ En @fig-corr4 se observa la matriz de correlaciones policóricas que contiene lo
 
 ```{r}
 redes_mig <- elsoc_5 %>%
-  select(comportamiento_prosocial, ayuda_economica, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
+  select(comportamiento_prosocial, ayuda_economica, confianza_inter, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
          perdida_identidad, desempleo_migrantes, confianza_migrantes, 
          fomentar_migracion, igualdad_migrantes)
 ```
 
-### Correlación de Pearson
+
+### Correlación de Spearman
 ```{r}
-corredesmig <- round(cor(redes_mig, use = "pairwise.complete.obs"), 2)
+corredesmig <- round(cor(redes_mig, use = "pairwise.complete.obs", method = "spearman"), 2)
 ```
 
 ```{r}
 #| label: fig-corr5
-#| fig-cap: Correlaciones redes sociales y migración (Pearson)
+#| fig-cap: Correlaciones redes sociales y migración (Spearman)
 #| echo: false
 
 corrplot(corredesmig,
@@ -314,6 +326,419 @@ corrplot(poly_cor3$rho, method = "color",
          number.cex = 0.7)
 ```
 
-En @fig-corr6 se presenta las correlaciones policóricas entre los índices de redes sociales (comportamiento prosocial y ayuda económica) y los indicadores de migración. En la matriz se pueden observar algunas correlaciones moderadas, tal como la asociación entre comporamiento prosocial e igualdad con inmigrantes **(-.40)**. Esto quiere decir que, a mayor comportamiento prosocial, hay un mayor desacuerdo con que los inmigrantes tengan un acceso igualitario a la salud. En la misma lógica se presenta la asociación entre el índice de ayuda económica con pérdida de identidad **(-.31)**, queriendo decir que a menor ayuda económica, hay un mayor acuerdo respecto a la idea de los inmigrantes le restan identidad al país. 
+En @fig-corr6 se presenta las correlaciones policóricas entre los índices de redes sociales (comportamiento prosocial y ayuda económica) y los indicadores de migración. En la matriz se pueden observar algunas correlaciones moderadas, tal como la asociación entre comportamiento prosocial e igualdad con inmigrantes **(-.40)**. Esto quiere decir que, a mayor comportamiento prosocial, hay un mayor desacuerdo con que los inmigrantes tengan un acceso igualitario a la salud. En la misma lógica se presenta la asociación entre el índice de ayuda económica con pérdida de identidad **(-.31)**, queriendo decir que a menor ayuda económica, hay un mayor acuerdo respecto a la idea de los inmigrantes le restan identidad al país. 
 
-# Moderación de correlaciones (nivel educacional y género)
+```{r}
+#| label: fig-jit2
+#| fig-cap: Jitter de igualdad en salud con inmigrantes y comportamiento prosocial 
+#| echo: false 
+
+ggplot(redes_mig, aes(x = igualdad_migrantes, y = comportamiento_prosocial)) +
+  geom_jitter(width = 0.2, height = 0.2, alpha = 0.5, color = "blue") +
+  labs(
+    x = "Acceso igualitario a salud con inmigrantes",
+    y = "Comportamiento prosocial",
+    title = "Dispersión con jitter"
+  ) +
+  theme_minimal()
+```
+
+En @fig-jit2 se observa la distribución de los valores entre el índice de comportamiento prosocial y el indicador de igualdad en salud con inmigrantes. La densidad de las respuestas se concentra mayoritariamente en la parte inferior derecha del gráfico, lo que indica una asociación negativa entre las dos variables. Se puede interpretar que, cuando las personas no han cometido actos a favor del vínculo social, están de acuerdo con que los inmigrantes tengan acceso a la salud de la misma forma que los chilenos. 
+
+# Moderación de correlaciones (género y nivel educacional)
+
+## Seguridad por género
+```{r}
+seguridad_genero <- elsoc_6 %>%
+  select(sexo, seguridad_obj, seguridad_sub, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, confianza_migrantes, 
+         fomentar_migracion, igualdad_migrantes)
+```
+
+```{r}
+seguridad_hombres <- seguridad_genero %>%
+  filter(sexo==0)
+
+seguridad_mujeres <- seguridad_genero %>%
+  filter(sexo==1)
+```
+
+```{r}
+seguridad_hombres <- seguridad_hombres %>%
+  select(-c(sexo))
+
+seguridad_mujeres <- seguridad_mujeres %>%
+  select(-c(sexo))
+```
+
+```{r}
+seg0 <- round(cor(seguridad_hombres, use = "pairwise.complete.obs", method = "spearman"), 2)
+seg1 <- round(cor(seguridad_mujeres, use = "pairwise.complete.obs", method = "spearman"), 2)
+```
+
+```{r}
+#| label: fig-corr-gen0
+#| fig-cap: Correlaciones seguridad y migración (hombres)
+#| echo: false
+
+corrplot(seg0,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+```{r}
+#| label: fig-corr-gen1
+#| fig-cap: Correlaciones seguridad y migración (mujeres)
+#| echo: false
+
+corrplot(seg1,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+## Seguridad por educación
+
+```{r}
+seguridad_educ <- elsoc_6 %>%
+  select(educacion, seguridad_obj, seguridad_sub, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, confianza_migrantes, 
+         fomentar_migracion, igualdad_migrantes)
+```
+
+```{r}
+seguridad_titulo <- seguridad_educ %>%
+  filter(educacion==1)
+
+seguridad_notitulo <- seguridad_educ %>%
+  filter(educacion==0)
+```
+
+```{r}
+seguridad_titulo <- seguridad_titulo %>%
+  select(-c(educacion))
+
+seguridad_notitulo <- seguridad_notitulo %>%
+  select(-c(educacion))
+```
+
+```{r}
+seg_educ <- round(cor(seguridad_titulo, use = "pairwise.complete.obs", method = "spearman"), 2)
+seg_noeduc <- round(cor(seguridad_notitulo, use = "pairwise.complete.obs", method = "spearman"), 2)
+```
+
+```{r}
+#| label: fig-corr-gen_ed1
+#| fig-cap: Correlaciones seguridad y migración (titulados)
+#| echo: false
+
+corrplot(seg_educ,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+```{r}
+#| label: fig-corr-gen_ed0
+#| fig-cap: Correlaciones seguridad y migración (no titulados)
+#| echo: false
+
+corrplot(seg_noeduc,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+## Vínculos territoriales por género
+
+```{r}
+barrio_genero <- elsoc_6 %>%
+  select(sexo, sentido_pertenencia, satisfaccion_barrio, frecuencia_migrantes, contacto_migrantes,     simpatia_migrantes, perdida_identidad, desempleo_migrantes, confianza_migrantes, 
+         fomentar_migracion, igualdad_migrantes)
+```
+
+```{r}
+barrio_hombres <- barrio_genero %>%
+  filter(sexo==0)
+
+barrio_mujeres <- barrio_genero %>%
+  filter(sexo==1)
+```
+
+```{r}
+barrio_hombres <- barrio_hombres %>%
+  select(-c(sexo))
+
+barrio_mujeres <- barrio_mujeres %>%
+  select(-c(sexo))
+```
+
+```{r}
+barrio0 <- round(cor(barrio_hombres, use = "pairwise.complete.obs", method = "spearman"), 2)
+barrio1 <- round(cor(barrio_mujeres, use = "pairwise.complete.obs", method = "spearman"), 2)
+```
+
+```{r}
+#| label: fig-corr-gen_barrio0
+#| fig-cap: Correlaciones barrio y migración (hombres)
+#| echo: false
+
+corrplot(barrio0,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+```{r}
+#| label: fig-corr-gen_barrio1
+#| fig-cap: Correlaciones barrio y migración (mujeres)
+#| echo: false
+
+corrplot(barrio1,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+
+## Vínculos territoriales por educación
+
+```{r}
+barrio_educ <- elsoc_6 %>%
+  select(educacion, sentido_pertenencia, satisfaccion_barrio, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, confianza_migrantes, 
+         fomentar_migracion, igualdad_migrantes)
+```
+
+```{r}
+barrio_titulo <- barrio_educ %>%
+  filter(educacion==1)
+
+barrio_notitulo <- barrio_educ %>%
+  filter(educacion==0)
+```
+
+```{r}
+barrio_titulo <- barrio_titulo %>%
+  select(-c(educacion))
+
+barrio_notitulo <- barrio_notitulo %>%
+  select(-c(educacion))
+```
+
+```{r}
+barrio_u <- round(cor(barrio_titulo, use = "pairwise.complete.obs", method = "spearman"), 2)
+barrio_nou <- round(cor(barrio_notitulo, use = "pairwise.complete.obs", method = "spearman"), 2)
+```
+
+```{r}
+#| label: fig-corr-edu-barrio1
+#| fig-cap: Correlaciones barrio y migración (titulados)
+#| echo: false
+
+corrplot(barrio_u,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+```{r}
+#| label: fig-corr-edu_barrio0
+#| fig-cap: Correlaciones barrio y migración (no titulados)
+#| echo: false
+
+corrplot(barrio_nou,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+## Redes por género
+
+```{r}
+redes_genero <- elsoc_5 %>%
+  select(sexo, comportamiento_prosocial, ayuda_economica, confianza_inter, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, confianza_migrantes, 
+         fomentar_migracion, igualdad_migrantes)
+```
+
+```{r}
+redes_hombres <- redes_genero %>%
+  filter(sexo==0)
+
+redes_mujeres <- redes_genero %>%
+  filter(sexo==1)
+```
+
+```{r}
+redes_hombres <- redes_hombres %>%
+  select(-c(sexo))
+
+redes_mujeres <- redes_mujeres %>%
+  select(-c(sexo))
+```
+
+```{r}
+redes0 <- round(cor(redes_hombres, use = "pairwise.complete.obs", method = "spearman"), 2)
+redes1 <- round(cor(redes_mujeres, use = "pairwise.complete.obs", method = "spearman"), 2)
+```
+
+
+```{r}
+#| label: fig-corr-gen_redes0
+#| fig-cap: Correlaciones redes sociales y migración (hombres)
+#| echo: false
+
+corrplot(redes0,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+```{r}
+#| label: fig-corr-gen_redes1
+#| fig-cap: Correlaciones redes y migración (mujeres)
+#| echo: false
+
+corrplot(redes1,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+## Redes por educación
+
+```{r}
+redes_educ <- elsoc_5 %>%
+  select(educacion, comportamiento_prosocial, ayuda_economica, confianza_inter, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, confianza_migrantes, 
+         fomentar_migracion, igualdad_migrantes)
+```
+
+```{r}
+redes_titulo <- redes_educ %>%
+  filter(educacion==1)
+
+redes_notitulo <- redes_educ %>%
+  filter(educacion==0)
+```
+
+```{r}
+redes_titulo <- redes_titulo %>%
+  select(-c(educacion))
+
+redes_notitulo <- redes_notitulo %>%
+  select(-c(educacion))
+```
+
+```{r}
+redes_u <- round(cor(redes_titulo, use = "pairwise.complete.obs", method = "spearman"), 2)
+redes_nou <- round(cor(redes_titulo, use = "pairwise.complete.obs", method = "spearman"), 2)
+```
+
+```{r}
+#| label: fig-corr-educ_redes1
+#| fig-cap: Correlaciones redes y migración (titulados)
+#| echo: false
+
+corrplot(redes_u,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```
+
+```{r}
+#| label: fig-corr-educ_redes0
+#| fig-cap: Correlaciones redes y migración (no titulados)
+#| echo: false
+
+corrplot(redes_nou,
+         method = "color",       # colorea los recuadros según valor
+         col = colorRampPalette(c("#2761f5", "white", "#f56c27"))(20),  # blanco a rojo
+         type = "upper",         # mostrar solo la mitad superior
+         order = "original",     # mantener el orden de las variables
+         addCoef.col = "black",  # añadir los valores numéricos
+         tl.col = "black",       # color etiquetas
+         tl.srt = 45, 
+         bg = "white",# rotar etiquetas
+         number.cex = 0.8
+)
+```

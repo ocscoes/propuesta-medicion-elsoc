@@ -363,3 +363,4 @@ standardizedSolution(redes_cfa) %>%
   dplyr::filter(op == "=~") %>% 
   dplyr::select(lhs, rhs, est.std)
 ```
+

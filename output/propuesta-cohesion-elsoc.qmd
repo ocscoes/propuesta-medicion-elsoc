@@ -45,7 +45,7 @@ A partir de la necesidad de generar evidencia empírica sobre cohesión social, 
 
 La construcción de este nuevo marco de medición tomará como referencia la [propuesta de medición de cohesión social en Chile con ELSOC](https://ocscoes.github.io/cohesion-elsoc/), así como la [propuesta de medición de cohesión social en América Latina con LAPOP](https://ocs-coes.com/reportes/posts/2025_reportes_tecnico/), en orden de elaborar un insumo que permita comprender y profundizar en los factores asociados a la cohesión social en Chile. El primer trabajo mencionado es uno de los antecedentes principales del actual trabajo, puesto que, a partir de una revisión sistemática de estudios internacionales, busca identificar los principales indicadores que posibilitan la operacionalización y medición de la cohesión social en Chile con los datos de ELSOC. El segundo documento pretende aportar en la medición de la cohesión social pero a un nivel regional, abordando la construcción técnica y metodológica para medir este fenómeno en América Latina. 
 
-El desarrollo de este documento estará guiado, primeramente, por la presentación de las dos propuestas ya mencionadas, discutiendo sus principales similitudes y diferencias, en vista de rescatar los mayores aportes de cada una. Posteriormente, se dará a conocer la nueva propuesta en sus dimensiones teórica y metodológica. 
+El desarrollo de este documento estará guiado por tres secciones principales. Primero, la presentación de las dos propuestas ya mencionadas, discutiendo sus principales similitudes y diferencias, en vista de rescatar los mayores aportes de cada una. Posteriormente, se dará a conocer la nueva propuesta junto con la operacionalización de sus subdimensiones. En segundo lugar, se presentarán los análisis de fiabilidad métrica de los constructos propuestos, pasando por un Análisis Factorial Exploratorio a modo de diagnóstico, y luego un Análisis Factorial Confirmatorio para validar los factores. Por último, se visualizarán las asociaciones de los constructos con indicadores de migración, buscando capturar relaciones transversales y longitudinales entre la cohesión social y las opinión pública de las personas respecto a la migración. 
  
 # Marco conceptual 
 
@@ -65,13 +65,13 @@ La conceptualización de la cohesión social se inspira de la acepción de Chan 
 
 ## Diferencias
 
-**1)** Las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden. 
-
-**2)** Propuesta con ELSOC es mucho más compleja en tanto tiene mayores niveles de granularidad y, consecuentemente, mayor cantidad de factores en comparación con la propuesta de LA, cuya perspectiva es más minimalista. 
+**1)** Propuesta con ELSOC es mucho más compleja en tanto tiene mayores niveles de granularidad y, consecuentemente, mayor cantidad de factores en comparación con la propuesta de LA, cuya perspectiva es más minimalista. 
 
 Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones y democracia. En la primera propuesta esta se entiende como una subdimensión compuesta de dos factores: confianza en instituciones y satisfacción con la democracia. No así, en la propuesta construida con LAPOP estos factores se entienden como dos subdimensiones independientes. 
 
-**3)** En la propuesta con ELSOC se consideran varias subdimensiones que no están presentes en el índice de LA debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, no correlacionaba con los demás factores de su dimensión. 
+**2)** En la propuesta con ELSOC se consideran varias subdimensiones que no están presentes en el índice de LA debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, no correlacionaba con los demás factores de su dimensión. 
+
+**3)** Las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden. 
 
 # Nueva propuesta
 

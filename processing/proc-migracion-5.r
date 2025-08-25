@@ -51,7 +51,7 @@ elsoc_5$desempleo_migrantes <- recode(elsoc_5$desempleo_migrantes, "c(-666, -777
 elsoc_5$confianza_migrantes <- recode(elsoc_5$confianza_migrantes, "c(-666, -777, -888, -999) = NA")
 elsoc_5$fomentar_migracion <- recode(elsoc_5$fomentar_migracion, "c(-666, -777, -888, -999) = NA")
 elsoc_5$igualdad_migrantes <- recode(elsoc_5$igualdad_migrantes, "c(-666, -777, -888, -999) = NA")
-elsoc_5$sexo <- recode(elsoc_5$sexo, "c(1) = 0; c(2) = 1")
+elsoc_5$sexo <- recode(elsoc_5$sexo, "(1) = 0; (2) = 1")
 elsoc_5$educacion <- recode(elsoc_5$educacion, "c(-666, -777, -888, -999) = NA")
 
 # dicotomizar nivel educacional 
