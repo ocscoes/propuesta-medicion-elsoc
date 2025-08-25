@@ -11,19 +11,22 @@ elsoc_1 <- elsoc_1 %>%
 
 # seleccionar variables de interés
 elsoc_1 <- elsoc_1 %>%
-  select(idencuesta, m01, m0_sexo, m0_edad, comuna, comuna_cod,
-         region, region_cod, c02, c03, c07_02,
-         c07_04, c07_05, c07_06, c07_07, c07_08, r06, r07, r09,
+  select(idencuesta, m01, m0_sexo, m0_edad, comuna, comuna_cod, region, region_cod, 
+         t06_01, t10, t09_01, t09_02, t09_03, t02_01, t02_02,
+         t02_03, t02_04, t03_01, t03_02, t03_03, t03_04, r06, r07, r09,
          r12_03, r12_04, r16, r18_01, r18_02)
 
 # renombrar variables
 
 elsoc_1 <- elsoc_1 %>%
-  rename(educacion = m01, sexo = m0_sexo, edad = m0_edad, confianza_gen = c02,
-         altruismo_gen = c03,
-         reunion_pub = c07_02, voluntariado = c07_04,
-         donar_dinero = c07_05, prestar_dinero = c07_06, ayuda_trabajo = c07_08,
-         frecuencia_migrantes = r06,
+  rename(educacion = m01, sexo = m0_sexo, edad = m0_edad, seguridad_sat = t06_01, 
+         seguridad_perc = t10, peleas_calle = t09_01,
+         asaltos = t09_02, trafico_drogas = t09_03,
+         barrio_ideal = t02_01,
+         barrio_integracion = t02_02, barrio_identidad = t02_03, 
+         barrio_pertenencia = t02_04, barrio_amigos = t03_01, 
+         barrio_sociable = t03_02, barrio_cordial = t03_03, 
+         barrio_colaborador = t03_04, frecuencia_migrantes = r06,
          contacto_migrantes = r07, simpatia_migrantes = r09,
          perdida_identidad = r12_03, desempleo_migrantes = r12_04,
          confianza_migrantes = r16, fomentar_migracion = r18_01,
@@ -36,13 +39,19 @@ get_labels(elsoc_1$voluntariado, values = TRUE)
 
 # recodificar NA
 
-elsoc_1$confianza_gen <- recode(elsoc_1$confianza_gen, "c(-666, -777, -888, -999) = NA")
-elsoc_1$altruismo_gen <- recode(elsoc_1$altruismo_gen, "c(-666, -777, -888, -999) = NA")
-elsoc_1$reunion_pub <- recode(elsoc_1$reunion_pub, "c(-666, -777, -888, -999) = NA")
-elsoc_1$voluntariado <- recode(elsoc_1$voluntariado, "c(-666, -777, -888, -999) = NA")
-elsoc_1$donar_dinero <- recode(elsoc_1$donar_dinero, "c(-666, -777, -888, -999) = NA")
-elsoc_1$prestar_dinero <- recode(elsoc_1$prestar_dinero, "c(-666, -777, -888, -999) = NA")
-elsoc_1$ayuda_trabajo <- recode(elsoc_1$ayuda_trabajo, "c(-666, -777, -888, -999) = NA")
+elsoc_1$seguridad_sat <- recode(elsoc_1$seguridad_sat, "c(-666, -777, -888, -999) = NA") 
+elsoc_1$seguridad_perc <- recode(elsoc_1$seguridad_perc, "c(-666, -777, -888, -999) = NA")
+elsoc_1$peleas_calle <- recode(elsoc_1$peleas_calle, "c(-666, -777, -888, -999) = NA")
+elsoc_1$asaltos <- recode(elsoc_1$asaltos, "c(-666, -777, -888, -999) = NA")
+elsoc_1$trafico_drogas <- recode(elsoc_1$trafico_drogas, "c(-666, -777, -888, -999) = NA")
+elsoc_1$barrio_ideal <- recode(elsoc_1$barrio_ideal, "c(-666, -777, -888, -999) = NA")
+elsoc_1$barrio_integracion <- recode(elsoc_1$barrio_integracion, "c(-666, -777, -888, -999) = NA")
+elsoc_1$barrio_identidad <- recode(elsoc_1$barrio_identidad, "c(-666, -777, -888, -999) = NA")
+elsoc_1$barrio_pertenencia <- recode(elsoc_1$barrio_pertenencia, "c(-666, -777, -888, -999) = NA")
+elsoc_1$barrio_amigos <- recode(elsoc_1$barrio_amigos, "c(-666, -777, -888, -999) = NA")
+elsoc_1$barrio_sociable <- recode(elsoc_1$barrio_sociable, "c(-666, -777, -888, -999) = NA")
+elsoc_1$barrio_cordial <- recode(elsoc_1$barrio_cordial, "c(-666, -777, -888, -999) = NA")
+elsoc_1$barrio_colaborador <- recode(elsoc_1$barrio_colaborador, "c(-666, -777, -888, -999) = NA")
 elsoc_1$frecuencia_migrantes <- recode(elsoc_1$frecuencia_migrantes, "c(-666, -777, -888, -999) = NA")
 elsoc_1$contacto_migrantes <- recode(elsoc_1$contacto_migrante, "c(-666, -777, -888, -999) = NA")
 elsoc_1$simpatia_migrantes <- recode(elsoc_1$simpatia_migrantes, "c(-666, -777, -888, -999) = NA")
