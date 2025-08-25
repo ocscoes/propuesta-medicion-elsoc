@@ -289,3 +289,30 @@ ggplot(simpatia_sexo, aes(x = ola, y = freq, color = factor(simpatia_migrantes),
   theme_minimal()
 ```
 :::
+
+```{r}
+
+seg_mig <- elsoc_long %>%
+  select(ola, seguridad_obj, seguridad_sub, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, confianza_migrantes, 
+         fomentar_migracion, igualdad_migrantes)
+```
+
+
+```{r}
+#| label: fig-jit1
+#| fig-cap: Jitter de Simpatía Migrante y sensación de seguridad
+#| echo: false 
+
+ggplot(seg_mig, aes(x = simpatia_migrantes, y = seguridad_sub, color = factor(ola))) +
+  geom_jitter(width = 0.2, height = 0.2, alpha = 0.5) +
+  facet_wrap(~ ola) +
+  labs(
+    x = "Simpatía Migrantes",
+    y = "Seguridad subjetiva",
+    color = "Ola",
+    title = "Dispersión con jitter por ola"
+  ) +
+  theme_minimal()
+
+```
