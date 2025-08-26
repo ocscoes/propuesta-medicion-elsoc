@@ -31,13 +31,13 @@ elsoc_5 <- elsoc_5 %>%
 
 # revisar labels para asegurarse de que están codificados correctamente
 
-get_labels(elsoc_5$confianza_gen, values = TRUE)
+get_labels(elsoc_5$altruismo_gen, values = TRUE)
 get_labels(elsoc_5$voluntariado, values = TRUE)
 
 # recodificar NA
 
-elsoc_5$confianza_gen <- recode(elsoc_5$confianza_gen, "c(-666, -777, -888, -999) = NA")
-elsoc_5$altruismo_gen <- recode(elsoc_5$altruismo_gen, "c(-666, -777, -888, -999) = NA")
+elsoc_5$confianza_gen <- recode(elsoc_5$confianza_gen, "c(-666, -777, -888, -999) = NA; (1)=3; (2)=1; (3)=2")
+elsoc_5$altruismo_gen <- recode(elsoc_5$altruismo_gen, "c(-666, -777, -888, -999) = NA; (1)=3; (2)=1; (3)=2")
 elsoc_5$reunion_pub <- recode(elsoc_5$reunion_pub, "c(-666, -777, -888, -999) = NA")
 elsoc_5$voluntariado <- recode(elsoc_5$voluntariado, "c(-666, -777, -888, -999) = NA")
 elsoc_5$donar_dinero <- recode(elsoc_5$donar_dinero, "c(-666, -777, -888, -999) = NA")
@@ -56,6 +56,18 @@ elsoc_5$educacion <- recode(elsoc_5$educacion, "c(-666, -777, -888, -999) = NA")
 
 # dicotomizar nivel educacional 
 elsoc_5$educacion <- car::recode(elsoc_5$educacion, "c(1, 2, 3, 4, 5, 6, 7, 8)=0; c(9, 10)=1")
+
+# Recodificar labels
+
+elsoc_5$altruismo_gen <- set_labels(elsoc_5$altruismo_gen,
+            labels=c( "La mayoria de las veces se preocupan solo de si mismas"=1,
+                      "Depende"=2,
+                      "La mayoria de las veces tratan de ayudar a los demas"=3))
+
+elsoc_5$confianza_gen <- set_labels(elsoc_5$confianza_gen,
+            labels=c( "Casi siempre hay que tener cuidado al tratar con las personas"=1,
+                      "Depende"=2,
+                      "Casi siempre se puede confiar en las personas"=3))
 
 # guardar base de datos
 saveRDS(elsoc_5, file = "input/data/proc_data/elsoc_2021_mig.RData")
