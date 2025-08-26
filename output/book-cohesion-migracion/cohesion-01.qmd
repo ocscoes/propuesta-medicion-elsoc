@@ -1,0 +1,47 @@
+# Marco conceptual 
+
+ La conceptualización de la cohesión social se inspira de la acepción de Chan et al. (2006), la cual establece dos dimensiones para la cohesión social: **Vertical** y **Horizontal**. La primera se enfoca en las relaciones entre los ciudadanos (o sociedad civil) y el Estado y sus instituciones, mientras que la segunda aborda las interacciones sociales entre los individuos.  
+
+“La cohesión social es un estado de cosas que concierte tanto a las interacciones verticales como horizontales entre los miembros de la sociedad, caracterizado por un conjunto de actitudes y normas que incluyen la confianza, el sentido de pertenencia y la voluntad de participar y ayudar, así como sus manifestaciones conductuales” (Chan et al., 2006, p. 290).
+
+## Propuesta LAPOP
+
+![](images/hor-lapop.png)
+
+## Propuesta ELSOC
+
+![](images/hor-elsoc.png)
+ 
+# Análisis comparativo
+
+## Diferencias
+
+**1)** Propuesta con ELSOC es mucho más compleja en tanto tiene mayores niveles de granularidad y, consecuentemente, mayor cantidad de factores en comparación con la propuesta de LA, cuya perspectiva es más minimalista. 
+
+Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones y democracia. En la primera propuesta esta se entiende como una subdimensión compuesta de dos factores: confianza en instituciones y satisfacción con la democracia. No así, en la propuesta construida con LAPOP estos factores se entienden como dos subdimensiones independientes. 
+
+**2)** En la propuesta con ELSOC se consideran varias subdimensiones que no están presentes en el índice de LA debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, no correlacionaba con los demás factores de su dimensión. 
+
+**3)** Las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden. 
+
+# Nueva propuesta
+
+Esta sección se presenta la construcción de la nueva propuesta de medición de cohesión social en Chile con datos de ELSOC. 
+
+![](images/propuesta-nueva.png)
+
+En comparación con la anterior propuesta hecha con ELSOC, se elimina la subdimensión de Sentido de pertenencia, puesto que para la construcción de la propuesta con LAPOP se definió que era problemático comprender indicadores como orgullo nacional dentro de la cohesión social. En su lugar, se integra un factor de pertenencia al barrio dentro de la subdimensión de vínculo territoriales. Asimismo, incluye una nueva subdimensión de seguridad (siguiendo la propuesta con LAPOP), considerándose como uno de los elementos centrales durante el último tiempo en las discusiones relacionadas al vínculo social. Por último, se mantiene la subdimensión de redes sociales pero sin el factor de confianza interpersonal puesto que no se pudo encontrar una fiabilidad de su medición con los datos disponibles. 
+
+En la siguiente tabla se presenta la disponibilidad de las variables utilizadas para la construcción del índice de cohesión social. 
+
+```{r}
+#| echo: false 
+
+library(readr)
+library(DT)
+
+datos <- read_delim("../../input/tables/variables-nueva-propuesta.csv", 
+                    delim = ";", 
+                    show_col_types = FALSE)
+datatable(datos)
+```

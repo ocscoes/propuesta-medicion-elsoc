@@ -59,6 +59,50 @@ elsoc_5$educacion <- car::recode(elsoc_5$educacion, "c(1, 2, 3, 4, 5, 6, 7, 8)=0
 
 # Recodificar labels
 
+get_labels(elsoc_5$confianza_migrantes, values = TRUE)
+
+elsoc_5$confianza_migrantes <- set_labels(elsoc_5$confianza_migrantes,
+            labels=c( "Nada de confianza"=1,
+                      "Poca confianza"=2,
+                      "Algo de confianza"=3,
+                      "Bastante confianza"=4,
+                      "Mucha confianza"=5))
+
+elsoc_5$igualdad_migrantes <- set_labels(elsoc_5$igualdad_migrantes,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
+
+elsoc_5$fomentar_migracion <- set_labels(elsoc_5$fomentar_migracion,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
+
+elsoc_5$frecuencia_migrantes <- set_labels(elsoc_5$frecuencia_migrantes,
+            labels=c( "Nunca"=1,
+                      "Casi nunca"=2,
+                      "A veces"=3,
+                      "Casi siempre"=4,
+                      "Siempre"=5))
+
+elsoc_5$perdida_identidad <- set_labels(elsoc_5$perdida_identidad,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
+
+elsoc_5$desempleo_migrantes <- set_labels(elsoc_5$desempleo_migrantes,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
+
 elsoc_5$altruismo_gen <- set_labels(elsoc_5$altruismo_gen,
             labels=c( "La mayoria de las veces se preocupan solo de si mismas"=1,
                       "Depende"=2,
@@ -68,6 +112,8 @@ elsoc_5$confianza_gen <- set_labels(elsoc_5$confianza_gen,
             labels=c( "Casi siempre hay que tener cuidado al tratar con las personas"=1,
                       "Depende"=2,
                       "Casi siempre se puede confiar en las personas"=3))
+
+
 
 # guardar base de datos
 saveRDS(elsoc_5, file = "input/data/proc_data/elsoc_2021_mig.RData")

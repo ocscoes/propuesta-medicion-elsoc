@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Bivariados – Medición de la cohesión social con ELSOC</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./migracion_long-02.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-befd5f20fe4d0cb5af600f7bcf486e46.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bivariados-03.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Bivariados</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Medición de la cohesión social con ELSOC</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cohesion-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Marco conceptual</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./factoriales-01a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Validación de constructos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./migracion_long-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Migración</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bivariados-03.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Bivariados</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#descriptivos-de-migración" id="toc-descriptivos-de-migración" class="nav-link active" data-scroll-target="#descriptivos-de-migración"><span class="header-section-number">6</span> Descriptivos de migración</a></li>
+  <li><a href="#creación-de-índices" id="toc-creación-de-índices" class="nav-link" data-scroll-target="#creación-de-índices"><span class="header-section-number">7</span> Creación de índices</a></li>
+  <li><a href="#descriptivos" id="toc-descriptivos" class="nav-link" data-scroll-target="#descriptivos"><span class="header-section-number">8</span> Descriptivos</a>
+  <ul class="collapse">
+  <li><a href="#índices" id="toc-índices" class="nav-link" data-scroll-target="#índices"><span class="header-section-number">8.1</span> Índices</a></li>
+  </ul></li>
+  <li><a href="#correlaciones" id="toc-correlaciones" class="nav-link" data-scroll-target="#correlaciones"><span class="header-section-number">9</span> Correlaciones</a>
+  <ul class="collapse">
+  <li><a href="#correlación-seguridad" id="toc-correlación-seguridad" class="nav-link" data-scroll-target="#correlación-seguridad"><span class="header-section-number">9.1</span> Correlación seguridad</a>
+  <ul class="collapse">
+  <li><a href="#correlación-de-spearman" id="toc-correlación-de-spearman" class="nav-link" data-scroll-target="#correlación-de-spearman"><span class="header-section-number">9.1.1</span> Correlación de Spearman</a></li>
+  <li><a href="#correlaciones-policóricas" id="toc-correlaciones-policóricas" class="nav-link" data-scroll-target="#correlaciones-policóricas"><span class="header-section-number">9.1.2</span> Correlaciones policóricas</a></li>
+  </ul></li>
+  <li><a href="#correlación-vínculos-territoriales" id="toc-correlación-vínculos-territoriales" class="nav-link" data-scroll-target="#correlación-vínculos-territoriales"><span class="header-section-number">9.2</span> Correlación vínculos territoriales</a>
+  <ul class="collapse">
+  <li><a href="#correlación-de-spearman-1" id="toc-correlación-de-spearman-1" class="nav-link" data-scroll-target="#correlación-de-spearman-1"><span class="header-section-number">9.2.1</span> Correlación de Spearman</a></li>
+  <li><a href="#correlaciones-policóricas-1" id="toc-correlaciones-policóricas-1" class="nav-link" data-scroll-target="#correlaciones-policóricas-1"><span class="header-section-number">9.2.2</span> Correlaciones policóricas</a></li>
+  </ul></li>
+  <li><a href="#correlación-redes-sociales" id="toc-correlación-redes-sociales" class="nav-link" data-scroll-target="#correlación-redes-sociales"><span class="header-section-number">9.3</span> Correlación redes sociales</a>
+  <ul class="collapse">
+  <li><a href="#correlación-de-spearman-2" id="toc-correlación-de-spearman-2" class="nav-link" data-scroll-target="#correlación-de-spearman-2"><span class="header-section-number">9.3.1</span> Correlación de Spearman</a></li>
+  <li><a href="#correlaciones-policóricas-2" id="toc-correlaciones-policóricas-2" class="nav-link" data-scroll-target="#correlaciones-policóricas-2"><span class="header-section-number">9.3.2</span> Correlaciones policóricas</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#moderación-de-correlaciones-género-y-nivel-educacional" id="toc-moderación-de-correlaciones-género-y-nivel-educacional" class="nav-link" data-scroll-target="#moderación-de-correlaciones-género-y-nivel-educacional"><span class="header-section-number">10</span> Moderación de correlaciones (género y nivel educacional)</a>
+  <ul class="collapse">
+  <li><a href="#seguridad-por-género" id="toc-seguridad-por-género" class="nav-link" data-scroll-target="#seguridad-por-género"><span class="header-section-number">10.1</span> Seguridad por género</a></li>
+  <li><a href="#seguridad-por-educación" id="toc-seguridad-por-educación" class="nav-link" data-scroll-target="#seguridad-por-educación"><span class="header-section-number">10.2</span> Seguridad por educación</a></li>
+  <li><a href="#vínculos-territoriales-por-género" id="toc-vínculos-territoriales-por-género" class="nav-link" data-scroll-target="#vínculos-territoriales-por-género"><span class="header-section-number">10.3</span> Vínculos territoriales por género</a></li>
+  <li><a href="#vínculos-territoriales-por-educación" id="toc-vínculos-territoriales-por-educación" class="nav-link" data-scroll-target="#vínculos-territoriales-por-educación"><span class="header-section-number">10.4</span> Vínculos territoriales por educación</a></li>
+  <li><a href="#redes-por-educación" id="toc-redes-por-educación" class="nav-link" data-scroll-target="#redes-por-educación"><span class="header-section-number">10.5</span> Redes por educación</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Bivariados</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="descriptivos-de-migración" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Descriptivos de migración</h1>
+<div class="cell" data-tbl-cap-location="bottom">
+<div id="tbl-descr1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="bottom">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-descr1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">var</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">label</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">NA.prc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sd</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">frecuencia_migrantes</td>
+<td style="text-align: left;">Frecuencia de contacto con [PER/HAI/VEN]</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100.00</td>
+<td style="text-align: right;">NaN</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">-Inf (Inf--Inf)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">contacto_migrantes</td>
+<td style="text-align: left;">Contacto positivo con [PER/HAI/VEN]</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100.00</td>
+<td style="text-align: right;">NaN</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">-Inf (Inf--Inf)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">simpatia_migrantes</td>
+<td style="text-align: left;">Grado de simpatia por [PER/HAI/VEN] que viven en Chile</td>
+<td style="text-align: right;">2610</td>
+<td style="text-align: right;">4.74</td>
+<td style="text-align: right;">2.93</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">perdida_identidad</td>
+<td style="text-align: left;">Grado de acuerdo: Chile pierde su identidad con llegada de [PER/HAI/VEN]</td>
+<td style="text-align: right;">2709</td>
+<td style="text-align: right;">1.13</td>
+<td style="text-align: right;">2.96</td>
+<td style="text-align: right;">1.16</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">desempleo_migrantes</td>
+<td style="text-align: left;">Grado de acuerdo: Con llegada de [PER/HAI/VEN] aumenta el desempleo</td>
+<td style="text-align: right;">2709</td>
+<td style="text-align: right;">1.13</td>
+<td style="text-align: right;">3.23</td>
+<td style="text-align: right;">1.15</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">confianza_migrantes</td>
+<td style="text-align: left;">Grado de confianza en [PER/HAI/VEN]</td>
+<td style="text-align: right;">2654</td>
+<td style="text-align: right;">3.14</td>
+<td style="text-align: right;">2.53</td>
+<td style="text-align: right;">1.02</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">fomentar_migracion</td>
+<td style="text-align: left;">Grado de acuerdo: Fomentar migracion de [PER/HAI/VEN] calificados</td>
+<td style="text-align: right;">2700</td>
+<td style="text-align: right;">1.46</td>
+<td style="text-align: right;">3.30</td>
+<td style="text-align: right;">1.05</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">igualdad_migrantes</td>
+<td style="text-align: left;">Grado de acuerdo: Migrantes [PER/HAI/VEN] acceso a salud igualitario</td>
+<td style="text-align: right;">2720</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">3.89</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-descr1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Variables migración ola 5
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell" data-tbl-cap-location="bottom">
+<div id="tbl-descr2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="bottom">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-descr2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">var</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">label</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">NA.prc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sd</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">frecuencia_migrantes</td>
+<td style="text-align: left;">Frecuencia de contacto con [PER/HAI/VEN]</td>
+<td style="text-align: right;">2729</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1.85</td>
+<td style="text-align: right;">1.13</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">contacto_migrantes</td>
+<td style="text-align: left;">Contacto positivo con [PER/HAI/VEN]</td>
+<td style="text-align: right;">1205</td>
+<td style="text-align: right;">55.86</td>
+<td style="text-align: right;">3.55</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">simpatia_migrantes</td>
+<td style="text-align: left;">Grado de simpatia por [PER/HAI/VEN] que viven en Chile</td>
+<td style="text-align: right;">2564</td>
+<td style="text-align: right;">6.08</td>
+<td style="text-align: right;">2.82</td>
+<td style="text-align: right;">1.08</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">perdida_identidad</td>
+<td style="text-align: left;">Grado de acuerdo: Chile pierde su identidad con llegada de [PER/HAI/VEN]</td>
+<td style="text-align: right;">2690</td>
+<td style="text-align: right;">1.47</td>
+<td style="text-align: right;">3.01</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">desempleo_migrantes</td>
+<td style="text-align: left;">Grado de acuerdo: Con llegada de [PER/HAI/VEN] aumenta el desempleo</td>
+<td style="text-align: right;">2708</td>
+<td style="text-align: right;">0.81</td>
+<td style="text-align: right;">3.17</td>
+<td style="text-align: right;">1.15</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">confianza_migrantes</td>
+<td style="text-align: left;">Grado de confianza en [PER/HAI/VEN]</td>
+<td style="text-align: right;">2609</td>
+<td style="text-align: right;">4.43</td>
+<td style="text-align: right;">2.58</td>
+<td style="text-align: right;">1.01</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">fomentar_migracion</td>
+<td style="text-align: left;">Grado de acuerdo: Fomentar migracion de [PER/HAI/VEN] calificados</td>
+<td style="text-align: right;">2698</td>
+<td style="text-align: right;">1.17</td>
+<td style="text-align: right;">3.33</td>
+<td style="text-align: right;">1.09</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">igualdad_migrantes</td>
+<td style="text-align: left;">Grado de acuerdo: Migrantes [PER/HAI/VEN] acceso a salud igualitario</td>
+<td style="text-align: right;">2719</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">3.89</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: left;">4 (1-5)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-descr2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.2: Variables migración ola 6
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-desempleo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-desempleo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-desempleo-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-desempleo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Likerplot desempleo debido a inmigrantes
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-identidad" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-identidad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-identidad-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-identidad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: Likerplot pérdida de identidad del país
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="creación-de-índices" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Creación de índices</h1>
+<p>Para realizar los cruces de las subdimensiones de la cohesión social con migración, se construyen índices de los promedios de los indicadores que conforman los constructos validados en la sección anterior.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si bien, en la sección de análisis de constructos estos se entendieron como factores, para efectos prácticos de difusión se decidió aplicar una construcción de índices, ya que esto permite que los valores se mantengan en la escala original en que fueron medidas las variables, lo cual facilita su interpretación al momento de presentar resultados.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elsoc_5 <span class="ot">&lt;-</span> elsoc_5 <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">comportamiento_prosocial =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., reunion_pub, voluntariado), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>elsoc_5 <span class="ot">&lt;-</span> elsoc_5 <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ayuda_economica =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., prestar_dinero, ayuda_trabajo), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>elsoc_5 <span class="ot">&lt;-</span> elsoc_5 <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">confianza_inter =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., confianza_gen, altruismo_gen), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>elsoc_6 <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seguridad_sub =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., seguridad_sat, seguridad_perc), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>elsoc_6 <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seguridad_obj =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., peleas_calle, asaltos, trafico_drogas), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">seguridad_obj =</span> <span class="fu">round</span>(seguridad_obj <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>elsoc_6 <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calcular promedio de las variables</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sentido_pertenencia =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Redondear al múltiplo de 0,5 más cercano</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sentido_pertenencia =</span> <span class="fu">round</span>(sentido_pertenencia <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>elsoc_6 <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">satisfaccion_barrio =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">satisfaccion_barrio =</span> <span class="fu">round</span>(satisfaccion_barrio <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="descriptivos" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Descriptivos</h1>
+<section id="índices" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="índices"><span class="header-section-number">8.1</span> Índices</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-prosoc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prosoc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-prosoc-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prosoc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Likerplot índice comportamiento prosocial
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(elsoc_5<span class="sc">$</span>comportamiento_prosocial,<span class="at">main=</span><span class="st">"Histograma de comportamiento prosocial"</span>,<span class="at">xlab=</span><span class="st">"Valor"</span>,<span class="at">ylab=</span><span class="st">"Frecuencia"</span>,<span class="at">col=</span><span class="st">"#2b70c4"</span>,<span class="at">border=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bivariados-03_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-eco" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eco-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-eco-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eco-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: Likerplot índice ayuda económica
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-conf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-conf-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.3: Likerplot índice confianza interpersonal
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-segs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-segs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-segs-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-segs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.4: Likerplot índice seguridad subjetiva
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sego" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sego-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-sego-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sego-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.5: Likerplot índice seguridad objetiva
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sentido" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sentido-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-sentido-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sentido-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.6: Likerplot índice sentido de pertenencia
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-satis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-satis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-satis-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-satis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.7: Likerplot índice satisfacción con el barrio
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="correlaciones" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Correlaciones</h1>
+<section id="correlación-seguridad" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="correlación-seguridad"><span class="header-section-number">9.1</span> Correlación seguridad</h2>
+<section id="correlación-de-spearman" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="correlación-de-spearman"><span class="header-section-number">9.1.1</span> Correlación de Spearman</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>corrsegmig <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(seg_mig, <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>, <span class="at">method =</span> <span class="st">"spearman"</span>), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Correlaciones seguridad y migración (Spearman)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-corr1" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> refleja las correlaciones de Spearman entre los índices de seguridad y los indicadores de migración. Se observa la mayoría de los indicadores de migración tienen una correlación bastante baja con ambos índices de seguridad. Las asociaciones más altas las tiene la seguridad subjetiva con confianza en migrantes <strong>(.14)</strong> y con simpatía hacia los migrantes <strong>(.10)</strong>.</p>
+</section>
+<section id="correlaciones-policóricas" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="correlaciones-policóricas"><span class="header-section-number">9.1.2</span> Correlaciones policóricas</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>poly_cor <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(seg_mig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: Correlaciones seguridad y migración
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En <a href="#fig-corr2" class="quarto-xref">Figure&nbsp;<span>9.2</span></a> se observa una matriz de correlaciones policóricas. En este caso, la mayoría de las correlaciones son bajas, destacando seguridad subjetiva con desempleo debido a inmigrantes con un <strong>-.25</strong>, entiéndose que mientras más acuerdo hay con que la llegada de inmigrantes al país causa desempleo, menor es la sensación de seguridad. En la misma lógica se correlacionan seguridad subjetiva con pérdida de identidad, en donde, a menor seguridad subjetiva, mayor acuerdo con que los inmigrantes hacen que Chile pierda identidad.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 180 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-jit1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-jit1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.3: Jitter de desempleo por inmigrantes y sensación de seguridad
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En <a href="#fig-jit1" class="quarto-xref">Figure&nbsp;<span>9.3</span></a> se presenta la distribución de los valores entre seguridad subjetiva y desempleo debido a inmigrantes. Las mayores cantidades de puntos se concentran mayoritariamente en la parte superior (específicamente la categoría 4) de los valores 2 y 4 del indicador de desempleo. Esto presenta una opinión dividida en tanto que, cuando las personas perciben seguridad en su barrio, hay un grupo que está de acuerdo con que los inmigrantes causan desempleo, mientras que el otro está en desacuerdo con este enunciado.</p>
+</section>
+</section>
+<section id="correlación-vínculos-territoriales" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="correlación-vínculos-territoriales"><span class="header-section-number">9.2</span> Correlación vínculos territoriales</h2>
+<section id="correlación-de-spearman-1" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="correlación-de-spearman-1"><span class="header-section-number">9.2.1</span> Correlación de Spearman</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>barrio_mig <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sentido_pertenencia, satisfaccion_barrio, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>         perdida_identidad, desempleo_migrantes, confianza_migrantes, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         fomentar_migracion, igualdad_migrantes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>corrbarriomig <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(barrio_mig, <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>, , <span class="at">method =</span> <span class="st">"spearman"</span>), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr3-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.4: Correlaciones territorio y migración
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En <a href="#fig-corr3" class="quarto-xref">Figure&nbsp;<span>9.4</span></a> se pueden ver los cruces entre los índices de vinculación territorial con los indicadores de migración. Las correlaciones entre las mediciones de territorio y la migración son en general bajas, siendo satisfacción del barrio con confianza en migrantes la más alta (.12).</p>
+</section>
+<section id="correlaciones-policóricas-1" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="correlaciones-policóricas-1"><span class="header-section-number">9.2.2</span> Correlaciones policóricas</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>poly_cor2 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(barrio_mig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr4-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.5: Correlaciones territorio y migración
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En <a href="#fig-corr4" class="quarto-xref">Figure&nbsp;<span>9.5</span></a> se observa la matriz de correlaciones policóricas que contiene los índices de vinculación territorial e indicadores de migración. La mayoría de las correlaciones son bajas. El índice de sentido de pertenencia correlaciona en un <strong>-.22</strong> con frecuencia con inmigrantes, entendiéndose que a mayor sentido de pertenencia del barrio, menor se frecuenta con inmigrantes.</p>
+</section>
+</section>
+<section id="correlación-redes-sociales" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="correlación-redes-sociales"><span class="header-section-number">9.3</span> Correlación redes sociales</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>redes_mig <span class="ot">&lt;-</span> elsoc_5 <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(comportamiento_prosocial, ayuda_economica, confianza_inter, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>         perdida_identidad, desempleo_migrantes, confianza_migrantes, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>         fomentar_migracion, igualdad_migrantes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="correlación-de-spearman-2" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="correlación-de-spearman-2"><span class="header-section-number">9.3.1</span> Correlación de Spearman</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>corredesmig <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(redes_mig, <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>, <span class="at">method =</span> <span class="st">"spearman"</span>), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr5-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.6: Correlaciones redes sociales y migración (Spearman)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="correlaciones-policóricas-2" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="correlaciones-policóricas-2"><span class="header-section-number">9.3.2</span> Correlaciones policóricas</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>poly_cor3 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(redes_mig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Item = frecuencia_migrantes had no variance and was deleted</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Item = contacto_migrantes had no variance and was deleted</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in polychoric(redes_mig): The items do not have an equal number of
+response alternatives, global set to FALSE.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy): 8 cells were
+adjusted for 0 values using the correction for continuity. Examine your data
+carefully.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in cor.smooth(mat): Matrix was not positive definite, smoothing was
+done</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr6-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.7: Correlaciones territorio y migración
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En <a href="#fig-corr6" class="quarto-xref">Figure&nbsp;<span>9.7</span></a> se presenta las correlaciones policóricas entre los índices de redes sociales (comportamiento prosocial y ayuda económica) y los indicadores de migración. En la matriz se pueden observar algunas correlaciones moderadas, tal como la asociación entre comportamiento prosocial e igualdad con inmigrantes <strong>(-.38)</strong>. Esto quiere decir que, a mayor comportamiento prosocial, hay un mayor desacuerdo con que los inmigrantes tengan un acceso igualitario a la salud. En la misma lógica se presenta la asociación entre el índice de confianza interpersonal con desempleo debido a inmigrantes <strong>(-.30)</strong>, queriendo decir que a menor confianza interpersonal, hay un mayor acuerdo respecto a la idea de los inmigrantes aumentan el desempleo en el país.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 28 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-jit2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jit2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-jit2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jit2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.8: Jitter de igualdad en salud con inmigrantes y comportamiento prosocial
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En <a href="#fig-jit2" class="quarto-xref">Figure&nbsp;<span>9.8</span></a> se observa la distribución de los valores entre el índice de comportamiento prosocial y el indicador de igualdad en salud con inmigrantes. La densidad de las respuestas se concentra mayoritariamente en la parte inferior derecha del gráfico, lo que indica una asociación negativa entre las dos variables. Se puede interpretar que, cuando las personas no han cometido actos a favor del vínculo social, están de acuerdo con que los inmigrantes tengan acceso a la salud de la misma forma que los chilenos.</p>
+</section>
+</section>
+</section>
+<section id="moderación-de-correlaciones-género-y-nivel-educacional" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Moderación de correlaciones (género y nivel educacional)</h1>
+<p>En orden de encontrar asociaciones con mayor efecto y que, en consecuencia, puedan ser insumos relevantes para el segundo foro, se aplican las mismas correlaciones que en el punto anterior, pero esta vez filtrando por género (hombre/mujer) y nivel educacional(universitario/no universitario).</p>
+<section id="seguridad-por-género" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="seguridad-por-género"><span class="header-section-number">10.1</span> Seguridad por género</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>seguridad_genero <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sexo, seguridad_obj, seguridad_sub, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>         perdida_identidad, desempleo_migrantes, confianza_migrantes, </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>         fomentar_migracion, igualdad_migrantes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>seguridad_hombres <span class="ot">&lt;-</span> seguridad_genero <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>seguridad_mujeres <span class="ot">&lt;-</span> seguridad_genero <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>seguridad_hombres <span class="ot">&lt;-</span> seguridad_hombres <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(sexo))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>seguridad_mujeres <span class="ot">&lt;-</span> seguridad_mujeres <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(sexo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>poly_cor4 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(seguridad_hombres)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>poly_cor5 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(seguridad_mujeres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-gen0" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-gen0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-gen0-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-gen0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Correlaciones seguridad y migración (hombres)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Seguridad objetiva y frencuencia con inmigrantes <strong>(-.28)</strong>. Seguridad objetiva y contacto con inmigrantes <strong>(-.27)</strong> Seguridad subjetiva con fomentar la migración legal <strong>(-26)</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-gen1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-gen1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-gen1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-gen1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: Correlaciones seguridad y migración (mujeres)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Seguridad objetiva y frencuencia con inmigrantes <strong>(-.28)</strong>.</p>
+</section>
+<section id="seguridad-por-educación" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="seguridad-por-educación"><span class="header-section-number">10.2</span> Seguridad por educación</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>seguridad_educ <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(educacion, seguridad_obj, seguridad_sub, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>         perdida_identidad, desempleo_migrantes, confianza_migrantes, </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>         fomentar_migracion, igualdad_migrantes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>seguridad_titulo <span class="ot">&lt;-</span> seguridad_educ <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(educacion<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>seguridad_notitulo <span class="ot">&lt;-</span> seguridad_educ <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(educacion<span class="sc">==</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>seguridad_titulo <span class="ot">&lt;-</span> seguridad_titulo <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(educacion))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>seguridad_notitulo <span class="ot">&lt;-</span> seguridad_notitulo <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(educacion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>poly_cor6 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(seguridad_titulo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in cor.smooth(mat): Matrix was not positive definite, smoothing was
+done</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>poly_cor7 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(seguridad_notitulo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-gen_ed1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-gen_ed1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-gen_ed1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-gen_ed1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.3: Correlaciones seguridad y migración (titulados)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Seguridad subjetiva y desempleo debido a inmigrantes <strong>(-.30</strong>. Seguridad objetiva y frecuencia inmigrantes <strong>(-.29)</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-gen_ed0" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-gen_ed0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-gen_ed0-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-gen_ed0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.4: Correlaciones seguridad y migración (no titulados)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Seguridad objetiva y frecuencia inmigrantes <strong>(-.28)</strong>.</p>
+</section>
+<section id="vínculos-territoriales-por-género" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="vínculos-territoriales-por-género"><span class="header-section-number">10.3</span> Vínculos territoriales por género</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>barrio_genero <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sexo, sentido_pertenencia, satisfaccion_barrio, frecuencia_migrantes, contacto_migrantes,     simpatia_migrantes, perdida_identidad, desempleo_migrantes, confianza_migrantes, </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>         fomentar_migracion, igualdad_migrantes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>barrio_hombres <span class="ot">&lt;-</span> barrio_genero <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>barrio_mujeres <span class="ot">&lt;-</span> barrio_genero <span class="sc">%&gt;%</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>barrio_hombres <span class="ot">&lt;-</span> barrio_hombres <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(sexo))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>barrio_mujeres <span class="ot">&lt;-</span> barrio_mujeres <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(sexo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>poly_cor8 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(barrio_hombres)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>poly_cor9 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(barrio_mujeres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-gen_barrio0" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-gen_barrio0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-gen_barrio0-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-gen_barrio0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.5: Correlaciones barrio y migración (hombres)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Sentido de pertenencia y frecuencia con inmigrantes <strong>(-.25)</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-gen_barrio1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-gen_barrio1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-gen_barrio1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-gen_barrio1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.6: Correlaciones barrio y migración (mujeres)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Sentido de pertenencia y frecuencia con inmigrantes <strong>(-.21)</strong>.</p>
+</section>
+<section id="vínculos-territoriales-por-educación" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="vínculos-territoriales-por-educación"><span class="header-section-number">10.4</span> Vínculos territoriales por educación</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>barrio_educ <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(educacion, sentido_pertenencia, satisfaccion_barrio, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>         perdida_identidad, desempleo_migrantes, confianza_migrantes, </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>         fomentar_migracion, igualdad_migrantes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>barrio_titulo <span class="ot">&lt;-</span> barrio_educ <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(educacion<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>barrio_notitulo <span class="ot">&lt;-</span> barrio_educ <span class="sc">%&gt;%</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(educacion<span class="sc">==</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>barrio_titulo <span class="ot">&lt;-</span> barrio_titulo <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(educacion))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>barrio_notitulo <span class="ot">&lt;-</span> barrio_notitulo <span class="sc">%&gt;%</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(educacion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>poly_cor10 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(barrio_titulo)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>poly_cor11 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(barrio_notitulo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-edu-barrio1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-edu-barrio1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-edu-barrio1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-edu-barrio1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.7: Correlaciones barrio y migración (titulados)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Satisfacción con el barrio y desempleo debido a inmigrantes <strong>(-.29)</strong>. Satisfacción con el barrio y pérdida de identidad del país debido a inmigrantes <strong>(-.26)</strong>. Sentido de pertenencia y desempleo debido a inmigrantes <strong>(-.25)</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-edu_barrio0" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-edu_barrio0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-edu_barrio0-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-edu_barrio0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.8: Correlaciones barrio y migración (no titulados)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Sentido de pertenencia y frecuencia con inmigrantes <strong>(-.23)</strong>. ## Redes por género</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>redes_genero <span class="ot">&lt;-</span> elsoc_5 <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sexo, comportamiento_prosocial, ayuda_economica, confianza_inter, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>         perdida_identidad, desempleo_migrantes, confianza_migrantes, </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>         fomentar_migracion, igualdad_migrantes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>redes_hombres <span class="ot">&lt;-</span> redes_genero <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>redes_mujeres <span class="ot">&lt;-</span> redes_genero <span class="sc">%&gt;%</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>redes_hombres <span class="ot">&lt;-</span> redes_hombres <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(sexo))</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>redes_mujeres <span class="ot">&lt;-</span> redes_mujeres <span class="sc">%&gt;%</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(sexo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>poly_cor12 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(redes_hombres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Item = frecuencia_migrantes had no variance and was deleted</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Item = contacto_migrantes had no variance and was deleted</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in polychoric(redes_hombres): The items do not have an equal number of
+response alternatives, global set to FALSE.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy): 12 cells were
+adjusted for 0 values using the correction for continuity. Examine your data
+carefully.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in cor.smooth(mat): Matrix was not positive definite, smoothing was
+done</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>poly_cor13 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(redes_mujeres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Item = frecuencia_migrantes had no variance and was deleted
+Item = contacto_migrantes had no variance and was deleted</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in polychoric(redes_mujeres): The items do not have an equal number of
+response alternatives, global set to FALSE.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy): 9 cells were
+adjusted for 0 values using the correction for continuity. Examine your data
+carefully.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in cor.smooth(mat): Matrix was not positive definite, smoothing was
+done</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-gen_redes0" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-gen_redes0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-gen_redes0-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-gen_redes0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.9: Correlaciones redes sociales y migración (hombres)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Comportamiento prosocial y acceso igualitario a salud con inmigrantes <strong>(-.35)</strong>. Comportamiento prosocial y desempleo debido a inmigrantes <strong>(-.29)</strong>. Confianza interpersonal y desempleo debido a inmigrantes <strong>(-.29)</strong>. Ayuda económica y fomentar la migración legal <strong>(-.28)</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-gen_redes1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-gen_redes1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-gen_redes1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-gen_redes1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.10: Correlaciones redes y migración (mujeres)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Comportamiento prosocial y acceso igualitario a salud con inmigrantes <strong>(-.40)</strong>. Comportamiento prosocial y desempleo debido a inmigrantes <strong>(-.38)</strong>. Confianza interpersonal y desempleo debido a inmigrantes <strong>(-.31)</strong>. Ayuda económica y desempleo debido a inmigrantes <strong>(-.31)</strong>.</p>
+</section>
+<section id="redes-por-educación" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="redes-por-educación"><span class="header-section-number">10.5</span> Redes por educación</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>redes_educ <span class="ot">&lt;-</span> elsoc_5 <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(educacion, comportamiento_prosocial, ayuda_economica, confianza_inter, frecuencia_migrantes, contacto_migrantes, simpatia_migrantes,</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>         perdida_identidad, desempleo_migrantes, confianza_migrantes, </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>         fomentar_migracion, igualdad_migrantes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>redes_titulo <span class="ot">&lt;-</span> redes_educ <span class="sc">%&gt;%</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(educacion<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>redes_notitulo <span class="ot">&lt;-</span> redes_educ <span class="sc">%&gt;%</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(educacion<span class="sc">==</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>redes_titulo <span class="ot">&lt;-</span> redes_titulo <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(educacion))</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>redes_notitulo <span class="ot">&lt;-</span> redes_notitulo <span class="sc">%&gt;%</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(educacion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>poly_cor14 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(redes_titulo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Item = frecuencia_migrantes had no variance and was deleted</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Item = contacto_migrantes had no variance and was deleted</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in polychoric(redes_titulo): The items do not have an equal number of
+response alternatives, global set to FALSE.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy): 17 cells were
+adjusted for 0 values using the correction for continuity. Examine your data
+carefully.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in cor.smooth(mat): Matrix was not positive definite, smoothing was
+done</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>poly_cor15 <span class="ot">&lt;-</span> <span class="fu">polychoric</span>(redes_notitulo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Item = frecuencia_migrantes had no variance and was deleted
+Item = contacto_migrantes had no variance and was deleted</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in polychoric(redes_notitulo): The items do not have an equal number of
+response alternatives, global set to FALSE.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy): 8 cells were
+adjusted for 0 values using the correction for continuity. Examine your data
+carefully.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in cor.smooth(mat): Matrix was not positive definite, smoothing was
+done</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-educ_redes1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-educ_redes1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-educ_redes1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-educ_redes1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.11: Correlaciones redes y migración (titulados)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Ayuda económica y confianza en inmigrantes <strong>(-.32)</strong>. Comportamiento prosocial e igualdad en acceso a la salud con inmigrantes <strong>(-.31)</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-educ_redes0" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-educ_redes0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bivariados-03_files/figure-html/fig-corr-educ_redes0-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-educ_redes0-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.12: Correlaciones redes y migración (no titulados)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Correlaciones relevantes: Comportamiento prosocial e igualdad en acceso a la salud con inmigrantes <strong>(-.40)</strong>. Comportamiento prosocial y desempleo debido a inmigrantes <strong>(-.36)</strong>. Confianza interpersonal y desempleo debido a inmigrantes <strong>(-.31)</strong>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./migracion_long-02.html" class="pagination-link" aria-label="Migración">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Migración</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

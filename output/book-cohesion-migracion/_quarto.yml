@@ -1,0 +1,25 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Medición de la cohesión social con ELSOC"
+  author: "Observatorio de Cohesión Social"
+  date: today
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - cohesion-01.qmd
+    - factoriales-01a.qmd
+    - migracion_long-02.qmd
+    - bivariados-03.qmd 
+
+format:
+  html:
+    theme:
+      - cosmo
+#  pdf:
+#    documentclass: scrreprt
+
+
+

@@ -64,5 +64,52 @@ data$trafico_drogas <- car::recode(data$trafico_drogas, "(1)=5; (2)=4; (3)=3; (4
 # dicotomizar nivel educacional 
 data$educacion <- car::recode(data$educacion, "c(1, 2, 3, 4, 5, 6, 7, 8)=0; c(9, 10)=1")
 
+# recodificar labels de migración
+
+
+
+data$confianza_migrantes <- set_labels(data$confianza_migrantes,
+            labels=c( "Nada de confianza"=1,
+                      "Poca confianza"=2,
+                      "Algo de confianza"=3,
+                      "Bastante confianza"=4,
+                      "Mucha confianza"=5))
+
+data$igualdad_migrantes <- set_labels(data$igualdad_migrantes,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
+
+data$fomentar_migracion <- set_labels(data$fomentar_migracion,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
+
+data$frecuencia_migrantes <- set_labels(data$frecuencia_migrantes,
+            labels=c( "Nunca"=1,
+                      "Casi nunca"=2,
+                      "A veces"=3,
+                      "Casi siempre"=4,
+                      "Siempre"=5))
+
+data$perdida_identidad <- set_labels(data$perdida_identidad,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
+
+data$desempleo_migrantes <- set_labels(data$desempleo_migrantes,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
+
+
 data_mig <- data
 saveRDS(data_mig, file="input/data/proc_data/elsoc_2022_mig.RData")
