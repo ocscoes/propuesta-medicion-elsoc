@@ -126,6 +126,15 @@ La macrozona norte del país es un caso particularmente relevante, dado que conc
 # Variables a graficar
 vars <- c("igualdad_migrantes", "contacto_migrantes", "simpatia_migrantes", "perdida_identidad", "desempleo_migrantes")
 
+# Calcular promedios por ola en formato long
+long_promedio <- elsoc_long %>%
+  select(ola, all_of(vars)) %>%
+  pivot_longer(cols = all_of(vars), 
+               names_to = "variable", 
+               values_to = "valor") %>%
+  group_by(ola, variable) %>%
+  summarise(promedio = mean(valor, na.rm = TRUE), .groups = "drop")
+
 # Nombres más legibles para la leyenda y facets
 nombres_legibles <- c(
   "igualdad_migrantes" = "Acceso a Salud Migrantes",
@@ -165,7 +174,7 @@ ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = varia
   theme_minimal()
 ```
 
-La interacción ciudadana es selectiva: abierta en ámbitos laborales y escolares, pero resistente en espacios cercanos como vecindario o relaciones jerárquicas (Criteria, 2025). Niños, niñas y adolescentes migrantes presentan alta vulnerabilidad, especialmente quienes viven en situación irregular, enfrentando riesgos de exclusión educativa, violencia y precariedad (SERMIG, 2025; Políticas Migratorias, 2024).
+
 
 ```{r}
 #| label: desc-mig2
@@ -267,9 +276,6 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
 
 ```
 
-Persisten barreras laborales, educativas, de salud y vivienda, con discriminación estructural y limitaciones legales para la contratación de extranjeros (CENEM, 2023; UCSH, 2019; UC, 2024). Las políticas públicas muestran fragmentación institucional, carencia de coordinación y escasos recursos para abordar la integración efectiva (Espacio Público, 2023; SJM, 2022).
-
-El rechazo a migrantes está mediado por percepción de pobreza, competencia por recursos y narrativas mediáticas negativas (USACH, 2025; Ipsos, 2025). Aunque existe apoyo a derechos básicos, persiste el rechazo a derechos políticos y un 92% respalda políticas migratorias más estrictas (Panel Ciudadano, 2024). La dispersión territorial de migrantes genera tensiones locales y contribuye a desigualdades estructurales, consolidando la
 
 ```{r}
 #| label: desc-mig4
