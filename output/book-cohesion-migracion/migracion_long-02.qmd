@@ -125,21 +125,29 @@ long_promedio <- long_promedio %>%
   arrange(variable, ola)
 
 # Graficar
-ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = variable)) +
-  geom_line(linewidth = 1.2, na.rm = FALSE) +  # mantiene los NA → se "corta" la línea
-  geom_point(size = 2, na.rm = FALSE) +
-  scale_color_manual(values = c(
-    "igualdad_migrantes" = "#1b9e77",
-    "contacto_migrantes" = "#d95f02",
-    "simpatia_migrantes" = "#7570b3",
-    "perdida_identidad" = "#e7298a",
-    "desempleo_migrantes" = "#66a61e"
+ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = variable, shape = variable)) +
+    geom_line(linewidth = 1.2, na.rm = FALSE) +
+    geom_point(size = 3, na.rm = FALSE) +
+      scale_color_manual(values = c(
+      "igualdad_migrantes"   = "#1b9e77",
+      "contacto_migrantes"   = "#d95f02",
+      "simpatia_migrantes"   = "#7570b3",
+      "perdida_identidad"    = "#e7298a",
+      "desempleo_migrantes"  = "#66a61e"
   ),
   labels = nombres_legibles) +
-  scale_x_continuous(breaks = 1:6) +  # fuerza eje X a mostrar todas las olas
+  scale_shape_manual(values = c(
+    "igualdad_migrantes"   = 16, 
+    "contacto_migrantes"   = 17, 
+    "simpatia_migrantes"   = 15, 
+    "perdida_identidad"    = 18, 
+    "desempleo_migrantes"  = 19   
+  ),
+  labels = nombres_legibles) +
+  scale_x_continuous(breaks = 1:6) + 
   scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
   labs(title = "Tendencia de variables sobre migración (ELSOC 2016-2021)",
-       x = "Ola", y = "Promedio", color = "Variable") +
+       x = "Ola", y = "Promedio", color = "Variable", shape = "Variable") +
   theme_minimal()
 ```
 
