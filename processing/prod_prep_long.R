@@ -100,6 +100,15 @@ db <- db %>%
                                         "2022",
                                         "2023")))
 
+# Educacion
+db$educ <- car::recode(db$educacion,
+                       "c(1,2,3,4,5,6,7)=1;c(8,9,10)=2; c(-888,-999)=NA")
+db$educ <-factor(db$educ,
+                 labels = c("Menos que Universitaria","Universitaria"))
+
+db$educ <- sjlabelled::set_label(x = db$educ,
+                                 label = "Educación")
+
 # comportamiento_prosocial
 
 db %>% 

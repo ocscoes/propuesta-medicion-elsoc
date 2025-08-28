@@ -354,3 +354,6 @@ db_pond %>%
        caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)") +
   theme_ggdist()+
   theme(legend.position = "bottom") 
+
+
+
