@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -220,11 +255,235 @@ ul.task-list li input[type="checkbox"] {
 <p>Esta sección se presenta la construcción de la nueva propuesta de medición de cohesión social en Chile con datos de ELSOC.</p>
 <p><img src="images/propuesta-nueva.png" class="img-fluid"></p>
 <p>En comparación con la anterior propuesta hecha con ELSOC, se elimina la subdimensión de Sentido de pertenencia, puesto que para la construcción de la propuesta con LAPOP se definió que era problemático comprender indicadores como orgullo nacional dentro de la cohesión social. En su lugar, se integra un factor de pertenencia al barrio dentro de la subdimensión de vínculo territoriales. Asimismo, incluye una nueva subdimensión de seguridad (siguiendo la propuesta con LAPOP), considerándose como uno de los elementos centrales durante el último tiempo en las discusiones relacionadas al vínculo social. Por último, se mantiene la subdimensión de redes sociales pero sin el factor de confianza interpersonal puesto que no se pudo encontrar una fiabilidad de su medición con los datos disponibles.</p>
-<p>En la siguiente tabla se presenta la disponibilidad de las variables utilizadas para la construcción del índice de cohesión social.</p>
+<p>En la siguiente tabla se presenta la disponibilidad de las variables utilizadas para la construcción del índice de cohesión social. <strong>PASAR AL ANEXO</strong></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-beb2c9e41b0d02e15f49" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-beb2c9e41b0d02e15f49">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17"],["Seguridad","Seguridad","Seguridad","Seguridad","Seguridad","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Redes sociales","Redes sociales","Redes sociales","Redes sociales"],["Seguridad objetiva","Seguridad objetiva","Seguridad subjetiva","Seguridad subjetiva","Seguridad subjetiva","Pertenencia al barrio","Pertenencia al barrio","Pertenencia al barrio","Pertenencia al barrio","Satisfacción con el barrio","Satisfacción con el barrio","Satisfacción con el barrio","Satisfacción con el barrio","Comportamiento prosocial","Comportamiento prosocial","Ayuda económica","Ayuda económica"],["Frecuencia de peleas callejeras","Frecuencia de robos y/o asaltos","Frecuencia de tráfico de drogas ","Satisfacción de seguridad","Percepción de seguridad","Grado de acuerdo: Barrio ideal para mi","Grado de acuerdo: Me siento integrado en este barrio","Grado de acuerdo: Me identifico con la gente de este barrio","Grado de acuerdo: Este barrio es parte de mi","Grado de acuerdo: En este barrio es facil hacer amigos","Grado de acuerdo: La gente en este barrio es sociable","Grado de acuerdo: La gente en este barrio es cordial","Grado de acuerdo: La gente en este barrio es colaboradora","Frecuencia de asistencias a reunión de temas públicos y/o comunitarios","Frecuencia de hacer voluntariado","Frecuencia en prestar $10.000 o más","Frecuencia en ayudar a encontrar trabajo a alguien"],["Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Utilizando la siguiente escala, ¿cuán satisfecho o insatisfecho está usted con el BARRIO dónde reside en cuanto a…?","¿Qué tan seguro o inseguro se siente en el barrio o vecindario donde usted vive?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…"],["Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Totalmente insatisfecho|Insatisfecho|Ni satisfecho ni insatisfecho|Satisfecho|Totalmente satisfecho","Muy inseguro|Inseguro|Ni seguro ni inseguro|Seguro|Muy seguro","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces"],["t_09_01","t_09_02","t_09_03","t_06_01","t_10","t02_01","t02_02","t02_03","t02_04","t03_01","t03_02","t03_03","t03_04","c07_02","c07_04","c07_06","c07_08"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","No","Si","No","No","No","No","No","No","No","No","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","No","No","No","No"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Subdimensión<\/th>\n      <th>Factor<\/th>\n      <th>Indicador<\/th>\n      <th>Encabezado<\/th>\n      <th>Categorías de respuesta<\/th>\n      <th>Código<\/th>\n      <th>Ola 2016<\/th>\n      <th>Ola 2017<\/th>\n      <th>Ola 2018<\/th>\n      <th>Ola 2019<\/th>\n      <th>Ola 2021<\/th>\n      <th>Ola 2022<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Subdimensión","targets":1},{"name":"Factor","targets":2},{"name":"Indicador","targets":3},{"name":"Encabezado","targets":4},{"name":"Categorías de respuesta","targets":5},{"name":"Código","targets":6},{"name":"Ola 2016","targets":7},{"name":"Ola 2017","targets":8},{"name":"Ola 2018","targets":9},{"name":"Ola 2019","targets":10},{"name":"Ola 2021","targets":11},{"name":"Ola 2022","targets":12}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-4eb896629e42f8fb2e4d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4eb896629e42f8fb2e4d">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17"],["Seguridad","Seguridad","Seguridad","Seguridad","Seguridad","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Redes sociales","Redes sociales","Redes sociales","Redes sociales"],["Seguridad objetiva","Seguridad objetiva","Seguridad subjetiva","Seguridad subjetiva","Seguridad subjetiva","Pertenencia al barrio","Pertenencia al barrio","Pertenencia al barrio","Pertenencia al barrio","Satisfacción con el barrio","Satisfacción con el barrio","Satisfacción con el barrio","Satisfacción con el barrio","Comportamiento prosocial","Comportamiento prosocial","Ayuda económica","Ayuda económica"],["Frecuencia de peleas callejeras","Frecuencia de robos y/o asaltos","Frecuencia de tráfico de drogas ","Satisfacción de seguridad","Percepción de seguridad","Grado de acuerdo: Barrio ideal para mi","Grado de acuerdo: Me siento integrado en este barrio","Grado de acuerdo: Me identifico con la gente de este barrio","Grado de acuerdo: Este barrio es parte de mi","Grado de acuerdo: En este barrio es facil hacer amigos","Grado de acuerdo: La gente en este barrio es sociable","Grado de acuerdo: La gente en este barrio es cordial","Grado de acuerdo: La gente en este barrio es colaboradora","Frecuencia de asistencias a reunión de temas públicos y/o comunitarios","Frecuencia de hacer voluntariado","Frecuencia en prestar $10.000 o más","Frecuencia en ayudar a encontrar trabajo a alguien"],["Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Utilizando la siguiente escala, ¿cuán satisfecho o insatisfecho está usted con el BARRIO dónde reside en cuanto a…?","¿Qué tan seguro o inseguro se siente en el barrio o vecindario donde usted vive?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…"],["Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Totalmente insatisfecho|Insatisfecho|Ni satisfecho ni insatisfecho|Satisfecho|Totalmente satisfecho","Muy inseguro|Inseguro|Ni seguro ni inseguro|Seguro|Muy seguro","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces"],["t_09_01","t_09_02","t_09_03","t_06_01","t_10","t02_01","t02_02","t02_03","t02_04","t03_01","t03_02","t03_03","t03_04","c07_02","c07_04","c07_06","c07_08"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","No","Si","No","No","No","No","No","No","No","No","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","No","No","No","No"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Subdimensión<\/th>\n      <th>Factor<\/th>\n      <th>Indicador<\/th>\n      <th>Encabezado<\/th>\n      <th>Categorías de respuesta<\/th>\n      <th>Código<\/th>\n      <th>Ola 2016<\/th>\n      <th>Ola 2017<\/th>\n      <th>Ola 2018<\/th>\n      <th>Ola 2019<\/th>\n      <th>Ola 2021<\/th>\n      <th>Ola 2022<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Subdimensión","targets":1},{"name":"Factor","targets":2},{"name":"Indicador","targets":3},{"name":"Encabezado","targets":4},{"name":"Categorías de respuesta","targets":5},{"name":"Código","targets":6},{"name":"Ola 2016","targets":7},{"name":"Ola 2017","targets":8},{"name":"Ola 2018","targets":9},{"name":"Ola 2019","targets":10},{"name":"Ola 2021","targets":11},{"name":"Ola 2022","targets":12}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>A continuación, se presentan los descriptivos de los constructos presentados en la propuesta:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elsoc_5_graph <span class="ot">&lt;-</span> elsoc_5 <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Índice promediado</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">comportamiento_prosocial =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(., reunion_pub, voluntariado),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recodificación en 0/1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">comportamiento_prosocial =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      comportamiento_prosocial <span class="sc">&lt;=</span> <span class="fl">1.5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      comportamiento_prosocial <span class="sc">&gt;=</span> <span class="dv">2</span>   <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convertir a factor con labels</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">comportamiento_prosocial =</span> <span class="fu">factor</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      comportamiento_prosocial,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Alto"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>elsoc_5_graph <span class="ot">&lt;-</span> elsoc_5_graph <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Índice promediado</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ayuda_economica =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(., prestar_dinero, ayuda_trabajo),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recodificación en 0/1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ayuda_economica =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      ayuda_economica <span class="sc">&lt;=</span> <span class="fl">1.5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      ayuda_economica <span class="sc">&gt;=</span> <span class="dv">2</span>   <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convertir a factor con labels</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">ayuda_economica =</span> <span class="fu">factor</span>(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      ayuda_economica,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Alto"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>elsoc_5_graph <span class="ot">&lt;-</span> elsoc_5_graph <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Índice promediado</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">confianza_inter =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(., confianza_gen, altruismo_gen),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recodificación en 0/1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">confianza_inter =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      confianza_inter <span class="sc">&lt;=</span> <span class="fl">1.5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      confianza_inter <span class="sc">&gt;=</span> <span class="dv">2</span>   <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convertir a factor con labels</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">confianza_inter =</span> <span class="fu">factor</span>(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      confianza_inter,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Alto"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>elsoc_5_graph <span class="ot">&lt;-</span> elsoc_5_graph <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">comportamiento_prosocial =</span> <span class="fu">set_label</span>(comportamiento_prosocial, <span class="st">"Comportamiento prosocial"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ayuda_economica          =</span> <span class="fu">set_label</span>(ayuda_economica, <span class="st">"Ayuda económica"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">confianza_inter          =</span> <span class="fu">set_label</span>(confianza_inter, <span class="st">"Confianza interpersonal"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>elsoc_6_graph <span class="ot">&lt;-</span> elsoc_6 <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Índice promediado</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">seguridad_sub =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(., seguridad_sat, seguridad_perc),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recodificación en 0/1</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seguridad_sub =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      seguridad_sub <span class="sc">&lt;=</span> <span class="fl">2.5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      seguridad_sub <span class="sc">&gt;=</span> <span class="dv">3</span>   <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convertir a factor con labels</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">seguridad_sub =</span> <span class="fu">factor</span>(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      seguridad_sub,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Alto"</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>elsoc_6_graph <span class="ot">&lt;-</span> elsoc_6_graph <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Índice promediado</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">seguridad_obj =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(., peleas_calle, asaltos, trafico_drogas),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recodificación en 0/1</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seguridad_obj =</span> <span class="fu">case_when</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      seguridad_obj <span class="sc">&lt;=</span> <span class="fl">2.5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      seguridad_obj <span class="sc">&gt;=</span> <span class="dv">3</span>   <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convertir a factor con labels</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">seguridad_obj =</span> <span class="fu">factor</span>(</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      seguridad_obj,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Alto"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>elsoc_6_graph <span class="ot">&lt;-</span> elsoc_6_graph <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Índice promediado</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sentido_pertenencia =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(., barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recodificación en 0/1</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sentido_pertenencia =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      sentido_pertenencia <span class="sc">&lt;=</span> <span class="fl">2.5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      sentido_pertenencia <span class="sc">&gt;=</span> <span class="dv">3</span>   <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convertir a factor con labels</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">sentido_pertenencia =</span> <span class="fu">factor</span>(</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      sentido_pertenencia,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Alto"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>elsoc_6_graph <span class="ot">&lt;-</span> elsoc_6_graph <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Índice promediado</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">satisfaccion_barrio =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(., barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recodificación en 0/1</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">satisfaccion_barrio =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      satisfaccion_barrio <span class="sc">&lt;=</span> <span class="fl">2.5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      satisfaccion_barrio <span class="sc">&gt;=</span> <span class="dv">3</span>   <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convertir a factor con labels</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">satisfaccion_barrio =</span> <span class="fu">factor</span>(</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      satisfaccion_barrio,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Alto"</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Scale for fill is already present.
+Adding another scale for fill, which will replace the existing scale.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-redes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cohesion-01_files/figure-html/fig-redes-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Likerplot de índices de redes sociales
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Scale for fill is already present.
+Adding another scale for fill, which will replace the existing scale.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-seguridad" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-seguridad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cohesion-01_files/figure-html/fig-seguridad-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seguridad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Likerplot de índices de seguridad
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Scale for fill is already present.
+Adding another scale for fill, which will replace the existing scale.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-vinculos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vinculos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cohesion-01_files/figure-html/fig-vinculos-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vinculos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Likerplot de índices de vínculos territoriales
+</figcaption>
+</figure>
+</div>
 </div>
 </div>
 
