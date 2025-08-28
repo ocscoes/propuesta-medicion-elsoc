@@ -1,6 +1,6 @@
 # Cohesión social horizontal y migración: un análisis longitudinal
 
-# General
+# Generales
 ::: {style="text-align: justify"}
 
 ```{r}
