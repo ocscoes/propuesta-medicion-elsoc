@@ -13,6 +13,7 @@ book:
     - factoriales-01a.qmd
     - migracion_long-02.qmd
     - bivariados-03.qmd 
+    - bivariados-long-04.qmd
 
 format:
   html:
