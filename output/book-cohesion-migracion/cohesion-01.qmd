@@ -403,8 +403,8 @@ elsoc_long_graph <- elsoc_long %>%
     
     # Recodificación en 0/1
     comportamiento_prosocial = case_when(
-      comportamiento_prosocial <= 1.5 ~ 1,
-      comportamiento_prosocial >= 2   ~ 0,
+      comportamiento_prosocial <= 1.5 ~ 0,
+      comportamiento_prosocial >= 2   ~ 1,
       TRUE ~ NA_real_  # Para valores entre 1.5 y 2
     ),
     
@@ -429,8 +429,8 @@ elsoc_long_graph <- elsoc_long_graph %>%
     
     # Recodificación en 0/1
     ayuda_economica = case_when(
-      ayuda_economica <= 1.5 ~ 1,
-      ayuda_economica >= 2   ~ 0,
+      ayuda_economica <= 1.5 ~ 0,
+      ayuda_economica >= 2   ~ 1,
       TRUE ~ NA_real_  # Para valores entre 1.5 y 2
     ),
     
@@ -455,8 +455,8 @@ elsoc_long_graph <- elsoc_long_graph %>%
     
     # Recodificación en 0/1
     confianza_inter = case_when(
-      confianza_inter <= 1.5 ~ 1,
-      confianza_inter >= 2   ~ 0,
+      confianza_inter <= 1.5 ~ 0,
+      confianza_inter >= 2   ~ 1,
       TRUE ~ NA_real_  # Para valores entre 1.5 y 2
     ),
     
@@ -547,8 +547,8 @@ elsoc_long_graph <- elsoc_long_graph %>%
     
     # Recodificación en 0/1
     sentido_pertenencia = case_when(
-      sentido_pertenencia <= 2.5 ~ 1,
-      sentido_pertenencia >= 3   ~ 0,
+      sentido_pertenencia <= 2.5 ~ 0,
+      sentido_pertenencia >= 3   ~ 1,
       TRUE ~ NA_real_  # Para valores entre 2.5 y 3
     ),
     
@@ -574,8 +574,8 @@ elsoc_long_graph <- elsoc_long_graph %>%
     
     # Recodificación en 0/1
     satisfaccion_barrio = case_when(
-      satisfaccion_barrio <= 2.5 ~ 1,
-      satisfaccion_barrio >= 3   ~ 0,
+      satisfaccion_barrio <= 2.5 ~ 0,
+      satisfaccion_barrio >= 3   ~ 1,
       TRUE ~ NA_real_  # Para valores entre 2.5 y 3
     ),
     
@@ -616,12 +616,6 @@ long_seguridad_stack <- elsoc_long_graph %>%
       variable == "seguridad_sub" ~ "Seguridad Subjetiva",
       variable == "seguridad_obj" ~ "Seguridad Objetiva"
     )
-  )
-
-# Asegurar orden de categorías
-long_seguridad_stack <- long_seguridad_stack %>%
-  mutate(
-    valor = factor(valor, levels = c("Alto", "Bajo"))
   )
 
 # Vector con años correspondientes a cada ola
@@ -712,12 +706,6 @@ long_redes_stack <- elsoc_long_graph %>%
     )
   )
 
-# Asegurar orden de categorías
-long_redes_stack <- long_redes_stack %>%
-  mutate(
-    valor = factor(valor, levels = c("Alto", "Bajo"))
-  )
-
 # Gráfico de área apilada
 ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
   geom_area(alpha = 0.7, position = "stack") +
@@ -801,12 +789,6 @@ long_territorio_stack <- elsoc_long_graph %>%
       variable == "sentido_pertenencia" ~ "Sentido de Pertenencia",
       variable == "satisfaccion_barrio" ~ "Satisfacción con el Barrio"
     )
-  )
-
-# Asegurar orden de categorías
-long_territorio_stack <- long_territorio_stack %>%
-  mutate(
-    valor = factor(valor, levels = c("Alto", "Bajo"))
   )
 
 # Gráfico de área apilada
