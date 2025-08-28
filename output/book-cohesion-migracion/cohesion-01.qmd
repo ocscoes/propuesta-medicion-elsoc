@@ -52,10 +52,25 @@ A continuación, se presentan los descriptivos de los constructos presentados en
 #| label: packages
 #| echo: false
 
-pacman::p_load(
-  dplyr, haven, sjlabelled,  psych,  purrr,  tidyr,  sjPlot,  ggplot2, 
-  parameters,  table1,  car,  beeswarm, scales, ggrepel, corrplot,
-  ggtext, patchwork, psych, kableExtra, labelled, patchwork)
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled,
+               psych,
+               rstatix,
+               lme4,
+               performance,
+               sjPlot,
+               srvyr,
+               ggdist,
+               purrr,
+               rlang)
+
+
+options(scipen=999)
+rm(list = ls())
 ```
 
 ```{r}
@@ -388,8 +403,8 @@ elsoc_long_graph <- elsoc_long %>%
     
     # Recodificación en 0/1
     comportamiento_prosocial = case_when(
-      comportamiento_prosocial <= 1.5 ~ 0,
-      comportamiento_prosocial >= 2   ~ 1,
+      comportamiento_prosocial <= 1.5 ~ 1,
+      comportamiento_prosocial >= 2   ~ 0,
       TRUE ~ NA_real_  # Para valores entre 1.5 y 2
     ),
     
@@ -414,8 +429,8 @@ elsoc_long_graph <- elsoc_long_graph %>%
     
     # Recodificación en 0/1
     ayuda_economica = case_when(
-      ayuda_economica <= 1.5 ~ 0,
-      ayuda_economica >= 2   ~ 1,
+      ayuda_economica <= 1.5 ~ 1,
+      ayuda_economica >= 2   ~ 0,
       TRUE ~ NA_real_  # Para valores entre 1.5 y 2
     ),
     
@@ -440,8 +455,8 @@ elsoc_long_graph <- elsoc_long_graph %>%
     
     # Recodificación en 0/1
     confianza_inter = case_when(
-      confianza_inter <= 1.5 ~ 0,
-      confianza_inter >= 2   ~ 1,
+      confianza_inter <= 1.5 ~ 1,
+      confianza_inter >= 2   ~ 0,
       TRUE ~ NA_real_  # Para valores entre 1.5 y 2
     ),
     
@@ -532,8 +547,8 @@ elsoc_long_graph <- elsoc_long_graph %>%
     
     # Recodificación en 0/1
     sentido_pertenencia = case_when(
-      sentido_pertenencia <= 2.5 ~ 0,
-      sentido_pertenencia >= 3   ~ 1,
+      sentido_pertenencia <= 2.5 ~ 1,
+      sentido_pertenencia >= 3   ~ 0,
       TRUE ~ NA_real_  # Para valores entre 2.5 y 3
     ),
     
@@ -559,8 +574,8 @@ elsoc_long_graph <- elsoc_long_graph %>%
     
     # Recodificación en 0/1
     satisfaccion_barrio = case_when(
-      satisfaccion_barrio <= 2.5 ~ 0,
-      satisfaccion_barrio >= 3   ~ 1,
+      satisfaccion_barrio <= 2.5 ~ 1,
+      satisfaccion_barrio >= 3   ~ 0,
       TRUE ~ NA_real_  # Para valores entre 2.5 y 3
     ),
     
@@ -573,367 +588,9 @@ elsoc_long_graph <- elsoc_long_graph %>%
   )
 ```
 
+
 ```{r}
 #| label: fig-long-1
-#| fig-cap: "Tendencia de variables sobre Comportamiento Prosocial ELSOC"
-#| warning: false
-#| message: false
-#| echo: false
-
-# 1. COMPORTAMIENTO PROSOCIAL
-# Variables a graficar
-vars_prosocial <- c("reunion_pub", "voluntariado")
-# Calcular promedios por ola
-long_prosocial <- elsoc_long %>%
-  select(ola, all_of(vars_prosocial)) %>%
-  pivot_longer(cols = all_of(vars_prosocial), 
-               names_to = "variable", 
-               values_to = "valor") %>%
-  group_by(ola, variable) %>%
-  summarise(promedio = mean(valor, na.rm = TRUE), .groups = "drop")
-
-# Nombres legibles
-nombres_prosocial <- c(
-  "reunion_pub" = "Participación en reuniones públicas",
-  "voluntariado" = "Trabajo voluntario"
-)
-
-# Completar olas
-olas_completas <- tibble(ola = 1:6)
-long_prosocial <- long_prosocial %>%
-  right_join(olas_completas, by = "ola") %>%
-  arrange(variable, ola)
-
-# Gráfico
-ggplot(long_prosocial, aes(x = ola, y = promedio, color = variable, group = variable, shape = variable)) +
-  geom_line(linewidth = 1.2, na.rm = FALSE) +
-  geom_point(size = 3, na.rm = FALSE) +
-  scale_color_manual(values = c(
-    "reunion_pub" = "#1b9e77",
-    "voluntariado" = "#d95f02"
-  ), labels = nombres_prosocial) +
-  scale_shape_manual(values = c(
-    "reunion_pub" = 16, 
-    "voluntariado" = 17
-  ), labels = nombres_prosocial) +
-  scale_x_continuous(breaks = 1:6) + 
-  scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
-  labs(title = "Tendencia de Comportamiento Prosocial (ELSOC 2016-2021)",
-       x = "Ola", y = "Promedio", color = "Variable", shape = "Variable") +
-  theme_minimal()
-```
-
-```{r}
-#| label: fig-long-2
-#| fig-cap: "Tendencia de variables sobre Ayuda Económica ELSOC"
-
-# 2. AYUDA ECONÓMICA
-vars_ayuda <- c("prestar_dinero", "ayuda_trabajo")
-long_ayuda <- elsoc_long %>%
-  select(ola, all_of(vars_ayuda)) %>%
-  pivot_longer(cols = all_of(vars_ayuda), 
-               names_to = "variable", 
-               values_to = "valor") %>%
-  group_by(ola, variable) %>%
-  summarise(promedio = mean(valor, na.rm = TRUE), .groups = "drop")
-
-nombres_ayuda <- c(
-  "prestar_dinero" = "Prestar dinero a conocidos",
-  "ayuda_trabajo" = "Ayudar a conseguir trabajo"
-)
-
-long_ayuda <- long_ayuda %>%
-  right_join(olas_completas, by = "ola") %>%
-  arrange(variable, ola)
-
-ggplot(long_ayuda, aes(x = ola, y = promedio, color = variable, group = variable, shape = variable)) +
-  geom_line(linewidth = 1.2, na.rm = FALSE) +
-  geom_point(size = 3, na.rm = FALSE) +
-  scale_color_manual(values = c(
-    "prestar_dinero" = "#1b9e77",
-    "ayuda_trabajo" = "#d95f02"
-  ), labels = nombres_ayuda) +
-  scale_shape_manual(values = c(
-    "prestar_dinero" = 16, 
-    "ayuda_trabajo" = 17
-  ), labels = nombres_ayuda) +
-  scale_x_continuous(breaks = 1:6) + 
-  scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
-  labs(title = "Tendencia de Ayuda Económica (ELSOC 2016-2021)",
-       x = "Ola", y = "Promedio", color = "Variable", shape = "Variable") +
-  theme_minimal()
-```
-
-```{r}
-#| label: fig-long-4
-#| fig-cap: "Tendencia de variables sobre Confianza Interpersonal"
-#| echo: false
-#| warning: false
-#| message: false
-
-
-# 3. CONFIANZA INTERPERSONAL
-vars_confianza <- c("confianza_gen", "altruismo_gen")
-long_confianza <- elsoc_long %>%
-  select(ola, all_of(vars_confianza)) %>%
-  pivot_longer(cols = all_of(vars_confianza), 
-               names_to = "variable", 
-               values_to = "valor") %>%
-  group_by(ola, variable) %>%
-  summarise(promedio = mean(valor, na.rm = TRUE), .groups = "drop")
-
-nombres_confianza <- c(
-  "confianza_gen" = "Confianza generalizada",
-  "altruismo_gen" = "Altruismo generalizado"
-)
-
-long_confianza <- long_confianza %>%
-  right_join(olas_completas, by = "ola") %>%
-  arrange(variable, ola)
-
-ggplot(long_confianza, aes(x = ola, y = promedio, color = variable, group = variable, shape = variable)) +
-  geom_line(linewidth = 1.2, na.rm = FALSE) +
-  geom_point(size = 3, na.rm = FALSE) +
-  scale_color_manual(values = c(
-    "confianza_gen" = "#1b9e77",
-    "altruismo_gen" = "#d95f02"
-  ), labels = nombres_confianza) +
-  scale_shape_manual(values = c(
-    "confianza_gen" = 16, 
-    "altruismo_gen" = 17
-  ), labels = nombres_confianza) +
-  scale_x_continuous(breaks = 1:6) + 
-  scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
-  labs(title = "Tendencia de Confianza Interpersonal (ELSOC 2016-2021)",
-       x = "Ola", y = "Promedio", color = "Variable", shape = "Variable") +
-  theme_minimal()
-```
-
-```{r}
-#| label: fig-long-5
-#| fig-cap: "Tendencia de variables sobre Seguridad Sujetiva"
-#| echo: false 
-#| warning: false
-
-# 4. SEGURIDAD SUBJETIVA
-vars_seg_sub <- c("seguridad_sat", "seguridad_perc")
-
-long_seg_sub <- elsoc_long %>%
-  select(ola, all_of(vars_seg_sub)) %>%
-  pivot_longer(cols = all_of(vars_seg_sub), 
-               names_to = "variable", 
-               values_to = "valor") %>%
-  group_by(ola, variable) %>%
-  summarise(promedio = mean(valor, na.rm = TRUE), .groups = "drop") %>%
-  # Filtrar solo los casos donde hay datos disponibles (no NA)
-  filter(!is.na(promedio))
-
-nombres_seg_sub <- c(
-  "seguridad_sat" = "Satisfacción con seguridad",
-  "seguridad_perc" = "Percepción de seguridad"
-)
-
-# Crear el gráfico sin usar right_join con olas_completas
-ggplot(long_seg_sub, aes(x = ola, y = promedio, color = variable, group = variable, shape = variable)) +
-  geom_line(linewidth = 1.2, na.rm = TRUE) +  # na.rm = TRUE para conectar puntos disponibles
-  geom_point(size = 3, na.rm = TRUE) +        # na.rm = TRUE para mostrar solo puntos disponibles
-  scale_color_manual(values = c(
-    "seguridad_sat" = "#1b9e77",
-    "seguridad_perc" = "#d95f02"
-  ), labels = nombres_seg_sub) +
-  scale_shape_manual(values = c(
-    "seguridad_sat" = 16, 
-    "seguridad_perc" = 17
-  ), labels = nombres_seg_sub) +
-  scale_x_continuous(breaks = 1:6) + 
-  scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
-  labs(title = "Tendencia de Seguridad Subjetiva (ELSOC 2016-2021)",
-       x = "Ola", y = "Promedio", color = "Variable", shape = "Variable") +
-  theme_minimal()
-
-
-```
-
-```{r}
-#| label: fig-long-6
-#| fig-cap: "Tendencia de variables sobre Seguridad Objetiva"
-#| warning: false
-#| echo: false
-
-# 5. SEGURIDAD OBJETIVA
-vars_seg_obj <- c("peleas_calle", "asaltos", "trafico_drogas")
-
-long_seg_obj <- elsoc_long %>%
-  select(ola, all_of(vars_seg_obj)) %>%
-  pivot_longer(cols = all_of(vars_seg_obj), 
-               names_to = "variable", 
-               values_to = "valor") %>%
-  group_by(ola, variable) %>%
-  summarise(promedio = mean(valor, na.rm = TRUE), .groups = "drop") %>%
-  # Filtrar solo los casos donde hay datos disponibles (no NA)
-  filter(!is.na(promedio))
-
-nombres_seg_obj <- c(
-  "peleas_calle" = "Peleas callejeras",
-  "asaltos" = "Asaltos y robos",
-  "trafico_drogas" = "Tráfico de drogas"
-)
-
-# Crear el gráfico sin usar right_join con olas_completas
-ggplot(long_seg_obj, aes(x = ola, y = promedio, color = variable, group = variable, shape = variable)) +
-  geom_line(linewidth = 1.2, na.rm = TRUE) +  # na.rm = TRUE para conectar puntos disponibles
-  geom_point(size = 3, na.rm = TRUE) +        # na.rm = TRUE para mostrar solo puntos disponibles
-  scale_color_manual(values = c(
-    "peleas_calle" = "#1b9e77",
-    "asaltos" = "#d95f02",
-    "trafico_drogas" = "#7570b3"
-  ), labels = nombres_seg_obj) +
-  scale_shape_manual(values = c(
-    "peleas_calle" = 16, 
-    "asaltos" = 17,
-    "trafico_drogas" = 15
-  ), labels = nombres_seg_obj) +
-  scale_x_continuous(breaks = 1:6) + 
-  scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
-  labs(title = "Tendencia de Seguridad Objetiva (ELSOC 2016-2021)",
-       x = "Ola", y = "Promedio", color = "Variable", shape = "Variable") +
-  theme_minimal()
-
-```
-
-```{r}
-#| label: fig-long-7
-#| fig-cap: "Tendencia de variables sobre Satifacción con el Barrio"
-
-# 6. SENTIDO DE PERTENENCIA
-vars_pertenencia <- c("barrio_ideal", "barrio_integracion", "barrio_identidad", "barrio_pertenencia")
-
-long_pertenencia <- elsoc_long %>%
-  select(ola, all_of(vars_pertenencia)) %>%
-  pivot_longer(cols = all_of(vars_pertenencia), 
-               names_to = "variable", 
-               values_to = "valor") %>%
-  group_by(ola, variable) %>%
-  summarise(promedio = mean(valor, na.rm = TRUE), .groups = "drop") %>%
-  # Filtrar solo los casos donde hay datos disponibles (no NA)
-  filter(!is.na(promedio))
-
-nombres_pertenencia <- c(
-  "barrio_ideal" = "Barrio ideal para vivir",
-  "barrio_integracion" = "Integración en el barrio",
-  "barrio_identidad" = "Identidad con el barrio",
-  "barrio_pertenencia" = "Sentido de pertenencia"
-)
-
-# Crear el gráfico sin usar right_join con olas_completas
-ggplot(long_pertenencia, aes(x = ola, y = promedio, color = variable, group = variable, shape = variable)) +
-  geom_line(linewidth = 1.2, na.rm = TRUE) +  # na.rm = TRUE para conectar puntos disponibles
-  geom_point(size = 3, na.rm = TRUE) +        # na.rm = TRUE para mostrar solo puntos disponibles
-  scale_color_manual(values = c(
-    "barrio_ideal" = "#1b9e77",
-    "barrio_integracion" = "#d95f02",
-    "barrio_identidad" = "#7570b3",
-    "barrio_pertenencia" = "#e7298a"
-  ), labels = nombres_pertenencia) +
-  scale_shape_manual(values = c(
-    "barrio_ideal" = 16, 
-    "barrio_integracion" = 17,
-    "barrio_identidad" = 15,
-    "barrio_pertenencia" = 18
-  ), labels = nombres_pertenencia) +
-  scale_x_continuous(breaks = 1:6) + 
-  scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
-  labs(title = "Tendencia de Sentido de Pertenencia (ELSOC 2016-2021)",
-       x = "Ola", y = "Promedio", color = "Variable", shape = "Variable") +
-  theme_minimal()
-
-```
-
-```{r}
-#| label: fig-long-8
-#| fig-cap: "Tendencia en índices de seguridad"
-
-# Variables de seguridad (índices categóricos)
-vars_seguridad <- c("seguridad_sub", "seguridad_obj")
-
-# OPCIÓN 1: Líneas separadas para Alto y Bajo
-long_seguridad_completo <- elsoc_long_graph %>%
-  select(ola, all_of(vars_seguridad)) %>%
-  pivot_longer(cols = all_of(vars_seguridad), 
-               names_to = "variable", 
-               values_to = "valor") %>%
-  filter(!is.na(valor)) %>%
-  group_by(ola, variable, valor) %>%
-  summarise(n = n(), .groups = "drop") %>%
-  group_by(ola, variable) %>%
-  mutate(
-    total = sum(n),
-    proporcion = n / total
-  ) %>%
-  ungroup() %>%
-  # Crear variable combinada para el gráfico
-  mutate(
-    variable_nivel = paste(variable, valor, sep = "_"),
-    variable_clean = case_when(
-      variable == "seguridad_sub" ~ "Seguridad Subjetiva",
-      variable == "seguridad_obj" ~ "Seguridad Objetiva"
-    )
-  )
-
-nombres_completos <- c(
-  "seguridad_sub_Alto" = "Seg. Subjetiva - Alto",
-  "seguridad_sub_Bajo" = "Seg. Subjetiva - Bajo", 
-  "seguridad_obj_Alto" = "Seg. Objetiva - Alto",
-  "seguridad_obj_Bajo" = "Seg. Objetiva - Bajo"
-)
-
-# Gráfico con líneas separadas para Alto y Bajo
-ggplot(long_seguridad_completo, aes(x = ola, y = proporcion, 
-                                   color = variable_nivel, 
-                                   linetype = valor,
-                                   shape = valor,
-                                   group = variable_nivel)) +
-  geom_line(linewidth = 1.2, na.rm = TRUE) +
-  geom_point(size = 3, na.rm = TRUE) +
-  scale_color_manual(values = c(
-    "seguridad_sub_Alto" = "#1b9e77",
-    "seguridad_sub_Bajo" = "#1b9e77", 
-    "seguridad_obj_Alto" = "#d95f02",
-    "seguridad_obj_Bajo" = "#d95f02"
-  ), labels = nombres_completos) +
-  scale_linetype_manual(values = c(
-    "Alto" = "solid",
-    "Bajo" = "dashed"
-  )) +
-  scale_shape_manual(values = c(
-    "Alto" = 16,
-    "Bajo" = 1  # Círculo vacío
-  )) +
-  scale_x_continuous(breaks = 1:6) + 
-  scale_y_continuous(
-    limits = c(0, 1), 
-    breaks = seq(0, 1, 0.2),
-    labels = scales::percent_format(accuracy = 1)
-  ) +
-  labs(title = "Tendencia en índice de seguridad: Niveles Alto y Bajo (ELSOC 2016-2021)",
-       subtitle = "Líneas sólidas = Alto, Líneas punteadas = Bajo",
-       x = "Ola", 
-       y = "Proporción", 
-       color = "Variable y Nivel",
-       linetype = "Nivel",
-       shape = "Nivel") +
-  theme_minimal() +
-  guides(
-    color = guide_legend(override.aes = list(linetype = c("solid", "dashed", "solid", "dashed"))),
-    linetype = guide_legend(title = "Nivel"),
-    shape = guide_legend(title = "Nivel")
-  )
-
-```
-
-
-```{r}
-#| label: fig-long-9
 #| fig-cap: "Tendencia índices de Seguridad"
 
 # Variables de seguridad (índices categóricos)
@@ -961,7 +618,15 @@ long_seguridad_stack <- elsoc_long_graph %>%
     )
   )
 
-# Gráfico de área apilada
+# Asegurar orden de categorías
+long_seguridad_stack <- long_seguridad_stack %>%
+  mutate(
+    valor = factor(valor, levels = c("Alto", "Bajo"))
+  )
+
+# Vector con años correspondientes a cada ola
+anos_olas <- c("2016", "2017", "2018", "2019", "2022", "2023")
+
 ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
   geom_area(alpha = 0.7, position = "stack") +
   geom_line(aes(group = interaction(variable, valor)), 
@@ -970,25 +635,49 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
             color = "white") +
   facet_wrap(~variable_clean, ncol = 2) +
   scale_fill_manual(values = c(
-    "Alto" = "#2d7016",  # Verde oscuro
-    "Bajo" = "#ff6b35"   # Naranja/rojo
+    "Bajo" = "#F9913D",
+    "Alto" = "#2B2F3C"
   )) +
-  scale_x_continuous(breaks = 1:6) + 
+  scale_x_continuous(
+    breaks = 1:6,
+    labels = anos_olas
+  ) +
   scale_y_continuous(
     limits = c(0, 1), 
     breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
-  labs(title = "Distribución de niveles de seguridad por ola (ELSOC 2016-2023)",
-       subtitle = "Proporción de casos Alto vs Bajo en cada dimensión",
-       x = "Ola", 
+  labs(title = "Distribución de índices de seguridad por ola (ELSOC 2016-2023)",
+       x = "Año", 
        y = "Proporción", 
        fill = "Nivel") +
   theme_minimal() +
   theme(
     strip.text = element_text(size = 12, face = "bold"),
-    legend.position = "bottom"
-  )
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position       = "top",
+    legend.direction      = "horizontal",
+    legend.box            = "horizontal",
+    
+    legend.title          = element_text(face = "bold"),
+    legend.key            = element_rect(fill = "white", color = NA),
+    legend.key.height     = unit(12, "pt"),
+    legend.key.width      = unit(20, "pt"),
+    
+    axis.text  = element_text(size = 11),
+    panel.spacing = unit(1, "cm")   # mantiene separación entre paneles
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "bottom",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
 
 ```
 
@@ -997,7 +686,7 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
 #| label: fig-long-10
 #| fig-cap: "Tendencia índices de Redes"
 
-# Variables de seguridad (índices categóricos)
+# Variables de redes (índices categóricos)
 vars_redes <- c("comportamiento_prosocial", "ayuda_economica", "confianza_inter")
 
 # Preparar datos para gráfico apilado
@@ -1016,11 +705,17 @@ long_redes_stack <- elsoc_long_graph %>%
   ) %>%
   ungroup() %>%
   mutate(
-    variable_clean = case_when(
+    variable_clean = case_when (
       variable == "comportamiento_prosocial" ~ "Comportamiento Prosocial",
       variable == "ayuda_economica" ~ "Ayuda Económica",
       variable == "confianza_inter" ~ "Confianza Interpersonal"
     )
+  )
+
+# Asegurar orden de categorías
+long_redes_stack <- long_redes_stack %>%
+  mutate(
+    valor = factor(valor, levels = c("Alto", "Bajo"))
   )
 
 # Gráfico de área apilada
@@ -1032,25 +727,49 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
             color = "white") +
   facet_wrap(~variable_clean, ncol = 2) +
   scale_fill_manual(values = c(
-    "Alto" = "#2d7016",  # Verde oscuro
-    "Bajo" = "#ff6b35"   # Naranja/rojo
+    "Bajo" = "#F9913D",
+    "Alto" = "#2B2F3C"
   )) +
-  scale_x_continuous(breaks = 1:6) + 
+  scale_x_continuous(
+    breaks = 1:6,
+    labels = anos_olas
+  ) +
   scale_y_continuous(
     limits = c(0, 1), 
     breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
   labs(title = "Distribución de índices de redes por ola (ELSOC 2016-2023)",
-       subtitle = "Proporción de casos Alto vs Bajo en cada dimensión",
-       x = "Ola", 
+       x = "Año", 
        y = "Proporción", 
        fill = "Nivel") +
   theme_minimal() +
   theme(
     strip.text = element_text(size = 12, face = "bold"),
-    legend.position = "bottom"
-  )
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position       = "top",
+    legend.direction      = "horizontal",
+    legend.box            = "horizontal",
+    
+    legend.title          = element_text(face = "bold"),
+    legend.key            = element_rect(fill = "white", color = NA),
+    legend.key.height     = unit(12, "pt"),
+    legend.key.width      = unit(20, "pt"),
+    
+    axis.text  = element_text(size = 11),
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "bottom",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
 ```
 
 ```{r}
@@ -1059,7 +778,7 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
 #| echo: false
 #| warning: false
 
-# Variables de seguridad (índices categóricos)
+# Variables de Vínculos Territorial (índices categóricos)
 vars_territorio <- c("sentido_pertenencia", "satisfaccion_barrio")
 
 # Preparar datos para gráfico apilado
@@ -1078,10 +797,16 @@ long_territorio_stack <- elsoc_long_graph %>%
   ) %>%
   ungroup() %>%
   mutate(
-    variable_clean = case_when(
+    variable_clean = case_when (
       variable == "sentido_pertenencia" ~ "Sentido de Pertenencia",
       variable == "satisfaccion_barrio" ~ "Satisfacción con el Barrio"
     )
+  )
+
+# Asegurar orden de categorías
+long_territorio_stack <- long_territorio_stack %>%
+  mutate(
+    valor = factor(valor, levels = c("Alto", "Bajo"))
   )
 
 # Gráfico de área apilada
@@ -1093,24 +818,48 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
             color = "white") +
   facet_wrap(~variable_clean, ncol = 2) +
   scale_fill_manual(values = c(
-    "Alto" = "#2d7016",  # Verde oscuro
-    "Bajo" = "#ff6b35"   # Naranja/rojo
+    "Bajo" = "#F9913D",
+    "Alto" = "#2B2F3C"
   )) +
-  scale_x_continuous(breaks = 1:6) + 
+  scale_x_continuous(
+    breaks = 1:6,
+    labels = anos_olas
+  ) +
   scale_y_continuous(
     limits = c(0, 1), 
     breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
-  labs(title = "Distribución de índices de Vínculos Territoriales por ola (ELSOC 2016-2023)",
-       subtitle = "Proporción de casos Alto vs Bajo en cada dimensión",
-       x = "Ola", 
+  labs(title = "Distribución de índices de vínculo territorial por ola (ELSOC 2016-2023)",
+       x = "Año", 
        y = "Proporción", 
        fill = "Nivel") +
   theme_minimal() +
   theme(
     strip.text = element_text(size = 12, face = "bold"),
-    legend.position = "bottom"
-  )
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position       = "top",
+    legend.direction      = "horizontal",
+    legend.box            = "horizontal",
+    
+    legend.title          = element_text(face = "bold"),
+    legend.key            = element_rect(fill = "white", color = NA),
+    legend.key.height     = unit(12, "pt"),
+    legend.key.width      = unit(20, "pt"),
+    
+    axis.text  = element_text(size = 11),
+    panel.spacing = unit(1, "cm")   # mantiene separación entre paneles
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "bottom",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
 ```
 
