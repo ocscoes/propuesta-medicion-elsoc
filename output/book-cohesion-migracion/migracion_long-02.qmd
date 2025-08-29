@@ -236,10 +236,13 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   scale_fill_manual(values = c("Bajo (1-2)" = "#f9913d",  
                                "Medio (3)" = "#7aba21",   
                                "Alto (4-5)" = "#2b2f3c"),
+                    labels = c("Bajo (1-2)" = "Bajo",  
+                               "Medio (3)" = "Medio",   
+                               "Alto (4-5)" = "Alto"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
   labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2023)",
-       x = "Año", y = "Porcentaje") +
+       x = "Ola", y = "Porcentaje") +
   theme_minimal() +
   theme(
     strip.text = element_text(size = 12, face = "bold"),
@@ -317,6 +320,9 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   scale_fill_manual(values = c("Bajo (1-2)" = "#f9913d",  
                                "Medio (3)" = "#7aba21",   
                                "Alto (4-5)" = "#2b2f3c"),
+                    labels = c("Bajo (1-2)" = "Bajo",  
+                               "Medio (3)" = "Medio",   
+                               "Alto (4-5)" = "Alto"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
   labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2023)",
@@ -398,6 +404,9 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   scale_fill_manual(values = c("Bajo (1-2)" = "#f9913d",  
                                "Medio (3)" = "#7aba21",   
                                "Alto (4-5)" = "#2b2f3c"),
+                    labels = c("Bajo (1-2)" = "Bajo",  
+                               "Medio (3)" = "Medio",   
+                               "Alto (4-5)" = "Alto"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
   labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2023)",
