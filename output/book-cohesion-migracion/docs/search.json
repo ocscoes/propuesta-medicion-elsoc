@@ -418,5 +418,115 @@
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados</span>"
     ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html",
+    "href": "bivariados-trans-03.html",
+    "title": "5  Bivariados transversales",
+    "section": "",
+    "text": "5.1 Visualizaciones\nPara realizar los cruces de las subdimensiones de la cohesión social con migración, se construyen índices promediados a partir de los indicadores que conforman los constructos validados en la sección anterior.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#gráficos-migración",
+    "href": "bivariados-trans-03.html#gráficos-migración",
+    "title": "5  Bivariados transversales",
+    "section": "5.2 Gráficos migración",
+    "text": "5.2 Gráficos migración\n\n\nScale for fill is already present.\nAdding another scale for fill, which will replace the existing scale.\n\n\n\n\n\nFigure 5.1: Descriptivos de migración",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#seguridad-transversal",
+    "href": "bivariados-trans-03.html#seguridad-transversal",
+    "title": "5  Bivariados transversales",
+    "section": "6.1 Seguridad transversal",
+    "text": "6.1 Seguridad transversal\n\n\n\n\n\nFigure 6.1: Asociación entre percepción de desempleo y seguridad subjetiva\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 6.2: Asociación entre percepción de pérdida de identidad y seguridad objetiva",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#vínculos-territoriales-transversal",
+    "href": "bivariados-trans-03.html#vínculos-territoriales-transversal",
+    "title": "5  Bivariados transversales",
+    "section": "6.2 Vínculos territoriales transversal",
+    "text": "6.2 Vínculos territoriales transversal\n\n\n\n\n\nFigure 6.3: Asociación entre percepción de pérdida de identidad y satisfacción con el barrio\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 6.4: Asociación entre percepción de pérdida de identidad y sentido de pertenencia",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#redes-sociales-transversal",
+    "href": "bivariados-trans-03.html#redes-sociales-transversal",
+    "title": "5  Bivariados transversales",
+    "section": "6.3 Redes sociales transversal",
+    "text": "6.3 Redes sociales transversal\n\n\n\n\n\nFigure 6.5: Asociación entre percepción de desempleo y comportamiento prosocial\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 6.6: Asociación entre percepción de desempleo debido a inmigrantes y confianza interpersonal\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 6.7: Asociación entre percepción de pérdida de identidad y ayuda económica",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#seguridad-por-género",
+    "href": "bivariados-trans-03.html#seguridad-por-género",
+    "title": "5  Bivariados transversales",
+    "section": "7.1 Seguridad por género",
+    "text": "7.1 Seguridad por género\n\nseguridad_genero &lt;- elsoc_6_graph %&gt;%\n  select(sexo, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nseguridad_hombres &lt;- seguridad_genero %&gt;%\n  filter(sexo==0)\n\nseguridad_mujeres &lt;- seguridad_genero %&gt;%\n  filter(sexo==1)\n\n\nseguridad_hombres &lt;- seguridad_hombres %&gt;%\n  select(-c(sexo))\n\nseguridad_mujeres &lt;- seguridad_mujeres %&gt;%\n  select(-c(sexo))\n\n\nseg_interact &lt;- a | b\nseg_interact",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#seguridad-por-educación",
+    "href": "bivariados-trans-03.html#seguridad-por-educación",
+    "title": "5  Bivariados transversales",
+    "section": "7.2 Seguridad por educación",
+    "text": "7.2 Seguridad por educación\n\nseguridad_educ &lt;- elsoc_6_graph %&gt;%\n  select(educacion, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nseguridad_titulo &lt;- seguridad_educ %&gt;%\n  filter(educacion==1)\n\nseguridad_notitulo &lt;- seguridad_educ %&gt;%\n  filter(educacion==0)\n\n\nseguridad_titulo &lt;- seguridad_titulo %&gt;%\n  select(-c(educacion))\n\nseguridad_notitulo &lt;- seguridad_notitulo %&gt;%\n  select(-c(educacion))\n\n\nseg_interact_ed &lt;- d | c\nseg_interact_ed",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#vínculos-territoriales-por-género",
+    "href": "bivariados-trans-03.html#vínculos-territoriales-por-género",
+    "title": "5  Bivariados transversales",
+    "section": "7.3 Vínculos territoriales por género",
+    "text": "7.3 Vínculos territoriales por género\n\nbarrio_genero &lt;- elsoc_6_graph %&gt;%\n  select(sexo, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nbarrio_hombres &lt;- barrio_genero %&gt;%\n  filter(sexo==0)\n\nbarrio_mujeres &lt;- barrio_genero %&gt;%\n  filter(sexo==1)\n\n\nbarrio_hombres &lt;- barrio_hombres %&gt;%\n  select(-c(sexo))\n\nbarrio_mujeres &lt;- barrio_mujeres %&gt;%\n  select(-c(sexo))\n\n\nbarrio_interact &lt;- e | f\nbarrio_interact",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#vínculos-territoriales-por-educación",
+    "href": "bivariados-trans-03.html#vínculos-territoriales-por-educación",
+    "title": "5  Bivariados transversales",
+    "section": "7.4 Vínculos territoriales por educación",
+    "text": "7.4 Vínculos territoriales por educación\n\nbarrio_educ &lt;- elsoc_6_graph %&gt;%\n  select(educacion, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nbarrio_titulo &lt;- barrio_educ %&gt;%\n  filter(educacion==1)\n\nbarrio_notitulo &lt;- barrio_educ %&gt;%\n  filter(educacion==0)\n\n\nbarrio_titulo &lt;- barrio_titulo %&gt;%\n  select(-c(educacion))\n\nbarrio_notitulo &lt;- barrio_notitulo %&gt;%\n  select(-c(educacion))\n\n\nbarrio_interact_ed &lt;- g | h\nbarrio_interact_ed",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#redes-sociales-por-género",
+    "href": "bivariados-trans-03.html#redes-sociales-por-género",
+    "title": "5  Bivariados transversales",
+    "section": "7.5 Redes sociales por género",
+    "text": "7.5 Redes sociales por género\n\nredes_genero &lt;- elsoc_5_graph %&gt;%\n  select(sexo, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nredes_hombres &lt;- redes_genero %&gt;%\n  filter(sexo==0)\n\nredes_mujeres &lt;- redes_genero %&gt;%\n  filter(sexo==1)\n\n\nredes_hombres &lt;- redes_hombres %&gt;%\n  select(-c(sexo))\n\nredes_mujeres &lt;- redes_mujeres %&gt;%\n  select(-c(sexo))\n\n\nredes_interact &lt;- i | j\nredes_interact",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
+  },
+  {
+    "objectID": "bivariados-trans-03.html#redes-sociales-por-educación",
+    "href": "bivariados-trans-03.html#redes-sociales-por-educación",
+    "title": "5  Bivariados transversales",
+    "section": "7.6 Redes sociales por educación",
+    "text": "7.6 Redes sociales por educación\n\nredes_educ &lt;- elsoc_5_graph %&gt;%\n  select(educacion, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nredes_titulo &lt;- redes_educ %&gt;%\n  filter(educacion==1)\n\nredes_notitulo &lt;- redes_educ %&gt;%\n  filter(educacion==0)\n\n\nredes_titulo &lt;- redes_titulo %&gt;%\n  select(-c(educacion))\n\nredes_notitulo &lt;- redes_notitulo %&gt;%\n  select(-c(educacion))\n\n\nredes_interact_ed &lt;- l | k\nredes_interact_ed\n\n\n\n\n\n\n\n\n\nm &lt;- ggplot(redes_notitulo, aes(\n  x = desempleo_migrantes, \n  fill = factor(confianza_inter, labels = c(\"Alta confianza\", \"Baja confianza\"))\n)) +\n  geom_bar(position = \"fill\") +\n  scale_fill_manual(\n    values = c(\"Alta confianza\" = \"#2b2f3c\", \"Baja confianza\" = \"#f9913d\"),\n    breaks = c(\"Alta confianza\", \"Baja confianza\")\n  ) +\n  labs(\n    title = \"% de percepción de desempleo \\n debido a inmigrantes según confianza interpersonal (no titulados)\",\n    x = \"Percepción de desempleo\",\n    y = NULL,\n    fill = \"Confianza interpersonal\"\n  ) +\n  theme_minimal() +\n  scale_y_continuous(\n    labels = scales::percent_format(accuracy = 1), \n    breaks = scales::pretty_breaks(n = 10),\n    expand = expansion(mult = c(0, 0.05))\n  ) +\n  scale_x_continuous(\n    breaks = 1:3,\n    labels = c(\"Muy \\n en desacuerdo\", \"Ni en desacuerdo \\n ni de acuerdo\", \"Muy \\n de acuerdo\")\n  ) +\n  theme(\n    # Configuración de leyenda personalizada\n    legend.box.background = element_rect(color = \"grey20\", fill = \"white\", linewidth = 0.5),\n    legend.background     = element_rect(fill = \"white\", color = NA),\n    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),\n    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),\n    \n    legend.position       = \"top\",\n    legend.direction      = \"horizontal\",\n    legend.box            = \"horizontal\",\n    \n    legend.title          = element_text(face = \"bold\", size = 14),\n    legend.text           = element_text(size = 11),\n    legend.key            = element_rect(fill = \"white\", color = NA),\n    legend.key.height     = unit(12, \"pt\"),\n    legend.key.width      = unit(18, \"pt\"),\n    \n    # Mantener configuraciones originales de ejes y título\n    axis.title.x = element_text(size = 14, margin = margin(t = 30)),\n    axis.text.x = element_text(size = 11),\n    axis.text.y = element_text(size = 11),\n    axis.title.y = element_text(size = 14),\n    plot.title = element_text(size = 14, hjust = 0.5)\n  ) +\n  guides(fill = guide_legend(\n    title.position = \"top\",\n    label.position = \"bottom\",\n    nrow = 1, \n    byrow = TRUE,\n    keywidth = unit(14, \"pt\"),\n    keyheight = unit(10, \"pt\")\n  ))\n\nm",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
+    ]
   }
 ]
