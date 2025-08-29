@@ -392,6 +392,7 @@ cohesion_3
 
 ```{r}
 #| label: comportamiento prosocial dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long %>%
   mutate(
@@ -419,6 +420,9 @@ elsoc_long_graph <- elsoc_long %>%
 
 ```{r}
 #| label: ayuda economica dummy 2
+#| echo: false
+
+
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
     # Índice promediado - especificar las columnas directamente
@@ -445,6 +449,9 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: confianza interpersonal dummy 2
+#| echo: false
+
+
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
     # Índice promediado - especificar las columnas directamente
@@ -471,6 +478,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: redes dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -482,6 +490,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: seguridad subjetiva dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -509,6 +518,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r} 
 #| label: seguridad objetiva dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -536,6 +546,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: sentido de pertenencia dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -563,6 +574,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: satisfacción con el barrio dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -590,8 +602,9 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 
 ```{r}
-#| label: fig-long-1
+#| label: fig-long-9
 #| fig-cap: "Tendencia índices de Seguridad"
+#| echo: false
 
 # Variables de seguridad (índices categóricos)
 vars_seguridad <- c("seguridad_sub", "seguridad_obj")
@@ -679,6 +692,7 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
 
 #| label: fig-long-10
 #| fig-cap: "Tendencia índices de Redes"
+#| echo: false
 
 # Variables de redes (índices categóricos)
 vars_redes <- c("comportamiento_prosocial", "ayuda_economica", "confianza_inter")
@@ -761,7 +775,7 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
 ```
 
 ```{r}
-#| label: fig-long-10
+#| label: fig-long-11
 #| fig-cap: "Tendencia índices de Vínculos Territoriales"
 #| echo: false
 #| warning: false
