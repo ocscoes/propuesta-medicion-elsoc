@@ -87,7 +87,6 @@ La macrozona norte del país es un caso particularmente relevante, dado que conc
 
 ```{r}
 #| label: fig-mig1
-#| fig-cap: Tendencia de variables sobre migración ELSOC (2016-2019)
 #| warning: false
 #| message: false
 #| echo: false
@@ -192,7 +191,6 @@ Por su parte, los resultados de la Encuesta ELSOC del Centro de Estudios de Conf
 
 ```{r}
 #| label: fig-mig2
-#| fig-cap: Distribución simplificada de respuestas ELSOC (2016-2019)
 #| echo: false
 
 # Variables a graficar (solo 2)
@@ -275,7 +273,6 @@ En la @fig-mig2, que desagrega las respuestas en tres categorías simplificadas 
 
 ```{r}
 #| label: fig-mig3
-#| fig-cap: Distribución simplificada de respuestas (ELSOC 2016-2019
 #| echo: false
 
 # Variables a graficar (las 2 restantes)
@@ -360,7 +357,6 @@ La @fig-mig3, que aborda las percepciones críticas vinculadas a desempleo y pé
 
 ```{r}
 #| label: fig-mig4
-#| fig-cap: Tendencia Variables Igualdad Migrantes
 #| echo: false
 
 # Variables a graficar (las 2 restantes)
