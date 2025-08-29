@@ -150,7 +150,7 @@ ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = varia
   scale_x_continuous(breaks = 1:6,
                       label = anos_olas) + 
   scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
-  labs(title = "Tendencia de variables sobre migración (ELSOC 2016-2021)",
+  labs(title = "Tendencia de variables sobre migración (ELSOC 2016-2022)",
        x = "Ola", y = "Promedio", color = "Variable", shape = "Variable") +
   theme_minimal() +
   theme(
@@ -319,7 +319,7 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
                                "Alto (4-5)" = "#2b2f3c"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
-  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2019)",
+  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2023)",
        x = "Ola", y = "Porcentaje") +
   theme_minimal() +
   theme(
@@ -400,7 +400,7 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
                                "Alto (4-5)" = "#2b2f3c"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
-  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2019)",
+  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2023)",
        x = "Ola", y = "Porcentaje") +
   theme_minimal() +
   theme(
