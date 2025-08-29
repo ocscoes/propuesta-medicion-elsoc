@@ -653,7 +653,7 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -667,7 +667,7 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
@@ -700,9 +700,9 @@ long_redes_stack <- elsoc_long_graph %>%
   ungroup() %>%
   mutate(
     variable_clean = case_when (
-      variable == "comportamiento_prosocial" ~ "Comportamiento Prosocial",
+      variable == "comportamiento_prosocial" ~ "Comportamiento  \n Prosocial",
       variable == "ayuda_economica" ~ "Ayuda Económica",
-      variable == "confianza_inter" ~ "Confianza Interpersonal"
+      variable == "confianza_inter" ~ "Confianza \n Interpersonal"
     )
   )
 
@@ -713,7 +713,7 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
             position = "stack", 
             linewidth = 0.5, 
             color = "white") +
-  facet_wrap(~variable_clean, ncol = 2) +
+  facet_wrap(~variable_clean, ncol = 3) +
   scale_fill_manual(values = c(
     "Bajo" = "#F9913D",
     "Alto" = "#2B2F3C"
@@ -739,7 +739,7 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -753,7 +753,7 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
@@ -824,7 +824,7 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -838,7 +838,7 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")

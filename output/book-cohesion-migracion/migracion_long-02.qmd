@@ -106,11 +106,11 @@ long_promedio <- elsoc_long %>%
 
 # Nombres más legibles para la leyenda y facets
 nombres_legibles <- c(
-  "igualdad_migrantes" = "Acceso a Salud Migrantes",
-  "contacto_migrantes" = "Contacto Positivo con Migrantes",
-  "simpatia_migrantes" = "Simpatía hacia migrantes",
-  "perdida_identidad" = "Pérdida de identidad",
-  "desempleo_migrantes" = "Desempleo percibido por migrantes"
+  "igualdad_migrantes" = "Acceso a \n Salud Migrantes",
+  "contacto_migrantes" = "Contacto Positivo \n con Migrantes",
+  "simpatia_migrantes" = "Simpatía \n hacia migrantes",
+  "perdida_identidad" = "Pérdida de \n identidad",
+  "desempleo_migrantes" = "Desempleo percibido \n por migrantes"
 )
 
 # Asegurarse que ola sea numérica y esté completa de 1 a 6
@@ -160,7 +160,7 @@ ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = varia
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -181,7 +181,7 @@ ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = varia
   ),
   shape = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
@@ -248,7 +248,7 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -262,7 +262,7 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
@@ -329,7 +329,7 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -343,7 +343,7 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
@@ -410,7 +410,7 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -424,7 +424,7 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
