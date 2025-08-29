@@ -129,11 +129,11 @@ ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = varia
     geom_line(linewidth = 1.2, na.rm = FALSE) +
     geom_point(size = 3, na.rm = FALSE) +
       scale_color_manual(values = c(
-      "igualdad_migrantes"   = "#1b9e77",
-      "contacto_migrantes"   = "#d95f02",
-      "simpatia_migrantes"   = "#7570b3",
-      "perdida_identidad"    = "#e7298a",
-      "desempleo_migrantes"  = "#66a61e"
+      "igualdad_migrantes"   = "#7aba21",
+      "contacto_migrantes"   = "#f9913d",
+      "simpatia_migrantes"   = "#2b2f3c",
+      "perdida_identidad"    = "#824293",
+      "desempleo_migrantes"  = "#487fd3"
   ),
   labels = nombres_legibles) +
   scale_shape_manual(values = c(
@@ -190,9 +190,9 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) +
   facet_wrap(~variable, ncol = 3, labeller = labeller(variable = nombres_legibles)) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_fill_manual(values = c("Bajo (1-2)" = "#d95f02",  
-                               "Medio (3)" = "#7570b3",   
-                               "Alto (4-5)" = "#1b9e77"),
+  scale_fill_manual(values = c("Bajo (1-2)" = "#f9913d",  
+                               "Medio (3)" = "#7aba21",   
+                               "Alto (4-5)" = "#2b2f3c"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
   labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2019)",
@@ -241,9 +241,9 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) +
   facet_wrap(~variable, ncol = 2, labeller = labeller(variable = nombres_legibles)) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_fill_manual(values = c("Bajo (1-2)" = "#d95f02",  
-                               "Medio (3)" = "#7570b3",   
-                               "Alto (4-5)" = "#1b9e77"),
+  scale_fill_manual(values = c("Bajo (1-2)" = "#f9913d",  
+                               "Medio (3)" = "#7aba21",   
+                               "Alto (4-5)" = "#2b2f3c"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
   labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2019)",
@@ -292,9 +292,9 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) +
   facet_wrap(~variable, ncol = 2, labeller = labeller(variable = nombres_legibles)) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_fill_manual(values = c("Bajo (1-2)" = "#d95f02",  
-                               "Medio (3)" = "#7570b3",   
-                               "Alto (4-5)" = "#1b9e77"),
+  scale_fill_manual(values = c("Bajo (1-2)" = "#f9913d",  
+                               "Medio (3)" = "#7aba21",   
+                               "Alto (4-5)" = "#2b2f3c"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
   labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2019)",
