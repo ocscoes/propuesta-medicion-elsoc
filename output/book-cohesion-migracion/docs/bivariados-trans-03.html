@@ -211,6 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#redes-sociales-por-género" id="toc-redes-sociales-por-género" class="nav-link" data-scroll-target="#redes-sociales-por-género"><span class="header-section-number">7.5</span> Redes sociales por género</a></li>
   <li><a href="#redes-sociales-por-educación" id="toc-redes-sociales-por-educación" class="nav-link" data-scroll-target="#redes-sociales-por-educación"><span class="header-section-number">7.6</span> Redes sociales por educación</a></li>
   </ul></li>
+  <li><a href="#gráficos-seleccionados" id="toc-gráficos-seleccionados" class="nav-link" data-scroll-target="#gráficos-seleccionados"><span class="header-section-number">8</span> Gráficos seleccionados</a></li>
   </ul>
 </nav>
     </div>
@@ -413,7 +414,7 @@ Figure&nbsp;6.7: Asociación entre percepción de pérdida de identidad y ayuda 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -446,7 +447,7 @@ Figure&nbsp;6.7: Asociación entre percepción de pérdida de identidad y ayuda 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -479,7 +480,7 @@ Figure&nbsp;6.7: Asociación entre percepción de pérdida de identidad y ayuda 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -512,7 +513,7 @@ Figure&nbsp;6.7: Asociación entre percepción de pérdida de identidad y ayuda 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -544,7 +545,7 @@ Figure&nbsp;6.7: Asociación entre percepción de pérdida de identidad y ayuda 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -570,88 +571,63 @@ Figure&nbsp;6.7: Asociación entre percepción de pérdida de identidad y ayuda 
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>redes_notitulo <span class="ot">&lt;-</span> redes_notitulo <span class="sc">%&gt;%</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(educacion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>redes_interact_ed <span class="ot">&lt;-</span> l <span class="sc">|</span> k</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>redes_interact_ed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="1152"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(redes_notitulo, <span class="fu">aes</span>(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> desempleo_migrantes, </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">factor</span>(confianza_inter, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Alta confianza"</span>, <span class="st">"Baja confianza"</span>))</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Alta confianza"</span> <span class="ot">=</span> <span class="st">"#2b2f3c"</span>, <span class="st">"Baja confianza"</span> <span class="ot">=</span> <span class="st">"#f9913d"</span>),</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Alta confianza"</span>, <span class="st">"Baja confianza"</span>)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"% de percepción de desempleo </span><span class="sc">\n</span><span class="st"> debido a inmigrantes según confianza interpersonal (no titulados)"</span>,</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percepción de desempleo"</span>,</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Confianza interpersonal"</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>), </span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">10</span>),</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))</span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Muy </span><span class="sc">\n</span><span class="st"> en desacuerdo"</span>, <span class="st">"Ni en desacuerdo </span><span class="sc">\n</span><span class="st"> ni de acuerdo"</span>, <span class="st">"Muy </span><span class="sc">\n</span><span class="st"> de acuerdo"</span>)</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Configuración de leyenda personalizada</span></span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"grey20"</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>),</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background     =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.margin         =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">6</span>, <span class="at">r =</span> <span class="dv">8</span>, <span class="at">b =</span> <span class="dv">6</span>, <span class="at">l =</span> <span class="dv">8</span>),</span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.margin     =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">6</span>, <span class="at">r =</span> <span class="dv">6</span>, <span class="at">b =</span> <span class="dv">6</span>, <span class="at">l =</span> <span class="dv">6</span>),</span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position       =</span> <span class="st">"top"</span>,</span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.direction      =</span> <span class="st">"horizontal"</span>,</span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box            =</span> <span class="st">"horizontal"</span>,</span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title          =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text           =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key            =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.height     =</span> <span class="fu">unit</span>(<span class="dv">12</span>, <span class="st">"pt"</span>),</span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.width      =</span> <span class="fu">unit</span>(<span class="dv">18</span>, <span class="st">"pt"</span>),</span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mantener configuraciones originales de ejes y título</span></span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">30</span>)),</span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
-<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
-<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
-<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(</span>
-<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">title.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">label.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">1</span>, </span>
-<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">keywidth =</span> <span class="fu">unit</span>(<span class="dv">14</span>, <span class="st">"pt"</span>),</span>
-<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">keyheight =</span> <span class="fu">unit</span>(<span class="dv">10</span>, <span class="st">"pt"</span>)</span>
-<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="bivariados-trans-03_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-
-
 </section>
+</section>
+<section id="gráficos-seleccionados" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Gráficos seleccionados</h1>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bivariados-trans-03_files/figure-html/seg-trans-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Seguridad objetiva y pérdida identidad</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En <span class="citation" data-cites="seg-trans">@seg-trans</span> se puede apreciar que las cantidad de personas que viven niveles bajos de seguridad aumenta progresivamente a medida que se está más de acuerdo con que los inmigrantes le restan identidad al país. Por tanto, mientras menos seguras están las personas, se está más convencido de que los inmigrantes erosionan la identidad de Chile.</p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bivariados-trans-03_files/figure-html/seg-gen-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Seguridad objetiva y pérdida de identidad</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bivariados-trans-03_files/figure-html/terra-gen-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Sentido de pertenencia y pérdida de identidad por género</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bivariados-trans-03_files/figure-html/conf-trans-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Confianza interpersonal y percepción de desempleo por nivel educacional</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bivariados-trans-03_files/figure-html/conf-educ-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Confianza interpersonal y percepción de desempleo por nivel educacional</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

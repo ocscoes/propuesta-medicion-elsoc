@@ -13,7 +13,7 @@ Si bien, en la sección de análisis de constructos estos se entendieron como fa
 pacman::p_load(
   dplyr, haven, sjlabelled,  psych,  purrr,  tidyr,  sjPlot,  ggplot2, 
   parameters,  table1,  car,  beeswarm, scales, ggrepel, corrplot,
-  ggtext, patchwork, psych, kableExtra, labelled, patchwork)
+  ggtext, patchwork, psych, kableExtra, labelled, patchwork, cowplot, ggdist)
 ```
 
 ```{r}
@@ -282,6 +282,13 @@ desc_migracion
 
 # Transversales por subdimensión
 
+```{r}
+#| echo: false 
+
+elsoc_6_graph <- elsoc_6_graph %>%
+  na.omit()
+```
+
 ## Seguridad transversal
 ```{r}
 #| label: fig-segsub
@@ -289,8 +296,7 @@ desc_migracion
 #| fig-cap-location: top
 #| echo: false 
 
-elsoc_6_graph <- elsoc_6_graph %>%
-  na.omit()
+
 
 # Gráfico
 ggplot(elsoc_6_graph, aes(
@@ -641,8 +647,8 @@ a <- ggplot(seguridad_hombres, aes(
     breaks = c("Alta seguridad", "Poca seguridad")
   ) +
   labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según seguridad objetiva (Hombres)",
-    x = "Percepción de desempleo debido a inmigrantes",
+    title = "Percepción de pérdida de identidad del país debido a inmigrantes según seguridad objetiva (Hombres)",
+    x = "Percepción de ṕerdida de identidad",
     y = NULL,
     fill = "Seguridad objetiva"
   ) +
@@ -681,8 +687,8 @@ b <- ggplot(seguridad_mujeres, aes(
     breaks = c("Alta seguridad", "Poca seguridad")
   ) +
   labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según seguridad objetiva (Mujeres)",
-    x = "Percepción de desempleo debido a inmigrantes",
+    title = "Percepción de pérdida de identidad del país debido a inmigrantes según seguridad objetiva (Mujeres)",
+    x = "Percepción de pérdida de identidad",
     y = NULL,
     fill = "Seguridad objetiva"
   ) +
@@ -1270,75 +1276,372 @@ l <- ggplot(redes_notitulo, aes(
   )
 ```
 
+# Gráficos seleccionados
 
 ```{r}
-#| fig-width: 12
-#| fig-height: 6
+#| label: seg-trans
+#| fig-cap: Seguridad objetiva y pérdida identidad 
+#| fig-cap-location: top
+#| echo: false 
 
-redes_interact_ed <- l | k
-redes_interact_ed
-```
-
-
-```{r}
-ggplot(redes_notitulo, aes(
-  x = desempleo_migrantes, 
-  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
+ggplot(elsoc_6_graph, aes(
+  x = perdida_identidad, 
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
 )) +
   geom_bar(position = "fill") +
   scale_fill_manual(
-    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Alta confianza", "Baja confianza")
+    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
+    breaks = c("Alta seguridad", "Poca seguridad"),
+    name = "Categorías"
   ) +
   labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según confianza interpersonal (no titulados)",
-    x = "Percepción de desempleo",
-    y = NULL,
-    fill = "Confianza interpersonal",
+    title = "Pérdida de identidad del país \n debido a inmigrantes según seguridad objetiva",
+    x = "Percepción de pérdida de identidad",
+    y = "Seguridad objetiva",
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
   theme_minimal() +
   scale_y_continuous(
     labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
+    breaks = scales::pretty_breaks(n = 5),
     expand = expansion(mult = c(0, 0.05))
   ) +
   scale_x_continuous(
     breaks = 1:3,
     labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
   ) +
+  theme_ggdist() +
   theme(
-    # Configuración de leyenda personalizada
+    # Estilo de la leyenda (adaptado del código de referencia)
     legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background     = element_rect(fill = "white", color = NA),
-    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
     
-    legend.position       = "top",
-    legend.direction      = "horizontal",
-    legend.box            = "horizontal",
-    
-    legend.title          = element_text(face = "bold", size = 14),
-    legend.text           = element_text(size = 11),
-    legend.key            = element_rect(fill = "white", color = NA),
-    legend.key.height     = unit(12, "pt"),
-    legend.key.width      = unit(18, "pt"),
-    
-    # Mantener configuraciones originales de ejes y título
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
     axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    plot.title = element_text(size = 14, hjust = 0.5)
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
-    nrow = 1, 
-    byrow = TRUE,
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
   ))
+```
 
-m
+En @seg-trans se puede apreciar que las cantidad de personas que viven niveles bajos de seguridad aumenta progresivamente a medida que se está más de acuerdo con que los inmigrantes le restan identidad al país. Por tanto, mientras menos seguras están las personas, se está más convencido de que los inmigrantes erosionan la identidad de Chile.
+
+```{r}
+#| label: seg-gen
+#| fig-cap: Seguridad objetiva y pérdida de identidad
+#| fig-cap-location: top
+#| echo: false 
+
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+seguridad_hombres$grupo <- "Hombres"
+seguridad_mujeres$grupo <- "Mujeres"
+
+# Combina los datasets
+datos_combinados <- rbind(seguridad_hombres, seguridad_mujeres)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = perdida_identidad, 
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
+    breaks = c("Alta seguridad", "Poca seguridad"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Pérdida de identidad del país debido a inmigrantes según seguridad objetiva",
+    x = "Percepción de pérdida de identidad",
+    y = "Seguridad objetiva",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles (tomado del código de referencia)
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+```{r}
+#| label: terra-gen
+#| fig-cap: Sentido de pertenencia y pérdida de identidad por género
+#| fig-cap-location: top
+#| echo: false 
+
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+barrio_hombres$grupo <- "Hombres"
+barrio_mujeres$grupo <- "Mujeres"
+
+# Combina los datasets
+datos_combinados <- rbind(barrio_hombres, barrio_mujeres)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = perdida_identidad, 
+  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
+    breaks = c("Alta pertenencia", "Baja pertenencia"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Pérdida de identidad del país debido a inmigrantes según sentido de pertenencia",
+    x = "Percepción de pérdida de identidad",
+    y = "Sentido de pertenencia",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles (tomado del código de referencia)
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+```{r}
+#| label: conf-trans
+#| fig-cap: Confianza interpersonal y percepción de desempleo por nivel educacional
+#| fig-cap-location: top
+#| echo: false 
+
+elsoc_5_graph <- elsoc_5_graph %>%
+  drop_na(desempleo_migrantes, confianza_inter)
+
+ggplot(elsoc_5_graph, aes(
+  x = desempleo_migrantes, 
+  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
+    breaks = c("Alta confianza", "Baja confianza"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Percepción de desempleo debido a inmigrantes según confianza interpersonal",
+    x = "Percepción de desempleo",
+    y = "Confianza interpersonal",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+```{r}
+#| label: conf-educ
+#| fig-cap: Confianza interpersonal y percepción de desempleo por nivel educacional
+#| fig-cap-location: top
+#| echo: false 
+
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+redes_titulo$grupo <- "Titulados"
+redes_notitulo$grupo <- "No titulados"
+
+# Combina los datasets
+datos_combinados <- rbind(redes_titulo, redes_notitulo)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = desempleo_migrantes, 
+  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
+    breaks = c("Alta confianza", "Baja confianza"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Percepción de desempleo debido a inmigrantes según confianza interpersonal",
+    x = "Percepción de desempleo",
+    y = "Confianza interpersonal",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+    theme(
+    # Estilo de los paneles (tomado del código de referencia)
+      strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda (adaptado del código de referencia)
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background = element_rect(fill = "white", color = NA),
+      legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+      legend.position = "bottom",
+      legend.direction = "horizontal",
+      legend.box = "horizontal",
+      legend.title = element_text(face = "bold"),
+      legend.key = element_rect(fill = "white", color = NA),
+      legend.key.height = unit(12, "pt"),
+      legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+      axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+      axis.text.x = element_text(size = 9),
+      axis.text.y = element_text(size = 11),
+      axis.title.y = element_text(size = 12),
+      plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+      panel.spacing = unit(1, "cm")
+    ) +
+    guides(fill = guide_legend(
+      title.position = "top",
+      label.position = "right",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
 ```
