@@ -647,7 +647,7 @@ a <- ggplot(seguridad_hombres, aes(
     breaks = c("Alta seguridad", "Poca seguridad")
   ) +
   labs(
-    title = "Percepción de pérdida de identidad del país debido a inmigrantes según seguridad objetiva (Hombres)",
+    title = "Percepción de pérdida de identidad del país \n debido a inmigrantes según seguridad objetiva (Hombres)",
     x = "Percepción de ṕerdida de identidad",
     y = NULL,
     fill = "Seguridad objetiva"
@@ -687,7 +687,7 @@ b <- ggplot(seguridad_mujeres, aes(
     breaks = c("Alta seguridad", "Poca seguridad")
   ) +
   labs(
-    title = "Percepción de pérdida de identidad del país debido a inmigrantes según seguridad objetiva (Mujeres)",
+    title = "Percepción de pérdida de identidad del país \n debido a inmigrantes según seguridad objetiva (Mujeres)",
     x = "Percepción de pérdida de identidad",
     y = NULL,
     fill = "Seguridad objetiva"
@@ -715,6 +715,7 @@ b <- ggplot(seguridad_mujeres, aes(
 ```
 
 ```{r}
+#| echo: false
 #| fig-width: 12
 #| fig-height: 6
 
@@ -827,6 +828,7 @@ d <- ggplot(seguridad_notitulo, aes(
 ```
 
 ```{r}
+#| echo: false
 #| fig-width: 12
 #| fig-height: 6
 
@@ -939,6 +941,7 @@ f <- ggplot(barrio_mujeres, aes(
 
 
 ```{r}
+#| echo: false
 #| fig-width: 12
 #| fig-height: 6
 
@@ -1049,6 +1052,7 @@ h <- ggplot(barrio_notitulo, aes(
 ```
 
 ```{r}
+#| echo: false
 #| fig-width: 12
 #| fig-height: 6
 
@@ -1164,6 +1168,7 @@ j <- ggplot(redes_mujeres, aes(
 ```
 
 ```{r}
+#| echo: false
 #| fig-width: 12
 #| fig-height: 6
 redes_interact <- i | j
@@ -1279,7 +1284,7 @@ l <- ggplot(redes_notitulo, aes(
 # Gráficos seleccionados
 
 ```{r}
-#| label: seg-trans
+#| label: fig-seg-trans
 #| fig-cap: Seguridad objetiva y pérdida identidad 
 #| fig-cap-location: top
 #| echo: false 
@@ -1341,11 +1346,11 @@ ggplot(elsoc_6_graph, aes(
   ))
 ```
 
-En @seg-trans se puede apreciar que las cantidad de personas que viven niveles bajos de seguridad aumenta progresivamente a medida que se está más de acuerdo con que los inmigrantes le restan identidad al país. Por tanto, mientras menos seguras están las personas, se está más convencido de que los inmigrantes erosionan la identidad de Chile.
+En @fig-seg-trans se puede apreciar que las cantidad de personas que viven niveles bajos de seguridad aumenta progresivamente a medida que se está más de acuerdo con que los inmigrantes le restan identidad al país. Por tanto, mientras menos seguras están las personas, se está más convencido de que los inmigrantes erosionan la identidad de Chile.
 
 ```{r}
-#| label: seg-gen
-#| fig-cap: Seguridad objetiva y pérdida de identidad
+#| label: fig-seginteract
+#| fig-cap: Seguridad objetiva y pérdida de identidad por género
 #| fig-cap-location: top
 #| echo: false 
 
@@ -1422,8 +1427,10 @@ ggplot(datos_combinados, aes(
   ))
 ```
 
+ @fig-seginteract refleja la asociación entre seguridad objetiva y percepción de pérdida de identidad del país a causa de los inmigrantes, lo cual está graficado por hombres y mujeres. Se puede observar que, en el caso de los hombres, las categorías más polarizadas concentran la mayoría de las respuestas, por lo que no hay un patrón muy claro. En cambio, a medida que las mujeres viven en entornos menos seguros, están más de acuerdo con que el país pierde identidad a causa de los inmigrantes. 
+
 ```{r}
-#| label: terra-gen
+#| label: fig-terra-gen
 #| fig-cap: Sentido de pertenencia y pérdida de identidad por género
 #| fig-cap-location: top
 #| echo: false 
@@ -1501,9 +1508,11 @@ ggplot(datos_combinados, aes(
   ))
 ```
 
+En @fig-terra-gen se puede observar cómo se relaciona el sentido de pertenencia al barrio con la pérdida de identidad debido a la migración, distinguiendo por género. Los hombres tienden a mantener una postura fuertemente polarizada, en donde, quienes tienen un bajo sentido de pertenencia, pueden creer fervientemente que los inmigrantes causan la pérdida de identidad nacional, o bien, están muy en desacuerdo con esta sentencia. Al contrario, las mujeres con bajo sentido de pertenencia, tienden a percibir de manera más moderada la pérdida de identidad nacional a causa de la migración, siendo la categoría neutral la que posee mayor porcentaje de respuesta. 
+
 ```{r}
-#| label: conf-trans
-#| fig-cap: Confianza interpersonal y percepción de desempleo por nivel educacional
+#| label: fig-conf-trans
+#| fig-cap: Confianza interpersonal y percepción de desempleo
 #| fig-cap-location: top
 #| echo: false 
 
@@ -1567,8 +1576,10 @@ ggplot(elsoc_5_graph, aes(
   ))
 ```
 
+En primer lugar, en @fig-conf-trans se observa que la gran mayoría de las personas suele tener un bajo nivel de confianza interpersonal, donde el área naranja es superior a la negra en las tres barras. Asimismo, la relación entre las variables indica que, el hecho de confiar menos en terceros lleva a las personas a estar más de acuerdo respecto a que el desempleo en el país es responsabilidad de los inmigrantes. 
+
 ```{r}
-#| label: conf-educ
+#| label: fig-conf-educ
 #| fig-cap: Confianza interpersonal y percepción de desempleo por nivel educacional
 #| fig-cap-location: top
 #| echo: false 
@@ -1645,3 +1656,5 @@ ggplot(datos_combinados, aes(
       keyheight = unit(10, "pt")
     ))
 ```
+
+@fig-conf-educ grafica la relación entre confianza interpersonal y percepción de desempleo debido a inmigrantes, moderando por personas con y sin título universitario. Ambas figuras mantienen un patrón idéntico, donde, a menor confianza interpersonal, más acuerdo hay en que los inmigrantes aumentan el desempleo en Chile. No obstante, las personas sin título mantienen una relación más acentuada entre desconfianza hacia terceros y percepción de desempleo en comparación con las personas con carrera universitaria finalizada.

@@ -474,7 +474,7 @@
     "href": "bivariados-trans-03.html#seguridad-por-género",
     "title": "5  Bivariados transversales",
     "section": "7.1 Seguridad por género",
-    "text": "7.1 Seguridad por género\n\nseguridad_genero &lt;- elsoc_6_graph %&gt;%\n  select(sexo, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nseguridad_hombres &lt;- seguridad_genero %&gt;%\n  filter(sexo==0)\n\nseguridad_mujeres &lt;- seguridad_genero %&gt;%\n  filter(sexo==1)\n\n\nseguridad_hombres &lt;- seguridad_hombres %&gt;%\n  select(-c(sexo))\n\nseguridad_mujeres &lt;- seguridad_mujeres %&gt;%\n  select(-c(sexo))\n\n\nseg_interact &lt;- a | b\nseg_interact",
+    "text": "7.1 Seguridad por género\n\nseguridad_genero &lt;- elsoc_6_graph %&gt;%\n  select(sexo, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nseguridad_hombres &lt;- seguridad_genero %&gt;%\n  filter(sexo==0)\n\nseguridad_mujeres &lt;- seguridad_genero %&gt;%\n  filter(sexo==1)\n\n\nseguridad_hombres &lt;- seguridad_hombres %&gt;%\n  select(-c(sexo))\n\nseguridad_mujeres &lt;- seguridad_mujeres %&gt;%\n  select(-c(sexo))",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
     ]
@@ -484,7 +484,7 @@
     "href": "bivariados-trans-03.html#seguridad-por-educación",
     "title": "5  Bivariados transversales",
     "section": "7.2 Seguridad por educación",
-    "text": "7.2 Seguridad por educación\n\nseguridad_educ &lt;- elsoc_6_graph %&gt;%\n  select(educacion, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nseguridad_titulo &lt;- seguridad_educ %&gt;%\n  filter(educacion==1)\n\nseguridad_notitulo &lt;- seguridad_educ %&gt;%\n  filter(educacion==0)\n\n\nseguridad_titulo &lt;- seguridad_titulo %&gt;%\n  select(-c(educacion))\n\nseguridad_notitulo &lt;- seguridad_notitulo %&gt;%\n  select(-c(educacion))\n\n\nseg_interact_ed &lt;- d | c\nseg_interact_ed",
+    "text": "7.2 Seguridad por educación\n\nseguridad_educ &lt;- elsoc_6_graph %&gt;%\n  select(educacion, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nseguridad_titulo &lt;- seguridad_educ %&gt;%\n  filter(educacion==1)\n\nseguridad_notitulo &lt;- seguridad_educ %&gt;%\n  filter(educacion==0)\n\n\nseguridad_titulo &lt;- seguridad_titulo %&gt;%\n  select(-c(educacion))\n\nseguridad_notitulo &lt;- seguridad_notitulo %&gt;%\n  select(-c(educacion))",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
     ]
@@ -494,7 +494,7 @@
     "href": "bivariados-trans-03.html#vínculos-territoriales-por-género",
     "title": "5  Bivariados transversales",
     "section": "7.3 Vínculos territoriales por género",
-    "text": "7.3 Vínculos territoriales por género\n\nbarrio_genero &lt;- elsoc_6_graph %&gt;%\n  select(sexo, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nbarrio_hombres &lt;- barrio_genero %&gt;%\n  filter(sexo==0)\n\nbarrio_mujeres &lt;- barrio_genero %&gt;%\n  filter(sexo==1)\n\n\nbarrio_hombres &lt;- barrio_hombres %&gt;%\n  select(-c(sexo))\n\nbarrio_mujeres &lt;- barrio_mujeres %&gt;%\n  select(-c(sexo))\n\n\nbarrio_interact &lt;- e | f\nbarrio_interact",
+    "text": "7.3 Vínculos territoriales por género\n\nbarrio_genero &lt;- elsoc_6_graph %&gt;%\n  select(sexo, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nbarrio_hombres &lt;- barrio_genero %&gt;%\n  filter(sexo==0)\n\nbarrio_mujeres &lt;- barrio_genero %&gt;%\n  filter(sexo==1)\n\n\nbarrio_hombres &lt;- barrio_hombres %&gt;%\n  select(-c(sexo))\n\nbarrio_mujeres &lt;- barrio_mujeres %&gt;%\n  select(-c(sexo))",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
     ]
@@ -504,7 +504,7 @@
     "href": "bivariados-trans-03.html#vínculos-territoriales-por-educación",
     "title": "5  Bivariados transversales",
     "section": "7.4 Vínculos territoriales por educación",
-    "text": "7.4 Vínculos territoriales por educación\n\nbarrio_educ &lt;- elsoc_6_graph %&gt;%\n  select(educacion, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nbarrio_titulo &lt;- barrio_educ %&gt;%\n  filter(educacion==1)\n\nbarrio_notitulo &lt;- barrio_educ %&gt;%\n  filter(educacion==0)\n\n\nbarrio_titulo &lt;- barrio_titulo %&gt;%\n  select(-c(educacion))\n\nbarrio_notitulo &lt;- barrio_notitulo %&gt;%\n  select(-c(educacion))\n\n\nbarrio_interact_ed &lt;- g | h\nbarrio_interact_ed",
+    "text": "7.4 Vínculos territoriales por educación\n\nbarrio_educ &lt;- elsoc_6_graph %&gt;%\n  select(educacion, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,\n         perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nbarrio_titulo &lt;- barrio_educ %&gt;%\n  filter(educacion==1)\n\nbarrio_notitulo &lt;- barrio_educ %&gt;%\n  filter(educacion==0)\n\n\nbarrio_titulo &lt;- barrio_titulo %&gt;%\n  select(-c(educacion))\n\nbarrio_notitulo &lt;- barrio_notitulo %&gt;%\n  select(-c(educacion))",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
     ]
@@ -514,7 +514,7 @@
     "href": "bivariados-trans-03.html#redes-sociales-por-género",
     "title": "5  Bivariados transversales",
     "section": "7.5 Redes sociales por género",
-    "text": "7.5 Redes sociales por género\n\nredes_genero &lt;- elsoc_5_graph %&gt;%\n  select(sexo, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nredes_hombres &lt;- redes_genero %&gt;%\n  filter(sexo==0)\n\nredes_mujeres &lt;- redes_genero %&gt;%\n  filter(sexo==1)\n\n\nredes_hombres &lt;- redes_hombres %&gt;%\n  select(-c(sexo))\n\nredes_mujeres &lt;- redes_mujeres %&gt;%\n  select(-c(sexo))\n\n\nredes_interact &lt;- i | j\nredes_interact",
+    "text": "7.5 Redes sociales por género\n\nredes_genero &lt;- elsoc_5_graph %&gt;%\n  select(sexo, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)\n\n\nredes_hombres &lt;- redes_genero %&gt;%\n  filter(sexo==0)\n\nredes_mujeres &lt;- redes_genero %&gt;%\n  filter(sexo==1)\n\n\nredes_hombres &lt;- redes_hombres %&gt;%\n  select(-c(sexo))\n\nredes_mujeres &lt;- redes_mujeres %&gt;%\n  select(-c(sexo))",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bivariados transversales</span>"
     ]
