@@ -1,0 +1,748 @@
+# Cohesión social horizontal y migración: un análisis longitudinal
+
+# Generales
+::: {style="text-align: justify"}
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, 
+                      include = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+#| label: ppackages
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled,
+               srvyr,
+               ggdist,
+               purrr,
+               rlang)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| echo: false
+load(here("input/data/proc_data/db_long.RData"))
+```
+
+
+```{r}
+#| label: db_pond
+db_pond <- db %>% 
+  as_survey_design(ids = segmento, 
+                   strata = estrato, 
+                   weights = ponderador_long_total,
+                   nest = T)
+
+```
+
+```{r}
+#| label: plots
+
+
+# Selección de variables: (1) desempleo por migrantes, (2)pérdida de identidad
+# (3)simpatía hacia migrantes, (4)acceso a salud igualitaro y (5) contacto positivo
+
+# plot function
+make_plot <- function(design, predictor, outcome, ylab, legend_title) {
+  pred_sym <- ensym(predictor)
+  out_sym  <- ensym(outcome)
+  
+  design %>% 
+    select(wave, !!pred_sym, !!out_sym) %>% 
+    tidyr::drop_na() %>% 
+    group_by(wave, !!pred_sym) %>%
+    summarise(
+      value = survey_mean(!!out_sym, vartype = "ci", na.rm = TRUE),
+      .groups = "drop"
+    ) %>% 
+    ggplot(aes(x = wave, y = value, group = !!pred_sym)) +
+    geom_point(aes(color = !!pred_sym), size = 3.5) +
+    geom_line(aes(color = !!pred_sym), linewidth = 0.8) +
+    # geom_errorbar(aes(ymin = value_low, ymax = value_upp, color = !!pred_sym), width = 0.1) +
+    scale_y_continuous(n.breaks = 7) +
+    scale_color_manual(
+      name = legend_title,
+      values = c("#F9913D","#7ABA21", "#2b2f3c")
+      ) +
+    labs(
+      x = "Ola",
+      y = ylab,
+      caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+    ) +
+    theme_ggdist() +
+    theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+}
+
+# combinations
+
+outcomes <- c(
+  seguridad_sub           = "Seguridad percibida",
+  seguridad_obj           = "Seguridad objetiva",
+  confianza_inter         = "Confianza interpersonal",
+  comportamiento_prosocial= "Comportamiento prosocial",
+  ayuda_economica         = "Ayuda económica",
+  sentido_pertenencia     = "Sentido pertenencia barrio",
+  satisfaccion_barrio     = "Satisfacción barrio"
+)
+
+predictors <- list(
+  desempleo_migrantes = "Desempleo percibido por \nmigrantes",
+  perdida_identidad   = "Pérdida identidad por \nmigrantes",
+  simpatia_migrantes = "Simpatía hacia migrantes",
+  igualdad_migrantes = "Acceso a salud igualitario \npara migrantes",
+  contacto_migrantes = "Contacto positivo con \nmigrantes"
+)
+
+comb <- tidyr::crossing(pred = names(predictors), out = names(outcomes))
+
+# make plots
+
+plots_tbl <- comb %>%
+  mutate(
+    plot = pmap(
+      list(pred, out),
+      ~ make_plot(
+        design       = db_pond,
+        predictor    = ..1,
+        outcome      = ..2,
+        ylab         = outcomes[..2],
+        legend_title = predictors[[..1]]
+      )
+    ),
+    plot_id = paste0("plot_", out, "__by__", pred)
+  )
+```
+
+## Seguridad
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+
+
+sel <- plots_tbl %>%
+  filter(out  %in% c("seguridad_sub","seguridad_obj")) 
+
+walk(sel$plot, print)
+```
+
+
+## Redes
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+
+sel <- plots_tbl %>%
+  filter(out  %in% c("confianza_inter","comportamiento_prosocial", "ayuda_economica")) %>% 
+  filter(pred != "igualdad_migrantes" & out != "ayuda_economica")
+
+walk(sel[-c(7, 8), ]$plot, print)
+
+
+# acceso salud igualitario + prosociañ
+db_pond %>% 
+  select(wave, igualdad_migrantes, comportamiento_prosocial) %>% 
+  na.omit() %>% 
+  group_by(wave, igualdad_migrantes) %>%
+  summarise(value = survey_mean(comportamiento_prosocial, vartype = "ci")) %>% 
+  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
+  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
+  scale_y_continuous(limits = c(0,3),n.breaks = 10) +
+  scale_fill_manual(
+    name = "Acceso a salud \nigualitario para migrantes",
+    values =  c("#F9913D","#7ABA21", "#2b2f3c")
+  ) +
+  labs(
+    x = "Ola",
+    y = "Comportamiento prosocial",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+  ) +
+  theme_ggdist() +
+   theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+
+
+# acceso salud igualitario + ayuda economica
+db_pond %>% 
+  select(wave, igualdad_migrantes, ayuda_economica) %>% 
+  na.omit() %>% 
+  group_by(wave, igualdad_migrantes) %>%
+  summarise(value = survey_mean(ayuda_economica, vartype = "ci")) %>% 
+  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
+  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
+  scale_y_continuous(limits = c(0,3),n.breaks = 10) +
+  scale_fill_manual(
+    name = "Acceso a salud \nigualitario para migrantes",
+    values = c("#F9913D","#7ABA21", "#2b2f3c")
+  ) +
+  labs(
+    x = "Ola",
+    y = "Ayuda económica",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+  ) +
+  theme_ggdist() +
+   theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+```
+
+## Vinculación territorial
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+
+sel <- plots_tbl %>%
+  filter(out  %in% c("sentido_pertenencia", "satisfaccion_barrio")) 
+
+walk(sel[-c(5, 6), ]$plot, print)
+
+db_pond %>% 
+  select(wave, igualdad_migrantes, sentido_pertenencia) %>% 
+  na.omit() %>% 
+  group_by(wave, igualdad_migrantes) %>%
+  summarise(value = survey_mean(sentido_pertenencia, vartype = "ci")) %>% 
+  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
+  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
+  scale_y_continuous(limits = c(0,5),n.breaks = 10) +
+  scale_fill_manual(
+    name = "Acceso a salud \nigualitario para migrantes",
+    values =  c("#F9913D","#7ABA21", "#2b2f3c")
+  ) +
+  labs(
+    x = "Ola",
+    y = "Sentido pertenencia barrio",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+  ) +
+  theme_ggdist() +
+   theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+
+# acceso salud igualitario + satisfaccion barrio
+
+db_pond %>% 
+  select(wave, igualdad_migrantes, satisfaccion_barrio) %>% 
+  na.omit() %>% 
+  group_by(wave, igualdad_migrantes) %>%
+  summarise(value = survey_mean(satisfaccion_barrio, vartype = "ci")) %>% 
+  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
+  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
+  scale_y_continuous(limits = c(0,5),n.breaks = 10) +
+  scale_fill_manual(
+    name = "Acceso a salud \nigualitario para migrantes",
+    values =  c("#F9913D","#7ABA21", "#2b2f3c")
+  ) +
+  labs(
+    x = "Ola",
+    y = "Satisfacción barrio",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+  ) +
+  theme_ggdist() +
+   theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+
+
+```
+
+# Agrupando por nivel educacional
+
+```{r}
+make_plot2 <- function(design, predictor, outcome, ylab, legend_title, group) {
+  pred_sym  <- sym(predictor)  # predictor como string -> símbolo
+  out_sym   <- sym(outcome)
+  group_sym <- sym(group)
+  
+  design %>% 
+    select(wave, !!pred_sym, !!out_sym, !!group_sym) %>% 
+    drop_na() %>% 
+    group_by(wave, !!pred_sym, !!group_sym) %>%
+    summarise(
+      value = survey_mean(!!out_sym, vartype = "ci", na.rm = TRUE),
+      .groups = "drop"
+    ) %>% 
+    ggplot(aes(x = wave, y = value, group = !!pred_sym)) +
+    geom_point(aes(color = !!pred_sym), size = 3.5) +
+    geom_line(aes(color = !!pred_sym), linewidth = 0.8) +
+    facet_wrap(vars(!!group_sym), nrow = 2) +                    # <- clave
+    # geom_errorbar(aes(ymin = value_low, ymax = value_upp, color = !!pred_sym), width = 0.1) +
+    scale_y_continuous(n.breaks = 7) +
+    scale_color_manual(
+      name   = legend_title,
+      values =  c("#F9913D","#7ABA21", "#2b2f3c")
+    ) +
+    labs(
+      x = "Ola",
+      y = ylab,
+      caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+    ) +
+    theme_ggdist() +
+    theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      axis.text             = element_text(size = 11)
+    ) +
+    guides(color = guide_legend(
+      title.position = "top",
+      label.position = "bottom",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+}
+
+plots_tbl2 <- comb %>%
+  mutate(
+    plot = pmap(
+      list(pred, out),
+      ~ make_plot2(
+        design       = db_pond,
+        predictor    = ..1,
+        outcome      = ..2,
+        ylab         = outcomes[..2],
+        legend_title = predictors[[..1]],
+        group        = "educ"        
+      )
+    ),
+    plot_id = paste0("plot_", out, "__by__", pred, "__faceted_by_educ")
+  )
+```
+
+## Seguridad
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+
+
+sel <- plots_tbl2 %>%
+  filter(out  %in% c("seguridad_sub","seguridad_obj")) 
+
+walk(sel$plot, print)
+```
+
+
+## Redes
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+
+sel <- plots_tbl2 %>%
+  filter(out  %in% c("confianza_inter","comportamiento_prosocial", "ayuda_economica")) %>% 
+  filter(pred != "igualdad_migrantes" & out != "ayuda_economica")
+
+walk(sel[-c(7, 8), ]$plot, print)
+
+
+# acceso salud igualitario + prosociañ
+db_pond %>% 
+  select(wave, igualdad_migrantes, comportamiento_prosocial, educ) %>% 
+  na.omit() %>% 
+  group_by(wave, igualdad_migrantes, educ) %>%
+  summarise(value = survey_mean(comportamiento_prosocial, vartype = "ci")) %>% 
+  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
+  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
+  facet_wrap(~educ, ncol = 2)+
+  scale_y_continuous(limits = c(0,3),n.breaks = 10) +
+  scale_fill_manual(
+    name = "Acceso a salud \nigualitario para migrantes",
+    values =  c("#F9913D","#7ABA21", "#2b2f3c")
+  ) +
+  labs(
+    x = "Ola",
+    y = "Comportamiento prosocial",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+  ) +
+  theme_ggdist() +
+   theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+
+
+# acceso salud igualitario + ayuda economica
+db_pond %>% 
+  select(wave, igualdad_migrantes, ayuda_economica, educ) %>% 
+  na.omit() %>% 
+  group_by(wave, igualdad_migrantes, educ) %>%
+  summarise(value = survey_mean(ayuda_economica, vartype = "ci")) %>% 
+  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
+  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
+  facet_wrap(~educ, ncol = 2)+
+  scale_y_continuous(limits = c(0,3),n.breaks = 10) +
+  scale_fill_manual(
+    name = "Acceso a salud \nigualitario para migrantes",
+    values =  c("#F9913D","#7ABA21", "#2b2f3c")
+  ) +
+  labs(
+    x = "Ola",
+    y = "Ayuda económica",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+  ) +
+  theme_ggdist() +
+   theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+```
+
+## Vinculación territorial
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+
+sel <- plots_tbl2 %>%
+  filter(out  %in% c("sentido_pertenencia", "satisfaccion_barrio")) 
+
+walk(sel[-c(5, 6), ]$plot, print)
+
+db_pond %>% 
+  select(wave, igualdad_migrantes, sentido_pertenencia, educ) %>% 
+  na.omit() %>% 
+  group_by(wave, igualdad_migrantes, educ) %>%
+  summarise(value = survey_mean(sentido_pertenencia, vartype = "ci")) %>% 
+  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
+  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
+  facet_wrap(~educ, ncol = 2)+
+  scale_y_continuous(limits = c(0,5),n.breaks = 10) +
+  scale_fill_manual(
+    name = "Acceso a salud \nigualitario para migrantes",
+    values =  c("#F9913D","#7ABA21", "#2b2f3c")
+  ) +
+  labs(
+    x = "Ola",
+    y = "Sentido pertenencia barrio",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+  ) +
+  theme_ggdist() +
+   theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+
+# acceso salud igualitario + satisfaccion barrio
+
+db_pond %>% 
+  select(wave, igualdad_migrantes, satisfaccion_barrio, educ) %>% 
+  na.omit() %>% 
+  group_by(wave, igualdad_migrantes, educ) %>%
+  summarise(value = survey_mean(satisfaccion_barrio, vartype = "ci")) %>% 
+  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
+  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
+  facet_wrap(~educ, ncol = 2)+
+  scale_y_continuous(limits = c(0,5),n.breaks = 10) +
+  scale_fill_manual(
+    name = "Acceso a salud \nigualitario para migrantes",
+    values =  c("#F9913D","#7ABA21", "#2b2f3c")
+  ) +
+  labs(
+    x = "Ola",
+    y = "Satisfacción barrio",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+  ) +
+  theme_ggdist() +
+   theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+
+
+```
+
+:::
+
+
+```{r}
+pacman::p_load(performance, lme4, texreg)
+
+db <- db %>% 
+  mutate(ola_2=as.numeric(ola)^2)
+
+df_study1 <- db %>%
+  group_by(idencuesta) %>%             # Agrupar por el identificador del participante
+  mutate(n_participaciones = n()) %>%  # Contar el número de filas (participaciones) por participante
+  ungroup()
+
+df_study1 <- df_study1 %>% filter(n_participaciones>1)
+
+names(df_study1)
+
+# Seguridad subjetiva
+
+m0 <- lmer(seguridad_sub ~ 1 + (1 | idencuesta), 
+                data = df_study1, weights = ponderador_long_total)
+
+performance::icc(m0, by_group = T)
+
+m1 <- lmer(seguridad_sub ~ 1 + wave + (1 | idencuesta),
+                data = df_study1, weights = ponderador_long_total)
+
+screenreg(m2)
+
+m1.1 <- lmer(seguridad_sub ~ 1 + ola + ola_2 + (1 | idencuesta),
+                data = df_study1, weights = ponderador_long_total)
+
+m2 <- lmer(seguridad_sub ~ 1 + ola + ola_2 + (1 + ola | idencuesta),
+                data = df_study1, weights = ponderador_long_total)
+
+anova(m1.1, m2)
+
+m3 <- lmer(seguridad_sub ~ 1 + ola + ola_2 + perdida_identidad + (1 + ola | idencuesta), 
+           data = df_study1, weights = ponderador_long_total)
+
+m4 <- lmer(seguridad_sub ~ 1 + ola + ola_2 + perdida_identidad*ola + (1 + ola | idencuesta), 
+           data = df_study1, weights = ponderador_long_total)
+
+screenreg(list(m3,m4))
+
+```

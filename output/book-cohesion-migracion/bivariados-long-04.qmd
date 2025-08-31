@@ -1,7 +1,11 @@
 # Cohesión social horizontal y migración: un análisis longitudinal
 
-# Generales
+
 ::: {style="text-align: justify"}
+
+En esta sección se presentan algunos de los principales hallazgos sobre la relación entre las subdimensiones de la cohesión social horizontal y las actitudes hacia la migración en Chile entre 2016 y 2023. Se trata de una selección de resultados que destacan por mostrar evidencia sobre los cambios más significativos a lo largo del período y por su relevancia para comprender los desafíos y tensiones que la llegada de población migrante ha suscitado en la sociedad chilena.
+
+Los gráficos que se incluyen a continuación muestran, para cada ola de la encuesta, los promedios de los índices de cohesión social en función de distintas percepciones y actitudes hacia la migración. Dado que los datos provienen de un diseño longitudinal, las transiciones entre olas permiten observar no solo niveles estáticos, sino también variaciones en las trayectorias individuales a lo largo del tiempo. De este modo, el análisis no pretende agotar todas las dimensiones ni ofrecer una explicación definitiva del fenómeno, sino iluminar tendencias relevantes y puntos de inflexión que pueden orientar la discusión sobre la relación entre migración y cohesión social en el país.
 
 ```{r}
 #| label: set
@@ -39,11 +43,6 @@ pacman::p_load(tidyverse,
                sjmisc, 
                here,
                sjlabelled,
-               psych,
-               rstatix,
-               lme4,
-               performance,
-               sjPlot,
                srvyr,
                ggdist,
                purrr,
@@ -98,7 +97,7 @@ make_plot <- function(design, predictor, outcome, ylab, legend_title) {
     scale_y_continuous(n.breaks = 7) +
     scale_color_manual(
       name = legend_title,
-      values = c("#2b2f3c","#7ABA21", "#F9913D")
+      values = c("#F9913D","#7ABA21", "#2b2f3c")
       ) +
     labs(
       x = "Ola",
@@ -112,7 +111,7 @@ make_plot <- function(design, predictor, outcome, ylab, legend_title) {
       legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
       legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
       
-      legend.position       = "top",
+      legend.position       = "bottom",
       legend.direction      = "horizontal",
       legend.box            = "horizontal",  # útil si hubiera varias leyendas
       
@@ -174,22 +173,29 @@ plots_tbl <- comb %>%
 
 ## Seguridad
 
+La @fig-seg-iden muestra la evolución de la subdimensión de seguridad objetiva según el grado de acuerdo con la afirmación de que _Chile está perdiendo su identidad nacional debido a la llegada de migrantes_, entre 2016 y 2023. En términos generales, la seguridad objetiva es consistentemente más alta entre quienes están _muy de acuerdo_ con la idea de pérdida de identidad, mientras que alcanza niveles más bajos entre quienes están _muy en desacuerdo_. El año 2018 registra el valor más alto de esta subdimensión para todos los grupos, con la excepción de quienes declaran estar _ni de acuerdo ni en desacuerdo_, quienes muestran un descenso en comparación con 2017.
+
+Posteriormente, se observa una caída generalizada en los niveles de seguridad objetiva, especialmente notoria en 2022. Sin embargo, entre 2022 y 2023 emerge un repunte, más marcado en el grupo que está _muy de acuerdo_ con la pérdida de identidad, y más moderado en quienes están _muy en desacuerdo_. Esto sugiere que las percepciones de seguridad objetiva se articulan en estrecha relación con las creencias sobre la migración y su efecto en la identidad nacional, y que las oscilaciones en el tiempo no afectan a todos los grupos de la misma manera. Si bien las tendencias fluctúan a lo largo del período —con un máximo en 2018, un descenso en 2022 y un repunte en 2023—, lo notable es la consistencia en la brecha entre grupos: en todos los años, quienes perciben mayor pérdida de identidad reportan mayor seguridad objetiva, lo que sugiere un patrón estable en el tiempo más allá de coyunturas específicas.
+
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 #| out-width: '100%'
 #| results: asis
-
+#| label: fig-seg-iden
+#| fig-cap: "Seguridad objetiva y pérdida de identidad por migrantes (2016-2023)"
+#| fig-cap-location: top
 
 sel <- plots_tbl %>%
   filter(out  %in% c("seguridad_sub","seguridad_obj")) 
 
-walk(sel$plot, print)
+walk(sel[c(7), ]$plot, print)
 ```
 
+Respecto a la percepción de seguridad pública, la @fig-seg-iden2 muestra su evolución entre 2016 y 2023 en relación con el grado de acuerdo respecto a que Chile pierde identidad nacional por la llegada de migrantes. En términos generales, se observa una tendencia a la baja en la percepción de seguridad durante el período analizado, especialmente marcada entre 2019 y 2023, lo que coincide con hallazgos de otros estudios recientes.
 
-## Redes
+Dentro de esta trayectoria, los resultados revelan diferencias sistemáticas entre los grupos. Quienes están _muy de acuerdo_ con la idea de pérdida de identidad presentan de manera consistente los niveles más bajos de seguridad percibida, sin mostrar variaciones que reviertan este patrón en ningún año de la serie. En contraste, quienes están _muy en desacuerdo_ registran los valores más altos, aunque también experimentan una caída abrupta entre 2022 y 2023. Por su parte, quienes se ubican en una posición intermedia —_ni de acuerdo ni en desacuerdo_— muestran una evolución similar a la de los grupos en desacuerdo, con niveles relativamente altos hasta 2019, una disminución marcada a partir de 2022 y una posición intermedia entre los otros dos grupos en la comparación final de 2023.
 
 ```{r}
 #| echo: false
@@ -197,105 +203,77 @@ walk(sel$plot, print)
 #| message: false
 #| out-width: '100%'
 #| results: asis
+#| label: fig-seg-iden2
+#| fig-cap: "Seguridad percibida y pérdida de identidad por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+
+walk(sel[c(8), ]$plot, print)
+```
+
+
+
+La @fig-seg-desemp muestra la evolución de la percepción de seguridad pública entre 2016 y 2023, diferenciada según el grado de acuerdo con la afirmación de que la llegada de migrantes aumenta el desempleo. Al igual que en la figura anterior, se observa una tendencia decreciente en la seguridad percibida, con una baja especialmente pronunciada entre 2019 y 2023.
+
+En todos los años de la serie, quienes se declaran muy de acuerdo con la idea de que la migración incrementa el desempleo reportan los niveles más bajos de seguridad pública, mientras que los que están muy en desacuerdo muestran los niveles más altos. El grupo intermedio —quienes señalan estar ni de acuerdo ni en desacuerdo— se ubica de forma constante entre ambas posiciones, con una trayectoria descendente que se intensifica en los últimos años. Estos resultados sugieren que las concepciones sobre la migración, en este caso en la potencial amenaza que representa para el acceso al trabajo, se asocia con una visión más crítica o deteriorada de la seguridad pública.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-seg-desemp
+#| fig-cap: "Seguridad percibida y desempleo percibido por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(4), ]$plot, print)
+```
+
+De acuerdo con la @fig-seg-simpa, que muestra la evolución de la relación entre percepción de seguridad pública y grado de simpatía hacia los migrantes entre 2016 y 2023, se observa que la seguridad percibida es consistentemente más baja entre quienes expresan poca o ninguna simpatía por la población migrante. Esta brecha se acentúa desde 2019 en adelante, cuando la percepción de inseguridad en este grupo contrasta con la trayectoria ascendente que mostraban, hasta 2022, quienes dicen simpatizar algo o mucho con los migrantes. No obstante, a partir de 2022 la tendencia se revierte: todos los grupos reportan un descenso en su sensación de seguridad, aunque con intensidades distintas. Aun así, en el último año analizado se mantiene la jerarquía relativa: la percepción de seguridad es mayor entre quienes simpatizan mucho con los migrantes, seguida por quienes simpatizan algo, y alcanza sus niveles más bajos en el grupo con menor simpatía. En contraste con el caso de la pérdida de identidad, en esta dimensión las diferencias entre grupos se amplían con el tiempo, pues quienes simpatizan más con los migrantes no solo mantienen una mayor sensación de seguridad, sino que además la incrementan hasta 2022. El descenso en 2023, común a todos los grupos, sugiere la incidencia de factores coyunturales que interrumpieron esa tendencia.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-seg-simpa
+#| fig-cap: "Seguridad percibida y simpatía hacia migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(10), ]$plot, print)
+```
+
+
+## Redes sociales
+
+
+La @fig-prosoc-contac muestra el promedio del índice de comportamiento prosocial según la frecuencia de contacto positivo con migrantes. En términos generales, se observa que quienes reportan tener un contacto muy poco o poco amistoso con migrantes presentan los niveles más bajos de comportamiento prosocial, mientras que quienes declaran un contacto ni amistoso ni no amistoso o muy/bastante amistoso muestran valores más altos.
+
+En la evolución temporal, el grupo con contacto poco amistoso presenta un leve aumento entre 2016 y 2018, seguido de una marcada disminución en 2019, lo que refuerza la asociación entre distancia social y menor disposición prosocial. Por contraste, quienes mantienen un contacto muy positivo con migrantes evidencian un incremento inicial entre 2016 y 2017 y luego se mantienen relativamente estables hasta 2019. Lo más destacado, sin embargo, es el caso de quienes reportan un contacto neutral —ni amistoso ni no amistoso—, pues este grupo exhibe un crecimiento sostenido del comportamiento prosocial a lo largo del período. Este patrón sugiere que, para ellos, la disposición prosocial podría estar menos condicionada por la calidad del contacto directo con migrantes y responder en mayor medida a otros factores contextuales o disposicionales.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-prosoc-contac
+#| fig-cap: "Comportamiento prosocial y frecuencia de contacto positivo con migrantes (2016-2023)"
+#| fig-cap-location: top
+
 
 sel <- plots_tbl %>%
   filter(out  %in% c("confianza_inter","comportamiento_prosocial", "ayuda_economica")) %>% 
   filter(pred != "igualdad_migrantes" & out != "ayuda_economica")
 
-walk(sel[-c(7, 8), ]$plot, print)
+walk(sel[c(1), ]$plot, print)
 
-
-# acceso salud igualitario + prosociañ
-db_pond %>% 
-  select(wave, igualdad_migrantes, comportamiento_prosocial) %>% 
-  na.omit() %>% 
-  group_by(wave, igualdad_migrantes) %>%
-  summarise(value = survey_mean(comportamiento_prosocial, vartype = "ci")) %>% 
-  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
-  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
-  scale_y_continuous(limits = c(0,3),n.breaks = 10) +
-  scale_fill_manual(
-    name = "Acceso a salud \nigualitario para migrantes",
-    values = c("#2b2f3c","#7ABA21", "#F9913D")
-  ) +
-  labs(
-    x = "Ola",
-    y = "Comportamiento prosocial",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
-  ) +
-  theme_ggdist() +
-   theme(
-      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-      legend.background     = element_rect(fill = "white", color = NA),
-      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-      
-      legend.position       = "top",
-      legend.direction      = "horizontal",
-      legend.box            = "horizontal",  # útil si hubiera varias leyendas
-      
-      legend.title          = element_text(face = "bold"),
-      legend.key            = element_rect(fill = "white", color = NA),
-      legend.key.height     = unit(12, "pt"),
-      legend.key.width      = unit(18, "pt"),
-      
-      axis.text  = element_text(size = 11)
-      ) +
-    guides(color = guide_legend(
-      title.position = "top",   # título arriba
-      label.position = "bottom", # etiquetas a la derecha del símbolo
-      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    ))
-
-
-# acceso salud igualitario + ayuda economica
-db_pond %>% 
-  select(wave, igualdad_migrantes, ayuda_economica) %>% 
-  na.omit() %>% 
-  group_by(wave, igualdad_migrantes) %>%
-  summarise(value = survey_mean(ayuda_economica, vartype = "ci")) %>% 
-  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
-  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
-  scale_y_continuous(limits = c(0,3),n.breaks = 10) +
-  scale_fill_manual(
-    name = "Acceso a salud \nigualitario para migrantes",
-    values = c("#2b2f3c","#7ABA21", "#F9913D")
-  ) +
-  labs(
-    x = "Ola",
-    y = "Ayuda económica",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
-  ) +
-  theme_ggdist() +
-   theme(
-      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-      legend.background     = element_rect(fill = "white", color = NA),
-      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-      
-      legend.position       = "top",
-      legend.direction      = "horizontal",
-      legend.box            = "horizontal",  # útil si hubiera varias leyendas
-      
-      legend.title          = element_text(face = "bold"),
-      legend.key            = element_rect(fill = "white", color = NA),
-      legend.key.height     = unit(12, "pt"),
-      legend.key.width      = unit(18, "pt"),
-      
-      axis.text  = element_text(size = 11)
-      ) +
-    guides(color = guide_legend(
-      title.position = "top",   # título arriba
-      label.position = "bottom", # etiquetas a la derecha del símbolo
-      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    ))
 ```
 
-## Vinculación territorial
+
+La @fig-prosoc-desempleo presenta la evolución del índice de comportamiento prosocial en relación con la percepción de desempleo atribuida a la migración. En términos generales, se observa que quienes consideran que la llegada de migrantes incrementa el desempleo exhiben consistentemente los niveles más bajos de comportamiento prosocial. No obstante, a diferencia de lo visto en la figura anterior, en este caso los niveles de prosocialidad tienden a ser bajos incluso entre quienes no perciben un mayor desempleo por efecto de la migración, lo que genera trayectorias más paralelas que divergentes. Este patrón sugiere que la disminución en la disposición prosocial no estaría directamente ligada a la percepción de desempleo causada por la migración, o bien que la relación entre ambas dimensiones podría ser de carácter negativo y más complejo de lo que se observa en otros ámbitos, como el laboral o el contacto interpersonal.
 
 ```{r}
 #| echo: false
@@ -303,405 +281,144 @@ db_pond %>%
 #| message: false
 #| out-width: '100%'
 #| results: asis
+#| label: fig-prosoc-desempleo
+#| fig-cap: "Comportamiento prosocial y desempleo percibido por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(3), ]$plot, print)
+
+```
+
+
+La @fig-conf-desempleo muestra la relación entre la confianza social y la percepción de desempleo atribuida a los migrantes. En términos generales, se observa una tendencia divergente en la evolución de la confianza interpersonal según las distintas categorías de percepción. Quienes se manifiestan muy en desacuerdo con la idea de que la migración incrementa el desempleo presentan inicialmente una caída en sus niveles de confianza, seguida de un aumento pronunciado a partir de 2019, lo que indica una recuperación significativa en los años más recientes. No obstante, este grupo continúa exhibiendo, en promedio, los niveles más bajos de confianza interpersonal en comparación con los demás.
+
+Por otro lado, quienes están muy de acuerdo con que la migración genera desempleo muestran niveles de confianza más estables, sin grandes variaciones entre 2016 y 2023. Finalmente, el grupo que se ubica en una posición intermedia —ni de acuerdo ni en desacuerdo— alcanza valores relativamente altos de confianza en 2016 y 2023, aunque con una disminución en los años intermedios. En conjunto, estos patrones sugieren que las percepciones sobre el impacto de la migración en el empleo se relacionan con la forma en que las personas valoran la confianza social, pero que esta relación no es lineal: mientras en algunos casos la percepción negativa se asocia con menores niveles de confianza, en otros la variabilidad es mayor y podría estar modulada por factores adicionales.
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-conf-desempleo
+#| fig-cap: "Confianza interpersonal y desempleo percibido por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(4), ]$plot, print)
+
+```
+
+La @fig-prosoc-identi presenta la relación entre el comportamiento prosocial y la percepción de que la migración provoca una pérdida de identidad nacional. Los resultados muestran que quienes están muy de acuerdo con esta afirmación exhiben tanto la tendencia más pronunciada a la baja como los niveles más reducidos de prosocialidad en el periodo analizado, lo que refleja una asociación negativa entre la percepción de amenaza cultural y la disposición a cooperar socialmente.
+
+En contraste, las personas que se declaran indecisas frente a esta idea presentan un aumento sostenido en sus niveles de comportamiento prosocial, alcanzando en 2023 el valor más alto entre las tres categorías. Por último, quienes se manifiestan muy en desacuerdo con que la migración genere pérdida de identidad muestran un ascenso progresivo de la prosocialidad entre 2016 y 2019, seguido de una caída abrupta entre 2019 y 2022, lo que sugiere que, en este grupo, la confianza social puede ser más vulnerable a cambios contextuales recientes.
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-prosoc-identi
+#| fig-cap: "Comportamiento prosocial y pérdida de identidad por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(5), ]$plot, print)
+
+```
+
+## Vinculación territorial
+
+La @fig-satis-contacto presenta la evolución de la satisfacción barrial entre 2016 y 2023 según la frecuencia de contacto positivo con migrantes. En términos generales, se observa que quienes mantienen una relación muy o bastante amistosa con migrantes, así como quienes declaran un contacto ni amistoso ni no amistoso, tienden a reportar niveles más altos de satisfacción con su barrio. En ambos grupos se aprecia un crecimiento sostenido entre 2016 y 2019, seguido de una caída posterior que se extiende hasta 2023, lo que sugiere la incidencia de factores coyunturales recientes en el debilitamiento de la vinculación territorial.
+
+Por otro lado, quienes manifiestan un contacto poco o nada amistoso con los migrantes exhiben un patrón diferente: tras un leve aumento inicial en 2017, su nivel de satisfacción barrial cae de manera constante en los años siguientes, alcanzando los valores más bajos de la serie en 2023. En conjunto, los resultados muestran que la calidad del contacto con la población migrante se asocia de manera sistemática con la percepción del entorno barrial, reforzando la idea de que interacciones positivas o neutrales contribuyen a sostener mayores niveles de vinculación territorial, mientras que experiencias negativas parecen erosionarla de forma persistente a lo largo del tiempo.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-satis-contacto
+#| fig-cap: "Satisfacción con el barrio y frecuencia de contacto positivo con migrantes (2016-2023)"
+#| fig-cap-location: top
+
 
 sel <- plots_tbl %>%
   filter(out  %in% c("sentido_pertenencia", "satisfaccion_barrio")) 
 
-walk(sel[-c(5, 6), ]$plot, print)
-
-db_pond %>% 
-  select(wave, igualdad_migrantes, sentido_pertenencia) %>% 
-  na.omit() %>% 
-  group_by(wave, igualdad_migrantes) %>%
-  summarise(value = survey_mean(sentido_pertenencia, vartype = "ci")) %>% 
-  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
-  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
-  scale_y_continuous(limits = c(0,5),n.breaks = 10) +
-  scale_fill_manual(
-    name = "Acceso a salud \nigualitario para migrantes",
-    values = c("#2b2f3c","#7ABA21", "#F9913D")
-  ) +
-  labs(
-    x = "Ola",
-    y = "Sentido pertenencia barrio",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
-  ) +
-  theme_ggdist() +
-   theme(
-      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-      legend.background     = element_rect(fill = "white", color = NA),
-      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-      
-      legend.position       = "top",
-      legend.direction      = "horizontal",
-      legend.box            = "horizontal",  # útil si hubiera varias leyendas
-      
-      legend.title          = element_text(face = "bold"),
-      legend.key            = element_rect(fill = "white", color = NA),
-      legend.key.height     = unit(12, "pt"),
-      legend.key.width      = unit(18, "pt"),
-      
-      axis.text  = element_text(size = 11)
-      ) +
-    guides(color = guide_legend(
-      title.position = "top",   # título arriba
-      label.position = "bottom", # etiquetas a la derecha del símbolo
-      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    ))
-
-# acceso salud igualitario + satisfaccion barrio
-
-db_pond %>% 
-  select(wave, igualdad_migrantes, satisfaccion_barrio) %>% 
-  na.omit() %>% 
-  group_by(wave, igualdad_migrantes) %>%
-  summarise(value = survey_mean(satisfaccion_barrio, vartype = "ci")) %>% 
-  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
-  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
-  scale_y_continuous(limits = c(0,5),n.breaks = 10) +
-  scale_fill_manual(
-    name = "Acceso a salud \nigualitario para migrantes",
-    values = c("#2b2f3c","#7ABA21", "#F9913D")
-  ) +
-  labs(
-    x = "Ola",
-    y = "Satisfacción barrio",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
-  ) +
-  theme_ggdist() +
-   theme(
-      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-      legend.background     = element_rect(fill = "white", color = NA),
-      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-      
-      legend.position       = "top",
-      legend.direction      = "horizontal",
-      legend.box            = "horizontal",  # útil si hubiera varias leyendas
-      
-      legend.title          = element_text(face = "bold"),
-      legend.key            = element_rect(fill = "white", color = NA),
-      legend.key.height     = unit(12, "pt"),
-      legend.key.width      = unit(18, "pt"),
-      
-      axis.text  = element_text(size = 11)
-      ) +
-    guides(color = guide_legend(
-      title.position = "top",   # título arriba
-      label.position = "bottom", # etiquetas a la derecha del símbolo
-      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    ))
-
-
+walk(sel[c(1), ]$plot, print)
 ```
 
-# Agrupando por nivel educacional
+
+La @fig-pertenencia-contacto muestra la relación entre el sentido de pertenencia barrial y la frecuencia de contacto positivo con migrantes entre 2016 y 2023. En toda la serie, quienes reportan un contacto muy o bastante amistoso con migrantes presentan los niveles más altos de pertenencia barrial, seguidos por quienes señalan un contacto ni amistoso ni no amistoso. En contraste, los niveles más bajos corresponden de manera consistente a quienes declaran tener un contacto muy poco o poco amistoso.
+
+En cuanto a las tendencias, se aprecian trayectorias diferenciadas entre los grupos, aunque con un rasgo común: la caída del sentido de pertenencia entre 2019 y 2023. En el caso de quienes sostienen un contacto amistoso, se observa un crecimiento sostenido hasta 2019, seguido de un descenso posterior. Entre quienes mantienen un contacto poco amistoso, la trayectoria es predominantemente descendente, con una leve alza en 2019 —posiblemente vinculada al contexto del estallido social— y una baja posterior en 2023. Por su parte, el grupo con contacto neutral exhibe un patrón más heterogéneo: una caída en 2017, un repunte entre 2018 y 2019 y, finalmente, una disminución hacia 2023.
 
 ```{r}
-make_plot2 <- function(design, predictor, outcome, ylab, legend_title, group) {
-  pred_sym  <- sym(predictor)  # predictor como string -> símbolo
-  out_sym   <- sym(outcome)
-  group_sym <- sym(group)
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-pertenencia-contacto
+#| fig-cap: "Sentido de pertenencia con el barrio y frecuencia de contacto positivo con migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(2), ]$plot, print)
+```
+
+
+La @fig-satis-identi muestra la relación entre la satisfacción barrial y el grado de acuerdo con la afirmación de que la llegada de migrantes provoca una pérdida de identidad nacional entre 2016 y 2023. En términos generales, quienes se declaran ni de acuerdo ni en desacuerdo presentan los niveles más altos de satisfacción con su barrio a lo largo de la serie, seguidos por quienes están en desacuerdo y, finalmente, por quienes están de acuerdo, que exhiben los niveles más bajos.
+
+En cuanto a las trayectorias, el grupo que está de acuerdo con la pérdida de identidad es el único que muestra una tendencia clara y sostenida: desde 2017 hasta 2023 su satisfacción barrial cae de manera consistente. Por su parte, quienes se ubican en la posición intermedia presentan una evolución más errática, con un nivel elevado en 2016, una caída en 2017, un repunte en 2018, una nueva disminución en 2019 y un incremento hacia 2023. Finalmente, entre quienes están en desacuerdo con la afirmación, la satisfacción barrial fluctúa con un aumento inicial entre 2016 y 2017, seguido de una caída en 2018, un nuevo ascenso en 2019 y una baja hacia 2023.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-satis-identi
+#| fig-cap: "Satisfacción con el barrio y pérdida de identidad por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(7), ]$plot, print)
+```
+
+La @fig-satis-simpat muestra la relación entre la satisfacción barrial y el grado de simpatía hacia los migrantes entre 2016 y 2023. En toda la serie, los niveles más altos corresponden a quienes expresan mucha o bastante simpatía, seguidos por quienes declaran simpatizar algo y, finalmente, por quienes reportan muy poca o ninguna simpatía, que muestran los valores más bajos.
+
+En cuanto a las tendencias, se observa una divergencia clara entre los grupos: quienes manifiestan mayor simpatía exhiben un incremento sostenido en su satisfacción barrial a lo largo del período, mientras que quienes muestran bajos niveles de simpatía presentan una trayectoria descendente. Por su parte, el grupo intermedio evidencia una tendencia positiva inicial, pero con una caída marcada entre 2019 y 2023. Estos patrones sugieren que la calidad de las actitudes hacia los migrantes se vincula de manera consistente con la valoración del entorno barrial, reforzando la idea de que disposiciones favorables hacia la diversidad migrante tienden a asociarse con mayores niveles de vinculación territorial.
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-satis-simpat
+#| fig-cap: "Satisfacción con el barrio y simpátia hacia migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(9), ]$plot, print)
+```
+
+## Resumen de hallazgos principales
+
+- **Seguridad**:
+    * Entre 2016 y 2023, la percepción de seguridad pública muestra una tendencia general a la baja, lo que se observa en todos los grupos, independientemente de sus actitudes hacia la migración. La caída registrada entre 2022 y 2023 es las más pronunciada de toda la serie y afecta de manera transversal a todas las posiciones.
+    * Al considerar las actitudes hacia la migración, se observa que quienes tienen visiones más positivas —ya sea mayor simpatía hacia los migrantes o menor acuerdo con la idea de que generan pérdida de identidad o desempleo— reportan niveles más altos de seguridad percibida, en contraste con quienes sostienen actitudes más negativas, que consistentemente muestran los valores más bajos. Esto sugiere que, en un contexto de creciente percepción de inseguridad pública, el fenómeno migratorio refuerza las diferencias: entre los más críticos acentúa la sensación de inseguridad, mientras que entre los más favorables opera como un factor atenuante. No obstante, la fuerte caída observada en 2023 revela que los efectos de la coyuntura reciente en materia de seguridad se han extendido de manera relativamente uniforme a todos los grupos, reduciendo las distancias entre ellos.
   
-  design %>% 
-    select(wave, !!pred_sym, !!out_sym, !!group_sym) %>% 
-    drop_na() %>% 
-    group_by(wave, !!pred_sym, !!group_sym) %>%
-    summarise(
-      value = survey_mean(!!out_sym, vartype = "ci", na.rm = TRUE),
-      .groups = "drop"
-    ) %>% 
-    ggplot(aes(x = wave, y = value, group = !!pred_sym)) +
-    geom_point(aes(color = !!pred_sym), size = 3.5) +
-    geom_line(aes(color = !!pred_sym), linewidth = 0.8) +
-    facet_wrap(vars(!!group_sym), nrow = 2) +                    # <- clave
-    # geom_errorbar(aes(ymin = value_low, ymax = value_upp, color = !!pred_sym), width = 0.1) +
-    scale_y_continuous(n.breaks = 7) +
-    scale_color_manual(
-      name   = legend_title,
-      values = c("#2b2f3c","#7ABA21", "#F9913D")
-    ) +
-    labs(
-      x = "Ola",
-      y = ylab,
-      caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
-    ) +
-    theme_ggdist() +
-    theme(
-      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-      legend.background     = element_rect(fill = "white", color = NA),
-      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-      legend.position       = "top",
-      legend.direction      = "horizontal",
-      legend.box            = "horizontal",
-      legend.title          = element_text(face = "bold"),
-      legend.key            = element_rect(fill = "white", color = NA),
-      legend.key.height     = unit(12, "pt"),
-      legend.key.width      = unit(18, "pt"),
-      axis.text             = element_text(size = 11)
-    ) +
-    guides(color = guide_legend(
-      title.position = "top",
-      label.position = "bottom",
-      nrow = 1, byrow = TRUE,
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    ))
-}
+- **Redes sociales**:
+    * El comportamiento prosocial y la confianza interpersonal tienden a ser menores entre quienes sostienen actitudes más negativas hacia la migración —por ejemplo, quienes reportan experiencias de contacto no amistoso con migrantes, perciben que su llegada aumenta el desempleo o consideran que generan una pérdida de identidad nacional. En contraste, los niveles de ambas dimensiones son más altos entre quienes expresan actitudes más favorables.
+    * No obstante, entre quienes se ubican en posiciones intermedias frente a estas afirmaciones, las trayectorias resultan más heterogéneas y menos consistentes, con variaciones que no siguen un patrón único de asociación con la migración. Esto sugiere que, en esta subdimensión, las percepciones migratorias influyen de manera desigual, y que otros factores contextuales pueden estar jugando un papel relevante. En términos generales, tanto el comportamiento prosocial como la confianza interpersonal muestran una tendencia descendente a lo largo del período analizado, lo que refuerza la idea de un debilitamiento de los lazos sociales en los últimos años.
+  
+- **Vinculación territorial**:
+    * Dado que esta subdimensión se mide a nivel barrial, las asociaciones entre satisfacción y pertenencia con el barrio y las actitudes hacia los migrantes deben entenderse en esa escala.
+    * Los resultados muestran un patrón más consistente: tanto la satisfacción con el barrio como el sentido de pertenencia barrial son más bajos entre quienes expresan actitudes negativas hacia la migración —ya sea a través de contactos poco amistosos, la percepción de pérdida de identidad nacional o menores niveles de simpatía hacia los migrantes. En cambio, quienes manifiestan actitudes más positivas exhiben niveles más altos de vinculación territorial, aunque también registran descensos en los últimos años. En particular, la ola de 2023 marca una caída transversal en la satisfacción y pertenencia barrial para todos los grupos, lo que sugiere que la migración constituye un factor relevante en la configuración de la cohesión social a nivel local, pero que también se superpone con dinámicas contextuales más amplias que afectan de manera generalizada.
 
-plots_tbl2 <- comb %>%
-  mutate(
-    plot = pmap(
-      list(pred, out),
-      ~ make_plot2(
-        design       = db_pond,
-        predictor    = ..1,
-        outcome      = ..2,
-        ylab         = outcomes[..2],
-        legend_title = predictors[[..1]],
-        group        = "educ"        
-      )
-    ),
-    plot_id = paste0("plot_", out, "__by__", pred, "__faceted_by_educ")
-  )
-```
-
-## Seguridad
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-#| out-width: '100%'
-#| results: asis
-
-
-sel <- plots_tbl2 %>%
-  filter(out  %in% c("seguridad_sub","seguridad_obj")) 
-
-walk(sel$plot, print)
-```
-
-
-## Redes
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-#| out-width: '100%'
-#| results: asis
-
-sel <- plots_tbl2 %>%
-  filter(out  %in% c("confianza_inter","comportamiento_prosocial", "ayuda_economica")) %>% 
-  filter(pred != "igualdad_migrantes" & out != "ayuda_economica")
-
-walk(sel[-c(7, 8), ]$plot, print)
-
-
-# acceso salud igualitario + prosociañ
-db_pond %>% 
-  select(wave, igualdad_migrantes, comportamiento_prosocial, educ) %>% 
-  na.omit() %>% 
-  group_by(wave, igualdad_migrantes, educ) %>%
-  summarise(value = survey_mean(comportamiento_prosocial, vartype = "ci")) %>% 
-  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
-  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
-  facet_wrap(~educ, nrow = 2)+
-  scale_y_continuous(limits = c(0,3),n.breaks = 10) +
-  scale_fill_manual(
-    name = "Acceso a salud \nigualitario para migrantes",
-    values = c("#2b2f3c","#7ABA21", "#F9913D")
-  ) +
-  labs(
-    x = "Ola",
-    y = "Comportamiento prosocial",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
-  ) +
-  theme_ggdist() +
-   theme(
-      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-      legend.background     = element_rect(fill = "white", color = NA),
-      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-      
-      legend.position       = "top",
-      legend.direction      = "horizontal",
-      legend.box            = "horizontal",  # útil si hubiera varias leyendas
-      
-      legend.title          = element_text(face = "bold"),
-      legend.key            = element_rect(fill = "white", color = NA),
-      legend.key.height     = unit(12, "pt"),
-      legend.key.width      = unit(18, "pt"),
-      
-      axis.text  = element_text(size = 11)
-      ) +
-    guides(color = guide_legend(
-      title.position = "top",   # título arriba
-      label.position = "bottom", # etiquetas a la derecha del símbolo
-      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    ))
-
-
-# acceso salud igualitario + ayuda economica
-db_pond %>% 
-  select(wave, igualdad_migrantes, ayuda_economica, educ) %>% 
-  na.omit() %>% 
-  group_by(wave, igualdad_migrantes, educ) %>%
-  summarise(value = survey_mean(ayuda_economica, vartype = "ci")) %>% 
-  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
-  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
-  facet_wrap(~educ, nrow = 2)+
-  scale_y_continuous(limits = c(0,3),n.breaks = 10) +
-  scale_fill_manual(
-    name = "Acceso a salud \nigualitario para migrantes",
-    values = c("#2b2f3c","#7ABA21", "#F9913D")
-  ) +
-  labs(
-    x = "Ola",
-    y = "Ayuda económica",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
-  ) +
-  theme_ggdist() +
-   theme(
-      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-      legend.background     = element_rect(fill = "white", color = NA),
-      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-      
-      legend.position       = "top",
-      legend.direction      = "horizontal",
-      legend.box            = "horizontal",  # útil si hubiera varias leyendas
-      
-      legend.title          = element_text(face = "bold"),
-      legend.key            = element_rect(fill = "white", color = NA),
-      legend.key.height     = unit(12, "pt"),
-      legend.key.width      = unit(18, "pt"),
-      
-      axis.text  = element_text(size = 11)
-      ) +
-    guides(color = guide_legend(
-      title.position = "top",   # título arriba
-      label.position = "bottom", # etiquetas a la derecha del símbolo
-      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    ))
-```
-
-## Vinculación territorial
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-#| out-width: '100%'
-#| results: asis
-
-sel <- plots_tbl2 %>%
-  filter(out  %in% c("sentido_pertenencia", "satisfaccion_barrio")) 
-
-walk(sel[-c(5, 6), ]$plot, print)
-
-db_pond %>% 
-  select(wave, igualdad_migrantes, sentido_pertenencia, educ) %>% 
-  na.omit() %>% 
-  group_by(wave, igualdad_migrantes, educ) %>%
-  summarise(value = survey_mean(sentido_pertenencia, vartype = "ci")) %>% 
-  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
-  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
-  facet_wrap(~educ, nrow = 2)+
-  scale_y_continuous(limits = c(0,5),n.breaks = 10) +
-  scale_fill_manual(
-    name = "Acceso a salud \nigualitario para migrantes",
-    values = c("#2b2f3c","#7ABA21", "#F9913D")
-  ) +
-  labs(
-    x = "Ola",
-    y = "Sentido pertenencia barrio",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
-  ) +
-  theme_ggdist() +
-   theme(
-      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-      legend.background     = element_rect(fill = "white", color = NA),
-      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-      
-      legend.position       = "top",
-      legend.direction      = "horizontal",
-      legend.box            = "horizontal",  # útil si hubiera varias leyendas
-      
-      legend.title          = element_text(face = "bold"),
-      legend.key            = element_rect(fill = "white", color = NA),
-      legend.key.height     = unit(12, "pt"),
-      legend.key.width      = unit(18, "pt"),
-      
-      axis.text  = element_text(size = 11)
-      ) +
-    guides(color = guide_legend(
-      title.position = "top",   # título arriba
-      label.position = "bottom", # etiquetas a la derecha del símbolo
-      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    ))
-
-# acceso salud igualitario + satisfaccion barrio
-
-db_pond %>% 
-  select(wave, igualdad_migrantes, satisfaccion_barrio, educ) %>% 
-  na.omit() %>% 
-  group_by(wave, igualdad_migrantes, educ) %>%
-  summarise(value = survey_mean(satisfaccion_barrio, vartype = "ci")) %>% 
-  ggplot(aes(x = wave, y = value, fill = igualdad_migrantes)) +
-  geom_col(position = position_dodge2(padding = 0.01), width = 0.6) +
-  facet_wrap(~educ, nrow = 2)+
-  scale_y_continuous(limits = c(0,5),n.breaks = 10) +
-  scale_fill_manual(
-    name = "Acceso a salud \nigualitario para migrantes",
-    values = c("#2b2f3c","#7ABA21", "#F9913D")
-  ) +
-  labs(
-    x = "Ola",
-    y = "Satisfacción barrio",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
-  ) +
-  theme_ggdist() +
-   theme(
-      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-      legend.background     = element_rect(fill = "white", color = NA),
-      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-      
-      legend.position       = "top",
-      legend.direction      = "horizontal",
-      legend.box            = "horizontal",  # útil si hubiera varias leyendas
-      
-      legend.title          = element_text(face = "bold"),
-      legend.key            = element_rect(fill = "white", color = NA),
-      legend.key.height     = unit(12, "pt"),
-      legend.key.width      = unit(18, "pt"),
-      
-      axis.text  = element_text(size = 11)
-      ) +
-    guides(color = guide_legend(
-      title.position = "top",   # título arriba
-      label.position = "bottom", # etiquetas a la derecha del símbolo
-      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    ))
-
-
-```
+En conjunto, los análisis longitudinales de la relación entre las distintas subdimensiones de la cohesión social horizontal y las actitudes hacia la migración en Chile muestran que la cohesión social tiende a debilitarse más intensamente entre quienes sostienen visiones negativas sobre la migración, mientras que aquellos con actitudes más favorables han mostrado cierta mayor resistencia, aunque igualmente se ven afectados por las transformaciones estructurales del período. En este sentido, los resultados permiten sostener empíricamente que los vínculos horizontales que articulan la vida en común han sido fuertemente tensionados por el fenómeno migratorio en los últimos años, abriendo tanto desafíos como oportunidades para pensar en formas de fortalecer la cohesión social en un contexto de creciente diversidad y movilidad humana.
 
 :::
