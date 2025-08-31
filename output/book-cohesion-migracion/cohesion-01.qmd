@@ -392,6 +392,7 @@ cohesion_3
 
 ```{r}
 #| label: comportamiento prosocial dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long %>%
   mutate(
@@ -419,6 +420,9 @@ elsoc_long_graph <- elsoc_long %>%
 
 ```{r}
 #| label: ayuda economica dummy 2
+#| echo: false
+
+
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
     # Índice promediado - especificar las columnas directamente
@@ -445,6 +449,9 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: confianza interpersonal dummy 2
+#| echo: false
+
+
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
     # Índice promediado - especificar las columnas directamente
@@ -471,6 +478,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: redes dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -482,6 +490,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: seguridad subjetiva dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -509,6 +518,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r} 
 #| label: seguridad objetiva dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -536,6 +546,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: sentido de pertenencia dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -563,6 +574,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: satisfacción con el barrio dummy 2
+#| echo: false
 
 elsoc_long_graph <- elsoc_long_graph %>%
   mutate(
@@ -590,8 +602,8 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 
 ```{r}
-#| label: fig-long-1
-#| fig-cap: "Tendencia índices de Seguridad"
+#| label: fig-long-9
+#| echo: false
 
 # Variables de seguridad (índices categóricos)
 vars_seguridad <- c("seguridad_sub", "seguridad_obj")
@@ -653,7 +665,7 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -667,18 +679,18 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
   ))
 
 ```
+La [@fig-long-9], que presenta los índices de seguridad, presentan una dinámica fluctuante. La seguridad objetiva —asociada a hechos delictivos concretos— muestra inicialmente un predominio en el nivel bajo, que se mantiene hasta 2021. Sin embargo, en 2023 se observa un cambio drástico: la proporción de personas en nivel alto aumenta significativamente, superando al nivel bajo por primera vez en la serie. Este quiebre podría relacionarse con variaciones coyunturales en la presencia de delitos o en la difusión de información sobre seguridad pública. La seguridad subjetiva, en cambio, mantiene una trayectoria más estable, con predominio del nivel alto, aunque con ligeras oscilaciones. Su punto más favorable se da en torno a 2021, para luego experimentar un descenso en 2023, lo que evidencia que, a pesar de la mejora en indicadores objetivos, las percepciones de seguridad cotidiana no necesariamente siguen la misma tendencia.  
 
 ```{r}
-
 #| label: fig-long-10
-#| fig-cap: "Tendencia índices de Redes"
+#| echo: false
 
 # Variables de redes (índices categóricos)
 vars_redes <- c("comportamiento_prosocial", "ayuda_economica", "confianza_inter")
@@ -700,9 +712,9 @@ long_redes_stack <- elsoc_long_graph %>%
   ungroup() %>%
   mutate(
     variable_clean = case_when (
-      variable == "comportamiento_prosocial" ~ "Comportamiento Prosocial",
+      variable == "comportamiento_prosocial" ~ "Comportamiento  \n Prosocial",
       variable == "ayuda_economica" ~ "Ayuda Económica",
-      variable == "confianza_inter" ~ "Confianza Interpersonal"
+      variable == "confianza_inter" ~ "Confianza \n Interpersonal"
     )
   )
 
@@ -713,7 +725,7 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
             position = "stack", 
             linewidth = 0.5, 
             color = "white") +
-  facet_wrap(~variable_clean, ncol = 2) +
+  facet_wrap(~variable_clean, ncol = 3) +
   scale_fill_manual(values = c(
     "Bajo" = "#F9913D",
     "Alto" = "#2B2F3C"
@@ -739,7 +751,7 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -753,16 +765,16 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
   ))
 ```
+Por su parte,  la [@fig-long-10] presenta la distribución de índices de redes por ola (ELSOC 2016-2023), considerando tres dimensiones: Ayuda Económica, Comportamiento Prosocial y Confianza Interpersonal. En el caso de la Ayuda Económica, la proporción de personas con niveles altos se ha mantenido relativamente estable entre 2016 y 2019, con una leve disminución hacia 2022, aunque se observa un repunte respecto de años anteriores. En contraste, el Comportamiento Prosocial muestra una tendencia decreciente en los niveles altos a lo largo del período, indicando una reducción sostenida en la disposición a participar en acciones solidarias o cooperativas. Finalmente, la Confianza Interpersonal evidencia la caída más abrupta: tras mantenerse en niveles altos hasta 2019, en 2022 se observa un desplome, con predominio casi absoluto de los niveles bajos.
 
 ```{r}
-#| label: fig-long-10
-#| fig-cap: "Tendencia índices de Vínculos Territoriales"
+#| label: fig-long-11
 #| echo: false
 #| warning: false
 
@@ -824,7 +836,7 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "top",
+    legend.position       = "bottom",
     legend.direction      = "horizontal",
     legend.box            = "horizontal",
     
@@ -838,10 +850,10 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "bottom",
+    label.position = "right",
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
   ))
 ```
-
+En cuanto al vínculo territorial, la [@fig-long-11] tanto la satisfacción con el barrio como el sentido de pertenencia se mantienen en niveles altos a lo largo del período. Si bien en 2016 se observa una proporción algo mayor de respuestas en el nivel bajo, en los años siguientes ambas dimensiones tienden a estabilizarse, superando el 80% de la población en niveles altos. Esto sugiere una fuerte estabilidad en la evaluación positiva del entorno barrial y en el apego comunitario, con variaciones mínimas entre olas.

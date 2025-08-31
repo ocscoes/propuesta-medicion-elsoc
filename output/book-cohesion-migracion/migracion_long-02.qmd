@@ -87,7 +87,6 @@ La macrozona norte del país es un caso particularmente relevante, dado que conc
 
 ```{r}
 #| label: fig-mig1
-#| fig-cap: Tendencia de variables sobre migración ELSOC (2016-2019)
 #| warning: false
 #| message: false
 #| echo: false
@@ -106,11 +105,11 @@ long_promedio <- elsoc_long %>%
 
 # Nombres más legibles para la leyenda y facets
 nombres_legibles <- c(
-  "igualdad_migrantes" = "Acceso a Salud Migrantes",
-  "contacto_migrantes" = "Contacto Positivo con Migrantes",
-  "simpatia_migrantes" = "Simpatía hacia migrantes",
-  "perdida_identidad" = "Pérdida de identidad",
-  "desempleo_migrantes" = "Desempleo percibido por migrantes"
+  "igualdad_migrantes" = "Acceso a \n Salud Migrantes",
+  "contacto_migrantes" = "Contacto Positivo \n con Migrantes",
+  "simpatia_migrantes" = "Simpatía \n hacia migrantes",
+  "perdida_identidad" = "Pérdida de \n identidad",
+  "desempleo_migrantes" = "Desempleo percibido \n por migrantes"
 )
 
 # Asegurarse que ola sea numérica y esté completa de 1 a 6
@@ -124,16 +123,19 @@ long_promedio <- long_promedio %>%
 long_promedio <- long_promedio %>%
   arrange(variable, ola)
 
+# Vector con años correspondientes a cada ola
+anos_olas <- c("2016", "2017", "2018", "2019", "2022", "2023")
+
 # Graficar
 ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = variable, shape = variable)) +
     geom_line(linewidth = 1.2, na.rm = FALSE) +
     geom_point(size = 3, na.rm = FALSE) +
       scale_color_manual(values = c(
-      "igualdad_migrantes"   = "#1b9e77",
-      "contacto_migrantes"   = "#d95f02",
-      "simpatia_migrantes"   = "#7570b3",
-      "perdida_identidad"    = "#e7298a",
-      "desempleo_migrantes"  = "#66a61e"
+      "igualdad_migrantes"   = "#7aba21",
+      "contacto_migrantes"   = "#f9913d",
+      "simpatia_migrantes"   = "#2b2f3c",
+      "perdida_identidad"    = "#824293",
+      "desempleo_migrantes"  = "#487fd3"
   ),
   labels = nombres_legibles) +
   scale_shape_manual(values = c(
@@ -144,21 +146,54 @@ ggplot(long_promedio, aes(x = ola, y = promedio, color = variable, group = varia
     "desempleo_migrantes"  = 19   
   ),
   labels = nombres_legibles) +
-  scale_x_continuous(breaks = 1:6) + 
+  scale_x_continuous(breaks = 1:6,
+                      label = anos_olas) + 
   scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
-  labs(title = "Tendencia de variables sobre migración (ELSOC 2016-2021)",
+  labs(title = "Tendencia de variables sobre migración (ELSOC 2016-2022)",
        x = "Ola", y = "Promedio", color = "Variable", shape = "Variable") +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    strip.text = element_text(size = 12, face = "bold"),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position       = "bottom",
+    legend.direction      = "horizontal",
+    legend.box            = "horizontal",
+    
+    legend.title          = element_text(face = "bold"),
+    legend.key            = element_rect(fill = "white", color = NA),
+    legend.key.height     = unit(12, "pt"),
+    legend.key.width      = unit(20, "pt"),
+    
+    axis.text  = element_text(size = 11),
+    panel.spacing = unit(1, "cm")   # mantiene separación entre paneles
+  ) +
+  guides(color = guide_legend(
+    title.position = "top",
+    label.position = "bottom",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ),
+  shape = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
 ```
 
 Por su parte, los resultados de la Encuesta ELSOC del Centro de Estudios de Conflicto y Cohesión Social (COES) permiten observar tendencias relevantes en las percepciones ciudadanas hacia la migración en Chile entre 2016 y 2022. En la [@fig-mig1], que muestra la evolución del promedio de distintas variables que remiten a la percepción respecto a la población migrante, se aprecia una relativa estabilidad a lo largo del período, aunque con matices importantes. El contacto positivo con migrantes se mantiene en niveles altos y constantes, lo que refleja una persistencia en la valoración favorable de las experiencias de interacción. En contraste, el desempleo atribuido a la migración muestra una leve tendencia a la baja, lo que sugiere una disminución en la asociación entre presencia migrante y pérdida de empleo. Algo similar ocurre con la percepción sobre el acceso de migrantes a la salud, que aparece en las olas más recientes con niveles elevados pero con una ligera caída. En el caso de la pérdida de identidad, las respuestas se mantienen estables en niveles bajos, indicando que este temor cultural no alcanza gran prevalencia. La simpatía hacia migrantes, en tanto, se sitúa en valores intermedios, con oscilaciones menores a lo largo de las olas.
 
 ```{r}
 #| label: fig-mig2
-#| fig-cap: Distribución simplificada de respuestas ELSOC (2016-2019)
 #| echo: false
 
-# Variables a graficar (solo 3)
+# Variables a graficar (solo 2)
 vars <- c("contacto_migrantes", "simpatia_migrantes")
 
 # Nombres más legibles
@@ -185,27 +220,59 @@ freq_data <- long_data %>%
   group_by(ola, variable) %>%
   mutate(prop = freq / sum(freq))
 
-# Gráfico de barras apiladas con orden correcto
+# Gráfico de barras apiladas con formato de leyenda personalizado
 ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) +
   facet_wrap(~variable, ncol = 3, labeller = labeller(variable = nombres_legibles)) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_fill_manual(values = c("Bajo (1-2)" = "#d95f02",  
-                               "Medio (3)" = "#7570b3",   
-                               "Alto (4-5)" = "#1b9e77"),
+  scale_x_discrete(labels = c("1" = "2016",
+                              "2" = "2017", 
+                              "3" = "2018",
+                              "4" = "2019",
+                              "5" = "2022",
+                              "6" = "2023")) +
+  scale_fill_manual(values = c("Bajo (1-2)" = "#f9913d",  
+                               "Medio (3)" = "#7aba21",   
+                               "Alto (4-5)" = "#2b2f3c"),
+                    labels = c("Bajo (1-2)" = "Bajo",  
+                               "Medio (3)" = "Medio",   
+                               "Alto (4-5)" = "Alto"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
-  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2019)",
+  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2023)",
        x = "Ola", y = "Porcentaje") +
   theme_minimal() +
-  theme(strip.text = element_text(size = 12),
-        legend.position = "bottom")
+  theme(
+    strip.text = element_text(size = 12, face = "bold"),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position       = "bottom",
+    legend.direction      = "horizontal",
+    legend.box            = "horizontal",
+    
+    legend.title          = element_text(face = "bold"),
+    legend.key            = element_rect(fill = "white", color = NA),
+    legend.key.height     = unit(12, "pt"),
+    legend.key.width      = unit(20, "pt"),
+    
+    axis.text  = element_text(size = 11),
+    panel.spacing = unit(1, "cm")   # mantiene separación entre paneles
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
 ```
 En la @fig-mig2, que desagrega las respuestas en tres categorías simplificadas (bajo, medio y alto), permite observar con mayor detalle cómo se distribuyen las actitudes hacia el contacto y la simpatía. En el caso del contacto positivo con migrantes, predomina de manera clara la categoría alta, con proporciones superiores al 50% en todas las olas y escasa presencia de respuestas bajas, lo que confirma que la mayoría de la población declara experiencias favorables de interacción. La simpatía hacia migrantes, en cambio, presenta un escenario más heterogéneo: si bien las respuestas altas siguen siendo relevantes, en las olas más recientes se advierte un incremento de las respuestas bajas, lo que refleja un aumento en las percepciones de rechazo o menor simpatía.
 
 ```{r}
 #| label: fig-mig3
-#| fig-cap: Distribución simplificada de respuestas (ELSOC 2016-2019
 #| echo: false
 
 # Variables a graficar (las 2 restantes)
@@ -241,23 +308,55 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) +
   facet_wrap(~variable, ncol = 2, labeller = labeller(variable = nombres_legibles)) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_fill_manual(values = c("Bajo (1-2)" = "#d95f02",  
-                               "Medio (3)" = "#7570b3",   
-                               "Alto (4-5)" = "#1b9e77"),
+  scale_x_discrete(labels = c("1" = "2016",
+                              "2" = "2017", 
+                              "3" = "2018",
+                              "4" = "2019",
+                              "5" = "2022",
+                              "6" = "2023")) + 
+  scale_fill_manual(values = c("Bajo (1-2)" = "#f9913d",  
+                               "Medio (3)" = "#7aba21",   
+                               "Alto (4-5)" = "#2b2f3c"),
+                    labels = c("Bajo (1-2)" = "Bajo",  
+                               "Medio (3)" = "Medio",   
+                               "Alto (4-5)" = "Alto"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
-  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2019)",
+  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2023)",
        x = "Ola", y = "Porcentaje") +
   theme_minimal() +
-  theme(strip.text = element_text(size = 12),
-        legend.position = "bottom")
+  theme(
+    strip.text = element_text(size = 12, face = "bold"),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position       = "bottom",
+    legend.direction      = "horizontal",
+    legend.box            = "horizontal",
+    
+    legend.title          = element_text(face = "bold"),
+    legend.key            = element_rect(fill = "white", color = NA),
+    legend.key.height     = unit(12, "pt"),
+    legend.key.width      = unit(20, "pt"),
+    
+    axis.text  = element_text(size = 11),
+    panel.spacing = unit(1, "cm")   # mantiene separación entre paneles
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
 
 ```
 La @fig-mig3, que aborda las percepciones críticas vinculadas a desempleo y pérdida de identidad, muestra que la primera es la creencia negativa más extendida. En todas las olas, la mayoría de los encuestados se concentra en la categoría alta, lo que indica que persiste una asociación fuerte entre migración y desempleo en la opinión pública. La pérdida de identidad, en cambio, aparece como un fenómeno más dividido: aunque existe una proporción importante que lo percibe en niveles altos, también se mantiene un grupo significativo en la categoría baja, lo que evidencia una menor uniformidad en este tipo de percepciones culturales en comparación con las económicas.
 
 ```{r}
 #| label: fig-mig4
-#| fig-cap: Tendencia Variables Igualdad Migrantes
 #| echo: false
 
 # Variables a graficar (las 2 restantes)
@@ -292,16 +391,49 @@ ggplot(freq_data, aes(x = factor(ola), y = prop, fill = respuesta)) +
   geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) +
   facet_wrap(~variable, ncol = 2, labeller = labeller(variable = nombres_legibles)) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_fill_manual(values = c("Bajo (1-2)" = "#d95f02",  
-                               "Medio (3)" = "#7570b3",   
-                               "Alto (4-5)" = "#1b9e77"),
+  scale_x_discrete(labels = c("1" = "2016",
+                              "2" = "2017", 
+                              "3" = "2018",
+                              "4" = "2019",
+                              "5" = "2022",
+                              "6" = "2023")) +
+  scale_fill_manual(values = c("Bajo (1-2)" = "#f9913d",  
+                               "Medio (3)" = "#7aba21",   
+                               "Alto (4-5)" = "#2b2f3c"),
+                    labels = c("Bajo (1-2)" = "Bajo",  
+                               "Medio (3)" = "Medio",   
+                               "Alto (4-5)" = "Alto"),
                     name = "Respuesta",
                     breaks = c("Bajo (1-2)", "Medio (3)", "Alto (4-5)")) +
-  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2019)",
+  labs(title = "Distribución simplificada de respuestas (ELSOC 2016-2023)",
        x = "Ola", y = "Porcentaje") +
   theme_minimal() +
-  theme(strip.text = element_text(size = 12),
-        legend.position = "bottom")
+  theme(
+    strip.text = element_text(size = 12, face = "bold"),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position       = "bottom",
+    legend.direction      = "horizontal",
+    legend.box            = "horizontal",
+    
+    legend.title          = element_text(face = "bold"),
+    legend.key            = element_rect(fill = "white", color = NA),
+    legend.key.height     = unit(12, "pt"),
+    legend.key.width      = unit(20, "pt"),
+    
+    axis.text  = element_text(size = 11),
+    panel.spacing = unit(1, "cm")   # mantiene separación entre paneles
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
 ```
 Finalmente, la @fig-mig4, que muestra la opinión sobre el acceso de las personas migrantes a un sistema de salud en condiciones de igualdad, evidencia que en todas las olas la mayoría se ubica en la categoría alta, lo que indica un amplio acuerdo con esta idea. No obstante, también se observa un aumento sostenido en el grupo que manifiesta rechazo, lo que sugiere un progresivo crecimiento de la oposición a este principio de igualdad en el acceso a la salud. 
 
