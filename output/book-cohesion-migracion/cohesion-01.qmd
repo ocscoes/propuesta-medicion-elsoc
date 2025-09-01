@@ -4,6 +4,8 @@
 
 “La cohesión social es un estado de cosas que concierte tanto a las interacciones verticales como horizontales entre los miembros de la sociedad, caracterizado por un conjunto de actitudes y normas que incluyen la confianza, el sentido de pertenencia y la voluntad de participar y ayudar, así como sus manifestaciones conductuales” (Chan et al., 2006, p. 290).
 
+# Propuestas
+
 ## Propuesta LAPOP
 
 ![](images/hor-lapop.png)
@@ -11,8 +13,6 @@
 ## Propuesta ELSOC
 
 ![](images/hor-elsoc.png)
- 
-# Análisis comparativo
 
 ## Diferencias
 
@@ -24,29 +24,15 @@ Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones 
 
 **3)** Las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden. 
 
-# Nueva propuesta
-
-Esta sección se presenta la construcción de la nueva propuesta de medición de cohesión social en Chile con datos de ELSOC. 
+## Nueva propuesta
 
 ![](images/propuesta-nueva.png)
 
-En comparación con la anterior propuesta hecha con ELSOC, se elimina la subdimensión de Sentido de pertenencia, puesto que para la construcción de la propuesta con LAPOP se definió que era problemático comprender indicadores como orgullo nacional dentro de la cohesión social. En su lugar, se integra un factor de pertenencia al barrio dentro de la subdimensión de vínculo territoriales. Asimismo, incluye una nueva subdimensión de seguridad (siguiendo la propuesta con LAPOP), considerándose como uno de los elementos centrales durante el último tiempo en las discusiones relacionadas al vínculo social. Por último, se mantiene la subdimensión de redes sociales pero sin el factor de confianza interpersonal puesto que no se pudo encontrar una fiabilidad de su medición con los datos disponibles. 
+En comparación con la anterior propuesta hecha con ELSOC, se elimina la subdimensión de Sentido de pertenencia, puesto que para la construcción de la propuesta con LAPOP se definió que era problemático comprender indicadores como orgullo nacional dentro de la cohesión social. En su lugar, se integra un factor de pertenencia al barrio dentro de la subdimensión de vínculo territoriales. Asimismo, se incluye una nueva subdimensión de seguridad (siguiendo la propuesta con LAPOP), considerándose como uno de los elementos centrales durante el último tiempo en las discusiones relacionadas al vínculo social. Por último, se mantiene la subdimensión de redes sociales pero con dos cambios: se añade un tercer factor de ayuda económica (1), y se equilibra la cantidad de indicadores por cada factor (2). Para ver en profundidad cuáles son las variables que componen cada factor y su operacionalización puede revisar los [anexos](añadir link al renderizar todo el doc). 
 
-En la siguiente tabla se presenta la disponibilidad de las variables utilizadas para la construcción del índice de cohesión social. **PASAR AL ANEXO**
+# Descriptivos nueva propuesta
 
-```{r}
-#| echo: false 
-
-library(readr)
-library(DT)
-
-datos <- read_delim("../../input/tables/variables-nueva-propuesta.csv", 
-                    delim = ";", 
-                    show_col_types = FALSE)
-datatable(datos)
-```
-
-A continuación, se presentan los descriptivos de los constructos presentados en la propuesta:
+A continuación, se presentan los análisis descriptivos de los constructos presentados en la propuesta renovada:
 
 ```{r}
 #| label: packages
@@ -329,7 +315,7 @@ elsoc_6_graph <- elsoc_6_graph %>%
 
 cohesion_1 <- plot_stackfrq(
   dplyr::select(elsoc_5_graph, comportamiento_prosocial, ayuda_economica, confianza_inter),
-  title = "Likerplots de índices de redes sociales"
+  title = "Distribución de los índices de redes sociales"
 ) +
   theme(legend.position = "bottom") +
   # Cambiar tamaño de los números dentro del gráfico
@@ -338,7 +324,7 @@ cohesion_1 <- plot_stackfrq(
         legend.text = element_text(size = 16)
         ) +
         scale_fill_manual(
-        values = c("Bajo" = "#f9913d", "Alto" = "#2b2f3c")
+        values = c("1" = "#f9913d", "2" = "#7aba21", "3" = "#2b2f3c")
         )
 
 cohesion_1

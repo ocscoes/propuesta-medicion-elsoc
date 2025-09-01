@@ -10,10 +10,10 @@ book:
     - index.qmd
     - intro.qmd
     - cohesion-01.qmd
-    - factoriales-01a.qmd
     - migracion_long-02.qmd
     - bivariados-trans-03.qmd 
     - bivariados-long-04.qmd
+    - anexos.qmd 
 
 format:
   html:

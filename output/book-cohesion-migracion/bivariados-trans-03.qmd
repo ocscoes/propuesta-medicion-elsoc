@@ -252,32 +252,68 @@ elsoc_6_graph <- elsoc_6_graph %>%
 #| fig-cap: Descriptivos de migración
 #| fig-cap-location: top
 #| echo: false
-#| fig-width: 12
+#| fig-width: 14
 #| fig-height: 8
 
-desc_migracion <- plot_stackfrq(
-  dplyr::select(elsoc_6_graph, perdida_identidad, desempleo_migrantes, simpatia_migrantes, igualdad_migrantes, contacto_migrantes),
-  title = "Likerplots de variables de migración",
-  show.prc = FALSE
-  
-) +
-  theme(legend.position = "bottom") +
-  # Cambiar tamaño de los números dentro del gráfico
-  theme(axis.text = element_text(size = 18),
-        title = element_text(size = 20),  # ajusta a tu gusto
-        legend.text = element_text(size = 16)
-        ) +
-        scale_fill_manual(
-        values = c("1" = "#f9913d", "2" = "#7ABA21", "3" = "#2b2f3c"),
-         labels = c("1" = "Muy en desacuerdo", 
-               "2" = "Ni en desacuerdo \n ni de acuerdo", 
-               "3" = "Muy de acuerdo")
+# Primero selecciona tus variables
+datos_migracion <- dplyr::select(elsoc_6_graph, perdida_identidad, desempleo_migrantes, 
+                                simpatia_migrantes, igualdad_migrantes, contacto_migrantes)
+
+# Asigna las etiquetas usando labelled
+datos_migracion <- datos_migracion %>%
+  set_variable_labels(
+    perdida_identidad = "Pérdida de \n identidad del país",
+    desempleo_migrantes = "Desempleo \n debido a inmigrantes", 
+    simpatia_migrantes = "Simpatía \n hacia inmigrantes",
+    igualdad_migrantes = "Igualdad \n en acceso a salud",
+    contacto_migrantes = "Contacto \n con inmigrantes"
   )
 
-desc_migracion
+# Crea el gráfico
+desc_migracion <- plot_stackfrq(
+  datos_migracion,
+  title = "Distribución de variables de migración",
+  show.prc = FALSE,
+  show.n = FALSE,
+  show.total = FALSE
+) +
+  theme_ggdist() + 
+    theme(
+    # Estilo del texto original
+    axis.text = element_text(size = 18),
+    title = element_text(size = 20),
+    legend.text = element_text(size = 16),
+    
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt")
+  ) +
+  scale_fill_manual(
+    values = c("1" = "#f9913d", "2" = "#7ABA21", "3" = "#2b2f3c"),
+    labels = c("1" = "Muy en desacuerdo",
+               "2" = "Ni en desacuerdo \n ni de acuerdo", 
+               "3" = "Muy de acuerdo")
+  ) +
+  guides(fill = guide_legend(
+    title = NULL,
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, 
+    byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
 
-# sacar el N de las variables 
-# achicar las letras 
+desc_migracion
 ```
 
 # Transversales por subdimensión
@@ -296,9 +332,6 @@ elsoc_6_graph <- elsoc_6_graph %>%
 #| fig-cap-location: top
 #| echo: false 
 
-
-
-# Gráfico
 ggplot(elsoc_6_graph, aes(
   x = desempleo_migrantes, 
   fill = factor(seguridad_sub, labels = c("Alta seguridad", "Poca seguridad"))
@@ -306,982 +339,55 @@ ggplot(elsoc_6_graph, aes(
   geom_bar(position = "fill") +
   scale_fill_manual(
     values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Poca seguridad")
+    breaks = c("Alta seguridad", "Poca seguridad"),
+    name = "Categorías"
   ) +
   labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según seguridad subjetiva",
+    title = "Percepción de desempleo \n debido a inmigrantes según seguridad subjetiva",
     x = "Percepción de desempleo debido a inmigrantes",
-    y = NULL,
-    fill = "Seguridad subjetiva"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| label: fig-segobj
-#| fig-cap: Asociación entre percepción de pérdida de identidad y seguridad objetiva
-#| fig-cap-location: top
-#| echo: false 
-
-ggplot(elsoc_6_graph, aes(
-  x = perdida_identidad, 
-  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Poca seguridad")
-  ) +
-  labs(
-    title = "% de percepción de pérdida de identidad del pais \n debido a inmigrantes según seguridad subjetiva",
-    x = "Percepción de pérdida de identidad",
-    y = NULL,
-    fill = "Seguridad objetiva"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-## Vínculos territoriales transversal
-
-```{r}
-#| label: fig-satbarrio
-#| fig-cap: Asociación entre percepción de pérdida de identidad y satisfacción con el barrio
-#| fig-cap-location: top
-#| echo: false 
-
-ggplot(elsoc_6_graph, aes(
-  x = perdida_identidad, 
-  fill = factor(satisfaccion_barrio, labels = c("Alta satisfacción", "Poca satisfacción"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta satisfacción" = "#2b2f3c", "Poca satisfacción" = "#f9913d"),
-    breaks = c("Alta satisfacción", "Poca satisfacción")
-  ) +
-  labs(
-    title = "% de percepción de pérdida de identidad del pais \n debido a inmigrantes según satisfacción con el barrio",
-    x = "Percepción de pérdida de identidad",
-    y = NULL,
-    fill = "Satisfacción con el barrio"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| label: fig-sentper
-#| fig-cap: Asociación entre percepción de pérdida de identidad y sentido de pertenencia
-#| fig-cap-location: top
-#| echo: false 
-
-ggplot(elsoc_6_graph, aes(
-  x = perdida_identidad, 
-  fill = factor(satisfaccion_barrio, labels = c("Alta pertenencia", "Baja pertenencia"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Alta pertenencia", "Baja pertenencia")
-  ) +
-  labs(
-    title = "% de percepción de pérdida de identidad del pais \n debido a inmigrantes según sentido de pertenencia",
-    x = "Percepción de pérdida de identidad",
-    y = NULL,
-    fill = "Sentido de pertenencia"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy de acuerdo")
-  )
-```
-
-## Redes sociales transversal
-
-```{r}
-#| label: fig-prosoc
-#| fig-cap: Asociación entre percepción de desempleo y comportamiento prosocial
-#| fig-cap-location: top
-#| echo: false 
-
-elsoc_5_graph <- elsoc_5_graph %>%
-  drop_na(desempleo_migrantes, perdida_identidad)
-
-ggplot(elsoc_5_graph, aes(
-  x = desempleo_migrantes, 
-  fill = factor(comportamiento_prosocial, labels = c("Alto", "Bajo"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alto" = "#2b2f3c", "Bajo" = "#f9913d"),
-    breaks = c("Alto", "Bajo")
-  ) +
-  labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según comportamiento prosocial",
-    x = "Percepción de desempleo",
-    y = NULL,
-    fill = "Comportamiento prosocial"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| label: fig-confinter
-#| fig-cap: Asociación entre percepción de desempleo debido a inmigrantes y confianza interpersonal
-#| fig-cap-location: top
-#| echo: false 
-
-ggplot(elsoc_5_graph, aes(
-  x = desempleo_migrantes, 
-  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Alta confianza", "Baja confianza")
-  ) +
-  labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según confianza interpersonal",
-    x = "Percepción de desempleo",
-    y = NULL,
-    fill = "Confianza interpersonal"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| label: fig-ayudaeco
-#| fig-cap: Asociación entre percepción de pérdida de identidad y ayuda económica
-#| fig-cap-location: top
-#| echo: false 
-
-ggplot(elsoc_5_graph, aes(
-  x = perdida_identidad, 
-  fill = factor(ayuda_economica, labels = c("Mucha ayuda", "Poca ayuda"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Mucha ayuda" = "#2b2f3c", "Poca ayuda" = "#f9913d"),
-    breaks = c("Mucha ayuda", "Poca ayuda")
-  ) +
-  labs(
-    title = "% de percepción de pérdida de identidad del país \n debido a inmigrantes según ayuda económica a terceros",
-    x = "Pérdida de identidad",
-    y = NULL,
-    fill = "Ayuda económica"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-# Cruces filtrados (género/educación)
-
-## Seguridad por género
-
-```{r}
-seguridad_genero <- elsoc_6_graph %>%
-  select(sexo, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,
-         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
-```
-
-```{r}
-seguridad_hombres <- seguridad_genero %>%
-  filter(sexo==0)
-
-seguridad_mujeres <- seguridad_genero %>%
-  filter(sexo==1)
-```
-
-```{r}
-seguridad_hombres <- seguridad_hombres %>%
-  select(-c(sexo))
-
-seguridad_mujeres <- seguridad_mujeres %>%
-  select(-c(sexo))
-```
-
-```{r}
-#| echo: false
-
-a <- ggplot(seguridad_hombres, aes(
-  x = perdida_identidad, 
-  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Poca seguridad")
-  ) +
-  labs(
-    title = "Percepción de pérdida de identidad del país \n debido a inmigrantes según seguridad objetiva (Hombres)",
-    x = "Percepción de ṕerdida de identidad",
-    y = NULL,
-    fill = "Seguridad objetiva"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-
-```
-
-```{r}
-#| echo: false
-
-b <- ggplot(seguridad_mujeres, aes(
-  x = perdida_identidad, 
-  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Poca seguridad")
-  ) +
-  labs(
-    title = "Percepción de pérdida de identidad del país \n debido a inmigrantes según seguridad objetiva (Mujeres)",
-    x = "Percepción de pérdida de identidad",
-    y = NULL,
-    fill = "Seguridad objetiva"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-
-```
-
-```{r}
-#| echo: false
-#| fig-width: 12
-#| fig-height: 6
-
-seg_interact <- a | b
-seg_interact
-```
-
-## Seguridad por educación
-
-```{r}
-seguridad_educ <- elsoc_6_graph %>%
-  select(educacion, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,
-         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
-```
-
-```{r}
-seguridad_titulo <- seguridad_educ %>%
-  filter(educacion==1)
-
-seguridad_notitulo <- seguridad_educ %>%
-  filter(educacion==0)
-```
-
-```{r}
-seguridad_titulo <- seguridad_titulo %>%
-  select(-c(educacion))
-
-seguridad_notitulo <- seguridad_notitulo %>%
-  select(-c(educacion))
-```
-
-
-```{r}
-#| echo: false
-
-c <- ggplot(seguridad_titulo, aes(
-  x = desempleo_migrantes, 
-  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Poca seguridad")
-  ) +
-  labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según seguridad objetiva (Título univ.)",
-    x = "Percepción de desempleo debido a inmigrantes",
-    y = NULL,
-    fill = "Seguridad objetiva"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-
-```{r}
-#| echo: false
-
-d <- ggplot(seguridad_notitulo, aes(
-  x = desempleo_migrantes, 
-  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Poca seguridad")
-  ) +
-  labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según seguridad objetiva (Sin título univ.)",
-    x = "Percepción de desempleo debido a inmigrantes",
-    y = NULL,
-    fill = "Seguridad objetiva"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| echo: false
-#| fig-width: 12
-#| fig-height: 6
-
-seg_interact_ed <- d | c
-seg_interact_ed
-```
-
-## Vínculos territoriales por género
-
-```{r}
-barrio_genero <- elsoc_6_graph %>%
-  select(sexo, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,
-         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
-```
-
-```{r}
-barrio_hombres <- barrio_genero %>%
-  filter(sexo==0)
-
-barrio_mujeres <- barrio_genero %>%
-  filter(sexo==1)
-```
-
-```{r}
-barrio_hombres <- barrio_hombres %>%
-  select(-c(sexo))
-
-barrio_mujeres <- barrio_mujeres %>%
-  select(-c(sexo))
-```
-
-
-```{r}
-#| echo: false
-
-e <- ggplot(barrio_hombres, aes(
-  x = perdida_identidad, 
-  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Alta pertenencia", "Baja pertenencia")
-  ) +
-  labs(
-    title = "% de percepción de pérdida de identidad del país \n debido a inmigrantes según sentido de pertenencia (Hombres)",
-    x = "Percepción de pérdida de identidad",
-    y = NULL,
-    fill = "Sentido de pertenencia"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| echo: false
-
-f <- ggplot(barrio_mujeres, aes(
-  x = perdida_identidad, 
-  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Alta pertenencia", "Baja pertenencia")
-  ) +
-  labs(
-    title = "% de percepción de pérdida de identidad del país \n debido a inmigrantes según sentido de pertenencia (Mujeres)",
-    x = "Percepción de pérdida de identidad",
-    y = NULL,
-    fill = "Sentido de pertenencia"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-
-```{r}
-#| echo: false
-#| fig-width: 12
-#| fig-height: 6
-
-barrio_interact <- e | f
-barrio_interact
-```
-
-## Vínculos territoriales por educación
-
-```{r}
-barrio_educ <- elsoc_6_graph %>%
-  select(educacion, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,
-         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
-```
-
-```{r}
-barrio_titulo <- barrio_educ %>%
-  filter(educacion==1)
-
-barrio_notitulo <- barrio_educ %>%
-  filter(educacion==0)
-```
-
-```{r}
-barrio_titulo <- barrio_titulo %>%
-  select(-c(educacion))
-
-barrio_notitulo <- barrio_notitulo %>%
-  select(-c(educacion))
-```
-
-```{r}
-#| echo: false
-
-g <- ggplot(barrio_titulo, aes(
-  x = desempleo_migrantes, 
-  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Alta pertenencia", "Baja pertenencia")
-  ) +
-  labs(
-    title = "% de percepción de pérdida de identidad del país \n debido a inmigrantes según sentido de pertenencia (Título univ.)",
-    x = "Percepción de pérdida de identidad",
-    y = NULL,
-    fill = "Sentido de pertenencia"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| echo: false
-
-h <- ggplot(barrio_notitulo, aes(
-  x = desempleo_migrantes, 
-  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Alta pertenencia", "Baja pertenencia")
-  ) +
-  labs(
-    title = "% de percepción de pérdida de identidad del país \n debido a inmigrantes según sentido de pertenencia (Sin título univ.)",
-    x = "Percepción de pérdida de identidad",
-    y = NULL,
-    fill = "Sentido de pertenencia"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| echo: false
-#| fig-width: 12
-#| fig-height: 6
-
-barrio_interact_ed <- g | h
-barrio_interact_ed
-```
-
-## Redes sociales por género
-
-```{r}
-redes_genero <- elsoc_5_graph %>%
-  select(sexo, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)
-```
-
-```{r}
-redes_hombres <- redes_genero %>%
-  filter(sexo==0)
-
-redes_mujeres <- redes_genero %>%
-  filter(sexo==1)
-```
-
-```{r}
-redes_hombres <- redes_hombres %>%
-  select(-c(sexo))
-
-redes_mujeres <- redes_mujeres %>%
-  select(-c(sexo))
-```
-
-```{r}
-#| echo: false 
-
-i <- ggplot(redes_hombres, aes(
-  x = desempleo_migrantes, 
-  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Alta confianza", "Baja confianza")
-  ) +
-  labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según confianza interpersonal (Hombres)",
-    x = "Percepción de desempleo",
-    y = NULL,
-    fill = "Confianza interpersonal"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  )  +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| echo: false 
-#| fig-width: 10
-#| fig-height: 6
-
-j <- ggplot(redes_mujeres, aes(
-  x = desempleo_migrantes, 
-  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Alta confianza", "Baja confianza")
-  ) +
-  labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según confianza interpersonal (Mujeres)",
-    x = "Percepción de desempleo",
-    y = NULL,
-    fill = "Confianza interpersonal"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  )  +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| echo: false
-#| fig-width: 12
-#| fig-height: 6
-redes_interact <- i | j
-redes_interact
-```
-
-## Redes sociales por educación
-
-```{r}
-redes_educ <- elsoc_5_graph %>%
-  select(educacion, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)
-```
-
-```{r}
-redes_titulo <- redes_educ %>%
-  filter(educacion==1)
-
-redes_notitulo <- redes_educ %>%
-  filter(educacion==0)
-```
-
-```{r}
-redes_titulo <- redes_titulo %>%
-  select(-c(educacion))
-
-redes_notitulo <- redes_notitulo %>%
-  select(-c(educacion))
-```
-
-```{r}
-#| echo: false 
-
-k <- ggplot(redes_titulo, aes(
-  x = desempleo_migrantes, 
-  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Alta confianza", "Baja confianza")
-  ) +
-  labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según confianza interpersonal (titulados)",
-    x = "Percepción de desempleo",
-    y = NULL,
-    fill = "Confianza interpersonal"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  )  +
-  #coord_fixed(ratio = 15/5) + 
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
-```
-
-```{r}
-#| echo: false 
-
-l <- ggplot(redes_notitulo, aes(
-  x = desempleo_migrantes, 
-  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Alta confianza", "Baja confianza")
-  ) +
-  labs(
-    title = "% de percepción de desempleo \n debido a inmigrantes según confianza interpersonal (no titulados)",
-    x = "Percepción de desempleo",
-    y = NULL,
-    fill = "Confianza interpersonal",
+    y = "Seguridad subjetiva",
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
   theme_minimal() +
   scale_y_continuous(
     labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
+    breaks = scales::pretty_breaks(n = 5),
     expand = expansion(mult = c(0, 0.05))
   ) +
-  theme(
-    
-    axis.title.x = element_text(size = 14, margin = margin(t = 30)),
-    axis.text.x = element_text(size = 11),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 14),
-    legend.text = element_text(size = 11),
-    legend.title = element_text(size = 14), 
-    plot.title = element_text(size = 14, hjust = 0.5) # centra título
-  )  +
-  #coord_fixed(ratio = 15/5) + 
   scale_x_continuous(
     breaks = 1:3,
     labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  )
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
 ```
-
-# Gráficos seleccionados
 
 ```{r}
 #| label: fig-seg-trans
@@ -1347,6 +453,361 @@ ggplot(elsoc_6_graph, aes(
 ```
 
 En @fig-seg-trans se puede apreciar que las cantidad de personas que viven niveles bajos de seguridad aumenta progresivamente a medida que se está más de acuerdo con que los inmigrantes le restan identidad al país. Por tanto, mientras menos seguras están las personas, se está más convencido de que los inmigrantes erosionan la identidad de Chile.
+
+## Vínculos territoriales transversal
+
+```{r}
+#| label: fig-satbarrio
+#| fig-cap: Asociación entre percepción de pérdida de identidad y satisfacción con el barrio
+#| fig-cap-location: top
+#| echo: false 
+
+ggplot(elsoc_6_graph, aes(
+  x = perdida_identidad, 
+  fill = factor(satisfaccion_barrio, labels = c("Alta satisfacción", "Poca satisfacción"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alta satisfacción" = "#2b2f3c", "Poca satisfacción" = "#f9913d"),
+    breaks = c("Alta satisfacción", "Poca satisfacción"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Percepción de pérdida de identidad del país \n debido a inmigrantes según satisfacción con el barrio",
+    x = "Percepción de pérdida de identidad",
+    y = "Satisfacción con el barrio",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+Se puede observar en @fig-satbarrio que en 2022 la mayoría de las personas sienten una alta satisfacción con su barrio. Ahora bien, existe una relación negativa entre percibir la pérdida de identidad del país debido a inmigrantes y la satisfacción con el barrio. Esto es, a medida que disminuye la satisfacción con el barrio, aumenta la sensación de que los inmigrantes flagelan la identidad del país. 
+
+```{r}
+#| label: fig-sentper
+#| fig-cap: Asociación entre percepción de pérdida de identidad y sentido de pertenencia
+#| fig-cap-location: top
+#| echo: false 
+
+ggplot(elsoc_6_graph, aes(
+  x = perdida_identidad, 
+  fill = factor(satisfaccion_barrio, labels = c("Alta pertenencia", "Baja pertenencia"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
+    breaks = c("Alta pertenencia", "Baja pertenencia"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Percepción de pérdida de identidad del país \n debido a inmigrantes según sentido de pertenencia",
+    x = "Percepción de pérdida de identidad",
+    y = "Sentido de pertenencia",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+## Redes sociales transversal
+
+```{r}
+#| label: fig-prosoc
+#| fig-cap: Asociación entre percepción de desempleo y comportamiento prosocial
+#| fig-cap-location: top
+#| echo: false 
+
+elsoc_5_graph <- elsoc_5_graph %>%
+  drop_na(desempleo_migrantes, perdida_identidad)
+
+ggplot(elsoc_5_graph, aes(
+  x = desempleo_migrantes, 
+  fill = factor(comportamiento_prosocial, labels = c("Alto", "Bajo"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alto" = "#2b2f3c", "Bajo" = "#f9913d"),
+    breaks = c("Alto", "Bajo"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Percepción de desempleo \n debido a inmigrantes según comportamiento prosocial",
+    x = "Percepción de desempleo",
+    y = "Comportamiento prosocial",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+En @fig-prosoc se nota una tendencia de las personas a tener un bajo comportamiento prosocial, cuyo porcentaje es mayoría en las tres barras. Con mayor profundidad, se puede afirmar una asociación negativa entre la percepción de desempleo por la migración y el comportamiento prosocial. En otras palabras, mientras el comportamiento social es más bajo, se considera en mayor medida que los inmigrantes causan desempleo en el país. 
+
+```{r}
+#| label: fig-confinter
+#| fig-cap: Asociación entre percepción de desempleo debido a inmigrantes y confianza interpersonal
+#| fig-cap-location: top
+#| echo: false 
+
+ggplot(elsoc_5_graph, aes(
+  x = desempleo_migrantes, 
+  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
+    breaks = c("Alta confianza", "Baja confianza"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "% de percepción de desempleo \n debido a inmigrantes según confianza interpersonal",
+    x = "Percepción de desempleo",
+    y = "Confianza interpersonal",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+En @fig-ayudaeco se observa un patrón bastante similar al anterior, en donde la disminución  empleos disponibles por migración se correlaciona negativamente con confianza interpersonal. Es relevante señalar que persiste una diferencia muy tenue entre la categoría "muy en desacuerdo" y "ni en desacuerdo ni de acuerdo", mientras que la disparidad más marcada se percibe al comparar las dos categorías anteriores con el máximo grado de acuerdo.
+
+```{r}
+#| label: fig-ayudaeco
+#| fig-cap: Asociación entre percepción de pérdida de identidad y ayuda económica
+#| fig-cap-location: top
+#| echo: false 
+
+ggplot(elsoc_5_graph, aes(
+  x = perdida_identidad, 
+  fill = factor(ayuda_economica, labels = c("Mucha ayuda", "Poca ayuda"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Mucha ayuda" = "#2b2f3c", "Poca ayuda" = "#f9913d"),
+    breaks = c("Mucha ayuda", "Poca ayuda"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "% de percepción de pérdida de identidad del país \n debido a inmigrantes según ayuda económica a terceros",
+    x = "Pérdida de identidad",
+    y = "Ayuda económica",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+# Cruces filtrados (género/educación)
+
+## Seguridad por género
+
+```{r}
+seguridad_genero <- elsoc_6_graph %>%
+  select(sexo, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+seguridad_hombres <- seguridad_genero %>%
+  filter(sexo==0)
+
+seguridad_mujeres <- seguridad_genero %>%
+  filter(sexo==1)
+```
+
+```{r}
+seguridad_hombres <- seguridad_hombres %>%
+  select(-c(sexo))
+
+seguridad_mujeres <- seguridad_mujeres %>%
+  select(-c(sexo))
+```
+
 
 ```{r}
 #| label: fig-seginteract
@@ -1427,10 +888,657 @@ ggplot(datos_combinados, aes(
   ))
 ```
 
- @fig-seginteract refleja la asociación entre seguridad objetiva y percepción de pérdida de identidad del país a causa de los inmigrantes, lo cual está graficado por hombres y mujeres. Se puede observar que, en el caso de los hombres, las categorías más polarizadas concentran la mayoría de las respuestas, por lo que no hay un patrón muy claro. En cambio, a medida que las mujeres viven en entornos menos seguros, están más de acuerdo con que el país pierde identidad a causa de los inmigrantes. 
+ @fig-seginteract refleja la asociación entre seguridad objetiva y percepción de pérdida de identidad del país a causa de los inmigrantes, lo cual está graficado por hombres y mujeres. Se puede observar que, en el caso de los hombres, las categorías más polarizadas concentran la mayoría de las respuestas, por lo que no hay un patrón muy claro. En cambio, a medida que las mujeres viven en entornos menos seguros, están más de acuerdo con que el país pierde identidad a causa de los inmigrantes.
+
+## Seguridad por educación
+
+```{r}
+seguridad_educ <- elsoc_6_graph %>%
+  select(educacion, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+seguridad_titulo <- seguridad_educ %>%
+  filter(educacion==1)
+
+seguridad_notitulo <- seguridad_educ %>%
+  filter(educacion==0)
+```
+
+```{r}
+seguridad_titulo <- seguridad_titulo %>%
+  select(-c(educacion))
+
+seguridad_notitulo <- seguridad_notitulo %>%
+  select(-c(educacion))
+```
+
+```{r}
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+seguridad_titulo$grupo <- "Con título univ."
+seguridad_notitulo$grupo <- "Sin título univ."
+
+# Combina los datasets
+datos_combinados <- rbind(seguridad_titulo, seguridad_notitulo)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = desempleo_migrantes, 
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
+    breaks = c("Alta seguridad", "Poca seguridad"),
+    name = "Seguridad objetiva"
+  ) +
+  labs(
+    title = "Percepción de desempleo debido a inmigrantes según seguridad objetiva",
+    x = "Percepción de desempleo debido a inmigrantes",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 10),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold", size = 14),
+    legend.text = element_text(size = 11),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+## Vínculos territoriales por género
+
+```{r}
+barrio_genero <- elsoc_6_graph %>%
+  select(sexo, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+barrio_hombres <- barrio_genero %>%
+  filter(sexo==0)
+
+barrio_mujeres <- barrio_genero %>%
+  filter(sexo==1)
+```
+
+```{r}
+barrio_hombres <- barrio_hombres %>%
+  select(-c(sexo))
+
+barrio_mujeres <- barrio_mujeres %>%
+  select(-c(sexo))
+```
 
 ```{r}
 #| label: fig-terra-gen
+#| fig-cap: Sentido de pertenencia y pérdida de identidad por género
+#| fig-cap-location: top
+#| echo: false 
+
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+barrio_hombres$grupo <- "Hombres"
+barrio_mujeres$grupo <- "Mujeres"
+
+# Combina los datasets
+datos_combinados <- rbind(barrio_hombres, barrio_mujeres)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = perdida_identidad, 
+  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
+    breaks = c("Alta pertenencia", "Baja pertenencia"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Pérdida de identidad del país debido a inmigrantes según sentido de pertenencia",
+    x = "Percepción de pérdida de identidad",
+    y = "Sentido de pertenencia",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles (tomado del código de referencia)
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+En @fig-terra-gen se puede observar cómo se relaciona el sentido de pertenencia al barrio con la pérdida de identidad debido a la migración, distinguiendo por género. Los hombres tienden a mantener una postura fuertemente polarizada, en donde, quienes tienen un bajo sentido de pertenencia, pueden creer fervientemente que los inmigrantes causan la pérdida de identidad nacional, o bien, están muy en desacuerdo con esta sentencia. Al contrario, las mujeres con bajo sentido de pertenencia, tienden a percibir de manera más moderada la pérdida de identidad nacional a causa de la migración, siendo la categoría neutral la que posee mayor porcentaje de respuesta.
+
+## Vínculos territoriales por educación
+
+```{r}
+barrio_educ <- elsoc_6_graph %>%
+  select(educacion, sentido_pertenencia, satisfaccion_barrio, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+barrio_titulo <- barrio_educ %>%
+  filter(educacion==1)
+
+barrio_notitulo <- barrio_educ %>%
+  filter(educacion==0)
+```
+
+```{r}
+barrio_titulo <- barrio_titulo %>%
+  select(-c(educacion))
+
+barrio_notitulo <- barrio_notitulo %>%
+  select(-c(educacion))
+```
+
+```{r}
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+barrio_titulo$grupo <- "Con título univ."
+barrio_notitulo$grupo <- "Sin título univ."
+
+# Combina los datasets
+datos_combinados <- rbind(barrio_titulo, barrio_notitulo)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = desempleo_migrantes, 
+  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
+    breaks = c("Alta pertenencia", "Baja pertenencia"),
+    name = "Sentido de pertenencia"
+  ) +
+  labs(
+    title = "Percepción de desempleo debido a inmigrantes según sentido de pertenencia",
+    x = "Percepción de desempleo debido a inmigrantes",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 10),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold", size = 14),
+    legend.text = element_text(size = 11),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+## Redes sociales por género
+
+```{r}
+redes_genero <- elsoc_5_graph %>%
+  select(sexo, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+redes_hombres <- redes_genero %>%
+  filter(sexo==0)
+
+redes_mujeres <- redes_genero %>%
+  filter(sexo==1)
+```
+
+```{r}
+redes_hombres <- redes_hombres %>%
+  select(-c(sexo))
+
+redes_mujeres <- redes_mujeres %>%
+  select(-c(sexo))
+```
+
+```{r}
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+redes_hombres$grupo <- "Hombres"
+redes_mujeres$grupo <- "Mujeres"
+
+# Combina los datasets
+datos_combinados <- rbind(redes_hombres, redes_mujeres)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = desempleo_migrantes, 
+  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
+    breaks = c("Alta confianza", "Baja confianza"),
+    name = "Confianza interpersonal"
+  ) +
+  labs(
+    title = "Percepción de desempleo debido a inmigrantes según confianza interpersonal",
+    x = "Percepción de desempleo debido a inmigrantes",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 10),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold", size = 14),
+    legend.text = element_text(size = 11),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+## Redes sociales por educación
+
+```{r}
+redes_educ <- elsoc_5_graph %>%
+  select(educacion, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+redes_titulo <- redes_educ %>%
+  filter(educacion==1)
+
+redes_notitulo <- redes_educ %>%
+  filter(educacion==0)
+```
+
+```{r}
+redes_titulo <- redes_titulo %>%
+  select(-c(educacion))
+
+redes_notitulo <- redes_notitulo %>%
+  select(-c(educacion))
+```
+
+```{r}
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+redes_titulo$grupo <- "Con título univ."
+redes_notitulo$grupo <- "Sin título univ."
+
+# Combina los datasets
+datos_combinados <- rbind(redes_titulo, redes_notitulo)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = desempleo_migrantes, 
+  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
+    breaks = c("Alta confianza", "Baja confianza"),
+    name = "Confianza interpersonal"
+  ) +
+  labs(
+    title = "Percepción de desempleo debido a inmigrantes según confianza interpersonal",
+    x = "Percepción de desempleo debido a inmigrantes",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 10),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold", size = 14),
+    legend.text = element_text(size = 11),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+# Gráficos seleccionados
+
+```{r}
+#| label: fig-seg-tran
+#| fig-cap: Seguridad objetiva y pérdida identidad 
+#| fig-cap-location: top
+#| echo: false 
+
+ggplot(elsoc_6_graph, aes(
+  x = perdida_identidad, 
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
+    breaks = c("Alta seguridad", "Poca seguridad"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Pérdida de identidad del país \n debido a inmigrantes según seguridad objetiva",
+    x = "Percepción de pérdida de identidad",
+    y = "Seguridad objetiva",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+En @fig-seg-trans se puede apreciar que las cantidad de personas que viven niveles bajos de seguridad aumenta progresivamente a medida que se está más de acuerdo con que los inmigrantes le restan identidad al país. Por tanto, mientras menos seguras están las personas, se está más convencido de que los inmigrantes erosionan la identidad de Chile.
+
+```{r}
+#| label: fig-seginterac
+#| fig-cap: Seguridad objetiva y pérdida de identidad por género
+#| fig-cap-location: top
+#| echo: false 
+
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+seguridad_hombres$grupo <- "Hombres"
+seguridad_mujeres$grupo <- "Mujeres"
+
+# Combina los datasets
+datos_combinados <- rbind(seguridad_hombres, seguridad_mujeres)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = perdida_identidad, 
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
+    breaks = c("Alta seguridad", "Poca seguridad"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Pérdida de identidad del país debido a inmigrantes según seguridad objetiva",
+    x = "Percepción de pérdida de identidad",
+    y = "Seguridad objetiva",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles (tomado del código de referencia)
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+ @fig-seginteract refleja la asociación entre seguridad objetiva y percepción de pérdida de identidad del país a causa de los inmigrantes, lo cual está graficado por hombres y mujeres. Se puede observar que, en el caso de los hombres, las categorías más polarizadas concentran la mayoría de las respuestas, por lo que no hay un patrón muy claro. En cambio, a medida que las mujeres viven en entornos menos seguros, están más de acuerdo con que el país pierde identidad a causa de los inmigrantes. 
+
+```{r}
+#| label: fig-terra-genn
 #| fig-cap: Sentido de pertenencia y pérdida de identidad por género
 #| fig-cap-location: top
 #| echo: false 
