@@ -88,18 +88,20 @@ elsoc_4 <- readRDS("../../input/data/proc_data/elsoc_2019_coh_mig.RData")
 ```
 
 ```{r}
+#| label: database ola 5 
+#| echo: false 
+
+elsoc_5 <- readRDS("../../input/data/proc_data/elsoc_2021_mig.RData")
+```
+
+```{r}
 #| label: database ola 6
 #| echo: false 
 
 elsoc_6 <- readRDS("../../input/data/proc_data/elsoc_2022_mig.RData")
 ```
 
-```{r}
-#| label: database ola 5 
-#| echo: false 
 
-elsoc_5 <- readRDS("../../input/data/proc_data/elsoc_2021_mig.RData")
-```
 
 ```{r}
 #| label: data-full
@@ -677,6 +679,10 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: fig-long-9
+#| fig-cap: "Distribución de Subíndices de Seguridad (2016-2023)"
+#| fig-cap-location: top
+#| warning: false
+#| message: false
 #| echo: false
 
 # Variables de seguridad (índices categóricos)
@@ -727,10 +733,10 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
     breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
-  labs(title = "Distribución de índices de seguridad por ola (ELSOC 2016-2023)",
-       x = "Año", 
+  labs(x = "Año", 
        y = "Proporción", 
-       fill = "Nivel") +
+       fill = "Nivel",
+       caption = "Fuente: Elaboración Propia a partir de ELSOC 2019-2023") +
   theme_minimal() +
   theme(
     strip.text = element_text(size = 12, face = "bold"),
@@ -749,7 +755,8 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
     legend.key.width      = unit(20, "pt"),
     
     axis.text  = element_text(size = 11),
-    panel.spacing = unit(1, "cm")   # mantiene separación entre paneles
+    panel.spacing = unit(1, "cm"), # mantiene separación entre paneles
+    plot.caption = element_text(hjust = 0.5, size = 10, color ="black")
   ) +
   guides(fill = guide_legend(
     title.position = "top",
@@ -764,6 +771,8 @@ La [@fig-long-9], que presenta los índices de seguridad, presentan una dinámic
 
 ```{r}
 #| label: fig-long-10
+#| fig-cap: "Distribución subíndices de redes sociales (2019-2023)" 
+#| fig-cap-location: top
 #| echo: false
 
 # Variables de redes (índices categóricos)
@@ -813,10 +822,10 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
     breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
-  labs(title = "Distribución de índices de redes por ola (ELSOC 2016-2023)",
-       x = "Año", 
+  labs(x = "Año", 
        y = "Proporción", 
-       fill = "Nivel") +
+       fill = "Nivel",
+       caption = "Fuente: Elaboración propia a partir de ELSOC 2019-2023") +
   theme_minimal() +
   theme(
     strip.text = element_text(size = 12, face = "bold"),
@@ -835,7 +844,8 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
     legend.key.width      = unit(20, "pt"),
     
     axis.text  = element_text(size = 11),
-    panel.spacing = unit(1, "cm")
+    panel.spacing = unit(1, "cm"),
+    plot.caption = element_text(hjust = 0.5, size = 10, color ="black")
   ) +
   guides(fill = guide_legend(
     title.position = "top",
@@ -849,6 +859,8 @@ Por su parte,  la [@fig-long-10] presenta la distribución de índices de redes 
 
 ```{r}
 #| label: fig-long-11
+#| fig-cap: "Distribución Subíndices de Vínculo Territorial"
+#| fig-cap-location: top
 #| echo: false
 #| warning: false
 
@@ -898,10 +910,10 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
     breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
-  labs(title = "Distribución de índices de vínculo territorial por ola (ELSOC 2016-2023)",
-       x = "Año", 
+  labs(x = "Año", 
        y = "Proporción", 
-       fill = "Nivel") +
+       fill = "Nivel",
+       caption = "Fuente: Elaboración propia a partir de ELSOC 2019-2023") +
   theme_minimal() +
   theme(
     strip.text = element_text(size = 12, face = "bold"),
@@ -920,7 +932,8 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
     legend.key.width      = unit(20, "pt"),
     
     axis.text  = element_text(size = 11),
-    panel.spacing = unit(1, "cm")   # mantiene separación entre paneles
+    panel.spacing = unit(1, "cm"),   # mantiene separación entre paneles
+    plot.caption = element_text(hjust = 0.5, size = 10, color ="black")
   ) +
   guides(fill = guide_legend(
     title.position = "top",
