@@ -1,1 +1,1081 @@
 # Cohesión Horizontal: Redes Sociales
+
+## Data
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, 
+                      include = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+#| label: packages
+#| echo: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled,
+               psych,
+               rstatix,
+               lme4,
+               performance,
+               sjPlot,
+               srvyr,
+               ggdist,
+               purrr,
+               rlang)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| echo: false 
+
+elsoc_1 <- readRDS("../../input/data/proc_data/elsoc_2016_coh_mig.RData")
+elsoc_2 <- readRDS("../../input/data/proc_data/elsoc_2017_coh_mig.RData")
+elsoc_3 <- readRDS("../../input/data/proc_data/elsoc_2018_coh_mig.RData")
+elsoc_4 <- readRDS("../../input/data/proc_data/elsoc_2019_coh_mig.RData")
+elsoc_5 <- readRDS("../../input/data/proc_data/elsoc_2021_mig.RData")
+elsoc_6 <- readRDS("../../input/data/proc_data/elsoc_2022_mig.RData")
+
+# Agregar la variable ola a cada base
+elsoc_1 <- elsoc_1 %>% mutate(ola = 1)
+elsoc_2 <- elsoc_2 %>% mutate(ola = 2)
+elsoc_3 <- elsoc_3 %>% mutate(ola = 3)
+elsoc_4 <- elsoc_4 %>% mutate(ola = 4)
+elsoc_4 <- elsoc_4 %>% mutate(ola = 4)
+elsoc_5 <- elsoc_5 %>% mutate(ola = 5)
+elsoc_6 <- elsoc_6 %>% mutate(ola = 6)
+
+# Unir todas las olas en una sola base
+elsoc_long <- bind_rows(elsoc_1, elsoc_2, elsoc_3, elsoc_4, elsoc_5, elsoc_6)
+```
+
+```{r}
+#| label: data-biv
+#| echo: false
+
+db_long <- load("../../input/data/proc_data/db_long.RData")
+```
+
+```{r}
+#| label: db_pond
+#| echo: false
+
+db_pond <- db %>% 
+  as_survey_design(ids = segmento, 
+                   strata = estrato, 
+                   weights = ponderador_long_total,
+                   nest = T)
+
+```
+
+## Recodificación Variables Redes
+
+```{r}
+#| label: Comportamiento Prosocial 1
+#| echo: false
+
+
+elsoc_5_graph <- elsoc_5 %>%  
+ mutate(    
+   # Índice promediado    
+   comportamiento_prosocial = rowMeans(      
+     select(., reunion_pub, voluntariado),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   comportamiento_prosocial = case_when(      
+     comportamiento_prosocial == 1 ~ 1,
+     comportamiento_prosocial >= 1.5 & comportamiento_prosocial <= 2 ~ 2,
+     comportamiento_prosocial >= 2.5 & comportamiento_prosocial <= 3 ~ 3
+   )  
+ )
+```
+
+
+```{r}
+#| label: Ayuda Económica 1
+#| echo: false
+
+elsoc_5_graph <- elsoc_5_graph %>%  
+ mutate(    
+   # Índice promediado    
+   ayuda_economica = rowMeans(      
+     select(., prestar_dinero, ayuda_trabajo),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   ayuda_economica = case_when(      
+     ayuda_economica == 1 ~ 1,
+     ayuda_economica >= 1.5 & ayuda_economica <= 2 ~ 2,
+     ayuda_economica >= 2.5 & ayuda_economica <= 3 ~ 3
+   ) 
+ )
+```
+
+
+```{r}
+#| label: Confianza Interpersonal 1
+#| echo: false
+
+elsoc_5_graph <- elsoc_5_graph %>%  
+ mutate(    
+   # Índice promediado    
+   confianza_inter = rowMeans(      
+     select(., confianza_gen, altruismo_gen),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   confianza_inter = case_when(      
+     confianza_inter == 1 ~ 1,
+     confianza_inter >= 1.5 & confianza_inter <= 2 ~ 2,
+     confianza_inter >= 2.5 & confianza_inter <= 3 ~ 3
+   )  
+ )
+```
+
+
+```{r}
+#| label: Comportamiento prosocial 2
+#| echo: false
+elsoc_5_graph_2 <- elsoc_5 %>%
+  mutate(comportamiento_prosocial = rowMeans(select(., reunion_pub, voluntariado), na.rm = TRUE))
+
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(comportamiento_prosocial = case_when(
+    comportamiento_prosocial <= 1.5 ~ 1,
+    comportamiento_prosocial >= 2   ~ 0
+  ))
+```
+
+```{r}
+#| label: Ayuda economica 2
+#| echo: false
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(ayuda_economica = rowMeans(select(., prestar_dinero, ayuda_trabajo), na.rm = TRUE))
+
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(ayuda_economica = case_when(
+    ayuda_economica <= 1.5 ~ 1,
+    ayuda_economica >= 2   ~ 0
+  ))
+```
+
+```{r}
+#| label: Confianza interpersonal 2
+#| echo: false
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(confianza_inter = rowMeans(select(., confianza_gen, altruismo_gen), na.rm = TRUE))
+
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(confianza_inter = case_when(
+    confianza_inter <= 1.5 ~ 1,
+    confianza_inter >= 2   ~ 0
+  ))
+```
+
+```{r}
+#| echo: false
+
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(desempleo_migrantes = case_when(
+    desempleo_migrantes <= 2 ~ 1,
+    desempleo_migrantes == 3  ~ 2,
+    desempleo_migrantes >= 4 ~ 3
+  ))
+```
+
+```{r}
+#| echo: false
+
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(contacto_migrantes = case_when(
+    contacto_migrantes <= 2 ~ 1,
+    contacto_migrantes == 3  ~ 2,
+    contacto_migrantes >= 4 ~ 3
+  ))
+```
+
+```{r}
+#| echo: false
+
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(simpatia_migrantes = case_when(
+    simpatia_migrantes <= 2 ~ 1,
+    simpatia_migrantes == 3  ~ 2,
+    simpatia_migrantes >= 4 ~ 3
+  ))
+
+```
+
+```{r}
+#| echo: false
+
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(igualdad_migrantes = case_when(
+    igualdad_migrantes <= 2 ~ 1,
+    igualdad_migrantes == 3  ~ 2,
+    igualdad_migrantes >= 4 ~ 3
+  ))
+
+```
+
+```{r}
+#| echo: false
+
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  mutate(perdida_identidad = case_when(
+    perdida_identidad <= 2 ~ 1,
+    perdida_identidad == 3  ~ 2,
+    perdida_identidad >= 4 ~ 3
+  ))
+```
+
+
+```{r}
+#| label: comportamiento prosocial longitudinal
+#| echo: false
+
+elsoc_long_graph <- elsoc_long %>%
+  mutate(
+    # Índice promediado - especificar las columnas directamente
+    comportamiento_prosocial = rowMeans(
+      cbind(reunion_pub, voluntariado),
+      na.rm = TRUE
+    ),
+    
+    # Recodificación en 0/1
+    comportamiento_prosocial = case_when(
+      comportamiento_prosocial <= 1.5 ~ 0,
+      comportamiento_prosocial >= 2   ~ 1,
+      TRUE ~ NA_real_  # Para valores entre 1.5 y 2
+    ),
+    
+    # Convertir a factor con labels
+    comportamiento_prosocial = factor(
+      comportamiento_prosocial,
+      levels = c(0, 1),
+      labels = c("Bajo", "Alto")
+    )
+  )
+```
+
+```{r}
+#| label: ayuda economica longitudinal
+#| echo: false
+
+
+elsoc_long_graph <- elsoc_long_graph %>%
+  mutate(
+    # Índice promediado - especificar las columnas directamente
+    ayuda_economica = rowMeans(
+      cbind(prestar_dinero, ayuda_trabajo),
+      na.rm = TRUE
+    ),
+    
+    # Recodificación en 0/1
+    ayuda_economica = case_when(
+      ayuda_economica <= 1.5 ~ 0,
+      ayuda_economica >= 2   ~ 1,
+      TRUE ~ NA_real_  # Para valores entre 1.5 y 2
+    ),
+    
+    # Convertir a factor con labels
+    ayuda_economica = factor(
+      ayuda_economica,
+      levels = c(0, 1),
+      labels = c("Bajo", "Alto")
+    )
+  )
+```
+
+```{r}
+#| label: confianza interpersonal longitudinal
+#| echo: false
+
+
+elsoc_long_graph <- elsoc_long_graph %>%
+  mutate(
+    # Índice promediado - especificar las columnas directamente
+    confianza_inter = rowMeans(
+      cbind(confianza_gen, altruismo_gen),
+      na.rm = TRUE
+    ),
+    
+    # Recodificación en 0/1
+    confianza_inter = case_when(
+      confianza_inter <= 1.5 ~ 0,
+      confianza_inter >= 2   ~ 1,
+      TRUE ~ NA_real_  # Para valores entre 1.5 y 2
+    ),
+    
+    # Convertir a factor con labels
+    confianza_inter = factor(
+      confianza_inter,
+      levels = c(0, 1),
+      labels = c("Bajo", "Alto")
+    )
+  )
+```
+
+## Descriptivos
+
+```{r}
+#| label: fig-redes
+#| fig-cap: Distribución de los índices de redes sociales
+#| echo: false
+#| fig-width: 12
+#| fig-height: 8
+
+
+# Seleccionar las variables y crear el dataset
+datos_redes_sociales <- dplyr::select(elsoc_5_graph, comportamiento_prosocial, ayuda_economica, confianza_inter)
+
+
+# Crea el gráfico
+desc_redes_sociales <- plot_stackfrq(
+ datos_redes_sociales,
+ show.prc = FALSE,
+ show.n = FALSE,
+ show.total = FALSE,
+ axis.labels = c("Comportamiento prosocial", "Ayuda económica", "Confianza interpersonal")
+) +
+ theme_ggdist() +
+ theme(
+   # Estilo del texto original
+   axis.text = element_text(size = 18),
+   title = element_text(size = 20),
+   legend.text = element_text(size = 16),
+  
+   # Estilo de la leyenda (adaptado del código de referencia)
+   legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+   legend.background = element_rect(fill = "white", color = NA),
+   legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+   legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+   legend.position = "bottom",
+   legend.direction = "horizontal",
+   legend.box = "horizontal",
+   legend.title = element_text(face = "bold"),
+   legend.key = element_rect(fill = "white", color = NA),
+   legend.key.height = unit(12, "pt"),
+   legend.key.width = unit(20, "pt")
+ ) +
+ scale_fill_manual(
+   values = c("1" = "#f9913d", "2" = "#7ABA21", "3" = "#2b2f3c"),
+   labels = c("1" = "Bajo",
+              "2" = "Medio",
+              "3" = "Alto")
+ ) +
+ guides(fill = guide_legend(
+   title = NULL,
+   title.position = "top",
+   label.position = "right",
+   nrow = 1,
+   byrow = TRUE,
+   keywidth = unit(14, "pt"),
+   keyheight = unit(10, "pt")
+ ))
+
+
+# Para mostrar el gráfico
+desc_redes_sociales
+```
+
+```{r}
+#| label: fig-long-10
+#| fig-cap: "Distribución subíndices de redes sociales (2019-2023)" 
+#| fig-cap-location: top
+#| echo: false
+
+# Variables de redes (índices categóricos)
+vars_redes <- c("comportamiento_prosocial", "ayuda_economica", "confianza_inter")
+
+# Preparar datos para gráfico apilado
+long_redes_stack <- elsoc_long_graph %>%
+  select(ola, all_of(vars_redes)) %>%
+  pivot_longer(cols = all_of(vars_redes), 
+               names_to = "variable", 
+               values_to = "valor") %>%
+  filter(!is.na(valor)) %>%
+  group_by(ola, variable, valor) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(ola, variable) %>%
+  mutate(
+    total = sum(n),
+    proporcion = n / total
+  ) %>%
+  ungroup() %>%
+  mutate(
+    variable_clean = case_when (
+      variable == "comportamiento_prosocial" ~ "Comportamiento  \n Prosocial",
+      variable == "ayuda_economica" ~ "Ayuda Económica",
+      variable == "confianza_inter" ~ "Confianza \n Interpersonal"
+    )
+  )
+
+# Vector con años correspondientes a cada ola
+anos_olas <- c("2016", "2017", "2018", "2019", "2022", "2023")
+
+# Gráfico de área apilada
+ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
+  geom_area(alpha = 0.7, position = "stack") +
+  geom_line(aes(group = interaction(variable, valor)), 
+            position = "stack", 
+            linewidth = 0.5, 
+            color = "white") +
+  facet_wrap(~variable_clean, ncol = 3) +
+  scale_fill_manual(values = c(
+    "Bajo" = "#F9913D",
+    "Alto" = "#2B2F3C"
+  )) +
+  scale_x_continuous(
+    breaks = 1:6,
+    labels = anos_olas
+  ) +
+  scale_y_continuous(
+    limits = c(0, 1), 
+    breaks = seq(0, 1, 0.2),
+    labels = scales::percent_format(accuracy = 1)
+  ) +
+  labs(x = "Año", 
+       y = "Proporción", 
+       fill = "Nivel",
+       caption = "Fuente: Elaboración propia a partir de ELSOC 2019-2023") +
+  theme_minimal() +
+  theme(
+    strip.text = element_text(size = 12, face = "bold"),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position       = "bottom",
+    legend.direction      = "horizontal",
+    legend.box            = "horizontal",
+    
+    legend.title          = element_text(face = "bold"),
+    legend.key            = element_rect(fill = "white", color = NA),
+    legend.key.height     = unit(12, "pt"),
+    legend.key.width      = unit(20, "pt"),
+    
+    axis.text  = element_text(size = 11),
+    panel.spacing = unit(1, "cm"),
+    plot.caption = element_text(hjust = 0.5, size = 10, color ="black")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+## Transversales
+
+```{r}
+#| label: fig-prosoc
+#| fig-cap: Asociación entre percepción de desempleo y comportamiento prosocial
+#| fig-cap-location: top
+#| echo: false 
+
+elsoc_5_graph_2 <- elsoc_5_graph_2 %>%
+  drop_na(desempleo_migrantes, perdida_identidad)
+
+ggplot(elsoc_5_graph_2, aes(
+  x = desempleo_migrantes, 
+  fill = factor(comportamiento_prosocial, labels = c("Alto", "Bajo"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alto" = "#2b2f3c", "Bajo" = "#f9913d"),
+    breaks = c("Alto", "Bajo"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Percepción de desempleo \n debido a inmigrantes según comportamiento prosocial",
+    x = "Percepción de desempleo",
+    y = "Comportamiento prosocial",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+En @fig-prosoc se nota una tendencia de las personas a tener un bajo comportamiento prosocial, cuyo porcentaje es mayoría en las tres barras. Con mayor profundidad, se puede afirmar una asociación negativa entre la percepción de desempleo por la migración y el comportamiento prosocial. En otras palabras, mientras el comportamiento social es más bajo, se considera en mayor medida que los inmigrantes causan desempleo en el país. 
+
+```{r}
+#| label: fig-confinter
+#| fig-cap: Asociación entre percepción de desempleo debido a inmigrantes y confianza interpersonal
+#| fig-cap-location: top
+#| echo: false 
+
+ggplot(elsoc_5_graph_2, aes(
+  x = desempleo_migrantes, 
+  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
+    breaks = c("Alta confianza", "Baja confianza"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "% de percepción de desempleo \n debido a inmigrantes según confianza interpersonal",
+    x = "Percepción de desempleo",
+    y = "Confianza interpersonal",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+En @fig-ayudaeco se observa un patrón bastante similar al anterior, en donde la disminución  empleos disponibles por migración se correlaciona negativamente con confianza interpersonal. Es relevante señalar que persiste una diferencia muy tenue entre la categoría "muy en desacuerdo" y "ni en desacuerdo ni de acuerdo", mientras que la disparidad más marcada se percibe al comparar las dos categorías anteriores con el máximo grado de acuerdo.
+
+```{r}
+#| label: fig-ayudaeco
+#| fig-cap: Asociación entre percepción de pérdida de identidad y ayuda económica
+#| fig-cap-location: top
+#| echo: false 
+
+ggplot(elsoc_5_graph_2, aes(
+  x = perdida_identidad, 
+  fill = factor(ayuda_economica, labels = c("Mucha ayuda", "Poca ayuda"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Mucha ayuda" = "#2b2f3c", "Poca ayuda" = "#f9913d"),
+    breaks = c("Mucha ayuda", "Poca ayuda"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "% de percepción de pérdida de identidad del país \n debido a inmigrantes según ayuda económica a terceros",
+    x = "Pérdida de identidad",
+    y = "Ayuda económica",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+## Redes sociales por género
+
+```{r}
+redes_genero <- elsoc_5_graph_2 %>%
+  select(sexo, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+redes_hombres <- redes_genero %>%
+  filter(sexo==0)
+
+redes_mujeres <- redes_genero %>%
+  filter(sexo==1)
+```
+
+```{r}
+redes_hombres <- redes_hombres %>%
+  select(-c(sexo))
+
+redes_mujeres <- redes_mujeres %>%
+  select(-c(sexo))
+```
+
+```{r}
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+redes_hombres$grupo <- "Hombres"
+redes_mujeres$grupo <- "Mujeres"
+
+# Combina los datasets
+datos_combinados <- rbind(redes_hombres, redes_mujeres)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = desempleo_migrantes, 
+  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
+    breaks = c("Alta confianza", "Baja confianza"),
+    name = "Confianza interpersonal"
+  ) +
+  labs(
+    title = "Percepción de desempleo debido a inmigrantes según confianza interpersonal",
+    x = "Percepción de desempleo debido a inmigrantes",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 10),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold", size = 14),
+    legend.text = element_text(size = 11),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+## Redes sociales por educación
+
+```{r}
+redes_educ <- elsoc_5_graph_2 %>%
+  select(educacion, comportamiento_prosocial, ayuda_economica, confianza_inter, contacto_migrantes, simpatia_migrantes, perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+redes_titulo <- redes_educ %>%
+  filter(educacion==1)
+
+redes_notitulo <- redes_educ %>%
+  filter(educacion==0)
+```
+
+```{r}
+redes_titulo <- redes_titulo %>%
+  select(-c(educacion))
+
+redes_notitulo <- redes_notitulo %>%
+  select(-c(educacion))
+```
+
+```{r}
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+redes_titulo$grupo <- "Con título univ."
+redes_notitulo$grupo <- "Sin título univ."
+
+# Combina los datasets
+datos_combinados <- rbind(redes_titulo, redes_notitulo)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = desempleo_migrantes, 
+  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
+    breaks = c("Alta confianza", "Baja confianza"),
+    name = "Confianza interpersonal"
+  ) +
+  labs(
+    title = "Percepción de desempleo debido a inmigrantes según confianza interpersonal",
+    x = "Percepción de desempleo debido a inmigrantes",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 10),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold", size = 14),
+    legend.text = element_text(size = 11),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+## Bivariados Longitudinales
+
+```{r}
+#| label: plots
+
+
+# Selección de variables: (1) desempleo por migrantes, (2)pérdida de identidad
+# (3)simpatía hacia migrantes, (4)acceso a salud igualitaro y (5) contacto positivo
+
+# plot function
+make_plot <- function(design, predictor, outcome, ylab, legend_title) {
+  pred_sym <- ensym(predictor)
+  out_sym  <- ensym(outcome)
+  
+  design %>% 
+    select(wave, !!pred_sym, !!out_sym) %>% 
+    tidyr::drop_na() %>% 
+    group_by(wave, !!pred_sym) %>%
+    summarise(
+      value = survey_mean(!!out_sym, vartype = "ci", na.rm = TRUE),
+      .groups = "drop"
+    ) %>% 
+    ggplot(aes(x = wave, y = value, group = !!pred_sym)) +
+    geom_point(aes(color = !!pred_sym), size = 3.5) +
+    geom_line(aes(color = !!pred_sym), linewidth = 0.8) +
+    # geom_errorbar(aes(ymin = value_low, ymax = value_upp, color = !!pred_sym), width = 0.1) +
+    scale_y_continuous(n.breaks = 7) +
+    scale_color_manual(
+      name = legend_title,
+      values = c("#F9913D","#7ABA21", "#2b2f3c")
+      ) +
+    labs(
+      x = "Ola",
+      y = ylab,
+      caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+    ) +
+    theme_ggdist() +
+    theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+}
+
+# combinations
+
+outcomes <- c(
+  seguridad_sub           = "Seguridad percibida",
+  seguridad_obj           = "Seguridad objetiva",
+  confianza_inter         = "Confianza interpersonal",
+  comportamiento_prosocial= "Comportamiento prosocial",
+  ayuda_economica         = "Ayuda económica",
+  sentido_pertenencia     = "Sentido pertenencia barrio",
+  satisfaccion_barrio     = "Satisfacción barrio"
+)
+
+predictors <- list(
+  desempleo_migrantes = "Desempleo percibido por \nmigrantes",
+  perdida_identidad   = "Pérdida identidad por \nmigrantes",
+  simpatia_migrantes = "Simpatía hacia migrantes",
+  igualdad_migrantes = "Acceso a salud igualitario \npara migrantes",
+  contacto_migrantes = "Contacto positivo con \nmigrantes"
+)
+
+comb <- tidyr::crossing(pred = names(predictors), out = names(outcomes))
+
+# make plots
+
+plots_tbl <- comb %>%
+  mutate(
+    plot = pmap(
+      list(pred, out),
+      ~ make_plot(
+        design       = db_pond,
+        predictor    = ..1,
+        outcome      = ..2,
+        ylab         = outcomes[..2],
+        legend_title = predictors[[..1]]
+      )
+    ),
+    plot_id = paste0("plot_", out, "__by__", pred)
+  )
+```
+
+
+
+La @fig-prosoc-contac muestra el promedio del índice de comportamiento prosocial según la frecuencia de contacto positivo con migrantes. En términos generales, se observa que quienes reportan tener un contacto muy poco o poco amistoso con migrantes presentan los niveles más bajos de comportamiento prosocial, mientras que quienes declaran un contacto ni amistoso ni no amistoso o muy/bastante amistoso muestran valores más altos.
+
+En la evolución temporal, el grupo con contacto poco amistoso presenta un leve aumento entre 2016 y 2018, seguido de una marcada disminución en 2019, lo que refuerza la asociación entre distancia social y menor disposición prosocial. Por contraste, quienes mantienen un contacto muy positivo con migrantes evidencian un incremento inicial entre 2016 y 2017 y luego se mantienen relativamente estables hasta 2019. Lo más destacado, sin embargo, es el caso de quienes reportan un contacto neutral —ni amistoso ni no amistoso—, pues este grupo exhibe un crecimiento sostenido del comportamiento prosocial a lo largo del período. Este patrón sugiere que, para ellos, la disposición prosocial podría estar menos condicionada por la calidad del contacto directo con migrantes y responder en mayor medida a otros factores contextuales o disposicionales.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-prosoc-contac
+#| fig-cap: "Comportamiento prosocial y frecuencia de contacto positivo con migrantes (2016-2023)"
+#| fig-cap-location: top
+
+
+sel <- plots_tbl %>%
+  filter(out  %in% c("confianza_inter","comportamiento_prosocial", "ayuda_economica")) %>% 
+  filter(pred != "igualdad_migrantes" & out != "ayuda_economica")
+
+walk(sel[c(1), ]$plot, print)
+
+```
+
+
+La @fig-prosoc-desempleo presenta la evolución del índice de comportamiento prosocial en relación con la percepción de desempleo atribuida a la migración. En términos generales, se observa que quienes consideran que la llegada de migrantes incrementa el desempleo exhiben consistentemente los niveles más bajos de comportamiento prosocial. No obstante, a diferencia de lo visto en la figura anterior, en este caso los niveles de prosocialidad tienden a ser bajos incluso entre quienes no perciben un mayor desempleo por efecto de la migración, lo que genera trayectorias más paralelas que divergentes. Este patrón sugiere que la disminución en la disposición prosocial no estaría directamente ligada a la percepción de desempleo causada por la migración, o bien que la relación entre ambas dimensiones podría ser de carácter negativo y más complejo de lo que se observa en otros ámbitos, como el laboral o el contacto interpersonal.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-prosoc-desempleo
+#| fig-cap: "Comportamiento prosocial y desempleo percibido por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(3), ]$plot, print)
+
+```
+
+
+La @fig-conf-desempleo muestra la relación entre la confianza social y la percepción de desempleo atribuida a los migrantes. En términos generales, se observa una tendencia divergente en la evolución de la confianza interpersonal según las distintas categorías de percepción. Quienes se manifiestan muy en desacuerdo con la idea de que la migración incrementa el desempleo presentan inicialmente una caída en sus niveles de confianza, seguida de un aumento pronunciado a partir de 2019, lo que indica una recuperación significativa en los años más recientes. No obstante, este grupo continúa exhibiendo, en promedio, los niveles más bajos de confianza interpersonal en comparación con los demás.
+
+Por otro lado, quienes están muy de acuerdo con que la migración genera desempleo muestran niveles de confianza más estables, sin grandes variaciones entre 2016 y 2023. Finalmente, el grupo que se ubica en una posición intermedia —ni de acuerdo ni en desacuerdo— alcanza valores relativamente altos de confianza en 2016 y 2023, aunque con una disminución en los años intermedios. En conjunto, estos patrones sugieren que las percepciones sobre el impacto de la migración en el empleo se relacionan con la forma en que las personas valoran la confianza social, pero que esta relación no es lineal: mientras en algunos casos la percepción negativa se asocia con menores niveles de confianza, en otros la variabilidad es mayor y podría estar modulada por factores adicionales.
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-conf-desempleo
+#| fig-cap: "Confianza interpersonal y desempleo percibido por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(4), ]$plot, print)
+
+```
+
+La @fig-prosoc-identi presenta la relación entre el comportamiento prosocial y la percepción de que la migración provoca una pérdida de identidad nacional. Los resultados muestran que quienes están muy de acuerdo con esta afirmación exhiben tanto la tendencia más pronunciada a la baja como los niveles más reducidos de prosocialidad en el periodo analizado, lo que refleja una asociación negativa entre la percepción de amenaza cultural y la disposición a cooperar socialmente.
+
+En contraste, las personas que se declaran indecisas frente a esta idea presentan un aumento sostenido en sus niveles de comportamiento prosocial, alcanzando en 2023 el valor más alto entre las tres categorías. Por último, quienes se manifiestan muy en desacuerdo con que la migración genere pérdida de identidad muestran un ascenso progresivo de la prosocialidad entre 2016 y 2019, seguido de una caída abrupta entre 2019 y 2022, lo que sugiere que, en este grupo, la confianza social puede ser más vulnerable a cambios contextuales recientes.
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-prosoc-identi
+#| fig-cap: "Comportamiento prosocial y pérdida de identidad por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(5), ]$plot, print)
+
+```

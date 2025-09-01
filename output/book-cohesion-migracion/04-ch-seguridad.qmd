@@ -1,1 +1,916 @@
 # Cohesión Horizontal: Seguridad
+
+## Bases y Data
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, 
+                      include = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+#| label: packages
+#| echo: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled,
+               psych,
+               rstatix,
+               lme4,
+               performance,
+               sjPlot,
+               srvyr,
+               ggdist,
+               purrr,
+               rlang)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| echo: false 
+
+elsoc_1 <- readRDS("../../input/data/proc_data/elsoc_2016_coh_mig.RData")
+elsoc_2 <- readRDS("../../input/data/proc_data/elsoc_2017_coh_mig.RData")
+elsoc_3 <- readRDS("../../input/data/proc_data/elsoc_2018_coh_mig.RData")
+elsoc_4 <- readRDS("../../input/data/proc_data/elsoc_2019_coh_mig.RData")
+elsoc_5 <- readRDS("../../input/data/proc_data/elsoc_2021_mig.RData")
+elsoc_6 <- readRDS("../../input/data/proc_data/elsoc_2022_mig.RData")
+
+# Agregar la variable ola a cada base
+elsoc_1 <- elsoc_1 %>% mutate(ola = 1)
+elsoc_2 <- elsoc_2 %>% mutate(ola = 2)
+elsoc_3 <- elsoc_3 %>% mutate(ola = 3)
+elsoc_4 <- elsoc_4 %>% mutate(ola = 4)
+elsoc_4 <- elsoc_4 %>% mutate(ola = 4)
+elsoc_5 <- elsoc_5 %>% mutate(ola = 5)
+elsoc_6 <- elsoc_6 %>% mutate(ola = 6)
+
+# Unir todas las olas en una sola base
+elsoc_long <- bind_rows(elsoc_1, elsoc_2, elsoc_3, elsoc_4, elsoc_5, elsoc_6)
+```
+
+```{r}
+#| label: data-biv
+#| echo: false
+
+db_long <- load("../../input/data/proc_data/db_long.RData")
+```
+
+```{r}
+#| label: db_pond
+#| echo: false
+
+db_pond <- db %>% 
+  as_survey_design(ids = segmento, 
+                   strata = estrato, 
+                   weights = ponderador_long_total,
+                   nest = T)
+
+```
+
+## Recodificaciones Seguridad
+
+```{r}
+#| label: Recode Subíndices de Seguridad Transversal
+#| echo: false
+
+#OBJETIVA
+elsoc_6_graph <- elsoc_6 %>%  
+ mutate(    
+   # Índice promediado    
+   seguridad_obj = rowMeans(      
+     select(., peleas_calle, asaltos, trafico_drogas),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   seguridad_obj = case_when(      
+     seguridad_obj >= 1 & seguridad_obj <= 2.5 ~ 1,
+     seguridad_obj >= 3 & seguridad_obj <= 3.5 ~ 2,
+     seguridad_obj >= 4 & seguridad_obj <= 5 ~ 3
+   )  
+ )
+
+#SUBJETIVA
+elsoc_6_graph <- elsoc_6_graph %>%  
+ mutate(    
+   # Índice promediado    
+   seguridad_sub = rowMeans(      
+     select(., seguridad_sat, seguridad_perc),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   seguridad_sub = case_when(      
+     seguridad_sub >= 1 & seguridad_sub <= 2.5 ~ 1,
+     seguridad_sub >= 3 & seguridad_sub <= 3.5 ~ 2,
+     seguridad_sub >= 4 & seguridad_sub <= 5 ~ 3
+   )  
+ )
+
+#Omitir NA
+elsoc_6_graph <- elsoc_6_graph %>%
+  na.omit()
+```
+
+```{r}
+#| label: seguridad subjetiva dummy
+#| echo: false
+
+elsoc_6_graph_2 <- elsoc_6 %>%
+  mutate(seguridad_sub = rowMeans(select(., seguridad_sat, seguridad_perc), na.rm = TRUE))
+
+elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
+  mutate(seguridad_sub = case_when(
+    seguridad_sub <= 2.5 ~ 1,
+    seguridad_sub >= 3   ~ 0
+  ))
+
+elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
+  mutate(seguridad_obj = rowMeans(select(., peleas_calle, asaltos, trafico_drogas), na.rm = TRUE))
+
+elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
+  mutate(seguridad_obj = case_when(
+    seguridad_obj <= 2.5 ~ 1,
+    seguridad_obj >= 3   ~ 0
+  ))
+```
+
+```{r}
+#| echo: false
+
+elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
+  mutate(desempleo_migrantes = case_when(
+    desempleo_migrantes <= 2 ~ 1,
+    desempleo_migrantes == 3  ~ 2,
+    desempleo_migrantes >= 4 ~ 3
+  ))
+
+elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
+  mutate(contacto_migrantes = case_when(
+    contacto_migrantes <= 2 ~ 1,
+    contacto_migrantes == 3  ~ 2,
+    contacto_migrantes >= 4 ~ 3
+  ))
+
+elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
+  mutate(simpatia_migrantes = case_when(
+    simpatia_migrantes <= 2 ~ 1,
+    simpatia_migrantes == 3  ~ 2,
+    simpatia_migrantes >= 4 ~ 3
+  ))
+
+elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
+  mutate(igualdad_migrantes = case_when(
+    igualdad_migrantes <= 2 ~ 1,
+    igualdad_migrantes == 3  ~ 2,
+    igualdad_migrantes >= 4 ~ 3
+  ))
+
+elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
+  mutate(perdida_identidad = case_when(
+    perdida_identidad <= 2 ~ 1,
+    perdida_identidad == 3  ~ 2,
+    perdida_identidad >= 4 ~ 3
+  ))
+
+#Omitir NA
+elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
+  na.omit()
+```
+
+
+```{r}
+#| label: Subíndices de Seguridad Longitudinal
+#| echo: false
+
+#OBJETIVA
+elsoc_long_graph <- elsoc_long %>%
+  mutate(
+    # Índice promediado - especificar las columnas directamente
+    seguridad_obj = rowMeans(
+      cbind(peleas_calle, asaltos, trafico_drogas),
+      na.rm = TRUE
+    ),
+    
+    # Recodificación en 0/1
+    seguridad_obj = case_when(
+      seguridad_obj <= 2.5 ~ 0,
+      seguridad_obj >= 3   ~ 1,
+      TRUE ~ NA_real_  # Para valores entre 2.5 y 3
+    ),
+    
+    # Convertir a factor con labels
+    seguridad_obj = factor(
+      seguridad_obj,
+      levels = c(0, 1),
+      labels = c("Bajo", "Alto")
+    )
+  )
+
+#SUBJETIVA
+elsoc_long_graph <- elsoc_long_graph %>%
+  mutate(
+    # Índice promediado - especificar las columnas directamente
+    seguridad_sub = rowMeans(
+      cbind(seguridad_sat, seguridad_perc),
+      na.rm = TRUE
+    ),
+    
+    # Recodificación en 0/1
+    seguridad_sub = case_when(
+      seguridad_sub <= 2.5 ~ 0,
+      seguridad_sub >= 3   ~ 1,
+      TRUE ~ NA_real_  # Para valores entre 2.5 y 3
+    ),
+    
+    # Convertir a factor con labels
+    seguridad_sub = factor(
+      seguridad_sub,
+      levels = c(0, 1),
+      labels = c("Bajo", "Alto")
+    )
+  )
+```
+
+
+# Distribución Seguridad
+
+```{r}
+#| label: fig-seguridad-transversal
+#| fig-cap: "Distribución de los índices de seguridad"
+#| fig-cap-location: top
+#| echo: false
+#| fig-width: 12
+#| fig-height: 8
+
+
+# Primero selecciona tus variables
+datos_seguridad <- dplyr::select(elsoc_6_graph, seguridad_sub, seguridad_obj)
+
+
+# Crea el gráfico
+cohesion_2 <- plot_stackfrq(
+ datos_seguridad,
+ show.prc = FALSE,
+ show.n = FALSE,
+ show.total = FALSE,
+ axis.labels = c("Seguridad subjetiva", "Seguridad objetiva")
+) +
+ theme_ggdist() +
+ theme(
+   # Estilo del texto original
+   axis.text = element_text(size = 18),
+   title = element_text(size = 20),
+   legend.text = element_text(size = 16),
+  
+   # Estilo de la leyenda (adaptado del código de referencia)
+   legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+   legend.background = element_rect(fill = "white", color = NA),
+   legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+   legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+   legend.position = "bottom",
+   legend.direction = "horizontal",
+   legend.box = "horizontal",
+   legend.title = element_text(face = "bold"),
+   legend.key = element_rect(fill = "white", color = NA),
+   legend.key.height = unit(12, "pt"),
+   legend.key.width = unit(20, "pt")
+ ) +
+ scale_fill_manual(
+   values = c("1" = "#f9913d", "2" = "#7ABA21", "3" = "#2b2f3c"),
+   labels = c("1" = "Muy en desacuerdo",
+              "2" = "Ni en desacuerdo \n ni de acuerdo",
+              "3" = "Muy de acuerdo")
+ ) +
+ guides(fill = guide_legend(
+   title = NULL,
+   title.position = "top",
+   label.position = "right",
+   nrow = 1,
+   byrow = TRUE,
+   keywidth = unit(14, "pt"),
+   keyheight = unit(10, "pt")
+ ))
+
+
+cohesion_2
+```
+
+```{r}
+#| label: fig-long-9
+#| fig-cap: "Distribución de Subíndices de Seguridad (2016-2023)"
+#| fig-cap-location: top
+#| warning: false
+#| message: false
+#| echo: false
+
+# Variables de seguridad (índices categóricos)
+vars_seguridad <- c("seguridad_sub", "seguridad_obj")
+
+# Preparar datos para gráfico apilado
+long_seguridad_stack <- elsoc_long_graph %>%
+  select(ola, all_of(vars_seguridad)) %>%
+  pivot_longer(cols = all_of(vars_seguridad), 
+               names_to = "variable", 
+               values_to = "valor") %>%
+  filter(!is.na(valor)) %>%
+  group_by(ola, variable, valor) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(ola, variable) %>%
+  mutate(
+    total = sum(n),
+    proporcion = n / total
+  ) %>%
+  ungroup() %>%
+  mutate(
+    variable_clean = case_when(
+      variable == "seguridad_sub" ~ "Seguridad Subjetiva",
+      variable == "seguridad_obj" ~ "Seguridad Objetiva"
+    )
+  )
+
+# Vector con años correspondientes a cada ola
+anos_olas <- c("2016", "2017", "2018", "2019", "2022", "2023")
+
+ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
+  geom_area(alpha = 0.7, position = "stack") +
+  geom_line(aes(group = interaction(variable, valor)), 
+            position = "stack", 
+            linewidth = 0.5, 
+            color = "white") +
+  facet_wrap(~variable_clean, ncol = 2) +
+  scale_fill_manual(values = c(
+    "Bajo" = "#F9913D",
+    "Alto" = "#2B2F3C"
+  )) +
+  scale_x_continuous(
+    breaks = 1:6,
+    labels = anos_olas
+  ) +
+  scale_y_continuous(
+    limits = c(0, 1), 
+    breaks = seq(0, 1, 0.2),
+    labels = scales::percent_format(accuracy = 1)
+  ) +
+  labs(x = "Año", 
+       y = "Proporción", 
+       fill = "Nivel",
+       caption = "Fuente: Elaboración Propia a partir de ELSOC 2019-2023") +
+  theme_minimal() +
+  theme(
+    strip.text = element_text(size = 12, face = "bold"),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position       = "bottom",
+    legend.direction      = "horizontal",
+    legend.box            = "horizontal",
+    
+    legend.title          = element_text(face = "bold"),
+    legend.key            = element_rect(fill = "white", color = NA),
+    legend.key.height     = unit(12, "pt"),
+    legend.key.width      = unit(20, "pt"),
+    
+    axis.text  = element_text(size = 11),
+    panel.spacing = unit(1, "cm"), # mantiene separación entre paneles
+    plot.caption = element_text(hjust = 0.5, size = 10, color ="black")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+## Cruces Seguridad Migracion
+```{r}
+#| label: fig-segsub
+#| fig-cap: Asociación entre percepción de desempleo y seguridad subjetiva
+#| fig-cap-location: top
+#| echo: false 
+
+ggplot(elsoc_6_graph_2, aes(
+  x = desempleo_migrantes, 
+  fill = factor(seguridad_sub, labels = c("Alta seguridad", "Baja seguridad"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alta seguridad" = "#2b2f3c", "Baja seguridad" = "#f9913d"),
+    breaks = c("Alta seguridad", "Baja seguridad"),
+    name = "Categorías"
+  ) +
+  labs(
+    x = "Percepción de desempleo debido a inmigrantes",
+    y = "Seguridad subjetiva",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+```{r}
+#| label: fig-seg-trans
+#| fig-cap: Seguridad objetiva y pérdida identidad 
+#| fig-cap-location: top
+#| echo: false 
+
+ggplot(elsoc_6_graph_2, aes(
+  x = perdida_identidad, 
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
+    breaks = c("Alta seguridad", "Poca seguridad"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Pérdida de identidad del país \n debido a inmigrantes según seguridad objetiva",
+    x = "Percepción de pérdida de identidad",
+    y = "Seguridad objetiva",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5)
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+```{r}
+seguridad_genero <- elsoc_6_graph_2 %>%
+  select(sexo, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+seguridad_hombres <- seguridad_genero %>%
+  filter(sexo==0)
+
+seguridad_mujeres <- seguridad_genero %>%
+  filter(sexo==1)
+```
+
+```{r}
+seguridad_hombres <- seguridad_hombres %>%
+  select(-c(sexo))
+
+seguridad_mujeres <- seguridad_mujeres %>%
+  select(-c(sexo))
+```
+
+
+```{r}
+#| label: fig-seginteract
+#| fig-cap: Seguridad objetiva y pérdida de identidad por género
+#| fig-cap-location: top
+#| echo: false 
+
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+seguridad_hombres$grupo <- "Hombres"
+seguridad_mujeres$grupo <- "Mujeres"
+
+# Combina los datasets
+datos_combinados <- rbind(seguridad_hombres, seguridad_mujeres)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = perdida_identidad, 
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
+    breaks = c("Alta seguridad", "Poca seguridad"),
+    name = "Categorías"
+  ) +
+  labs(
+    title = "Pérdida de identidad del país debido a inmigrantes según seguridad objetiva",
+    x = "Percepción de pérdida de identidad",
+    y = "Seguridad objetiva",
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles (tomado del código de referencia)
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+```{r}
+seguridad_educ <- elsoc_6_graph_2 %>%
+  select(educacion, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,
+         perdida_identidad, desempleo_migrantes, igualdad_migrantes)
+```
+
+```{r}
+seguridad_titulo <- seguridad_educ %>%
+  filter(educacion==1)
+
+seguridad_notitulo <- seguridad_educ %>%
+  filter(educacion==0)
+```
+
+```{r}
+seguridad_titulo <- seguridad_titulo %>%
+  select(-c(educacion))
+
+seguridad_notitulo <- seguridad_notitulo %>%
+  select(-c(educacion))
+```
+
+```{r}
+# Primero necesitas combinar tus datos
+# Agrega una columna identificadora a cada dataset
+seguridad_titulo$grupo <- "Con título univ."
+seguridad_notitulo$grupo <- "Sin título univ."
+
+# Combina los datasets
+datos_combinados <- rbind(seguridad_titulo, seguridad_notitulo)
+
+# Crea el gráfico combinado
+ggplot(datos_combinados, aes(
+  x = desempleo_migrantes, 
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~grupo, ncol = 2) +
+  scale_fill_manual(
+    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
+    breaks = c("Alta seguridad", "Poca seguridad"),
+    name = "Seguridad objetiva"
+  ) +
+  labs(
+    title = "Percepción de desempleo debido a inmigrantes según seguridad objetiva",
+    x = "Percepción de desempleo debido a inmigrantes",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1), 
+    breaks = scales::pretty_breaks(n = 10),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_x_continuous(
+    breaks = 1:3,
+    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  ) +
+  theme_ggdist() +
+  theme(
+    # Estilo de los paneles
+    strip.text = element_text(size = 12, face = "bold"),
+    
+    # Estilo de la leyenda
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold", size = 14),
+    legend.text = element_text(size = 11),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt"),
+    
+    # Estilo del texto
+    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_text(size = 12),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    
+    # Separación entre paneles
+    panel.spacing = unit(1, "cm")
+  ) +
+  guides(fill = guide_legend(
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  ))
+```
+
+```{r}
+#| label: plots
+
+
+# Selección de variables: (1) desempleo por migrantes, (2)pérdida de identidad
+# (3)simpatía hacia migrantes, (4)acceso a salud igualitaro y (5) contacto positivo
+
+# plot function
+make_plot <- function(design, predictor, outcome, ylab, legend_title) {
+  pred_sym <- ensym(predictor)
+  out_sym  <- ensym(outcome)
+  
+  design %>% 
+    select(wave, !!pred_sym, !!out_sym) %>% 
+    tidyr::drop_na() %>% 
+    group_by(wave, !!pred_sym) %>%
+    summarise(
+      value = survey_mean(!!out_sym, vartype = "ci", na.rm = TRUE),
+      .groups = "drop"
+    ) %>% 
+    ggplot(aes(x = wave, y = value, group = !!pred_sym)) +
+    geom_point(aes(color = !!pred_sym), size = 3.5) +
+    geom_line(aes(color = !!pred_sym), linewidth = 0.8) +
+    # geom_errorbar(aes(ymin = value_low, ymax = value_upp, color = !!pred_sym), width = 0.1) +
+    scale_y_continuous(n.breaks = 7) +
+    scale_color_manual(
+      name = legend_title,
+      values = c("#F9913D","#7ABA21", "#2b2f3c")
+      ) +
+    labs(
+      x = "Ola",
+      y = ylab,
+      caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023 (factores de expansión aplicados)"
+    ) +
+    theme_ggdist() +
+    theme(
+      legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+      legend.background     = element_rect(fill = "white", color = NA),
+      legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+      legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+      
+      legend.position       = "bottom",
+      legend.direction      = "horizontal",
+      legend.box            = "horizontal",  # útil si hubiera varias leyendas
+      
+      legend.title          = element_text(face = "bold"),
+      legend.key            = element_rect(fill = "white", color = NA),
+      legend.key.height     = unit(12, "pt"),
+      legend.key.width      = unit(18, "pt"),
+      
+      axis.text  = element_text(size = 11)
+      ) +
+    guides(color = guide_legend(
+      title.position = "top",   # título arriba
+      label.position = "bottom", # etiquetas a la derecha del símbolo
+      nrow = 1, byrow = TRUE,   # una fila (ajusta según ancho)
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    ))
+}
+
+# combinations
+
+outcomes <- c(
+  seguridad_sub           = "Seguridad percibida",
+  seguridad_obj           = "Seguridad objetiva",
+  confianza_inter         = "Confianza interpersonal",
+  comportamiento_prosocial= "Comportamiento prosocial",
+  ayuda_economica         = "Ayuda económica",
+  sentido_pertenencia     = "Sentido pertenencia barrio",
+  satisfaccion_barrio     = "Satisfacción barrio"
+)
+
+predictors <- list(
+  desempleo_migrantes = "Desempleo percibido por \nmigrantes",
+  perdida_identidad   = "Pérdida identidad por \nmigrantes",
+  simpatia_migrantes = "Simpatía hacia migrantes",
+  igualdad_migrantes = "Acceso a salud igualitario \npara migrantes",
+  contacto_migrantes = "Contacto positivo con \nmigrantes"
+)
+
+comb <- tidyr::crossing(pred = names(predictors), out = names(outcomes))
+
+# make plots
+
+plots_tbl <- comb %>%
+  mutate(
+    plot = pmap(
+      list(pred, out),
+      ~ make_plot(
+        design       = db_pond,
+        predictor    = ..1,
+        outcome      = ..2,
+        ylab         = outcomes[..2],
+        legend_title = predictors[[..1]]
+      )
+    ),
+    plot_id = paste0("plot_", out, "__by__", pred)
+  )
+```
+
+## Seguridad
+
+La @fig-seg-iden muestra la evolución de la subdimensión de seguridad objetiva según el grado de acuerdo con la afirmación de que _Chile está perdiendo su identidad nacional debido a la llegada de migrantes_, entre 2016 y 2023. En términos generales, la seguridad objetiva es consistentemente más alta entre quienes están _muy de acuerdo_ con la idea de pérdida de identidad, mientras que alcanza niveles más bajos entre quienes están _muy en desacuerdo_. El año 2018 registra el valor más alto de esta subdimensión para todos los grupos, con la excepción de quienes declaran estar _ni de acuerdo ni en desacuerdo_, quienes muestran un descenso en comparación con 2017.
+
+Posteriormente, se observa una caída generalizada en los niveles de seguridad objetiva, especialmente notoria en 2022. Sin embargo, entre 2022 y 2023 emerge un repunte, más marcado en el grupo que está _muy de acuerdo_ con la pérdida de identidad, y más moderado en quienes están _muy en desacuerdo_. Esto sugiere que las percepciones de seguridad objetiva se articulan en estrecha relación con las creencias sobre la migración y su efecto en la identidad nacional, y que las oscilaciones en el tiempo no afectan a todos los grupos de la misma manera. Si bien las tendencias fluctúan a lo largo del período —con un máximo en 2018, un descenso en 2022 y un repunte en 2023—, lo notable es la consistencia en la brecha entre grupos: en todos los años, quienes perciben mayor pérdida de identidad reportan mayor seguridad objetiva, lo que sugiere un patrón estable en el tiempo más allá de coyunturas específicas.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-seg-iden
+#| fig-cap: "Seguridad objetiva y pérdida de identidad por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+sel <- plots_tbl %>%
+  filter(out  %in% c("seguridad_sub","seguridad_obj")) 
+
+walk(sel[c(7), ]$plot, print)
+```
+
+Respecto a la percepción de seguridad pública, la @fig-seg-iden2 muestra su evolución entre 2016 y 2023 en relación con el grado de acuerdo respecto a que Chile pierde identidad nacional por la llegada de migrantes. En términos generales, se observa una tendencia a la baja en la percepción de seguridad durante el período analizado, especialmente marcada entre 2019 y 2023, lo que coincide con hallazgos de otros estudios recientes.
+
+Dentro de esta trayectoria, los resultados revelan diferencias sistemáticas entre los grupos. Quienes están _muy de acuerdo_ con la idea de pérdida de identidad presentan de manera consistente los niveles más bajos de seguridad percibida, sin mostrar variaciones que reviertan este patrón en ningún año de la serie. En contraste, quienes están _muy en desacuerdo_ registran los valores más altos, aunque también experimentan una caída abrupta entre 2022 y 2023. Por su parte, quienes se ubican en una posición intermedia —_ni de acuerdo ni en desacuerdo_— muestran una evolución similar a la de los grupos en desacuerdo, con niveles relativamente altos hasta 2019, una disminución marcada a partir de 2022 y una posición intermedia entre los otros dos grupos en la comparación final de 2023.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-seg-iden2
+#| fig-cap: "Seguridad percibida y pérdida de identidad por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+
+walk(sel[c(8), ]$plot, print)
+```
+
+
+
+La @fig-seg-desemp muestra la evolución de la percepción de seguridad pública entre 2016 y 2023, diferenciada según el grado de acuerdo con la afirmación de que la llegada de migrantes aumenta el desempleo. Al igual que en la figura anterior, se observa una tendencia decreciente en la seguridad percibida, con una baja especialmente pronunciada entre 2019 y 2023.
+
+En todos los años de la serie, quienes se declaran muy de acuerdo con la idea de que la migración incrementa el desempleo reportan los niveles más bajos de seguridad pública, mientras que los que están muy en desacuerdo muestran los niveles más altos. El grupo intermedio —quienes señalan estar ni de acuerdo ni en desacuerdo— se ubica de forma constante entre ambas posiciones, con una trayectoria descendente que se intensifica en los últimos años. Estos resultados sugieren que las concepciones sobre la migración, en este caso en la potencial amenaza que representa para el acceso al trabajo, se asocia con una visión más crítica o deteriorada de la seguridad pública.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-seg-desemp
+#| fig-cap: "Seguridad percibida y desempleo percibido por migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(4), ]$plot, print)
+```
+
+De acuerdo con la @fig-seg-simpa, que muestra la evolución de la relación entre percepción de seguridad pública y grado de simpatía hacia los migrantes entre 2016 y 2023, se observa que la seguridad percibida es consistentemente más baja entre quienes expresan poca o ninguna simpatía por la población migrante. Esta brecha se acentúa desde 2019 en adelante, cuando la percepción de inseguridad en este grupo contrasta con la trayectoria ascendente que mostraban, hasta 2022, quienes dicen simpatizar algo o mucho con los migrantes. No obstante, a partir de 2022 la tendencia se revierte: todos los grupos reportan un descenso en su sensación de seguridad, aunque con intensidades distintas. Aun así, en el último año analizado se mantiene la jerarquía relativa: la percepción de seguridad es mayor entre quienes simpatizan mucho con los migrantes, seguida por quienes simpatizan algo, y alcanza sus niveles más bajos en el grupo con menor simpatía. En contraste con el caso de la pérdida de identidad, en esta dimensión las diferencias entre grupos se amplían con el tiempo, pues quienes simpatizan más con los migrantes no solo mantienen una mayor sensación de seguridad, sino que además la incrementan hasta 2022. El descenso en 2023, común a todos los grupos, sugiere la incidencia de factores coyunturales que interrumpieron esa tendencia.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-seg-simpa
+#| fig-cap: "Seguridad percibida y simpatía hacia migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(10), ]$plot, print)
+```
