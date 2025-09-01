@@ -350,6 +350,8 @@ cohesion_3 <- plot_stackfrq(
 cohesion_3
 ```
 
+La @fig-vinculos muestra la distribución de los índices que componen la subdimensión de vínculos territoriales. Se puede observar que las personas que sienten baja satisfacción con el barrio son casi equivalentes a la cantidad de quienes poseen un bajo sentido de pertenencia. No obstante, se puede observar una diferencia en las categorías medias, en donde la satisfacción media con el entorno en el que viven es ampliamente mayor a un sentido "medio" de pertenencia barrial. 
+
 ```{r}
 #| label: fig-long-11
 #| fig-cap: "Distribución Subíndices de Vínculo Territorial"
@@ -446,13 +448,13 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
 
 ```{r}
 #| label: fig-satbarrio
-#| fig-cap: Asociación entre percepción de pérdida de identidad y satisfacción con el barrio
+#| fig-cap: Percepción de pérdida de identidad del país debido a inmigrantes según satisfacción con el barrio
 #| fig-cap-location: top
 #| echo: false 
 
 ggplot(elsoc_6_graph_2, aes(
   x = perdida_identidad, 
-  fill = factor(satisfaccion_barrio, labels = c("Alta satisfacción", "Poca satisfacción"))
+  fill = factor(satisfaccion_barrio, labels = c("Alta satisfacción", "Baja satisfacción"))
 )) +
   geom_bar(position = "fill") +
   scale_fill_manual(
@@ -461,10 +463,9 @@ ggplot(elsoc_6_graph_2, aes(
     name = "Categorías"
   ) +
   labs(
-    title = "Percepción de pérdida de identidad del país \n debido a inmigrantes según satisfacción con el barrio",
     x = "Percepción de pérdida de identidad",
     y = "Satisfacción con el barrio",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -507,16 +508,18 @@ ggplot(elsoc_6_graph_2, aes(
   ))
 ```
 
-Se puede observar en @fig-satbarrio que en 2022 la mayoría de las personas sienten una alta satisfacción con su barrio. Ahora bien, existe una relación negativa entre percibir la pérdida de identidad del país debido a inmigrantes y la satisfacción con el barrio. Esto es, a medida que disminuye la satisfacción con el barrio, aumenta la sensación de que los inmigrantes flagelan la identidad del país. 
+La @fig-satbarrio refleja la asociación entre la percepción de que los inmigrantes le restan identidad al país y el índice de satisfacción con el barrio. Este índice se compuso de cuatro indicadores que miden diversos aspectos sobre el barrio, tales como sociabilidad, colaboración, entre otros (quiere ver en profundidad cómo se construyó este y los demás índices, vaya al [anexo](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html).
+
+Además, se puede observar en  que en 2022 la mayoría de las personas sienten una alta satisfacción con su barrio. Ahora bien, existe una relación negativa entre percibir la pérdida de identidad del país debido a inmigrantes y la satisfacción con el barrio. Esto es, a medida que disminuye la satisfacción con el barrio, aumenta la sensación de que los inmigrantes flagelan la identidad del país. 
 
 ```{r}
 #| label: fig-sentper
-#| fig-cap: Asociación entre percepción de pérdida de identidad y sentido de pertenencia
+#| fig-cap: Percepción de pérdida de identidad del país \n debido a inmigrantes según sentido de pertenencia
 #| fig-cap-location: top
 #| echo: false 
 
 ggplot(elsoc_6_graph_2, aes(
-  x = perdida_identidad, 
+  x = sentido_pertenencia, 
   fill = factor(satisfaccion_barrio, labels = c("Alta pertenencia", "Baja pertenencia"))
 )) +
   geom_bar(position = "fill") +
@@ -526,10 +529,9 @@ ggplot(elsoc_6_graph_2, aes(
     name = "Categorías"
   ) +
   labs(
-    title = "Percepción de pérdida de identidad del país \n debido a inmigrantes según sentido de pertenencia",
     x = "Percepción de pérdida de identidad",
     y = "Sentido de pertenencia",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -622,11 +624,10 @@ ggplot(datos_combinados, aes(
     breaks = c("Alta pertenencia", "Baja pertenencia"),
     name = "Categorías"
   ) +
-  labs(
-    title = "Pérdida de identidad del país debido a inmigrantes según sentido de pertenencia",
+  labs(,
     x = "Percepción de pérdida de identidad",
     y = "Sentido de pertenencia",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -702,6 +703,11 @@ barrio_notitulo <- barrio_notitulo %>%
 ```
 
 ```{r}
+#| label: fig-barrio-educ
+#| fig-cap: Percepción de desempleo debido a inmigrantes y sentido de pertenencia por nivel educacional
+#| fig-cap-location: top
+#| echo: false 
+
 # Primero necesitas combinar tus datos
 # Agrega una columna identificadora a cada dataset
 barrio_titulo$grupo <- "Con título univ."
@@ -723,10 +729,10 @@ ggplot(datos_combinados, aes(
     name = "Sentido de pertenencia"
   ) +
   labs(
-    title = "Percepción de desempleo debido a inmigrantes según sentido de pertenencia",
+    title = "",
     x = "Percepción de desempleo debido a inmigrantes",
     y = NULL,
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -775,6 +781,9 @@ ggplot(datos_combinados, aes(
     keyheight = unit(10, "pt")
   ))
 ```
+
+La @fig-barrio-educ muestra la asociación entre percepción de desempleo debido a inmigrantes y sentido de pertenencia, siendo filtrada por nivel educacional. Al lado izquierdo se ve el gráfico según personas con título universitario, quienes dividen sus respuestas de manera casi equivalente en las categorías extremas, mientras que la categorías neutral es la menos votada por las personas que tienen un bajo sentido de pertenencia. Al lado derecho se ven las personas sin título universitario y, en este caso, sorpresivamente las tres barras se ven casi idénticas, lo que sugiere que, entre las personas que no poseen educación terciaria finalizada, no hay una tendencia clara entre el desempleo percibido a causa de los inmigrantes y el sentido de pertenencia al barrio.
+
 ## Bivariados Longitudinales
 
 ```{r}

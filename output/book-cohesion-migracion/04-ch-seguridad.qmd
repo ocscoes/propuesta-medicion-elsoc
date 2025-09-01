@@ -267,9 +267,9 @@ elsoc_long_graph <- elsoc_long_graph %>%
 
 ```{r}
 #| label: fig-seguridad-transversal
-#| fig-cap: "Distribución de los índices de seguridad"
+#| fig-cap: Distribución de los índices de seguridad
 #| fig-cap-location: top
-#| echo: false
+#| echo: false 
 #| fig-width: 12
 #| fig-height: 8
 
@@ -308,9 +308,9 @@ cohesion_2 <- plot_stackfrq(
  ) +
  scale_fill_manual(
    values = c("1" = "#f9913d", "2" = "#7ABA21", "3" = "#2b2f3c"),
-   labels = c("1" = "Muy en desacuerdo",
-              "2" = "Ni en desacuerdo \n ni de acuerdo",
-              "3" = "Muy de acuerdo")
+   labels = c("1" = "Bajo",
+              "2" = "Medio",
+              "3" = "Alto")
  ) +
  guides(fill = guide_legend(
    title = NULL,
@@ -325,6 +325,8 @@ cohesion_2 <- plot_stackfrq(
 
 cohesion_2
 ```
+
+La @fig-seguridad-transversal muestra la distribución de las repuestas correspondientes a los dos índices que componen la subdimensión de seguridad. Desde una mirada comparativa, se puede apreciar que la percepción de baja seguridad es mayor que la poca seguridad vivida por las personas. Es decir, que la sensación de inseguridad es más fuerte que la baja seguridad objetiva. Aun así, desde la percepción de las personas, estas se hallan más indecisas respecto a si consideran estar en entornos seguros o inseguros respecto a la dimensión objetiva, lo cual queda expresado en una barra más amplia de color verde en el caso de seguridad la subjetiva.
 
 ```{r}
 #| label: fig-long-9
@@ -415,10 +417,11 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
     keyheight = unit(10, "pt")
   ))
 ```
+
 ## Cruces Seguridad Migracion
 ```{r}
 #| label: fig-segsub
-#| fig-cap: Asociación entre percepción de desempleo y seguridad subjetiva
+#| fig-cap: Percepción de desempleo según seguridad subjetiva
 #| fig-cap-location: top
 #| echo: false 
 
@@ -435,7 +438,7 @@ ggplot(elsoc_6_graph_2, aes(
   labs(
     x = "Percepción de desempleo debido a inmigrantes",
     y = "Seguridad subjetiva",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -478,9 +481,14 @@ ggplot(elsoc_6_graph_2, aes(
   ))
 ```
 
+En la @fig-segsub se visualiza la asociación entre la percepción de aumento de desempleo a causa de inmigrantes (eje x), y el índice de seguridad subjetiva (eje y), el cual fue construido mediante el promedio calculado de dos indicadores: satisfacción de seguridad en el barrio y percepción de seguridad barrial. 
+
+Se puede apreciar que la cantidad de personas que percibe una seguridad baja aumenta en la medida que se está más de acuerdo con que los inmigrantes causan desempleo en el país. Esto se nota en la consistencia en las categorías “Ni en desacuerdo ni de acuerdo” y “Muy de acuerdo” respecto a la concentración de respuestas, superando notoriamente la poca seguridad de quienes no creen que la inmigración incide en la empleabilidad. Por tanto, se refleja una correlación negativa entre la sensación de seguridad y la carencia de empleos debido a extranjeros.
+
+
 ```{r}
 #| label: fig-seg-trans
-#| fig-cap: Seguridad objetiva y pérdida identidad 
+#| fig-cap: Pérdida de identidad del país debido a inmigrantes según seguridad objetiva
 #| fig-cap-location: top
 #| echo: false 
 
@@ -491,14 +499,13 @@ ggplot(elsoc_6_graph_2, aes(
   geom_bar(position = "fill") +
   scale_fill_manual(
     values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Poca seguridad"),
+    breaks = c("Alta seguridad", "Baja seguridad"),
     name = "Categorías"
   ) +
   labs(
-    title = "Pérdida de identidad del país \n debido a inmigrantes según seguridad objetiva",
     x = "Percepción de pérdida de identidad",
     y = "Seguridad objetiva",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -540,6 +547,10 @@ ggplot(elsoc_6_graph_2, aes(
     keyheight = unit(10, "pt")
   ))
 ```
+
+En la @fig-seg-trans se grafica la relación entre la percepción de pérdida de identidad del país a causa de inmigrantes y el índice de seguridad objetiva, el cual fue medido a partir de la frecuencia de peleas callejeras, asaltos y tráfico de drogas en el barrio del encuestado. 
+
+Asimismo, se puede apreciar que las cantidad de personas que viven niveles bajos de seguridad aumenta progresivamente a medida que se está más de acuerdo con que los inmigrantes le restan identidad al país. Por tanto, mientras menos seguras están las personas, se está más convencido de que los inmigrantes erosionan la identidad de Chile.
 
 ```{r}
 seguridad_genero <- elsoc_6_graph_2 %>%
@@ -587,14 +598,14 @@ ggplot(datos_combinados, aes(
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
     values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Poca seguridad"),
+    breaks = c("Alta seguridad", "Baja seguridad"),
     name = "Categorías"
   ) +
   labs(
     title = "Pérdida de identidad del país debido a inmigrantes según seguridad objetiva",
     x = "Percepción de pérdida de identidad",
     y = "Seguridad objetiva",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -643,13 +654,18 @@ ggplot(datos_combinados, aes(
   ))
 ```
 
+La @fig-seginteract refleja la asociación entre seguridad objetiva y percepción de pérdida de identidad del país a causa de los inmigrantes, lo cual está graficado por hombres y mujeres. Se puede observar que, en el caso de los hombres, las categorías más polarizadas concentran la mayoría de las respuestas, por lo que no hay un patrón muy claro. En cambio, a medida que las mujeres viven en entornos menos seguros, están más de acuerdo con que el país pierde identidad a causa de los inmigrantes.
+
 ```{r}
+#| echo: false
 seguridad_educ <- elsoc_6_graph_2 %>%
   select(educacion, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,
          perdida_identidad, desempleo_migrantes, igualdad_migrantes)
 ```
 
 ```{r}
+#| echo: false
+
 seguridad_titulo <- seguridad_educ %>%
   filter(educacion==1)
 
@@ -658,6 +674,8 @@ seguridad_notitulo <- seguridad_educ %>%
 ```
 
 ```{r}
+#| echo: false
+
 seguridad_titulo <- seguridad_titulo %>%
   select(-c(educacion))
 
@@ -666,6 +684,12 @@ seguridad_notitulo <- seguridad_notitulo %>%
 ```
 
 ```{r}
+#| label: fig-seg-educ
+#| fig-cap: Desempleo debido a inmigrantes y seguridad objetiva por nivel educacional
+#| fig-cap-location: top
+#| echo: false 
+
+
 # Primero necesitas combinar tus datos
 # Agrega una columna identificadora a cada dataset
 seguridad_titulo$grupo <- "Con título univ."
@@ -683,14 +707,13 @@ ggplot(datos_combinados, aes(
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
     values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Poca seguridad"),
+    breaks = c("Alta seguridad", "Baja seguridad"),
     name = "Seguridad objetiva"
   ) +
   labs(
-    title = "Percepción de desempleo debido a inmigrantes según seguridad objetiva",
     x = "Percepción de desempleo debido a inmigrantes",
     y = NULL,
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -739,6 +762,8 @@ ggplot(datos_combinados, aes(
     keyheight = unit(10, "pt")
   ))
 ```
+
+La @fig-seg-educ compara los cruces entre la percepción de desempleo debido a inmigrantes y seguridad objetiva por nivel educacional. En la izquierda se observan las personas con título universitario, donde las mayores proporciones de quienes tienen una baja sensación de seguridad se concentran en las categorías neutra y "Muy de acuerdo". A la derecha, se visualizan las personas sin título universitario, y aquí se puede encontrar un patrón distinto. Los sujetos sin haber terminado la educación terciaria tienden a responder en mayor medida de manera polarizada. Esto se refleja en que las categorías "Muy en desacuerdo" y "Muy de acuerdo", son las que tienen las distribuciones más altas respecto a quienes perciben poca seguridad. 
 
 ```{r}
 #| label: plots
