@@ -119,262 +119,350 @@ elsoc_long <- bind_rows(elsoc_1, elsoc_2, elsoc_3, elsoc_4, elsoc_5, elsoc_6)
 ```
 
 ```{r}
-#| label: comportamiento prosocial dummy
-elsoc_5_graph <- elsoc_5 %>%
-  mutate(
-    # Índice promediado
-    comportamiento_prosocial = rowMeans(
-      select(., reunion_pub, voluntariado),
-      na.rm = TRUE
-    ),
-    
-    # Recodificación en 0/1
-    comportamiento_prosocial = case_when(
-      comportamiento_prosocial <= 1.5 ~ 0,
-      comportamiento_prosocial >= 2   ~ 1
-    ),
-    
-    # Convertir a factor con labels
-    comportamiento_prosocial = factor(
-      comportamiento_prosocial,
-      levels = c(0, 1),
-      labels = c("Bajo", "Alto")
-    )
-  )
+#| label: comportamiento prosocial tres cat
 
+
+elsoc_5_graph <- elsoc_5 %>%  
+ mutate(    
+   # Índice promediado    
+   comportamiento_prosocial = rowMeans(      
+     select(., reunion_pub, voluntariado),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   comportamiento_prosocial = case_when(      
+     comportamiento_prosocial == 1 ~ 1,
+     comportamiento_prosocial >= 1.5 & comportamiento_prosocial <= 2 ~ 2,
+     comportamiento_prosocial >= 2.5 & comportamiento_prosocial <= 3 ~ 3
+   )  
+ )
 ```
+
 
 ```{r}
-#| label: ayuda economica dummy
-elsoc_5_graph <- elsoc_5_graph %>%
-  mutate(
-    # Índice promediado
-    ayuda_economica = rowMeans(
-      select(., prestar_dinero, ayuda_trabajo),
-      na.rm = TRUE
-    ),
-    
-    # Recodificación en 0/1
-    ayuda_economica = case_when(
-      ayuda_economica <= 1.5 ~ 0,
-      ayuda_economica >= 2   ~ 1
-    ),
-    
-    # Convertir a factor con labels
-    ayuda_economica = factor(
-      ayuda_economica,
-      levels = c(0, 1),
-      labels = c("Bajo", "Alto")
-    )
-  )
+#| label: ayuda economica tres cat
+elsoc_5_graph <- elsoc_5_graph %>%  
+ mutate(    
+   # Índice promediado    
+   ayuda_economica = rowMeans(      
+     select(., prestar_dinero, ayuda_trabajo),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   ayuda_economica = case_when(      
+     ayuda_economica == 1 ~ 1,
+     ayuda_economica >= 1.5 & ayuda_economica <= 2 ~ 2,
+     ayuda_economica >= 2.5 & ayuda_economica <= 3 ~ 3
+   ) 
+ )
 ```
+
 
 ```{r}
-#| label: confianza interpersonal dummy
-elsoc_5_graph <- elsoc_5_graph %>%
-  mutate(
-    # Índice promediado
-    confianza_inter = rowMeans(
-      select(., confianza_gen, altruismo_gen),
-      na.rm = TRUE
-    ),
-    
-    # Recodificación en 0/1
-    confianza_inter = case_when(
-      confianza_inter <= 1.5 ~ 0,
-      confianza_inter >= 2   ~ 1
-    ),
-    
-    # Convertir a factor con labels
-    confianza_inter = factor(
-      confianza_inter,
-      levels = c(0, 1),
-      labels = c("Bajo", "Alto")
-    )
-  )
+#| label: confianza interpersonal trescat
+
+
+elsoc_5_graph <- elsoc_5_graph %>%  
+ mutate(    
+   # Índice promediado    
+   confianza_inter = rowMeans(      
+     select(., confianza_gen, altruismo_gen),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   confianza_inter = case_when(      
+     confianza_inter == 1 ~ 1,
+     confianza_inter >= 1.5 & confianza_inter <= 2 ~ 2,
+     confianza_inter >= 2.5 & confianza_inter <= 3 ~ 3
+   )  
+ )
 ```
+
+
+
 
 ```{r}
-elsoc_5_graph <- elsoc_5_graph %>%
-  mutate(
-    comportamiento_prosocial = set_label(comportamiento_prosocial, "Comportamiento prosocial"),
-    ayuda_economica          = set_label(ayuda_economica, "Ayuda económica"),
-    confianza_inter          = set_label(confianza_inter, "Confianza interpersonal")
-  )
+#| label: seguridad subjetiva tres cat
+
+
+elsoc_6_graph <- elsoc_6 %>%  
+ mutate(    
+   # Índice promediado    
+   seguridad_sub = rowMeans(      
+     select(., seguridad_sat, seguridad_perc),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   seguridad_sub = case_when(      
+     seguridad_sub >= 1 & seguridad_sub <= 2.5 ~ 1,
+     seguridad_sub >= 3 & seguridad_sub <= 3.5 ~ 2,
+     seguridad_sub >= 4 & seguridad_sub <= 5 ~ 3
+   )  
+ )
 ```
+
 
 ```{r}
-#| label: seguridad subjetiva dummy
+#| label: seguridad objetiva trescat
 
-elsoc_6_graph <- elsoc_6 %>%
-  mutate(
-    # Índice promediado
-    seguridad_sub = rowMeans(
-      select(., seguridad_sat, seguridad_perc),
-      na.rm = TRUE
-    ),
-    
-    # Recodificación en 0/1
-    seguridad_sub = case_when(
-      seguridad_sub <= 2.5 ~ 0,
-      seguridad_sub >= 3   ~ 1
-    ),
-    
-    # Convertir a factor con labels
-    seguridad_sub = factor(
-      seguridad_sub,
-      levels = c(0, 1),
-      labels = c("Bajo", "Alto")
-    )
-  )
+
+elsoc_6_graph <- elsoc_6_graph %>%  
+ mutate(    
+   # Índice promediado    
+   seguridad_obj = rowMeans(      
+     select(., peleas_calle, asaltos, trafico_drogas),      
+     na.rm = TRUE    
+   ),         
+  
+   # Recodificación en 3 categorías   
+   seguridad_obj = case_when(      
+     seguridad_obj >= 1 & seguridad_obj <= 2.5 ~ 1,
+     seguridad_obj >= 3 & seguridad_obj <= 3.5 ~ 2,
+     seguridad_obj >= 4 & seguridad_obj <= 5 ~ 3
+   )  
+ )
 ```
 
-```{r}
-#| label: seguridad objetiva dummy
-
-elsoc_6_graph <- elsoc_6_graph %>%
-  mutate(
-    # Índice promediado
-    seguridad_obj = rowMeans(
-      select(., peleas_calle, asaltos, trafico_drogas),
-      na.rm = TRUE
-    ),
-    
-    # Recodificación en 0/1
-    seguridad_obj = case_when(
-      seguridad_obj <= 2.5 ~ 0,
-      seguridad_obj >= 3   ~ 1
-    ),
-    
-    # Convertir a factor con labels
-    seguridad_obj = factor(
-      seguridad_obj,
-      levels = c(0, 1),
-      labels = c("Bajo", "Alto")
-    )
-  )
-```
 
 ```{r}
 #| label: sentido de pertenencia dummy
 
+
 elsoc_6_graph <- elsoc_6_graph %>%
-  mutate(
-    # Índice promediado
-    sentido_pertenencia = rowMeans(
-      select(., barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia),
-      na.rm = TRUE
-    ),
-    
-    # Recodificación en 0/1
-    sentido_pertenencia = case_when(
-      sentido_pertenencia <= 2.5 ~ 0,
-      sentido_pertenencia >= 3   ~ 1
-    ),
-    
-    # Convertir a factor con labels
-    sentido_pertenencia = factor(
-      sentido_pertenencia,
-      levels = c(0, 1),
-      labels = c("Bajo", "Alto")
-    )
-  )
+ mutate(
+   # Índice promediado
+   sentido_pertenencia = rowMeans(
+     select(., barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia),
+     na.rm = TRUE
+   ),
+  
+   # Recodificación en 3 categorias
+   sentido_pertenencia = case_when(
+     sentido_pertenencia >= 1 & sentido_pertenencia <= 2.75 ~ 1,
+     sentido_pertenencia >= 2.76 & sentido_pertenencia <= 3.75 ~ 2,
+     sentido_pertenencia >= 4 & sentido_pertenencia <= 5 ~ 3
+   )
+ )
 ```
+
+
+
 
 ```{r}
 #| label: satisfacción con el barrio dummy
 
+
 elsoc_6_graph <- elsoc_6_graph %>%
-  mutate(
-    # Índice promediado
-    satisfaccion_barrio = rowMeans(
-      select(., barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador),
-      na.rm = TRUE
-    ),
-    
-    # Recodificación en 0/1
-    satisfaccion_barrio = case_when(
-      satisfaccion_barrio <= 2.5 ~ 0,
-      satisfaccion_barrio >= 3   ~ 1
-    ),
-    
-    # Convertir a factor con labels
-    satisfaccion_barrio = factor(
-      satisfaccion_barrio,
-      levels = c(0, 1),
-      labels = c("Bajo", "Alto")
-    )
-  )
+ mutate(
+   # Índice promediado
+   satisfaccion_barrio = rowMeans(
+     select(., barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador),
+     na.rm = TRUE
+   ),
+  
+   # Recodificación en tres categorias
+   satisfaccion_barrio = case_when(
+     satisfaccion_barrio >= 1 & satisfaccion_barrio <= 2.75 ~ 1,
+     satisfaccion_barrio >= 2.76 & satisfaccion_barrio <= 3.75 ~ 2,
+     satisfaccion_barrio >= 4 & satisfaccion_barrio <= 5 ~ 3
+   )
+ )
 ```
+
+
 
 
 ```{r}
 #| label: fig-redes
-#| fig-cap: Likerplot de índices de redes sociales
-#| echo: false 
+#| fig-cap: Distribución de los índices de redes sociales
+#| echo: false
+#| fig-width: 12
+#| fig-height: 8
 
-cohesion_1 <- plot_stackfrq(
-  dplyr::select(elsoc_5_graph, comportamiento_prosocial, ayuda_economica, confianza_inter),
-  title = "Distribución de los índices de redes sociales"
+
+# Seleccionar las variables y crear el dataset
+datos_redes_sociales <- dplyr::select(elsoc_5_graph, comportamiento_prosocial, ayuda_economica, confianza_inter)
+
+
+# Crea el gráfico
+desc_redes_sociales <- plot_stackfrq(
+ datos_redes_sociales,
+ show.prc = FALSE,
+ show.n = FALSE,
+ show.total = FALSE,
+ axis.labels = c("Comportamiento prosocial", "Ayuda económica", "Confianza interpersonal")
 ) +
-  theme(legend.position = "bottom") +
-  # Cambiar tamaño de los números dentro del gráfico
-  theme(axis.text = element_text(size = 18),
-        title = element_text(size = 20),  # ajusta a tu gusto
-        legend.text = element_text(size = 16)
-        ) +
-        scale_fill_manual(
-        values = c("1" = "#f9913d", "2" = "#7aba21", "3" = "#2b2f3c")
-        )
+ theme_ggdist() +
+ theme(
+   # Estilo del texto original
+   axis.text = element_text(size = 18),
+   title = element_text(size = 20),
+   legend.text = element_text(size = 16),
+  
+   # Estilo de la leyenda (adaptado del código de referencia)
+   legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+   legend.background = element_rect(fill = "white", color = NA),
+   legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+   legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+   legend.position = "bottom",
+   legend.direction = "horizontal",
+   legend.box = "horizontal",
+   legend.title = element_text(face = "bold"),
+   legend.key = element_rect(fill = "white", color = NA),
+   legend.key.height = unit(12, "pt"),
+   legend.key.width = unit(20, "pt")
+ ) +
+ scale_fill_manual(
+   values = c("1" = "#f9913d", "2" = "#7ABA21", "3" = "#2b2f3c"),
+   labels = c("1" = "Bajo",
+              "2" = "Medio",
+              "3" = "Alto")
+ ) +
+ guides(fill = guide_legend(
+   title = NULL,
+   title.position = "top",
+   label.position = "right",
+   nrow = 1,
+   byrow = TRUE,
+   keywidth = unit(14, "pt"),
+   keyheight = unit(10, "pt")
+ ))
 
-cohesion_1
+
+# Para mostrar el gráfico
+desc_redes_sociales
 ```
+
+
 
 
 ```{r}
 #| label: fig-seguridad
-#| fig-cap: Likerplot de índices de seguridad
-#| echo: false 
+#| fig-cap: Distribución de los índices de seguridad
+#| echo: false
+#| fig-width: 12
+#| fig-height: 8
 
+
+# Primero selecciona tus variables
+datos_seguridad <- dplyr::select(elsoc_6_graph, seguridad_sub, seguridad_obj)
+
+
+# Crea el gráfico
 cohesion_2 <- plot_stackfrq(
-  dplyr::select(elsoc_6_graph, seguridad_sub, seguridad_obj),
-  title = "Likerplots de índices de seguridad"
+ datos_seguridad,
+ show.prc = FALSE,
+ show.n = FALSE,
+ show.total = FALSE,
+ axis.labels = c("Seguridad subjetiva", "Seguridad objetiva")
 ) +
-  theme(legend.position = "bottom") +
-  # Cambiar tamaño de los números dentro del gráfico
-  theme(axis.text = element_text(size = 18),
-        title = element_text(size = 20),  # ajusta a tu gusto
-        legend.text = element_text(size = 16)
-        ) +
-        scale_fill_manual(
-        values = c("Bajo" = "#f9913d", "Alto" = "#2b2f3c")
-        )
+ theme_ggdist() +
+ theme(
+   # Estilo del texto original
+   axis.text = element_text(size = 18),
+   title = element_text(size = 20),
+   legend.text = element_text(size = 16),
+  
+   # Estilo de la leyenda (adaptado del código de referencia)
+   legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+   legend.background = element_rect(fill = "white", color = NA),
+   legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+   legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+   legend.position = "bottom",
+   legend.direction = "horizontal",
+   legend.box = "horizontal",
+   legend.title = element_text(face = "bold"),
+   legend.key = element_rect(fill = "white", color = NA),
+   legend.key.height = unit(12, "pt"),
+   legend.key.width = unit(20, "pt")
+ ) +
+ scale_fill_manual(
+   values = c("1" = "#f9913d", "2" = "#7ABA21", "3" = "#2b2f3c"),
+   labels = c("1" = "Muy en desacuerdo",
+              "2" = "Ni en desacuerdo \n ni de acuerdo",
+              "3" = "Muy de acuerdo")
+ ) +
+ guides(fill = guide_legend(
+   title = NULL,
+   title.position = "top",
+   label.position = "right",
+   nrow = 1,
+   byrow = TRUE,
+   keywidth = unit(14, "pt"),
+   keyheight = unit(10, "pt")
+ ))
+
 
 cohesion_2
 ```
 
 
+
+
 ```{r}
 #| label: fig-vinculos
-#| fig-cap: Likerplot de índices de vínculos territoriales
-#| echo: false 
+#| fig-cap: Distribución de los índices de vínculos territoriales
+#| echo: false
+#| fig-width: 12
+#| fig-height: 8
 
+
+# Primero selecciona tus variables
+datos_vinculos <- dplyr::select(elsoc_6_graph, sentido_pertenencia, satisfaccion_barrio)
+
+
+# Crea el gráfico
 cohesion_3 <- plot_stackfrq(
-  dplyr::select(elsoc_6_graph, sentido_pertenencia, satisfaccion_barrio),
-  title = "Likerplots de índices de vínculos territoriales"
+ datos_vinculos,
+ show.prc = FALSE,
+ show.n = FALSE,
+ show.total = FALSE,
+ axis.labels = c("Sentido de pertenencia", "Satisfacción con el barrio")
 ) +
-  theme(legend.position = "bottom") +
-  # Cambiar tamaño de los números dentro del gráfico
-  theme(axis.text = element_text(size = 18),
-        title = element_text(size = 20),  # ajusta a tu gusto
-        legend.text = element_text(size = 16)
-        ) +
-        scale_fill_manual(
-        values = c("Bajo" = "#f9913d", "Alto" = "#2b2f3c")
-        )
+ theme_ggdist() +
+ theme(
+   # Estilo del texto original
+   axis.text = element_text(size = 18),
+   title = element_text(size = 20),
+   legend.text = element_text(size = 16),
+  
+   # Estilo de la leyenda (adaptado del código de referencia)
+   legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+   legend.background = element_rect(fill = "white", color = NA),
+   legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+   legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+   legend.position = "bottom",
+   legend.direction = "horizontal",
+   legend.box = "horizontal",
+   legend.title = element_text(face = "bold"),
+   legend.key = element_rect(fill = "white", color = NA),
+   legend.key.height = unit(12, "pt"),
+   legend.key.width = unit(20, "pt")
+ ) +
+ scale_fill_manual(
+   values = c("1" = "#f9913d", "2" = "#7ABA21", "3" = "#2b2f3c"),
+   labels = c("1" = "Bajo",
+              "2" = "Medio",
+              "3" = "Alto")
+ ) +
+ guides(fill = guide_legend(
+   title = NULL,
+   title.position = "top",
+   label.position = "right",
+   nrow = 1,
+   byrow = TRUE,
+   keywidth = unit(14, "pt"),
+   keyheight = unit(10, "pt")
+ ))
+
 
 cohesion_3
 ```
+
 
 ```{r}
 #| label: comportamiento prosocial dummy 2
