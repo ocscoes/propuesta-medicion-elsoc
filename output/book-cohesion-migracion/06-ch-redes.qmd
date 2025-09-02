@@ -1,7 +1,5 @@
 # Cohesión Horizontal: Redes Sociales
 
-## Data
-
 ```{r}
 #| label: set
 #| echo: false
@@ -97,7 +95,7 @@ db_pond <- db %>%
 
 ```
 
-## Recodificación Variables Redes
+<--! Recodificaciones -->
 
 ```{r}
 #| label: Comportamiento Prosocial 1
@@ -349,7 +347,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
   )
 ```
 
-## Descriptivos
+## Medición de redes sociales
 
 ```{r}
 #| label: fig-redes
@@ -405,7 +403,8 @@ desc_redes_sociales <- plot_stackfrq(
    byrow = TRUE,
    keywidth = unit(14, "pt"),
    keyheight = unit(10, "pt")
- ))
+ )) +
+ labs(caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2021")
 
 
 # Para mostrar el gráfico
@@ -504,7 +503,7 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
   ))
 ```
 
-## Transversales
+## Migración y redes sociales
 
 ```{r}
 #| label: fig-prosoc
@@ -658,7 +657,7 @@ ggplot(elsoc_5_graph_2, aes(
   labs(
     x = "Pérdida de identidad",
     y = "Ayuda económica",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2021"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -705,8 +704,6 @@ La @fig-ayudaeco muestra la relación entre el grado de acuerdo respecto a que l
 
 Este gráfico sigue una lógica similar al de los dos anteriores, donde, a medida que las personas menos prestan ayuda económica a terceros, se piensa con mayor convicción que los inmigrantes irrumpen en la cultura nacional. 
 
-
-## Redes sociales por género
 
 ```{r}
 redes_genero <- elsoc_5_graph_2 %>%
@@ -809,8 +806,6 @@ ggplot(datos_combinados, aes(
 ```
 
 La @fig-conf-genero muestra la asociación entre el índice de confianza interpersonal y la percepción de desempleo debido a inmigrantes, filtrado por género. Al lado izquierdo se ve el gráfico de hombres, el cual mantiene una tendencia ascendente. A partir de ello se puede decir que, mientras los hombres menos confían en terceros, están más de acuerdo con que los inmigrantes vulneran la disponibilidad de empleos en Chile. Al lado derecho está el gráfico que muestra las distribuciones de mujeres, las cuales también siguen un patrón ascendente pero no tan escalonado como los hombres. Las categorías "Muy en desacuerdo" y "Ni en desacuerdo ni de acuerdo" tienen una distribución casi igual, y donde se presenta el diferencia más marcada es en la categoría que señala el máximo acuerdo respecto a que los inmigrantes causan desempleo en el país, congregando la mayor cantidad de personas con baja confianza interpersonal. 
-
-## Redes sociales por educación
 
 ```{r}
 redes_educ <- elsoc_5_graph_2 %>%
@@ -915,7 +910,7 @@ ggplot(datos_combinados, aes(
 
 grafica la relación entre confianza interpersonal y percepción de desempleo debido a inmigrantes, filtrando por personas con y sin título universitario. Ambas figuras mantienen un patrón idéntico, donde, a menor confianza interpersonal, más acuerdo hay en que los inmigrantes aumentan el desempleo en Chile. No obstante, las personas sin título mantienen una relación más acentuada entre desconfianza hacia terceros y percepción de desempleo en comparación con las personas con carrera universitaria finalizada.
 
-## Bivariados Longitudinales
+## Migración y redes sociales en el tiempo
 
 ```{r}
 #| label: plots
