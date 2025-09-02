@@ -340,7 +340,8 @@ cohesion_3 <- plot_stackfrq(
    byrow = TRUE,
    keywidth = unit(14, "pt"),
    keyheight = unit(10, "pt")
- ))
+ )) +
+ labs(caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022")
 
 
 cohesion_3

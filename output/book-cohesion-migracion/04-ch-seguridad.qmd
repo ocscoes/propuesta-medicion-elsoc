@@ -1,7 +1,5 @@
 # Cohesión Horizontal: Seguridad
 
-## Bases y Data
-
 ```{r}
 #| label: set
 #| echo: false
@@ -97,7 +95,7 @@ db_pond <- db %>%
 
 ```
 
-## Recodificaciones Seguridad
+<!-- Recodificaciones -->
 
 ```{r}
 #| label: Recode Subíndices de Seguridad Transversal
@@ -263,7 +261,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
 ```
 
 
-# Distribución Seguridad
+## Medición de seguridad
 
 ```{r}
 #| label: fig-seguridad-transversal
@@ -320,7 +318,8 @@ cohesion_2 <- plot_stackfrq(
    byrow = TRUE,
    keywidth = unit(14, "pt"),
    keyheight = unit(10, "pt")
- ))
+ )) +
+ labs(caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022")
 
 
 cohesion_2
@@ -418,7 +417,8 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
   ))
 ```
 
-## Cruces Seguridad Migracion
+## Migración y seguridad
+
 ```{r}
 #| label: fig-segsub
 #| fig-cap: Seguridad subjetiva y desempleo debido a inmigrantes
@@ -865,7 +865,7 @@ plots_tbl <- comb %>%
   )
 ```
 
-## Seguridad
+## Migración y seguridad en el tiempo
 
 La @fig-seg-iden muestra la evolución de la subdimensión de seguridad objetiva según el grado de acuerdo con la afirmación de que _Chile está perdiendo su identidad nacional debido a la llegada de migrantes_, entre 2016 y 2023. En términos generales, la seguridad objetiva es consistentemente más alta entre quienes están _muy de acuerdo_ con la idea de pérdida de identidad, mientras que alcanza niveles más bajos entre quienes están _muy en desacuerdo_. El año 2018 registra el valor más alto de esta subdimensión para todos los grupos, con la excepción de quienes declaran estar _ni de acuerdo ni en desacuerdo_, quienes muestran un descenso en comparación con 2017.
 
