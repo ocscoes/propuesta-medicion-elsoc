@@ -8,7 +8,7 @@
 pacman::p_load(
   dplyr, haven, sjlabelled,  psych,  purrr,  tidyr,  sjPlot,  ggplot2, 
   parameters,  table1,  car,  beeswarm, scales, ggrepel, corrplot,
-  ggtext, patchwork, psych, kableExtra)
+  ggtext, patchwork, psych, kableExtra, labelled, ggdist)
 ```
 
 ```{r}
@@ -84,6 +84,143 @@ En consecuencia, las percepciones ciudadanas hacia los migrantes recientes se ca
 La evidencia muestra que estas percepciones contradictorias dependen fuertemente de la experiencia individual y contingente de la interacción, de modo que el mismo espacio —la calle, el barrio o el trabajo— puede ser escenario tanto de relaciones positivas como negativas (CEP, 2024). La falta de anclajes institucionales y discursivos que otorguen estabilidad a estas experiencias refuerza la polarización y la incertidumbre, situando a los migrantes recientes como objeto de juicios extremos, ya sea positivos o negativos (Lang et al., 2024).
 
 La macrozona norte del país es un caso particularmente relevante, dado que concentra una alta densidad de población migrante (CENSO, 2024) y enfrenta un contacto cotidiano más frecuente con ellos (INE, 2022). No obstante, contrariamente a lo sugerido por la literatura sobre contacto intergrupal, que indica que la interacción sostenida tiende a reducir prejuicios (Voci & Hewstone, 2003; Paolini et al., 2014), en esta zona se observa una asociación significativa entre mayor exposición y percepciones más negativas, especialmente en aspectos normativos como el respeto a las leyes o a las costumbres chilenas (CEP, 2024). Este hallazgo coincide con tesis como la de Putnam (2007), quien advierte que la diversidad puede generar actitudes hostiles en el corto plazo, antes de que se consoliden procesos de integración.
+
+```{r}
+#| echo: false
+
+elsoc_6_graph <- elsoc_6 %>%
+  mutate(desempleo_migrantes = case_when(
+    desempleo_migrantes <= 2 ~ 1,
+    desempleo_migrantes == 3  ~ 2,
+    desempleo_migrantes >= 4 ~ 3
+  ))
+```
+
+```{r}
+#| echo: false
+
+elsoc_6_graph <- elsoc_6_graph %>%
+  mutate(contacto_migrantes = case_when(
+    contacto_migrantes <= 2 ~ 1,
+    contacto_migrantes == 3  ~ 2,
+    contacto_migrantes >= 4 ~ 3
+  ))
+```
+
+```{r}
+#| echo: false
+
+elsoc_6_graph <- elsoc_6_graph %>%
+  mutate(simpatia_migrantes = case_when(
+    simpatia_migrantes <= 2 ~ 1,
+    simpatia_migrantes == 3  ~ 2,
+    simpatia_migrantes >= 4 ~ 3
+  ))
+
+```
+
+```{r}
+#| echo: false
+
+elsoc_6_graph <- elsoc_6_graph %>%
+  mutate(igualdad_migrantes = case_when(
+    igualdad_migrantes <= 2 ~ 1,
+    igualdad_migrantes == 3  ~ 2,
+    igualdad_migrantes >= 4 ~ 3
+  ))
+
+```
+
+```{r}
+#| echo: false
+
+elsoc_6_graph <- elsoc_6_graph %>%
+  mutate(perdida_identidad = case_when(
+    perdida_identidad <= 2 ~ 1,
+    perdida_identidad == 3  ~ 2,
+    perdida_identidad >= 4 ~ 3
+  ))
+```
+
+```{r}
+#| label: fig-migracion-olaseis
+#| fig-cap: Distribución de los ítems de migración ola 2022
+#| fig-cap-location: top
+#| echo: false
+#| message: false 
+#| fig-width: 14
+#| fig-height: 8
+
+# Primero selecciona tus variables
+datos_migracion <- dplyr::select(elsoc_6_graph, perdida_identidad, desempleo_migrantes, 
+                                simpatia_migrantes, igualdad_migrantes, contacto_migrantes)
+
+# Asigna las etiquetas usando labelled
+datos_migracion <- datos_migracion %>%
+  set_variable_labels(
+    perdida_identidad = "Pérdida de \n identidad del país",
+    desempleo_migrantes = "Desempleo \n debido a inmigrantes", 
+    simpatia_migrantes = "Simpatía \n hacia inmigrantes",
+    igualdad_migrantes = "Igualdad \n en acceso a salud",
+    contacto_migrantes = "Contacto \n con inmigrantes"
+  )
+
+# Crea el gráfico
+desc_migracion <- plot_stackfrq(
+  datos_migracion,
+  show.prc = FALSE,
+  show.n = FALSE,
+  show.total = FALSE
+) +
+  theme_ggdist() + 
+    theme(
+    # Estilo del texto original
+    axis.text = element_text(size = 18),
+    title = element_text(size = 20),
+    legend.text = element_text(size = 16),
+    
+    # Estilo de la leyenda (adaptado del código de referencia)
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.box = "horizontal",
+    legend.title = element_text(face = "bold"),
+    legend.key = element_rect(fill = "white", color = NA),
+    legend.key.height = unit(12, "pt"),
+    legend.key.width = unit(20, "pt")
+  ) +
+  scale_fill_manual(
+    values = c("1" = "#f9913d", "2" = "#7ABA21", "3" = "#2b2f3c"),
+    labels = c("1" = "Muy en desacuerdo",
+               "2" = "Ni en desacuerdo \n ni de acuerdo", 
+               "3" = "Muy de acuerdo")
+  ) +
+  guides(fill = guide_legend(
+    title = NULL,
+    title.position = "top",
+    label.position = "right",
+    nrow = 1, 
+    byrow = TRUE,
+    keywidth = unit(14, "pt"),
+    keyheight = unit(10, "pt")
+  )) +
+  labs(caption = "Elaboración Propia a partir de ELSOC 2022")
+
+desc_migracion
+```
+
+En la @fig-migracion-olaseis se muestra la distribución de respuestas de las variables de migración disponibles en la última ola, las cuales han sido seleccionadas para este estudio. Todas las variables son medidas a partir de una escala likert de 1 a 5 (con etiquetas distintas), pero son agregadas en tres categorías para que pueda observarse de mejor forma su distribución. 
+
+En el caso de contacto con inmigrantes se mide cuán amistosa ha sido la experiencia de relacionarse con alguien extranjero. La mayoría de las personas considera que su interacción con algún inmigrante ha sido positiva. 
+
+Igualdad en acceso a salud mide qué tan de acuerdo se está con que los inmigrantes y chilenos tengan un acceso igualitario al sistema de salud. Más del 80% de las personas cree que la salud debe ser un servicio que no discrimine por nacionalidad. 
+
+Simpatía hacia inmigrantes busca cuantificar la simpatía que tienen las personas hacia los inmigrantes. En este caso, la distribución de las respuestas es bastante alta y equitativa entre las categorías “Muy en desacuerdo” y “Ni en desacuerdo ni de acuerdo”, mientras que las personas que consideran muy simpáticos a los inmigrantes son una minoría.
+
+Las dos últimas variables miden el grado de acuerdo respecto a las sentencias Con la llegada de inmigrantes aumenta el desempleo y Chile pierde su identidad con la llegada de inmigrantes. Estos son los indicadores más llamativos, puesto que aproximadamente el 40% de los encuestados percibe que los inmigrantes erosionan el país en sus dimensiones cultural y laboral.
 
 ```{r}
 #| label: fig-mig1
