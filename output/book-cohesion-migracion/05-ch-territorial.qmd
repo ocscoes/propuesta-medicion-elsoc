@@ -1,7 +1,5 @@
 # Cohesión Horizontal: Vínculos Territoriales
 
-## Data
-
 ```{r}
 #| label: set
 #| echo: false
@@ -97,7 +95,7 @@ db_pond <- db %>%
 
 ```
 
-## Recodificaciones Vinculación Territorial
+<!-- Recodificaciones -->
 
 ```{r}
 #| label: Vinculacion dummy transversal 1
@@ -285,9 +283,7 @@ elsoc_long_graph <- elsoc_long_graph %>%
   )
 ```
 
-
-
-## Descriptivos
+## Medición de vínculos territoriales
 
 ```{r}
 #| label: fig-vinculos
@@ -442,9 +438,7 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
   ))
 ```
 
-## Transversales
-
-## Vínculos territoriales transversal
+## Migración y vínculos territoriales 
 
 ```{r}
 #| label: fig-satbarrio
@@ -578,7 +572,6 @@ La @fig-sentper grafica la correlación entre la percepción de pérdida de iden
 
 Se puede notar que las tres categorías de acuerdo tienen un grado de similitud bastante alto en cuanto a su distribución, en donde todas las barras contienen un porcentaje casi idéntico. Esto quiere decir que no hay una relación clara entre las personas que tiene bajo sentido de pertenencia al barrio y la percepción respecto a la migración como catalizador del desempleo. 
 
-### Vínculos territoriales por género
 
 ```{r}
 barrio_genero <- elsoc_6_graph_2 %>%
@@ -682,7 +675,6 @@ ggplot(datos_combinados, aes(
 
 En @fig-terra-gen se puede observar cómo se relaciona el sentido de pertenencia al barrio con la pérdida de identidad debido a la migración, distinguiendo por género. Los hombres tienden a mantener una postura fuertemente polarizada, en donde, quienes tienen un bajo sentido de pertenencia, pueden creer fervientemente que los inmigrantes causan la pérdida de identidad nacional, o bien, están muy en desacuerdo con esta sentencia. Al contrario, las mujeres con bajo sentido de pertenencia, tienden a percibir de manera más moderada la pérdida de identidad nacional a causa de la migración, siendo la categoría neutral la que posee mayor porcentaje de respuesta.
 
-## Vínculos territoriales por educación
 
 ```{r}
 barrio_educ <- elsoc_6_graph_2 %>%
@@ -788,7 +780,7 @@ ggplot(datos_combinados, aes(
 
 La @fig-barrio-educ muestra la asociación entre percepción de desempleo debido a inmigrantes y sentido de pertenencia, siendo filtrada por nivel educacional. Al lado izquierdo se ve el gráfico según personas con título universitario, quienes dividen sus respuestas de manera casi equivalente en las categorías extremas, mientras que la categorías neutral es la menos votada por las personas que tienen un bajo sentido de pertenencia. Al lado derecho se ven las personas sin título universitario y, en este caso, sorpresivamente las tres barras se ven casi idénticas, lo que sugiere que, entre las personas que no poseen educación terciaria finalizada, no hay una tendencia clara entre el desempleo percibido a causa de los inmigrantes y el sentido de pertenencia al barrio.
 
-## Bivariados Longitudinales
+## Migración y vínculos territoriales en el tiempo
 
 ```{r}
 #| label: plots
