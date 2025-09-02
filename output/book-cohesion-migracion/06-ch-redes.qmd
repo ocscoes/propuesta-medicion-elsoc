@@ -649,8 +649,8 @@ ggplot(elsoc_5_graph_2, aes(
 )) +
   geom_bar(position = "fill") +
   scale_fill_manual(
-    values = c("Mucha ayuda" = "#2b2f3c", "Poca ayuda" = "#f9913d"),
-    breaks = c("Mucha ayuda", "Poca ayuda"),
+    values = c("Mucha ayuda" = "#2b2f3c", "Baja ayuda" = "#f9913d"),
+    breaks = c("Mucha ayuda", "Baja ayuda"),
     name = "Categorías"
   ) +
   labs(

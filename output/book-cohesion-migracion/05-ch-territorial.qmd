@@ -458,8 +458,8 @@ ggplot(elsoc_6_graph_2, aes(
 )) +
   geom_bar(position = "fill") +
   scale_fill_manual(
-    values = c("Alta satisfacción" = "#2b2f3c", "Poca satisfacción" = "#f9913d"),
-    breaks = c("Alta satisfacción", "Poca satisfacción"),
+    values = c("Alta satisfacción" = "#2b2f3c", "Baja satisfacción" = "#f9913d"),
+    breaks = c("Alta satisfacción", "Baja satisfacción"),
     name = "Categorías"
   ) +
   labs(
