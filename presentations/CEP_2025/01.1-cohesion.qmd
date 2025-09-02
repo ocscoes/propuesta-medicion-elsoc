@@ -23,7 +23,7 @@ csl: "input/bib/apa6.csl"
 
 ::: {.incremental .highlight-last style="font-size: 35px;"}
 
-_"Social cohesion is a state of aﬀairs concerning both the **vertical** and the **horizontal** interactions among members of society as characterized by a set of attitudes and norms that includes **trust**, a sense of **belonging** and the willingness to **participate and help**, as well as their behavioural manifestations"._ (@chan_reconsidering_2006).
+_"Social cohesion is a state of aﬀairs concerning both the **vertical** and the **horizontal** interactions among members of society as characterized by a set of attitudes and norms that includes **trust**, a sense of **belonging** and the willingness to **participate and help**, as well as their behavioural manifestations"._ @chan_reconsidering_2006.
 :::
 
 <br>
