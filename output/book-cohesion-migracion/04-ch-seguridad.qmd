@@ -421,7 +421,7 @@ ggplot(long_seguridad_stack, aes(x = ola, y = proporcion, fill = valor)) +
 ## Cruces Seguridad Migracion
 ```{r}
 #| label: fig-segsub
-#| fig-cap: Percepción de desempleo según seguridad subjetiva
+#| fig-cap: Seguridad subjetiva y desempleo debido a inmigrantes
 #| fig-cap-location: top
 #| echo: false 
 
@@ -432,7 +432,7 @@ ggplot(elsoc_6_graph_2, aes(
   geom_bar(position = "fill") +
   scale_fill_manual(
     values = c("Alta seguridad" = "#2b2f3c", "Baja seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Baja seguridad"),
+    breaks = c("Baja seguridad", "Alta seguridad"),
     name = "Categorías"
   ) +
   labs(
@@ -481,25 +481,25 @@ ggplot(elsoc_6_graph_2, aes(
   ))
 ```
 
-En la @fig-segsub se visualiza la asociación entre la percepción de aumento de desempleo a causa de inmigrantes (eje x), y el índice de seguridad subjetiva (eje y), el cual fue construido mediante el promedio calculado de dos indicadores: satisfacción de seguridad en el barrio y percepción de seguridad barrial. 
+En la @fig-segsub se visualiza la asociación entre la percepción de aumento de desempleo a causa de inmigrantes (eje x), y el índice de seguridad subjetiva (eje y), el cual fue construido mediante el promedio calculado de dos indicadores: satisfacción de seguridad en el barrio y percepción de seguridad barrial (si le interesa profundizar en cómo se construyó este y los demás índices, vaya al [anexo](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html)).
 
 Se puede apreciar que la cantidad de personas que percibe una seguridad baja aumenta en la medida que se está más de acuerdo con que los inmigrantes causan desempleo en el país. Esto se nota en la consistencia en las categorías “Ni en desacuerdo ni de acuerdo” y “Muy de acuerdo” respecto a la concentración de respuestas, superando notoriamente la poca seguridad de quienes no creen que la inmigración incide en la empleabilidad. Por tanto, se refleja una correlación negativa entre la sensación de seguridad y la carencia de empleos debido a extranjeros.
 
 
 ```{r}
 #| label: fig-seg-trans
-#| fig-cap: Pérdida de identidad del país debido a inmigrantes según seguridad objetiva
+#| fig-cap: Seguridad objetiva y pérdida de identidad del país debido a inmigrantes
 #| fig-cap-location: top
 #| echo: false 
 
 ggplot(elsoc_6_graph_2, aes(
   x = perdida_identidad, 
-  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Baja seguridad"))
 )) +
   geom_bar(position = "fill") +
   scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Baja seguridad"),
+    values = c("Alta seguridad" = "#2b2f3c", "Baja seguridad" = "#f9913d"),
+    breaks = c("Baja seguridad", "Alta seguridad"),
     name = "Categorías"
   ) +
   labs(
@@ -592,17 +592,16 @@ datos_combinados <- rbind(seguridad_hombres, seguridad_mujeres)
 # Crea el gráfico combinado
 ggplot(datos_combinados, aes(
   x = perdida_identidad, 
-  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Baja seguridad"))
 )) +
   geom_bar(position = "fill") +
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Baja seguridad"),
+    values = c("Alta seguridad" = "#2b2f3c", "Baja seguridad" = "#f9913d"),
+    breaks = c("Baja seguridad", "Alta seguridad"),
     name = "Categorías"
   ) +
   labs(
-    title = "Pérdida de identidad del país debido a inmigrantes según seguridad objetiva",
     x = "Percepción de pérdida de identidad",
     y = "Seguridad objetiva",
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
@@ -685,7 +684,7 @@ seguridad_notitulo <- seguridad_notitulo %>%
 
 ```{r}
 #| label: fig-seg-educ
-#| fig-cap: Desempleo debido a inmigrantes y seguridad objetiva por nivel educacional
+#| fig-cap: Seguridad objetiva y desempleo debido a inmigrantes por nivel educacional
 #| fig-cap-location: top
 #| echo: false 
 
@@ -701,13 +700,13 @@ datos_combinados <- rbind(seguridad_titulo, seguridad_notitulo)
 # Crea el gráfico combinado
 ggplot(datos_combinados, aes(
   x = desempleo_migrantes, 
-  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Poca seguridad"))
+  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Baja seguridad"))
 )) +
   geom_bar(position = "fill") +
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Poca seguridad" = "#f9913d"),
-    breaks = c("Alta seguridad", "Baja seguridad"),
+    values = c("Alta seguridad" = "#2b2f3c", "Baja seguridad" = "#f9913d"),
+    breaks = c("Baja seguridad", "Alta seguridad"),
     name = "Seguridad objetiva"
   ) +
   labs(

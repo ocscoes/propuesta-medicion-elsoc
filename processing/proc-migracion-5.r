@@ -14,7 +14,7 @@ elsoc_5 <- elsoc_5 %>%
   select(idencuesta, m01, m0_sexo, m0_edad, comuna, comuna_cod,
          region, region_cod, c02, c03, c07_02,
          c07_04, c07_05, c07_06, c07_07, c07_08, r06, r07, r09,
-          r12_03, r12_04, r16, r18_01, r18_02)
+          r12_03, r12_04, r16, r18_01, r18_02, c37_05)
 
 # renombrar variables
 
@@ -27,7 +27,7 @@ elsoc_5 <- elsoc_5 %>%
          contacto_migrantes = r07, simpatia_migrantes = r09,
          perdida_identidad = r12_03, desempleo_migrantes = r12_04,
          confianza_migrantes = r16, fomentar_migracion = r18_01,
-         igualdad_migrantes = r18_02)
+         igualdad_migrantes = r18_02, restriccion_migrantes = c37_05)
 
 # revisar labels para asegurarse de que están codificados correctamente
 
@@ -53,6 +53,7 @@ elsoc_5$fomentar_migracion <- recode(elsoc_5$fomentar_migracion, "c(-666, -777, 
 elsoc_5$igualdad_migrantes <- recode(elsoc_5$igualdad_migrantes, "c(-666, -777, -888, -999) = NA")
 elsoc_5$sexo <- recode(elsoc_5$sexo, "(1) = 0; (2) = 1")
 elsoc_5$educacion <- recode(elsoc_5$educacion, "c(-666, -777, -888, -999) = NA")
+elsoc_5$restriccion_migrantes <- recode(elsoc_5$restriccion_migrantes, "c(-666, -777, -888, -999) = NA")
 
 # dicotomizar nivel educacional 
 elsoc_5$educacion <- car::recode(elsoc_5$educacion, "c(1, 2, 3, 4, 5, 6, 7, 8)=0; c(9, 10)=1")
@@ -113,7 +114,14 @@ elsoc_5$confianza_gen <- set_labels(elsoc_5$confianza_gen,
                       "Depende"=2,
                       "Casi siempre se puede confiar en las personas"=3))
 
-
+elsoc_5$restriccion_migrantes <- set_labels(elsoc_5$restriccion_migrantes,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
 
 # guardar base de datos
 saveRDS(elsoc_5, file = "input/data/proc_data/elsoc_2021_mig.RData")
+# base con restriccion de acceso migrantes
+saveRDS(elsoc_5, file = "input/data/proc_data/elsoc_restr5.RData")

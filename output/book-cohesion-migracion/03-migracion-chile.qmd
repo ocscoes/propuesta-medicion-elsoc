@@ -147,6 +147,7 @@ elsoc_6_graph <- elsoc_6_graph %>%
 #| fig-cap: Distribución de los ítems de migración ola 2022
 #| fig-cap-location: top
 #| echo: false
+#| message: false 
 #| fig-width: 14
 #| fig-height: 8
 
@@ -205,7 +206,8 @@ desc_migracion <- plot_stackfrq(
     byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
-  ))
+  )) +
+  labs(caption = "Elaboración Propia a partir de ELSOC 2022")
 
 desc_migracion
 ```

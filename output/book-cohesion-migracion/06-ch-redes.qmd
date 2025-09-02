@@ -508,7 +508,7 @@ ggplot(long_redes_stack, aes(x = ola, y = proporcion, fill = valor)) +
 
 ```{r}
 #| label: fig-prosoc
-#| fig-cap: Asociación entre percepción de desempleo y comportamiento prosocial
+#| fig-cap: Comportamiento prosocial y desempleo debido a inmigrantes 
 #| fig-cap-location: top
 #| echo: false 
 
@@ -522,7 +522,7 @@ ggplot(elsoc_5_graph_2, aes(
   geom_bar(position = "fill") +
   scale_fill_manual(
     values = c("Alto" = "#2b2f3c", "Bajo" = "#f9913d"),
-    breaks = c("Alto", "Bajo"),
+    breaks = c("Bajo", "Alto"),
     name = "Categorías"
   ) +
   labs(
@@ -571,11 +571,13 @@ ggplot(elsoc_5_graph_2, aes(
   ))
 ```
 
-En @fig-prosoc se nota una tendencia de las personas a tener un bajo comportamiento prosocial, cuyo porcentaje es mayoría en las tres barras. Con mayor profundidad, se puede afirmar una asociación negativa entre la percepción de desempleo por la migración y el comportamiento prosocial. En otras palabras, mientras el comportamiento social es más bajo, se considera en mayor medida que los inmigrantes causan desempleo en el país. 
+En la @fig-prosoc se analiza la asociación entre la percepción de aumento de desempleo debido a inmigrantes y el índice de comportamiento prosocial. Para la construcción de este índice se consideraron variables que medían el haber participado en reuniones públicas/sociales y el haber realizado voluntariados(si le interesa profundizar en cómo se construyó este y los demás índices, vaya al [anexo](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html)).
+
+Respecto al gráfico, se nota una tendencia de las personas a tener un bajo comportamiento prosocial, cuyo porcentaje es mayoría en las tres barras. Con mayor profundidad, se puede afirmar una asociación negativa entre la percepción de desempleo por la migración y el comportamiento prosocial. En otras palabras, mientras el comportamiento social es más bajo, se considera en mayor medida que los inmigrantes causan desempleo en el país. 
 
 ```{r}
 #| label: fig-confinter
-#| fig-cap: Asociación entre percepción de desempleo debido a inmigrantes y confianza interpersonal
+#| fig-cap: Confianza interpersonal y desempleo debido a inmigrantes
 #| fig-cap-location: top
 #| echo: false 
 
@@ -586,7 +588,7 @@ ggplot(elsoc_5_graph_2, aes(
   geom_bar(position = "fill") +
   scale_fill_manual(
     values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Alta confianza", "Baja confianza"),
+    breaks = c("Baja confianza", "Alta confianza"),
     name = "Categorías"
   ) +
   labs(
@@ -639,7 +641,7 @@ En @fig-confinter se observa un patrón bastante similar al anterior, en donde l
 
 ```{r}
 #| label: fig-ayudaeco
-#| fig-cap: Asociación entre percepción de pérdida de identidad y ayuda económica
+#| fig-cap: Ayuda económica y desempleo debido a inmigrantes
 #| fig-cap-location: top
 #| echo: false 
 
@@ -650,11 +652,10 @@ ggplot(elsoc_5_graph_2, aes(
   geom_bar(position = "fill") +
   scale_fill_manual(
     values = c("Mucha ayuda" = "#2b2f3c", "Baja ayuda" = "#f9913d"),
-    breaks = c("Mucha ayuda", "Baja ayuda"),
+    breaks = c("Baja ayuda", "Mucha ayuda"),
     name = "Categorías"
   ) +
   labs(
-    title = "% de percepción de pérdida de identidad del país \n debido a inmigrantes según ayuda económica a terceros",
     x = "Pérdida de identidad",
     y = "Ayuda económica",
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
@@ -730,7 +731,7 @@ redes_mujeres <- redes_mujeres %>%
 
 ```{r}
 #| label: fig-conf-genero
-#| fig-cap: Percepción de desempleo y confianza interpersonal por género
+#| fig-cap: Confianza interpersonal y desempleo debido a inmigrantes por género
 #| fig-cap-location: top
 #| echo: false 
 
@@ -751,7 +752,7 @@ ggplot(datos_combinados, aes(
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
     values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Alta confianza", "Baja confianza"),
+    breaks = c("Baja confianza", "Alta confianza"),
     name = "Confianza interpersonal"
   ) +
   labs(
@@ -834,7 +835,7 @@ redes_notitulo <- redes_notitulo %>%
 
 ```{r}
 #| label: fig-conf-educacion
-#| fig-cap: Percepción de desempleo y confianza interpersonal por nivel educacional
+#| fig-cap: Confianza interpersonal y desempleo debido a inmigrantes por nivel educacional
 #| fig-cap-location: top
 #| echo: false 
 
@@ -856,7 +857,7 @@ ggplot(datos_combinados, aes(
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
     values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Alta confianza", "Baja confianza"),
+    breaks = c("Baja confianza", "Alta confianza"),
     name = "Confianza interpersonal"
   ) +
   labs(

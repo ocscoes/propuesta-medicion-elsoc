@@ -14,7 +14,7 @@ data <- data %>%
   select(idencuesta, m01, m0_sexo, m0_edad, comuna, comuna_cod, region, region_cod, 
          t06_01, t10, t09_01, t09_02, t09_03, t02_01, t02_02,
          t02_03, t02_04, t03_01, t03_02, t03_03, t03_04, r06, r07, r09,
-          r12_03, r12_04, r16, r18_01, r18_02)
+          r12_03, r12_04, r16, r18_01, r18_02, c37_05)
 
 #cambiar nombre a variables
 data <- data %>% 
@@ -29,7 +29,7 @@ data <- data %>%
          contacto_migrantes = r07, simpatia_migrantes = r09,
          perdida_identidad = r12_03, desempleo_migrantes = r12_04,
          confianza_migrantes = r16, fomentar_migracion = r18_01,
-         igualdad_migrantes = r18_02)
+         igualdad_migrantes = r18_02, restriccion_migrantes = c37_05)
 
 #Recodificar NA
 data$seguridad_sat <- recode(data$seguridad_sat, "c(-666, -777, -888, -999) = NA") 
@@ -55,6 +55,7 @@ data$fomentar_migracion <- recode(data$fomentar_migracion, "c(-666, -777, -888, 
 data$igualdad_migrantes <- recode(data$igualdad_migrantes, "c(-666, -777, -888, -999) = NA")
 data$sexo <- recode(data$sexo, "c(1) = 0; c(2) = 1")
 data$educacion <- recode(data$educacion, "c(-666, -777, -888, -999) = NA")
+data$restriccion_migrantes <- recode(data$restriccion_migrantes, "c(-666, -777, -888, -999) = NA")
 
 # invertir escala de seguridad objetiva para que esté alineada con seguridad subjetiva
 data$peleas_calle <- car::recode(data$peleas_calle, "(1)=5; (2)=4; (3)=3; (4)=2; (5)=1")
@@ -110,6 +111,14 @@ data$desempleo_migrantes <- set_labels(data$desempleo_migrantes,
                       "De acuerdo"=4,
                       "Totalmente de acuerdo"=5))
 
+data$restriccion_migrantes <- set_labels(data$restriccion_migrantes,
+            labels=c( "Totalmente en desacuerdo"=1,
+                      "En desacuerdo"=2,
+                      "Ni en desacuerdo ni de acuerdo"=3,
+                      "De acuerdo"=4,
+                      "Totalmente de acuerdo"=5))
 
 data_mig <- data
 saveRDS(data_mig, file="input/data/proc_data/elsoc_2022_mig.RData")
+# base con restriccion_migrantes
+saveRDS(data, file="input/data/proc_data/elsoc_restr.RData")

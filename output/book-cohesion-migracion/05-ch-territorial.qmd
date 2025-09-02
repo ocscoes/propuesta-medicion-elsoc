@@ -448,7 +448,7 @@ ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
 
 ```{r}
 #| label: fig-satbarrio
-#| fig-cap: Percepción de pérdida de identidad del país debido a inmigrantes según satisfacción con el barrio
+#| fig-cap: Satisfacción con el barrio y pérdida de identidad del país debido a inmigrantes
 #| fig-cap-location: top
 #| echo: false 
 
@@ -459,7 +459,7 @@ ggplot(elsoc_6_graph_2, aes(
   geom_bar(position = "fill") +
   scale_fill_manual(
     values = c("Alta satisfacción" = "#2b2f3c", "Baja satisfacción" = "#f9913d"),
-    breaks = c("Alta satisfacción", "Baja satisfacción"),
+    breaks = c("Baja satisfacción", "Alta satisfacción"),
     name = "Categorías"
   ) +
   labs(
@@ -508,24 +508,24 @@ ggplot(elsoc_6_graph_2, aes(
   ))
 ```
 
-La @fig-satbarrio refleja la asociación entre la percepción de que los inmigrantes le restan identidad al país y el índice de satisfacción con el barrio. Este índice se compuso de cuatro indicadores que miden diversos aspectos sobre el barrio, tales como sociabilidad, colaboración, entre otros (quiere ver en profundidad cómo se construyó este y los demás índices, vaya al [anexo](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html).
+La @fig-satbarrio refleja la asociación entre la percepción de que los inmigrantes le restan identidad al país y el índice de satisfacción con el barrio. Este índice se compuso de cuatro indicadores que miden diversos aspectos sobre el barrio, tales como sociabilidad, colaboración, entre otros (si le interesa profundizar en cómo se construyó este y los demás índices, vaya al [anexo](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html)).
 
 Además, se puede observar en  que en 2022 la mayoría de las personas sienten una alta satisfacción con su barrio. Ahora bien, existe una relación negativa entre percibir la pérdida de identidad del país debido a inmigrantes y la satisfacción con el barrio. Esto es, a medida que disminuye la satisfacción con el barrio, aumenta la sensación de que los inmigrantes flagelan la identidad del país. 
 
 ```{r}
 #| label: fig-sentper
-#| fig-cap: Percepción de pérdida de identidad del país \n debido a inmigrantes según sentido de pertenencia
+#| fig-cap: Sentido de pertenencia y pérdida de identidad del país debido a inmigrantes
 #| fig-cap-location: top
 #| echo: false 
 
 ggplot(elsoc_6_graph_2, aes(
-  x = sentido_pertenencia, 
-  fill = factor(satisfaccion_barrio, labels = c("Alta pertenencia", "Baja pertenencia"))
+  x = perdida_identidad, 
+  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
 )) +
   geom_bar(position = "fill") +
   scale_fill_manual(
     values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Alta pertenencia", "Baja pertenencia"),
+    breaks = c("Baja pertenencia", "Alta pertenencia"),
     name = "Categorías"
   ) +
   labs(
@@ -574,6 +574,10 @@ ggplot(elsoc_6_graph_2, aes(
   ))
 ```
 
+La @fig-sentper grafica la correlación entre la percepción de pérdida de identidad del país a causa de inmigrantes, la cual se representa con las tres categorías de respuesta como barras, y el índice de sentido de pertenencia, presentándose en el relleno de las barras. 
+
+Se puede notar que las tres categorías de acuerdo tienen un grado de similitud bastante alto en cuanto a su distribución, en donde todas las barras contienen un porcentaje casi idéntico. Esto quiere decir que no hay una relación clara entre las personas que tiene bajo sentido de pertenencia al barrio y la percepción respecto a la migración como catalizador del desempleo. 
+
 ### Vínculos territoriales por género
 
 ```{r}
@@ -621,7 +625,7 @@ ggplot(datos_combinados, aes(
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
     values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Alta pertenencia", "Baja pertenencia"),
+    breaks = c("Baja pertenencia", "Alta pertenencia"),
     name = "Categorías"
   ) +
   labs(,
@@ -704,7 +708,7 @@ barrio_notitulo <- barrio_notitulo %>%
 
 ```{r}
 #| label: fig-barrio-educ
-#| fig-cap: Percepción de desempleo debido a inmigrantes y sentido de pertenencia por nivel educacional
+#| fig-cap: Sentido de pertenencia y desempleo debido a inmigrantes por nivel educacional
 #| fig-cap-location: top
 #| echo: false 
 
@@ -725,7 +729,7 @@ ggplot(datos_combinados, aes(
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
     values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Alta pertenencia", "Baja pertenencia"),
+    breaks = c("Baja pertenencia", "Alta pertenencia"),
     name = "Sentido de pertenencia"
   ) +
   labs(
