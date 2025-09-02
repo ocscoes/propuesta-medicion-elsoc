@@ -147,67 +147,6 @@ elsoc_6_graph <- elsoc_6_graph %>%
   na.omit()
 ```
 
-```{r}
-#| label: fig-restr-obj
-#| fig-cap: Restricción de ingreso a migrantes y seguridad objetiva
-#| fig-cap-location: top
-#| echo: false
-
-ggplot(elsoc_6_graph, aes(
-  x = restriccion_migrantes, 
-  fill = factor(seguridad_obj, labels = c("Alta seguridad", "Baja seguridad"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Baja seguridad" = "#f9913d"),
-    breaks = c("Baja seguridad", "Alta seguridad"),
-    name = "Categorías"
-  ) +
-  labs(
-    x = "Restricción de ingreso a inmigrantes",
-    y = "Seguridad objetiva",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 5),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  ) +
-  theme_ggdist() +
-  theme(
-    # Estilo de la leyenda (adaptado del código de referencia)
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background = element_rect(fill = "white", color = NA),
-    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.box = "horizontal",
-    legend.title = element_text(face = "bold"),
-    legend.key = element_rect(fill = "white", color = NA),
-    legend.key.height = unit(12, "pt"),
-    legend.key.width = unit(20, "pt"),
-    
-    # Estilo del texto
-    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
-    axis.text.x = element_text(size = 9),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 12),
-    plot.title = element_text(size = 12, hjust = 0.5)
-  ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right",
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
-```
 
 ```{r}
 #| label: fig-restr-sub
@@ -215,25 +154,50 @@ ggplot(elsoc_6_graph, aes(
 #| fig-cap-location: top
 #| echo: false
 
+# Calculamos las proporciones para cada categoría
+elsoc_6_labels <- elsoc_6_graph %>%
+  group_by(restriccion_migrantes, seguridad_sub) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(restriccion_migrantes) %>%
+  mutate(
+    total = sum(n),
+    prop = n / total,
+    percentage = round(prop * 100, 1)
+  ) %>%
+  filter(seguridad_sub == 1) %>%  # Solo para "Alta seguridad" (que ahora será naranjo)
+  mutate(
+    prop_baja = 1 - prop,  # Proporción de baja seguridad
+    y_pos = prop_baja + (prop / 2)  # Posición en el centro de la parte alta
+  )
 
+# Gráfico modificado
 ggplot(elsoc_6_graph, aes(
   x = restriccion_migrantes, 
   fill = factor(seguridad_sub, labels = c("Alta seguridad", "Baja seguridad"))
 )) +
   geom_bar(position = "fill") +
   scale_fill_manual(
-    values = c("Alta seguridad" = "#2b2f3c", "Baja seguridad" = "#f9913d"),
-    breaks = c("Baja seguridad", "Alta seguridad"),
+    values = c("Alta seguridad" = "transparent", "Baja seguridad" = "#f9913d"),
+    breaks = c("Baja seguridad"),
     name = "Categorías"
+  ) +
+  # Agregamos las etiquetas de porcentaje
+  geom_text(
+    data = elsoc_6_labels,
+    aes(x = restriccion_migrantes, y = 0.60, label = paste0(percentage, "%")),
+    inherit.aes = FALSE,
+    color = "#2b2f3c",
+    fontface = "bold",
+    size = 4
   ) +
   labs(
     x = "Restricción de ingreso a inmigrantes",
-    y = "Seguridad subjetiva",
+    y = "Seguridad subjetiva", 
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
+    labels = scales::percent_format(accuracy = 1),
     breaks = scales::pretty_breaks(n = 5),
     expand = expansion(mult = c(0, 0.05))
   ) +
@@ -249,7 +213,7 @@ ggplot(elsoc_6_graph, aes(
     legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
     legend.position = "bottom",
-    legend.direction = "horizontal",
+    legend.direction = "horizontal", 
     legend.box = "horizontal",
     legend.title = element_text(face = "bold"),
     legend.key = element_rect(fill = "white", color = NA),
@@ -265,12 +229,14 @@ ggplot(elsoc_6_graph, aes(
   ) +
   guides(fill = guide_legend(
     title.position = "top",
-    label.position = "right",
+    label.position = "right", 
     nrow = 1, byrow = TRUE,
     keywidth = unit(14, "pt"),
     keyheight = unit(10, "pt")
   ))
 ```
+
+
 
 ```{r}
 #| label: fig-restr-sat
@@ -278,16 +244,41 @@ ggplot(elsoc_6_graph, aes(
 #| fig-cap-location: top
 #| echo: false
 
+# Crear las etiquetas de porcentaje
+elsoc_6_labels2 <- elsoc_6_graph %>%
+  group_by(restriccion_migrantes, satisfaccion_barrio) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(restriccion_migrantes) %>%
+  mutate(
+    total = sum(n),
+    prop = n / total,
+    percentage = round(prop * 100, 1)
+  ) %>%
+  filter(satisfaccion_barrio == 1) %>%  # Solo para "Alta satisfacción"
+  mutate(
+    prop_baja = 1 - prop,  # Proporción de baja satisfacción
+    y_pos = prop_baja + (prop / 2)  # Posición en el centro de la parte alta
+  )
 
+# Gráfico modificado
 ggplot(elsoc_6_graph, aes(
   x = restriccion_migrantes, 
   fill = factor(satisfaccion_barrio, labels = c("Alta satisfacción", "Baja satisfacción"))
 )) +
   geom_bar(position = "fill") +
   scale_fill_manual(
-    values = c("Alta satisfacción" = "#2b2f3c", "Baja satisfacción" = "#f9913d"),
-    breaks = c("Baja satisfacción", "Alta satisfacción"),
+    values = c("Alta satisfacción" = "transparent", "Baja satisfacción" = "#f9913d"),
+    breaks = c("Baja satisfacción"),
     name = "Categorías"
+  ) +
+  # Agregamos las etiquetas de porcentaje (alineadas)
+  geom_text(
+    data = elsoc_6_labels2,
+    aes(x = restriccion_migrantes, y = 0.60, label = paste0(percentage, "%")),
+    inherit.aes = FALSE,
+    color = "#2b2f3c",
+    fontface = "bold",
+    size = 4
   ) +
   labs(
     x = "Restricción de ingreso a inmigrantes",
@@ -335,68 +326,6 @@ ggplot(elsoc_6_graph, aes(
   ))
 ```
 
-```{r}
-#| label: fig-restr-sent
-#| fig-cap: Restricción de ingreso a migrantes y sentido de pertenencia
-#| fig-cap-location: top
-#| echo: false
-
-
-ggplot(elsoc_6_graph, aes(
-  x = restriccion_migrantes, 
-  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Baja pertenencia", "Alta pertenencia"),
-    name = "Categorías"
-  ) +
-  labs(
-    x = "Restricción de ingreso a inmigrantes",
-    y = "Sentido de pertenencia",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 5),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  ) +
-  theme_ggdist() +
-  theme(
-    # Estilo de la leyenda (adaptado del código de referencia)
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background = element_rect(fill = "white", color = NA),
-    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.box = "horizontal",
-    legend.title = element_text(face = "bold"),
-    legend.key = element_rect(fill = "white", color = NA),
-    legend.key.height = unit(12, "pt"),
-    legend.key.width = unit(20, "pt"),
-    
-    # Estilo del texto
-    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
-    axis.text.x = element_text(size = 9),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 12),
-    plot.title = element_text(size = 12, hjust = 0.5)
-  ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right",
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
-```
 
 ```{r}
 #| label: fig-restr-pro
@@ -406,150 +335,45 @@ ggplot(elsoc_6_graph, aes(
 #| warning: false 
 #| echo: false
 
+# Crear datos para las etiquetas
+elsoc_5_labels <- elsoc_5_graph %>% 
+  group_by(restriccion_migrantes, comportamiento_prosocial) %>% 
+  summarise(n = n(), .groups = "drop") %>% 
+  group_by(restriccion_migrantes) %>% 
+  mutate(
+    total = sum(n),
+    prop = n / total,
+    percentage = round(prop * 100, 1)
+  ) %>% 
+  filter(comportamiento_prosocial == 1) %>%  # Solo para "Alto"
+  mutate(
+    prop_bajo = 1 - prop,  # Proporción de bajo comportamiento prosocial
+    y_pos = prop_bajo + (prop / 2)  # Posición en el centro de la parte alta
+  )
 
+# Gráfico modificado
 ggplot(elsoc_5_graph, aes(
   x = restriccion_migrantes, 
   fill = factor(comportamiento_prosocial, labels = c("Alto", "Bajo"))
 )) +
   geom_bar(position = "fill") +
   scale_fill_manual(
-    values = c("Alto" = "#2b2f3c", "Bajo" = "#f9913d"),
-    breaks = c("Bajo", "Alto"),
+    values = c("Alto" = "transparent", "Bajo" = "#f9913d"),
+    breaks = c("Bajo"),
     name = "Categorías"
+  ) +
+  # Agregamos las etiquetas de porcentaje (alineadas)
+  geom_text(
+    data = elsoc_5_labels,
+    aes(x = restriccion_migrantes, y = 0.90, label = paste0(percentage, "%")),
+    inherit.aes = FALSE,
+    color = "#2b2f3c",
+    fontface = "bold",
+    size = 4
   ) +
   labs(
     x = "Restricción de ingreso a inmigrantes",
     y = "Comportamiento prosocial",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 5),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  ) +
-  theme_ggdist() +
-  theme(
-    # Estilo de la leyenda (adaptado del código de referencia)
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background = element_rect(fill = "white", color = NA),
-    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.box = "horizontal",
-    legend.title = element_text(face = "bold"),
-    legend.key = element_rect(fill = "white", color = NA),
-    legend.key.height = unit(12, "pt"),
-    legend.key.width = unit(20, "pt"),
-    
-    # Estilo del texto
-    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
-    axis.text.x = element_text(size = 9),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 12),
-    plot.title = element_text(size = 12, hjust = 0.5)
-  ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right",
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
-```
-
-```{r}
-#| label: fig-restr-ayudaeco
-#| fig-cap: Restricción de ingreso a migrantes y ayuda económica
-#| fig-cap-location: top
-#| message: false 
-#| warning: false
-#| echo: false
-
-
-ggplot(elsoc_5_graph, aes(
-  x = restriccion_migrantes, 
-  fill = factor(ayuda_economica, labels = c("Alta", "Baja"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta" = "#2b2f3c", "Baja" = "#f9913d"),
-    breaks = c("Baja", "Alta"),
-    name = "Categorías"
-  ) +
-  labs(
-    x = "Restricción de ingreso a inmigrantes",
-    y = "Ayuda económica",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
-  ) +
-  theme_minimal() +
-  scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 5),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  ) +
-  theme_ggdist() +
-  theme(
-    # Estilo de la leyenda (adaptado del código de referencia)
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background = element_rect(fill = "white", color = NA),
-    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.box = "horizontal",
-    legend.title = element_text(face = "bold"),
-    legend.key = element_rect(fill = "white", color = NA),
-    legend.key.height = unit(12, "pt"),
-    legend.key.width = unit(20, "pt"),
-    
-    # Estilo del texto
-    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
-    axis.text.x = element_text(size = 9),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 12),
-    plot.title = element_text(size = 12, hjust = 0.5)
-  ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right",
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
-```
-
-```{r}
-#| label: fig-restr-conf
-#| fig-cap: Restricción de ingreso a migrantes y confianza interpersonal
-#| fig-cap-location: top
-#| message: false 
-#| warning: false 
-#| echo: false
-
-
-ggplot(elsoc_5_graph, aes(
-  x = restriccion_migrantes, 
-  fill = factor(confianza_inter, labels = c("Alta confianza", "Baja confianza"))
-)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("Alta confianza" = "#2b2f3c", "Baja confianza" = "#f9913d"),
-    breaks = c("Baja confianza", "Alta confianza"),
-    name = "Categorías"
-  ) +
-  labs(
-    x = "Restricción de ingreso a inmigrantes",
-    y = "Confianza interpersonal",
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
