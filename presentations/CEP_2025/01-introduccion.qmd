@@ -1,0 +1,15 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
+---
+
+# Contexto y motivación {.xlarge data-background-color="#444a5e"}
+
+
+
+{{< include 01.1-cohesion.qmd >}}
+
+{{< include 01.2-migracion-contexto.qmd >}}
+
+{{< include 01.3-elsoc.qmd >}}

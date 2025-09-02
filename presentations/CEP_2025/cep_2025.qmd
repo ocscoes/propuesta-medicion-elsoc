@@ -1,0 +1,104 @@
+---
+pagetitle: "Foro II Cohesión Social y Migración 2025"
+Author: Equipo EDUMER
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
+lang: es
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      
+      knitr.graphics.auto_pdf: true
+format:
+  revealjs:
+    #logo: images/edumer.png
+    slide-number: true
+    theme: "libs/edumer.scss"
+    auto-stretch: false
+    title-slide-attributes:
+      visibility: false
+    transition: fade
+    transition-speed: slow
+# data-background-image: images/cover.jpg
+# data-background-size: cover
+    auto-play-media: true
+    mathjax: "default"
+  pdf:
+    format: beamer 
+    keep-tex: true  # Debug LaTeX output if needed
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(knitr)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+
+::: columns
+
+
+::: {.column width="20%"}
+
+
+![](images/coes.png)
+
+
+![](images/LOGO-OCS.png)
+
+![](images/qrcode.png)
+
+:::
+
+::: {.column .column-right width="80%"}
+
+</br>
+
+# **Cohesión social y migración**
+
+## **Una década de cambios y desafíos**
+
+------------------------------------------------------------------------
+
+**Roberto González^1,^^2^** 
+
+::: {.medium}
+
+
+**^1^Centro de Estudios de Conflicto y Cohesión Social - COES**
+
+**^2^Escuela de Psicología, Pontificia Universidad Católica de Chile**
+
+:::
+
+Segundo Foro de Cohesión Social COES - CEP
+
+9 Septiembre 2025, Santiago
+
+:::
+:::
+
+{{< include 01-introduccion.qmd >}}
+
+{{< include 02-migracion-radiografia.qmd >}}
+
+{{< include 03-cohesion-migracion.qmd >}}
+
+{{< include 04-conclusiones.qmd >}}
+
+
+## Referencias
+
+::: {#refs}
+:::
