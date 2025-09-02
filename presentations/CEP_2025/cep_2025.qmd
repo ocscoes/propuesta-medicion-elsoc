@@ -9,7 +9,6 @@ knitr:
     collapse: true
     comment: "#>"
     R.options:
-      
       knitr.graphics.auto_pdf: true
 format:
   revealjs:
@@ -26,10 +25,13 @@ format:
     auto-play-media: true
     mathjax: "default"
   pdf:
-    format: beamer 
+    format: beamer
     keep-tex: true  # Debug LaTeX output if needed
-editor_options: 
+editor_options:
   chunk_output_type: console
+
+
+
 ---
 
 ```{r}
@@ -44,6 +46,7 @@ knitr::opts_chunk$set(echo = F,
 options(kableExtra.html.bsTable = T)
 options(knitr.kable.NA = "")
 ```
+
 
 
 ::: columns

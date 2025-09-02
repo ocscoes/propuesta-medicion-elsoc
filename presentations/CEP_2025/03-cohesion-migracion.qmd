@@ -2,12 +2,288 @@
 author: "Equipo EDUMER"
 bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
+editor_options: 
+  chunk_output_type: console
 ---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, 
+                      include = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled,
+               srvyr,
+               ggdist,
+               purrr,
+               rlang)
+
+
+options(scipen=999)
+rm(list = ls())
+
+load(here("input/data/proc_data/db_long.RData"))
+
+db_pond <- db %>% 
+  as_survey_design(ids = segmento, 
+                   strata = estrato, 
+                   weights = ponderador_long_total,
+                   nest = T)
+```
+
+```{r}
+#| label: plots
+
+
+# Selección de variables: (1) desempleo por migrantes, (2)pérdida de identidad
+# (3)simpatía hacia migrantes, (4)acceso a salud igualitaro y (5) contacto positivo
+
+# plot function
+make_plot <- function(design, predictor, outcome, ylab, legend_title) {
+  pred_sym <- ensym(predictor)
+  out_sym  <- ensym(outcome)
+  
+  design %>% 
+    select(wave, !!pred_sym, !!out_sym) %>% 
+    tidyr::drop_na() %>% 
+    group_by(wave, !!pred_sym) %>%
+    summarise(
+      value = survey_mean(!!out_sym, vartype = "ci", na.rm = TRUE),
+      .groups = "drop"
+    ) %>% 
+    ggplot(aes(x = wave, y = value, group = !!pred_sym)) +
+    geom_point(aes(color = !!pred_sym), size = 4.5) +
+    geom_line(aes(color = !!pred_sym), linewidth = 1) +
+    # geom_errorbar(aes(ymin = value_low, ymax = value_upp, color = !!pred_sym), width = 0.1) +
+    scale_y_continuous(n.breaks = 7) +
+    scale_color_manual(
+      name = legend_title,
+      values = c("#F9913D","#7ABA21", "#2b2f3c")
+      ) +
+    labs(
+      x = "Ola",
+      y = ylab,
+      caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    ) +
+    theme_ggdist() +
+theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "bottom",
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "bottom",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
+}
+
+# combinations
+
+outcomes <- c(
+  seguridad_sub           = "Seguridad percibida",
+  seguridad_obj           = "Seguridad objetiva",
+  confianza_inter         = "Confianza interpersonal",
+  comportamiento_prosocial= "Comportamiento prosocial",
+  ayuda_economica         = "Ayuda económica",
+  sentido_pertenencia     = "Sentido pertenencia barrio",
+  satisfaccion_barrio     = "Satisfacción barrio"
+)
+
+predictors <- list(
+  desempleo_migrantes = "Desempleo percibido por \nmigrantes",
+  perdida_identidad   = "Pérdida identidad por \nmigrantes",
+  simpatia_migrantes = "Simpatía hacia migrantes",
+  igualdad_migrantes = "Acceso a salud igualitario \npara migrantes",
+  contacto_migrantes = "Contacto positivo con \nmigrantes",
+  restriccion_migrantes = "Restricción a ingreso de \nmigrantes"
+)
+
+comb <- tidyr::crossing(pred = names(predictors), out = names(outcomes))
+
+# make plots
+
+plots_tbl <- comb %>%
+  mutate(
+    plot = pmap(
+      list(pred, out),
+      ~ make_plot(
+        design       = db_pond,
+        predictor    = ..1,
+        outcome      = ..2,
+        ylab         = outcomes[..2],
+        legend_title = predictors[[..1]]
+      )
+    ),
+    plot_id = paste0("plot_", out, "__by__", pred)
+  )
+```
+
 
 # Cohesión social y migración {.xlarge data-background-color="#444a5e"}
 
-## Seguridad y migración
+# Seguridad y migración {.xlarge data-background-color="#444a5e"}
 
-## Vinculos territoriales y migración
+---
 
-## Redes y migración
+tranversal
+
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+
+sel <- plots_tbl %>%
+  filter(out  %in% c("seguridad_sub","seguridad_obj")) 
+
+sel$plot[[12]] + 
+  labs(title = "Seguridad percibida y simpatía hacia migrantes") 
+```
+
+
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+
+sel$plot[[10]] + 
+  labs(title = "Seguridad percibida y restricción de ingreso a migrantes")
+```
+
+
+
+# Vinculos territoriales y migración {.xlarge data-background-color="#444a5e"}
+
+
+---
+
+tranversal
+
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+sel <- plots_tbl %>%
+  filter(out  %in% c("sentido_pertenencia", "satisfaccion_barrio")) 
+
+sel$plot[[1]] + 
+  labs(title = "Satisfacción barrial y contacto positivo con migrantes")
+```
+
+
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+
+sel$plot[[11]] + 
+  labs(title = "Satisfacción barrial y simpatía hacia migrantes")
+```
+
+
+# Redes y migración {.xlarge data-background-color="#444a5e"}
+
+---
+
+tranversal
+
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+sel <- plots_tbl %>%
+  filter(out  %in% c("confianza_inter","comportamiento_prosocial", "ayuda_economica")) %>% 
+  filter(pred != "igualdad_migrantes" & out != "ayuda_economica") 
+
+sel$plot[[1]] + 
+  labs(title = "Comportamiento prosocial y contacto positivo con migrantes") 
+```
+
+
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+
+sel$plot[[5]] + 
+  labs(title = "Comportamiento prosocial y pérdida de identidad por migrantes") 
+```

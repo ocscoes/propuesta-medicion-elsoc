@@ -1,0 +1,339 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  spanish,
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod,
+  oneside]{scrartcl}
+\usepackage{xcolor}
+\usepackage[left=1in,marginparwidth=2.0666666666667in,textwidth=4.1333333333333in,marginparsep=0.3in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Listado de Figuras}
+\else
+  \newcommand\listfigurename{Listado de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Listado de Tablas}
+\else
+  \newcommand\listtablename{Listado de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Listado de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{sidenotes}{}{\usepackage{sidenotes}}
+\@ifpackageloaded{marginnote}{}{\usepackage{marginnote}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdfauthor={Equipo EDUMER},
+  pdflang={es},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\author{Equipo EDUMER}
+\date{}
+\begin{document}
+
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/coes.png}}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/LOGO-OCS.png}}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/qrcode.png}}
+
+\section{\texorpdfstring{\textbf{Cohesión social y
+migración}}{Cohesión social y migración}}\label{cohesiuxf3n-social-y-migraciuxf3n}
+
+\subsection{\texorpdfstring{\textbf{Una década de cambios y
+desafíos}}{Una década de cambios y desafíos}}\label{una-duxe9cada-de-cambios-y-desafuxedos}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Roberto González\textsuperscript{1,2}}
+
+\textbf{\textsuperscript{1}Centro de Estudios de Conflicto y Cohesión
+Social - COES}
+
+\textbf{\textsuperscript{2}Escuela de Psicología, Pontificia Universidad
+Católica de Chile}
+
+Segundo Foro de Cohesión Social COES - CEP
+
+9 Septiembre 2025, Santiago
+
+\section{Contexto y motivación}\label{contexto-y-motivaciuxf3n}
+
+\subsection{Cohesión social}\label{cohesiuxf3n-social}
+
+\subsection{Migración}\label{migraciuxf3n}
+
+\subsection{ELSOC}\label{elsoc}
+
+\section{Aceptación de la diversidad e
+interculturalidad}\label{aceptaciuxf3n-de-la-diversidad-e-interculturalidad}
+
+\subsection{Aceptación de la
+diversidad}\label{aceptaciuxf3n-de-la-diversidad}
+
+Es la actitud hacia personas de diferentes orígenes y culturas dentro de
+una sociedad. Se mide evaluando los siguientes aspectos:
+
+\begin{itemize}
+\item
+  \textbf{Simpatía hacia migrantes} --- ``¿Cuánto le agradan los
+  {[}peruanos/haitianos/venezolanos{]} que viven en Chile?''\\
+  \textbf{Opciones (5):} Muy poco o nada, Poco, Algo, Bastante, Mucho.\\
+  \textbf{Recodificación (3):} Muy poco o nada; Poco o algo; Bastante o
+  mucho.
+\item
+  \textbf{Amenaza laboral} --- ``Con la llegada de tantos {[}\ldots{]},
+  en Chile está aumentando el desempleo.''\\
+  \textbf{Opciones (5):} Totalmente en desacuerdo, En desacuerdo, Ni de
+  acuerdo ni en desacuerdo, De acuerdo, Totalmente de acuerdo.\\
+  \textbf{Recodificación (3):} En/Totalmente en desacuerdo; Ni de
+  acuerdo ni en desacuerdo; De/Totalmente de acuerdo.
+\end{itemize}
+
+\subsection{Aceptación de la
+diversidad}\label{aceptaciuxf3n-de-la-diversidad-1}
+
+Es la actitud hacia personas de diferentes orígenes y culturas dentro de
+una sociedad. Se mide evaluando los siguientes aspectos:
+
+\begin{itemize}
+\item
+  \textbf{Pérdida de identidad nacional} --- ``Con la llegada de tantos
+  {[}\ldots{]}, Chile está perdiendo su identidad.''\\
+  \textbf{Opciones (5):} Totalmente en desacuerdo, En desacuerdo, Ni de
+  acuerdo ni en desacuerdo, De acuerdo, Totalmente de acuerdo.\\
+  \textbf{Recodificación (3):} En/Totalmente en desacuerdo; Ni de
+  acuerdo ni en desacuerdo; De/Totalmente de acuerdo.
+\item
+  \textbf{Calidad del contacto} --- ``En los últimos 12 meses, cuando
+  interactuó con {[}\ldots{]}, ¿cuán amistosa fue la experiencia?''\\
+  \textbf{Opciones (5):} Muy poco amistosa, Poco amistosa, Ni amistosa
+  ni no amistosa, Bastante amistosa, Muy amistosa.\\
+  \textbf{Recodificación (3):} Bastante/Muy amistosa; Ni amistosa ni no
+  amistosa; Muy/Poco amistosa.
+\end{itemize}
+
+\subsection{Aceptación de la
+diversidad}\label{aceptaciuxf3n-de-la-diversidad-2}
+
+Es la actitud hacia personas de diferentes orígenes y culturas dentro de
+una sociedad. Se mide evaluando los siguientes aspectos:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Políticas más restrictivas} --- ``Chile debería tomar medidas
+  más drásticas para impedir el ingreso de inmigrantes al país.''\\
+  \textbf{Opciones (5):} Totalmente en desacuerdo, En desacuerdo, Ni de
+  acuerdo ni en desacuerdo, De acuerdo, Totalmente de acuerdo.\\
+  \textbf{Recodificación (3):} En/Totalmente en desacuerdo; Ni de
+  acuerdo ni en desacuerdo; De/Totalmente de acuerdo.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+aqui grafo iden nacional
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Cohesión social y
+migración}\label{cohesiuxf3n-social-y-migraciuxf3n-1}
+
+\section{Seguridad y migración}\label{seguridad-y-migraciuxf3n}
+
+\section{Vinculos territoriales y
+migración}\label{vinculos-territoriales-y-migraciuxf3n}
+
+\section{Redes y migración}\label{redes-y-migraciuxf3n}
+
+\subsection{Conclusiones}\label{conclusiones}
+
+\textbf{1. Agenda de medición sobre meritocracia}: primera evidencia
+respecto a una escala que permite evaluar la evolución de las creencias
+meritocraticas en estudiantes en el tiempo
+
+\textbf{2. Cohortes y etapas escolares}: no hay evidencia de invarianza
+entre cohortes → \emph{diferencias en las maneras de comprender la
+meritocracia según etapa escolar}
+
+\textbf{3. Implicancias y proyecciones}: (i) profundizar en el rol del
+talento, padres ricos y contactos, y (ii) analizar determinantes y
+consecuencias de la escala de medición
+
+\section{¡Gracias por su atención!}\label{gracias-por-su-atenciuxf3n}
+
+\subsection{Referencias}\label{referencias}
+
+\phantomsection\label{refs}
+
+
+
+
+\end{document}

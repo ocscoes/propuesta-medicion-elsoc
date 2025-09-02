@@ -76,7 +76,8 @@ db <- elsoc_long_2016_2023 %>%
          desempleo_migrantes = r12_04,
          confianza_migrantes = r16, 
          fomentar_migracion = r18_01,
-         igualdad_migrantes = r18_02) %>% 
+         igualdad_migrantes = r18_02,
+         restriccion_migrantes = c37_05) %>% 
   as_tibble() %>% 
   sjlabelled::drop_labels(., drop.na = FALSE)
 
@@ -191,12 +192,12 @@ db %>%
 db <- db %>% 
   mutate(
     frecuencia_migrantes = car::recode(frecuencia_migrantes, 
-    recodes = c("1:2 ='Bajo'; 
-                 3='Medio'; 
-                 4:5 ='Alto'"), 
-    levels = c("Bajo", 
-               "Medio", 
-               "Alto"),
+    recodes = c("1:2 ='Nunca o casi nunca'; 
+                 3='A veces'; 
+                 4:5 ='Casi siempre o siempre'"), 
+    levels = c("Nunca o casi nunca", 
+               "A veces", 
+               "Casi siempre o siempre"),
     as.factor = T),
     contacto_migrantes = car::recode(contacto_migrantes, 
     recodes = c("1:2='Muy poco + poco amistosa'; 
@@ -224,7 +225,8 @@ db <- db %>%
     as.factor = T)) %>% 
   mutate(
     across(
-      .cols = c(desempleo_migrantes, fomentar_migracion, igualdad_migrantes, perdida_identidad),
+      .cols = c(desempleo_migrantes, fomentar_migracion, 
+      igualdad_migrantes, perdida_identidad, restriccion_migrantes),
       .fns = ~ car::recode(., 
       recodes = c("1:2='Muy en desacuerdo'; 
                    3='Ni en desacuerdo ni de acuerdo'; 
@@ -263,7 +265,7 @@ vars_clave <- c("reunion_pub", "voluntariado",
                 "barrio_cordial", "barrio_colaborador",
                 "simpatia_migrantes", "perdida_identidad",
                 "desempleo_migrantes", "confianza_migrantes",
-                "fomentar_migracion")
+                "fomentar_migracion", "restriccion_migrantes")
 
 db %>%
   group_by(wave) %>%

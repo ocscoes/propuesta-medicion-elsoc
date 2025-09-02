@@ -6,3 +6,114 @@ csl: "input/bib/apa6.csl"
 
 # Aceptación de la diversidad e interculturalidad {.xlarge data-background-color="#444a5e"}
 
+## Aceptación de la diversidad
+:::: {style="font-size: 110%;"}
+
+Es la actitud hacia personas de diferentes orígenes y culturas dentro de una sociedad. Se mide evaluando los siguientes aspectos:
+
+::: {.incremental .highlight-last}
+
+- **Simpatía hacia migrantes** — “¿Cuánto le agradan los [peruanos/haitianos/venezolanos] que viven en Chile?”  
+  **Opciones (5):** Muy poco o nada, Poco, Algo, Bastante, Mucho.  
+  **Recodificación (3):** Muy poco o nada; Poco o algo; Bastante o mucho.
+
+- **Amenaza laboral** — “Con la llegada de tantos […], en Chile está aumentando el desempleo.”  
+  **Opciones (5):** Totalmente en desacuerdo, En desacuerdo, Ni de acuerdo ni en desacuerdo, De acuerdo, Totalmente de acuerdo.  
+  **Recodificación (3):** En/Totalmente en desacuerdo; Ni de acuerdo ni en desacuerdo; De/Totalmente de acuerdo.
+
+:::
+::::
+
+## Aceptación de la diversidad
+:::: {style="font-size: 110%;"}
+
+Es la actitud hacia personas de diferentes orígenes y culturas dentro de una sociedad. Se mide evaluando los siguientes aspectos:
+
+::: {.incremental .highlight-last}
+
+- **Pérdida de identidad nacional** — “Con la llegada de tantos […], Chile está perdiendo su identidad.”  
+  **Opciones (5):** Totalmente en desacuerdo, En desacuerdo, Ni de acuerdo ni en desacuerdo, De acuerdo, Totalmente de acuerdo.  
+  **Recodificación (3):** En/Totalmente en desacuerdo; Ni de acuerdo ni en desacuerdo; De/Totalmente de acuerdo.
+
+- **Calidad del contacto** — “En los últimos 12 meses, cuando interactuó con […], ¿cuán amistosa fue la experiencia?”  
+  **Opciones (5):** Muy poco amistosa, Poco amistosa, Ni amistosa ni no amistosa, Bastante amistosa, Muy amistosa.  
+  **Recodificación (3):** Bastante/Muy amistosa; Ni amistosa ni no amistosa; Muy/Poco amistosa.
+
+
+:::
+::::
+
+## Aceptación de la diversidad
+:::: {style="font-size: 110%;"}
+
+Es la actitud hacia personas de diferentes orígenes y culturas dentro de una sociedad. Se mide evaluando los siguientes aspectos:
+
+::: {.incremental .highlight-last}
+
+- **Políticas más restrictivas** — “Chile debería tomar medidas más drásticas para impedir el ingreso de inmigrantes al país.”  
+  **Opciones (5):** Totalmente en desacuerdo, En desacuerdo, Ni de acuerdo ni en desacuerdo, De acuerdo, Totalmente de acuerdo.  
+  **Recodificación (3):** En/Totalmente en desacuerdo; Ni de acuerdo ni en desacuerdo; De/Totalmente de acuerdo.
+
+
+
+:::
+::::
+
+---
+
+<div style="text-align:center;">
+  <img src="images/radio1.png" style="width:105%; max-width:none;">
+</div>
+
+---
+
+<div style="text-align:center;">
+  <img src="images/radio5.png" style="width:90%; max-width:none;">
+</div>
+
+---
+
+<div style="text-align:center;">
+  <img src="images/radio2.png" style="width:105%; max-width:none;">
+</div>
+---
+
+<div style="text-align:center;">
+  <img src="images/radio6.png" style="width:90%; max-width:none;">
+</div>
+
+---
+
+aqui grafo iden nacional
+
+
+
+---
+
+<div style="text-align:center;">
+  <img src="images/radio4.png" style="width:90%; max-width:none;">
+</div>
+
+---
+
+<div style="text-align:center;">
+  <img src="images/radio3.png" style="width:105%; max-width:none;">
+</div>
+
+---
+
+<div style="text-align:center;">
+  <img src="images/radio7.png" style="width:90%; max-width:none;">
+</div>
+
+---
+
+<div style="text-align:center;">
+  <img src="images/radio8.png" style="width:90%; max-width:none;">
+</div>
+
+---
+
+<div style="text-align:center;">
+  <img src="images/radio9.png" style="width:90%; max-width:none;">
+</div>
