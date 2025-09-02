@@ -1,7 +1,7 @@
 ---
 pagetitle: "Foro II Cohesión Social y Migración 2025"
 Author: Equipo EDUMER
-bibliography: "input/bib/merit-factorial.bib"
+bibliography: "input/bib/OCS-LIT.bib"
 csl: "input/bib/apa6.csl"
 lang: es
 knitr:

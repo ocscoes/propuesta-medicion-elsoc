@@ -1,8 +1,59 @@
 ---
 author: "Equipo EDUMER"
-bibliography: "input/bib/merit-factorial.bib"
-csl: "input/bib/apa6.csl"
+editor_options: 
+  chunk_output_type: console
 ---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, 
+                      include = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled,
+               srvyr,
+               ggdist,
+               purrr,
+               rlang)
+
+
+options(scipen=999)
+rm(list = ls())
+
+load(here("input/data/proc_data/db_long.RData"))
+
+db_pond <- db %>% 
+  as_survey_design(ids = segmento, 
+                   strata = estrato, 
+                   weights = ponderador_long_total,
+                   nest = T)
+```
+
+
 
 # Aceptación de la diversidad e interculturalidad {.xlarge data-background-color="#444a5e"}
 
@@ -84,8 +135,60 @@ Es la actitud hacia personas de diferentes orígenes y culturas dentro de una so
 
 ---
 
-aqui grafo iden nacional
-
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+db_pond %>% 
+  select(idencuesta, wave, perdida_identidad) %>%
+  group_by(idencuesta) %>% 
+  mutate(n_participaciones = n()) %>% 
+  ungroup() %>% 
+  filter(n_participaciones == 7) %>% 
+  select(wave, perdida_identidad) %>%
+  tidyr::drop_na() %>%
+  group_by(wave, perdida_identidad) %>%
+  survey_count(vartype = NULL) %>%            # n ponderado por categoría
+  group_by(wave) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>%
+  ungroup() %>%
+  ggplot(aes(x = wave, y = prop, group = perdida_identidad)) +
+  geom_point(aes(color = perdida_identidad), size = 3) +
+  geom_line(aes(color = perdida_identidad), linewidth = 1) +
+  geom_text(
+    aes(label = label, color = perdida_identidad),
+    vjust = -0.6, size = 3.8, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,
+    values = c("#7ABA21","#2BB1C9", "#522A6F")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
+  ) +
+  labs(
+    title = "Grado de acuerdo: Chile pierde su identidad con llegada de [PER/HAI/VEN]",
+    subtitle = "Porcentaje que responde...",
+    x = NULL, y = NULL,
+    caption = "Fuente: ELSOC 2016-2023. \n Nota: Se consideran observaciones de individuos sin atrición entre olas N=12.749 (2.076 individuos). \n No se grafican las categorías NS/NR." )+
+  theme_bw() +
+  theme(
+    legend.position = "top",
+    axis.text.x = element_text(face = "bold"),
+    axis.text.y = element_text(face = "bold"),
+    plot.caption = element_text(hjust = 0)
+  )
+```
 
 
 ---

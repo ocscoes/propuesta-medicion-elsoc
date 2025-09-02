@@ -1,25 +1,25 @@
 ---
 author: "Equipo EDUMER"
-bibliography: "input/bib/OCS-LIT-Up.bib"
+bibliography: "input/bib/OCS-LIT.bib"
 csl: "input/bib/apa6.csl"
 ---
 
-## Migración
+## Migración en Chile
 
-::: {.incremental .highlight-last style="font-size: 120%;"}
-
-### En Chile...
+::: {.incremental .highlight-last style="font-size: 100%;"}
 
 -   **Crecimiento acelerado y cambio en la composición migratoria**: De acuerdo con las cifras del último CENSO [@censo_2024] la población extranjera en Chile alcanzó 1,6 millones de personas (8,8% del total), duplicando la cifra del censo 2017, con un flujo concentrado entre 2017 y 2019 y predominio de migrantes venezolanos, peruanos y colombianos.
 
 -   **Impacto social y tensiones en la cohesión**: El aumento abrupto de la migración ha desafiado los marcos institucionales y generado tensiones en la cohesión social, evidenciando un periodo de adaptación inestable donde la inclusión se dificulta por la rapidez del cambio [@dinesen_trust_2020; @reibold_trust_2025].
 
 -   **Percepciones ambivalentes y polarización**: Aunque los migrantes recientes son reconocidos como trabajadores y honestos, también son asociados a la delincuencia y la falta de respeto a las costumbres. La experiencia cotidiana de interacción explica esta ambivalencia, con casos como la macrozona norte, donde mayor exposición se vincula a percepciones más negativas, en línea con la tesis de que la diversidad puede generar hostilidad en el corto plazo [@paolini_intergroup_2014].
+
 :::
 
-:::{.incremental .highlight-last style="font-size: 120%;"}
 
-### Migración y cohesión social
+## Migración y cohesión social
+
+:::{.incremental .highlight-last style="font-size: 100%;"}
 
 - En el contexto europeo, la cohesión social no solo se entiende como reducción de desigualdades, sino también como la capacidad de integrar la diversidad, garantizar igualdad de oportunidades e incluir a las personas migrantes como parte de la vida social [@iom_2023].
 

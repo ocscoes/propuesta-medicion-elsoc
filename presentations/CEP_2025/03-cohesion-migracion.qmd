@@ -1,7 +1,5 @@
 ---
 author: "Equipo EDUMER"
-bibliography: "../input/bib/merit-factorial.bib"
-csl: "../input/bib/apa6.csl"
 editor_options: 
   chunk_output_type: console
 ---
@@ -107,7 +105,7 @@ theme(
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position  = "bottom",
+    legend.position  = "top",
     legend.direction = "horizontal"
   ) +
   guides(
@@ -169,7 +167,89 @@ plots_tbl <- comb %>%
 
 ---
 
-tranversal
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+db_pond %>% 
+  select(wave, seguridad_sub, restriccion_migrantes) %>%
+  mutate(seguridad_sub = case_when(
+    seguridad_sub <= 2.5 ~ "Baja",
+    seguridad_sub >= 3   ~ "Alta"
+  ),
+  restriccion_migrantes = forcats::fct_relabel(
+    restriccion_migrantes, ~ str_wrap(.x, 20))) %>% 
+  tidyr::drop_na() %>% 
+  filter(wave == last(wave)) %>% 
+  group_by(restriccion_migrantes, seguridad_sub) %>%
+  survey_count(vartype = NULL) %>% 
+  group_by(seguridad_sub) %>% 
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>% 
+  ggplot(aes(x = restriccion_migrantes, y = prop, fill = seguridad_sub)) +
+  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+  geom_text(
+    aes(label = label, color = seguridad_sub),   # color igual a la serie
+    position = position_dodge(width = 0.6),
+    vjust = -0.4, size = 4, fontface = "bold", show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    name = "Percepción seguridad",
+    values = c("Baja" = "#2b2f3c", "Alta" = "#F9913D")
+  ) +
+  scale_color_manual(                                 # mismo esquema para el texto
+    values = c("Baja" = "#2b2f3c", "Alta" = "#F9913D")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 10),
+    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
+  )  + 
+    labs(
+      title = "Percepción de seguridad y restricción de acceso a migrantes",
+      x = "Restricción de acceso a migrantes",
+      y = NULL,
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023"
+    ) +
+  theme_ggdist() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "right",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
+```
+
 
 ---
 
@@ -212,7 +292,91 @@ sel$plot[[10]] +
 
 ---
 
-tranversal
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+db_pond %>% 
+  select(wave, sentido_pertenencia, perdida_identidad) %>%
+  mutate(sentido_pertenencia = case_when(
+    sentido_pertenencia <= 2.5 ~ "Baja",
+    sentido_pertenencia >= 3   ~ "Alta"
+  ),
+  perdida_identidad = forcats::fct_relabel(
+    perdida_identidad, ~ str_wrap(.x, 20))) %>% 
+  tidyr::drop_na() %>% 
+  filter(wave == last(wave)) %>% 
+  group_by(perdida_identidad, sentido_pertenencia) %>%
+  survey_count(vartype = NULL) %>% 
+  group_by(sentido_pertenencia) %>% 
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>% 
+  ggplot(aes(x = perdida_identidad, y = prop, fill = sentido_pertenencia)) +
+  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+  geom_text(
+    aes(label = label, color = sentido_pertenencia),   # color igual a la serie
+    position = position_dodge(width = 0.6),
+    vjust = -0.4, size = 4, fontface = "bold", show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    name = "Sentido pertenencia barrial",
+    values = c("Baja" = "#2b2f3c", "Alta" = "#F9913D")
+  ) +
+  scale_color_manual(                                 # mismo esquema para el texto
+    values = c("Baja" = "#2b2f3c", "Alta" = "#F9913D")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 10),
+    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
+  )  + 
+  labs(
+    title = "Sentido pertenencia barrial y pérdida de identidad nacional",
+    x = "Pérdida de identidad nacional por migrantes",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos de ELSOC 2023"
+  ) +
+  theme_ggdist() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "bottom",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
+
+```
+
+
 
 ---
 
@@ -252,7 +416,86 @@ sel$plot[[11]] +
 
 ---
 
-tranversal
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+
+db_pond %>% 
+  select(wave, comportamiento_prosocial, restriccion_migrantes) %>%
+  mutate(comportamiento_prosocial = case_when(
+    comportamiento_prosocial <= 2.5 ~ "Bajo",
+    comportamiento_prosocial >= 3   ~ "Alto"
+  ),
+  restriccion_migrantes = forcats::fct_relabel(
+    restriccion_migrantes, ~ str_wrap(.x, 20))) %>% 
+  tidyr::drop_na() %>% 
+  filter(wave == last(wave) & comportamiento_prosocial == "Bajo") %>% 
+  group_by(restriccion_migrantes, comportamiento_prosocial) %>%
+  survey_count(vartype = NULL) %>% 
+  group_by(comportamiento_prosocial) %>% 
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = restriccion_migrantes, y = prop)) +
+  geom_col(width = 0.6, fill = "#F9913D")  +
+  geom_text(
+    aes(label = label,),   # color igual a la serie
+    vjust = -0.4, size = 4, fontface = "bold", show.legend = FALSE
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 20),
+    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
+  )  + 
+  labs(
+    title = "Comportamiento prosocial bajo y restricción de acceso a migrantes",
+    x = "Restricción de acceso a migrantes",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos de ELSOC 2022"
+  ) +
+  theme_ggdist() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "bottom",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
+
+```
+
+
 
 ---
 
