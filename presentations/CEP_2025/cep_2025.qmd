@@ -29,9 +29,6 @@ format:
     keep-tex: true  # Debug LaTeX output if needed
 editor_options:
   chunk_output_type: console
-
-
-
 ---
 
 ```{r}
