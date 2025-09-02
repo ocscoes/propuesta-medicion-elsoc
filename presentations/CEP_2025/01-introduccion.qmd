@@ -4,7 +4,22 @@ bibliography: "input/bib/OCS-LIT.bib"
 csl: "input/bib/apa6.csl"
 ---
 
-# Contexto y motivación {.xlarge data-background-color="#444a5e"}
+# Estructura de la presentación {.large data-background-color="#444a5e"}
+
+:::: {.incremental style="font-size: 145%;"}
+
+**1. Contexto y motivación**
+
+**2. Radiografía de actitudes hacia la migración**
+
+**3. Cohesión social y migración**
+
+**4. Conclusiones**
+
+::::
+
+
+# 1. Contexto y motivación {.xlarge data-background-color="#444a5e"}
 
 
 

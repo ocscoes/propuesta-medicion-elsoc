@@ -161,9 +161,15 @@ plots_tbl <- comb %>%
 ```
 
 
-# Cohesión social y migración {.xlarge data-background-color="#444a5e"}
+# 3. Cohesión social y migración {.xlarge data-background-color="#444a5e"}
 
-# Seguridad y migración {.xlarge data-background-color="#444a5e"}
+# 3. Cohesión social y migración {.xlarge data-background-color="#444a5e"}
+
+:::: {style="font-size: 200%;"}
+
+**3.1. Seguridad**
+::::
+
 
 ---
 
@@ -197,7 +203,7 @@ db_pond %>%
   geom_text(
     aes(label = label, color = seguridad_sub),   # color igual a la serie
     position = position_dodge(width = 0.6),
-    vjust = -0.4, size = 4, fontface = "bold", show.legend = FALSE
+    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
   ) +
   scale_fill_manual(
     name = "Percepción seguridad",
@@ -250,7 +256,11 @@ db_pond %>%
   )
 ```
 
+::: {.notes}
 
+Entre quienes reportan baja percepción de seguridad (barras negras), predomina el acuerdo con la aplicación de políticas más restrictivas hacia la migración. Sin embargo, esta postura también se observa entre quienes declaran alta percepción de seguridad (barras naranjas). Ello sugiere que el apoyo a medidas restrictivas no depende de manera decisiva de la percepción de seguridad pública.
+
+:::
 ---
 
 ```{r}
@@ -269,7 +279,9 @@ sel$plot[[12]] +
   labs(title = "Seguridad percibida y simpatía hacia migrantes") 
 ```
 
-
+::: {.notes}
+Se muestra el promedio de la seguridad pública percibida según el grado de simpatía hacia la población migrante entre 2016 y 2023. En este periodo, la percepción de seguridad fue siempre más baja entre quienes muestran escasa simpatía hacia los migrantes, y esta brecha se amplió a partir de 2019. Hasta 2022, quienes muestran mayor simpatía reportaron un aumento sostenido en su sensación de seguridad, mientras el grupo menos favorable siguió una trayectoria descendente. En 2023, todos registran un retroceso, probablemente asociado a factores coyunturales, aunque se mantiene la jerarquía: a mayor simpatía hacia los migrantes, mayor percepción de seguridad.
+:::
 ---
 
 ```{r}
@@ -285,9 +297,19 @@ sel$plot[[10]] +
   labs(title = "Seguridad percibida y restricción de ingreso a migrantes")
 ```
 
+::: {.notes}
+Entre 2016 y 2023, la percepción de seguridad fue sistemáticamente más baja entre quienes apoyan políticas restrictivas hacia la migración, y la brecha con el resto se amplió desde 2019. En 2023, la sensación de seguridad descendió en todos los grupos, aunque las diferencias entre adherentes y no adherentes a restricciones migratorias se mantuvieron.
 
+:::
 
-# Vinculos territoriales y migración {.xlarge data-background-color="#444a5e"}
+# 3. Cohesión social y migración {.xlarge data-background-color="#444a5e"}
+
+:::: {style="font-size: 200%;"}
+
+3.1. Seguridad
+
+**3.2. Vinculos territoriales**
+::::
 
 
 ---
@@ -309,7 +331,7 @@ db_pond %>%
   perdida_identidad = forcats::fct_relabel(
     perdida_identidad, ~ str_wrap(.x, 20))) %>% 
   tidyr::drop_na() %>% 
-  filter(wave == last(wave)) %>% 
+  filter(wave == last(wave) & sentido_pertenencia == "Alta") %>% 
   group_by(perdida_identidad, sentido_pertenencia) %>%
   survey_count(vartype = NULL) %>% 
   group_by(sentido_pertenencia) %>% 
@@ -318,27 +340,20 @@ db_pond %>%
     label = scales::percent(prop/100, accuracy = 0.1)
   ) %>% 
   ggplot(aes(x = perdida_identidad, y = prop, fill = sentido_pertenencia)) +
-  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+  geom_col(position = position_dodge(width = 0.6), width = 0.6, fill = "#F9913D") +
   geom_text(
-    aes(label = label, color = sentido_pertenencia),   # color igual a la serie
+    aes(label = label),   # color igual a la serie
     position = position_dodge(width = 0.6),
-    vjust = -0.4, size = 4, fontface = "bold", show.legend = FALSE
-  ) +
-  scale_fill_manual(
-    name = "Sentido pertenencia barrial",
-    values = c("Baja" = "#2b2f3c", "Alta" = "#F9913D")
-  ) +
-  scale_color_manual(                                 # mismo esquema para el texto
-    values = c("Baja" = "#2b2f3c", "Alta" = "#F9913D")
+    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
     limits = c(0,100),
-    breaks = seq(0,100, by = 10),
+    breaks = seq(0,100, by = 20),
     expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
   )  + 
   labs(
-    title = "Sentido pertenencia barrial y pérdida de identidad nacional",
+    title = "Alto sentido pertenencia barrial y pérdida de identidad nacional",
     x = "Pérdida de identidad nacional por migrantes",
     y = NULL,
     caption = "Fuente: elaboración propia con datos de ELSOC 2023"
@@ -376,7 +391,9 @@ db_pond %>%
 
 ```
 
-
+::: {.notes}
+Quienes reportan mayor sentido de pertenencia barrial tienden, en su mayoría, a no estar de acuerdo con que la llegada de migrantes implique una pérdida de identidad nacional. No obstante, un 36% de este grupo sí comparte esa percepción, lo que sugiere que un fuerte apego territorial no necesariamente se traduce en actitudes más inclusivas, sino que puede coexistir con visiones de amenaza cultural.
+:::
 
 ---
 
@@ -394,7 +411,10 @@ sel <- plots_tbl %>%
 sel$plot[[1]] + 
   labs(title = "Satisfacción barrial y contacto positivo con migrantes")
 ```
+::: {.notes}
+Entre 2016 y 2023 la satisfacción con el barrio fue más alta entre quienes reportan contacto positivo o neutral con migrantes, con un alza hasta 2019 pero seguida de una caída sostenida hasta la última medición disponible. En contraste, quienes declaran contacto poco o nada amistoso evidencian un descenso continuo desde 2017, alcanzando los niveles más bajos en 2023. Estos resultados sugieren que interacciones positivas o neutrales fortalecen la cohesión social a nivel local, mientras las negativas la erosionan de forma persistente.
 
+:::
 
 ---
 
@@ -410,9 +430,20 @@ sel$plot[[1]] +
 sel$plot[[11]] + 
   labs(title = "Satisfacción barrial y simpatía hacia migrantes")
 ```
+::: {.notes}
+Entre 2016 y 2023 la satisfacción barrial fue más alta entre quienes expresan mayor simpatía hacia los migrantes y más baja entre quienes muestran poca o ninguna. En el tiempo, los primeros exhiben un aumento sostenido, mientras los menos favorables descienden y el grupo intermedio combina un alza inicial con una caída desde 2019.
+:::
 
+# 3. Cohesión social y migración {.xlarge data-background-color="#444a5e"}
 
-# Redes y migración {.xlarge data-background-color="#444a5e"}
+:::: {style="font-size: 200%;"}
+
+3.1. Seguridad
+
+3.2. Vinculos territoriales
+
+**3.3. Redes**
+::::
 
 ---
 
@@ -435,7 +466,7 @@ db_pond %>%
   restriccion_migrantes = forcats::fct_relabel(
     restriccion_migrantes, ~ str_wrap(.x, 20))) %>% 
   tidyr::drop_na() %>% 
-  filter(wave == last(wave) & comportamiento_prosocial == "Bajo") %>% 
+  filter(wave == last(wave) & comportamiento_prosocial == "Alto") %>% 
   group_by(restriccion_migrantes, comportamiento_prosocial) %>%
   survey_count(vartype = NULL) %>% 
   group_by(comportamiento_prosocial) %>% 
@@ -448,7 +479,7 @@ db_pond %>%
   geom_col(width = 0.6, fill = "#F9913D")  +
   geom_text(
     aes(label = label,),   # color igual a la serie
-    vjust = -0.4, size = 4, fontface = "bold", show.legend = FALSE
+    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -457,7 +488,7 @@ db_pond %>%
     expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
   )  + 
   labs(
-    title = "Comportamiento prosocial bajo y restricción de acceso a migrantes",
+    title = "Personas con alto comportamiento prosocial y restricción de acceso a \nmigrantes",
     x = "Restricción de acceso a migrantes",
     y = NULL,
     caption = "Fuente: elaboración propia con datos de ELSOC 2022"
@@ -495,7 +526,9 @@ db_pond %>%
 
 ```
 
-
+::: {.notes}
+Entre quienes muestran alto comportamiento prosocial, predomina el acuerdo con aplicar políticas más restrictivas de ingreso a migrantes, seguido por el desacuerdo y, en menor medida, por posturas indiferentes.
+:::
 
 ---
 
@@ -515,7 +548,9 @@ sel$plot[[1]] +
   labs(title = "Comportamiento prosocial y contacto positivo con migrantes") 
 ```
 
-
+::: {.notes}
+Entre 2016 y 2019 el comportamiento prosocial fue sistemáticamente más bajo entre quienes reportan contacto poco amistoso con migrantes, mientras los grupos con contacto positivo o neutral exhibieron niveles más altos. Desde 2019, el primer grupo presenta una caída marcada, en tanto que quienes declaran contacto neutral destacan por un crecimiento sostenido, lo que apunta a la influencia de factores más amplios que la calidad del vínculo directo.
+:::
 ---
 
 ```{r}
@@ -530,3 +565,7 @@ sel$plot[[1]] +
 sel$plot[[5]] + 
   labs(title = "Comportamiento prosocial y pérdida de identidad por migrantes") 
 ```
+
+::: {.notes}
+Quienes consideran que la migración implica una pérdida de identidad nacional presentan los niveles más bajos de comportamiento prosocial y la caída más pronunciada en el período, confirmando una asociación negativa entre amenaza cultural y cooperación social. En contraste, los indecisos exhiben un aumento sostenido que los lleva a alcanzar en 2023 el nivel más alto. Quienes rechazan la idea muestran un ascenso inicial hasta 2019, seguido de una fuerte caída entre 2019 y 2022, lo que sugiere mayor sensibilidad a factores coyunturales.
+:::

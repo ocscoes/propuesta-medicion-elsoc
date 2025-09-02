@@ -55,7 +55,7 @@ db_pond <- db %>%
 
 
 
-# Aceptación de la diversidad e interculturalidad {.xlarge data-background-color="#444a5e"}
+# 2. Aceptación de la diversidad e interculturalidad {.xlarge data-background-color="#444a5e"}
 
 ## Aceptación de la diversidad
 :::: {style="font-size: 110%;"}
