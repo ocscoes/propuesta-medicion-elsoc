@@ -154,6 +154,10 @@ elsoc_6_graph <- elsoc_6_graph %>%
 #| fig-cap-location: top
 #| echo: false
 
+# Parámetro para ajustar la altura de los porcentajes
+# Puedes cambiar estos valores para cada barra individualmente
+altura_porcentajes <- c(0.21, 0.26, 0.28)  # Para barras 1, 2 y 3 respectivamente
+
 # Calculamos las proporciones para cada categoría
 elsoc_6_labels <- elsoc_6_graph %>%
   group_by(restriccion_migrantes, seguridad_sub) %>%
@@ -167,7 +171,9 @@ elsoc_6_labels <- elsoc_6_graph %>%
   filter(seguridad_sub == 1) %>%  # Solo para "Alta seguridad" (que ahora será naranjo)
   mutate(
     prop_baja = 1 - prop,  # Proporción de baja seguridad
-    y_pos = prop_baja + (prop / 2)  # Posición en el centro de la parte alta
+    y_pos = prop_baja + (prop / 2),  # Posición en el centro de la parte alta
+    # Agregar las alturas personalizadas para cada barra
+    altura_custom = altura_porcentajes[restriccion_migrantes]
   )
 
 # Gráfico modificado
@@ -184,7 +190,7 @@ ggplot(elsoc_6_graph, aes(
   # Agregamos las etiquetas de porcentaje
   geom_text(
     data = elsoc_6_labels,
-    aes(x = restriccion_migrantes, y = 0.60, label = paste0(percentage, "%")),
+    aes(x = restriccion_migrantes, y = altura_custom, label = paste0(percentage, "%")),
     inherit.aes = FALSE,
     color = "#2b2f3c",
     fontface = "bold",
@@ -193,7 +199,7 @@ ggplot(elsoc_6_graph, aes(
   labs(
     x = "Restricción de ingreso a inmigrantes",
     y = "Seguridad subjetiva", 
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
+    caption = "Fuente: elaboración propia con datos ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -207,33 +213,16 @@ ggplot(elsoc_6_graph, aes(
   ) +
   theme_ggdist() +
   theme(
-    # Estilo de la leyenda (adaptado del código de referencia)
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background = element_rect(fill = "white", color = NA),
-    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
-    legend.direction = "horizontal", 
-    legend.box = "horizontal",
-    legend.title = element_text(face = "bold"),
-    legend.key = element_rect(fill = "white", color = NA),
-    legend.key.height = unit(12, "pt"),
-    legend.key.width = unit(20, "pt"),
-    
+    # Eliminar completamente la leyenda
+    legend.position = "none",
+        
     # Estilo del texto
     axis.title.x = element_text(size = 12, margin = margin(t = 20)),
     axis.text.x = element_text(size = 9),
     axis.text.y = element_text(size = 11),
     axis.title.y = element_text(size = 12),
     plot.title = element_text(size = 12, hjust = 0.5)
-  ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right", 
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
+  )
 ```
 
 
@@ -243,6 +232,10 @@ ggplot(elsoc_6_graph, aes(
 #| fig-cap: Restricción de ingreso a migrantes y satisfacción con el barrio
 #| fig-cap-location: top
 #| echo: false
+
+# Parámetro para ajustar la altura de los porcentajes
+# Puedes cambiar estos valores para cada barra individualmente
+altura_porcentajes <- c(0.07, 0.17, 0.16)  # Para barras 1, 2 y 3 respectivamente
 
 # Crear las etiquetas de porcentaje
 elsoc_6_labels2 <- elsoc_6_graph %>%
@@ -257,7 +250,9 @@ elsoc_6_labels2 <- elsoc_6_graph %>%
   filter(satisfaccion_barrio == 1) %>%  # Solo para "Alta satisfacción"
   mutate(
     prop_baja = 1 - prop,  # Proporción de baja satisfacción
-    y_pos = prop_baja + (prop / 2)  # Posición en el centro de la parte alta
+    y_pos = prop_baja + (prop / 2),  # Posición en el centro de la parte alta
+    # Agregar las alturas personalizadas para cada barra
+    altura_custom = altura_porcentajes[restriccion_migrantes]
   )
 
 # Gráfico modificado
@@ -274,7 +269,7 @@ ggplot(elsoc_6_graph, aes(
   # Agregamos las etiquetas de porcentaje (alineadas)
   geom_text(
     data = elsoc_6_labels2,
-    aes(x = restriccion_migrantes, y = 0.60, label = paste0(percentage, "%")),
+    aes(x = restriccion_migrantes, y = altura_custom, label = paste0(percentage, "%")),
     inherit.aes = FALSE,
     color = "#2b2f3c",
     fontface = "bold",
@@ -283,7 +278,7 @@ ggplot(elsoc_6_graph, aes(
   labs(
     x = "Restricción de ingreso a inmigrantes",
     y = "Satisfacción con el barrio",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
+    caption = "Fuente: elaboración propia con datos ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -297,18 +292,8 @@ ggplot(elsoc_6_graph, aes(
   ) +
   theme_ggdist() +
   theme(
-    # Estilo de la leyenda (adaptado del código de referencia)
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background = element_rect(fill = "white", color = NA),
-    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.box = "horizontal",
-    legend.title = element_text(face = "bold"),
-    legend.key = element_rect(fill = "white", color = NA),
-    legend.key.height = unit(12, "pt"),
-    legend.key.width = unit(20, "pt"),
+    # Eliminar completamente la leyenda
+    legend.position = "none",
     
     # Estilo del texto
     axis.title.x = element_text(size = 12, margin = margin(t = 20)),
@@ -316,14 +301,7 @@ ggplot(elsoc_6_graph, aes(
     axis.text.y = element_text(size = 11),
     axis.title.y = element_text(size = 12),
     plot.title = element_text(size = 12, hjust = 0.5)
-  ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right",
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
+  )
 ```
 
 
@@ -334,6 +312,10 @@ ggplot(elsoc_6_graph, aes(
 #| message: false
 #| warning: false 
 #| echo: false
+
+# Parámetro para ajustar la altura de los porcentajes
+# Puedes cambiar estos valores para cada barra individualmente
+altura_porcentajes <- c(0.73, 0.80, 0.85)  # Para barras 1, 2 y 3 respectivamente
 
 # Crear datos para las etiquetas
 elsoc_5_labels <- elsoc_5_graph %>% 
@@ -348,7 +330,9 @@ elsoc_5_labels <- elsoc_5_graph %>%
   filter(comportamiento_prosocial == 1) %>%  # Solo para "Alto"
   mutate(
     prop_bajo = 1 - prop,  # Proporción de bajo comportamiento prosocial
-    y_pos = prop_bajo + (prop / 2)  # Posición en el centro de la parte alta
+    y_pos = prop_bajo + (prop / 2),  # Posición en el centro de la parte alta
+    # Agregar las alturas personalizadas para cada barra
+    altura_custom = altura_porcentajes[restriccion_migrantes]
   )
 
 # Gráfico modificado
@@ -365,7 +349,7 @@ ggplot(elsoc_5_graph, aes(
   # Agregamos las etiquetas de porcentaje (alineadas)
   geom_text(
     data = elsoc_5_labels,
-    aes(x = restriccion_migrantes, y = 0.90, label = paste0(percentage, "%")),
+    aes(x = restriccion_migrantes, y = altura_custom, label = paste0(percentage, "%")),
     inherit.aes = FALSE,
     color = "#2b2f3c",
     fontface = "bold",
@@ -374,7 +358,7 @@ ggplot(elsoc_5_graph, aes(
   labs(
     x = "Restricción de ingreso a inmigrantes",
     y = "Comportamiento prosocial",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
+    caption = "Fuente: elaboración propia con datos ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
@@ -388,18 +372,8 @@ ggplot(elsoc_5_graph, aes(
   ) +
   theme_ggdist() +
   theme(
-    # Estilo de la leyenda (adaptado del código de referencia)
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background = element_rect(fill = "white", color = NA),
-    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.box = "horizontal",
-    legend.title = element_text(face = "bold"),
-    legend.key = element_rect(fill = "white", color = NA),
-    legend.key.height = unit(12, "pt"),
-    legend.key.width = unit(20, "pt"),
+    # Eliminar completamente la leyenda
+    legend.position = "none",
     
     # Estilo del texto
     axis.title.x = element_text(size = 12, margin = margin(t = 20)),
@@ -407,12 +381,5 @@ ggplot(elsoc_5_graph, aes(
     axis.text.y = element_text(size = 11),
     axis.title.y = element_text(size = 12),
     plot.title = element_text(size = 12, hjust = 0.5)
-  ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right",
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
+  )
 ```
