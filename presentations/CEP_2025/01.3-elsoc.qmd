@@ -1,5 +1,19 @@
 ---
 author: "Equipo EDUMER"
+format:
+  revealjs:
+    #logo: images/edumer.png
+    slide-number: true
+    theme: "libs/edumer.scss"
+    auto-stretch: false
+    title-slide-attributes:
+      visibility: false
+    transition: fade
+    transition-speed: slow
+# data-background-image: images/cover.jpg
+# data-background-size: cover
+    auto-play-media: true
+    mathjax: "default"
 bibliography: "input/bib/OCS-LIT.bib"
 csl: "input/bib/apa6.csl"
 ---
@@ -83,3 +97,9 @@ csl: "input/bib/apa6.csl"
 
 ![](images/propuesta-nueva.png)
 
+::: notes
+La nueva propuesta de medición de cohesión social se basa en tres subdimensiones: seguridad, vínculos territoriales y redes sociales.
+Seguridad se mide desde su plano subjetivo, a través de la percepción y satisfacción de seguridad con el barrio, y desde su plano objetivo, mediante la frecuencia de hechos violentos como asaltos, peleas callejeras y tráficos de drogas
+Vínculos territoriales se mide por dos factores; la satisfacción con el barrio, tomando en cuenta elementos como la sociabilidad, facilidad de hacer amigos, y la cordialidad y colaboración entre vecinos; el sentido de pertenencia, el cual aborda elementos identitarios en relación al barrio donde vive en encuestado, tales como si es su barrio ideal, se identifica con él y si se siente integrado.
+En redes sociales, comportamientos prosociales se mide por la asistencia a reuniones públicas y la realización de voluntariado. Ayuda económica considera el haber prestado dinero en algún momento a alguien y haber ayudado a encontrar trabajo a un tercero. Por último, confianza interpersonal considera confianza social generalizada, donde se pregunta si se puede o no confiar en la mayoría de las personas, y además altruismo social generalizado, el que pregunta si las personas generalmente tratan de ayudar a otros o se preocupan de sí mismas
+:::
