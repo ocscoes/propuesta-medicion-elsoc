@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.23">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./07-conclusiones.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-befd5f20fe4d0cb5af600f7bcf486e46.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,15 +105,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
 <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
 <script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
 <link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
 <link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
 <script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
 <link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
 <script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
 
 
 </head>
@@ -139,7 +150,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Medición de la cohesión social con ELSOC</a> 
     </div>
@@ -216,11 +229,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#tabla-de-disponibilidad-de-las-variables-de-cohesión" id="toc-tabla-de-disponibilidad-de-las-variables-de-cohesión" class="nav-link active" data-scroll-target="#tabla-de-disponibilidad-de-las-variables-de-cohesión">Tabla de disponibilidad de las variables de cohesión</a></li>
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a></li>
   <li><a href="#análisis-de-validación-de-constructos" id="toc-análisis-de-validación-de-constructos" class="nav-link" data-scroll-target="#análisis-de-validación-de-constructos">Análisis de validación de constructos</a>
   <ul class="collapse">
   <li><a href="#análisis-factorial-exploratorio" id="toc-análisis-factorial-exploratorio" class="nav-link" data-scroll-target="#análisis-factorial-exploratorio">Análisis factorial exploratorio</a></li>
   <li><a href="#análisis-factorial-confirmatorio" id="toc-análisis-factorial-confirmatorio" class="nav-link" data-scroll-target="#análisis-factorial-confirmatorio">Análisis factorial confirmatorio</a></li>
   </ul></li>
+  <li><a href="#cohesión-y-seguridad" id="toc-cohesión-y-seguridad" class="nav-link" data-scroll-target="#cohesión-y-seguridad">Cohesión y seguridad</a></li>
+  <li><a href="#migración-y-seguridad-en-el-tiempo" id="toc-migración-y-seguridad-en-el-tiempo" class="nav-link" data-scroll-target="#migración-y-seguridad-en-el-tiempo">Migración y seguridad en el tiempo</a></li>
   </ul>
 </nav>
     </div>
@@ -249,11 +265,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="tabla-de-disponibilidad-de-las-variables-de-cohesión" class="level2">
 <h2 class="anchored" data-anchor-id="tabla-de-disponibilidad-de-las-variables-de-cohesión">Tabla de disponibilidad de las variables de cohesión</h2>
 <div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'DT' was built under R version 4.4.3</code></pre>
+</div>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-fa264c92a27364174f54" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-fa264c92a27364174f54">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19"],["Seguridad","Seguridad","Seguridad","Seguridad","Seguridad","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Redes sociales","Redes sociales","Redes sociales","Redes sociales","Redes sociales","Redes sociales"],["Seguridad objetiva","Seguridad objetiva","Seguridad subjetiva","Seguridad subjetiva","Seguridad subjetiva","Pertenencia al barrio","Pertenencia al barrio","Pertenencia al barrio","Pertenencia al barrio","Satisfacción con el barrio","Satisfacción con el barrio","Satisfacción con el barrio","Satisfacción con el barrio","Confianza interpersonal","Confianza interpersonal","Comportamiento prosocial","Comportamiento prosocial","Ayuda económica","Ayuda económica"],["Frecuencia de peleas callejeras","Frecuencia de robos y/o asaltos","Frecuencia de tráfico de drogas ","Satisfacción de seguridad","Percepción de seguridad","Grado de acuerdo: Barrio ideal para mi","Grado de acuerdo: Me siento integrado en este barrio","Grado de acuerdo: Me identifico con la gente de este barrio","Grado de acuerdo: Este barrio es parte de mi","Grado de acuerdo: En este barrio es facil hacer amigos","Grado de acuerdo: La gente en este barrio es sociable","Grado de acuerdo: La gente en este barrio es cordial","Grado de acuerdo: La gente en este barrio es colaboradora","Confianza social generalizada","Altruismo social generalizado","Frecuencia de asistencias a reunión de temas públicos y/o comunitarios","Frecuencia de hacer voluntariado","Frecuencia en prestar $10.000 o más","Frecuencia en ayudar a encontrar trabajo a alguien"],["Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Utilizando la siguiente escala, ¿cuán satisfecho o insatisfecho está usted con el BARRIO dónde reside en cuanto a…?","¿Qué tan seguro o inseguro se siente en el barrio o vecindario donde usted vive?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?"," Hablando en general, ¿diría usted que se puede confiar en la mayoría de las personas, o que hay que tener cuidado al tratar con ellas?","¿Diría usted que las personas, la mayoría de las veces, tratan de ayudar a los demás, o se preocupan mayormente sólo de Si mismas?","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…"],["Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Totalmente insatisfecho|Insatisfecho|Ni satisfecho ni insatisfecho|Satisfecho|Totalmente satisfecho","Muy inseguro|Inseguro|Ni seguro ni inseguro|Seguro|Muy seguro","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Casi siempre se puede confiar en las personas|Casi siempre hay que tener cuidado al tratar con las personas|Depende (no leer)","La mayoria de las veces tratan de ayudar a los demas|La mayoria de las veces se preocupan solo de si mismas|Depende (no leer)","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces"],["t_09_01","t_09_02","t_09_03","t_06_01","t_10","t02_01","t02_02","t02_03","t02_04","t03_01","t03_02","t03_03","t03_04","c02","c03","c07_02","c07_04","c07_06","c07_08"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","No","Si","No","No","No","No","No","No","No","No","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","No","No","No","No"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Subdimensión<\/th>\n      <th>Factor<\/th>\n      <th>Indicador<\/th>\n      <th>Encabezado<\/th>\n      <th>Categorías de respuesta<\/th>\n      <th>Código<\/th>\n      <th>Ola 2016<\/th>\n      <th>Ola 2017<\/th>\n      <th>Ola 2018<\/th>\n      <th>Ola 2019<\/th>\n      <th>Ola 2021<\/th>\n      <th>Ola 2022<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Subdimensión","targets":1},{"name":"Factor","targets":2},{"name":"Indicador","targets":3},{"name":"Encabezado","targets":4},{"name":"Categorías de respuesta","targets":5},{"name":"Código","targets":6},{"name":"Ola 2016","targets":7},{"name":"Ola 2017","targets":8},{"name":"Ola 2018","targets":9},{"name":"Ola 2019","targets":10},{"name":"Ola 2021","targets":11},{"name":"Ola 2022","targets":12}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-19be787cbd2068221f58" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-19be787cbd2068221f58">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19"],["Seguridad","Seguridad","Seguridad","Seguridad","Seguridad","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Vínculos territoriales","Redes sociales","Redes sociales","Redes sociales","Redes sociales","Redes sociales","Redes sociales"],["Seguridad objetiva","Seguridad objetiva","Seguridad subjetiva","Seguridad subjetiva","Seguridad subjetiva","Pertenencia al barrio","Pertenencia al barrio","Pertenencia al barrio","Pertenencia al barrio","Satisfacción con el barrio","Satisfacción con el barrio","Satisfacción con el barrio","Satisfacción con el barrio","Confianza interpersonal","Confianza interpersonal","Comportamiento prosocial","Comportamiento prosocial","Ayuda económica","Ayuda económica"],["Frecuencia de peleas callejeras","Frecuencia de robos y/o asaltos","Frecuencia de tráfico de drogas ","Satisfacción de seguridad","Percepción de seguridad","Grado de acuerdo: Barrio ideal para mi","Grado de acuerdo: Me siento integrado en este barrio","Grado de acuerdo: Me identifico con la gente de este barrio","Grado de acuerdo: Este barrio es parte de mi","Grado de acuerdo: En este barrio es facil hacer amigos","Grado de acuerdo: La gente en este barrio es sociable","Grado de acuerdo: La gente en este barrio es cordial","Grado de acuerdo: La gente en este barrio es colaboradora","Confianza social generalizada","Altruismo social generalizado","Frecuencia de asistencias a reunión de temas públicos y/o comunitarios","Frecuencia de hacer voluntariado","Frecuencia en prestar $10.000 o más","Frecuencia en ayudar a encontrar trabajo a alguien"],["Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Durante los últimos 12 meses, ¿con qué frecuencia se han producido las siguientes situaciones en su barrio?","Utilizando la siguiente escala, ¿cuán satisfecho o insatisfecho está usted con el BARRIO dónde reside en cuanto a…?","¿Qué tan seguro o inseguro se siente en el barrio o vecindario donde usted vive?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","A continuación voy a leer algunas afirmaciones acerca de su barrio ¿Qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?","Respecto de las relaciones sociales que se establecen entre los vecinos de este barrio, ¿cuán de acuerdo o en desacuerdo está usted con las siguientes afirmaciones?"," Hablando en general, ¿diría usted que se puede confiar en la mayoría de las personas, o que hay que tener cuidado al tratar con ellas?","¿Diría usted que las personas, la mayoría de las veces, tratan de ayudar a los demás, o se preocupan mayormente sólo de Si mismas?","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…","Ahora le haré algunas preguntas sobre cosas que usted puede no haber hecho, haber hecho una vez o haber hecho dos o más veces durante los últimos 12 meses. No importa si no lo ha hecho. Por favor dígame, aunque sea de manera aproximada, cuántas veces…"],["Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Nunca|Pocas veces|Algunas veces|Muchas veces|Siempre","Totalmente insatisfecho|Insatisfecho|Ni satisfecho ni insatisfecho|Satisfecho|Totalmente satisfecho","Muy inseguro|Inseguro|Ni seguro ni inseguro|Seguro|Muy seguro","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo","Casi siempre se puede confiar en las personas|Casi siempre hay que tener cuidado al tratar con las personas|Depende (no leer)","La mayoria de las veces tratan de ayudar a los demas|La mayoria de las veces se preocupan solo de si mismas|Depende (no leer)","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces","Nunca lo hizo|Lo hizo una o dos veces|Lo hizo mas de dos veces"],["t_09_01","t_09_02","t_09_03","t_06_01","t_10","t02_01","t02_02","t02_03","t02_04","t03_01","t03_02","t03_03","t03_04","c02","c03","c07_02","c07_04","c07_06","c07_08"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","No","Si","No","No","No","No","No","No","No","No","Si","Si","Si","Si","Si","Si"],["Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","Si","No","No","No","No"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Subdimensión<\/th>\n      <th>Factor<\/th>\n      <th>Indicador<\/th>\n      <th>Encabezado<\/th>\n      <th>Categorías de respuesta<\/th>\n      <th>Código<\/th>\n      <th>Ola 2016<\/th>\n      <th>Ola 2017<\/th>\n      <th>Ola 2018<\/th>\n      <th>Ola 2019<\/th>\n      <th>Ola 2021<\/th>\n      <th>Ola 2022<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Subdimensión","targets":1},{"name":"Factor","targets":2},{"name":"Indicador","targets":3},{"name":"Encabezado","targets":4},{"name":"Categorías de respuesta","targets":5},{"name":"Código","targets":6},{"name":"Ola 2016","targets":7},{"name":"Ola 2017","targets":8},{"name":"Ola 2018","targets":9},{"name":"Ola 2019","targets":10},{"name":"Ola 2021","targets":11},{"name":"Ola 2022","targets":12}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+</section>
+<section id="datos" class="level2">
+<h2 class="anchored" data-anchor-id="datos">Datos</h2>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Cargando paquete requerido: pacman</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'pacman' was built under R version 4.4.2</code></pre>
+</div>
+</div>
+<!-- Recodificaciones Seguridad -->
 </section>
 <section id="análisis-de-validación-de-constructos" class="level2">
 <h2 class="anchored" data-anchor-id="análisis-de-validación-de-constructos">Análisis de validación de constructos</h2>
@@ -262,28 +293,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Factor seguridad</strong></p>
 <p>Se genera un subset de datos solamente con las variables que conforman el factor de seguridad para llevar a cabo el análisis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elsoc_seg <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(seguridad_sat, seguridad_perc, peleas_calle, asaltos, trafico_drogas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>elsoc_seg <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(seguridad_sat, seguridad_perc, peleas_calle, asaltos, trafico_drogas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Las variables se convierten a numéricas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>elsoc_seg <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(seguridad_sat, seguridad_perc, peleas_calle, asaltos, trafico_drogas) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>elsoc_seg <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(seguridad_sat, seguridad_perc, peleas_calle, asaltos, trafico_drogas) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Se calcula la matriz de correlaciones</p>
 <div class="cell fig-cap-location-bottom">
-<div class="sourceCode cell-code" id="cb3" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(corrseg,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"color"</span>,       <span class="co"># colorea los recuadros según valor</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#2761f5"</span>, <span class="st">"white"</span>, <span class="st">"#f56c27"</span>))(<span class="dv">20</span>),  <span class="co"># blanco a rojo</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,         <span class="co"># mostrar solo la mitad superior</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">order =</span> <span class="st">"original"</span>,     <span class="co"># mantener el orden de las variables</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,  <span class="co"># añadir los valores numéricos</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,       <span class="co"># color etiquetas</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.srt =</span> <span class="dv">45</span>, </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">bg =</span> <span class="st">"white"</span>,<span class="co"># rotar etiquetas</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-corr-seg" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
@@ -298,7 +318,6 @@ Figure&nbsp;1: Correlaciones factor seguridad
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(corrseg) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = corrseg)
@@ -307,7 +326,6 @@ MSA for each item =
  seguridad_sat seguridad_perc   peleas_calle        asaltos trafico_drogas 
           0.82           0.82           0.82           0.86           0.84 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(corrseg, <span class="at">n =</span> <span class="dv">2730</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$chisq
 [1] 5182.035
@@ -328,14 +346,14 @@ $df
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-efa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <caption>Factor Analysis</caption>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">&nbsp;</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 1</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 2</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm; font-style: italic; color: #666666">Communality</td>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">&nbsp;</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 1</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 2</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm; font-style: italic; color: #666666">Communality</th>
 </tr>
 <tr class="even">
 <td style="border-top: 1px solid black">seguridad_sat</td>
@@ -391,37 +409,9 @@ Table&nbsp;1: Análisis factorial exploratorio del factor seguridad
 <p>En <a href="#tbl-efa-1" class="quarto-xref">Table&nbsp;<span>1</span></a> se puede apreciar que el factorial exploratorio reconoce la existencia de dos factores latentes. Uno de ellos puede comprenderse como seguridad subjetiva, el cual integra los indicadores de satisfacción de seguridad y percepción de seguridad. Ambos indicadores poseen cargas factoriales altas, así como un alfa de Cronbach aceptable, por lo que es un factor consistente. El segundo factor contiene los indicadores de frecuencia de conflictos en el barrio, por lo que pueden agruparse bajo el factor de seguridad objetiva. El factor explica en buena medida as cargas factoriales de los tres indicadores en tanto rondan entre .6 y .8. Su alfa de Cronbach refleja una buena consistencia entre los indicadores de seguridad objetiva.</p>
 <p><strong>Factor de calidad de vida en el vecindario</strong></p>
 <p>Subset con los indicadores necesarios</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>elsoc_barrio <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(confianza_vecinos, barrio_ideal, barrio_integracion, barrio_identidad,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         barrio_pertenencia, barrio_amigos, barrio_sociable, barrio_cordial,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         barrio_colaborador, conectividad, areas_verdes, barrio_limpio,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>         cercania_actividad, cercania_escuelas, cercania_comercio,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>         cercania_familia, tamaño_vivienda, calidad_vivienda)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Las variables se convierten a numéricas</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>elsoc_barrio <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(confianza_vecinos, barrio_ideal, barrio_integracion, barrio_identidad,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         barrio_pertenencia, barrio_amigos, barrio_sociable, barrio_cordial,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         barrio_colaborador, conectividad, areas_verdes, barrio_limpio,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         cercania_actividad, cercania_escuelas, cercania_comercio,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>         cercania_familia, tamaño_vivienda, calidad_vivienda) <span class="sc">%&gt;%</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Se calcula la matriz de correlaciones</p>
 <div class="cell fig-cap-location-bottom">
-<div class="sourceCode cell-code" id="cb11" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(corrbarrio,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"color"</span>,       <span class="co"># colorea los recuadros según valor</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#2761f5"</span>, <span class="st">"white"</span>, <span class="st">"#f56c27"</span>))(<span class="dv">20</span>),  <span class="co"># blanco a rojo</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,         <span class="co"># mostrar solo la mitad superior</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">order =</span> <span class="st">"original"</span>,     <span class="co"># mantener el orden de las variables</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,  <span class="co"># añadir los valores numéricos</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,       <span class="co"># color etiquetas</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.srt =</span> <span class="dv">45</span>, </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">bg =</span> <span class="st">"white"</span>,<span class="co"># rotar etiquetas</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-corr-barrio" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
@@ -436,7 +426,6 @@ Figure&nbsp;2: Correlaciones factor calidad de vida en el barrio
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(corrbarrio) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = corrbarrio)
@@ -453,7 +442,6 @@ cercania_actividad  cercania_escuelas  cercania_comercio   cercania_familia
    tamaño_vivienda   calidad_vivienda 
               0.76               0.76 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(corrbarrio, <span class="at">n =</span> <span class="dv">2730</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$chisq
 [1] 19599.6
@@ -473,17 +461,17 @@ $df
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-efa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <caption>Factor Analysis</caption>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">&nbsp;</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 1</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 2</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 3</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 4</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 5</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm; font-style: italic; color: #666666">Communality</td>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">&nbsp;</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 1</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 2</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 3</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 4</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 5</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm; font-style: italic; color: #666666">Communality</th>
 </tr>
 <tr class="even">
 <td style="border-top: 1px solid black">confianza_vecinos</td>
@@ -674,37 +662,9 @@ Table&nbsp;2: Análisis factorial exploratorio del vinculación territorial
 <p>En <a href="#tbl-efa-2" class="quarto-xref">Table&nbsp;<span>2</span></a> se observan cinco factores. El factor con consistencia interna más alta (<strong>0.83</strong>) contiene las variables relacionadas al agrado y/o comodidad que sienten las personas respecto a su barrio, en donde solamente la variable confianza en vecinos se escapa de esta tónica. El segundo factor agrupa indicadores que dan cuenta del sentido de pertenencia de la persona en el barrio, aludiendo a aspectos identitarios. El tercer factor consiste, en general, en la proximidad física del barrio respecto a servicios. El cuarto factor mide la percepción de la persona respecto a su vivienda desde una dimensión física de espacio y calidad material. Por último, el quinto factor considera dos variables que pueden ser asociadas a las áreas verdes y limpias del barrio. Todos los factores poseen una buena consistencia interna.</p>
 <p><strong>Factor redes sociales (ola 5)</strong></p>
 <p>Seleccionamos las variables a utilizar</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>elsoc_redes <span class="ot">&lt;-</span> elsoc_redes <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(confianza_gen, altruismo_gen, visitar_vecino,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>       reunion_pub, visita_amigos, voluntariado, donar_dinero, prestar_dinero, </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>       ayuda_trabajo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Pasamos las variables a numéricas</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>elsoc_redes <span class="ot">&lt;-</span> elsoc_redes <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(confianza_gen, altruismo_gen, visitar_vecino,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       reunion_pub, visita_amigos, voluntariado, donar_dinero, prestar_dinero, </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>       ayuda_trabajo) <span class="sc">%&gt;%</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>elsoc_redes<span class="sc">$</span>confianza_gen <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(elsoc_redes<span class="sc">$</span>confianza_gen, <span class="st">"(1)= 3; (2)=1; (3)=2"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>elsoc_redes<span class="sc">$</span>altruismo_gen <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(elsoc_redes<span class="sc">$</span>altruismo_gen, <span class="st">"(1)= 3; (2)=1; (3)=2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Estimamos la matriz de correlaciones</p>
 <div class="cell fig-cap-location-bottom">
-<div class="sourceCode cell-code" id="cb20" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(corredes,</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"color"</span>,       <span class="co"># colorea los recuadros según valor</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#2761f5"</span>, <span class="st">"white"</span>, <span class="st">"#f56c27"</span>))(<span class="dv">20</span>),  </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,         <span class="co"># mostrar solo la mitad superior</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">order =</span> <span class="st">"original"</span>,     <span class="co"># mantener el orden de las variables</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,  <span class="co"># añadir los valores numéricos</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,       <span class="co"># color etiquetas</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.srt =</span> <span class="dv">45</span>, </span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">bg =</span> <span class="st">"white"</span>,<span class="co"># rotar etiquetas</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-corr-redes" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
@@ -719,7 +679,6 @@ Figure&nbsp;3: Correlaciones factor redes sociales
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(corredes) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = corredes)
@@ -730,7 +689,6 @@ MSA for each item =
   voluntariado   donar_dinero prestar_dinero  ayuda_trabajo 
           0.77           0.78           0.72           0.73 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(corredes, <span class="at">n =</span> <span class="dv">2740</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$chisq
 [1] 2114.983
@@ -750,16 +708,16 @@ $df
 <figure class="quarto-float quarto-float-tbl figure">
 <div aria-describedby="tbl-efa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <caption>Factor Analysis</caption>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">&nbsp;</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 1</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 2</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 3</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 4</td>
-<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm; font-style: italic; color: #666666">Communality</td>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">&nbsp;</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 1</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 2</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 3</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 4</th>
+<th data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm; font-style: italic; color: #666666">Communality</th>
 </tr>
 <tr class="even">
 <td style="border-top: 1px solid black">confianza_gen</td>
@@ -862,25 +820,11 @@ Table&nbsp;3: Análisis factorial exploratorio del factor redes sociales
 <h3 class="anchored" data-anchor-id="análisis-factorial-confirmatorio">Análisis factorial confirmatorio</h3>
 <p><strong>Factor seguridad</strong></p>
 <p>Especificamos el modelo tomando en cuenta la propuesta teórica del documento.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>seguridad_model <span class="ot">&lt;-</span> <span class="st">'</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="st">subjetiva =~ seguridad_perc + seguridad_sat</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="st">objetiva =~ peleas_calle + asaltos + trafico_drogas</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Se estima el modelo</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>seguridad_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> seguridad_model,</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> elsoc_seg,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ordered =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">std.lv =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Visualizamos los resultados</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(seguridad_cfa, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>lavaan 0.6-19 ended normally after 18 iterations
+<pre><code>lavaan 0.6-18 ended normally after 18 iterations
 
   Estimator                                       DWLS
   Optimization method                           NLMINB
@@ -989,9 +933,6 @@ Variances:
 </div>
 <p>Cargas factoriales estandarizadas</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">standardizedSolution</span>(seguridad_cfa) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(lhs, rhs, est.std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        lhs            rhs est.std
 1 subjetiva seguridad_perc   0.786
@@ -1004,24 +945,10 @@ Variances:
 <p>En este modelo todas las cargas factoriales estandarizadas son altas, donde los cinco indicadores oscilan entre el 0.7 y 0.8. Todos los indicadores son explicados en buena medida por su factor latente respectivo.</p>
 <p><strong>Factor vinculación territorial</strong></p>
 <p>Después de haber visto los EFA, sumado a la idea de realizar una propuesta minimalista de cohesión social, es que se propone modificar la subdimensión de “calidad de vida en el vecindario” y llamarla “vinculación territorial”, la cual estaría compuesta por un factor de sentido de pertenencia territorial y otro de satisfacción con el barrio.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>barrio_model <span class="ot">&lt;-</span> <span class="st">'</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="st">pertenencia =~ barrio_ideal + barrio_integracion + barrio_identidad + barrio_pertenencia</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="st">satisfaccion =~ barrio_amigos + barrio_sociable + barrio_cordial + barrio_colaborador</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Estimación del modelo</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>barrio_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> barrio_model,</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> elsoc_barrio,</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ordered =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">std.lv =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(barrio_cfa, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>lavaan 0.6-19 ended normally after 23 iterations
+<pre><code>lavaan 0.6-18 ended normally after 23 iterations
 
   Estimator                                       DWLS
   Optimization method                           NLMINB
@@ -1148,9 +1075,6 @@ Variances:
 </div>
 <p>Cargas factoriales estandarizadas</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">standardizedSolution</span>(barrio_cfa) <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(lhs, rhs, est.std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           lhs                rhs est.std
 1  pertenencia       barrio_ideal   0.780
@@ -1167,25 +1091,12 @@ Variances:
 <p><strong>Factor redes sociales</strong></p>
 <p>A partir del EFA y la idea de minimalizar la propuesta, se decide plantear un modelo con tres factores: confianza interpersonal, comportamiento prosocial y apoyo económico. Se reduce la cantidad de indicadores de 10 a 6, dos pertenecientes a cada factor. Si bien, el factor de visita a personas cercanas tenía buena consistencia interna, se descartó de la propuesta por falta de relevancia teórica con lo que respecta a la cohesión social.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>redes_model_conf <span class="ot">&lt;-</span> <span class="st">'</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="st">confianza_inter =~ confianza_gen + altruismo_gen</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="st">prosocial =~ reunion_pub + voluntariado</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="st">economica =~ prestar_dinero + ayuda_trabajo</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>redes_conf_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> redes_model_conf,</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> elsoc_redes,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ordered =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">std.lv =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: lavaan-&gt;lav_object_post_check():  
    some estimated ov variances are negative</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(redes_conf_cfa, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: lavaan-&gt;lav_object_post_check():  
    some estimated ov variances are negative
@@ -1193,7 +1104,7 @@ Warning: lavaan-&gt;lav_object_post_check():
    some estimated ov variances are negative</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>lavaan 0.6-19 ended normally after 40 iterations
+<pre><code>lavaan 0.6-18 ended normally after 40 iterations
 
   Estimator                                       DWLS
   Optimization method                           NLMINB
@@ -1300,9 +1211,150 @@ Variances:
 </div>
 </div>
 <p>El modelo tiene buenos índices de ajuste, por lo que a nivel general su estructura es factible. Sin embargo, en confianza interpersonal, el indicador de confianza social generalizada posee una carga factorial muy alta (sobre 1) en comparación de altruismo social generalizado (.41), por lo que se interpreta que confianza generalizada podría ser un factor por sí solo, prescindiendo del otro indicador. Aun así, esto puede ser solucionado con una restricción de igualdad en la especificación del modelo, lo que ayudaría a preservar su estabilidad y justificación para ser parte la propuesta.</p>
-
-
 </section>
+</section>
+<section id="cohesión-y-seguridad" class="level2">
+<h2 class="anchored" data-anchor-id="cohesión-y-seguridad">Cohesión y seguridad</h2>
+<div class="cell fig-cap-location-top">
+<div class="cell-output cell-output-stderr">
+<pre data-cap-location="top"><code>Scale for fill is already present.
+Adding another scale for fill, which will replace the existing scale.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-seguridad-transversal" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seguridad-transversal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Distribución de los índices de seguridad
+</figcaption>
+<div aria-describedby="fig-seguridad-transversal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="anexos_files/figure-html/fig-seguridad-transversal-1.png" class="img-fluid figure-img" width="1152">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-segsub" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-segsub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Seguridad subjetiva y desempleo debido a inmigrantes
+</figcaption>
+<div aria-describedby="fig-segsub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="anexos_files/figure-html/fig-segsub-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>En la <a href="#fig-segsub" class="quarto-xref">Figure&nbsp;<span>5</span></a> se visualiza la asociación entre la percepción de aumento de desempleo a causa de inmigrantes (eje x), y el índice de seguridad subjetiva (eje y), el cual fue construido mediante el promedio calculado de dos indicadores: satisfacción de seguridad en el barrio y percepción de seguridad barrial (si le interesa profundizar en cómo se construyó este y los demás índices, vaya al <a href="https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html">anexo</a>).</p>
+<p>Se puede apreciar que la cantidad de personas que percibe una seguridad baja aumenta en la medida que se está más de acuerdo con que los inmigrantes causan desempleo en el país. Esto se nota en la consistencia en las categorías “Ni en desacuerdo ni de acuerdo” y “Muy de acuerdo” respecto a la concentración de respuestas, superando notoriamente la poca seguridad de quienes no creen que la inmigración incide en la empleabilidad. Por tanto, se refleja una correlación negativa entre la sensación de seguridad y la carencia de empleos debido a extranjeros.</p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-seg-trans" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seg-trans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Seguridad objetiva y pérdida de identidad del país debido a inmigrantes
+</figcaption>
+<div aria-describedby="fig-seg-trans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="anexos_files/figure-html/fig-seg-trans-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>En la <a href="#fig-seg-trans" class="quarto-xref">Figure&nbsp;<span>6</span></a> se grafica la relación entre la percepción de pérdida de identidad del país a causa de inmigrantes y el índice de seguridad objetiva, el cual fue medido a partir de la frecuencia de peleas callejeras, asaltos y tráfico de drogas en el barrio del encuestado.</p>
+<p>Asimismo, se puede apreciar que las cantidad de personas que viven niveles bajos de seguridad aumenta progresivamente a medida que se está más de acuerdo con que los inmigrantes le restan identidad al país. Por tanto, mientras menos seguras están las personas, se está más convencido de que los inmigrantes erosionan la identidad de Chile.</p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-seginteract" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seginteract-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Seguridad objetiva y pérdida de identidad por género
+</figcaption>
+<div aria-describedby="fig-seginteract-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="anexos_files/figure-html/fig-seginteract-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-seginteract" class="quarto-xref">Figure&nbsp;<span>7</span></a> refleja la asociación entre seguridad objetiva y percepción de pérdida de identidad del país a causa de los inmigrantes, lo cual está graficado por hombres y mujeres. Se puede observar que, en el caso de los hombres, las categorías más polarizadas concentran la mayoría de las respuestas, por lo que no hay un patrón muy claro. En cambio, a medida que las mujeres viven en entornos menos seguros, están más de acuerdo con que el país pierde identidad a causa de los inmigrantes.</p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-seg-educ" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seg-educ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Seguridad objetiva y desempleo debido a inmigrantes por nivel educacional
+</figcaption>
+<div aria-describedby="fig-seg-educ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="anexos_files/figure-html/fig-seg-educ-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-seg-educ" class="quarto-xref">Figure&nbsp;<span>8</span></a> compara los cruces entre la percepción de desempleo debido a inmigrantes y seguridad objetiva por nivel educacional. En la izquierda se observan las personas con título universitario, donde las mayores proporciones de quienes tienen una baja sensación de seguridad se concentran en las categorías neutra y “Muy de acuerdo”. A la derecha, se visualizan las personas sin título universitario, y aquí se puede encontrar un patrón distinto. Los sujetos sin haber terminado la educación terciaria tienden a responder en mayor medida de manera polarizada. Esto se refleja en que las categorías “Muy en desacuerdo” y “Muy de acuerdo”, son las que tienen las distribuciones más altas respecto a quienes perciben poca seguridad.</p>
+</section>
+<section id="migración-y-seguridad-en-el-tiempo" class="level2">
+<h2 class="anchored" data-anchor-id="migración-y-seguridad-en-el-tiempo">Migración y seguridad en el tiempo</h2>
+<p>La <a href="#fig-seg-iden" class="quarto-xref">Figure&nbsp;<span>9</span></a> muestra la evolución de la subdimensión de seguridad objetiva según el grado de acuerdo con la afirmación de que <em>Chile está perdiendo su identidad nacional debido a la llegada de migrantes</em>, entre 2016 y 2023. En términos generales, la seguridad objetiva es consistentemente más alta entre quienes están <em>muy de acuerdo</em> con la idea de pérdida de identidad, mientras que alcanza niveles más bajos entre quienes están <em>muy en desacuerdo</em>. El año 2018 registra el valor más alto de esta subdimensión para todos los grupos, con la excepción de quienes declaran estar <em>ni de acuerdo ni en desacuerdo</em>, quienes muestran un descenso en comparación con 2017.</p>
+<p>Posteriormente, se observa una caída generalizada en los niveles de seguridad objetiva, especialmente notoria en 2022. Sin embargo, entre 2022 y 2023 emerge un repunte, más marcado en el grupo que está <em>muy de acuerdo</em> con la pérdida de identidad, y más moderado en quienes están <em>muy en desacuerdo</em>. Esto sugiere que las percepciones de seguridad objetiva se articulan en estrecha relación con las creencias sobre la migración y su efecto en la identidad nacional, y que las oscilaciones en el tiempo no afectan a todos los grupos de la misma manera. Si bien las tendencias fluctúan a lo largo del período —con un máximo en 2018, un descenso en 2022 y un repunte en 2023—, lo notable es la consistencia en la brecha entre grupos: en todos los años, quienes perciben mayor pérdida de identidad reportan mayor seguridad objetiva, lo que sugiere un patrón estable en el tiempo más allá de coyunturas específicas.</p>
+<div class="cell fig-cap-location-top">
+<div id="fig-seg-iden" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seg-iden-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Seguridad objetiva y pérdida de identidad por migrantes (2016-2023)
+</figcaption>
+<div aria-describedby="fig-seg-iden-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="anexos_files/figure-html/fig-seg-iden-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+<p>Respecto a la percepción de seguridad pública, la <a href="#fig-seg-iden2" class="quarto-xref">Figure&nbsp;<span>10</span></a> muestra su evolución entre 2016 y 2023 en relación con el grado de acuerdo respecto a que Chile pierde identidad nacional por la llegada de migrantes. En términos generales, se observa una tendencia a la baja en la percepción de seguridad durante el período analizado, especialmente marcada entre 2019 y 2023, lo que coincide con hallazgos de otros estudios recientes.</p>
+<p>Dentro de esta trayectoria, los resultados revelan diferencias sistemáticas entre los grupos. Quienes están <em>muy de acuerdo</em> con la idea de pérdida de identidad presentan de manera consistente los niveles más bajos de seguridad percibida, sin mostrar variaciones que reviertan este patrón en ningún año de la serie. En contraste, quienes están <em>muy en desacuerdo</em> registran los valores más altos, aunque también experimentan una caída abrupta entre 2022 y 2023. Por su parte, quienes se ubican en una posición intermedia —<em>ni de acuerdo ni en desacuerdo</em>— muestran una evolución similar a la de los grupos en desacuerdo, con niveles relativamente altos hasta 2019, una disminución marcada a partir de 2022 y una posición intermedia entre los otros dos grupos en la comparación final de 2023.</p>
+<div class="cell fig-cap-location-top">
+<div id="fig-seg-iden2" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seg-iden2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Seguridad percibida y pérdida de identidad por migrantes (2016-2023)
+</figcaption>
+<div aria-describedby="fig-seg-iden2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="anexos_files/figure-html/fig-seg-iden2-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+<p>La <a href="#fig-seg-desemp" class="quarto-xref">Figure&nbsp;<span>11</span></a> muestra la evolución de la percepción de seguridad pública entre 2016 y 2023, diferenciada según el grado de acuerdo con la afirmación de que la llegada de migrantes aumenta el desempleo. Al igual que en la figura anterior, se observa una tendencia decreciente en la seguridad percibida, con una baja especialmente pronunciada entre 2019 y 2023.</p>
+<p>En todos los años de la serie, quienes se declaran muy de acuerdo con la idea de que la migración incrementa el desempleo reportan los niveles más bajos de seguridad pública, mientras que los que están muy en desacuerdo muestran los niveles más altos. El grupo intermedio —quienes señalan estar ni de acuerdo ni en desacuerdo— se ubica de forma constante entre ambas posiciones, con una trayectoria descendente que se intensifica en los últimos años. Estos resultados sugieren que las concepciones sobre la migración, en este caso en la potencial amenaza que representa para el acceso al trabajo, se asocia con una visión más crítica o deteriorada de la seguridad pública.</p>
+<div class="cell fig-cap-location-top">
+<div id="fig-seg-desemp" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seg-desemp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Seguridad percibida y desempleo percibido por migrantes (2016-2023)
+</figcaption>
+<div aria-describedby="fig-seg-desemp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="anexos_files/figure-html/fig-seg-desemp-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+<p>De acuerdo con la <a href="#fig-seg-simpa" class="quarto-xref">Figure&nbsp;<span>12</span></a>, que muestra la evolución de la relación entre percepción de seguridad pública y grado de simpatía hacia los migrantes entre 2016 y 2023, se observa que la seguridad percibida es consistentemente más baja entre quienes expresan poca o ninguna simpatía por la población migrante. Esta brecha se acentúa desde 2019 en adelante, cuando la percepción de inseguridad en este grupo contrasta con la trayectoria ascendente que mostraban, hasta 2022, quienes dicen simpatizar algo o mucho con los migrantes. No obstante, a partir de 2022 la tendencia se revierte: todos los grupos reportan un descenso en su sensación de seguridad, aunque con intensidades distintas. Aun así, en el último año analizado se mantiene la jerarquía relativa: la percepción de seguridad es mayor entre quienes simpatizan mucho con los migrantes, seguida por quienes simpatizan algo, y alcanza sus niveles más bajos en el grupo con menor simpatía. En contraste con el caso de la pérdida de identidad, en esta dimensión las diferencias entre grupos se amplían con el tiempo, pues quienes simpatizan más con los migrantes no solo mantienen una mayor sensación de seguridad, sino que además la incrementan hasta 2022. El descenso en 2023, común a todos los grupos, sugiere la incidencia de factores coyunturales que interrumpieron esa tendencia.</p>
+<div class="cell fig-cap-location-top">
+<div id="fig-seg-simpa" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seg-simpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Seguridad percibida y simpatía hacia migrantes (2016-2023)
+</figcaption>
+<div aria-describedby="fig-seg-simpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="anexos_files/figure-html/fig-seg-simpa-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+</figure>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1357,13 +1409,14 @@ Variances:
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
