@@ -21,10 +21,10 @@ csl: "input/bib/apa6.csl"
 
 :::{.incremental .highlight-last style="font-size: 100%;"}
 
-- En el contexto europeo, la cohesión social no solo se entiende como reducción de desigualdades, sino también como la capacidad de integrar la diversidad, garantizar igualdad de oportunidades e incluir a las personas migrantes como parte de la vida social [@iom_2023].
+- En el contexto europeo, la cohesión social se aborda como la capacidad de integrar la diversidad, garantizar igualdad de oportunidades e incluir a las personas migrantes como parte de la vida social [@iom_2023].
 
-- Se ga señalado que la falta de políticas adecuadas frente a la migración ha alimentado la polarización política y social, con percepciones de amenaza cultural y económica que se han convertido en una de las principales fuentes de división pública [@herold_analysis_2023; @davidov_predictors_2020].
+- Se ga señalado que la falta de políticas adecuadas frente a la migración ha alimentado la polarización política y social [@herold_analysis_2023; @davidov_predictors_2020].
 
-- En este sentido, la confianza interpersonal, políticas de integración robustas y la identificación con el proyecto europeo contribuyen a valorar positivamente la diversidad, reducen actitudes xenófobas y permiten transformar la migración en un recurso de cohesión y estabilidad democrática [@kokkonen_attitudes_2025; @putnam_community_2006].
+- En este sentido, la confianza interpersonal junto a las políticas de integración contribuyen a valorar positivamente la diversidad, permitiendo transformar la migración en un recurso de cohesión y estabilidad democrática [@kokkonen_attitudes_2025; @putnam_community_2006].
 
 :::
