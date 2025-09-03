@@ -26,11 +26,11 @@ csl: "input/bib/apa6.csl"
 
 ::: {.incremental .highlight-last style="font-size: 35px;"}
 
-- Se relaciona con la cantidad y calidad de los vínculos existentes en una sociedad
+- Se relaciona con la cantidad y calidad de los vínculos existentes en una sociedad.
 
 - Múltiples dimensiones, que se pueden agrupar en dos grandes grupos [@chan_reconsidering_2006]:
 
-  - Cohesión **vertical**: vínculos con instituciones y el estado (confianza en instituciones, participación política
+  - Cohesión **vertical**: vínculos con instituciones y el estado (confianza en instituciones, participación política.
   
   - Cohesión **horizontal**: vínculos con grupos, confianza interpersonal, redes de apoyo y seguridad. 
 
