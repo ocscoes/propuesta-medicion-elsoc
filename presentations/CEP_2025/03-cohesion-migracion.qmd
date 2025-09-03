@@ -161,13 +161,37 @@ plots_tbl <- comb %>%
 ```
 
 
-# 3. Cohesión social y migración {.xlarge data-background-color="#444a5e"}
+# 3. Cohesión social horizontal y migración {.xlarge data-background-color="#444a5e"}
 
-# 3. Cohesión social y migración {.xlarge data-background-color="#444a5e"}
+<br>
 
 :::: {style="font-size: 200%;"}
 
-**3.1. Seguridad**
+
+[**3.1. Seguridad**]{style="color:yellow;"}
+
+[**3.2. Vínculos territoriales**]{style="color:yellow;"}
+
+[**3.3. Redes**]{style="color:yellow;"}
+
+
+::::
+
+
+# 3. Cohesión social horizontal y migración {.xlarge data-background-color="#444a5e"}
+
+<br>
+
+:::: {style="font-size: 200%;"}
+
+
+[**3.1. Seguridad**]{style="color:yellow;"}
+
+[**3.2. Vínculos territoriales**]{style="color:grey;"}
+
+[**3.3. Redes**]{style="color:grey;"}
+
+
 ::::
 
 
@@ -302,13 +326,20 @@ Entre 2016 y 2023, la percepción de seguridad fue sistemáticamente más baja e
 
 :::
 
-# 3. Cohesión social y migración {.xlarge data-background-color="#444a5e"}
+# 3. Cohesión social horizontal y migración {.xlarge data-background-color="#444a5e"}
+
+<br>
 
 :::: {style="font-size: 200%;"}
 
-3.1. Seguridad
 
-**3.2. Vinculos territoriales**
+[**3.1. Seguridad**]{style="color:grey;"}
+
+[**3.2. Vínculos territoriales**]{style="color:yellow;"}
+
+[**3.3. Redes**]{style="color:grey;"}
+
+
 ::::
 
 
@@ -434,15 +465,20 @@ sel$plot[[11]] +
 Entre 2016 y 2023 la satisfacción barrial fue más alta entre quienes expresan mayor simpatía hacia los migrantes y más baja entre quienes muestran poca o ninguna. En el tiempo, los primeros exhiben un aumento sostenido, mientras los menos favorables descienden y el grupo intermedio combina un alza inicial con una caída desde 2019.
 :::
 
-# 3. Cohesión social y migración {.xlarge data-background-color="#444a5e"}
+# 3. Cohesión social horizontal y migración {.xlarge data-background-color="#444a5e"}
+
+<br>
 
 :::: {style="font-size: 200%;"}
 
-3.1. Seguridad
 
-3.2. Vinculos territoriales
+[**3.1. Seguridad**]{style="color:grey;"}
 
-**3.3. Redes**
+[**3.2. Vínculos territoriales**]{style="color:grey;"}
+
+[**3.3. Redes**]{style="color:yellow;"}
+
+
 ::::
 
 ---

@@ -1,5 +1,5 @@
 ---
-pagetitle: "Foro II Cohesión Social y Migración 2025"
+pagetitle: "Foro II: Cohesión Social y Migración 2025"
 Author: Equipo EDUMER
 bibliography: "input/bib/OCS-LIT.bib"
 csl: "input/bib/apa6.csl"
@@ -29,6 +29,8 @@ format:
     keep-tex: true  # Debug LaTeX output if needed
 editor_options:
   chunk_output_type: console
+execute:
+  freeze: auto  # re-render only when source changes
 ---
 
 ```{r}
@@ -65,7 +67,7 @@ options(knitr.kable.NA = "")
 
 </br>
 
-# **Cohesión social y migración**
+# **Cohesión social y migración**:
 
 ## **Una década de cambios y desafíos**
 
@@ -82,9 +84,9 @@ options(knitr.kable.NA = "")
 
 :::
 
-Segundo Foro de Cohesión Social COES - CEP
+Segundo Foro de Cohesión Social -  COES/CEP
 
-9 Septiembre 2025, Santiago
+Santiago, 9 Septiembre 2025
 
 :::
 :::

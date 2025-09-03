@@ -4,27 +4,19 @@ bibliography: "input/bib/OCS-LIT.bib"
 csl: "input/bib/apa6.csl"
 ---
 
-## Cohesión social 
+## ¿Qué es la cohesión social? 
 
 ::: {.incremental .highlight-last style="font-size: 35px;"}
 
-- La cohesión social es un concepto **multidimensional** que abarca una gran cantidad de elementos normativos, afectivos e identitarios. Debido a su carácter multidimensional y la complejidad que supone conceptualizarla, no hay un consenso claro respecto a una **definición** de cohesión social.
+- Se relaciona con la cantidad y calidad de los vínculos existentes en una sociedad
 
-- Aun así, se considera uno de los **pilares** para el bienestar social y el desarrollo, presentándose como un desafío a superar en las diversas regiones del mundo. 
+- Múltiples dimensiones, que se pueden agrupar en dos grandes grupos [@chan_reconsidering_2006]:
+
+  - Cohesión **vertical**: vínculos con instituciones y el estado (confianza en instituciones, participación política, 
+- 
+  - Cohesión **horizontal**: vínculos con grupos, confianza interpersonal, redes de apoyo y seguridad. 
+
+Esta presentación se centra en la relación entre la dimensión horizontal de la cohesión social y la migración.
 
 :::
 
-## Definición de cohesión social
-
-<br>
-
-::: {.incremental .highlight-last style="font-size: 35px;"}
-
-_"La cohesión social es un estado de cosas que afecta tanto a las interacciones **verticales** como **horizontales** entre los miembros de la sociedad y que se caracteriza por un conjunto de actitudes y normas que incluyen la **confianza**, el sentido de **pertenencia** y la voluntad de **participar y ayudar**, así como sus manifestaciones conductuales"._ [@chan_reconsidering_2006].
-:::
-
-<br>
- 
-::: {.highlight-last style="font-size: 25px;"}
-[Chan, J., To, H.-P., & Chan, E. (2006). Reconsidering Social Cohesion: Developing a Definition and Analytical Framework for Empirical Research. Social Indicators Research, 75(2), 273–302.](https://link.springer.com/article/10.1007/s11205-005-2118-1)
-:::

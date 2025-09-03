@@ -4,7 +4,7 @@ bibliography: "input/bib/OCS-LIT.bib"
 csl: "input/bib/apa6.csl"
 ---
 
-# Estructura de la presentación {.large data-background-color="#444a5e"}
+# Contenidos {.large data-background-color="#444a5e"}
 
 :::: {.incremental style="font-size: 145%;"}
 
@@ -22,9 +22,127 @@ csl: "input/bib/apa6.csl"
 # 1. Contexto y motivación {.xlarge data-background-color="#444a5e"}
 
 
+## ¿Qué es la cohesión social? 
 
-{{< include 01.1-cohesion.qmd >}}
+::: {.incremental .highlight-last style="font-size: 35px;"}
 
-{{< include 01.2-migracion-contexto.qmd >}}
+- Se relaciona con la cantidad y calidad de los vínculos existentes en una sociedad
 
-{{< include 01.3-elsoc.qmd >}}
+- Múltiples dimensiones, que se pueden agrupar en dos grandes grupos [@chan_reconsidering_2006]:
+
+  - Cohesión **vertical**: vínculos con instituciones y el estado (confianza en instituciones, participación política
+  
+  - Cohesión **horizontal**: vínculos con grupos, confianza interpersonal, redes de apoyo y seguridad. 
+
+- Esta presentación se centra en la relación entre la dimensión horizontal de la cohesión social y la migración.
+
+:::
+
+## Migración en Chile
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+-   **Crecimiento acelerado y cambio en la composición migratoria**: De acuerdo con las cifras del último CENSO [@censo_2024] la población extranjera en Chile alcanzó **1,6 millones** de personas (8,8% del total), duplicando la cifra del censo 2017.
+
+-   **Percepciones ambivalentes y polarización**: 
+    -   Migrantes son vistos como trabajadores, pero también asociados a delincuencia.
+    -   En zonas de mayor exposición surgen percepciones más negativas, en línea con la tesis de hostilidad inicial ante diversidad [@paolini_intergroup_2014].
+
+
+-   **Impacto social y tensiones en la cohesión**: El aumento abrupto de la migración ha desafiado los marcos institucionales y generado tensiones en la cohesión social [@dinesen_trust_2020; @reibold_trust_2025],en particular a nivel de los **vínculos sociales** (cohesión horizontal).
+
+:::
+
+
+## Investigando la cohesión social
+
+
+::::: columns
+::: {.column width="35%"}
+
+
+<br>
+
+
+![](images/LOGO-OCS.png){width="100%" fig-align="right"}
+:::
+
+
+:::{.column width="10%"}
+
+
+:::
+
+
+::: {.column width="55%" style="font-size: 25px; text-align: center; margin: 0 auto;"}
+
+
+<br>
+
+
+-   [El Observatorio de Cohesión Social (OCS)](https://ocs-coes.com/){target="_blank"} es un proyecto enmarcado en el FONDAP° 1523A0005: [Centro de Estudios de Conflicto y Cohesión Social](https://coes.cl/){target="_blank"}
+
+
+-   Surge el año 2020 con el objetivo de contribuir al análisis de la cohesión social en Chile y América latina
+
+
+-  Se basa en la experiencia de proyectos internacionales de conceptualización y medición de cohesión social
+
+
+:::
+:::::
+
+
+##
+
+
+::::: columns
+::: {.column width="35%"}
+
+
+<br>
+
+
+![](images/elsoc.png){width="100%" fig-align="right"}
+:::
+
+:::{.column width="10%"}
+
+
+:::
+
+
+
+::: {.column width="55%" style="font-size: 25px; text-align: center; margin: 0 auto;"}
+
+
+<br>
+
+
+-  El [Estudio Longitudinal Social de Chile](https://coes.cl/elsoc/){target="_blank"} es un panel representativo desde el 2016 que busca analizar cómo piensan, sienten y se comportan las personas con respecto al conflicto y la cohesión social en Chile
+
+
+-  Tiene un diseño muestral complejo: probabilístico, por conglomerados, multietápico y estratificado según el tamaño de las ciudades
+
+
+-  Contiene baterías que tematizan el vínculo en sociedad que permiten medir y analizar las dimensiones de la cohesión social
+
+
+:::
+:::::
+
+
+## Medición de cohesión social horizontal con ELSOC
+
+
+![](images/propuesta-nueva.png)
+
+::: notes
+La propuesta de medición de cohesión social horizontal con ELSOC se basa en tres subdimensiones: seguridad, vínculos territoriales y redes sociales.
+
+- Seguridad se mide desde su plano subjetivo, a través de la percepción y satisfacción de seguridad con el barrio, y desde su plano objetivo, mediante la frecuencia de hechos violentos como asaltos, peleas callejeras y tráficos de drogas
+
+- Vínculos territoriales se mide por dos factores; la satisfacción con el barrio, tomando en cuenta elementos como la sociabilidad, facilidad de hacer amigos, y la cordialidad y colaboración entre vecinos; el sentido de pertenencia, el cual aborda elementos identitarios en relación al barrio donde vive en encuestado, tales como si es su barrio ideal, se identifica con él y si se siente integrado.
+
+- En redes sociales, comportamientos prosociales se mide por la asistencia a reuniones públicas y la realización de voluntariado. Ayuda económica considera el haber prestado dinero en algún momento a alguien y haber ayudado a encontrar trabajo a un tercero. Por último, confianza interpersonal considera confianza social generalizada, donde se pregunta si se puede o no confiar en la mayoría de las personas, y además altruismo social generalizado, el que pregunta si las personas generalmente tratan de ayudar a otros o se preocupan de sí mismas
+:::

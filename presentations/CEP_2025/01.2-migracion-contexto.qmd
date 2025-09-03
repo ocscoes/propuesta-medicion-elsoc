@@ -8,23 +8,12 @@ csl: "input/bib/apa6.csl"
 
 ::: {.incremental .highlight-last style="font-size: 100%;"}
 
--   **Crecimiento acelerado y cambio en la composición migratoria**: De acuerdo con las cifras del último CENSO [@censo_2024] la población extranjera en Chile alcanzó 1,6 millones de personas (8,8% del total), duplicando la cifra del censo 2017.
-
--   **Impacto social y tensiones en la cohesión**: El aumento abrupto de la migración ha desafiado los marcos institucionales y generado tensiones en la cohesión social [@dinesen_trust_2020; @reibold_trust_2025].
+-   **Crecimiento acelerado y cambio en la composición migratoria**: De acuerdo con las cifras del último CENSO [@censo_2024] la población extranjera en Chile alcanzó **1,6 millones** de personas (8,8% del total), duplicando la cifra del censo 2017.
 
 -   **Percepciones ambivalentes y polarización**: Son vistos como trabajadores, pero también asociados a delincuencia; la interacción cotidiana explica esta contradicción, y en zonas de mayor exposición surgen percepciones más negativas, en línea con la tesis de hostilidad inicial ante diversidad [@paolini_intergroup_2014].
 
-:::
 
-
-## Migración y cohesión social
-
-:::{.incremental .highlight-last style="font-size: 100%;"}
-
-- En el contexto europeo, la cohesión social se aborda como la capacidad de integrar la diversidad, garantizar igualdad de oportunidades e incluir a las personas migrantes como parte de la vida social [@iom_2023].
-
-- Se ga señalado que la falta de políticas adecuadas frente a la migración ha alimentado la polarización política y social [@herold_analysis_2023; @davidov_predictors_2020].
-
-- En este sentido, la confianza interpersonal junto a las políticas de integración contribuyen a valorar positivamente la diversidad, permitiendo transformar la migración en un recurso de cohesión y estabilidad democrática [@kokkonen_attitudes_2025; @putnam_community_2006].
+-   **Impacto social y tensiones en la cohesión**: El aumento abrupto de la migración ha desafiado los marcos institucionales y generado tensiones en la cohesión social [@dinesen_trust_2020; @reibold_trust_2025],en particular a nivel de los **vínculos sociales** (cohesión horizontal).
 
 :::
+
