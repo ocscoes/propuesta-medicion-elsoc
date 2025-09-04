@@ -243,7 +243,6 @@ db_pond %>%
     expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
   )  + 
     labs(
-      title = "Percepción de seguridad y restricción de acceso a migrantes",
       x = "Restricción de acceso a migrantes",
       y = NULL,
       caption = "Fuente: elaboración propia con datos de ELSOC 2023"
@@ -278,6 +277,15 @@ db_pond %>%
       keyheight = unit(10, "pt")
     )
   )
+
+# Luego ejecutar ggsave
+ggsave(plot = last_plot(),
+       filename = "presentations/graph/graphseg-restriccion-migrantes.png",
+       device = "png",
+       dpi = "retina",
+       units = "cm",
+       width = 33,
+       height = 20)
 ```
 
 ::: {.notes}
@@ -299,8 +307,16 @@ Entre quienes reportan baja percepción de seguridad (barras negras), predomina 
 sel <- plots_tbl %>%
   filter(out  %in% c("seguridad_sub","seguridad_obj")) 
 
-sel$plot[[12]] + 
-  labs(title = "Seguridad percibida y simpatía hacia migrantes") 
+sel$plot[[12]]
+
+# Luego ejecutar ggsave
+ggsave(plot = last_plot(),
+       filename = "presentations/graph/graphseg-simp-migrantes.png",
+       device = "png",
+       dpi = "retina",
+       units = "cm",
+       width = 33,
+       height = 20)
 ```
 
 ::: {.notes}
@@ -384,7 +400,6 @@ db_pond %>%
     expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
   )  + 
   labs(
-    title = "Alto sentido pertenencia barrial y pérdida de identidad nacional",
     x = "Pérdida de identidad nacional por migrantes",
     y = NULL,
     caption = "Fuente: elaboración propia con datos de ELSOC 2023"
@@ -420,6 +435,14 @@ db_pond %>%
     )
   )
 
+# Luego ejecutar ggsave
+ggsave(plot = last_plot(),
+       filename = "presentations/graph/graphseg-pertenencia-migrantes.png",
+       device = "png",
+       dpi = "retina",
+       units = "cm",
+       width = 33,
+       height = 20)
 ```
 
 ::: {.notes}
@@ -439,8 +462,16 @@ Quienes reportan mayor sentido de pertenencia barrial tienden, en su mayoría, a
 sel <- plots_tbl %>%
   filter(out  %in% c("sentido_pertenencia", "satisfaccion_barrio")) 
 
-sel$plot[[1]] + 
-  labs(title = "Satisfacción barrial y contacto positivo con migrantes")
+sel$plot[[1]]
+
+# Luego ejecutar ggsave
+ggsave(plot = last_plot(),
+       filename = "presentations/graph/graphseg-pertenencia-migrantes.png",
+       device = "png",
+       dpi = "retina",
+       units = "cm",
+       width = 33,
+       height = 20)
 ```
 ::: {.notes}
 Entre 2016 y 2023 la satisfacción con el barrio fue más alta entre quienes reportan contacto positivo o neutral con migrantes, con un alza hasta 2019 pero seguida de una caída sostenida hasta la última medición disponible. En contraste, quienes declaran contacto poco o nada amistoso evidencian un descenso continuo desde 2017, alcanzando los niveles más bajos en 2023. Estos resultados sugieren que interacciones positivas o neutrales fortalecen la cohesión social a nivel local, mientras las negativas la erosionan de forma persistente.
@@ -580,8 +611,16 @@ sel <- plots_tbl %>%
   filter(out  %in% c("confianza_inter","comportamiento_prosocial", "ayuda_economica")) %>% 
   filter(pred != "igualdad_migrantes" & out != "ayuda_economica") 
 
-sel$plot[[1]] + 
-  labs(title = "Comportamiento prosocial y contacto positivo con migrantes") 
+sel$plot[[1]] 
+
+# Luego ejecutar ggsave
+ggsave(plot = last_plot(),
+       filename = "presentations/graph/graphseg-contacto-migrantes.png",
+       device = "png",
+       dpi = "retina",
+       units = "cm",
+       width = 33,
+       height = 20)
 ```
 
 ::: {.notes}

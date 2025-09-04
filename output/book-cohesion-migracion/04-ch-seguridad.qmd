@@ -71,8 +71,6 @@ db_pond <- db %>%
 
 ```
 
-<!-- Recodificacion -->
-
 ```{r}
 #| echo: false 
 elsoc_4 <- readRDS("../../input/data/proc_data/elsoc_2019_coh_mig.RData")
@@ -80,24 +78,7 @@ elsoc_5 <- readRDS("../../input/data/proc_data/elsoc_2021_mig.RData")
 elsoc_6 <- readRDS("../../input/data/proc_data/elsoc_2022_mig.RData")
 ```
 
-```{r}
-#| echo: false
-
-db_long <- load("../../input/data/proc_data/db_long.RData")
-```
-
-```{r}
-#| echo: false
-
-db_pond <- db %>% 
-  as_survey_design(ids = segmento, 
-                   strata = estrato, 
-                   weights = ponderador_long_total,
-                   nest = T)
-
-```
-
-<!-- Recodificaciones Seguridad -->
+<!-- Recodificacion -->
 
 ```{r}
 #| echo: false
@@ -475,6 +456,7 @@ Se puede apreciar que la cantidad de personas que percibe una seguridad baja aum
 #| fig.height: 8
 #| out-width: "100%"
 #| fig-align: "center"
+
 db_pond %>% 
   select(wave, seguridad_sub, restriccion_migrantes) %>%
   mutate(seguridad_sub = case_when(
@@ -549,6 +531,8 @@ db_pond %>%
     )
   )
 ```
+
+
 Por su parte, la @fig-seg-res muestra la relación entre la percepción de seguridad y el nivel de acuerdo con restringir el acceso a migrantes, a partir de los datos de la ola 2023 de la encuesta ELSOC. Se observa que, independientemente de si las personas reportan una percepción de seguridad alta o baja, existe un amplio consenso en torno a la necesidad de establecer restricciones: el 85,1% de quienes se sienten más seguros y el 85,5% de quienes perciben menor seguridad se declaran “muy de acuerdo”. En contraste, las posiciones de rechazo resultan claramente minoritarias: solo un 8,2% de quienes perciben alta seguridad y un 5,7% de quienes reportan baja seguridad están “muy en desacuerdo”, mientras que alrededor de un 7% a 9% se ubica en una posición intermedia de ni acuerdo ni desacuerdo. En síntesis, el apoyo a la restricción hacia los migrantes es elevado y transversal, sin que se observen diferencias sustantivas según la percepción subjetiva de seguridad.
 
 ```{r}
