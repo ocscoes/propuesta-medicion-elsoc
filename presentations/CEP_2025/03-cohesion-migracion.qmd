@@ -100,16 +100,23 @@ db_pond <- db %>%
 #| fig-align: "center"
 db_pond %>%
   select(wave, seguridad_sub, restriccion_migrantes) %>%
-   mutate(
+  mutate(
+    # calculamos media y sd una vez
+    media_seg = mean(seguridad_sub, na.rm = TRUE),
+    sd_seg    = sd(seguridad_sub, na.rm = TRUE),
+    
     seguridad_sub = case_when(
-      seguridad_sub <= 2.5 ~ "Baja seguridad",
-      seguridad_sub >= 3 & seguridad_sub <= 4  ~ "Mediana seguridad",
-      seguridad_sub >= 4.5 ~ "Alta seguridad"
+      seguridad_sub <= media_seg - sd_seg ~ "Baja seguridad",
+      seguridad_sub >  media_seg - sd_seg & seguridad_sub < media_seg + sd_seg ~ "Mediana seguridad",
+      seguridad_sub >= media_seg + sd_seg ~ "Alta seguridad"
     ),
-    seguridad_sub = factor(seguridad_sub, levels = c("Baja seguridad", "Mediana seguridad", "Alta seguridad"))
+    seguridad_sub = factor(
+      seguridad_sub,
+      levels = c("Baja seguridad", "Mediana seguridad", "Alta seguridad")
+    )
   ) %>%
   tidyr::drop_na() %>%
-  filter(restriccion_migrantes == "Muy de acuerdo") %>%
+  filter(restriccion_migrantes == "Muy en desacuerdo") %>%
   group_by(wave, seguridad_sub) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -117,7 +124,7 @@ db_pond %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Muy de acuerdo restricción acceso migrantes"   # 👈 variable para la leyenda
+    grupo = "Muy en desacuerdo restricción acceso migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = wave, y = prop, group = seguridad_sub)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -130,7 +137,7 @@ db_pond %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Muy de acuerdo restricción acceso migrantes" = "#522A6F")
+    values = c("Muy en desacuerdo restricción acceso migrantes" = "#522A6F")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -139,7 +146,7 @@ db_pond %>%
     expand = expansion(mult = c(0.02, 0.08))
   ) +
   labs(
-    title = "Seguridad percibida y restricción de acceso migrantes",
+    title = "Seguridad percibida y restricción de acceso a migrantes",
     subtitle = "Porcentaje que responde...",
     x = NULL,
     y = NULL,
@@ -172,7 +179,7 @@ db_pond %>%
 
 ::: {.notes}
 
-Al cruzar el acuerdo con políticas restrictivas hacia la migración y la percepción de seguridad, se observa que la mayoría de quienes respaldan estas medidas reporta niveles medianos o bajos de seguridad pública, mientras solo una minoría percibe alta seguridad. Esta tendencia se mantiene en todas las olas, con un aumento marcado de la inseguridad percibida en 2023.
+
 :::
 ---
 
@@ -188,15 +195,22 @@ Al cruzar el acuerdo con políticas restrictivas hacia la migración y la percep
 db_pond %>%
   select(wave, seguridad_sub, simpatia_migrantes) %>%
    mutate(
+    # calculamos media y sd una vez
+    media_seg = mean(seguridad_sub, na.rm = TRUE),
+    sd_seg    = sd(seguridad_sub, na.rm = TRUE),
+    
     seguridad_sub = case_when(
-      seguridad_sub <= 2.5 ~ "Baja seguridad",
-      seguridad_sub >= 3 & seguridad_sub <= 4  ~ "Mediana seguridad",
-      seguridad_sub >= 4.5 ~ "Alta seguridad"
+      seguridad_sub <= media_seg - sd_seg ~ "Baja seguridad",
+      seguridad_sub >  media_seg - sd_seg & seguridad_sub < media_seg + sd_seg ~ "Mediana seguridad",
+      seguridad_sub >= media_seg + sd_seg ~ "Alta seguridad"
     ),
-    seguridad_sub = factor(seguridad_sub, levels = c("Baja seguridad", "Mediana seguridad", "Alta seguridad"))
+    seguridad_sub = factor(
+      seguridad_sub,
+      levels = c("Baja seguridad", "Mediana seguridad", "Alta seguridad")
+    )
   ) %>%
   tidyr::drop_na() %>%
-  filter(simpatia_migrantes == "Muy poco + poco o nada") %>%
+  filter(simpatia_migrantes == "Mucho + bastante") %>%
   group_by(wave, seguridad_sub) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -204,7 +218,7 @@ db_pond %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Muy poca o nada de simpatía hacia migrantes"   # 👈 variable para la leyenda
+    grupo = "Mucho + bastante simpatía hacia migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = wave, y = prop, group = seguridad_sub)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -217,7 +231,7 @@ db_pond %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Muy poca o nada de simpatía hacia migrantes" = "#522A6F")
+    values = c("Mucho + bastante simpatía hacia migrantes" = "#522A6F")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -258,7 +272,6 @@ db_pond %>%
 ```
 
 ::: {.notes}
-Al cruzar la simpatía hacia los migrantes con la percepción de seguridad, se observa que la mayoría de quienes expresan muy poca o ninguna simpatía reporta niveles medianos o bajos de seguridad pública, mientras solo una minoría declara alta seguridad. Esta pauta se repite en todas las olas y se intensifica en 2023, con un aumento significativo de la inseguridad percibida.
 
 :::
 ---
@@ -274,15 +287,22 @@ Al cruzar la simpatía hacia los migrantes con la percepción de seguridad, se o
 db_pond %>%
   select(wave, seguridad_sub, contacto_migrantes) %>%
   mutate(
+    # calculamos media y sd una vez
+    media_seg = mean(seguridad_sub, na.rm = TRUE),
+    sd_seg    = sd(seguridad_sub, na.rm = TRUE),
+    
     seguridad_sub = case_when(
-      seguridad_sub <= 2.5 ~ "Baja seguridad",
-      seguridad_sub >= 3 & seguridad_sub <= 4  ~ "Mediana seguridad",
-      seguridad_sub >= 4.5 ~ "Alta seguridad"
+      seguridad_sub <= media_seg - sd_seg ~ "Baja seguridad",
+      seguridad_sub >  media_seg - sd_seg & seguridad_sub < media_seg + sd_seg ~ "Mediana seguridad",
+      seguridad_sub >= media_seg + sd_seg ~ "Alta seguridad"
     ),
-    seguridad_sub = factor(seguridad_sub, levels = c("Baja seguridad", "Mediana seguridad", "Alta seguridad"))
+    seguridad_sub = factor(
+      seguridad_sub,
+      levels = c("Baja seguridad", "Mediana seguridad", "Alta seguridad")
+    )
   ) %>%
   tidyr::drop_na() %>%
-  filter(contacto_migrantes == "Muy poco + poco amistosa") %>%
+  filter(contacto_migrantes == "Muy + bastante amistosa") %>%
   group_by(wave, seguridad_sub) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -290,7 +310,7 @@ db_pond %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Contacto muy poco + poco amistoso con migrantes"   # 👈 variable para la leyenda
+    grupo = "Contacto muy + bastante amistoso con migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = wave, y = prop, group = seguridad_sub)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -303,7 +323,7 @@ db_pond %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Contacto muy poco + poco amistoso con migrantes" = "#522A6F")
+    values = c("Contacto muy + bastante amistoso con migrantes" = "#522A6F")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -344,7 +364,6 @@ db_pond %>%
 ```
 
 ::: {.notes}
-Quienes han tenido un contacto poco amistoso con migrantes reportan niveles medianos o bajos de seguridad pública, mientras solo una minoría declara alta seguridad. En este grupo, la percepción de baja seguridad ha variado en el tiempo. Ahora bien, en este grupo, la alta seguridad ha ido a la baja consistentemente. 
 
 :::
 
@@ -378,15 +397,22 @@ Quienes han tenido un contacto poco amistoso con migrantes reportan niveles medi
 db_pond %>%
   select(wave, sentido_pertenencia, perdida_identidad) %>%
   mutate(
+    # calculamos media y sd una vez
+    media_seg = mean(sentido_pertenencia, na.rm = TRUE),
+    sd_seg    = sd(sentido_pertenencia, na.rm = TRUE),
+    
     sentido_pertenencia = case_when(
-      sentido_pertenencia <= 2.5 ~ "Baja pertenencia",
-      sentido_pertenencia >= 3 & sentido_pertenencia <= 4  ~ "Mediana pertenencia",
-      sentido_pertenencia >= 4.5 ~ "Alta pertenencia"
+      sentido_pertenencia <= media_seg - sd_seg ~ "Baja pertenencia",
+      sentido_pertenencia >  media_seg - sd_seg & sentido_pertenencia < media_seg + sd_seg ~ "Mediana pertenencia",
+      sentido_pertenencia >= media_seg + sd_seg ~ "Alta pertenencia"
     ),
-    sentido_pertenencia = factor(sentido_pertenencia, levels = c("Baja pertenencia", "Mediana pertenencia", "Alta pertenencia"))
+    sentido_pertenencia = factor(
+      sentido_pertenencia,
+      levels = c("Baja pertenencia", "Mediana pertenencia", "Alta pertenencia")
+    )
   ) %>%
-  tidyr::drop_na() %>%
-  filter(perdida_identidad == "Muy de acuerdo") %>%
+  tidyr::drop_na()  %>% 
+  filter(perdida_identidad == "Muy en desacuerdo") %>%
   group_by(wave, sentido_pertenencia) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -394,7 +420,7 @@ db_pond %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Muy de acuerdo con pérdida identidad nacional por migrantes"   # 👈 variable para la leyenda
+    grupo = "Muy en desacuerdo con pérdida identidad nacional por migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = wave, y = prop, group = sentido_pertenencia)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -407,7 +433,7 @@ db_pond %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Muy de acuerdo con pérdida identidad nacional por migrantes" = "#7ABA21")
+    values = c("Muy en desacuerdo con pérdida identidad nacional por migrantes" = "#7ABA21")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -449,7 +475,6 @@ db_pond %>%
 ```
 
 ::: {.notes}
-Dentro de quienes están muy de acuerdo con que la llegada de migrantes ha generado una pérdida de identidad nacional, la mayoría reporta un mediano sentido de pertenencia barrial, seguido por una baja pertenencia y en menor mendida una alta pertenencia. 
 :::
 
 ---
@@ -464,16 +489,23 @@ Dentro de quienes están muy de acuerdo con que la llegada de migrantes ha gener
 #| fig-align: "center"
 db_pond %>%
   select(wave, satisfaccion_barrio, contacto_migrantes) %>%
-  mutate(
+    mutate(
+    # calculamos media y sd una vez
+    media_seg = mean(satisfaccion_barrio, na.rm = TRUE),
+    sd_seg    = sd(satisfaccion_barrio, na.rm = TRUE),
+    
     satisfaccion_barrio = case_when(
-      satisfaccion_barrio <= 2.5 ~ "Baja satisfacción",
-      satisfaccion_barrio >= 3 & satisfaccion_barrio <= 4  ~ "Mediana satisfacción",
-      satisfaccion_barrio >= 4.5 ~ "Alta satisfacción"
+      satisfaccion_barrio <= media_seg - sd_seg ~ "Baja satisfacción",
+      satisfaccion_barrio >  media_seg - sd_seg & satisfaccion_barrio < media_seg + sd_seg ~ "Mediana satisfacción",
+      satisfaccion_barrio >= media_seg + sd_seg ~ "Alta satisfacción"
     ),
-    satisfaccion_barrio = factor(satisfaccion_barrio, levels = c("Baja satisfacción", "Mediana satisfacción", "Alta satisfacción"))
+    satisfaccion_barrio = factor(
+      satisfaccion_barrio,
+      levels = c("Baja satisfacción", "Mediana satisfacción", "Alta satisfacción")
+    )
   ) %>%
-  tidyr::drop_na() %>%
-  filter(contacto_migrantes == "Muy poco + poco amistosa") %>%
+  tidyr::drop_na()%>%
+  filter(contacto_migrantes == "Muy + bastante amistosa") %>%
   group_by(wave, satisfaccion_barrio) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -481,7 +513,7 @@ db_pond %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Contacto muy poco + poco amistoso con migrantes"   # 👈 variable para la leyenda
+    grupo = "Contacto muy + bastante amistoso con migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = wave, y = prop, group = satisfaccion_barrio)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -494,7 +526,7 @@ db_pond %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Contacto muy poco + poco amistoso con migrantes" = "#7ABA21")
+    values = c("Contacto muy + bastante amistoso con migrantes" = "#7ABA21")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -535,7 +567,6 @@ db_pond %>%
 ```
 
 ::: {.notes}
-Dentro de quienes han tenido un contacto poco amistoso con migrantes, la mayoría reporta una mediana y baja satisfacción barrial. Solo un grupo minoritario reporta alta satisfacción con el barrio.
 :::
 
 ---
@@ -552,15 +583,22 @@ Dentro de quienes han tenido un contacto poco amistoso con migrantes, la mayorí
 db_pond %>%
   select(wave, satisfaccion_barrio, simpatia_migrantes) %>%
   mutate(
+    # calculamos media y sd una vez
+    media_seg = mean(satisfaccion_barrio, na.rm = TRUE),
+    sd_seg    = sd(satisfaccion_barrio, na.rm = TRUE),
+    
     satisfaccion_barrio = case_when(
-      satisfaccion_barrio <= 2.5 ~ "Baja satisfacción",
-      satisfaccion_barrio >= 3 & satisfaccion_barrio <= 4  ~ "Mediana satisfacción",
-      satisfaccion_barrio >= 4.5 ~ "Alta satisfacción"
+      satisfaccion_barrio <= media_seg - sd_seg ~ "Baja satisfacción",
+      satisfaccion_barrio >  media_seg - sd_seg & satisfaccion_barrio < media_seg + sd_seg ~ "Mediana satisfacción",
+      satisfaccion_barrio >= media_seg + sd_seg ~ "Alta satisfacción"
     ),
-    satisfaccion_barrio = factor(satisfaccion_barrio, levels = c("Baja satisfacción", "Mediana satisfacción", "Alta satisfacción"))
+    satisfaccion_barrio = factor(
+      satisfaccion_barrio,
+      levels = c("Baja satisfacción", "Mediana satisfacción", "Alta satisfacción")
+    )
   ) %>%
-  tidyr::drop_na() %>%
-  filter(simpatia_migrantes == "Muy poco + poco o nada") %>%
+  tidyr::drop_na()  %>% 
+  filter(simpatia_migrantes == "Mucho + bastante") %>%
   group_by(wave, satisfaccion_barrio) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -568,7 +606,7 @@ db_pond %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Muy poca o nada de simpatía hacia migrantes"   # 👈 variable para la leyenda
+    grupo = "Mucho + bastante simpatía hacia migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = wave, y = prop, group = satisfaccion_barrio)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -581,7 +619,7 @@ db_pond %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Muy poca o nada de simpatía hacia migrantes" = "#7ABA21")
+    values = c("Mucho + bastante simpatía hacia migrantes" = "#7ABA21")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -621,7 +659,6 @@ db_pond %>%
 
 ```
 ::: {.notes}
-Dentro de quienes sienten poca simpatía hacia migrantes, la mayoría reporta una mediana satisfacción barrial, seguido por una baja satisfacción y en menor mendida una alta satisfacción. 
 :::
 
 # 3. Cohesión social horizontal y migración {.xlarge data-background-color="#444a5e"}
@@ -664,7 +701,7 @@ db_pond %>%
     levels = c("Bajo comportamiento\nprosocial", "Mediano comportamiento\nprosocial", "Alto comportamiento\nprosocial"))
   ) %>%
   tidyr::drop_na() %>%
-  filter(restriccion_migrantes == "Muy de acuerdo") %>%
+  filter(restriccion_migrantes == "Muy en desacuerdo") %>%
   group_by(wave, comportamiento_prosocial) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -672,7 +709,7 @@ db_pond %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Muy de acuerdo con restricción a ingreso de migrantes"   # 👈 variable para la leyenda
+    grupo = "Muy en desacuerdo con restricción a ingreso de migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = wave, y = prop, group = comportamiento_prosocial)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -685,7 +722,7 @@ db_pond %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Muy de acuerdo con restricción a ingreso de migrantes" = "#F9913D")
+    values = c("Muy en desacuerdo con restricción a ingreso de migrantes" = "#F9913D")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -726,7 +763,6 @@ db_pond %>%
 ```
 
 ::: {.notes}
-Dentro de quienes están muy de acuerdo con políticas restrictivas para el ingreso de migrantes, la mayoría presenta un bajo comportamiento prosocial. El grupo con un alto comportamiento prosocial es minoritario y aquel de mediano comportamiento va a la baja en el tiempo.
 :::
 
 ---
@@ -751,7 +787,7 @@ db_pond %>%
     levels = c("Bajo comportamiento\nprosocial", "Mediano comportamiento\nprosocial", "Alto comportamiento\nprosocial"))
   ) %>%
   tidyr::drop_na() %>%
-  filter(contacto_migrantes == "Muy poco + poco amistosa") %>%
+  filter(contacto_migrantes == "Muy + bastante amistosa") %>%
   group_by(wave, comportamiento_prosocial) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -759,7 +795,7 @@ db_pond %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Contacto muy poco + poco amistoso con migrantes"   # 👈 variable para la leyenda
+    grupo = "Contacto muy + bastante amistoso con migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = wave, y = prop, group = comportamiento_prosocial)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -772,7 +808,7 @@ db_pond %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Contacto muy poco + poco amistoso con migrantes" = "#F9913D")
+    values = c("Contacto muy + bastante amistoso con migrantes" = "#F9913D")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -813,7 +849,6 @@ db_pond %>%
 ```
 
 ::: {.notes}
-Quienes han tenido un contacto poco amistoso con migrantes registran, en su mayoría, un bajo comportamiento prosocial. El mediano comportamiento prosocial dentro de este grupo ha ido a la baja. En suma, hay una relación negativa.
 :::
 ---
 
@@ -838,7 +873,7 @@ db_pond %>%
     levels = c("Bajo comportamiento\nprosocial", "Mediano comportamiento\nprosocial", "Alto comportamiento\nprosocial"))
   ) %>%
   tidyr::drop_na() %>%
-  filter(perdida_identidad == "Muy de acuerdo") %>%
+  filter(perdida_identidad == "Muy en desacuerdo") %>%
   group_by(wave, comportamiento_prosocial) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -846,7 +881,7 @@ db_pond %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Muy de acuerdo con pérdida de identidad nacional por migrantes"   # 👈 variable para la leyenda
+    grupo = "Muy en desacuerdo con pérdida de identidad nacional por migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = wave, y = prop, group = comportamiento_prosocial)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -859,7 +894,7 @@ db_pond %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Muy de acuerdo con pérdida de identidad nacional por migrantes" = "#F9913D")
+    values = c("Muy en desacuerdo con pérdida de identidad nacional por migrantes" = "#F9913D")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -900,5 +935,4 @@ db_pond %>%
 ```
 
 ::: {.notes}
-Quienes están muy de acuerdo con la pérdida de identidad nacional por la llegada de migrantes registran, en su mayoría, un bajo comportamiento prosocial. El mediano comportamiento prosocial dentro de este grupo ha ido a la baja. En definitiva, hay una relación negativa.
 :::
