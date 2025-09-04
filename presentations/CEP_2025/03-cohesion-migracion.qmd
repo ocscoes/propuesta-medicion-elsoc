@@ -53,113 +53,6 @@ db_pond <- db %>%
                    nest = T)
 ```
 
-```{r}
-#| label: plots
-
-
-# Selección de variables: (1) desempleo por migrantes, (2)pérdida de identidad
-# (3)simpatía hacia migrantes, (4)acceso a salud igualitaro y (5) contacto positivo
-
-# plot function
-make_plot <- function(design, predictor, outcome, ylab, legend_title) {
-  pred_sym <- ensym(predictor)
-  out_sym  <- ensym(outcome)
-  
-  design %>% 
-    select(wave, !!pred_sym, !!out_sym) %>% 
-    tidyr::drop_na() %>% 
-    group_by(wave, !!pred_sym) %>%
-    summarise(
-      value = survey_mean(!!out_sym, vartype = "ci", na.rm = TRUE),
-      .groups = "drop"
-    ) %>% 
-    ggplot(aes(x = wave, y = value, group = !!pred_sym)) +
-    geom_point(aes(color = !!pred_sym), size = 4.5) +
-    geom_line(aes(color = !!pred_sym), linewidth = 1) +
-    # geom_errorbar(aes(ymin = value_low, ymax = value_upp, color = !!pred_sym), width = 0.1) +
-    scale_y_continuous(n.breaks = 7) +
-    scale_color_manual(
-      name = legend_title,
-      values = c("#F9913D","#7ABA21", "#2b2f3c")
-      ) +
-    labs(
-      x = "Ola",
-      y = ylab,
-      caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
-    ) +
-    theme_ggdist() +
-theme(
-    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
-    plot.caption = element_text(size = 14),
-    
-    axis.title.x = element_text(size = 18),
-    axis.title.y = element_text(size = 18),
-    axis.text.x  = element_text(size = 16),
-    axis.text.y  = element_text(size = 16),
-    
-    legend.title = element_text(size = 16, face = "bold"),
-    legend.text  = element_text(size = 14),
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background     = element_rect(fill = "white", color = NA),
-    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
-    
-    legend.position  = "top",
-    legend.direction = "horizontal"
-  ) +
-  guides(
-    color = guide_legend(
-      title.position = "top",
-      label.position = "bottom",
-      nrow = 1, byrow = TRUE,
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    )
-  )
-}
-
-# combinations
-
-outcomes <- c(
-  seguridad_sub           = "Seguridad percibida",
-  seguridad_obj           = "Seguridad objetiva",
-  confianza_inter         = "Confianza interpersonal",
-  comportamiento_prosocial= "Comportamiento prosocial",
-  ayuda_economica         = "Ayuda económica",
-  sentido_pertenencia     = "Sentido pertenencia barrio",
-  satisfaccion_barrio     = "Satisfacción barrio"
-)
-
-predictors <- list(
-  desempleo_migrantes = "Desempleo percibido por \nmigrantes",
-  perdida_identidad   = "Pérdida identidad por \nmigrantes",
-  simpatia_migrantes = "Simpatía hacia migrantes",
-  igualdad_migrantes = "Acceso a salud igualitario \npara migrantes",
-  contacto_migrantes = "Contacto positivo con \nmigrantes",
-  restriccion_migrantes = "Restricción a ingreso de \nmigrantes"
-)
-
-comb <- tidyr::crossing(pred = names(predictors), out = names(outcomes))
-
-# make plots
-
-plots_tbl <- comb %>%
-  mutate(
-    plot = pmap(
-      list(pred, out),
-      ~ make_plot(
-        design       = db_pond,
-        predictor    = ..1,
-        outcome      = ..2,
-        ylab         = outcomes[..2],
-        legend_title = predictors[[..1]]
-      )
-    ),
-    plot_id = paste0("plot_", out, "__by__", pred)
-  )
-```
-
 
 # 3. Cohesión social horizontal y migración {.xlarge data-background-color="#444a5e"}
 
@@ -205,52 +98,57 @@ plots_tbl <- comb %>%
 #| fig.height: 8
 #| out-width: "100%"
 #| fig-align: "center"
-db_pond %>% 
+db_pond %>%
   select(wave, seguridad_sub, restriccion_migrantes) %>%
-  mutate(seguridad_sub = case_when(
-    seguridad_sub <= 2.5 ~ "Baja",
-    seguridad_sub >= 3   ~ "Alta"
-  ),
-  restriccion_migrantes = forcats::fct_relabel(
-    restriccion_migrantes, ~ str_wrap(.x, 20))) %>% 
-  tidyr::drop_na() %>% 
-  filter(wave == last(wave)) %>% 
-  group_by(restriccion_migrantes, seguridad_sub) %>%
-  survey_count(vartype = NULL) %>% 
-  group_by(seguridad_sub) %>% 
+   mutate(
+    seguridad_sub = case_when(
+      seguridad_sub <= 2.5 ~ "Baja seguridad",
+      seguridad_sub >= 3 & seguridad_sub <= 4  ~ "Mediana seguridad",
+      seguridad_sub >= 4.5 ~ "Alta seguridad"
+    ),
+    seguridad_sub = factor(seguridad_sub, levels = c("Baja seguridad", "Mediana seguridad", "Alta seguridad"))
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(restriccion_migrantes == "Muy de acuerdo") %>%
+  group_by(wave, seguridad_sub) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(wave) %>%
   mutate(
-    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
-    label = scales::percent(prop/100, accuracy = 0.1)
-  ) %>% 
-  ggplot(aes(x = restriccion_migrantes, y = prop, fill = seguridad_sub)) +
-  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Muy de acuerdo restricción acceso migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = wave, y = prop, group = seguridad_sub)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~seguridad_sub) +
   geom_text(
-    aes(label = label, color = seguridad_sub),   # color igual a la serie
-    position = position_dodge(width = 0.6),
-    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
+    aes(label = label),
+    color = "#522A6F",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
   ) +
-  scale_fill_manual(
-    name = "Percepción seguridad",
-    values = c("Baja" = "#2b2f3c", "Alta" = "#F9913D")
-  ) +
-  scale_color_manual(                                 # mismo esquema para el texto
-    values = c("Baja" = "#2b2f3c", "Alta" = "#F9913D")
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Muy de acuerdo restricción acceso migrantes" = "#522A6F")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
     limits = c(0,100),
-    breaks = seq(0,100, by = 10),
-    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
-  )  + 
-    labs(
-      x = "Restricción de acceso a migrantes",
-      y = NULL,
-      caption = "Fuente: elaboración propia con datos de ELSOC 2023"
-    ) +
-  theme_ggdist() +
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
+  ) +
+  labs(
+    title = "Seguridad percibida y restricción de acceso migrantes",
+    subtitle = "Porcentaje que responde...",
+    x = "Ola",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
   theme(
-    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
     plot.caption = element_text(size = 14),
     
     axis.title.x = element_text(size = 18),
@@ -266,31 +164,15 @@ db_pond %>%
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
     legend.position  = "top",
-    legend.direction = "horizontal"
-  ) +
-  guides(
-    color = guide_legend(
-      title.position = "top",
-      label.position = "right",
-      nrow = 1, byrow = TRUE,
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    )
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
   )
 
-# Luego ejecutar ggsave
-ggsave(plot = last_plot(),
-       filename = "presentations/graph/graphseg-restriccion-migrantes.png",
-       device = "png",
-       dpi = "retina",
-       units = "cm",
-       width = 33,
-       height = 20)
 ```
 
 ::: {.notes}
 
-Entre quienes reportan baja percepción de seguridad (barras negras), predomina el acuerdo con la aplicación de políticas más restrictivas hacia la migración. Sin embargo, esta postura también se observa entre quienes declaran alta percepción de seguridad (barras naranjas). Ello sugiere que el apoyo a medidas restrictivas no depende de manera decisiva de la percepción de seguridad pública.
+Ajustar
 
 :::
 ---
@@ -304,23 +186,80 @@ Entre quienes reportan baja percepción de seguridad (barras negras), predomina 
 #| out-width: "100%"
 #| fig-align: "center"
 
-sel <- plots_tbl %>%
-  filter(out  %in% c("seguridad_sub","seguridad_obj")) 
+db_pond %>%
+  select(wave, seguridad_sub, simpatia_migrantes) %>%
+   mutate(
+    seguridad_sub = case_when(
+      seguridad_sub <= 2.5 ~ "Baja seguridad",
+      seguridad_sub >= 3 & seguridad_sub <= 4  ~ "Mediana seguridad",
+      seguridad_sub >= 4.5 ~ "Alta seguridad"
+    ),
+    seguridad_sub = factor(seguridad_sub, levels = c("Baja seguridad", "Mediana seguridad", "Alta seguridad"))
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(simpatia_migrantes == "Muy poco + poco o nada") %>%
+  group_by(wave, seguridad_sub) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(wave) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Muy poca o nada de simpatía hacia migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = wave, y = prop, group = seguridad_sub)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~seguridad_sub) +
+  geom_text(
+    aes(label = label),
+    color = "#522A6F",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Muy poca o nada de simpatía hacia migrantes" = "#522A6F")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
+  ) +
+  labs(
+    title = "Seguridad percibida y simpatía hacia migrantes",
+    subtitle = "Porcentaje que responde...",
+    x = "Ola",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
+  )
 
-sel$plot[[12]]
-
-# Luego ejecutar ggsave
-ggsave(plot = last_plot(),
-       filename = "presentations/graph/graphseg-simp-migrantes.png",
-       device = "png",
-       dpi = "retina",
-       units = "cm",
-       width = 33,
-       height = 20)
 ```
 
 ::: {.notes}
-Se muestra el promedio de la seguridad pública percibida según el grado de simpatía hacia la población migrante entre 2016 y 2023. En este periodo, la percepción de seguridad fue siempre más baja entre quienes muestran escasa simpatía hacia los migrantes, y esta brecha se amplió a partir de 2019. Hasta 2022, quienes muestran mayor simpatía reportaron un aumento sostenido en su sensación de seguridad, mientras el grupo menos favorable siguió una trayectoria descendente. En 2023, todos registran un retroceso, probablemente asociado a factores coyunturales, aunque se mantiene la jerarquía: a mayor simpatía hacia los migrantes, mayor percepción de seguridad.
+Ajustar
 :::
 ---
 
@@ -332,13 +271,80 @@ Se muestra el promedio de la seguridad pública percibida según el grado de sim
 #| fig.height: 8
 #| out-width: "100%"
 #| fig-align: "center"
+db_pond %>%
+  select(wave, seguridad_sub, contacto_migrantes) %>%
+  mutate(
+    seguridad_sub = case_when(
+      seguridad_sub <= 2.5 ~ "Baja seguridad",
+      seguridad_sub >= 3 & seguridad_sub <= 4  ~ "Mediana seguridad",
+      seguridad_sub >= 4.5 ~ "Alta seguridad"
+    ),
+    seguridad_sub = factor(seguridad_sub, levels = c("Baja seguridad", "Mediana seguridad", "Alta seguridad"))
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(contacto_migrantes == "Muy poco + poco amistosa") %>%
+  group_by(wave, seguridad_sub) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(wave) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Contacto muy poco + poco amistoso con migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = wave, y = prop, group = seguridad_sub)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~seguridad_sub) +
+  geom_text(
+    aes(label = label),
+    color = "#522A6F",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Contacto muy poco + poco amistoso con migrantes" = "#522A6F")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
+  ) +
+  labs(
+    title = "Seguridad percibida y contacto positivo con migrantes",
+    subtitle = "Porcentaje que responde...",
+    x = "Ola",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
+  )
 
-sel$plot[[10]] + 
-  labs(title = "Seguridad percibida y restricción de ingreso a migrantes")
 ```
 
 ::: {.notes}
-Entre 2016 y 2023, la percepción de seguridad fue sistemáticamente más baja entre quienes apoyan políticas restrictivas hacia la migración, y la brecha con el resto se amplió desde 2019. En 2023, la sensación de seguridad descendió en todos los grupos, aunque las diferencias entre adherentes y no adherentes a restricciones migratorias se mantuvieron.
+Ajustar
 
 :::
 
@@ -369,45 +375,57 @@ Entre 2016 y 2023, la percepción de seguridad fue sistemáticamente más baja e
 #| fig.height: 8
 #| out-width: "100%"
 #| fig-align: "center"
-db_pond %>% 
+db_pond %>%
   select(wave, sentido_pertenencia, perdida_identidad) %>%
-  mutate(sentido_pertenencia = case_when(
-    sentido_pertenencia <= 2.5 ~ "Baja",
-    sentido_pertenencia >= 3   ~ "Alta"
-  ),
-  perdida_identidad = forcats::fct_relabel(
-    perdida_identidad, ~ str_wrap(.x, 20))) %>% 
-  tidyr::drop_na() %>% 
-  filter(wave == last(wave) & sentido_pertenencia == "Alta") %>% 
-  group_by(perdida_identidad, sentido_pertenencia) %>%
-  survey_count(vartype = NULL) %>% 
-  group_by(sentido_pertenencia) %>% 
   mutate(
-    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
-    label = scales::percent(prop/100, accuracy = 0.1)
-  ) %>% 
-  ggplot(aes(x = perdida_identidad, y = prop, fill = sentido_pertenencia)) +
-  geom_col(position = position_dodge(width = 0.6), width = 0.6, fill = "#F9913D") +
+    sentido_pertenencia = case_when(
+      sentido_pertenencia <= 2.5 ~ "Baja pertenencia",
+      sentido_pertenencia >= 3 & sentido_pertenencia <= 4  ~ "Mediana pertenencia",
+      sentido_pertenencia >= 4.5 ~ "Alta pertenencia"
+    ),
+    sentido_pertenencia = factor(sentido_pertenencia, levels = c("Baja pertenencia", "Mediana pertenencia", "Alta pertenencia"))
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(perdida_identidad == "Muy de acuerdo") %>%
+  group_by(wave, sentido_pertenencia) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(wave) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Muy de acuerdo con pérdida identidad nacional por migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = wave, y = prop, group = sentido_pertenencia)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~sentido_pertenencia) +
   geom_text(
-    aes(label = label),   # color igual a la serie
-    position = position_dodge(width = 0.6),
-    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
+    aes(label = label),
+    color = "#7ABA21",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Muy de acuerdo con pérdida identidad nacional por migrantes" = "#7ABA21")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
     limits = c(0,100),
-    breaks = seq(0,100, by = 20),
-    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
-  )  + 
-  labs(
-    x = "Pérdida de identidad nacional por migrantes",
-    y = NULL,
-    caption = "Fuente: elaboración propia con datos de ELSOC 2023"
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
   ) +
-  theme_ggdist() +
+  labs(
+    title = "Sentido pertenencia barrial y pérdida de identidad nacional",
+    subtitle = "Porcentaje que responde...",
+    x = "Ola",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
   theme(
-    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
     plot.caption = element_text(size = 14),
     
     axis.title.x = element_text(size = 18),
@@ -423,30 +441,14 @@ db_pond %>%
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
     legend.position  = "top",
-    legend.direction = "horizontal"
-  ) +
-  guides(
-    color = guide_legend(
-      title.position = "top",
-      label.position = "bottom",
-      nrow = 1, byrow = TRUE,
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    )
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
   )
 
-# Luego ejecutar ggsave
-ggsave(plot = last_plot(),
-       filename = "presentations/graph/graphseg-pertenencia-migrantes.png",
-       device = "png",
-       dpi = "retina",
-       units = "cm",
-       width = 33,
-       height = 20)
+
 ```
 
 ::: {.notes}
-Quienes reportan mayor sentido de pertenencia barrial tienden, en su mayoría, a no estar de acuerdo con que la llegada de migrantes implique una pérdida de identidad nacional. No obstante, un 36% de este grupo sí comparte esa percepción, lo que sugiere que un fuerte apego territorial no necesariamente se traduce en actitudes más inclusivas, sino que puede coexistir con visiones de amenaza cultural.
 :::
 
 ---
@@ -459,22 +461,78 @@ Quienes reportan mayor sentido de pertenencia barrial tienden, en su mayoría, a
 #| fig.height: 8
 #| out-width: "100%"
 #| fig-align: "center"
-sel <- plots_tbl %>%
-  filter(out  %in% c("sentido_pertenencia", "satisfaccion_barrio")) 
+db_pond %>%
+  select(wave, satisfaccion_barrio, contacto_migrantes) %>%
+  mutate(
+    satisfaccion_barrio = case_when(
+      satisfaccion_barrio <= 2.5 ~ "Baja satisfacción",
+      satisfaccion_barrio >= 3 & satisfaccion_barrio <= 4  ~ "Mediana satisfacción",
+      satisfaccion_barrio >= 4.5 ~ "Alta satisfacción"
+    ),
+    satisfaccion_barrio = factor(satisfaccion_barrio, levels = c("Baja satisfacción", "Mediana satisfacción", "Alta satisfacción"))
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(contacto_migrantes == "Muy poco + poco amistosa") %>%
+  group_by(wave, satisfaccion_barrio) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(wave) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Contacto muy poco + poco amistoso con migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = wave, y = prop, group = satisfaccion_barrio)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~satisfaccion_barrio) +
+  geom_text(
+    aes(label = label),
+    color = "#7ABA21",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Contacto muy poco + poco amistoso con migrantes" = "#7ABA21")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
+  ) +
+  labs(
+    title = "Satisfacción barrial y contacto positivo con migrantes",
+    subtitle = "Porcentaje que responde...",
+    x = "Ola",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
+  )
 
-sel$plot[[1]]
-
-# Luego ejecutar ggsave
-ggsave(plot = last_plot(),
-       filename = "presentations/graph/graphseg-pertenencia-migrantes.png",
-       device = "png",
-       dpi = "retina",
-       units = "cm",
-       width = 33,
-       height = 20)
 ```
 ::: {.notes}
-Entre 2016 y 2023 la satisfacción con el barrio fue más alta entre quienes reportan contacto positivo o neutral con migrantes, con un alza hasta 2019 pero seguida de una caída sostenida hasta la última medición disponible. En contraste, quienes declaran contacto poco o nada amistoso evidencian un descenso continuo desde 2017, alcanzando los niveles más bajos en 2023. Estos resultados sugieren que interacciones positivas o neutrales fortalecen la cohesión social a nivel local, mientras las negativas la erosionan de forma persistente.
 
 :::
 
@@ -489,11 +547,78 @@ Entre 2016 y 2023 la satisfacción con el barrio fue más alta entre quienes rep
 #| out-width: "100%"
 #| fig-align: "center"
 
-sel$plot[[11]] + 
-  labs(title = "Satisfacción barrial y simpatía hacia migrantes")
+db_pond %>%
+  select(wave, satisfaccion_barrio, simpatia_migrantes) %>%
+  mutate(
+    satisfaccion_barrio = case_when(
+      satisfaccion_barrio <= 2.5 ~ "Baja satisfacción",
+      satisfaccion_barrio >= 3 & satisfaccion_barrio <= 4  ~ "Mediana satisfacción",
+      satisfaccion_barrio >= 4.5 ~ "Alta satisfacción"
+    ),
+    satisfaccion_barrio = factor(satisfaccion_barrio, levels = c("Baja satisfacción", "Mediana satisfacción", "Alta satisfacción"))
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(simpatia_migrantes == "Muy poco + poco o nada") %>%
+  group_by(wave, satisfaccion_barrio) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(wave) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Muy poca o nada de simpatía hacia migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = wave, y = prop, group = satisfaccion_barrio)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~satisfaccion_barrio) +
+  geom_text(
+    aes(label = label),
+    color = "#7ABA21",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Muy poca o nada de simpatía hacia migrantes" = "#7ABA21")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
+  ) +
+  labs(
+    title = "Satisfacción barrial y simpatía hacia migrantes",
+    subtitle = "Porcentaje que responde...",
+    x = "Ola",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
+  )
+
 ```
 ::: {.notes}
-Entre 2016 y 2023 la satisfacción barrial fue más alta entre quienes expresan mayor simpatía hacia los migrantes y más baja entre quienes muestran poca o ninguna. En el tiempo, los primeros exhiben un aumento sostenido, mientras los menos favorables descienden y el grupo intermedio combina un alza inicial con una caída desde 2019.
 :::
 
 # 3. Cohesión social horizontal y migración {.xlarge data-background-color="#444a5e"}
@@ -524,46 +649,58 @@ Entre 2016 y 2023 la satisfacción barrial fue más alta entre quienes expresan 
 #| out-width: "100%"
 #| fig-align: "center"
 
-db_pond %>% 
+db_pond %>%
   select(wave, comportamiento_prosocial, restriccion_migrantes) %>%
-  mutate(comportamiento_prosocial = case_when(
-    comportamiento_prosocial <= 2.5 ~ "Bajo",
-    comportamiento_prosocial >= 3   ~ "Alto"
-  ),
-  restriccion_migrantes = forcats::fct_relabel(
-    restriccion_migrantes, ~ str_wrap(.x, 20))) %>% 
-  tidyr::drop_na() %>% 
-  filter(wave == last(wave) & comportamiento_prosocial == "Alto") %>% 
-  group_by(restriccion_migrantes, comportamiento_prosocial) %>%
-  survey_count(vartype = NULL) %>% 
-  group_by(comportamiento_prosocial) %>% 
   mutate(
-    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
-    label = scales::percent(prop/100, accuracy = 0.1)
-  ) %>% 
-  ungroup() %>% 
-  ggplot(aes(x = restriccion_migrantes, y = prop)) +
-  geom_col(width = 0.6, fill = "#F9913D")  +
+    comportamiento_prosocial = case_when(
+      comportamiento_prosocial <= 1.5 ~ "Bajo comportamiento\nprosocial",
+      comportamiento_prosocial == 2 ~ "Mediano comportamiento\nprosocial",
+      comportamiento_prosocial >= 2.5 ~ "Alto comportamiento\nprosocial"
+    ),
+    comportamiento_prosocial = factor(comportamiento_prosocial, 
+    levels = c("Bajo comportamiento\nprosocial", "Mediano comportamiento\nprosocial", "Alto comportamiento\nprosocial"))
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(restriccion_migrantes == "Muy de acuerdo") %>%
+  group_by(wave, comportamiento_prosocial) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(wave) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Muy de acuerdo con restricción a ingreso de migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = wave, y = prop, group = comportamiento_prosocial)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~comportamiento_prosocial) +
   geom_text(
-    aes(label = label,),   # color igual a la serie
-    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
+    aes(label = label),
+    color = "#F9913D",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Muy de acuerdo con restricción a ingreso de migrantes" = "#F9913D")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
     limits = c(0,100),
-    breaks = seq(0,100, by = 20),
-    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
-  )  + 
-  labs(
-    title = "Personas con alto comportamiento prosocial y restricción de acceso a \nmigrantes",
-    x = "Restricción de acceso a migrantes",
-    y = NULL,
-    caption = "Fuente: elaboración propia con datos de ELSOC 2022"
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
   ) +
-  theme_ggdist() +
+  labs(
+    title = "Comportamiento prosocial y restricción de ingreso a migrantes",
+    subtitle = "Porcentaje que responde...",
+    x = "Ola",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
   theme(
-    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
     plot.caption = element_text(size = 14),
     
     axis.title.x = element_text(size = 18),
@@ -579,22 +716,13 @@ db_pond %>%
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
     legend.position  = "top",
-    legend.direction = "horizontal"
-  ) +
-  guides(
-    color = guide_legend(
-      title.position = "top",
-      label.position = "bottom",
-      nrow = 1, byrow = TRUE,
-      keywidth = unit(14, "pt"),
-      keyheight = unit(10, "pt")
-    )
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
   )
 
 ```
 
 ::: {.notes}
-Entre quienes muestran alto comportamiento prosocial, predomina el acuerdo con aplicar políticas más restrictivas de ingreso a migrantes, seguido por el desacuerdo y, en menor medida, por posturas indiferentes.
 :::
 
 ---
@@ -607,24 +735,80 @@ Entre quienes muestran alto comportamiento prosocial, predomina el acuerdo con a
 #| fig.height: 8
 #| out-width: "100%"
 #| fig-align: "center"
-sel <- plots_tbl %>%
-  filter(out  %in% c("confianza_inter","comportamiento_prosocial", "ayuda_economica")) %>% 
-  filter(pred != "igualdad_migrantes" & out != "ayuda_economica") 
+db_pond %>%
+  select(wave, comportamiento_prosocial, contacto_migrantes) %>%
+  mutate(
+    comportamiento_prosocial = case_when(
+      comportamiento_prosocial <= 1.5 ~ "Bajo comportamiento\nprosocial",
+      comportamiento_prosocial == 2 ~ "Mediano comportamiento\nprosocial",
+      comportamiento_prosocial >= 2.5 ~ "Alto comportamiento\nprosocial"
+    ),
+    comportamiento_prosocial = factor(comportamiento_prosocial, 
+    levels = c("Bajo comportamiento\nprosocial", "Mediano comportamiento\nprosocial", "Alto comportamiento\nprosocial"))
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(contacto_migrantes == "Muy poco + poco amistosa") %>%
+  group_by(wave, comportamiento_prosocial) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(wave) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Contacto muy poco + poco amistoso con migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = wave, y = prop, group = comportamiento_prosocial)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~comportamiento_prosocial) +
+  geom_text(
+    aes(label = label),
+    color = "#F9913D",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Contacto muy poco + poco amistoso con migrantes" = "#F9913D")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
+  ) +
+  labs(
+    title = "Comportamiento prosocial y contacto positivo migrantes",
+    subtitle = "Porcentaje que responde...",
+    x = "Ola",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
+  )
 
-sel$plot[[1]] 
-
-# Luego ejecutar ggsave
-ggsave(plot = last_plot(),
-       filename = "presentations/graph/graphseg-contacto-migrantes.png",
-       device = "png",
-       dpi = "retina",
-       units = "cm",
-       width = 33,
-       height = 20)
 ```
 
 ::: {.notes}
-Entre 2016 y 2019 el comportamiento prosocial fue sistemáticamente más bajo entre quienes reportan contacto poco amistoso con migrantes, mientras los grupos con contacto positivo o neutral exhibieron niveles más altos. Desde 2019, el primer grupo presenta una caída marcada, en tanto que quienes declaran contacto neutral destacan por un crecimiento sostenido, lo que apunta a la influencia de factores más amplios que la calidad del vínculo directo.
 :::
 ---
 
@@ -637,10 +821,78 @@ Entre 2016 y 2019 el comportamiento prosocial fue sistemáticamente más bajo en
 #| out-width: "100%"
 #| fig-align: "center"
 
-sel$plot[[5]] + 
-  labs(title = "Comportamiento prosocial y pérdida de identidad por migrantes") 
+db_pond %>%
+  select(wave, comportamiento_prosocial, perdida_identidad) %>%
+  mutate(
+    comportamiento_prosocial = case_when(
+      comportamiento_prosocial <= 1.5 ~ "Bajo comportamiento\nprosocial",
+      comportamiento_prosocial == 2 ~ "Mediano comportamiento\nprosocial",
+      comportamiento_prosocial >= 2.5 ~ "Alto comportamiento\nprosocial"
+    ),
+    comportamiento_prosocial = factor(comportamiento_prosocial, 
+    levels = c("Bajo comportamiento\nprosocial", "Mediano comportamiento\nprosocial", "Alto comportamiento\nprosocial"))
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(perdida_identidad == "Muy de acuerdo") %>%
+  group_by(wave, comportamiento_prosocial) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(wave) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Muy de acuerdo con pérdida de identidad nacional por migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = wave, y = prop, group = comportamiento_prosocial)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~comportamiento_prosocial) +
+  geom_text(
+    aes(label = label),
+    color = "#F9913D",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Muy de acuerdo con pérdida de identidad nacional por migrantes" = "#F9913D")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
+  ) +
+  labs(
+    title = "Comportamiento prosocial y pérdida de identidad nacional por migrantes",
+    subtitle = "Porcentaje que responde...",
+    x = "Ola",
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
+  )
+
 ```
 
 ::: {.notes}
-Quienes consideran que la migración implica una pérdida de identidad nacional presentan los niveles más bajos de comportamiento prosocial y la caída más pronunciada en el período, confirmando una asociación negativa entre amenaza cultural y cooperación social. En contraste, los indecisos exhiben un aumento sostenido que los lleva a alcanzar en 2023 el nivel más alto. Quienes rechazan la idea muestran un ascenso inicial hasta 2019, seguido de una fuerte caída entre 2019 y 2022, lo que sugiere mayor sensibilidad a factores coyunturales.
 :::
