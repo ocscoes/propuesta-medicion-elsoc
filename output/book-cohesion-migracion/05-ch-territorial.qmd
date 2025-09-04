@@ -344,13 +344,15 @@ cohesion_3 <- plot_stackfrq(
    keywidth = unit(14, "pt"),
    keyheight = unit(10, "pt")
  )) +
- labs(caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022")
+ labs(caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2023")
 
 
 cohesion_3
 ```
 
-La @fig-vinculos muestra la distribución de los índices que componen la subdimensión de vínculos territoriales. Se puede observar que las personas que sienten baja satisfacción con el barrio son casi equivalentes a la cantidad de quienes poseen un bajo sentido de pertenencia. No obstante, se puede observar una diferencia en las categorías medias, en donde la satisfacción media con el entorno en el que viven es ampliamente mayor a un sentido "medio" de pertenencia barrial. 
+La @fig-vinculos muestra la distribución de los índices que componen la subdimensión de vínculos territoriales. En la parte superior del gráfico se halla el índice de satisfacción con el barrio, el cual se compuso mediante cuatro indicadores que miden diversos aspectos sobre el barrio, tales como sociabilidad, colaboración, entre otros. En la parte inferior está en índice de sentido de pertenencia, construido por indicadores que aluden a la relación identitaria entre el encuestado y su barrio (si le interesa profundizar en cómo se construyeron estos y los demás índices, vaya al [anexo](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html)).
+
+En cuanto a resultados, se puede observar que las personas que sienten baja satisfacción con el barrio son casi equivalentes a la cantidad de quienes poseen un bajo sentido de pertenencia. No obstante, la diferencia más notoria persiste en las categorías medias, en donde, al fijarse en las áreas verdes, la satisfacción media con el entorno en el que viven es ampliamente mayor a un sentido "medio" de pertenencia barrial. 
 
 ## Migración y vínculos territoriales
 
@@ -462,8 +464,6 @@ plots_tbl <- comb %>%
   )
 ```
 
-
-Satisfaccion barrio y restriccion migrantes
 ```{r}
 #| label: fig-satbarrio
 #| echo: false
@@ -549,9 +549,9 @@ db_pond %>%
   )
 ```
 
-La @fig-satbarrio refleja la asociación entre la percepción de que los inmigrantes le restan identidad al país y el índice de satisfacción con el barrio. Este índice se compuso de cuatro indicadores que miden diversos aspectos sobre el barrio, tales como sociabilidad, colaboración, entre otros (si le interesa profundizar en cómo se construyó este y los demás índices, vaya al [anexo](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html)).
+La @fig-satbarrio refleja la asociación entre el índice de satisfacción con el barrio (eje y) y la restricción de ingreso de migrantes al país medido como grado de acuerdo (eje x). Así, se entiende que, las distribuciones alojadas en "Muy de acuerdo", señalan que los sujetos están a favor de fortalecer las medidas de tránsito migratorio para impedir su ingreso.
 
-Además, se puede observar que en 2022 la mayoría de las personas sienten una alta satisfacción con su barrio. Ahora bien, existe una relación negativa entre percibir la pérdida de identidad del país debido a inmigrantes y la satisfacción con el barrio. Esto es, a medida que disminuye la satisfacción con el barrio, aumenta la sensación de que los inmigrantes flagelan la identidad del país.
+Analizando el gráfico de izquierda a derecha, las dos primeras categorías de respuesta poseen porcentajes muy bajos de respuesta y no presentan alguna disparidad relevante. En cambio, en el máximo grado de acuerdo se encuentra la mayor concentración de respuestas, patrón que comparten quienes perciben una alta como una baja satisfacción con su barrio. Esto quiere decir que, a pesar de la valoración que tienen las personas respecto del entorno donde viven, existe un consenso general en que el paso migratorio debe ser fortalecido para que el flujo de extranjeros no siga en aumento.
 
 ```{r}
 #| label: fig-sentper
@@ -588,7 +588,7 @@ db_pond %>%
     vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
   ) +
   scale_fill_manual(
-    name = "Satisfacción barrio",
+    name = "Sentido de pertenencia",
     values = c("Baja" = "#F9913D", "Alta" = "#2b2f3c")
   ) +
   scale_color_manual(                                 # mismo esquema para el texto
@@ -640,7 +640,7 @@ db_pond %>%
 
 La @fig-sentper grafica la correlación entre la percepción de pérdida de identidad del país a causa de inmigrantes, la cual se representa con las tres categorías de respuesta como barras, y el índice de sentido de pertenencia, presentándose en el relleno de las barras. 
 
-Se puede notar que las tres categorías de acuerdo tienen un grado de similitud bastante alto en cuanto a su distribución, en donde todas las barras contienen un porcentaje casi idéntico. Esto quiere decir que no hay una relación clara entre las personas que tiene bajo sentido de pertenencia al barrio y la percepción respecto a la migración como catalizador del desempleo.  
+Se puede notar que la categoría neutral es la que posee un menor porcentaje para aquellos con alto y bajo sentido de pertenencia a su barrio. Al contrario, la mayoría de las personas no considera que los migrantes sean una amenaza para la cultura nacional. Aun así, no hay una relación clara entre el sentido de pertenencia al barrio y la percepción respecto a que la migración socava la identidad del país.  
 
 
 ```{r}
@@ -712,7 +712,7 @@ ggplot(datos_porcentajes, aes(
     name = "Sentido de pertenencia"
   ) +
   labs(
-    title = "Percepción de pérdida de identidad y sentido de pertenencia",
+    title = "Percepción de pérdida de identidad y \n sentido de pertenencia por género ",
     x = "Percepción de pérdida de identidad",
     y = "Porcentaje",
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
@@ -766,7 +766,9 @@ ggplot(datos_porcentajes, aes(
   ))
 ```
 
-En @fig-terra-gen se puede observar cómo se relaciona el sentido de pertenencia al barrio con la pérdida de identidad debido a la migración, distinguiendo por género. Los hombres tienden a mantener una postura fuertemente polarizada, en donde, quienes tienen un bajo sentido de pertenencia, pueden creer fervientemente que los inmigrantes causan la pérdida de identidad nacional, o bien, están muy en desacuerdo con esta sentencia. Al contrario, las mujeres con bajo sentido de pertenencia, tienden a percibir de manera más moderada la pérdida de identidad nacional a causa de la migración, siendo la categoría neutral la que posee mayor porcentaje de respuesta.
+En @fig-terra-gen se grafica la asociación, diferenciada por género, entre sentido de pertenencia y la percepción con la pérdida de identidad nacional a causa de migrantes. Este gráfico sigue la misma lógica que los anteriores, pero su aporte reside en que, al separar por grupos, se pueden analizar dinámicas y patrones propios de cada uno de estos.
+
+ Se puede observar cómo se relaciona el sentido de pertenencia al barrio con la pérdida de identidad debido a la migración, distinguiendo por género. Los hombres tienden a mantener una postura polarizada, en donde, quienes tienen un bajo sentido de pertenencia, pueden creer fervientemente que los inmigrantes causan la pérdida de identidad nacional, o bien, están muy en desacuerdo con esta sentencia. Al contrario, las mujeres con bajo sentido de pertenencia, tienden a percibir de manera más moderada la pérdida de identidad nacional a causa de la migración, siendo la categoría neutral la que posee mayor porcentaje de respuesta.
 
 ```{r}
 barrio_educ <- elsoc_6_graph_2 %>%
@@ -836,7 +838,7 @@ ggplot(datos_porcentajes, aes(
     name = "Sentido de pertenencia"
   ) +
   labs(
-    title = "Percepción de desempleo debido a inmigrantes y sentido de pertenencia por nivel educativo",
+    title = "Percepción de desempleo debido a inmigrantes y \n sentido de pertenencia por nivel educativo",
     x = "Percepción de desempleo debido a inmigrantes",
     y = "Porcentaje",
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
@@ -972,7 +974,8 @@ predictors <- list(
   perdida_identidad   = "Pérdida identidad por \nmigrantes",
   simpatia_migrantes = "Simpatía hacia migrantes",
   igualdad_migrantes = "Acceso a salud igualitario \npara migrantes",
-  contacto_migrantes = "Contacto positivo con \nmigrantes"
+  contacto_migrantes = "Contacto positivo con \nmigrantes",
+  restriccion_migrantes = "Restricción a ingreso de \nmigrantes"
 )
 
 comb <- tidyr::crossing(pred = names(predictors), out = names(outcomes))
@@ -1064,4 +1067,19 @@ En cuanto a las tendencias, se observa una divergencia clara entre los grupos: q
 #| fig-cap-location: top
 
 walk(sel[c(9), ]$plot, print)
+```
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| out-width: '100%'
+#| results: asis
+#| label: fig-satis-restr
+#| fig-cap: "Satisfacción con el barrio y restricción a ingreso de migrantes (2016-2023)"
+#| fig-cap-location: top
+
+walk(sel[c(10), ]$plot, print)
 ```
