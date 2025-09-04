@@ -1,5 +1,8 @@
 # Cohesión Horizontal: Vínculos Territoriales
 
+En esta sección se presentan los principales resultados de los análisis sobre la subdimensión de vínculos territoriales y su relación con la migración. La primera parte muestra los análisis de los índices que componen los vínculos territoriales. Posteriormente, se presentan los cruces entre satisfacción con el barrio y sentido de pertenencia con los distintos indicadores de migración disponibles en la última ola de ELSOC. El tercer y último punto aborda los cambios en el tiempo entre los vínculos territoriales y la migración. 
+
+
 ```{r}
 #| label: set
 #| echo: false
@@ -349,229 +352,295 @@ cohesion_3
 
 La @fig-vinculos muestra la distribución de los índices que componen la subdimensión de vínculos territoriales. Se puede observar que las personas que sienten baja satisfacción con el barrio son casi equivalentes a la cantidad de quienes poseen un bajo sentido de pertenencia. No obstante, se puede observar una diferencia en las categorías medias, en donde la satisfacción media con el entorno en el que viven es ampliamente mayor a un sentido "medio" de pertenencia barrial. 
 
+## Migración y vínculos territoriales
+
+
 ```{r}
-#| label: fig-long-11
-#| fig-cap: "Distribución Subíndices de Vínculo Territorial"
-#| fig-cap-location: top
-#| echo: false
-#| warning: false
+#| label: plots-function
 
-# Variables de Vínculos Territorial (índices categóricos)
-vars_territorio <- c("sentido_pertenencia", "satisfaccion_barrio")
 
-# Preparar datos para gráfico apilado
-long_territorio_stack <- elsoc_long_graph %>%
-  select(ola, all_of(vars_territorio)) %>%
-  pivot_longer(cols = all_of(vars_territorio), 
-               names_to = "variable", 
-               values_to = "valor") %>%
-  filter(!is.na(valor)) %>%
-  group_by(ola, variable, valor) %>%
-  summarise(n = n(), .groups = "drop") %>%
-  group_by(ola, variable) %>%
-  mutate(
-    total = sum(n),
-    proporcion = n / total
-  ) %>%
-  ungroup() %>%
-  mutate(
-    variable_clean = case_when (
-      variable == "sentido_pertenencia" ~ "Sentido de Pertenencia",
-      variable == "satisfaccion_barrio" ~ "Satisfacción con el Barrio"
-    )
-  )
+# Selección de variables: (1) desempleo por migrantes, (2)pérdida de identidad
+# (3)simpatía hacia migrantes, (4)acceso a salud igualitaro y (5) contacto positivo
 
-# Vector con años correspondientes a cada ola
-anos_olas <- c("2016", "2017", "2018", "2019", "2022", "2023")
-
-# Gráfico de área apilada
-ggplot(long_territorio_stack, aes(x = ola, y = proporcion, fill = valor)) +
-  geom_area(alpha = 0.7, position = "stack") +
-  geom_line(aes(group = interaction(variable, valor)), 
-            position = "stack", 
-            linewidth = 0.5, 
-            color = "white") +
-  facet_wrap(~variable_clean, ncol = 2) +
-  scale_fill_manual(values = c(
-    "Bajo" = "#F9913D",
-    "Alto" = "#2B2F3C"
-  )) +
-  scale_x_continuous(
-    breaks = 1:6,
-    labels = anos_olas
-  ) +
-  scale_y_continuous(
-    limits = c(0, 1), 
-    breaks = seq(0, 1, 0.2),
-    labels = scales::percent_format(accuracy = 1)
-  ) +
-  labs(x = "Año", 
-       y = "Proporción", 
-       fill = "Nivel",
-       caption = "Fuente: Elaboración propia a partir de ELSOC 2019-2023") +
-  theme_minimal() +
-  theme(
-    strip.text = element_text(size = 12, face = "bold"),
+# plot function
+make_plot <- function(design, predictor, outcome, ylab, legend_title) {
+  pred_sym <- ensym(predictor)
+  out_sym  <- ensym(outcome)
+  
+  design %>% 
+    select(wave, !!pred_sym, !!out_sym) %>% 
+    tidyr::drop_na() %>% 
+    group_by(wave, !!pred_sym) %>%
+    summarise(
+      value = survey_mean(!!out_sym, vartype = "ci", na.rm = TRUE),
+      .groups = "drop"
+    ) %>% 
+    ggplot(aes(x = wave, y = value, group = !!pred_sym)) +
+    geom_point(aes(color = !!pred_sym), size = 4.5) +
+    geom_line(aes(color = !!pred_sym), linewidth = 1) +
+    # geom_errorbar(aes(ymin = value_low, ymax = value_upp, color = !!pred_sym), width = 0.1) +
+    scale_y_continuous(n.breaks = 7) +
+    scale_color_manual(
+      name = legend_title,
+      values = c("#F9913D","#7ABA21", "#2b2f3c")
+      ) +
+    labs(
+      x = "Ola",
+      y = ylab,
+      caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    ) +
+    theme_ggdist() +
+theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
     legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
     legend.background     = element_rect(fill = "white", color = NA),
     legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
     
-    legend.position       = "bottom",
-    legend.direction      = "horizontal",
-    legend.box            = "horizontal",
-    
-    legend.title          = element_text(face = "bold"),
-    legend.key            = element_rect(fill = "white", color = NA),
-    legend.key.height     = unit(12, "pt"),
-    legend.key.width      = unit(20, "pt"),
-    
-    axis.text  = element_text(size = 11),
-    panel.spacing = unit(1, "cm"),   # mantiene separación entre paneles
-    plot.caption = element_text(hjust = 0.5, size = 10, color ="black")
+    legend.position  = "top",
+    legend.direction = "horizontal"
   ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right",
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "bottom",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
+}
+
+# combinations
+
+outcomes <- c(
+  seguridad_sub           = "Seguridad percibida",
+  seguridad_obj           = "Seguridad objetiva",
+  confianza_inter         = "Confianza interpersonal",
+  comportamiento_prosocial= "Comportamiento prosocial",
+  ayuda_economica         = "Ayuda económica",
+  sentido_pertenencia     = "Sentido pertenencia barrio",
+  satisfaccion_barrio     = "Satisfacción barrio"
+)
+
+predictors <- list(
+  desempleo_migrantes = "Desempleo percibido por \nmigrantes",
+  perdida_identidad   = "Pérdida identidad por \nmigrantes",
+  simpatia_migrantes = "Simpatía hacia migrantes",
+  igualdad_migrantes = "Acceso a salud igualitario \npara migrantes",
+  contacto_migrantes = "Contacto positivo con \nmigrantes",
+  restriccion_migrantes = "Restricción a ingreso de \nmigrantes"
+)
+
+comb <- tidyr::crossing(pred = names(predictors), out = names(outcomes))
+
+# make plots
+
+plots_tbl <- comb %>%
+  mutate(
+    plot = pmap(
+      list(pred, out),
+      ~ make_plot(
+        design       = db_pond,
+        predictor    = ..1,
+        outcome      = ..2,
+        ylab         = outcomes[..2],
+        legend_title = predictors[[..1]]
+      )
+    ),
+    plot_id = paste0("plot_", out, "__by__", pred)
+  )
 ```
 
-## Migración y vínculos territoriales 
 
+Satisfaccion barrio y restriccion migrantes
 ```{r}
 #| label: fig-satbarrio
-#| fig-cap: Satisfacción con el barrio y pérdida de identidad del país debido a inmigrantes
-#| fig-cap-location: top
-#| echo: false 
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
 
-ggplot(elsoc_6_graph_2, aes(
-  x = perdida_identidad, 
-  fill = factor(satisfaccion_barrio, labels = c("Alta satisfacción", "Baja satisfacción"))
-)) +
-  geom_bar(position = "fill") +
+db_pond %>% 
+  select(wave, satisfaccion_barrio, restriccion_migrantes) %>%
+  mutate(satisfaccion_barrio = case_when(
+    satisfaccion_barrio <= 2.5 ~ "Baja",
+    satisfaccion_barrio >= 3   ~ "Alta"
+  ),
+  restriccion_migrantes = forcats::fct_relabel(
+    restriccion_migrantes, ~ str_wrap(.x, 20))) %>% 
+  tidyr::drop_na() %>% 
+  filter(wave == last(wave)) %>% 
+  group_by(restriccion_migrantes, satisfaccion_barrio) %>%
+  survey_count(vartype = NULL) %>% 
+  group_by(satisfaccion_barrio) %>% 
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>% 
+  ggplot(aes(x = restriccion_migrantes, y = prop, fill = satisfaccion_barrio)) +
+  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+  geom_text(
+    aes(label = label, color = satisfaccion_barrio),   # color igual a la serie
+    position = position_dodge(width = 0.6),
+    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
+  ) +
   scale_fill_manual(
-    values = c("Alta satisfacción" = "#2b2f3c", "Baja satisfacción" = "#f9913d"),
-    breaks = c("Baja satisfacción", "Alta satisfacción"),
-    name = "Categorías"
+    name = "Satisfacción barrio",
+    values = c("Baja" = "#F9913D", "Alta" = "#2b2f3c")
   ) +
-  labs(
-    x = "Percepción de pérdida de identidad",
-    y = "Satisfacción con el barrio",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
+  scale_color_manual(                                 # mismo esquema para el texto
+    values = c("Baja" = "#F9913D", "Alta" = "#2b2f3c")
   ) +
-  theme_minimal() +
   scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 5),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
-  ) +
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 10),
+    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
+  )  + 
+    labs(
+      title = "Satisfacción con el barrio y restricción de acceso a migrantes",
+      x = "Restricción de acceso a migrantes",
+      y = NULL,
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023"
+    ) +
   theme_ggdist() +
   theme(
-    # Estilo de la leyenda (adaptado del código de referencia)
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background = element_rect(fill = "white", color = NA),
-    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.box = "horizontal",
-    legend.title = element_text(face = "bold"),
-    legend.key = element_rect(fill = "white", color = NA),
-    legend.key.height = unit(12, "pt"),
-    legend.key.width = unit(20, "pt"),
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
     
-    # Estilo del texto
-    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
-    axis.text.x = element_text(size = 9),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 12),
-    plot.title = element_text(size = 12, hjust = 0.5)
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal"
   ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right",
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "right",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
 ```
 
 La @fig-satbarrio refleja la asociación entre la percepción de que los inmigrantes le restan identidad al país y el índice de satisfacción con el barrio. Este índice se compuso de cuatro indicadores que miden diversos aspectos sobre el barrio, tales como sociabilidad, colaboración, entre otros (si le interesa profundizar en cómo se construyó este y los demás índices, vaya al [anexo](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html)).
 
-Además, se puede observar en  que en 2022 la mayoría de las personas sienten una alta satisfacción con su barrio. Ahora bien, existe una relación negativa entre percibir la pérdida de identidad del país debido a inmigrantes y la satisfacción con el barrio. Esto es, a medida que disminuye la satisfacción con el barrio, aumenta la sensación de que los inmigrantes flagelan la identidad del país. 
+Además, se puede observar que en 2022 la mayoría de las personas sienten una alta satisfacción con su barrio. Ahora bien, existe una relación negativa entre percibir la pérdida de identidad del país debido a inmigrantes y la satisfacción con el barrio. Esto es, a medida que disminuye la satisfacción con el barrio, aumenta la sensación de que los inmigrantes flagelan la identidad del país.
 
 ```{r}
 #| label: fig-sentper
-#| fig-cap: Sentido de pertenencia y pérdida de identidad del país debido a inmigrantes
+#| fig-cap: Sentido pertenencia y pérdida de identidad del país debido a inmigrantes
 #| fig-cap-location: top
 #| echo: false 
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
 
-ggplot(elsoc_6_graph_2, aes(
-  x = perdida_identidad, 
-  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
-)) +
-  geom_bar(position = "fill") +
+db_pond %>% 
+  select(wave, sentido_pertenencia, perdida_identidad) %>%
+  mutate(sentido_pertenencia = case_when(
+    sentido_pertenencia <= 2.5 ~ "Baja",
+    sentido_pertenencia >= 3   ~ "Alta"
+  ),
+  perdida_identidad = forcats::fct_relabel(
+    perdida_identidad, ~ str_wrap(.x, 20))) %>% 
+  tidyr::drop_na() %>% 
+  filter(wave == last(wave)) %>% 
+  group_by(perdida_identidad, sentido_pertenencia) %>%
+  survey_count(vartype = NULL) %>% 
+  group_by(sentido_pertenencia) %>% 
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>% 
+  ggplot(aes(x = perdida_identidad, y = prop, fill = sentido_pertenencia)) +
+  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+  geom_text(
+    aes(label = label, color = sentido_pertenencia),   # color igual a la serie
+    position = position_dodge(width = 0.6),
+    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
+  ) +
   scale_fill_manual(
-    values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
-    breaks = c("Baja pertenencia", "Alta pertenencia"),
-    name = "Categorías"
+    name = "Satisfacción barrio",
+    values = c("Baja" = "#F9913D", "Alta" = "#2b2f3c")
   ) +
-  labs(
-    x = "Percepción de pérdida de identidad",
-    y = "Sentido de pertenencia",
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
+  scale_color_manual(                                 # mismo esquema para el texto
+    values = c("Baja" = "#F9913D", "Alta" = "#2b2f3c")
   ) +
-  theme_minimal() +
   scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 5),
-    expand = expansion(mult = c(0, 0.05))
-  ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy de acuerdo")
-  ) +
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 10),
+    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
+  )  + 
+    labs(
+      title = "Sentido de pertenencia y pérdida de identidad debido a migrantes",
+      x = "Pérdida de identidad",
+      y = NULL,
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023"
+    ) +
   theme_ggdist() +
   theme(
-    # Estilo de la leyenda (adaptado del código de referencia)
-    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
-    legend.background = element_rect(fill = "white", color = NA),
-    legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
-    legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.box = "horizontal",
-    legend.title = element_text(face = "bold"),
-    legend.key = element_rect(fill = "white", color = NA),
-    legend.key.height = unit(12, "pt"),
-    legend.key.width = unit(20, "pt"),
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
     
-    # Estilo del texto
-    axis.title.x = element_text(size = 12, margin = margin(t = 20)),
-    axis.text.x = element_text(size = 9),
-    axis.text.y = element_text(size = 11),
-    axis.title.y = element_text(size = 12),
-    plot.title = element_text(size = 12, hjust = 0.5)
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal"
   ) +
-  guides(fill = guide_legend(
-    title.position = "top",
-    label.position = "right",
-    nrow = 1, byrow = TRUE,
-    keywidth = unit(14, "pt"),
-    keyheight = unit(10, "pt")
-  ))
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "right",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
 ```
 
 La @fig-sentper grafica la correlación entre la percepción de pérdida de identidad del país a causa de inmigrantes, la cual se representa con las tres categorías de respuesta como barras, y el índice de sentido de pertenencia, presentándose en el relleno de las barras. 
 
-Se puede notar que las tres categorías de acuerdo tienen un grado de similitud bastante alto en cuanto a su distribución, en donde todas las barras contienen un porcentaje casi idéntico. Esto quiere decir que no hay una relación clara entre las personas que tiene bajo sentido de pertenencia al barrio y la percepción respecto a la migración como catalizador del desempleo. 
+Se puede notar que las tres categorías de acuerdo tienen un grado de similitud bastante alto en cuanto a su distribución, en donde todas las barras contienen un porcentaje casi idéntico. Esto quiere decir que no hay una relación clara entre las personas que tiene bajo sentido de pertenencia al barrio y la percepción respecto a la migración como catalizador del desempleo.  
 
 
 ```{r}
@@ -596,6 +665,7 @@ barrio_mujeres <- barrio_mujeres %>%
   select(-c(sexo))
 ```
 
+
 ```{r}
 #| label: fig-terra-gen
 #| fig-cap: Sentido de pertenencia y pérdida de identidad por género
@@ -610,44 +680,66 @@ barrio_mujeres$grupo <- "Mujeres"
 # Combina los datasets
 datos_combinados <- rbind(barrio_hombres, barrio_mujeres)
 
-# Crea el gráfico combinado
-ggplot(datos_combinados, aes(
-  x = perdida_identidad, 
-  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
+# Primero calcular los porcentajes para mostrar en las barras
+datos_porcentajes <- datos_combinados %>%
+  group_by(grupo, perdida_identidad, sentido_pertenencia) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(grupo, perdida_identidad) %>%
+  mutate(
+    total = sum(n),
+    porcentaje = (n / total) * 100,
+    pertenencia_label = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
+  )
+
+# Crear el gráfico con barras agrupadas
+ggplot(datos_porcentajes, aes(
+  x = factor(perdida_identidad), 
+  y = porcentaje,
+  fill = pertenencia_label
 )) +
-  geom_bar(position = "fill") +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  geom_text(
+    aes(label = paste0(round(porcentaje, 1), "%")),
+    position = position_dodge(width = 0.8),
+    vjust = -0.5,
+    size = 3.5,
+    fontface = "bold"
+  ) +
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
     values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
     breaks = c("Baja pertenencia", "Alta pertenencia"),
-    name = "Categorías"
+    name = "Sentido de pertenencia"
   ) +
-  labs(,
+  labs(
+    title = "Percepción de pérdida de identidad y sentido de pertenencia",
     x = "Percepción de pérdida de identidad",
-    y = "Sentido de pertenencia",
+    y = "Porcentaje",
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
+    labels = scales::percent_format(accuracy = 1, scale = 1),
     breaks = scales::pretty_breaks(n = 5),
-    expand = expansion(mult = c(0, 0.05))
+    expand = expansion(mult = c(0, 0.15)), # Más espacio arriba para los labels
+    limits = c(0, NA)
   ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  scale_x_discrete(
+    labels = c("1" = "Muy \n en desacuerdo",
+               "2" = "Ni en desacuerdo \n ni de acuerdo", 
+               "3" = "Muy \n de acuerdo")
   ) +
   theme_ggdist() +
   theme(
-    # Estilo de los paneles (tomado del código de referencia)
+    # Estilo de los paneles
     strip.text = element_text(size = 12, face = "bold"),
     
-    # Estilo de la leyenda (adaptado del código de referencia)
+    # Estilo de la leyenda
     legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
     legend.background = element_rect(fill = "white", color = NA),
     legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
+    legend.position = "top",
     legend.direction = "horizontal",
     legend.box = "horizontal",
     legend.title = element_text(face = "bold"),
@@ -656,11 +748,11 @@ ggplot(datos_combinados, aes(
     legend.key.width = unit(20, "pt"),
     
     # Estilo del texto
+    plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
     axis.title.x = element_text(size = 12, margin = margin(t = 20)),
     axis.text.x = element_text(size = 9),
     axis.text.y = element_text(size = 11),
     axis.title.y = element_text(size = 12),
-    plot.title = element_text(size = 12, hjust = 0.5),
     
     # Separación entre paneles
     panel.spacing = unit(1, "cm")
@@ -675,7 +767,6 @@ ggplot(datos_combinados, aes(
 ```
 
 En @fig-terra-gen se puede observar cómo se relaciona el sentido de pertenencia al barrio con la pérdida de identidad debido a la migración, distinguiendo por género. Los hombres tienden a mantener una postura fuertemente polarizada, en donde, quienes tienen un bajo sentido de pertenencia, pueden creer fervientemente que los inmigrantes causan la pérdida de identidad nacional, o bien, están muy en desacuerdo con esta sentencia. Al contrario, las mujeres con bajo sentido de pertenencia, tienden a percibir de manera más moderada la pérdida de identidad nacional a causa de la migración, siendo la categoría neutral la que posee mayor porcentaje de respuesta.
-
 
 ```{r}
 barrio_educ <- elsoc_6_graph_2 %>%
@@ -713,12 +804,31 @@ barrio_notitulo$grupo <- "Sin título univ."
 # Combina los datasets
 datos_combinados <- rbind(barrio_titulo, barrio_notitulo)
 
-# Crea el gráfico combinado
-ggplot(datos_combinados, aes(
-  x = desempleo_migrantes, 
-  fill = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
+# Primero calcular los porcentajes para mostrar en las barras
+datos_porcentajes <- datos_combinados %>%
+  group_by(grupo, desempleo_migrantes, sentido_pertenencia) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(grupo, desempleo_migrantes) %>%
+  mutate(
+    total = sum(n),
+    porcentaje = (n / total) * 100,
+    pertenencia_label = factor(sentido_pertenencia, labels = c("Alta pertenencia", "Baja pertenencia"))
+  )
+
+# Crear el gráfico con barras agrupadas
+ggplot(datos_porcentajes, aes(
+  x = factor(desempleo_migrantes), 
+  y = porcentaje,
+  fill = pertenencia_label
 )) +
-  geom_bar(position = "fill") +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  geom_text(
+    aes(label = paste0(round(porcentaje, 1), "%")),
+    position = position_dodge(width = 0.8),
+    vjust = -0.5,
+    size = 3.5,
+    fontface = "bold"
+  ) +
   facet_wrap(~grupo, ncol = 2) +
   scale_fill_manual(
     values = c("Alta pertenencia" = "#2b2f3c", "Baja pertenencia" = "#f9913d"),
@@ -726,20 +836,22 @@ ggplot(datos_combinados, aes(
     name = "Sentido de pertenencia"
   ) +
   labs(
-    title = "",
+    title = "Percepción de desempleo debido a inmigrantes y sentido de pertenencia por nivel educativo",
     x = "Percepción de desempleo debido a inmigrantes",
-    y = NULL,
+    y = "Porcentaje",
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2022"
   ) +
   theme_minimal() +
   scale_y_continuous(
-    labels = scales::percent_format(accuracy = 1), 
-    breaks = scales::pretty_breaks(n = 10),
-    expand = expansion(mult = c(0, 0.05))
+    labels = scales::percent_format(accuracy = 1, scale = 1),
+    breaks = scales::pretty_breaks(n = 5),
+    expand = expansion(mult = c(0, 0.15)), # Más espacio arriba para los labels
+    limits = c(0, NA)
   ) +
-  scale_x_continuous(
-    breaks = 1:3,
-    labels = c("Muy \n en desacuerdo", "Ni en desacuerdo \n ni de acuerdo", "Muy \n de acuerdo")
+  scale_x_discrete(
+    labels = c("1" = "Muy \n en desacuerdo",
+               "2" = "Ni en desacuerdo \n ni de acuerdo", 
+               "3" = "Muy \n de acuerdo")
   ) +
   theme_ggdist() +
   theme(
@@ -751,21 +863,20 @@ ggplot(datos_combinados, aes(
     legend.background = element_rect(fill = "white", color = NA),
     legend.margin = margin(t = 6, r = 8, b = 6, l = 8),
     legend.box.margin = margin(t = 6, r = 6, b = 6, l = 6),
-    legend.position = "bottom",
+    legend.position = "top",
     legend.direction = "horizontal",
     legend.box = "horizontal",
-    legend.title = element_text(face = "bold", size = 14),
-    legend.text = element_text(size = 11),
+    legend.title = element_text(face = "bold"),
     legend.key = element_rect(fill = "white", color = NA),
     legend.key.height = unit(12, "pt"),
     legend.key.width = unit(20, "pt"),
     
     # Estilo del texto
+    plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
     axis.title.x = element_text(size = 12, margin = margin(t = 20)),
     axis.text.x = element_text(size = 9),
     axis.text.y = element_text(size = 11),
     axis.title.y = element_text(size = 12),
-    plot.title = element_text(size = 12, hjust = 0.5),
     
     # Separación entre paneles
     panel.spacing = unit(1, "cm")
