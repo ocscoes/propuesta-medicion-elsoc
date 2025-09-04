@@ -901,7 +901,7 @@ La @fig-barrio-educ muestra la asociación entre percepción de desempleo debido
 
 
 # Selección de variables: (1) desempleo por migrantes, (2)pérdida de identidad
-# (3)simpatía hacia migrantes, (4)acceso a salud igualitaro y (5) contacto positivo
+# (3)simpatía hacia migrantes, (4)acceso a salud igualitario, (5) contacto positivo y (6) restricción de ingreso a migrantes
 
 # plot function
 make_plot <- function(design, predictor, outcome, ylab, legend_title) {
@@ -998,6 +998,10 @@ plots_tbl <- comb %>%
   )
 ```
 
+La @fig-satis-contacto presenta la evolución de la satisfacción barrial entre 2016 y 2023 según la frecuencia de contacto positivo con migrantes. En términos generales, se observa que quienes mantienen una relación muy o bastante amistosa con migrantes, así como quienes declaran un contacto ni amistoso ni no amistoso, tienden a reportar niveles más altos de satisfacción con su barrio. En ambos grupos se aprecia un crecimiento sostenido entre 2016 y 2019, seguido de una caída posterior que se extiende hasta 2023, lo que sugiere la incidencia de factores coyunturales recientes en el debilitamiento de la vinculación territorial.
+
+Por otro lado, quienes manifiestan un contacto poco o nada amistoso con los migrantes exhiben un patrón diferente: tras un leve aumento inicial en 2017, su nivel de satisfacción barrial cae de manera constante en los años siguientes, alcanzando los valores más bajos de la serie en 2023. En conjunto, los resultados muestran que la calidad del contacto con la población migrante se asocia de manera sistemática con la percepción del entorno barrial, reforzando la idea de que interacciones positivas o neutrales contribuyen a sostener mayores niveles de vinculación territorial, mientras que experiencias negativas parecen erosionarla de forma persistente a lo largo del tiempo.
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -1063,10 +1067,10 @@ En cuanto a las tendencias, se observa una divergencia clara entre los grupos: q
 #| out-width: '100%'
 #| results: asis
 #| label: fig-satis-simpat
-#| fig-cap: "Satisfacción con el barrio y simpátia hacia migrantes (2016-2023)"
+#| fig-cap: "Satisfacción con el barrio y simpatía hacia migrantes (2016-2023)"
 #| fig-cap-location: top
 
-walk(sel[c(9), ]$plot, print)
+walk(sel[c(11), ]$plot, print)
 ```
 
 
