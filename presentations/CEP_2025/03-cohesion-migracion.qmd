@@ -141,7 +141,7 @@ db_pond %>%
   labs(
     title = "Seguridad percibida y restricción de acceso migrantes",
     subtitle = "Porcentaje que responde...",
-    x = "Ola",
+    x = NULL,
     y = NULL,
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
@@ -172,8 +172,7 @@ db_pond %>%
 
 ::: {.notes}
 
-Ajustar
-
+Al cruzar el acuerdo con políticas restrictivas hacia la migración y la percepción de seguridad, se observa que la mayoría de quienes respaldan estas medidas reporta niveles medianos o bajos de seguridad pública, mientras solo una minoría percibe alta seguridad. Esta tendencia se mantiene en todas las olas, con un aumento marcado de la inseguridad percibida en 2023.
 :::
 ---
 
@@ -229,7 +228,7 @@ db_pond %>%
   labs(
     title = "Seguridad percibida y simpatía hacia migrantes",
     subtitle = "Porcentaje que responde...",
-    x = "Ola",
+   x = NULL,
     y = NULL,
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
@@ -259,7 +258,8 @@ db_pond %>%
 ```
 
 ::: {.notes}
-Ajustar
+Al cruzar la simpatía hacia los migrantes con la percepción de seguridad, se observa que la mayoría de quienes expresan muy poca o ninguna simpatía reporta niveles medianos o bajos de seguridad pública, mientras solo una minoría declara alta seguridad. Esta pauta se repite en todas las olas y se intensifica en 2023, con un aumento significativo de la inseguridad percibida.
+
 :::
 ---
 
@@ -314,7 +314,7 @@ db_pond %>%
   labs(
     title = "Seguridad percibida y contacto positivo con migrantes",
     subtitle = "Porcentaje que responde...",
-    x = "Ola",
+    x = NULL,
     y = NULL,
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
@@ -344,7 +344,7 @@ db_pond %>%
 ```
 
 ::: {.notes}
-Ajustar
+Quienes han tenido un contacto poco amistoso con migrantes reportan niveles medianos o bajos de seguridad pública, mientras solo una minoría declara alta seguridad. En este grupo, la percepción de baja seguridad ha variado en el tiempo. Ahora bien, en este grupo, la alta seguridad ha ido a la baja consistentemente. 
 
 :::
 
@@ -418,7 +418,7 @@ db_pond %>%
   labs(
     title = "Sentido pertenencia barrial y pérdida de identidad nacional",
     subtitle = "Porcentaje que responde...",
-    x = "Ola",
+     x = NULL,
     y = NULL,
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
@@ -449,6 +449,7 @@ db_pond %>%
 ```
 
 ::: {.notes}
+Dentro de quienes están muy de acuerdo con que la llegada de migrantes ha generado una pérdida de identidad nacional, la mayoría reporta un mediano sentido de pertenencia barrial, seguido por una baja pertenencia y en menor mendida una alta pertenencia. 
 :::
 
 ---
@@ -504,7 +505,7 @@ db_pond %>%
   labs(
     title = "Satisfacción barrial y contacto positivo con migrantes",
     subtitle = "Porcentaje que responde...",
-    x = "Ola",
+ x = NULL,
     y = NULL,
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
@@ -532,8 +533,9 @@ db_pond %>%
   )
 
 ```
-::: {.notes}
 
+::: {.notes}
+Dentro de quienes han tenido un contacto poco amistoso con migrantes, la mayoría reporta una mediana y baja satisfacción barrial. Solo un grupo minoritario reporta alta satisfacción con el barrio.
 :::
 
 ---
@@ -590,7 +592,7 @@ db_pond %>%
   labs(
     title = "Satisfacción barrial y simpatía hacia migrantes",
     subtitle = "Porcentaje que responde...",
-    x = "Ola",
+ x = NULL,
     y = NULL,
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
@@ -619,6 +621,7 @@ db_pond %>%
 
 ```
 ::: {.notes}
+Dentro de quienes sienten poca simpatía hacia migrantes, la mayoría reporta una mediana satisfacción barrial, seguido por una baja satisfacción y en menor mendida una alta satisfacción. 
 :::
 
 # 3. Cohesión social horizontal y migración {.xlarge data-background-color="#444a5e"}
@@ -693,7 +696,7 @@ db_pond %>%
   labs(
     title = "Comportamiento prosocial y restricción de ingreso a migrantes",
     subtitle = "Porcentaje que responde...",
-    x = "Ola",
+ x = NULL,
     y = NULL,
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
@@ -723,6 +726,7 @@ db_pond %>%
 ```
 
 ::: {.notes}
+Dentro de quienes están muy de acuerdo con políticas restrictivas para el ingreso de migrantes, la mayoría presenta un bajo comportamiento prosocial. El grupo con un alto comportamiento prosocial es minoritario y aquel de mediano comportamiento va a la baja en el tiempo.
 :::
 
 ---
@@ -779,8 +783,8 @@ db_pond %>%
   labs(
     title = "Comportamiento prosocial y contacto positivo migrantes",
     subtitle = "Porcentaje que responde...",
-    x = "Ola",
-    y = NULL,
+ x = NULL,
+      y = NULL,
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
   theme_bw() +
@@ -809,6 +813,7 @@ db_pond %>%
 ```
 
 ::: {.notes}
+Quienes han tenido un contacto poco amistoso con migrantes registran, en su mayoría, un bajo comportamiento prosocial. El mediano comportamiento prosocial dentro de este grupo ha ido a la baja. En suma, hay una relación negativa.
 :::
 ---
 
@@ -863,9 +868,9 @@ db_pond %>%
     expand = expansion(mult = c(0.02, 0.08))
   ) +
   labs(
-    title = "Comportamiento prosocial y pérdida de identidad nacional por migrantes",
+    title = "Comportamiento prosocial y pérdida de identidad nacional \npor migrantes",
     subtitle = "Porcentaje que responde...",
-    x = "Ola",
+    x = NULL,
     y = NULL,
     caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
   ) +
@@ -895,4 +900,5 @@ db_pond %>%
 ```
 
 ::: {.notes}
+Quienes están muy de acuerdo con la pérdida de identidad nacional por la llegada de migrantes registran, en su mayoría, un bajo comportamiento prosocial. El mediano comportamiento prosocial dentro de este grupo ha ido a la baja. En definitiva, hay una relación negativa.
 :::
