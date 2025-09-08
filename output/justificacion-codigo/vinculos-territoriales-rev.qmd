@@ -1,10 +1,34 @@
-# Construcción de gráficos
+
+El objetivo de este documento es revisar las decisiones metodológicas que se tomaron para la construcción de los índices de la subdimensión de vínculos territoriales y las variables de migración. 
 
 ## Pasos previos
 
 ```{r}
+#| label: Set workspace
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, 
+                      include = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
 #| label: packages
-#| echo: false
 
 if (! require("pacman")) install.packages("pacman")
 
@@ -20,10 +44,345 @@ pacman::p_load(tidyverse,
                srvyr,
                ggdist,
                purrr,
-               rlang)
+               rlang,
+               surveyr,
+               ggdist)
 
 options(scipen=999)
 rm(list = ls())
 ```
 
+```{r}
+#| label: data 
+
+db_long <- here("input/data/raw_data/elsoc.RData")
+load(db_long)
+
+elsoc <- elsoc_long_2016_2023
+```
+
+
+Creamos la base con las variables que conforman los índices **satisfacción en el barrio**, **sentido de pertenencia** y las variables de migración. Luego, recodificamos los NA.
+```{r}
+elsoc_7 <- elsoc %>%
+  select(idencuesta, ola, cuestion_mig, ponderador_long_total, segmento, estrato, t02_01, t02_02, t02_03, t02_04, t03_01, t03_02, t03_03, t03_04, r12_03, c37_05, r07)
+
+missing_codes <- c(-999, -888, -777, -666)
+elsoc_7 <- elsoc_7 %>%
+  mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
+
+# check
+
+frq(elsoc_7$c37_05)
+frq(elsoc_7$t02_01)
+```
+
 ## Univariados
+
+### Vínculos territoriales
+```{r}
+frq(elsoc_7$t02_01)
+frq(elsoc_7$t02_02)
+frq(elsoc_7$t02_03)
+frq(elsoc_7$t02_04)
+frq(elsoc_7$t03_01)
+frq(elsoc_7$t03_02)
+frq(elsoc_7$t03_03)
+frq(elsoc_7$t03_04)
+```
+
+En todos los indicadores de la subdimensión de vínculos territoriales se observa una concentración de aproximadamente del 50% en la categoría "de acuerdo".
+
+Ahora, pasamos a crear los índices que conforman la subdimensión
+
+```{r}
+elsoc_7 <- elsoc_7 %>%
+ mutate(
+   # Índice promediado
+   sentido_pertenencia = rowMeans(
+     select(., t02_01, t02_02, t02_03, t02_04),
+     na.rm = TRUE
+   ))
+
+slice(elsoc_7,1:10) %>% select(t02_01, t02_02, t02_03, t02_04, sentido_pertenencia)
+
+frq(elsoc_7$sentido_pertenencia)
+```
+
+En el punto 3.5 se alojan el %35.92 de las observaciones.
+
+```{r}
+elsoc_7 <- elsoc_7 %>%
+ mutate(
+   # Índice promediado
+   satisfaccion_barrio = rowMeans(
+     select(., t03_01, t03_02, t03_03, t03_04),
+     na.rm = TRUE
+   ))
+
+slice(elsoc_7,1:10) %>% select(t03_01, t03_02, t03_03, t03_04, satisfaccion_barrio)
+
+frq(elsoc_7$satisfaccion_barrio)
+```
+
+Desde el punto 1 al 3.5 están el %45.92 de las observaciones.
+
+### Migración
+```{r}
+frq(elsoc_7$r12_03)
+```
+
+Las personas que están de acuerdo con que los migrantes erosionan la identidad del país es de un %40.23, mientras quellos que están en desacuerdo con esta sentencia hacen el %44.78 (y un %14.98 sería de la categoría neutral).
+
+## Recategorización
+
+
+### Vínculos territoriales
+De acuerdo a los resultados descriptivos, vamos a recategorizar ambos índices en el punto corte <= 3.5 como categoría baja y > 3.5 como categoría alta.
+
+```{r}
+# Sentido de pertenencia con corte en <= 3.5
+
+elsoc_7 <- elsoc_7 %>%
+  mutate(sentido_pertenencia2 = case_when(
+    sentido_pertenencia >= 1 & sentido_pertenencia <= 3.5 ~ "Bajo",
+    sentido_pertenencia > 3.5 & sentido_pertenencia <= 5 ~ "Alto",
+    TRUE ~ NA_character_
+  ))
+```
+
+```{r}
+# Satisfacción con el barrio con corte en <= 3.5
+
+elsoc_7 <- elsoc_7 %>%
+  mutate(satisfaccion_barrio2 = case_when(
+    satisfaccion_barrio >= 1 & satisfaccion_barrio <= 3.5 ~ "Bajo",
+    satisfaccion_barrio > 3.5 & satisfaccion_barrio <= 5 ~ "Alto",
+    TRUE ~ NA_character_
+  ))
+```
+
+A priori, sería mejor trabajar con los cortes en 3.5, ya que las frecuencias están mejor equilibradas en ambos índices.
+
+
+Se reordenan las categorías en Alto y Bajo
+```{r}
+
+elsoc_7$sentido_pertenencia2 <- factor(elsoc_7$sentido_pertenencia2, levels = c("Alto", "Bajo"))
+frq(elsoc_7$sentido_pertenencia2)
+
+elsoc_7$satisfaccion_barrio2 <- factor(elsoc_7$satisfaccion_barrio2, levels = c("Alto", "Bajo"))
+frq(elsoc_7$satisfaccion_barrio2)
+
+# check
+
+frq(elsoc_7$sentido_pertenencia2)
+frq(elsoc_7$satisfaccion_barrio2)
+```
+
+### Migración
+
+La variable de migración que alude a la pérdida de identidad debido a migrantes se recodifica en tres categorías, colapsando las categorías "Totalmente en desacuerdo" con "En desacuerdo", y "De acuerdo" con "Totalmente de acuerdo", mientras que la categoría neutra se categoriza como "Otro".
+
+```{r}
+elsoc_7 <- elsoc_7 %>%
+  mutate(perdida_identidad2 = case_when(
+    r12_03 >= 1 & r12_03 <= 2 ~ "Muy en desacuerdo + en desacuerdo",
+    r12_03 >= 2 & r12_03 <= 3 ~ "Otro",
+    r12_03 > 3 & r12_03 <= 5 ~ "Muy de acuerdo + de acuerdo",
+    TRUE ~ NA_character_
+  ))
+```
+
+```{r}
+#check
+frq(elsoc_7$perdida_identidad2)
+```
+
+```{r}
+tabla_cruzada <- elsoc_7 %>%
+  filter(!is.na(sentido_pertenencia2) & !is.na(perdida_identidad2) & perdida_identidad2 == "Muy de acuerdo + de acuerdo") %>%
+  group_by(ola, sentido_pertenencia2) %>%
+  summarise(n = n()) %>%  
+  group_by(ola) %>%
+  mutate(total_ola = sum(n),
+         porcentaje = (n / total_ola) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy de acuerdo + de acuerdo) por ola - porcentaje dentro de ola")
+```
+
+```{r}
+tabla_cruzada2 <- elsoc_7 %>%
+  filter(!is.na(sentido_pertenencia2) & !is.na(perdida_identidad2) & perdida_identidad2 == "Muy en desacuerdo + en desacuerdo") %>%
+  group_by(ola, sentido_pertenencia2) %>%
+  summarise(n = n()) %>%  
+  group_by(ola) %>%
+  mutate(total_ola = sum(n),
+         porcentaje = (n / total_ola) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada2, format = table_format, caption = "Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy en desacuerdo + en desacuerdo) por ola - porcentaje dentro de ola")
+```
+
+```{r}
+#| label: db_pond
+elsoc_7_pond <- elsoc_7 %>% 
+  as_survey_design(ids = segmento, 
+                   strata = estrato, 
+                   weights = ponderador_long_total,
+                   nest = T)
+```
+
+
+```{r}
+a <- elsoc_7_pond %>%
+  select(ola, sentido_pertenencia, perdida_identidad2) %>%
+  filter(perdida_identidad2!="Otro") %>%
+  mutate(sentido_pertenencia = case_when(
+    sentido_pertenencia <= 3.5 ~ "Baja",
+    sentido_pertenencia > 3.5   ~ "Alta"
+  ),
+  perdida_identidad2 = forcats::fct_relabel(
+    perdida_identidad2, ~ str_wrap(.x, 20))) %>%
+  tidyr::drop_na() %>%
+  filter(ola == last(ola)) %>%
+  group_by(perdida_identidad2, sentido_pertenencia) %>%
+  survey_count(vartype = NULL) %>%
+  group_by(sentido_pertenencia) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada ola
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>%
+  ggplot(aes(x = perdida_identidad2, y = prop, fill = sentido_pertenencia)) +
+  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+  geom_text(
+    aes(label = label, color = sentido_pertenencia),   # color igual a la serie
+    position = position_dodge(width = 0.6),
+    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    name = "Sentido de pertenencia",
+    values = c("Baja" = "#F9913D", "Alta" = "#2B2F3C")
+  ) +
+  scale_color_manual(                                 # mismo esquema para el texto
+    values = c("Baja" = "#F9913D", "Alta" = "#2B2F3C")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 10),
+    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
+  )  +
+    labs(
+      x = "Pérdida de identidad debido a migrantes",
+      y = NULL,
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
+    ) +
+  theme_ggdist() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position  = "top",
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "right",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
+```
+
+```{r}
+b <- elsoc_7_pond %>%
+  select(ola, satisfaccion_barrio, perdida_identidad2) %>%
+  filter(perdida_identidad2!="Otro") %>%
+  mutate(satisfaccion_barrio = case_when(
+    satisfaccion_barrio <= 3.5 ~ "Baja",
+    satisfaccion_barrio > 3.5   ~ "Alta"
+  ),
+  perdida_identidad2 = forcats::fct_relabel(
+    perdida_identidad2, ~ str_wrap(.x, 20))) %>%
+  tidyr::drop_na() %>%
+  filter(ola == last(ola)) %>%
+  group_by(perdida_identidad2, satisfaccion_barrio) %>%
+  survey_count(vartype = NULL) %>%
+  group_by(satisfaccion_barrio) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada ola
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>%
+  ggplot(aes(x = perdida_identidad2, y = prop, fill = satisfaccion_barrio)) +
+  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+  geom_text(
+    aes(label = label, color = satisfaccion_barrio),   # color igual a la serie
+    position = position_dodge(width = 0.6),
+    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    name = "Satisfacción con el barrio",
+    values = c("Baja" = "#F9913D", "Alta" = "#2B2F3C")
+  ) +
+  scale_color_manual(                                 # mismo esquema para el texto
+    values = c("Baja" = "#F9913D", "Alta" = "#2B2F3C")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 10),
+    expand = expansion(mult = c(0.02, 0.08)) # deja aire arriba para las etiquetas
+  )  +
+    labs(
+      x = "Pérdida de identidad debido a migrantes",
+      y = NULL,
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
+    ) +
+  theme_ggdist() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    legend.position  = "top",
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "right",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
+```
+
+Guardamos los gráficos 
+```{r}
+ggsave("pertenencia-identidad.png", plot = a, width = 8, height = 6, dpi = 300)
+ggsave("satisfaccion-identidad.png", plot = b, width = 8, height = 6, dpi = 300)
+```
