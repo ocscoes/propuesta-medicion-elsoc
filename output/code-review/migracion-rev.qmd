@@ -1,0 +1,563 @@
+---
+title: "Code-review-Migración"
+author: "René Canales"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: readable
+---
+
+# Dimensión: Seguridad subjetiva y Variables de migración
+
+El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y seguridad para la producción de figuras con la información que se muestra en el siguiente gráfico, que está en la presentación de la CEP 2025:
+
+[https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/5/1](https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/5/1)
+
+## Cargar Librerías y espacio de trabajo
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Set workspace
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, 
+                      include = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled,
+               srvyr,
+               ggdist
+)
+
+
+options(scipen=999)
+rm(list = ls())
+
+```
+
+## Data
+
+Call original dataset
+```{r}
+load(here('input/data/raw_data/elsoc.RData'))
+elsoc_long <- elsoc_long_2016_2023 # acortar
+
+missing_codes <- c(-999, -888, -777, -666)
+elsoc_long <- elsoc_long %>%
+  mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
+```
+
+# Variables & Recodes
+
+## Univariados: Variables
+
+La dimensión de _seguridad subjetiva_ se asocia a los siguientes ítems
+
+- Satisfacción con la seguridad del barrio
+
+- Percepción de inseguridad en el barrio
+
+Donde: 
+```{r}
+#| results: false
+find_var(data = elsoc_long,"barrio") # corresponde a t06_01
+frq(elsoc_long$t06_01)
+find_var(data = elsoc_long,"seguridad") # corresponde a t10
+frq(elsoc_long$t10)
+```
+Por su parte, las variables de migración que preguntan por la percepción en torno a la relación entre desempleo y migración, y por la restricción a migrantes:
+
+```{r}
+#| results: false
+
+find_var(data = elsoc_long,"desem") # corresponde a r12_04
+frq(elsoc_long$r12_04)
+
+find_var(data = elsoc_long,"restr") # corresponde a c37_05
+frq(elsoc_long$c37_04)
+```
+## Selección, missings y recodificación
+
+```{r}
+check1 <- elsoc_long %>%
+  select(t06_01, t10, r12_04, ola, c37_05)
+
+# Recodificar -999, -888, -777, -666 a NA sin perder etiquetas de variables
+
+missing_codes <- c(-999, -888, -777, -666)
+check1 <- check1 %>%
+  mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
+
+# cheq
+frq(check1$r12_04) # ok
+frq(check1$c37_05)
+```
+## Generar índice de seguridad subjetiva
+
+```{r}
+check1$seg_sub <- rowMeans(check1[,c("t06_01","t10")], na.rm = TRUE) 
+
+slice(check1,1:10) %>% select(t06_01,t10,seg_sub, ola) # check ok
+```
+
+```{r}
+frq(check1$seg_sub) # ok
+```
+Observamos que la distribución de las respuestas carga la mitad de los casos hasta el valor 3.5 -con el 48.96% de los casos acumulados- por lo que se justificaría la elección de aquellos valores <=3 como bajo, y 3< como alto. 
+
+## Variación por ola
+
+```{r}
+frq(check1$ola) # ok
+```
+```{r}
+# Tabla con el promedio de seguridad subjetiva por ola
+seguridad_por_ola <- check1 %>%
+  group_by(ola) %>%
+  summarise(promedio_seg_subjetiva = mean(seg_sub, na.rm = TRUE)) 
+
+if (!exists("table_format")) table_format <- "simple"
+
+knitr::kable(seguridad_por_ola, format = table_format, caption = "Promedio de seguridad subjetiva por ola")
+```
+
+Se observa que el promedio por ola se mantiene alrededor del valor 3.5, lo que aporta evidencia para la selección de los valores escogidos para agrupar las categorías de Alto-Bajo.
+
+```{r}
+# Tabla con el promedio de seguridad subjetiva por ola y por categorías de r12_04 (desempleo migrantes)
+
+seguridad_por_ola_migracion <- check1 %>%
+  group_by(ola, r12_04) %>%
+  summarise(promedio_seg_subjetiva = mean(seg_sub, na.rm = TRUE), n = n()) %>%
+  ungroup()
+
+knitr::kable(seguridad_por_ola_migracion, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (r12_04)")
+```
+
+```{r}
+# Tabla con el promedio de seguridad subjetiva por ola y por categorías de c37_05 (restricción migrante)
+seguridad_por_ola_migracion <- check1 %>%
+  group_by(ola, c37_05, r12_04) %>%
+  summarise(promedio_seg_subjetiva = mean(seg_sub, na.rm = TRUE), n = n()) %>%
+  ungroup()
+
+knitr::kable(seguridad_por_ola_migracion, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (c37_05)")
+```
+
+
+```{r}
+# Tabla ordenada por r12_04
+seguridad_por_ola_migracion_ordered <- seguridad_por_ola_migracion_ordered %>%
+  arrange(r12_04, ola)
+
+knitr::kable(seguridad_por_ola_migracion_ordered, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (r12_04) - Ordenado por r12_04")
+```
+
+```{r}
+# Tabla ordenada por c37_05
+seguridad_por_ola_migracion_ordered <- seguridad_por_ola_migracion %>%
+  arrange(c37_05, ola)
+
+knitr::kable(seguridad_por_ola_migracion_ordered, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (c37_05) - Ordenado por c37_05")
+```
+
+
+## Info Gráfico
+
+```{r}
+# recodificar indice seguridad subjetiva en bajo (1-2.5), medio (2.6-3.5) y alto (3.6-5)
+check1 <- check1 %>%
+  mutate(seg_sub3 = case_when(
+    seg_sub >=1 & seg_sub <= 3 ~ "Bajo",
+    seg_sub > 3 & seg_sub <= 5 ~ "Alto",
+    TRUE ~ NA_character_
+  ))  
+
+frq(check1$seg_sub3) # ok
+```
+
+```{r}
+#reordenar alto, medio, bajo
+check1$seg_sub3 <- factor(check1$seg_sub3, levels = c("Alto", "Bajo"))
+frq(check1$seg_sub3) # ok
+```
+
+```{r}
+# recodificar r12_04 (desempleo migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs
+check1 <- check1 %>%
+  mutate(desempleo_migrantes5 = case_when(
+    r12_04 == 5 ~ "Muy de acuerdo",
+    r12_04 %in% c(1, 2, 3, 4) ~ "Otro",
+    TRUE ~ NA_character_
+  ))
+frq(check1$desempleo_migrantes5) # ok
+
+# recodificar r12_04 (desempleo migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs
+check1 <- check1 %>%
+  mutate(desempleo_migrantes1 = case_when(
+    r12_04 == 1 ~ "Muy en desacuerdo",
+    r12_04 %in% c(2, 3, 4, 5) ~ "Otro",
+    TRUE ~ NA_character_
+  ))
+frq(check1$desempleo_migrantes1) # ok
+```
+
+```{r}
+# recodificar c37_05 (restriccion migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs
+check1 <- check1 %>%
+  mutate(restriccion_migrantes5 = case_when(
+    c37_05 == 5 ~ "Muy de acuerdo",
+    c37_05 %in% c(1, 2, 3, 4) ~ "Otro",
+    TRUE ~ NA_character_
+  ))
+frq(check1$restriccion_migrantes5) # ok
+
+# recodificar c37_05 (restriccion migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs
+check1 <- check1 %>%
+  mutate(restriccion_migrantes1 = case_when(
+    c37_05 == 1 ~ "Muy en desacuerdo",
+    c37_05 %in% c(2, 3, 4, 5) ~ "Otro",
+    TRUE ~ NA_character_
+  ))
+frq(check1$restriccion_migrantes1) # ok
+```
+
+```{r}
+#Recodificar seguridad subjetiva en baja y alta
+check1 <- check1 %>%
+  mutate(seg_sub2 = case_when(
+    seg_sub >= 1 & seg_sub <= 3 ~ "Baja",
+    seg_sub > 3 & seg_sub <= 5 ~ "Alta",
+    TRUE ~ NA_character_
+  ))  
+check1$seg_sub2 <- factor(check1$seg_sub2, levels = c("Alta", "Baja"))
+frq(check1$seg_sub2)
+```
+
+
+```{r}
+#recodificar seguridad subjetiva en baja y alta
+check1 <- check1 %>%
+  mutate(seg_sub2 = case_when(
+    seg_sub >= 1 & seg_sub <= 3 ~ "Baja",
+    seg_sub > 3 & seg_sub <= 5 ~ "Alta",
+    TRUE ~ NA_character_
+  ))  
+check1$seg_sub2 <- factor(check1$seg_sub2, levels = c("Alta", "Baja"))
+frq(check1$seg_sub2)
+```
+
+Tabla cruzada entre Seguridad Subjetiva y Restricción de Migrantes para observar los porcentajes y su distribución por ola
+
+```{r}
+tabla_cruzada <- check1 %>%
+  filter(!is.na(seg_sub3) & !is.na(restriccion_migrantes5) & restriccion_migrantes5 == "Muy de acuerdo") %>%
+  group_by(ola, seg_sub3) %>%
+  summarise(n = n()) %>%  
+  group_by(ola) %>%
+  mutate(total_ola = sum(n),
+         porcentaje = (n / total_ola) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy de acuerdo) por ola - porcentaje dentro de ola")
+```
+
+```{r}
+tabla_cruzada <- check1 %>%
+  filter(!is.na(seg_sub3) & !is.na(restriccion_migrantes1) & restriccion_migrantes1 == "Muy en desacuerdo") %>%
+  group_by(ola, seg_sub3) %>%
+  summarise(n = n()) %>%  
+  group_by(ola) %>%
+  mutate(total_ola = sum(n),
+         porcentaje = (n / total_ola) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy en desacuerdo) por ola - porcentaje dentro de ola")
+```
+
+## Seguridad Subjetiva y Desempleo migrantes
+
+```{r}
+# Recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs
+
+elsoc_long <- elsoc_long %>%
+  mutate(desempleo_migrantes = case_when(
+    r12_04 %in% c(1, 2) ~ "En desacuerdo",
+    r12_04 == 3 ~ "Ni de acuerdo ni en desacuerdo",
+    r12_04 %in% c(4, 5) ~ "De acuerdo",
+    TRUE ~ NA_character_
+  ))
+
+# order from  "En desacuerdo", "Ni de acuerdo ni en desacuerdo", "De acuerdo"
+elsoc_long$desempleo_migrantes <- factor(elsoc_long$desempleo_migrantes, levels = c("De acuerdo", "Ni de acuerdo ni en desacuerdo", "En desacuerdo")) 
+
+frq(elsoc_long$desempleo_migrantes) # ok
+```
+
+```{r}
+# generar indice promedio de seguridad subjetiva con t06_01 y t10
+elsoc_long <- elsoc_long %>% 
+  mutate(seg_sub = rowMeans(select(., t06_01, t10), na.rm = TRUE))  
+
+frq(elsoc_long$seg_sub) # ok
+```
+
+```{r}
+check2 <- elsoc_long %>%
+  select(ola, seg_sub, desempleo_migrantes, segmento, estrato, ponderador_long_total)
+
+# cheq
+frq(check2$desempleo_migrantes) # ok
+```
+
+
+
+## Gráficos
+
+```{r}
+#| label: fig-seg-des
+#| fig-cap-location: bottom
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+
+check2 <- check2 %>% 
+  as_survey_design(ids = segmento, 
+                   strata = estrato, 
+                   weights = ponderador_long_total,
+                   nest = T)
+
+check2 %>% 
+  select(ola, seg_sub, desempleo_migrantes) %>%
+  # FILTRAR PRIMERO: quitar la categoría intermedia ANTES de cualquier cálculo
+  filter(desempleo_migrantes != "Ni de acuerdo ni en desacuerdo") %>%  # ajusta el nombre exacto
+  mutate(seg_sub = case_when(
+    seg_sub <= 3 ~ "Baja",
+    seg_sub > 3   ~ "Alta"
+  ),
+  desempleo_migrantes = forcats::fct_relabel(
+    desempleo_migrantes, ~ str_wrap(.x, 20))) %>% 
+  tidyr::drop_na() %>% 
+  filter(ola == last(ola)) %>% 
+  group_by(desempleo_migrantes, seg_sub) %>%
+  survey_count(vartype = NULL) %>% 
+  group_by(seg_sub) %>% 
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada nivel de seguridad
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>% 
+  ggplot(aes(x = desempleo_migrantes, y = prop, fill = seg_sub)) +
+  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+  geom_text(
+    aes(label = label, color = seg_sub),
+    position = position_dodge(width = 0.6),
+    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    name = "Percepción seguridad",
+    values = c("Alta" = "#2b2f3c", "Baja" = "#F9913D")
+  ) +
+  scale_color_manual(
+    values = c("Alta" = "#2b2f3c", "Baja" = "#F9913D")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 10),
+    expand = expansion(mult = c(0.02, 0.08))
+  )  + 
+    labs(
+      x = "Desempleo a causa de migrantes",
+      y = NULL,
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
+    ) +
+  theme_ggdist() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "right",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
+``` 
+
+## Seguridad Subjetiva y Restricción Migrantes (Longitudinal)
+
+```{r}
+# Recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs
+
+elsoc_long <- elsoc_long %>%
+  mutate(restriccion_migrantes = case_when(
+    c37_05 %in% c(1, 2) ~ "En desacuerdo",
+    c37_05 == 3 ~ "Ni de acuerdo ni en desacuerdo",
+    c37_05 %in% c(4, 5) ~ "De acuerdo",
+    TRUE ~ NA_character_
+  ))
+
+# order from  "En desacuerdo", "Ni de acuerdo ni en desacuerdo", "De acuerdo"
+elsoc_long$restriccion_migrantes <- factor(elsoc_long$restriccion_migrantes, levels = c("De acuerdo", "Ni de acuerdo ni en desacuerdo", "En desacuerdo")) 
+
+frq(elsoc_long$restriccion_migrantes) # ok
+```
+
+```{r}
+# generar indice promedio de seguridad subjetiva con t06_01 y t10
+elsoc_long <- elsoc_long %>% 
+  mutate(seg_sub = rowMeans(select(., t06_01, t10), na.rm = TRUE))
+
+frq(elsoc_long$seg_sub) # ok
+```
+
+```{r}
+check3 <- elsoc_long %>%
+  select(ola, seg_sub, restriccion_migrantes, segmento, estrato, ponderador_long_total)
+
+# cheq
+frq(check3$restriccion_migrantes) # ok
+```
+
+```{r}
+#recodificar seguridad subjetiva en baja y alta
+check3 <- check3 %>%
+  mutate(seg_sub2 = case_when(
+    seg_sub >= 1 & seg_sub <= 3 ~ "Baja",
+    seg_sub > 3 & seg_sub <= 5 ~ "Alta",
+    TRUE ~ NA_character_
+  ))  
+check3$seg_sub2 <- factor(check3$seg_sub2, levels = c("Alta", "Baja"))
+frq(check3$seg_sub2)
+```
+
+## Gráfico
+
+```{r}
+check3 <- check3 %>% 
+  as_survey_design(ids = segmento, 
+                   strata = estrato, 
+                   weights = ponderador_long_total,
+                   nest = T)
+check3 %>%
+  select(ola, seg_sub, restriccion_migrantes) %>%
+  mutate(
+    seg_sub = case_when(
+      seg_sub <= 3 ~ "Baja seguridad",
+      seg_sub >= 3 ~ "Alta seguridad"
+    ),
+    seg_sub = factor(
+      seg_sub,
+      levels = c("Baja seguridad", "Alta seguridad")
+    )
+  ) %>%
+  tidyr::drop_na() %>%
+  filter(restriccion_migrantes == "Muy en desacuerdo") %>%
+  group_by(ola, seg_sub) %>%
+  survey_count(vartype = NULL) %>%
+  ungroup() %>%
+  group_by(ola) %>%
+  mutate(
+    prop  = 100 * n / sum(n),                 
+    label = scales::percent(prop/100, accuracy = 0.1),
+    grupo = "Muy en desacuerdo restricción acceso migrantes"   # 👈 variable para la leyenda
+  ) %>%
+  ggplot(aes(x = ola, y = prop, group = seg_sub)) +
+  geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
+  geom_line(aes(color = grupo), linewidth = 1) +
+  facet_wrap(~seg_sub) +
+  geom_text(
+    aes(label = label),
+    color = "#522A6F",   # aquí sí puede quedar fijo, no es necesario en la leyenda
+    vjust = -1, size = 4, show.legend = FALSE
+  ) +
+  scale_color_manual(
+    name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
+    values = c("Muy en desacuerdo restricción acceso migrantes" = "#522A6F")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 25),
+    expand = expansion(mult = c(0.02, 0.08))
+  ) +
+  labs(
+    title = "Seguridad percibida y restricción de acceso a migrantes",
+    subtitle = "Porcentaje que responde...",
+    x = NULL,
+    y = NULL,
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0),
+    plot.subtitle = element_text(size = 16, hjust = 0),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal",
+    strip.text = element_text(size = 18, face = "bold", hjust = 0.5)
+  )
+```
+

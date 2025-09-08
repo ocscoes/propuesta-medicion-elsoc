@@ -104,16 +104,16 @@ elsoc_6_graph <- elsoc_6 %>%
 elsoc_6_graph <- elsoc_6_graph %>%  
  mutate(    
    # Índice promediado    
-   seguridad_sub = rowMeans(      
+   seg_sub = rowMeans(      
      select(., seguridad_sat, seguridad_perc),      
      na.rm = TRUE    
    ),         
   
    # Recodificación en 3 categorías   
-   seguridad_sub = case_when(      
-     seguridad_sub >= 1 & seguridad_sub <= 2.5 ~ 1,
-     seguridad_sub >= 3 & seguridad_sub <= 3.5 ~ 2,
-     seguridad_sub >= 4 & seguridad_sub <= 5 ~ 3
+   seg_sub = case_when(      
+     seg_sub >= 1 & seg_sub <= 2.5 ~ 1,
+     seg_sub >= 3 & seg_sub <= 3.5 ~ 2,
+     seg_sub >= 4 & seg_sub <= 5 ~ 3
    )  
  )
 
@@ -126,12 +126,12 @@ elsoc_6_graph <- elsoc_6_graph %>%
 #| echo: false
 
 elsoc_6_graph_2 <- elsoc_6 %>%
-  mutate(seguridad_sub = rowMeans(select(., seguridad_sat, seguridad_perc), na.rm = TRUE))
+  mutate(seg_sub = rowMeans(select(., seguridad_sat, seguridad_perc), na.rm = TRUE))
 
 elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
-  mutate(seguridad_sub = case_when(
-    seguridad_sub <= 2.5 ~ 1,
-    seguridad_sub >= 3   ~ 0
+  mutate(seg_sub = case_when(
+    seg_sub <= 2.5 ~ 1,
+    seg_sub >= 3   ~ 0
   ))
 
 elsoc_6_graph_2 <- elsoc_6_graph_2 %>%
@@ -203,14 +203,14 @@ make_plot <- function(design, predictor, outcome, ylab, legend_title) {
   out_sym  <- ensym(outcome)
   
   design %>% 
-    select(wave, !!pred_sym, !!out_sym) %>% 
+    select(ola, !!pred_sym, !!out_sym) %>% 
     tidyr::drop_na() %>% 
-    group_by(wave, !!pred_sym) %>%
+    group_by(ola, !!pred_sym) %>%
     summarise(
       value = survey_mean(!!out_sym, vartype = "ci", na.rm = TRUE),
       .groups = "drop"
     ) %>% 
-    ggplot(aes(x = wave, y = value, group = !!pred_sym)) +
+    ggplot(aes(x = ola, y = value, group = !!pred_sym)) +
     geom_point(aes(color = !!pred_sym), size = 4.5) +
     geom_line(aes(color = !!pred_sym), linewidth = 1) +
     # geom_errorbar(aes(ymin = value_low, ymax = value_upp, color = !!pred_sym), width = 0.1) +
@@ -259,7 +259,7 @@ theme(
 # combinations
 
 outcomes <- c(
-  seguridad_sub           = "Seguridad percibida",
+  seg_sub           = "Seguridad percibida",
   seguridad_obj           = "Seguridad objetiva",
   confianza_inter         = "Confianza interpersonal",
   comportamiento_prosocial= "Comportamiento prosocial",
@@ -306,7 +306,7 @@ plots_tbl <- comb %>%
 
 
 # Primero selecciona tus variables
-datos_seguridad <- dplyr::select(elsoc_6_graph, seguridad_sub, seguridad_obj)
+datos_seguridad <- dplyr::select(elsoc_6_graph, seg_sub, seguridad_obj)
 
 
 # Crea el gráfico
@@ -369,27 +369,29 @@ La @fig-seg muestra la distribución de la seguridad objetiva y subjetiva en tre
 #| fig.height: 8
 #| out-width: "100%"
 #| fig-align: "center"
-db_pond %>% 
-  select(wave, seguridad_sub, desempleo_migrantes) %>%
-  mutate(seguridad_sub = case_when(
-    seguridad_sub <= 2.5 ~ "Baja",
-    seguridad_sub >= 3   ~ "Alta"
+
+check2 %>% 
+  select(ola, seg_sub, desempleo_migrantes) %>%
+   filter(!is.na(desempleo_migrantes)) %>%
+  mutate(seg_sub = case_when(
+    seg_sub <= 3 ~ "Baja",
+    seg_sub > 3   ~ "Alta"
   ),
   desempleo_migrantes = forcats::fct_relabel(
     desempleo_migrantes, ~ str_wrap(.x, 20))) %>% 
   tidyr::drop_na() %>% 
-  filter(wave == last(wave)) %>% 
-  group_by(desempleo_migrantes, seguridad_sub) %>%
-  survey_count(vartype = NULL) %>% 
-  group_by(seguridad_sub) %>% 
+  filter(ola == last(ola)) %>% 
+  group_by(desempleo_migrantes, seg_sub) %>%
+  count() %>% 
+  group_by(seg_sub) %>% 
   mutate(
-    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada ola
     label = scales::percent(prop/100, accuracy = 0.1)
   ) %>% 
-  ggplot(aes(x = desempleo_migrantes, y = prop, fill = seguridad_sub)) +
+  ggplot(aes(x = desempleo_migrantes, y = prop, fill = seg_sub)) +
   geom_col(position = position_dodge(width = 0.6), width = 0.6) +
   geom_text(
-    aes(label = label, color = seguridad_sub),   # color igual a la serie
+    aes(label = label, color = seg_sub),   # color igual a la serie
     position = position_dodge(width = 0.6),
     vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
   ) +
@@ -458,26 +460,26 @@ Se puede apreciar que la cantidad de personas que percibe una seguridad baja aum
 #| fig-align: "center"
 
 db_pond %>% 
-  select(wave, seguridad_sub, restriccion_migrantes) %>%
-  mutate(seguridad_sub = case_when(
-    seguridad_sub <= 2.5 ~ "Baja",
-    seguridad_sub >= 3   ~ "Alta"
+  select(ola, seg_sub, restriccion_migrantes) %>%
+  mutate(seg_sub = case_when(
+    seg_sub <= 2.5 ~ "Baja",
+    seg_sub >= 3   ~ "Alta"
   ),
   restriccion_migrantes = forcats::fct_relabel(
     restriccion_migrantes, ~ str_wrap(.x, 20))) %>% 
   tidyr::drop_na() %>% 
-  filter(wave == last(wave)) %>% 
-  group_by(restriccion_migrantes, seguridad_sub) %>%
+  filter(ola == last(ola)) %>% 
+  group_by(restriccion_migrantes, seg_sub) %>%
   survey_count(vartype = NULL) %>% 
-  group_by(seguridad_sub) %>% 
+  group_by(seg_sub) %>% 
   mutate(
-    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada wave
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada ola
     label = scales::percent(prop/100, accuracy = 0.1)
   ) %>% 
-  ggplot(aes(x = restriccion_migrantes, y = prop, fill = seguridad_sub)) +
+  ggplot(aes(x = restriccion_migrantes, y = prop, fill = seg_sub)) +
   geom_col(position = position_dodge(width = 0.6), width = 0.6) +
   geom_text(
-    aes(label = label, color = seguridad_sub),   # color igual a la serie
+    aes(label = label, color = seg_sub),   # color igual a la serie
     position = position_dodge(width = 0.6),
     vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
   ) +
@@ -635,7 +637,7 @@ La @fig-seg-iden-1 se grafica la relación entre la percepción de pérdida de i
 ```{r}
 #| echo: false
 seguridad_genero <- elsoc_6_graph_2 %>%
-  select(sexo, seguridad_obj, seguridad_sub, contacto_migrantes, simpatia_migrantes,
+  select(sexo, seguridad_obj, seg_sub, contacto_migrantes, simpatia_migrantes,
          perdida_identidad, desempleo_migrantes, igualdad_migrantes)
 ```
 
@@ -895,7 +897,7 @@ Posteriormente, se observa una caída generalizada en los niveles de seguridad o
 #| fig-cap-location: bottom
 
 sel <- plots_tbl %>%
-  filter(out  %in% c("seguridad_sub","seguridad_obj")) 
+  filter(out  %in% c("seg_sub","seguridad_obj")) 
 
 walk(sel[c(7), ]$plot, print)
 ```
@@ -969,7 +971,7 @@ Por su parte, la @fig-simpa-seg, que muestra la evolución de la relación entre
 #| fig-align: "center"
 
 sel <- plots_tbl %>%
-  filter(out  %in% c("seguridad_sub","seguridad_obj")) 
+  filter(out  %in% c("seg_sub","seguridad_obj")) 
 
 sel$plot[[12]]
 ```
