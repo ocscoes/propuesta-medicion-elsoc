@@ -9,6 +9,7 @@ book:
     - index.qmd
     - migracion-rev.qmd
     - vinculos-territoriales-rev.qmd
+    - redes-rev.qmd
 
 format:
   html:

@@ -372,7 +372,7 @@ check2 %>%
     labs(
       x = "Desempleo a causa de migrantes",
       y = NULL,
-      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el cálculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
     ) +
   theme_ggdist() +
   theme(

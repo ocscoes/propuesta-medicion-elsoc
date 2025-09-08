@@ -278,7 +278,7 @@ a <- elsoc_7_pond %>%
     labs(
       x = "Pérdida de identidad debido a migrantes",
       y = NULL,
-      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el cálculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
     ) +
   theme_ggdist() +
   theme(
@@ -351,7 +351,7 @@ b <- elsoc_7_pond %>%
     labs(
       x = "Pérdida de identidad debido a migrantes",
       y = NULL,
-      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el cálculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
     ) +
   theme_ggdist() +
   theme(

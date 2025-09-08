@@ -1,16 +1,5 @@
----
-title: "Code-review-Redes"
-author: "René Canales"
-date: "`r Sys.Date()`"
-format:
-  html:
-    toc: true
-    toc-depth: 3
-    number-sections: true
-    theme: readable
----
 
-# Dimensión: Redes sociales y Variables de migración
+# Dimensión: Redes sociales 
 
 El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y redes sociales para la producción de figuras con la información que se muestra en el siguiente gráfico, que está en la presentación de la CEP 2025:
 
@@ -244,17 +233,18 @@ frq(check3$desempleo_migrantes1) # ok
 
 elsoc_long <- elsoc_long %>%
   mutate(desempleo_migrantes = case_when(
-    r12_04 %in% c(1, 2) ~ "En desacuerdo",
+    r12_04 %in% c(1, 2) ~ "Totalmente en desacuerdo + en desacuerdo",
     r12_04 == 3 ~ "Ni de acuerdo ni en desacuerdo",
-    r12_04 %in% c(4, 5) ~ "De acuerdo",
+    r12_04 %in% c(4, 5) ~ "Totalmente de acuerdo + de acuerdo",
     TRUE ~ NA_character_
   ))
 
 # order from  "En desacuerdo", "Ni de acuerdo ni en desacuerdo", "De acuerdo"
-elsoc_long$desempleo_migrantes <- factor(elsoc_long$desempleo_migrantes, levels = c("De acuerdo", "Ni de acuerdo ni en desacuerdo", "En desacuerdo")) 
+elsoc_long$desempleo_migrantes <- factor(elsoc_long$desempleo_migrantes, levels = c("Totalmente en desacuerdo + en desacuerdo", "Ni de acuerdo ni en desacuerdo", "Totalmente de acuerdo + de acuerdo")) 
 
 frq(elsoc_long$desempleo_migrantes) # ok
 ```
+
 ```{r}
 # generar indice promedio de apoyo económico con c07_06 y c07_08
 elsoc_long <- elsoc_long %>% 
@@ -262,6 +252,7 @@ elsoc_long <- elsoc_long %>%
 
 frq(elsoc_long$ayu_eco) # ok
 ```
+
 ```{r}
 check4 <- elsoc_long %>%
   select(ola, ayu_eco, desempleo_migrantes, estrato, segmento, ponderador_long_total)
@@ -269,6 +260,8 @@ check4 <- elsoc_long %>%
 # cheq
 frq(check4$desempleo_migrantes) # ok
 ```
+
+
 Recodificar Ayuda Económica en baja y alta 
 ```{r}
 check4 <- check4 %>%
@@ -280,6 +273,7 @@ check4 <- check4 %>%
 check4$ayu_eco2 <- factor(check4$ayu_eco2, levels = c("Alta", "Baja"))
 frq(check4$ayu_eco2)
 ```
+
 ```{r}
 tabla_cruzada_desempleo <- check4 %>%
   filter(ola == 7 & !is.na(ayu_eco2) & !is.na(desempleo_migrantes)) %>%
@@ -351,7 +345,7 @@ check4 %>%
     vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
   ) +
   scale_fill_manual(
-    name = "Ayuda Económica",
+    name = "Ayuda económica",
     values = c("Alta" = "#2b2f3c", "Baja" = "#F9913D")
   ) +
   scale_color_manual(
@@ -366,7 +360,7 @@ check4 %>%
     labs(
       x = "Desempleo a causa de migrantes",
       y = NULL,
-      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el cálculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
     ) +
   theme_ggdist() +
   theme(
