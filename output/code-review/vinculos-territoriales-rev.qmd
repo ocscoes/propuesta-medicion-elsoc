@@ -1,0 +1,29 @@
+# Construcción de gráficos
+
+## Pasos previos
+
+```{r}
+#| label: packages
+#| echo: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled,
+               psych,
+               rstatix,
+               lme4,
+               performance,
+               sjPlot,
+               srvyr,
+               ggdist,
+               purrr,
+               rlang)
+
+options(scipen=999)
+rm(list = ls())
+```
+
+## Univariados
