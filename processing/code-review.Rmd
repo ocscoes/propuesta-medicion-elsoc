@@ -1,0 +1,333 @@
+---
+title: "Code-review"
+author: "Juan Castillo"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: readable
+---
+
+
+# Seguridad subjetiva y restricción de acceso a migrantes
+
+El objetivo de este script es reproducir la información que se muestra en el siguiente gráfico, que está en la presentación de la CEP 2025:
+
+[https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/5/1](https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/5/1)
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Set workspace
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, 
+                      include = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled
+)
+
+
+options(scipen=999)
+rm(list = ls())
+
+```
+
+
+## Data
+
+Call original dataset
+```{r}
+load(here('input/data/raw_data/elsoc.RData'))
+elsoc_long <- elsoc_long_2016_2023 # acortar
+
+```
+
+
+# Variables & recodes
+
+## Seguridad 
+
+De acuerdo a los anexos del reporte asociado a este análisis [(ver aquí)](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html) la dimensión de seguridad subjetiva se asocia a los siguientes ítems:
+
+- Satisfacción con la seguridad en el barrio
+- Percepción de inseguridad en el barrio
+
+```{r}
+#| results= FALSE
+
+find_var(data = elsoc_long,"barrio") # corresponde a t06_01
+frq(elsoc_long$t06_01)
+find_var(data = elsoc_long,"seguridad") # corresponde a t10
+frq(elsoc_long$t10)
+```
+
+## Migración - restricción de acceso a migrantes
+
+```{r}
+#| results= FALSE
+find_var(data = elsoc_long,"restri") # corresponde a c37_05
+frq(elsoc_long$c37_05)
+```
+
+## Select, missings & recodes
+
+```{r}
+check1 <- elsoc_long %>%
+  select(t06_01, t10, c37_05, ola)
+
+# Recodificar -999, -888, -777, -666 a NA sin perder etiquetas de variables
+
+missing_codes <- c(-999, -888, -777, -666)
+check1 <- check1 %>%
+  mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
+
+# cheq
+frq(check1$c37_05) # ok
+```
+
+## Generar índice de seguridad subjetiva
+
+```{r}
+check1$seg_sub <- rowMeans(check1[,c("t06_01","t10")], na.rm = TRUE) 
+
+slice(check1,1:10) %>% select(t06_01,t10,seg_sub, ola) # check ok
+
+frq(check1$seg_sub) # ok
+```
+
+## Variación por ola 
+
+```{r}
+frq(check1$ola) # ok
+
+# Tabla con el promedio de seguridad subjetiva por ola
+seguridad_por_ola <- check1 %>%
+  group_by(ola) %>%
+  summarise(promedio_seguridad_subjetiva = mean(seg_sub, na.rm = TRUE)) 
+
+if (!exists("table_format")) table_format <- "simple"
+
+knitr::kable(seguridad_por_ola, format = table_format, caption = "Promedio de seguridad subjetiva por ola")
+
+
+# Tabla con el promedio de seguridad subjetiva por ola y por categorías de c37_05 (restricción migrantes)
+
+seguridad_por_ola_migracion <- check1 %>%
+  group_by(ola, c37_05) %>%
+  summarise(promedio_seguridad_subjetiva = mean(seg_sub, na.rm = TRUE), n = n()) %>%
+  ungroup()
+
+knitr::kable(seguridad_por_ola_migracion, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (c37_05)")
+
+
+# Tabla ordenada por c37_05
+seguridad_por_ola_migracion_ordered <- seguridad_por_ola_migracion %>%
+  arrange(c37_05, ola)
+
+knitr::kable(seguridad_por_ola_migracion_ordered, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (c37_05) - Ordenado por c37_05")
+```
+## Info gráfico 
+```{r}
+# recodificar indice seguridad subjetiva en bajo (1-2.5), medio (2.6-3.5) y alto (3.6-5)
+check1 <- check1 %>%
+  mutate(seg_sub3 = case_when(
+    seg_sub >= 1 & seg_sub <= 2.5 ~ "Bajo",
+    seg_sub > 2.5 & seg_sub <= 3.5 ~ "Medio",
+    seg_sub > 3.5 & seg_sub <= 5 ~ "Alto",
+    TRUE ~ NA_character_
+  ))  
+
+frq(check1$seg_sub3) # ok
+
+#reordenar alto, medio, bajo
+check1$seg_sub3 <- factor(check1$seg_sub3, levels = c("Alto", "Medio", "Bajo"))
+frq(check1$seg_sub3) # ok
+
+# recodificar c37_05 (restriccion migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs
+check1 <- check1 %>%
+  mutate(restriccion_migrantes5 = case_when(
+    c37_05 == 5 ~ "Muy de acuerdo",
+    c37_05 %in% c(1, 2, 3, 4) ~ "Otro",
+    TRUE ~ NA_character_
+  ))
+frq(check1$restriccion_migrantes5) # ok
+
+# recodificar c37_05 (restriccion migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs
+check1 <- check1 %>%
+  mutate(restriccion_migrantes1 = case_when(
+    c37_05 == 1 ~ "Muy en desacuerdo",
+    c37_05 %in% c(2, 3, 4,5) ~ "Otro",
+    TRUE ~ NA_character_
+  ))
+frq(check1$restriccion_migrantes1) # ok
+
+#recodificar seguridad subjetiva en baja y alta
+check1 <- check1 %>%
+  mutate(seg_sub2 = case_when(
+    seg_sub >= 1 & seg_sub <= 3 ~ "Baja",
+    seg_sub > 3 & seg_sub <= 5 ~ "Alta",
+    TRUE ~ NA_character_
+  ))  
+check1$seg_sub2 <- factor(check1$seg_sub2, levels = c("Alta", "Baja"))
+frq(check1$seg_sub2)
+```
+
+Tabla cruzada con muy de acuerdo (restriccion_migrantes5) y seguridad subjetiva (seg_sub3)
+
+```{r}
+tabla_cruzada <- check1 %>%
+  filter(!is.na(seg_sub3) & !is.na(restriccion_migrantes5) & restriccion_migrantes5 == "Muy de acuerdo") %>%
+  group_by(ola, seg_sub3) %>%
+  summarise(n = n()) %>%  
+  group_by(ola) %>%
+  mutate(total_ola = sum(n),
+         porcentaje = (n / total_ola) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy de acuerdo) por ola - porcentaje dentro de ola")
+```
+
+Tabla cruzada con muy en desacuerdo (restriccion_migrantes1) y seguridad subjetiva (seg_sub3)
+
+```{r}
+# Tabla cruzada entre seguridad subjetiva y restricción migrantes5, excluyendo la categoría "Otro", y el porcentaje de cada categoría de seguridad subjetiva dentro de cada ola
+tabla_cruzada <- check1 %>%
+  filter(!is.na(seg_sub3) & !is.na(restriccion_migrantes1) & restriccion_migrantes1 == "Muy en desacuerdo") %>%
+  group_by(ola, seg_sub3) %>%
+  summarise(n = n()) %>%  
+  group_by(ola) %>%
+  mutate(total_ola = sum(n),
+         porcentaje = (n / total_ola) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy en desacuerdo) por ola - porcentaje dentro de ola")
+
+```
+
+Aparte de que los datos no coinciden con gráfico original, el problema adicional es el N de la categoría en desacuerdo: son muy pocos casos, y por ende, los resultados no son robustos. Eso hay que revisarlo antes de hacer un gráfico. 
+
+```{r}
+frq(check1$restriccion_migrantes1) # ok
+```
+
+
+# Seguridad subjetiva y desempleo por migrantes
+
+Se intentará reproducir la información que muestra la asociación entre la variable seguridad subjetiva y desempleo debido a migrantes, que está en el reporte respectivo: |](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-migracion/docs/anexos.html)
+
+
+```{r}
+load(here('input/data/raw_data/elsoc.RData'))
+elsoc_long <- elsoc_long_2016_2023 # acortar
+
+find_var(data = elsoc_long,"llegada") # corresponde a r12_04
+frq(elsoc_long$r12_04) # ok
+check2 <- elsoc_long %>%
+  select(t06_01, t10, r12_04, ola)
+
+#recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs
+
+elsoc_long <- elsoc_long %>%
+  mutate(desempleo_migrantes = case_when(
+    r12_04 %in% c(1, 2) ~ "En desacuerdo",
+    r12_04 == 3 ~ "Ni de acuerdo ni en desacuerdo",
+    r12_04 %in% c(4, 5) ~ "De acuerdo",
+    TRUE ~ NA_character_
+  ))
+
+# order from  "En desacuerdo", "Ni de acuerdo ni en desacuerdo", "De acuerdo"
+elsoc_long$desempleo_migrantes <- factor(elsoc_long$desempleo_migrantes, levels = c("De acuerdo", "Ni de acuerdo ni en desacuerdo", "En desacuerdo")) 
+
+frq(elsoc_long$desempleo_migrantes) # ok
+
+# generar indice promedio de seguridad subjetiva con t06_01 y t10
+elsoc_long <- elsoc_long %>% 
+  mutate(seg_sub = rowMeans(select(., t06_01, t10), na.rm = TRUE))  
+
+frq(elsoc_long$seg_sub) # ok
+
+check2 <- elsoc_long %>%
+  select(ola, seg_sub, desempleo_migrantes)
+
+# Recodificar -999, -888, -777, -666 a NA sin perder etiquetas de variables
+
+missing_codes <- c(-999, -888, -777, -666)
+check2 <- check2 %>%
+  mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
+
+# cheq
+frq(check2$desempleo_migrantes) # ok
+```
+
+Recodificar seguridad subjetiva en baja y alta
+```{r}
+#recodificar seguridad subjetiva en baja y alta
+check2 <- check2 %>%
+  mutate(seg_sub2 = case_when(
+    seg_sub >= 1 & seg_sub <= 3 ~ "Baja",
+    seg_sub > 3 & seg_sub <= 5 ~ "Alta",
+    TRUE ~ NA_character_
+  ))  
+check2$seg_sub2 <- factor(check2$seg_sub2, levels = c("Alta", "Baja"))
+frq(check2$seg_sub2)
+```
+
+Tabla cruzada ola 2023 (7)
+```{r}
+tabla_cruzada_desempleo <- check2 %>%
+  filter(ola == 7 & !is.na(seg_sub2) & !is.na(desempleo_migrantes)) %>%
+  group_by(seg_sub2, desempleo_migrantes) %>%
+  summarise(n = n()) %>%
+  mutate(total = sum(n),
+         porcentaje = (n / total) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada_desempleo, format = table_format, caption = "Tabla cruzada de seguridad subjetiva y desempleo por migrantes - ola 2023") 
+```
+
+```{r}
+# ahora hacer tabla pero tomando como 100% cada nivel de respuestas a desempleo migrantes, con variable seg_sub2
+
+tabla_cruzada_desempleo <- check2 %>%
+  filter(ola == 7 & !is.na(seg_sub2) & !is.na(desempleo_migrantes)) %>%
+  group_by(seg_sub2, desempleo_migrantes) %>%
+  summarise(n = n()) %>%
+  group_by(desempleo_migrantes) %>%
+  mutate(total = sum(n),
+         porcentaje = (n / total) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada_desempleo, format = table_format, caption = "Tabla cruzada de seguridad subjetiva y desempleo por migrantes - ola 2023 - porcentaje sobre total de cada nivel de desempleo por migrantes") 
+
+```
+
+
+
+
