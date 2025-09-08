@@ -55,17 +55,34 @@ options(scipen=999)
 rm(list = ls())
 ```
 
+
 ```{r}
 #| label: data
 #| echo: false 
 
-elsoc_1 <- readRDS("../../input/data/proc_data/elsoc_2016_coh_mig.RData")
-elsoc_2 <- readRDS("../../input/data/proc_data/elsoc_2017_coh_mig.RData")
-elsoc_3 <- readRDS("../../input/data/proc_data/elsoc_2018_coh_mig.RData")
-elsoc_4 <- readRDS("../../input/data/proc_data/elsoc_2019_coh_mig.RData")
-elsoc_5 <- readRDS("../../input/data/proc_data/elsoc_2021_mig.RData")
-elsoc_6 <- readRDS("../../input/data/proc_data/elsoc_2022_mig.RData")
+elsoc_1 <- readRDS(
+  here("input", "data", "proc_data", "elsoc_2016_coh_mig.RData")
+)
 
+elsoc_2 <- readRDS(
+  here("input", "data", "proc_data", "elsoc_2017_coh_mig.RData")
+)
+
+elsoc_3 <- readRDS(
+  here("input", "data", "proc_data", "elsoc_2018_coh_mig.RData")
+)
+
+elsoc_4 <- readRDS(
+  here("input", "data", "proc_data", "elsoc_2019_coh_mig.RData")
+)
+
+elsoc_5 <- readRDS(
+  here("input", "data", "proc_data", "elsoc_2021_mig.RData")
+)
+
+elsoc_6 <- readRDS(
+  here("input", "data", "proc_data", "elsoc_2022_mig.RData")
+)
 # Agregar la variable ola a cada base
 elsoc_1 <- elsoc_1 %>% mutate(ola = 1)
 elsoc_2 <- elsoc_2 %>% mutate(ola = 2)
@@ -83,8 +100,10 @@ elsoc_long <- bind_rows(elsoc_1, elsoc_2, elsoc_3, elsoc_4, elsoc_5, elsoc_6)
 #| label: data-biv
 #| echo: false
 
-db_long <- load("../../input/data/proc_data/db_long.RData")
+db_long <- here("input/data/proc_data/db_long.RData")
+load(db_long)
 ```
+
 
 ```{r}
 #| label: db_pond
