@@ -1,0 +1,401 @@
+---
+title: "Code-review-Redes"
+author: "René Canales"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: readable
+---
+
+# Dimensión: Redes sociales y Variables de migración
+
+El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y redes sociales para la producción de figuras con la información que se muestra en el siguiente gráfico, que está en la presentación de la CEP 2025:
+
+[https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/7/3](https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/7/3)
+
+## Cargar Librerías y espacio de trabajo
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Set workspace
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, 
+                      include = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               here,
+               sjlabelled,
+               srvyr,
+               ggdist
+)
+
+
+options(scipen=999)
+rm(list = ls())
+
+```
+
+## Data
+
+Call original dataset
+```{r}
+load(here('input/data/raw_data/elsoc.RData'))
+elsoc_long <- elsoc_long_2016_2023 # acortar
+
+missing_codes <- c(-999, -888, -777, -666)
+elsoc_long <- elsoc_long %>%
+  mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
+```
+
+# Variables & Recodes
+
+## Univariados: Variables
+
+
+El índice de _Ayuda Económica_ se compone de:
+
+- Frecuencia: prestar $10.000 o más
+
+- Frecuencia: ayudar a encontrar trabajo a alguien
+
+Donde:
+
+```{r}
+#| results: false
+
+find_var(data = elsoc_long,"presto") # corresponde a c07_06
+frq(elsoc_long$c07_06)
+find_var(data = elsoc_long,"trabajo") # corresponde a c07_08
+frq(elsoc_long$c07_08)
+```
+
+Por su parte, las variables de migración que preguntan por la percepción en torno a la relación entre perdida de identidad nacional y migración, y por la restricción a migrantes:
+
+```{r}
+#| results: false
+
+find_var(data = elsoc_long,"desem") # corresponde a r12_04
+frq(elsoc_long$r12_04)
+```
+## Selección, missings y recodificación
+
+```{r}
+check3 <- elsoc_long %>%
+  select(c07_06, c07_08, ola, r12_04)
+
+# cheq
+frq(check3$r12_04) # ok
+```
+
+```{r}
+check3$ayu_eco <- rowMeans(check3[,c("c07_06","c07_08")], na.rm = TRUE) 
+
+slice(check3,1:10) %>% select(c07_06, c07_08, ayu_eco, ola) # check ok
+```
+
+```{r}
+frq(check3$ayu_eco) # ok
+```
+## Variación por ola 
+
+```{r}
+frq(check3$ola) # ok
+```
+```{r}
+# Tabla con el promedio de seguridad subjetiva por ola
+ayuda_por_ola <- check3 %>%
+  group_by(ola) %>%
+  summarise(promedio_ayuda_economica = mean(ayu_eco, na.rm = TRUE)) 
+
+if (!exists("table_format")) table_format <- "simple"
+
+knitr::kable(ayuda_por_ola, format = table_format, caption = "Promedio de Ayuda Económica por ola")
+```
+
+```{r}
+# Tabla con el promedio de Ayuda Económica por ola y por categorías de r12_04 (desempleo migrantes)
+
+ayuda_por_ola_desempleo <- check3 %>%
+  group_by(ola, r12_04) %>%
+  summarise(promedio_ayuda_economica = mean(ayu_eco, na.rm = TRUE), n = n()) %>%
+  ungroup()
+
+knitr::kable(ayuda_por_ola_desempleo, format = table_format, caption = "Promedio de Ayuda Económica por ola y categoría de migración (r12_04)")
+```
+
+```{r}
+# Tabla ordenada por r12_04
+ayuda_por_ola_desempleo_ordered <- ayuda_por_ola_desempleo %>%
+  arrange(r12_04, ola)
+
+knitr::kable(ayuda_por_ola_desempleo_ordered, format = table_format, caption = "Promedio de ayuda económica por ola y categoría de migración (r12_04) - Ordenado por r12_04")
+```
+
+```{r}
+"Recodificar índice de ayuda económica en bajo y alto"
+check3 <- check3 %>%
+  mutate(ayu_eco3 = case_when(
+    ayu_eco >= 1 & ayu_eco <= 2 ~ "Bajo",
+    ayu_eco > 2 & ayu_eco <= 3 ~ "Alto",
+    TRUE ~ NA_character_
+  ))  
+
+frq(check3$ayu_eco3) # ok
+```
+
+```{r}
+#reordenar alto, medio, bajo
+check3$ayu_eco3 <- factor(check3$ayu_eco3, levels = c("Alto", "Bajo"))
+frq(check3$ayu_eco3) # ok
+```
+
+```{r}
+# recodificar r12_04 (desempleo migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs
+check3 <- check3 %>%
+  mutate(desempleo_migrantes5 = case_when(
+    r12_04 == 5 ~ "Muy de acuerdo",
+    r12_04 %in% c(1, 2, 3, 4) ~ "Otro",
+    TRUE ~ NA_character_
+  ))
+frq(check3$desempleo_migrantes5) # ok
+```
+```{r}
+# recodificar c37_05 (restriccion migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs
+check3 <- check3 %>%
+  mutate(desempleo_migrantes1 = case_when(
+    r12_04 == 1 ~ "Muy en desacuerdo",
+    r12_04 %in% c(2, 3, 4,5) ~ "Otro",
+    TRUE ~ NA_character_
+  ))
+frq(check3$desempleo_migrantes1) # ok
+```
+```{r}
+#recodificar ayuda económica en baja y alta
+check3 <- check3 %>%
+  mutate(ayu_eco2 = case_when(
+    ayu_eco >= 1 & ayu_eco <= 2 ~ "Baja",
+    ayu_eco > 2 & ayu_eco <= 3 ~ "Alta",
+    TRUE ~ NA_character_
+  ))  
+check3$ayu_eco2 <- factor(check3$ayu_eco2, levels = c("Alta", "Baja"))
+frq(check3$ayu_eco2)
+```
+Tabla curzada con muy de acuerdo (desempleo_migrantes5) y apoyo económico (ayu_eco3)
+
+```{r}
+tabla_cruzada <- check3 %>%
+  filter(!is.na(ayu_eco3) & !is.na(desempleo_migrantes5) & desempleo_migrantes5 == "Muy de acuerdo") %>%
+  group_by(ola, ayu_eco3) %>%
+  summarise(n = n()) %>%  
+  group_by(ola) %>%
+  mutate(total_ola = sum(n),
+         porcentaje = (n / total_ola) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de ayuda económica y desempleo migrantes (Muy de acuerdo) por ola - porcentaje dentro de ola")
+```
+
+```{r}
+tabla_cruzada2 <- check3 %>%
+  filter(!is.na(ayu_eco3) & !is.na(desempleo_migrantes1) & desempleo_migrantes1 == "Muy en desacuerdo") %>%
+  group_by(ola, ayu_eco3) %>%
+  summarise(n = n()) %>%  
+  group_by(ola) %>%
+  mutate(total_ola = sum(n),
+         porcentaje = (n / total_ola) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de ayuda económica y desempleo migrantes (Muy en desacuerdo) por ola - porcentaje dentro de ola")
+```
+
+```{r}
+frq(check3$desempleo_migrantes1) # ok
+```
+# Gráfico
+
+```{r}
+#recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs
+
+elsoc_long <- elsoc_long %>%
+  mutate(desempleo_migrantes = case_when(
+    r12_04 %in% c(1, 2) ~ "En desacuerdo",
+    r12_04 == 3 ~ "Ni de acuerdo ni en desacuerdo",
+    r12_04 %in% c(4, 5) ~ "De acuerdo",
+    TRUE ~ NA_character_
+  ))
+
+# order from  "En desacuerdo", "Ni de acuerdo ni en desacuerdo", "De acuerdo"
+elsoc_long$desempleo_migrantes <- factor(elsoc_long$desempleo_migrantes, levels = c("De acuerdo", "Ni de acuerdo ni en desacuerdo", "En desacuerdo")) 
+
+frq(elsoc_long$desempleo_migrantes) # ok
+```
+```{r}
+# generar indice promedio de apoyo económico con c07_06 y c07_08
+elsoc_long <- elsoc_long %>% 
+  mutate(ayu_eco = rowMeans(select(., c07_06, c07_08), na.rm = TRUE))  
+
+frq(elsoc_long$ayu_eco) # ok
+```
+```{r}
+check4 <- elsoc_long %>%
+  select(ola, ayu_eco, desempleo_migrantes, estrato, segmento, ponderador_long_total)
+
+# cheq
+frq(check4$desempleo_migrantes) # ok
+```
+Recodificar Ayuda Económica en baja y alta 
+```{r}
+check4 <- check4 %>%
+  mutate(ayu_eco2 = case_when(
+    ayu_eco >= 1 & ayu_eco <= 2 ~ "Baja",
+    ayu_eco > 2 & ayu_eco <= 3 ~ "Alta",
+    TRUE ~ NA_character_
+  ))  
+check4$ayu_eco2 <- factor(check4$ayu_eco2, levels = c("Alta", "Baja"))
+frq(check4$ayu_eco2)
+```
+```{r}
+tabla_cruzada_desempleo <- check4 %>%
+  filter(ola == 7 & !is.na(ayu_eco2) & !is.na(desempleo_migrantes)) %>%
+  group_by(ayu_eco2, desempleo_migrantes) %>%
+  summarise(n = n()) %>%
+  mutate(total = sum(n),
+         porcentaje = (n / total) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada_desempleo, format = table_format, caption = "Tabla cruzada de ayuda económica y desempleo por migrantes - ola 2023") 
+```
+
+```{r}
+# ahora hacer tabla pero tomando como 100% cada nivel de respuestas a desempleo migrantes, con variable ayu_eco2
+
+tabla_cruzada_desempleo2 <- check4 %>%
+  filter(ola == 7 & !is.na(ayu_eco2) & !is.na(desempleo_migrantes)) %>%
+  group_by(ayu_eco2, desempleo_migrantes) %>%
+  summarise(n = n()) %>%
+  group_by(desempleo_migrantes) %>%
+  mutate(total = sum(n),
+         porcentaje = (n / total) * 100) %>%
+  ungroup()
+
+knitr::kable(tabla_cruzada_desempleo, format = table_format, caption = "Tabla cruzada de ayuda económica y desempleo por migrantes - ola 2023 - porcentaje sobre total de cada nivel de desempleo por migrantes") 
+```
+
+```{r}
+#| label: fig-1
+#| fig-cap-location: bottom
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+
+check4 <- check4 %>% 
+  as_survey_design(ids = segmento, 
+                   strata = estrato, 
+                   weights = ponderador_long_total,
+                   nest = T)
+
+check4 %>% 
+  select(ola, ayu_eco, desempleo_migrantes) %>%
+  # FILTRAR PRIMERO: quitar la categoría intermedia ANTES de cualquier cálculo
+  filter(desempleo_migrantes != "Ni de acuerdo ni en desacuerdo") %>%  # ajusta el nombre exacto
+  mutate(ayu_eco = case_when(
+    ayu_eco >= 1 & ayu_eco <= 2 ~ "Baja",
+    ayu_eco >2 & ayu_eco <= 3 ~ "Alta"
+  ),
+  desempleo_migrantes = forcats::fct_relabel(
+    desempleo_migrantes, ~ str_wrap(.x, 20))) %>% 
+  tidyr::drop_na() %>% 
+  filter(ola == last(ola)) %>% 
+  group_by(desempleo_migrantes, ayu_eco) %>%
+  survey_count(vartype = NULL) %>% 
+  group_by(ayu_eco) %>% 
+  mutate(
+    prop  = 100 * n / sum(n),                 # porcentaje dentro de cada nivel de seguridad
+    label = scales::percent(prop/100, accuracy = 0.1)
+  ) %>% 
+  ggplot(aes(x = desempleo_migrantes, y = prop, fill = ayu_eco)) +
+  geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+  geom_text(
+    aes(label = label, color = ayu_eco),
+    position = position_dodge(width = 0.6),
+    vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    name = "Ayuda Económica",
+    values = c("Alta" = "#2b2f3c", "Baja" = "#F9913D")
+  ) +
+  scale_color_manual(
+    values = c("Alta" = "#2b2f3c", "Baja" = "#F9913D")
+  ) +
+  scale_y_continuous(
+    labels = function(p){paste0(p, "%")},
+    limits = c(0,100),
+    breaks = seq(0,100, by = 10),
+    expand = expansion(mult = c(0.02, 0.08))
+  )  + 
+    labs(
+      x = "Desempleo a causa de migrantes",
+      y = NULL,
+      caption = "Fuente: elaboración propia con datos de ELSOC 2023 \n Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"
+    ) +
+  theme_ggdist() +
+  theme(
+    plot.title   = element_text(size = 24, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 16, face = "italic", hjust = 0.5),
+    plot.caption = element_text(size = 14),
+    
+    axis.title.x = element_text(size = 18),
+    axis.title.y = element_text(size = 18),
+    axis.text.x  = element_text(size = 16),
+    axis.text.y  = element_text(size = 16),
+    
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text  = element_text(size = 14),
+    legend.box.background = element_rect(color = "grey20", fill = "white", linewidth = 0.5),
+    legend.background     = element_rect(fill = "white", color = NA),
+    legend.margin         = margin(t = 6, r = 8, b = 6, l = 8),
+    legend.box.margin     = margin(t = 6, r = 6, b = 6, l = 6),
+    
+    legend.position  = "top",
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    color = guide_legend(
+      title.position = "top",
+      label.position = "right",
+      nrow = 1, byrow = TRUE,
+      keywidth = unit(14, "pt"),
+      keyheight = unit(10, "pt")
+    )
+  )
+``` 
