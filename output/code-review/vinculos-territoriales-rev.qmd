@@ -1,10 +1,4 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
-
-El objetivo de este documento es revisar las decisiones metodológicas que se tomaron para la construcción de los índices de la subdimensión de vínculos territoriales y las variables de migración. 
+# Dimensión: Vínculos territoriales
 
 ## Pasos previos
 

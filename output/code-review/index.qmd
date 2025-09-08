@@ -1,0 +1,3 @@
+# Presentación {.unnumbered}
+
+Este documento presenta el sustento analítico y técnico de los indicadores y gráficos incluidos en la nota. En él se detallan las definiciones conceptuales y metodológicas utilizadas, así como la exploración de los indicadores vinculados a las dimensiones de cohesión social horizontal y a las actitudes hacia la migración. Además, se explicitan los criterios empleados para la recategorización de los valores que dieron origen a las visualizaciones presentadas.

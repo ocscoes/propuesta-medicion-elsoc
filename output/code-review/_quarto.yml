@@ -1,0 +1,22 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Documento Metodológico: Construcción de Indicadores y Gráficos para el Foro II sobre Cohesión Social y Migración"
+  author: "Observatorio de Cohesión Social"
+  chapters:
+    - index.qmd
+    - migracion-rev.qmd
+    - vinculos-territoriales-rev.qmd
+
+format:
+  html:
+    toc: false 
+    theme:
+      - cosmo
+#  pdf:
+#    documentclass: scrreprt
+
+
+

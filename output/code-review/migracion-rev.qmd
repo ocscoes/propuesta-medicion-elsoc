@@ -1,18 +1,5 @@
----
-title: "Code-review-Migración"
-author: "René Canales"
-date: "`r Sys.Date()`"
-format:
-  html:
-    toc: true
-    toc-depth: 3
-    number-sections: true
-    theme: readable
-editor_options: 
-  chunk_output_type: console
----
 
-# Dimensión: Seguridad subjetiva y Variables de migración
+# Dimensión: Seguridad pública 
 
 El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y seguridad para la producción de figuras con la información que se muestra en el siguiente gráfico, que está en la presentación de la CEP 2025:
 
