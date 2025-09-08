@@ -8,6 +8,8 @@ format:
     toc-depth: 3
     number-sections: true
     theme: readable
+editor_options: 
+  chunk_output_type: console
 ---
 
 # Dimensión: Seguridad subjetiva y Variables de migración
@@ -100,19 +102,13 @@ find_var(data = elsoc_long,"desem") # corresponde a r12_04
 frq(elsoc_long$r12_04)
 
 find_var(data = elsoc_long,"restr") # corresponde a c37_05
-frq(elsoc_long$c37_04)
+frq(elsoc_long$c37_05)
 ```
 ## Selección, missings y recodificación
 
 ```{r}
 check1 <- elsoc_long %>%
   select(t06_01, t10, r12_04, ola, c37_05)
-
-# Recodificar -999, -888, -777, -666 a NA sin perder etiquetas de variables
-
-missing_codes <- c(-999, -888, -777, -666)
-check1 <- check1 %>%
-  mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
 
 # cheq
 frq(check1$r12_04) # ok
@@ -136,6 +132,8 @@ Observamos que la distribución de las respuestas carga la mitad de los casos ha
 ```{r}
 frq(check1$ola) # ok
 ```
+
+
 ```{r}
 # Tabla con el promedio de seguridad subjetiva por ola
 seguridad_por_ola <- check1 %>%
@@ -173,7 +171,7 @@ knitr::kable(seguridad_por_ola_migracion, format = table_format, caption = "Prom
 
 ```{r}
 # Tabla ordenada por r12_04
-seguridad_por_ola_migracion_ordered <- seguridad_por_ola_migracion_ordered %>%
+seguridad_por_ola_migracion_ordered <- seguridad_por_ola_migracion %>%
   arrange(r12_04, ola)
 
 knitr::kable(seguridad_por_ola_migracion_ordered, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (r12_04) - Ordenado por r12_04")
@@ -261,18 +259,6 @@ frq(check1$seg_sub2)
 ```
 
 
-```{r}
-#recodificar seguridad subjetiva en baja y alta
-check1 <- check1 %>%
-  mutate(seg_sub2 = case_when(
-    seg_sub >= 1 & seg_sub <= 3 ~ "Baja",
-    seg_sub > 3 & seg_sub <= 5 ~ "Alta",
-    TRUE ~ NA_character_
-  ))  
-check1$seg_sub2 <- factor(check1$seg_sub2, levels = c("Alta", "Baja"))
-frq(check1$seg_sub2)
-```
-
 Tabla cruzada entre Seguridad Subjetiva y Restricción de Migrantes para observar los porcentajes y su distribución por ola
 
 ```{r}
@@ -308,14 +294,14 @@ knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de s
 
 elsoc_long <- elsoc_long %>%
   mutate(desempleo_migrantes = case_when(
-    r12_04 %in% c(1, 2) ~ "En desacuerdo",
+    r12_04 %in% c(1, 2) ~ "Totalmente en desacuerdo + desacuerdo",
     r12_04 == 3 ~ "Ni de acuerdo ni en desacuerdo",
-    r12_04 %in% c(4, 5) ~ "De acuerdo",
+    r12_04 %in% c(4, 5) ~ "Totalmente de acuerdo + de acuerdo",
     TRUE ~ NA_character_
   ))
 
 # order from  "En desacuerdo", "Ni de acuerdo ni en desacuerdo", "De acuerdo"
-elsoc_long$desempleo_migrantes <- factor(elsoc_long$desempleo_migrantes, levels = c("De acuerdo", "Ni de acuerdo ni en desacuerdo", "En desacuerdo")) 
+elsoc_long$desempleo_migrantes <- factor(elsoc_long$desempleo_migrantes, levels = c("Totalmente en desacuerdo + desacuerdo", "Ni de acuerdo ni en desacuerdo", "Totalmente de acuerdo + de acuerdo")) 
 
 frq(elsoc_long$desempleo_migrantes) # ok
 ```
@@ -440,14 +426,14 @@ check2 %>%
 
 elsoc_long <- elsoc_long %>%
   mutate(restriccion_migrantes = case_when(
-    c37_05 %in% c(1, 2) ~ "En desacuerdo",
+    c37_05 %in% c(1, 2) ~ "Totalmente en desacuerdo + desacuerdo",
     c37_05 == 3 ~ "Ni de acuerdo ni en desacuerdo",
-    c37_05 %in% c(4, 5) ~ "De acuerdo",
+    c37_05 %in% c(4, 5) ~ "Totalmente de acuerdo + de acuerdo",
     TRUE ~ NA_character_
   ))
 
 # order from  "En desacuerdo", "Ni de acuerdo ni en desacuerdo", "De acuerdo"
-elsoc_long$restriccion_migrantes <- factor(elsoc_long$restriccion_migrantes, levels = c("De acuerdo", "Ni de acuerdo ni en desacuerdo", "En desacuerdo")) 
+elsoc_long$restriccion_migrantes <- factor(elsoc_long$restriccion_migrantes, levels = c("Totalmente en desacuerdo + desacuerdo", "Ni de acuerdo ni en desacuerdo", "Totalmente de acuerdo + de acuerdo")) 
 
 frq(elsoc_long$restriccion_migrantes) # ok
 ```
@@ -490,18 +476,31 @@ check3 <- check3 %>%
                    nest = T)
 check3 %>%
   select(ola, seg_sub, restriccion_migrantes) %>%
+    filter(restriccion_migrantes == "Totalmente en desacuerdo + desacuerdo") %>%
   mutate(
     seg_sub = case_when(
       seg_sub <= 3 ~ "Baja seguridad",
-      seg_sub >= 3 ~ "Alta seguridad"
+      seg_sub > 3 ~ "Alta seguridad"
     ),
     seg_sub = factor(
       seg_sub,
-      levels = c("Baja seguridad", "Alta seguridad")
-    )
+      levels = c("Baja seguridad", "Alta seguridad")),
+    ola = case_when(ola == 1 ~ "2016",
+                          ola == 2 ~ "2017",
+                          ola == 3 ~ "2018",
+                          ola == 4 ~ "2019",
+                          ola == 5 ~ "2021",
+                          ola == 6 ~ "2022",
+                          ola == 7 ~ "2023"),
+         ola = factor(ola, levels = c("2016",
+                                        "2017",
+                                        "2018",
+                                        "2019",
+                                      "2021",
+                                        "2022",
+                                        "2023"))
   ) %>%
   tidyr::drop_na() %>%
-  filter(restriccion_migrantes == "Muy en desacuerdo") %>%
   group_by(ola, seg_sub) %>%
   survey_count(vartype = NULL) %>%
   ungroup() %>%
@@ -509,7 +508,7 @@ check3 %>%
   mutate(
     prop  = 100 * n / sum(n),                 
     label = scales::percent(prop/100, accuracy = 0.1),
-    grupo = "Muy en desacuerdo restricción acceso migrantes"   # 👈 variable para la leyenda
+    grupo = "Totalmente en desacuerdo + desacuerdo con restricción acceso migrantes"   # 👈 variable para la leyenda
   ) %>%
   ggplot(aes(x = ola, y = prop, group = seg_sub)) +
   geom_point(aes(color = grupo), size = 3) +   # 👈 color mapeado
@@ -522,7 +521,7 @@ check3 %>%
   ) +
   scale_color_manual(
     name = NULL,   # 👈 título de la leyenda (puedes dejarlo NULL o poner texto)
-    values = c("Muy en desacuerdo restricción acceso migrantes" = "#522A6F")
+    values = c("Totalmente en desacuerdo + desacuerdo con restricción acceso migrantes" = "#522A6F")
   ) +
   scale_y_continuous(
     labels = function(p){paste0(p, "%")},
@@ -531,11 +530,10 @@ check3 %>%
     expand = expansion(mult = c(0.02, 0.08))
   ) +
   labs(
-    title = "Seguridad percibida y restricción de acceso a migrantes",
     subtitle = "Porcentaje que responde...",
     x = NULL,
     y = NULL,
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2016-2023"
+    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2018-2023"
   ) +
   theme_bw() +
   theme(

@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 El objetivo de este documento es revisar las decisiones metodológicas que se tomaron para la construcción de los índices de la subdimensión de vínculos territoriales y las variables de migración. 
 
@@ -36,16 +41,11 @@ pacman::p_load(tidyverse,
                sjmisc, 
                here,
                sjlabelled,
-               psych,
-               rstatix,
-               lme4,
-               performance,
                sjPlot,
                srvyr,
                ggdist,
                purrr,
                rlang,
-               surveyr,
                ggdist)
 
 options(scipen=999)
@@ -107,6 +107,10 @@ elsoc_7 <- elsoc_7 %>%
 slice(elsoc_7,1:10) %>% select(t02_01, t02_02, t02_03, t02_04, sentido_pertenencia)
 
 frq(elsoc_7$sentido_pertenencia)
+
+elsoc_7$sentido_pertenencia <- (round(elsoc_7$sentido_pertenencia * 2) / 2)
+frq(elsoc_7$sentido_pertenencia)
+
 ```
 
 En el punto 3.5 se alojan el %35.92 de las observaciones.
@@ -122,6 +126,9 @@ elsoc_7 <- elsoc_7 %>%
 
 slice(elsoc_7,1:10) %>% select(t03_01, t03_02, t03_03, t03_04, satisfaccion_barrio)
 
+frq(elsoc_7$satisfaccion_barrio)
+
+elsoc_7$satisfaccion_barrio <- (round(elsoc_7$satisfaccion_barrio * 2) / 2)
 frq(elsoc_7$satisfaccion_barrio)
 ```
 
@@ -209,7 +216,7 @@ tabla_cruzada <- elsoc_7 %>%
          porcentaje = (n / total_ola) * 100) %>%
   ungroup()
 
-knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy de acuerdo + de acuerdo) por ola - porcentaje dentro de ola")
+knitr::kable(tabla_cruzada, format = "markdown", caption = "Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy de acuerdo + de acuerdo) por ola - porcentaje dentro de ola")
 ```
 
 ```{r}
@@ -222,7 +229,7 @@ tabla_cruzada2 <- elsoc_7 %>%
          porcentaje = (n / total_ola) * 100) %>%
   ungroup()
 
-knitr::kable(tabla_cruzada2, format = table_format, caption = "Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy en desacuerdo + en desacuerdo) por ola - porcentaje dentro de ola")
+knitr::kable(tabla_cruzada2, format = "markdown", caption = "Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy en desacuerdo + en desacuerdo) por ola - porcentaje dentro de ola")
 ```
 
 ```{r}
