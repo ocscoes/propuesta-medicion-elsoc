@@ -193,6 +193,8 @@ elsoc_7 <- elsoc_7 %>%
     r12_03 > 3 & r12_03 <= 5 ~ "Muy de acuerdo + de acuerdo",
     TRUE ~ NA_character_
   ))
+
+elsoc_7$perdida_identidad2 <- factor(elsoc_7$perdida_identidad2, levels = c("Muy en desacuerdo + en desacuerdo", "Otro", "Muy de acuerdo + de acuerdo")) 
 ```
 
 ```{r}

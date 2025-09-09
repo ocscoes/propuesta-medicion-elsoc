@@ -357,7 +357,7 @@ check2 %>%
     vjust = -0.4, size = 5, fontface = "bold", show.legend = FALSE
   ) +
   scale_fill_manual(
-    name = "Percepción seguridad",
+    name = "Seguridad subjetiva",
     values = c("Alta" = "#2b2f3c", "Baja" = "#F9913D")
   ) +
   scale_color_manual(
