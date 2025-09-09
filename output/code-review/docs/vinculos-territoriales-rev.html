@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Dimensión: Vínculos territoriales y Variables de migración – Reporte análisis y construcción gráficos para Nota Foro II: Cohesión Social y Migración</title>
+<title>2&nbsp; Dimensión: Vínculos territoriales – Documento Metodológico: Construcción de Indicadores y Gráficos para el Foro II sobre Cohesión Social y Migración</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./redes-rev.html" rel="next">
 <link href="./migracion-rev.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -72,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-befd5f20fe4d0cb5af600f7bcf486e46.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,10 +105,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -116,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./vinculos-territoriales-rev.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dimensión: Vínculos territoriales y Variables de migración</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./vinculos-territoriales-rev.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dimensión: Vínculos territoriales</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -131,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Reporte análisis y construcción gráficos para Nota Foro II: Cohesión Social y Migración</a> 
+      <a href="./">Documento Metodológico: Construcción de Indicadores y Gráficos para el Foro II sobre Cohesión Social y Migración</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -150,13 +180,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./migracion-rev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dimensión: Seguridad subjetiva y Variables de migración</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dimensión: Seguridad pública</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vinculos-territoriales-rev.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dimensión: Vínculos territoriales y Variables de migración</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dimensión: Vínculos territoriales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./redes-rev.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dimensión: Redes sociales</span></span></a>
   </div>
 </li>
     </ul>
@@ -164,31 +200,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#pasos-previos" id="toc-pasos-previos" class="nav-link active" data-scroll-target="#pasos-previos"><span class="header-section-number">2.1</span> Pasos previos</a></li>
-  <li><a href="#univariados" id="toc-univariados" class="nav-link" data-scroll-target="#univariados"><span class="header-section-number">2.2</span> Univariados</a>
-  <ul class="collapse">
-  <li><a href="#vínculos-territoriales" id="toc-vínculos-territoriales" class="nav-link" data-scroll-target="#vínculos-territoriales"><span class="header-section-number">2.2.1</span> Vínculos territoriales</a></li>
-  <li><a href="#migración" id="toc-migración" class="nav-link" data-scroll-target="#migración"><span class="header-section-number">2.2.2</span> Migración</a></li>
-  </ul></li>
-  <li><a href="#recategorización" id="toc-recategorización" class="nav-link" data-scroll-target="#recategorización"><span class="header-section-number">2.3</span> Recategorización</a>
-  <ul class="collapse">
-  <li><a href="#vínculos-territoriales-1" id="toc-vínculos-territoriales-1" class="nav-link" data-scroll-target="#vínculos-territoriales-1"><span class="header-section-number">2.3.1</span> Vínculos territoriales</a></li>
-  <li><a href="#migración-1" id="toc-migración-1" class="nav-link" data-scroll-target="#migración-1"><span class="header-section-number">2.3.2</span> Migración</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dimensión: Vínculos territoriales y Variables de migración</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dimensión: Vínculos territoriales</span></h1>
 </div>
 
 
@@ -205,155 +223,151 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="pasos-previos" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="pasos-previos"><span class="header-section-number">2.1</span> Pasos previos</h2>
+<p>El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y vínculos territoriales para la producción de figuras de la nota conceptual del foro II OCS-CEP.</p>
+<section id="data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="data"><span class="header-section-number">2.1</span> Data</h2>
+<p>Se cargan los paquetes que usaremos para trabajar</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">include =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">warning =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>table_format <span class="ot">&lt;-</span> <span class="cf">if</span>(<span class="fu">is_html_output</span>()) {</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"html"</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is_latex_output</span>()) {</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"latex"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>table_format2 <span class="ot">&lt;-</span> <span class="cf">if</span>(<span class="fu">is_html_output</span>()) {</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  T</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is_latex_output</span>()) {</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  F</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">kableExtra.html.bsTable =</span> T)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span> <span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               sjmisc, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               here,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               sjlabelled,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               sjPlot,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               srvyr,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>               ggdist,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>               purrr,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>               rlang,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>               ggdist)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Se carga la base de datos completa de ELSOC, la cual contiene todas las olas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span> <span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>               sjmisc, </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>               here,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>               sjlabelled,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>               sjPlot,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>               srvyr,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>               ggdist,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>               purrr,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>               rlang,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>               ggdist)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db_long <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"input/data/raw_data/elsoc.RData"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(db_long)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>elsoc <span class="ot">&lt;-</span> elsoc_long_2016_2023</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Creamos la base con las variables que conforman los índices <strong>satisfacción en el barrio</strong>, <strong>sentido de pertenencia</strong> y las variables de migración. Luego, recodificamos los NA.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idencuesta, ola, cuestion_mig, ponderador_long_total, segmento, estrato, t02_01, t02_02, t02_03, t02_04, t03_01, t03_02, t03_03, t03_04, r12_03, c37_05, r07)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>missing_codes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">999</span>, <span class="sc">-</span><span class="dv">888</span>, <span class="sc">-</span><span class="dv">777</span>, <span class="sc">-</span><span class="dv">666</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> sjlabelled<span class="sc">::</span><span class="fu">set_na</span>(.x, <span class="at">na =</span> missing_codes)))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>c37_05)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Grado de acuerdo: restricciones ingreso migrantes (x) &lt;numeric&gt; 
-# total N=20761 valid N=9532 mean=3.92 sd=1.01
-
-Value |                          Label |     N | Raw % | Valid % | Cum. %
--------------------------------------------------------------------------
-    1 |       Totalmente en desacuerdo |   239 |  1.15 |    2.51 |   2.51
-    2 |                  En desacuerdo |   945 |  4.55 |    9.91 |  12.42
-    3 | Ni de acuerdo ni en desacuerdo |  1004 |  4.84 |   10.53 |  22.95
-    4 |                     De acuerdo |  4519 | 21.77 |   47.41 |  70.36
-    5 |          Totalmente de acuerdo |  2825 | 13.61 |   29.64 | 100.00
- &lt;NA&gt; |                           &lt;NA&gt; | 11229 | 54.09 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t02_01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Grado de acuerdo: Este es el barrio ideal para mi (x) &lt;numeric&gt; 
-# total N=20761 valid N=17847 mean=3.69 sd=1.02
-
-Value |                          Label |    N | Raw % | Valid % | Cum. %
-------------------------------------------------------------------------
-    1 |       Totalmente en desacuerdo |  643 |  3.10 |    3.60 |   3.60
-    2 |                  En desacuerdo | 2306 | 11.11 |   12.92 |  16.52
-    3 | Ni de acuerdo ni en desacuerdo | 2135 | 10.28 |   11.96 |  28.49
-    4 |                     De acuerdo | 9671 | 46.58 |   54.19 |  82.67
-    5 |          Totalmente de acuerdo | 3092 | 14.89 |   17.33 | 100.00
- &lt;NA&gt; |                           &lt;NA&gt; | 2914 | 14.04 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>db_long <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"input/data/raw_data/elsoc.RData"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(db_long)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>elsoc <span class="ot">&lt;-</span> elsoc_long_2016_2023</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="univariados" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="univariados"><span class="header-section-number">2.2</span> Univariados</h2>
-<section id="vínculos-territoriales" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="vínculos-territoriales"><span class="header-section-number">2.2.1</span> Vínculos territoriales</h3>
+<section id="variables" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">2.2.1</span> Variables</h3>
+<p>La dimensión de <em>satisfacción con el barrio</em> se compone a partir de los siguientes ítems:</p>
+<ul>
+<li>Grado de acuerdo: En este barrio es fácil hacer amigos</li>
+<li>Grado de acuerdo: La gente en este barrio es sociable</li>
+<li>Grado de acuerdo: La gente en este barrio es cordial</li>
+<li>Grado de acuerdo: La gente en este barrio es colaboradora</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t02_01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> elsoc,<span class="st">"barrio"</span>) <span class="co"># corresponde a las variables que comienzan con t03</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Grado de acuerdo: Este es el barrio ideal para mi (x) &lt;numeric&gt; 
-# total N=20761 valid N=17847 mean=3.69 sd=1.02
+<pre><code>   col.nr      var.name
+1      91 r13_barrio_01
+2     101 r13_barrio_02
+3     111 r13_barrio_03
+4     121 r13_barrio_04
+5     131 r13_barrio_05
+6     144        t02_01
+7     145        t02_02
+8     146        t02_03
+9     147        t02_04
+10    148        t03_01
+11    149        t03_02
+12    150        t03_03
+13    151        t03_04
+14    152        t04_01
+15    153        t04_02
+16    156        t04_05
+17    157        t04_06
+18    158        t04_07
+19    160        t06_01
+20    163        t06_04
+21    170           t08
+22    174           t10
+23    177        t11_03
+24    184           t15
+25    185           t16
+26    186           t17
+27    407        d24_02
+28    621        m34_03
+                                                                  var.label
+1                                            Confidente 1: Mismo vecindario
+2                                            Confidente 2: Mismo vecindario
+3                                            Confidente 3: Mismo vecindario
+4                                            Confidente 4: Mismo vecindario
+5                                            Confidente 5: Mismo vecindario
+6                         Grado de acuerdo: Este es el barrio ideal para mi
+7                    Grado de acuerdo: Me siento integrado/a en este barrio
+8               Grado de acuerdo: Me identifico con la gente de este barrio
+9                              Grado de acuerdo: Este barrio es parte de mi
+10                   Grado de acuerdo: En este barrio es facil hacer amigos
+11                    Grado de acuerdo: La gente en este barrio es sociable
+12                     Grado de acuerdo: La gente en este barrio es cordial
+13                Grado de acuerdo: La gente en este barrio es colaboradora
+14              Grado de acuerdo: Me agrada el cambio en aspecto del barrio
+15     Grado de acuerdo:  Encarecimiento de bienes y servicios en el barrio
+16             Grado de acuerdo:  Abandono de vecinos y/o amigos del barrio
+17         Grado de acuerdo:  Llegada de residentes desagradables al barrio
+18 Grado de acuerdo:  Surgimiento de actividades desagradables en el barrio
+19                              Grado de satisfaccion: Seguridad del barrio
+20                     Grado de satisfaccion: Limpieza y belleza del barrio
+21                                      Percepcion de evaluacion del barrio
+22                                       Percepcion de seguridad del barrio
+23           Frecuencia: Amenazas, insultos u ofensas de vecinos del barrio
+24                             Nivel de dannio que ha ocurrido en su barrio
+25         Justificacion de violencia: Personas dannien bienes en su barrio
+26     Justificacion de violencia: Personas dannien bienes en otros barrios
+27 Grado de acuerdo: Poderosos indolentes con problemas graves en mi barrio
+28                                              Tiempo residiendo en barrio</code></pre>
+</div>
+</div>
+<p>Por su parte, la variable de migración pregunta por la percepción respecto a que <strong>“Chile pierde su identidad con la llegada de migrantes”</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> elsoc,<span class="st">"identidad"</span>) <span class="co"># corresponde a las r12_03</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  col.nr var.name
+1     81   r12_03
+2    432   g02_01
+                                                                 var.label
+1 Grado de acuerdo: Chile pierde su identidad con llegada de [PER/HAI/VEN]
+2                 Grado de acuerdo: Importancia  de la identidad de genero</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="selección-missings-y-recodificación" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="selección-missings-y-recodificación"><span class="header-section-number">2.3</span> Selección, missings y recodificación</h2>
+<p>Se crea la base con las variables que conforman los índices <strong>satisfacción en el barrio</strong> y la variable de migración. Además, se incluyen variables para incluir los factores de expansión a la base de datos. Luego, recodificamos los NA.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idencuesta, ola, cuestion_mig, ponderador_long_total, segmento, estrato, t03_01, t03_02, t03_03, t03_04, r12_03)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>missing_codes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">999</span>, <span class="sc">-</span><span class="dv">888</span>, <span class="sc">-</span><span class="dv">777</span>, <span class="sc">-</span><span class="dv">666</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> sjlabelled<span class="sc">::</span><span class="fu">set_na</span>(.x, <span class="at">na =</span> missing_codes)))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>r12_03)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Grado de acuerdo: Chile pierde su identidad con llegada de [PER/HAI/VEN] (x) &lt;numeric&gt; 
+# total N=20761 valid N=20398 mean=2.94 sd=1.16
 
 Value |                          Label |    N | Raw % | Valid % | Cum. %
 ------------------------------------------------------------------------
-    1 |       Totalmente en desacuerdo |  643 |  3.10 |    3.60 |   3.60
-    2 |                  En desacuerdo | 2306 | 11.11 |   12.92 |  16.52
-    3 | Ni de acuerdo ni en desacuerdo | 2135 | 10.28 |   11.96 |  28.49
-    4 |                     De acuerdo | 9671 | 46.58 |   54.19 |  82.67
-    5 |          Totalmente de acuerdo | 3092 | 14.89 |   17.33 | 100.00
- &lt;NA&gt; |                           &lt;NA&gt; | 2914 | 14.04 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+    1 |       Totalmente en desacuerdo | 1831 |  8.82 |    8.98 |   8.98
+    2 |                  En desacuerdo | 7304 | 35.18 |   35.81 |  44.78
+    3 | Ni en desacuerdo ni de acuerdo | 3056 | 14.72 |   14.98 |  59.77
+    4 |                     De acuerdo | 6599 | 31.79 |   32.35 |  92.12
+    5 |          Totalmente de acuerdo | 1608 |  7.75 |    7.88 | 100.00
+ &lt;NA&gt; |                           &lt;NA&gt; |  363 |  1.75 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t02_02)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Grado de acuerdo: Me siento integrado/a en este barrio (x) &lt;numeric&gt; 
-# total N=20761 valid N=17845 mean=3.69 sd=0.98
-
-Value |                          Label |     N | Raw % | Valid % | Cum. %
--------------------------------------------------------------------------
-    1 |       Totalmente en desacuerdo |   567 |  2.73 |    3.18 |   3.18
-    2 |                  En desacuerdo |  2168 | 10.44 |   12.15 |  15.33
-    3 | Ni de acuerdo ni en desacuerdo |  2254 | 10.86 |   12.63 |  27.96
-    4 |                     De acuerdo | 10011 | 48.22 |   56.10 |  84.06
-    5 |          Totalmente de acuerdo |  2845 | 13.70 |   15.94 | 100.00
- &lt;NA&gt; |                           &lt;NA&gt; |  2916 | 14.05 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t02_03)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Grado de acuerdo: Me identifico con la gente de este barrio (x) &lt;numeric&gt; 
-# total N=20761 valid N=17837 mean=3.60 sd=1.01
-
-Value |                          Label |    N | Raw % | Valid % | Cum. %
-------------------------------------------------------------------------
-    1 |       Totalmente en desacuerdo |  621 |  2.99 |    3.48 |   3.48
-    2 |                  En desacuerdo | 2573 | 12.39 |   14.43 |  17.91
-    3 | Ni de acuerdo ni en desacuerdo | 2763 | 13.31 |   15.49 |  33.40
-    4 |                     De acuerdo | 9312 | 44.85 |   52.21 |  85.60
-    5 |          Totalmente de acuerdo | 2568 | 12.37 |   14.40 | 100.00
- &lt;NA&gt; |                           &lt;NA&gt; | 2924 | 14.08 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t02_04)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Grado de acuerdo: Este barrio es parte de mi (x) &lt;numeric&gt; 
-# total N=20761 valid N=17844 mean=3.69 sd=1.00
-
-Value |                          Label |    N | Raw % | Valid % | Cum. %
-------------------------------------------------------------------------
-    1 |       Totalmente en desacuerdo |  589 |  2.84 |    3.30 |   3.30
-    2 |                  En desacuerdo | 2274 | 10.95 |   12.74 |  16.04
-    3 | Ni de acuerdo ni en desacuerdo | 2217 | 10.68 |   12.42 |  28.47
-    4 |                     De acuerdo | 9773 | 47.07 |   54.77 |  83.24
-    5 |          Totalmente de acuerdo | 2991 | 14.41 |   16.76 | 100.00
- &lt;NA&gt; |                           &lt;NA&gt; | 2917 | 14.05 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t03_01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t03_01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grado de acuerdo: En este barrio es facil hacer amigos (x) &lt;numeric&gt; 
 # total N=20761 valid N=17774 mean=3.37 sd=1.03
@@ -367,7 +381,26 @@ Value |                          Label |    N | Raw % | Valid % | Cum. %
     5 |          Totalmente de acuerdo | 1700 |  8.19 |    9.56 | 100.00
  &lt;NA&gt; |                           &lt;NA&gt; | 2987 | 14.39 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t03_02)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Tanto en la variable de migración como la de vínculos territoriales se puede observar que los NA se recodificaron exitosamente.</p>
+<section id="frecuencias-de-vínculos-territoriales" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="frecuencias-de-vínculos-territoriales"><span class="header-section-number">2.3.1</span> Frecuencias de vínculos territoriales</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t03_01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Grado de acuerdo: En este barrio es facil hacer amigos (x) &lt;numeric&gt; 
+# total N=20761 valid N=17774 mean=3.37 sd=1.03
+
+Value |                          Label |    N | Raw % | Valid % | Cum. %
+------------------------------------------------------------------------
+    1 |       Totalmente en desacuerdo |  677 |  3.26 |    3.81 |   3.81
+    2 |                  En desacuerdo | 3653 | 17.60 |   20.55 |  24.36
+    3 | Ni de acuerdo ni en desacuerdo | 3609 | 17.38 |   20.30 |  44.67
+    4 |                     De acuerdo | 8135 | 39.18 |   45.77 |  90.44
+    5 |          Totalmente de acuerdo | 1700 |  8.19 |    9.56 | 100.00
+ &lt;NA&gt; |                           &lt;NA&gt; | 2987 | 14.39 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t03_02)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grado de acuerdo: La gente en este barrio es sociable (x) &lt;numeric&gt; 
 # total N=20761 valid N=17814 mean=3.58 sd=0.93
@@ -381,7 +414,7 @@ Value |                          Label |    N | Raw % | Valid % | Cum. %
     5 |          Totalmente de acuerdo | 1921 |  9.25 |   10.78 | 100.00
  &lt;NA&gt; |                           &lt;NA&gt; | 2947 | 14.19 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t03_03)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t03_03)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grado de acuerdo: La gente en este barrio es cordial (x) &lt;numeric&gt; 
 # total N=20761 valid N=17820 mean=3.67 sd=0.88
@@ -395,7 +428,7 @@ Value |                          Label |     N | Raw % | Valid % | Cum. %
     5 |          Totalmente de acuerdo |  2020 |  9.73 |   11.34 | 100.00
  &lt;NA&gt; |                           &lt;NA&gt; |  2941 | 14.17 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t03_04)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>t03_04)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grado de acuerdo: La gente en este barrio es colaboradora (x) &lt;numeric&gt; 
 # total N=20761 valid N=17636 mean=3.56 sd=0.96
@@ -410,94 +443,41 @@ Value |                          Label |    N | Raw % | Valid % | Cum. %
  &lt;NA&gt; |                           &lt;NA&gt; | 3125 | 15.05 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
 </div>
-<p>En todos los indicadores de la subdimensión de vínculos territoriales se observa una concentración de aproximadamente del 50% en la categoría “de acuerdo”.</p>
-<p>Ahora, pasamos a crear los índices que conforman la subdimensión</p>
+<p>En todos los indicadores de satisfacción con el barrio se observa una concentración de aproximadamente del <strong>50%</strong> en la categoría <strong>“de acuerdo”</strong>.</p>
+</section>
+<section id="frecuencias-migración" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="frecuencias-migración"><span class="header-section-number">2.3.2</span> Frecuencias migración</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Índice promediado</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">sentido_pertenencia =</span> <span class="fu">rowMeans</span>(</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(., t02_01, t02_02, t02_03, t02_04),</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>   ))</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(elsoc_7,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(t02_01, t02_02, t02_03, t02_04, sentido_pertenencia)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>r12_03)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   t02_01 t02_02 t02_03 t02_04 sentido_pertenencia
-1       2      3      3      3                2.75
-2       2      4      1      3                2.50
-3       2      1      2      2                1.75
-4       2      3      4      4                3.25
-5       1      2      1      1                1.25
-6       3      2      3      4                3.00
-7       4      3      3      3                3.25
-8       4      4      3      3                3.50
-9       3      3      5      5                4.00
-10      3      2      3      4                3.00</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>sentido_pertenencia)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x &lt;numeric&gt; 
-# total N=20761 valid N=17858 mean=3.67 sd=0.88
+<pre><code>Grado de acuerdo: Chile pierde su identidad con llegada de [PER/HAI/VEN] (x) &lt;numeric&gt; 
+# total N=20761 valid N=20398 mean=2.94 sd=1.16
 
-Value |    N | Raw % | Valid % | Cum. %
----------------------------------------
- 1.00 |  265 |  1.28 |    1.48 |   1.48
- 1.25 |   67 |  0.32 |    0.38 |   1.86
- 1.50 |  104 |  0.50 |    0.58 |   2.44
- 1.75 |  171 |  0.82 |    0.96 |   3.40
- 2.00 |  913 |  4.40 |    5.11 |   8.51
- 2.25 |  415 |  2.00 |    2.32 |  10.84
- 2.33 |    1 |  0.00 |    0.01 |  10.84
- 2.50 |  629 |  3.03 |    3.52 |  14.36
- 2.67 |    3 |  0.01 |    0.02 |  14.38
- 2.75 |  531 |  2.56 |    2.97 |  17.35
- 3.00 |  992 |  4.78 |    5.55 |  22.91
- 3.25 |  914 |  4.40 |    5.12 |  28.03
- 3.33 |    4 |  0.02 |    0.02 |  28.05
- 3.50 | 1406 |  6.77 |    7.87 |  35.92
- 3.67 |    4 |  0.02 |    0.02 |  35.94
- 3.75 | 1474 |  7.10 |    8.25 |  44.20
- 4.00 | 6245 | 30.08 |   34.97 |  79.17
- 4.25 |  932 |  4.49 |    5.22 |  84.39
- 4.33 |    5 |  0.02 |    0.03 |  84.42
- 4.50 |  597 |  2.88 |    3.34 |  87.76
- 4.67 |    1 |  0.00 |    0.01 |  87.76
- 4.75 |  494 |  2.38 |    2.77 |  90.53
- 5.00 | 1691 |  8.15 |    9.47 | 100.00
- &lt;NA&gt; | 2903 | 13.98 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>elsoc_7<span class="sc">$</span>sentido_pertenencia <span class="ot">&lt;-</span> (<span class="fu">round</span>(elsoc_7<span class="sc">$</span>sentido_pertenencia <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>sentido_pertenencia)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x &lt;numeric&gt; 
-# total N=20761 valid N=17858 mean=3.67 sd=0.89
-
-Value |    N | Raw % | Valid % | Cum. %
----------------------------------------
- 1.00 |  332 |  1.60 |    1.86 |   1.86
- 1.50 |  104 |  0.50 |    0.58 |   2.44
- 2.00 | 1499 |  7.22 |    8.39 |  10.84
- 2.50 |  633 |  3.05 |    3.54 |  14.38
- 3.00 | 2437 | 11.74 |   13.65 |  28.03
- 3.50 | 1414 |  6.81 |    7.92 |  35.94
- 4.00 | 8651 | 41.67 |   48.44 |  84.39
- 4.50 |  603 |  2.90 |    3.38 |  87.76
- 5.00 | 2185 | 10.52 |   12.24 | 100.00
- &lt;NA&gt; | 2903 | 13.98 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+Value |                          Label |    N | Raw % | Valid % | Cum. %
+------------------------------------------------------------------------
+    1 |       Totalmente en desacuerdo | 1831 |  8.82 |    8.98 |   8.98
+    2 |                  En desacuerdo | 7304 | 35.18 |   35.81 |  44.78
+    3 | Ni en desacuerdo ni de acuerdo | 3056 | 14.72 |   14.98 |  59.77
+    4 |                     De acuerdo | 6599 | 31.79 |   32.35 |  92.12
+    5 |          Totalmente de acuerdo | 1608 |  7.75 |    7.88 | 100.00
+ &lt;NA&gt; |                           &lt;NA&gt; |  363 |  1.75 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
 </div>
-<p>En el punto 3.5 se alojan el %35.92 de las observaciones.</p>
+<p>Las personas que están de acuerdo con que los migrantes erosionan la identidad del país es de un %40.23, mientras quellos que están en desacuerdo con esta sentencia hacen el %44.78 (y un %14.98 sería de la categoría neutral).</p>
+</section>
+<section id="índice-de-satisfacción-con-el-barrio" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="índice-de-satisfacción-con-el-barrio"><span class="header-section-number">2.3.3</span> Índice de satisfacción con el barrio</h3>
+<p>Ahora, pasamos a crear el índice de la subdimensión</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Índice promediado</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">satisfaccion_barrio =</span> <span class="fu">rowMeans</span>(</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(., t03_01, t03_02, t03_03, t03_04),</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>   ))</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(elsoc_7,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(t03_01, t03_02, t03_03, t03_04, satisfaccion_barrio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Índice promediado</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">satisfaccion_barrio =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(., t03_01, t03_02, t03_03, t03_04),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>   ))</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(elsoc_7,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(t03_01, t03_02, t03_03, t03_04, satisfaccion_barrio) <span class="co">#check ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   t03_01 t03_02 t03_03 t03_04 satisfaccion_barrio
 1       1      3      3      3                2.50
@@ -511,7 +491,10 @@ Value |    N | Raw % | Valid % | Cum. %
 9       2      4      3      4                3.25
 10      2      2      3      3                2.50</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se crea correctamente el índice promediado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;numeric&gt; 
 # total N=20761 valid N=17845 mean=3.54 sd=0.79
@@ -544,172 +527,488 @@ Value |    N | Raw % | Valid % | Cum. %
  5.00 | 1008 |  4.86 |    5.65 | 100.00
  &lt;NA&gt; | 2916 | 14.05 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>elsoc_7<span class="sc">$</span>satisfaccion_barrio <span class="ot">&lt;-</span> (<span class="fu">round</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x &lt;numeric&gt; 
-# total N=20761 valid N=17845 mean=3.56 sd=0.82
-
-Value |    N | Raw % | Valid % | Cum. %
----------------------------------------
- 1.00 |  207 |  1.00 |    1.16 |   1.16
- 1.50 |   72 |  0.35 |    0.40 |   1.56
- 2.00 | 1370 |  6.60 |    7.68 |   9.24
- 2.50 |  862 |  4.15 |    4.83 |  14.07
- 3.00 | 3643 | 17.55 |   20.41 |  34.49
- 3.50 | 2070 |  9.97 |   11.60 |  46.09
- 4.00 | 7817 | 37.65 |   43.80 |  89.89
- 4.50 |  419 |  2.02 |    2.35 |  92.24
- 5.00 | 1385 |  6.67 |    7.76 | 100.00
- &lt;NA&gt; | 2916 | 14.05 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-</div>
-<p>Desde el punto 1 al 3.5 están el %45.92 de las observaciones.</p>
-</section>
-<section id="migración" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="migración"><span class="header-section-number">2.2.2</span> Migración</h3>
+<p>Como se puede observar, desde el punto 1 al 3.5 están el %46 de las observaciones, mientras que los valores superiores a 3.5 alojan el 54% restante. Este patrón respalda empíricamente la decisión de establecer un punto de corte en 3.5, distinguiendo entre un grupo bajo (≤ 3.5) y uno alto (&gt; 3). A pesar de que el 3.5 no es el punto intermedio en cuanto a categorías del índice, esto nos asegura una diferencia sustantiva en términos de frecuencia relativa.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>r12_03)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Grado de acuerdo: Chile pierde su identidad con llegada de [PER/HAI/VEN] (x) &lt;numeric&gt; 
-# total N=20761 valid N=20398 mean=2.94 sd=1.16
-
-Value |                          Label |    N | Raw % | Valid % | Cum. %
-------------------------------------------------------------------------
-    1 |       Totalmente en desacuerdo | 1831 |  8.82 |    8.98 |   8.98
-    2 |                  En desacuerdo | 7304 | 35.18 |   35.81 |  44.78
-    3 | Ni en desacuerdo ni de acuerdo | 3056 | 14.72 |   14.98 |  59.77
-    4 |                     De acuerdo | 6599 | 31.79 |   32.35 |  92.12
-    5 |          Totalmente de acuerdo | 1608 |  7.75 |    7.88 | 100.00
- &lt;NA&gt; |                           &lt;NA&gt; |  363 |  1.75 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla con el promedio de satisfacción con el barrio por ola</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>satisfaccion_por_ola <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola) <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio_satisfaccion =</span> <span class="fu">mean</span>(satisfaccion_barrio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">"table_format"</span>)) table_format <span class="ot">&lt;-</span> <span class="st">"simple"</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(satisfaccion_por_ola, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Promedio de satisfacción con el barrio por ola"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Promedio de satisfacción con el barrio por ola</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">ola</th>
+<th style="text-align: right;">promedio_satisfaccion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.477350</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3.541008</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3.550766</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3.574275</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3.560839</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">3.552183</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<p>Las personas que están de acuerdo con que los migrantes erosionan la identidad del país es de un %40.23, mientras quellos que están en desacuerdo con esta sentencia hacen el %44.78 (y un %14.98 sería de la categoría neutral).</p>
+<p>A partir de la tabla se refleja que los promedios de satisfacción con el barrio se mantienen estables a través del tiempo (rango 3.48-3.56; <span class="math display">\[\mean\]</span> = 3.54; DE 0.03). Esto reafirma que el promedio del índice en todas las olas donde fue medido se encuentra en el punto 3.5, por lo que se decidió por el umbral &lt;= 3.5 / &gt; 3.5 para diferenciar grupos con baja / alta satisfacción con el barrio. Este corte se justifica empíricamente (estabilidad de frecuencias) y por coherencia conceptual con la métrica usada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla con el promedio de satisfacción con el barrio por ola y por categorías de r12_03 (pérdida de identidad debido a migrantes)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>satisfaccion_por_ola_migracion <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola, r12_03) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio_satisfaccion_barrio =</span> <span class="fu">mean</span>(satisfaccion_barrio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(satisfaccion_por_ola_migracion, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Promedio de satisfacción con el barrio por ola y categoría de migración (r12_03)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Promedio de satisfacción con el barrio por ola y categoría de migración (r12_03)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">ola</th>
+<th style="text-align: right;">r12_03</th>
+<th style="text-align: right;">promedio_satisfaccion_barrio</th>
+<th style="text-align: right;">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.405585</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3.475889</td>
+<td style="text-align: right;">1107</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3.576633</td>
+<td style="text-align: right;">399</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3.471220</td>
+<td style="text-align: right;">1025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.377883</td>
+<td style="text-align: right;">159</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">3.430272</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.611014</td>
+<td style="text-align: right;">287</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3.536325</td>
+<td style="text-align: right;">858</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3.534257</td>
+<td style="text-align: right;">343</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3.504179</td>
+<td style="text-align: right;">698</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.576596</td>
+<td style="text-align: right;">237</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">3.615646</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.649687</td>
+<td style="text-align: right;">373</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3.497038</td>
+<td style="text-align: right;">1296</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3.616325</td>
+<td style="text-align: right;">587</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3.502894</td>
+<td style="text-align: right;">1125</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.705103</td>
+<td style="text-align: right;">259</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">3.626947</td>
+<td style="text-align: right;">108</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.687615</td>
+<td style="text-align: right;">364</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3.586295</td>
+<td style="text-align: right;">1266</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3.589263</td>
+<td style="text-align: right;">521</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3.535615</td>
+<td style="text-align: right;">958</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.465251</td>
+<td style="text-align: right;">259</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">3.598639</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">201</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">1028</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">391</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">856</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">233</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.606742</td>
+<td style="text-align: right;">190</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3.559430</td>
+<td style="text-align: right;">950</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3.597670</td>
+<td style="text-align: right;">396</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3.560580</td>
+<td style="text-align: right;">940</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.451320</td>
+<td style="text-align: right;">214</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">3.604167</td>
+<td style="text-align: right;">40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.600877</td>
+<td style="text-align: right;">228</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3.539946</td>
+<td style="text-align: right;">799</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3.605012</td>
+<td style="text-align: right;">419</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3.540371</td>
+<td style="text-align: right;">997</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.522605</td>
+<td style="text-align: right;">247</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">3.430556</td>
+<td style="text-align: right;">36</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 </section>
-<section id="recategorización" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="recategorización"><span class="header-section-number">2.3</span> Recategorización</h2>
-<section id="vínculos-territoriales-1" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="vínculos-territoriales-1"><span class="header-section-number">2.3.1</span> Vínculos territoriales</h3>
+<section id="recategorización" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="recategorización"><span class="header-section-number">2.4</span> Recategorización</h2>
+<section id="vínculos-territoriales" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="vínculos-territoriales"><span class="header-section-number">2.4.1</span> Vínculos territoriales</h3>
 <p>De acuerdo a los resultados descriptivos, vamos a recategorizar ambos índices en el punto corte &lt;= 3.5 como categoría baja y &gt; 3.5 como categoría alta.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sentido de pertenencia con corte en &lt;= 3.5</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sentido_pertenencia2 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    sentido_pertenencia <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> sentido_pertenencia <span class="sc">&lt;=</span> <span class="fl">3.5</span> <span class="sc">~</span> <span class="st">"Bajo"</span>,</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    sentido_pertenencia <span class="sc">&gt;</span> <span class="fl">3.5</span> <span class="sc">&amp;</span> sentido_pertenencia <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Alto"</span>,</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Satisfacción con el barrio con corte en &lt;= 3.5</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">satisfaccion_barrio2 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    satisfaccion_barrio <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> satisfaccion_barrio <span class="sc">&lt;=</span> <span class="fl">3.5</span> <span class="sc">~</span> <span class="st">"Bajo"</span>,</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    satisfaccion_barrio <span class="sc">&gt;</span> <span class="fl">3.5</span> <span class="sc">&amp;</span> satisfaccion_barrio <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Alto"</span>,</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>A priori, sería mejor trabajar con los cortes en 3.5, ya que las frecuencias están mejor equilibradas en ambos índices.</p>
-<p>Se reordenan las categorías en Alto y Bajo</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>elsoc_7<span class="sc">$</span>sentido_pertenencia2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(elsoc_7<span class="sc">$</span>sentido_pertenencia2, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Alto"</span>, <span class="st">"Bajo"</span>))</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>sentido_pertenencia2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Satisfacción con el barrio con corte en &lt;= 3.5</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">satisfaccion_barrio2 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    satisfaccion_barrio <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> satisfaccion_barrio <span class="sc">&lt;=</span> <span class="fl">3.5</span> <span class="sc">~</span> <span class="st">"Bajo"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    satisfaccion_barrio <span class="sc">&gt;</span> <span class="fl">3.5</span> <span class="sc">&amp;</span> satisfaccion_barrio <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Alto"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>x &lt;categorical&gt; 
-# total N=20761 valid N=17858 mean=1.36 sd=0.48
-
-Value |     N | Raw % | Valid % | Cum. %
-----------------------------------------
-Alto  | 11439 | 55.10 |   64.06 |  64.06
-Bajo  |  6419 | 30.92 |   35.94 | 100.00
-&lt;NA&gt;  |  2903 | 13.98 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>elsoc_7<span class="sc">$</span>satisfaccion_barrio2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio2, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Alto"</span>, <span class="st">"Bajo"</span>))</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x &lt;categorical&gt; 
+<pre><code>x &lt;character&gt; 
 # total N=20761 valid N=17845 mean=1.46 sd=0.50
 
 Value |    N | Raw % | Valid % | Cum. %
 ---------------------------------------
-Alto  | 9621 | 46.34 |   53.91 |  53.91
-Bajo  | 8224 | 39.61 |   46.09 | 100.00
+Alto  | 9651 | 46.49 |   54.08 |  54.08
+Bajo  | 8194 | 39.47 |   45.92 | 100.00
 &lt;NA&gt;  | 2916 | 14.05 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>sentido_pertenencia2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x &lt;categorical&gt; 
-# total N=20761 valid N=17858 mean=1.36 sd=0.48
-
-Value |     N | Raw % | Valid % | Cum. %
-----------------------------------------
-Alto  | 11439 | 55.10 |   64.06 |  64.06
-Bajo  |  6419 | 30.92 |   35.94 | 100.00
-&lt;NA&gt;  |  2903 | 13.98 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Como se señaló anteriormente, la concentración de casos en la escala de valores respaldan la decisión de establecer los puntos de corte para un grupo bajo (≤ 3) y uno alto (&gt; 3) de satisfacción con el barrio.</p>
+<p>Se reordenan las categorías en Alto y Bajo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>elsoc_7<span class="sc">$</span>satisfaccion_barrio2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio2, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Alto"</span>, <span class="st">"Bajo"</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;categorical&gt; 
 # total N=20761 valid N=17845 mean=1.46 sd=0.50
 
 Value |    N | Raw % | Valid % | Cum. %
 ---------------------------------------
-Alto  | 9621 | 46.34 |   53.91 |  53.91
-Bajo  | 8224 | 39.61 |   46.09 | 100.00
+Alto  | 9651 | 46.49 |   54.08 |  54.08
+Bajo  | 8194 | 39.47 |   45.92 | 100.00
+&lt;NA&gt;  | 2916 | 14.05 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>satisfaccion_barrio2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x &lt;categorical&gt; 
+# total N=20761 valid N=17845 mean=1.46 sd=0.50
+
+Value |    N | Raw % | Valid % | Cum. %
+---------------------------------------
+Alto  | 9651 | 46.49 |   54.08 |  54.08
+Bajo  | 8194 | 39.47 |   45.92 | 100.00
 &lt;NA&gt;  | 2916 | 14.05 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="migración-1" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="migración-1"><span class="header-section-number">2.3.2</span> Migración</h3>
-<p>La variable de migración que alude a la pérdida de identidad debido a migrantes se recodifica en tres categorías, colapsando las categorías “Totalmente en desacuerdo” con “En desacuerdo”, y “De acuerdo” con “Totalmente de acuerdo”, mientras que la categoría neutra se categoriza como “Otro”.</p>
+<section id="migración" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="migración"><span class="header-section-number">2.4.2</span> Migración</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perdida_identidad2 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> r12_03 <span class="sc">&lt;=</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Muy en desacuerdo + en desacuerdo"</span>,</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">&amp;</span> r12_03 <span class="sc">&lt;=</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Otro"</span>,</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">&amp;</span> r12_03 <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Muy de acuerdo + de acuerdo"</span>,</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>perdida_identidad2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar r12_03 (pérdida identidad por migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perdida_identidad4 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Muy de acuerdo"</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) <span class="sc">~</span> <span class="st">"Otro"</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>perdida_identidad4) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;character&gt; 
-# total N=20761 valid N=20398 mean=1.75 sd=0.70
+# total N=20761 valid N=20398 mean=1.92 sd=0.27
+
+Value          |     N | Raw % | Valid % | Cum. %
+-------------------------------------------------
+Muy de acuerdo |  1608 |  7.75 |    7.88 |   7.88
+Otro           | 18790 | 90.51 |   92.12 | 100.00
+&lt;NA&gt;           |   363 |  1.75 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar r12_03 (pérdida identidad por migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perdida_identidad5 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Muy en desacuerdo"</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="sc">~</span> <span class="st">"Otro"</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>perdida_identidad5) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x &lt;character&gt; 
+# total N=20761 valid N=20398 mean=1.91 sd=0.29
+
+Value             |     N | Raw % | Valid % | Cum. %
+----------------------------------------------------
+Muy en desacuerdo |  1831 |  8.82 |    8.98 |   8.98
+Otro              | 18567 | 89.43 |   91.02 | 100.00
+&lt;NA&gt;              |   363 |  1.75 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+</div>
+<p>Al examinar la distribución de las respuestas para las variables de migración, se observa que las categorías extremas concentran una fracción bastante reducida de las observaciones: alrededor de 8% para “Muy de acuerdo” y 9% en “Muy en desacuerdo”. En contraste, más del 90% se concentran en las cuatro categorías restantes. Esta asimetría sugiere que, si bien es posible representar gráficamente los extremos frente al resto para enfatizar la presencia de posiciones polarizadas, la interpretación debe considerar que la mayor parte de la variación se concentra en la categoría agregada “Otro”. Por ello, dependiendo del objetivo analítico, puede ser preferible distinguir dos grupos (De acuerdo y En desacuerdo), lo que permite capturar con mayor claridad la disposición de las respuestas para fines visuales.</p>
+<p>Tomando en cuenta lo anterior, la variable de migración que alude a la pérdida de identidad debido a migrantes se recodifica en tres categorías, colapsando las categorías “Totalmente en desacuerdo” con “En desacuerdo”, y “De acuerdo” con “Totalmente de acuerdo”, mientras que la categoría neutra se categoriza como “Otro”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>elsoc_7 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perdida_identidad2 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> r12_03 <span class="sc">&lt;=</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Muy en desacuerdo + en desacuerdo"</span>,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">&amp;</span> r12_03 <span class="sc">&lt;=</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Otro"</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    r12_03 <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">&amp;</span> r12_03 <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Muy de acuerdo + de acuerdo"</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>elsoc_7<span class="sc">$</span>perdida_identidad2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(elsoc_7<span class="sc">$</span>perdida_identidad2, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Muy en desacuerdo + en desacuerdo"</span>, <span class="st">"Otro"</span>, <span class="st">"Muy de acuerdo + de acuerdo"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_7<span class="sc">$</span>perdida_identidad2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x &lt;categorical&gt; 
+# total N=20761 valid N=20398 mean=1.95 sd=0.92
 
 Value                             |    N | Raw % | Valid % | Cum. %
 -------------------------------------------------------------------
-Muy de acuerdo + de acuerdo       | 8207 | 39.53 |   40.23 |  40.23
-Muy en desacuerdo + en desacuerdo | 9135 | 44.00 |   44.78 |  85.02
-Otro                              | 3056 | 14.72 |   14.98 | 100.00
+Muy en desacuerdo + en desacuerdo | 9135 | 44.00 |   44.78 |  44.78
+Otro                              | 3056 | 14.72 |   14.98 |  59.77
+Muy de acuerdo + de acuerdo       | 8207 | 39.53 |   40.23 | 100.00
 &lt;NA&gt;                              |  363 |  1.75 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
 </div>
+<p>Se recategoriza exitosamente la variable de migración.</p>
+</section>
+</section>
+<section id="cruces" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="cruces"><span class="header-section-number">2.5</span> Cruces</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>tabla_cruzada <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sentido_pertenencia2) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(perdida_identidad2) <span class="sc">&amp;</span> perdida_identidad2 <span class="sc">==</span> <span class="st">"Muy de acuerdo + de acuerdo"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola, sentido_pertenencia2) <span class="sc">%&gt;%</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>  </span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola) <span class="sc">%&gt;%</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_ola =</span> <span class="fu">sum</span>(n),</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> total_ola) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla_cruzada, <span class="at">format =</span> <span class="st">"markdown"</span>, <span class="at">caption =</span> <span class="st">"Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy de acuerdo + de acuerdo) por ola - porcentaje dentro de ola"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>tabla_cruzada <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(satisfaccion_barrio2) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(perdida_identidad2) <span class="sc">&amp;</span> perdida_identidad2 <span class="sc">==</span> <span class="st">"Muy de acuerdo + de acuerdo"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola, satisfaccion_barrio2) <span class="sc">%&gt;%</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>  </span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola) <span class="sc">%&gt;%</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_ola =</span> <span class="fu">sum</span>(n),</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> total_ola) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla_cruzada, <span class="at">format =</span> <span class="st">"markdown"</span>, <span class="at">caption =</span> <span class="st">"Tabla cruzada de satisfaccion con el barrio y pérdida de identidad (Muy de acuerdo + de acuerdo) por ola - porcentaje dentro de ola"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy de acuerdo + de acuerdo) por ola - porcentaje dentro de ola</caption>
+<caption>Tabla cruzada de satisfaccion con el barrio y pérdida de identidad (Muy de acuerdo + de acuerdo) por ola - porcentaje dentro de ola</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">ola</th>
-<th style="text-align: left;">sentido_pertenencia2</th>
+<th style="text-align: left;">satisfaccion_barrio2</th>
 <th style="text-align: right;">n</th>
 <th style="text-align: right;">total_ola</th>
 <th style="text-align: right;">porcentaje</th>
@@ -719,362 +1018,290 @@ Otro                              | 3056 | 14.72 |   14.98 | 100.00
 <tr class="odd">
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">Alto</td>
-<td style="text-align: right;">702</td>
+<td style="text-align: right;">588</td>
 <td style="text-align: right;">1184</td>
-<td style="text-align: right;">59.29054</td>
+<td style="text-align: right;">49.66216</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">482</td>
+<td style="text-align: right;">596</td>
 <td style="text-align: right;">1184</td>
-<td style="text-align: right;">40.70946</td>
+<td style="text-align: right;">50.33784</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">Alto</td>
-<td style="text-align: right;">613</td>
-<td style="text-align: right;">935</td>
-<td style="text-align: right;">65.56150</td>
+<td style="text-align: right;">513</td>
+<td style="text-align: right;">933</td>
+<td style="text-align: right;">54.98392</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">322</td>
-<td style="text-align: right;">935</td>
-<td style="text-align: right;">34.43850</td>
+<td style="text-align: right;">420</td>
+<td style="text-align: right;">933</td>
+<td style="text-align: right;">45.01608</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">Alto</td>
-<td style="text-align: right;">869</td>
-<td style="text-align: right;">1383</td>
-<td style="text-align: right;">62.83442</td>
+<td style="text-align: right;">743</td>
+<td style="text-align: right;">1381</td>
+<td style="text-align: right;">53.80159</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">514</td>
-<td style="text-align: right;">1383</td>
-<td style="text-align: right;">37.16558</td>
+<td style="text-align: right;">638</td>
+<td style="text-align: right;">1381</td>
+<td style="text-align: right;">46.19841</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">4</td>
 <td style="text-align: left;">Alto</td>
-<td style="text-align: right;">811</td>
-<td style="text-align: right;">1217</td>
-<td style="text-align: right;">66.63928</td>
+<td style="text-align: right;">660</td>
+<td style="text-align: right;">1216</td>
+<td style="text-align: right;">54.27632</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">4</td>
 <td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">406</td>
-<td style="text-align: right;">1217</td>
-<td style="text-align: right;">33.36072</td>
+<td style="text-align: right;">556</td>
+<td style="text-align: right;">1216</td>
+<td style="text-align: right;">45.72368</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">6</td>
 <td style="text-align: left;">Alto</td>
-<td style="text-align: right;">709</td>
-<td style="text-align: right;">1093</td>
-<td style="text-align: right;">64.86734</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">384</td>
-<td style="text-align: right;">1093</td>
-<td style="text-align: right;">35.13266</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">Alto</td>
-<td style="text-align: right;">810</td>
-<td style="text-align: right;">1244</td>
-<td style="text-align: right;">65.11254</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">434</td>
-<td style="text-align: right;">1244</td>
-<td style="text-align: right;">34.88746</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>tabla_cruzada2 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sentido_pertenencia2) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(perdida_identidad2) <span class="sc">&amp;</span> perdida_identidad2 <span class="sc">==</span> <span class="st">"Muy en desacuerdo + en desacuerdo"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola, sentido_pertenencia2) <span class="sc">%&gt;%</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>  </span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola) <span class="sc">%&gt;%</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_ola =</span> <span class="fu">sum</span>(n),</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> total_ola) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla_cruzada2, <span class="at">format =</span> <span class="st">"markdown"</span>, <span class="at">caption =</span> <span class="st">"Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy en desacuerdo + en desacuerdo) por ola - porcentaje dentro de ola"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Tabla cruzada de sentido de pertenencia y pérdida de identidad (Muy en desacuerdo + en desacuerdo) por ola - porcentaje dentro de ola</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">ola</th>
-<th style="text-align: left;">sentido_pertenencia2</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">total_ola</th>
-<th style="text-align: right;">porcentaje</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">Alto</td>
-<td style="text-align: right;">774</td>
-<td style="text-align: right;">1295</td>
-<td style="text-align: right;">59.76834</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">521</td>
-<td style="text-align: right;">1295</td>
-<td style="text-align: right;">40.23166</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">Alto</td>
-<td style="text-align: right;">721</td>
-<td style="text-align: right;">1145</td>
-<td style="text-align: right;">62.96943</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">424</td>
-<td style="text-align: right;">1145</td>
-<td style="text-align: right;">37.03057</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">Alto</td>
-<td style="text-align: right;">1065</td>
-<td style="text-align: right;">1666</td>
-<td style="text-align: right;">63.92557</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">Bajo</td>
 <td style="text-align: right;">601</td>
-<td style="text-align: right;">1666</td>
-<td style="text-align: right;">36.07443</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">Alto</td>
-<td style="text-align: right;">1075</td>
-<td style="text-align: right;">1630</td>
-<td style="text-align: right;">65.95092</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">555</td>
-<td style="text-align: right;">1630</td>
-<td style="text-align: right;">34.04908</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">Alto</td>
-<td style="text-align: right;">698</td>
-<td style="text-align: right;">1067</td>
-<td style="text-align: right;">65.41706</td>
+<td style="text-align: right;">1092</td>
+<td style="text-align: right;">55.03663</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">6</td>
 <td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">369</td>
-<td style="text-align: right;">1067</td>
-<td style="text-align: right;">34.58294</td>
+<td style="text-align: right;">491</td>
+<td style="text-align: right;">1092</td>
+<td style="text-align: right;">44.96337</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">7</td>
 <td style="text-align: left;">Alto</td>
-<td style="text-align: right;">658</td>
-<td style="text-align: right;">1027</td>
-<td style="text-align: right;">64.07011</td>
+<td style="text-align: right;">662</td>
+<td style="text-align: right;">1244</td>
+<td style="text-align: right;">53.21543</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">7</td>
 <td style="text-align: left;">Bajo</td>
-<td style="text-align: right;">369</td>
-<td style="text-align: right;">1027</td>
-<td style="text-align: right;">35.92989</td>
+<td style="text-align: right;">582</td>
+<td style="text-align: right;">1244</td>
+<td style="text-align: right;">46.78457</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>elsoc_7_pond <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span> </span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(<span class="at">ids =</span> segmento, </span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strata =</span> estrato, </span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">weights =</span> ponderador_long_total,</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">nest =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tabla_cruzada2 <span class="ot">&lt;-</span> elsoc_7 <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(satisfaccion_barrio2) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(perdida_identidad2) <span class="sc">&amp;</span> perdida_identidad2 <span class="sc">==</span> <span class="st">"Muy en desacuerdo + en desacuerdo"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola, satisfaccion_barrio2) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>  </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola) <span class="sc">%&gt;%</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_ola =</span> <span class="fu">sum</span>(n),</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> total_ola) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla_cruzada2, <span class="at">format =</span> <span class="st">"markdown"</span>, <span class="at">caption =</span> <span class="st">"Tabla cruzada de satisfacción con el barrio y pérdida de identidad (Muy en desacuerdo + en desacuerdo) por ola - porcentaje dentro de ola"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Tabla cruzada de satisfacción con el barrio y pérdida de identidad (Muy en desacuerdo + en desacuerdo) por ola - porcentaje dentro de ola</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">ola</th>
+<th style="text-align: left;">satisfaccion_barrio2</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">total_ola</th>
+<th style="text-align: right;">porcentaje</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Alto</td>
+<td style="text-align: right;">632</td>
+<td style="text-align: right;">1294</td>
+<td style="text-align: right;">48.84080</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Bajo</td>
+<td style="text-align: right;">662</td>
+<td style="text-align: right;">1294</td>
+<td style="text-align: right;">51.15920</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Alto</td>
+<td style="text-align: right;">619</td>
+<td style="text-align: right;">1144</td>
+<td style="text-align: right;">54.10839</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Bajo</td>
+<td style="text-align: right;">525</td>
+<td style="text-align: right;">1144</td>
+<td style="text-align: right;">45.89161</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Alto</td>
+<td style="text-align: right;">834</td>
+<td style="text-align: right;">1667</td>
+<td style="text-align: right;">50.02999</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bajo</td>
+<td style="text-align: right;">833</td>
+<td style="text-align: right;">1667</td>
+<td style="text-align: right;">49.97001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Alto</td>
+<td style="text-align: right;">929</td>
+<td style="text-align: right;">1628</td>
+<td style="text-align: right;">57.06388</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Bajo</td>
+<td style="text-align: right;">699</td>
+<td style="text-align: right;">1628</td>
+<td style="text-align: right;">42.93612</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Alto</td>
+<td style="text-align: right;">609</td>
+<td style="text-align: right;">1067</td>
+<td style="text-align: right;">57.07591</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Bajo</td>
+<td style="text-align: right;">458</td>
+<td style="text-align: right;">1067</td>
+<td style="text-align: right;">42.92409</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Alto</td>
+<td style="text-align: right;">559</td>
+<td style="text-align: right;">1027</td>
+<td style="text-align: right;">54.43038</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Bajo</td>
+<td style="text-align: right;">468</td>
+<td style="text-align: right;">1027</td>
+<td style="text-align: right;">45.56962</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="gŕafico-satisfacción-con-el-barrio-y-pérdida-de-identidad" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="gŕafico-satisfacción-con-el-barrio-y-pérdida-de-identidad"><span class="header-section-number">2.6</span> Gŕafico: Satisfacción con el barrio y pérdida de identidad</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> elsoc_7_pond <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ola, satisfaccion_barrio, perdida_identidad2) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(perdida_identidad2<span class="sc">!=</span><span class="st">"Otro"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">satisfaccion_barrio =</span> <span class="fu">case_when</span>(</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    satisfaccion_barrio <span class="sc">&lt;=</span> <span class="fl">3.5</span> <span class="sc">~</span> <span class="st">"Baja"</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    satisfaccion_barrio <span class="sc">&gt;</span> <span class="fl">3.5</span>   <span class="sc">~</span> <span class="st">"Alta"</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">perdida_identidad2 =</span> forcats<span class="sc">::</span><span class="fu">fct_relabel</span>(</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    perdida_identidad2, <span class="sc">~</span> <span class="fu">str_wrap</span>(.x, <span class="dv">20</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ola <span class="sc">==</span> <span class="fu">last</span>(ola)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(perdida_identidad2, satisfaccion_barrio) <span class="sc">%&gt;%</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survey_count</span>(<span class="at">vartype =</span> <span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(satisfaccion_barrio) <span class="sc">%&gt;%</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop  =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),                 <span class="co"># porcentaje dentro de cada ola</span></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(prop<span class="sc">/</span><span class="dv">100</span>, <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perdida_identidad2, <span class="at">y =</span> prop, <span class="at">fill =</span> satisfaccion_barrio)) <span class="sc">+</span></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.6</span>), <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label, <span class="at">color =</span> satisfaccion_barrio),   <span class="co"># color igual a la serie</span></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.6</span>),</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.4</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Satisfacción con el barrio"</span>,</span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Baja"</span> <span class="ot">=</span> <span class="st">"#F9913D"</span>, <span class="st">"Alta"</span> <span class="ot">=</span> <span class="st">"#2B2F3C"</span>)</span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(                                 <span class="co"># mismo esquema para el texto</span></span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Baja"</span> <span class="ot">=</span> <span class="st">"#F9913D"</span>, <span class="st">"Alta"</span> <span class="ot">=</span> <span class="st">"#2B2F3C"</span>)</span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cf">function</span>(p){<span class="fu">paste0</span>(p, <span class="st">"%"</span>)},</span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>),</span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.08</span>)) <span class="co"># deja aire arriba para las etiquetas</span></span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>  )  <span class="sc">+</span></span>
+<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Pérdida de identidad debido a migrantes"</span>,</span>
+<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Fuente: elaboración propia con datos de ELSOC 2023 </span><span class="sc">\n</span><span class="st"> Nota: Para el cálculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"</span></span>
+<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ggdist</span>() <span class="sc">+</span></span>
+<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title   =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
+<span id="cb42-50"><a href="#cb42-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
+<span id="cb42-51"><a href="#cb42-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb42-52"><a href="#cb42-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb42-53"><a href="#cb42-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb42-54"><a href="#cb42-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb42-55"><a href="#cb42-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"grey20"</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>),</span>
+<span id="cb42-56"><a href="#cb42-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background     =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb42-57"><a href="#cb42-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.margin         =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">6</span>, <span class="at">r =</span> <span class="dv">8</span>, <span class="at">b =</span> <span class="dv">6</span>, <span class="at">l =</span> <span class="dv">8</span>),</span>
+<span id="cb42-58"><a href="#cb42-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.margin     =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">6</span>, <span class="at">r =</span> <span class="dv">6</span>, <span class="at">b =</span> <span class="dv">6</span>, <span class="at">l =</span> <span class="dv">6</span>),</span>
+<span id="cb42-59"><a href="#cb42-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position  =</span> <span class="st">"top"</span>,</span>
+<span id="cb42-60"><a href="#cb42-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.direction =</span> <span class="st">"horizontal"</span></span>
+<span id="cb42-61"><a href="#cb42-61" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb42-62"><a href="#cb42-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb42-63"><a href="#cb42-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb42-64"><a href="#cb42-64" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb42-65"><a href="#cb42-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">label.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb42-66"><a href="#cb42-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb42-67"><a href="#cb42-67" aria-hidden="true" tabindex="-1"></a>      <span class="at">keywidth =</span> <span class="fu">unit</span>(<span class="dv">14</span>, <span class="st">"pt"</span>),</span>
+<span id="cb42-68"><a href="#cb42-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">keyheight =</span> <span class="fu">unit</span>(<span class="dv">10</span>, <span class="st">"pt"</span>)</span>
+<span id="cb42-69"><a href="#cb42-69" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb42-70"><a href="#cb42-70" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> elsoc_7_pond <span class="sc">%&gt;%</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ola, sentido_pertenencia, perdida_identidad2) <span class="sc">%&gt;%</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(perdida_identidad2<span class="sc">!=</span><span class="st">"Otro"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sentido_pertenencia =</span> <span class="fu">case_when</span>(</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    sentido_pertenencia <span class="sc">&lt;=</span> <span class="fl">3.5</span> <span class="sc">~</span> <span class="st">"Baja"</span>,</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    sentido_pertenencia <span class="sc">&gt;</span> <span class="fl">3.5</span>   <span class="sc">~</span> <span class="st">"Alta"</span></span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">perdida_identidad2 =</span> forcats<span class="sc">::</span><span class="fu">fct_relabel</span>(</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    perdida_identidad2, <span class="sc">~</span> <span class="fu">str_wrap</span>(.x, <span class="dv">20</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ola <span class="sc">==</span> <span class="fu">last</span>(ola)) <span class="sc">%&gt;%</span></span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(perdida_identidad2, sentido_pertenencia) <span class="sc">%&gt;%</span></span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survey_count</span>(<span class="at">vartype =</span> <span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sentido_pertenencia) <span class="sc">%&gt;%</span></span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop  =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),                 <span class="co"># porcentaje dentro de cada ola</span></span>
-<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(prop<span class="sc">/</span><span class="dv">100</span>, <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span>
-<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perdida_identidad2, <span class="at">y =</span> prop, <span class="at">fill =</span> sentido_pertenencia)) <span class="sc">+</span></span>
-<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.6</span>), <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label, <span class="at">color =</span> sentido_pertenencia),   <span class="co"># color igual a la serie</span></span>
-<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.6</span>),</span>
-<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.4</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
-<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Sentido de pertenencia"</span>,</span>
-<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Baja"</span> <span class="ot">=</span> <span class="st">"#F9913D"</span>, <span class="st">"Alta"</span> <span class="ot">=</span> <span class="st">"#2B2F3C"</span>)</span>
-<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(                                 <span class="co"># mismo esquema para el texto</span></span>
-<span id="cb54-31"><a href="#cb54-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Baja"</span> <span class="ot">=</span> <span class="st">"#F9913D"</span>, <span class="st">"Alta"</span> <span class="ot">=</span> <span class="st">"#2B2F3C"</span>)</span>
-<span id="cb54-32"><a href="#cb54-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb54-33"><a href="#cb54-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb54-34"><a href="#cb54-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cf">function</span>(p){<span class="fu">paste0</span>(p, <span class="st">"%"</span>)},</span>
-<span id="cb54-35"><a href="#cb54-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb54-36"><a href="#cb54-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>),</span>
-<span id="cb54-37"><a href="#cb54-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.08</span>)) <span class="co"># deja aire arriba para las etiquetas</span></span>
-<span id="cb54-38"><a href="#cb54-38" aria-hidden="true" tabindex="-1"></a>  )  <span class="sc">+</span></span>
-<span id="cb54-39"><a href="#cb54-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb54-40"><a href="#cb54-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Pérdida de identidad debido a migrantes"</span>,</span>
-<span id="cb54-41"><a href="#cb54-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb54-42"><a href="#cb54-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Fuente: elaboración propia con datos de ELSOC 2023 </span><span class="sc">\n</span><span class="st"> Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"</span></span>
-<span id="cb54-43"><a href="#cb54-43" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb54-44"><a href="#cb54-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ggdist</span>() <span class="sc">+</span></span>
-<span id="cb54-45"><a href="#cb54-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb54-46"><a href="#cb54-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title   =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb54-47"><a href="#cb54-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb54-48"><a href="#cb54-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb54-49"><a href="#cb54-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
-<span id="cb54-50"><a href="#cb54-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
-<span id="cb54-51"><a href="#cb54-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb54-52"><a href="#cb54-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb54-53"><a href="#cb54-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb54-54"><a href="#cb54-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb54-55"><a href="#cb54-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"grey20"</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>),</span>
-<span id="cb54-56"><a href="#cb54-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background     =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb54-57"><a href="#cb54-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.margin         =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">6</span>, <span class="at">r =</span> <span class="dv">8</span>, <span class="at">b =</span> <span class="dv">6</span>, <span class="at">l =</span> <span class="dv">8</span>),</span>
-<span id="cb54-58"><a href="#cb54-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.margin     =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">6</span>, <span class="at">r =</span> <span class="dv">6</span>, <span class="at">b =</span> <span class="dv">6</span>, <span class="at">l =</span> <span class="dv">6</span>),</span>
-<span id="cb54-59"><a href="#cb54-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position  =</span> <span class="st">"top"</span>,</span>
-<span id="cb54-60"><a href="#cb54-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.direction =</span> <span class="st">"horizontal"</span></span>
-<span id="cb54-61"><a href="#cb54-61" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb54-62"><a href="#cb54-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
-<span id="cb54-63"><a href="#cb54-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">guide_legend</span>(</span>
-<span id="cb54-64"><a href="#cb54-64" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb54-65"><a href="#cb54-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">label.position =</span> <span class="st">"right"</span>,</span>
-<span id="cb54-66"><a href="#cb54-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb54-67"><a href="#cb54-67" aria-hidden="true" tabindex="-1"></a>      <span class="at">keywidth =</span> <span class="fu">unit</span>(<span class="dv">14</span>, <span class="st">"pt"</span>),</span>
-<span id="cb54-68"><a href="#cb54-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">keyheight =</span> <span class="fu">unit</span>(<span class="dv">10</span>, <span class="st">"pt"</span>)</span>
-<span id="cb54-69"><a href="#cb54-69" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb54-70"><a href="#cb54-70" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="vinculos-territoriales-rev_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> elsoc_7_pond <span class="sc">%&gt;%</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ola, satisfaccion_barrio, perdida_identidad2) <span class="sc">%&gt;%</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(perdida_identidad2<span class="sc">!=</span><span class="st">"Otro"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">satisfaccion_barrio =</span> <span class="fu">case_when</span>(</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    satisfaccion_barrio <span class="sc">&lt;=</span> <span class="fl">3.5</span> <span class="sc">~</span> <span class="st">"Baja"</span>,</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    satisfaccion_barrio <span class="sc">&gt;</span> <span class="fl">3.5</span>   <span class="sc">~</span> <span class="st">"Alta"</span></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">perdida_identidad2 =</span> forcats<span class="sc">::</span><span class="fu">fct_relabel</span>(</span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    perdida_identidad2, <span class="sc">~</span> <span class="fu">str_wrap</span>(.x, <span class="dv">20</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ola <span class="sc">==</span> <span class="fu">last</span>(ola)) <span class="sc">%&gt;%</span></span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(perdida_identidad2, satisfaccion_barrio) <span class="sc">%&gt;%</span></span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survey_count</span>(<span class="at">vartype =</span> <span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(satisfaccion_barrio) <span class="sc">%&gt;%</span></span>
-<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop  =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),                 <span class="co"># porcentaje dentro de cada ola</span></span>
-<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(prop<span class="sc">/</span><span class="dv">100</span>, <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span>
-<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perdida_identidad2, <span class="at">y =</span> prop, <span class="at">fill =</span> satisfaccion_barrio)) <span class="sc">+</span></span>
-<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.6</span>), <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label, <span class="at">color =</span> satisfaccion_barrio),   <span class="co"># color igual a la serie</span></span>
-<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.6</span>),</span>
-<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.4</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
-<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb55-27"><a href="#cb55-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Satisfacción con el barrio"</span>,</span>
-<span id="cb55-28"><a href="#cb55-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Baja"</span> <span class="ot">=</span> <span class="st">"#F9913D"</span>, <span class="st">"Alta"</span> <span class="ot">=</span> <span class="st">"#2B2F3C"</span>)</span>
-<span id="cb55-29"><a href="#cb55-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb55-30"><a href="#cb55-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(                                 <span class="co"># mismo esquema para el texto</span></span>
-<span id="cb55-31"><a href="#cb55-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Baja"</span> <span class="ot">=</span> <span class="st">"#F9913D"</span>, <span class="st">"Alta"</span> <span class="ot">=</span> <span class="st">"#2B2F3C"</span>)</span>
-<span id="cb55-32"><a href="#cb55-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb55-33"><a href="#cb55-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb55-34"><a href="#cb55-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cf">function</span>(p){<span class="fu">paste0</span>(p, <span class="st">"%"</span>)},</span>
-<span id="cb55-35"><a href="#cb55-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb55-36"><a href="#cb55-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>),</span>
-<span id="cb55-37"><a href="#cb55-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.08</span>)) <span class="co"># deja aire arriba para las etiquetas</span></span>
-<span id="cb55-38"><a href="#cb55-38" aria-hidden="true" tabindex="-1"></a>  )  <span class="sc">+</span></span>
-<span id="cb55-39"><a href="#cb55-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb55-40"><a href="#cb55-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Pérdida de identidad debido a migrantes"</span>,</span>
-<span id="cb55-41"><a href="#cb55-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb55-42"><a href="#cb55-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Fuente: elaboración propia con datos de ELSOC 2023 </span><span class="sc">\n</span><span class="st"> Nota: Para el calculo se excluye la categoría intermedia (Ni de acuerdo ni en desacuerdo)"</span></span>
-<span id="cb55-43"><a href="#cb55-43" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb55-44"><a href="#cb55-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ggdist</span>() <span class="sc">+</span></span>
-<span id="cb55-45"><a href="#cb55-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb55-46"><a href="#cb55-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title   =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb55-47"><a href="#cb55-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb55-48"><a href="#cb55-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb55-49"><a href="#cb55-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
-<span id="cb55-50"><a href="#cb55-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
-<span id="cb55-51"><a href="#cb55-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb55-52"><a href="#cb55-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb55-53"><a href="#cb55-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb55-54"><a href="#cb55-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb55-55"><a href="#cb55-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"grey20"</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>),</span>
-<span id="cb55-56"><a href="#cb55-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background     =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb55-57"><a href="#cb55-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.margin         =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">6</span>, <span class="at">r =</span> <span class="dv">8</span>, <span class="at">b =</span> <span class="dv">6</span>, <span class="at">l =</span> <span class="dv">8</span>),</span>
-<span id="cb55-58"><a href="#cb55-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.margin     =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">6</span>, <span class="at">r =</span> <span class="dv">6</span>, <span class="at">b =</span> <span class="dv">6</span>, <span class="at">l =</span> <span class="dv">6</span>),</span>
-<span id="cb55-59"><a href="#cb55-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position  =</span> <span class="st">"top"</span>,</span>
-<span id="cb55-60"><a href="#cb55-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.direction =</span> <span class="st">"horizontal"</span></span>
-<span id="cb55-61"><a href="#cb55-61" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb55-62"><a href="#cb55-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
-<span id="cb55-63"><a href="#cb55-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">guide_legend</span>(</span>
-<span id="cb55-64"><a href="#cb55-64" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb55-65"><a href="#cb55-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">label.position =</span> <span class="st">"right"</span>,</span>
-<span id="cb55-66"><a href="#cb55-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb55-67"><a href="#cb55-67" aria-hidden="true" tabindex="-1"></a>      <span class="at">keywidth =</span> <span class="fu">unit</span>(<span class="dv">14</span>, <span class="st">"pt"</span>),</span>
-<span id="cb55-68"><a href="#cb55-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">keyheight =</span> <span class="fu">unit</span>(<span class="dv">10</span>, <span class="st">"pt"</span>)</span>
-<span id="cb55-69"><a href="#cb55-69" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb55-70"><a href="#cb55-70" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <p>Guardamos los gráficos</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"pertenencia-identidad.png"</span>, <span class="at">plot =</span> a, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"satisfaccion-identidad.png"</span>, <span class="at">plot =</span> b, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1479,11 +1706,14 @@ Otro                              | 3056 | 14.72 |   14.98 | 100.00
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./migracion-rev.html" class="pagination-link" aria-label="Dimensión: Seguridad subjetiva y Variables de migración">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dimensión: Seguridad subjetiva y Variables de migración</span></span>
+      <a href="./migracion-rev.html" class="pagination-link" aria-label="Dimensión: Seguridad pública">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dimensión: Seguridad pública</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./redes-rev.html" class="pagination-link" aria-label="Dimensión: Redes sociales">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dimensión: Redes sociales</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

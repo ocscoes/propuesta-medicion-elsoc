@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.23">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,15 +69,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-befd5f20fe4d0cb5af600f7bcf486e46.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -131,9 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Documento Metodológico: Construcción de Indicadores y Gráficos para el Foro II sobre Cohesión Social y Migración</a> 
     </div>
@@ -197,53 +194,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y seguridad para la producción de figuras con la información que se muestra en el siguiente gráfico, que está en la presentación de la CEP 2025:</p>
+<p>El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y seguridad para la producción de figuras con la información que se muestra en el reporte CEP 2025:</p>
 <p><a href="https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/5/1">https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/5/1</a></p>
 <section id="data" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="data"><span class="header-section-number">1.1</span> Data</h2>
 <p>Call original dataset</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">'input/data/raw_data/elsoc.RData'</span>))</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">'input/data/raw_data/elsoc.RData'</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>elsoc_long <span class="ot">&lt;-</span> elsoc_long_2016_2023 <span class="co"># acortar</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>missing_codes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">999</span>, <span class="sc">-</span><span class="dv">888</span>, <span class="sc">-</span><span class="dv">777</span>, <span class="sc">-</span><span class="dv">666</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>elsoc_long <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> sjlabelled<span class="sc">::</span><span class="fu">set_na</span>(.x, <span class="at">na =</span> missing_codes)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> sjlabelled<span class="sc">::</span><span class="fu">set_na</span>(.x, <span class="at">na =</span> missing_codes)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="variables-recodes" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Variables &amp; Recodes</h1>
 <section id="univariados-variables" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="univariados-variables"><span class="header-section-number">2.1</span> Univariados: Variables</h2>
-<p>La dimensión de <em>seguridad subjetiva</em> se asocia a los siguientes ítems</p>
+<p>La dimensión de <strong>seguridad subjetiva</strong> se asocia a los siguientes ítems</p>
 <ul>
 <li><p>Satisfacción con la seguridad del barrio</p></li>
 <li><p>Percepción de inseguridad en el barrio</p></li>
 </ul>
 <p>Donde:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> elsoc_long,<span class="st">"barrio"</span>) <span class="co"># corresponde a t06_01</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> elsoc_long,<span class="st">"barrio"</span>) <span class="co"># corresponde a t06_01</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>t06_01)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> elsoc_long,<span class="st">"seguridad"</span>) <span class="co"># corresponde a t10</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>t10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>t10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Por su parte, las variables de migración que preguntan por la percepción en torno a la relación entre desempleo y migración, y por la restricción a migrantes:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> elsoc_long,<span class="st">"desem"</span>) <span class="co"># corresponde a r12_04</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> elsoc_long,<span class="st">"desem"</span>) <span class="co"># corresponde a r12_04</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>r12_04)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> elsoc_long,<span class="st">"restr"</span>) <span class="co"># corresponde a c37_05</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>c37_05)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>c37_05)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="selección-missings-y-recodificación" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="selección-missings-y-recodificación"><span class="header-section-number">2.2</span> Selección, missings y recodificación</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>check1 <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>check1 <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(t06_01, t10, r12_04, ola, c37_05)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cheq</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>r12_04) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>r12_04) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grado de acuerdo: Con llegada de [PER/HAI/VEN] aumenta el desempleo (x) &lt;numeric&gt; 
 # total N=20761 valid N=20456 mean=3.23 sd=1.17
@@ -257,7 +254,7 @@ Value |                          Label |    N | Raw % | Valid % | Cum. %
     5 |          Totalmente de acuerdo | 2418 | 11.65 |   11.82 | 100.00
  &lt;NA&gt; |                           &lt;NA&gt; |  305 |  1.47 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>c37_05)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>c37_05)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grado de acuerdo: restricciones ingreso migrantes (x) &lt;numeric&gt; 
 # total N=20761 valid N=9532 mean=3.92 sd=1.01
@@ -276,9 +273,9 @@ Value |                          Label |     N | Raw % | Valid % | Cum. %
 <section id="generar-índice-de-seguridad-subjetiva" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="generar-índice-de-seguridad-subjetiva"><span class="header-section-number">2.3</span> Generar índice de seguridad subjetiva</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>check1<span class="sc">$</span>seg_sub <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(check1[,<span class="fu">c</span>(<span class="st">"t06_01"</span>,<span class="st">"t10"</span>)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>check1<span class="sc">$</span>seg_sub <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(check1[,<span class="fu">c</span>(<span class="st">"t06_01"</span>,<span class="st">"t10"</span>)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(check1,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(t06_01,t10,seg_sub, ola) <span class="co"># check ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(check1,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(t06_01,t10,seg_sub, ola) <span class="co"># check ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   t06_01 t10 seg_sub ola
 1       2   3     2.5   1
@@ -294,7 +291,7 @@ Value |                          Label |     N | Raw % | Valid % | Cum. %
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>seg_sub) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>seg_sub) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;numeric&gt; 
 # total N=20761 valid N=19588 mean=3.42 sd=0.97
@@ -318,7 +315,7 @@ Value |    N | Raw % | Valid % | Cum. %
 <section id="variación-por-ola" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="variación-por-ola"><span class="header-section-number">2.4</span> Variación por ola</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>ola) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>ola) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Identificador de ola de encuesta (x) &lt;numeric&gt; 
 # total N=20761 valid N=20761 mean=3.95 sd=1.94
@@ -336,14 +333,14 @@ Value | Label |    N | Raw % | Valid % | Cum. %
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla con el promedio de seguridad subjetiva por ola</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla con el promedio de seguridad subjetiva por ola</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>seguridad_por_ola <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola) <span class="sc">%&gt;%</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio_seg_subjetiva =</span> <span class="fu">mean</span>(seg_sub, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">"table_format"</span>)) table_format <span class="ot">&lt;-</span> <span class="st">"simple"</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(seguridad_por_ola, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Promedio de seguridad subjetiva por ola"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(seguridad_por_ola, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Promedio de seguridad subjetiva por ola"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Promedio de seguridad subjetiva por ola</caption>
@@ -389,13 +386,13 @@ Value | Label |    N | Raw % | Valid % | Cum. %
 <p>Los promedios de seguridad subjetiva por ola permanecen relativamente estables (rango 3.28–3.63; promedio global = 3.43, DE ≈ 0.11), indicando un patrón general de percepción ligeramente superior al punto medio de la escala. No obstante, la distribución individual muestra que alrededor del 39% de los casos se ubica en ≤3, por lo que se adoptó el umbral ≤3 / &gt;3 para diferenciar grupos con baja vs.&nbsp;alta seguridad subjetiva. Este corte combina justificación empírica (frecuencias acumuladas) y coherencia conceptual con la métrica usada.</p>
 <p>A continuación se presentan tablas que muestran el promedio de seguridad subjetiva por ola para cada categoría de respuesta en c37_05 y r12_04</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla con el promedio de seguridad subjetiva por ola y por categorías de c37_05 (restricción migrantes) y r12_04 (desempleo migrantes)</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla con el promedio de seguridad subjetiva por ola y por categorías de c37_05 (restricción migrantes) y r12_04 (desempleo migrantes)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>seguridad_por_ola_migracion <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola, c37_05, r12_04) <span class="sc">%&gt;%</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio_seg_subjetiva =</span> <span class="fu">mean</span>(seg_sub, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(seguridad_por_ola_migracion, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Promedio de seguridad subjetiva por ola y categoría de migración (c37_05)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(seguridad_por_ola_migracion, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Promedio de seguridad subjetiva por ola y categoría de migración (c37_05)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Promedio de seguridad subjetiva por ola y categoría de migración (c37_05)</caption>
@@ -1733,7 +1730,7 @@ Value | Label |    N | Raw % | Valid % | Cum. %
 <section id="recodificaciones-para-la-preparación-de-gráficos" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="recodificaciones-para-la-preparación-de-gráficos"><span class="header-section-number">2.5</span> Recodificaciones para la preparación de gráficos</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar indice seguridad subjetiva en bajo (&lt;=3) y alto (&gt;3)</span></span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar indice seguridad subjetiva en bajo (&lt;=3) y alto (&gt;3)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>check1 <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seg_sub3 =</span> <span class="fu">case_when</span>(</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    seg_sub <span class="sc">&gt;=</span><span class="dv">1</span> <span class="sc">&amp;</span> seg_sub <span class="sc">&lt;=</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Bajo"</span>,</span>
@@ -1741,7 +1738,7 @@ Value | Label |    N | Raw % | Valid % | Cum. %
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  ))  </span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>seg_sub3) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>seg_sub3) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;character&gt; 
 # total N=20761 valid N=19588 mean=1.39 sd=0.49
@@ -1755,9 +1752,9 @@ Bajo  |  7632 | 36.76 |   38.96 | 100.00
 </div>
 <p>Como se señaló anteriormente, la concentración de casos en la escala de valores respaldan la decisión de establecer los puntos de corte para un grupo bajo (≤ 3) y uno alto (&gt; 3) de seguridad subjetiva.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#reordenar alto, medio, bajo</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#reordenar alto, medio, bajo</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>check1<span class="sc">$</span>seg_sub3 <span class="ot">&lt;-</span> <span class="fu">factor</span>(check1<span class="sc">$</span>seg_sub3, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Alto"</span>, <span class="st">"Bajo"</span>))</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>seg_sub3) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>seg_sub3) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;categorical&gt; 
 # total N=20761 valid N=19588 mean=1.39 sd=0.49
@@ -1770,14 +1767,14 @@ Bajo  |  7632 | 36.76 |   38.96 | 100.00
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar r12_04 (desempleo migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs</span></span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar r12_04 (desempleo migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>check1 <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">desempleo_migrantes5 =</span> <span class="fu">case_when</span>(</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    r12_04 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Muy de acuerdo"</span>,</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    r12_04 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) <span class="sc">~</span> <span class="st">"Otro"</span>,</span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>desempleo_migrantes5) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>desempleo_migrantes5) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;character&gt; 
 # total N=20761 valid N=20456 mean=1.88 sd=0.32
@@ -1788,14 +1785,14 @@ Muy de acuerdo |  2418 | 11.65 |   11.82 |  11.82
 Otro           | 18038 | 86.88 |   88.18 | 100.00
 &lt;NA&gt;           |   305 |  1.47 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar r12_04 (desempleo migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs</span></span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar r12_04 (desempleo migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>check1 <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">desempleo_migrantes1 =</span> <span class="fu">case_when</span>(</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    r12_04 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Muy en desacuerdo"</span>,</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    r12_04 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="sc">~</span> <span class="st">"Otro"</span>,</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>desempleo_migrantes1) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>desempleo_migrantes1) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;character&gt; 
 # total N=20761 valid N=20456 mean=1.94 sd=0.25
@@ -1808,14 +1805,14 @@ Otro              | 19131 | 92.15 |   93.52 | 100.00
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar c37_05 (restriccion migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs</span></span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar c37_05 (restriccion migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>check1 <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">restriccion_migrantes5 =</span> <span class="fu">case_when</span>(</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    c37_05 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Muy de acuerdo"</span>,</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    c37_05 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) <span class="sc">~</span> <span class="st">"Otro"</span>,</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>restriccion_migrantes5) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>restriccion_migrantes5) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;character&gt; 
 # total N=20761 valid N=9532 mean=1.70 sd=0.46
@@ -1826,14 +1823,14 @@ Muy de acuerdo |  2825 | 13.61 |   29.64 |  29.64
 Otro           |  6707 | 32.31 |   70.36 | 100.00
 &lt;NA&gt;           | 11229 | 54.09 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar c37_05 (restriccion migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs</span></span>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificar c37_05 (restriccion migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>check1 <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">restriccion_migrantes1 =</span> <span class="fu">case_when</span>(</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    c37_05 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Muy en desacuerdo"</span>,</span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    c37_05 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="sc">~</span> <span class="st">"Otro"</span>,</span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>restriccion_migrantes1) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check1<span class="sc">$</span>restriccion_migrantes1) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;character&gt; 
 # total N=20761 valid N=9532 mean=1.97 sd=0.16
@@ -1848,7 +1845,7 @@ Otro              |  9293 | 44.76 |   97.49 | 100.00
 <p>Al examinar la distribución de las respuestas para las variables de migración, se observa que las categorías extremas concentran una fracción relativamente reducida de los casos: alrededor del 12% y el 14% para “Muy de acuerdo” y 6.5% y apenas 1.15% para “Muy en desacuerdo”. En contraste, cerca del 90% de las observaciones se ubican en categorías distintas a los extremos. Esta asimetría sugiere que, si bien es posible representar gráficamente los extremos frente al resto para enfatizar la presencia de posiciones polarizadas, la interpretación debe considerar que la mayor parte de la variación se concentra en la categoría agregada “Otro”. Por ello, dependiendo del objetivo analítico, puede ser preferible distinguir dos grupos (De acuerdo y En desacuerdo), lo que permite capturar con mayor claridad la disposición de las respuestas para fines visuales.</p>
 <p>Tabla cruzada entre Seguridad Subjetiva y Restricción de Migrantes para observar los porcentajes y su distribución por ola</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tabla_cruzada <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tabla_cruzada <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(seg_sub3) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(restriccion_migrantes5) <span class="sc">&amp;</span> restriccion_migrantes5 <span class="sc">==</span> <span class="st">"Muy de acuerdo"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola, seg_sub3) <span class="sc">%&gt;%</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>  </span>
@@ -1857,7 +1854,7 @@ Otro              |  9293 | 44.76 |   97.49 | 100.00
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> total_ola) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla_cruzada, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy de acuerdo) por ola - porcentaje dentro de ola"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla_cruzada, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy de acuerdo) por ola - porcentaje dentro de ola"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy de acuerdo) por ola - porcentaje dentro de ola</caption>
@@ -1946,7 +1943,7 @@ Otro              |  9293 | 44.76 |   97.49 | 100.00
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tabla_cruzada <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tabla_cruzada <span class="ot">&lt;-</span> check1 <span class="sc">%&gt;%</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(seg_sub3) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(restriccion_migrantes1) <span class="sc">&amp;</span> restriccion_migrantes1 <span class="sc">==</span> <span class="st">"Muy en desacuerdo"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ola, seg_sub3) <span class="sc">%&gt;%</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>  </span>
@@ -1955,7 +1952,7 @@ Otro              |  9293 | 44.76 |   97.49 | 100.00
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> total_ola) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla_cruzada, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy en desacuerdo) por ola - porcentaje dentro de ola"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla_cruzada, <span class="at">format =</span> table_format, <span class="at">caption =</span> <span class="st">"Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy en desacuerdo) por ola - porcentaje dentro de ola"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy en desacuerdo) por ola - porcentaje dentro de ola</caption>
@@ -2047,7 +2044,7 @@ Otro              |  9293 | 44.76 |   97.49 | 100.00
 <section id="gráficos-seguridad-subjetiva-y-desempleo-migrantes" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="gráficos-seguridad-subjetiva-y-desempleo-migrantes"><span class="header-section-number">2.6</span> Gráficos: Seguridad Subjetiva y Desempleo migrantes</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs</span></span>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>elsoc_long <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">desempleo_migrantes =</span> <span class="fu">case_when</span>(</span>
@@ -2060,7 +2057,7 @@ Otro              |  9293 | 44.76 |   97.49 | 100.00
 <span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># order from  "En desacuerdo", "Ni de acuerdo ni en desacuerdo", "De acuerdo"</span></span>
 <span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>elsoc_long<span class="sc">$</span>desempleo_migrantes <span class="ot">&lt;-</span> <span class="fu">factor</span>(elsoc_long<span class="sc">$</span>desempleo_migrantes, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Totalmente en desacuerdo + desacuerdo"</span>, <span class="st">"Ni de acuerdo ni en desacuerdo"</span>, <span class="st">"Totalmente de acuerdo + de acuerdo"</span>)) </span>
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>desempleo_migrantes) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>desempleo_migrantes) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;categorical&gt; 
 # total N=20761 valid N=20456 mean=2.18 sd=0.92
@@ -2074,11 +2071,11 @@ Totalmente de acuerdo + de acuerdo    | 10756 | 51.81 |   52.58 | 100.00
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generar indice promedio de seguridad subjetiva con t06_01 y t10</span></span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generar indice promedio de seguridad subjetiva con t06_01 y t10</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>elsoc_long <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span> </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seg_sub =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., t06_01, t10), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))  </span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>seg_sub) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>seg_sub) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;numeric&gt; 
 # total N=20761 valid N=19588 mean=3.42 sd=0.97
@@ -2098,11 +2095,11 @@ Value |    N | Raw % | Valid % | Cum. %
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>check2 <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>check2 <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ola, seg_sub, desempleo_migrantes, segmento, estrato, ponderador_long_total)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cheq</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check2<span class="sc">$</span>desempleo_migrantes) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check2<span class="sc">$</span>desempleo_migrantes) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;categorical&gt; 
 # total N=20761 valid N=20456 mean=2.18 sd=0.92
@@ -2116,7 +2113,7 @@ Totalmente de acuerdo + de acuerdo    | 10756 | 51.81 |   52.58 | 100.00
 </div>
 </div>
 <div class="cell fig-cap-location-bottom" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>check2 <span class="ot">&lt;-</span> check2 <span class="sc">%&gt;%</span> <span class="co"># Se pondera la base</span></span>
+<div class="sourceCode cell-code" id="cb36" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>check2 <span class="ot">&lt;-</span> check2 <span class="sc">%&gt;%</span> <span class="co"># Se pondera la base</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(<span class="at">ids =</span> segmento, </span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strata =</span> estrato, </span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">weights =</span> ponderador_long_total,</span>
@@ -2195,7 +2192,7 @@ Totalmente de acuerdo + de acuerdo    | 10756 | 51.81 |   52.58 | 100.00
 <span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a>      <span class="at">keywidth =</span> <span class="fu">unit</span>(<span class="dv">14</span>, <span class="st">"pt"</span>),</span>
 <span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a>      <span class="at">keyheight =</span> <span class="fu">unit</span>(<span class="dv">10</span>, <span class="st">"pt"</span>)</span>
 <span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="100%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2213,7 +2210,7 @@ Figure&nbsp;2.1
 <section id="gráficos-seguridad-subjetiva-y-restricción-migrantes-longitudinal" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="gráficos-seguridad-subjetiva-y-restricción-migrantes-longitudinal"><span class="header-section-number">2.7</span> Gráficos Seguridad Subjetiva y Restricción Migrantes (Longitudinal)</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs</span></span>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>elsoc_long <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">restriccion_migrantes =</span> <span class="fu">case_when</span>(</span>
@@ -2226,7 +2223,7 @@ Figure&nbsp;2.1
 <span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co"># order from  "En desacuerdo", "Ni de acuerdo ni en desacuerdo", "De acuerdo"</span></span>
 <span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>elsoc_long<span class="sc">$</span>restriccion_migrantes <span class="ot">&lt;-</span> <span class="fu">factor</span>(elsoc_long<span class="sc">$</span>restriccion_migrantes, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Totalmente en desacuerdo + desacuerdo"</span>, <span class="st">"Ni de acuerdo ni en desacuerdo"</span>, <span class="st">"Totalmente de acuerdo + de acuerdo"</span>)) </span>
 <span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>restriccion_migrantes) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>restriccion_migrantes) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;categorical&gt; 
 # total N=20761 valid N=9532 mean=2.65 sd=0.69
@@ -2240,11 +2237,11 @@ Totalmente de acuerdo + de acuerdo    |  7344 | 35.37 |   77.05 | 100.00
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generar indice promedio de seguridad subjetiva con t06_01 y t10</span></span>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generar indice promedio de seguridad subjetiva con t06_01 y t10</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>elsoc_long <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span> </span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seg_sub =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., t06_01, t10), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>seg_sub) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(elsoc_long<span class="sc">$</span>seg_sub) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;numeric&gt; 
 # total N=20761 valid N=19588 mean=3.42 sd=0.97
@@ -2264,13 +2261,13 @@ Value |    N | Raw % | Valid % | Cum. %
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Generar subset para nueva base ponderada</span></span>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Generar subset para nueva base ponderada</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>check3 <span class="ot">&lt;-</span> elsoc_long <span class="sc">%&gt;%</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ola, seg_sub, restriccion_migrantes, segmento, estrato, ponderador_long_total)</span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co"># cheq</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check3<span class="sc">$</span>restriccion_migrantes) <span class="co"># ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check3<span class="sc">$</span>restriccion_migrantes) <span class="co"># ok</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;categorical&gt; 
 # total N=20761 valid N=9532 mean=2.65 sd=0.69
@@ -2284,7 +2281,7 @@ Totalmente de acuerdo + de acuerdo    |  7344 | 35.37 |   77.05 | 100.00
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Recodificar seguridad subjetiva en baja y alta en la nueva base</span></span>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Recodificar seguridad subjetiva en baja y alta en la nueva base</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>check3 <span class="ot">&lt;-</span> check3 <span class="sc">%&gt;%</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seg_sub2 =</span> <span class="fu">case_when</span>(</span>
@@ -2293,7 +2290,7 @@ Totalmente de acuerdo + de acuerdo    |  7344 | 35.37 |   77.05 | 100.00
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
 <span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  ))  </span>
 <span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>check3<span class="sc">$</span>seg_sub2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(check3<span class="sc">$</span>seg_sub2, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Alta"</span>, <span class="st">"Baja"</span>))</span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check3<span class="sc">$</span>seg_sub2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(check3<span class="sc">$</span>seg_sub2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x &lt;categorical&gt; 
 # total N=20761 valid N=19588 mean=1.39 sd=0.49
@@ -2309,7 +2306,7 @@ Baja  |  7632 | 36.76 |   38.96 | 100.00
 <section id="gráfico" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="gráfico"><span class="header-section-number">2.8</span> Gráfico</h2>
 <div class="cell fig-cap-location-bottom" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>check3 <span class="ot">&lt;-</span> check3 <span class="sc">%&gt;%</span> <span class="co">#Se pondera la base</span></span>
+<div class="sourceCode cell-code" id="cb45" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>check3 <span class="ot">&lt;-</span> check3 <span class="sc">%&gt;%</span> <span class="co">#Se pondera la base</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(<span class="at">ids =</span> segmento, </span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strata =</span> estrato, </span>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">weights =</span> ponderador_long_total,</span>
@@ -2396,7 +2393,7 @@ Baja  |  7632 | 36.76 |   38.96 | 100.00
 <span id="cb45-85"><a href="#cb45-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position  =</span> <span class="st">"top"</span>,</span>
 <span id="cb45-86"><a href="#cb45-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.direction =</span> <span class="st">"horizontal"</span>,</span>
 <span id="cb45-87"><a href="#cb45-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
-<span id="cb45-88"><a href="#cb45-88" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb45-88"><a href="#cb45-88" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="100%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2467,14 +2464,13 @@ Figure&nbsp;2.2
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
