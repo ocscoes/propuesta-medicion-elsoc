@@ -1,7 +1,7 @@
 
 # Dimensión: Redes sociales 
 
-El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y redes sociales para la producción de figuras con la información que se muestra en el siguiente gráfico, que está en la presentación de la CEP 2025:
+El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y redes sociales para la producción de figuras con la información que se muestra en el reporte CEP 2025:
 
 [https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/7/3](https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/7/3)
 
@@ -67,7 +67,7 @@ elsoc_long <- elsoc_long %>%
 ## Univariados: Variables
 
 
-El índice de _Ayuda Económica_ se compone de:
+El índice de **Ayuda Económica** se compone de:
 
 - Frecuencia: prestar $10.000 o más
 
@@ -84,7 +84,7 @@ find_var(data = elsoc_long,"trabajo") # corresponde a c07_08
 frq(elsoc_long$c07_08)
 ```
 
-Por su parte, las variables de migración que preguntan por la percepción en torno a la relación entre perdida de identidad nacional y migración, y por la restricción a migrantes:
+Por su parte, la variable que sobre la percepción en torno al desempleo a causa de la migración:
 
 ```{r}
 #| results: false
@@ -111,11 +111,14 @@ slice(check3,1:10) %>% select(c07_06, c07_08, ayu_eco, ola) # check ok
 ```{r}
 frq(check3$ayu_eco) # ok
 ```
+En el caso del índice de ayuda económica, los valores se concentran principalmente en el tramo inferior: hasta el valor 2.00 se acumula un 62% de los casos, mientras que los valores de 2.50 en adelante reúnen solo el 38%. Esta distribución, claramente sesgada hacia los valores bajos, respalda la decisión de establecer un punto de corte en 2.00, diferenciando entre un grupo con percepción baja (≤2.00) y otro con percepción alta (≥2.50) de ayuda económica. El criterio combina justificación empírica —dada la asimetría de la distribución— y sentido conceptual, en tanto permite distinguir entre quienes presentan poca versus mayor ayuda.
+
 ## Variación por ola 
 
 ```{r}
 frq(check3$ola) # ok
 ```
+
 ```{r}
 # Tabla con el promedio de seguridad subjetiva por ola
 ayuda_por_ola <- check3 %>%
@@ -126,6 +129,10 @@ if (!exists("table_format")) table_format <- "simple"
 
 knitr::kable(ayuda_por_ola, format = table_format, caption = "Promedio de Ayuda Económica por ola")
 ```
+
+Los promedios del índice de ayuda económica por ola se mantienen estables en torno a la categoría 2, con variaciones mínimas a lo largo del tiempo. Este patrón evidencia que la percepción de ayuda económica presenta una estabilidad estructural y se ubica de manera consistente en el tramo bajo de la escala. La persistencia de valores medios próximos a 2.00 refuerza el criterio de dicotomizar la variable en dos grupos (≤2 vs. ≥2.5), diferenciando a la mayoría con percepciones bajas de ayuda económica de la minoría que reporta niveles más altos.
+
+A continuación se presentan tablas que muestran el promedio de seguridad subjetiva por ola para cada categoría de respuesta en r12_04
 
 ```{r}
 # Tabla con el promedio de Ayuda Económica por ola y por categorías de r12_04 (desempleo migrantes)
@@ -146,8 +153,10 @@ ayuda_por_ola_desempleo_ordered <- ayuda_por_ola_desempleo %>%
 knitr::kable(ayuda_por_ola_desempleo_ordered, format = table_format, caption = "Promedio de ayuda económica por ola y categoría de migración (r12_04) - Ordenado por r12_04")
 ```
 
+Ya definidos los puntos de corte para cada categoría, se recodifica el índice de ayuda económica.
+
 ```{r}
-"Recodificar índice de ayuda económica en bajo y alto"
+# Recodificar índice de ayuda económica en bajo y alto
 check3 <- check3 %>%
   mutate(ayu_eco3 = case_when(
     ayu_eco >= 1 & ayu_eco <= 2 ~ "Bajo",
@@ -157,12 +166,7 @@ check3 <- check3 %>%
 
 frq(check3$ayu_eco3) # ok
 ```
-
-```{r}
-#reordenar alto, medio, bajo
-check3$ayu_eco3 <- factor(check3$ayu_eco3, levels = c("Alto", "Bajo"))
-frq(check3$ayu_eco3) # ok
-```
+Así mismo, se muestra nuevamente la distribución de casos en los extremos para la variable de desempleo migrantes en tablas de frecuencia.
 
 ```{r}
 # recodificar r12_04 (desempleo migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs
@@ -174,8 +178,9 @@ check3 <- check3 %>%
   ))
 frq(check3$desempleo_migrantes5) # ok
 ```
+
 ```{r}
-# recodificar c37_05 (restriccion migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs
+# recodificar r12_04 (desempleo migrantes) en muy en desacuerdo = 1, el resto=0, sacando los NAs
 check3 <- check3 %>%
   mutate(desempleo_migrantes1 = case_when(
     r12_04 == 1 ~ "Muy en desacuerdo",
@@ -184,6 +189,8 @@ check3 <- check3 %>%
   ))
 frq(check3$desempleo_migrantes1) # ok
 ```
+En la distribución de la afirmación sobre desempleo y migración se observa que los extremos concentran una proporción minoritaria de casos: un 11.8% se declara “Muy de acuerdo”, mientras que solo un 6.5% se manifiesta “Muy en desacuerdo”. La gran mayoría de las respuestas (≈90%) se ubican en posiciones distintas a los extremos. Esta asimetría revela que, aunque los posicionamientos radicales son poco frecuentes, existe una mayor inclinación hacia el extremo afirmativo, lo que sugiere que la percepción de que los migrantes afectan el empleo tiene mayor arraigo que su rechazo frontal, pero no es significativo para evaluar a partir de estas categorías.
+
 ```{r}
 #recodificar ayuda económica en baja y alta
 check3 <- check3 %>%
@@ -195,38 +202,8 @@ check3 <- check3 %>%
 check3$ayu_eco2 <- factor(check3$ayu_eco2, levels = c("Alta", "Baja"))
 frq(check3$ayu_eco2)
 ```
-Tabla curzada con muy de acuerdo (desempleo_migrantes5) y apoyo económico (ayu_eco3)
 
-```{r}
-tabla_cruzada <- check3 %>%
-  filter(!is.na(ayu_eco3) & !is.na(desempleo_migrantes5) & desempleo_migrantes5 == "Muy de acuerdo") %>%
-  group_by(ola, ayu_eco3) %>%
-  summarise(n = n()) %>%  
-  group_by(ola) %>%
-  mutate(total_ola = sum(n),
-         porcentaje = (n / total_ola) * 100) %>%
-  ungroup()
-
-knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de ayuda económica y desempleo migrantes (Muy de acuerdo) por ola - porcentaje dentro de ola")
-```
-
-```{r}
-tabla_cruzada2 <- check3 %>%
-  filter(!is.na(ayu_eco3) & !is.na(desempleo_migrantes1) & desempleo_migrantes1 == "Muy en desacuerdo") %>%
-  group_by(ola, ayu_eco3) %>%
-  summarise(n = n()) %>%  
-  group_by(ola) %>%
-  mutate(total_ola = sum(n),
-         porcentaje = (n / total_ola) * 100) %>%
-  ungroup()
-
-knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de ayuda económica y desempleo migrantes (Muy en desacuerdo) por ola - porcentaje dentro de ola")
-```
-
-```{r}
-frq(check3$desempleo_migrantes1) # ok
-```
-# Gráfico
+# Gráfico: Ayuda Económica y Desempleo Migrante
 
 ```{r}
 #recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs
@@ -260,7 +237,6 @@ check4 <- elsoc_long %>%
 # cheq
 frq(check4$desempleo_migrantes) # ok
 ```
-
 
 Recodificar Ayuda Económica en baja y alta 
 ```{r}

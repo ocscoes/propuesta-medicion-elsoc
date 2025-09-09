@@ -1,11 +1,9 @@
 
 # Dimensión: Seguridad pública 
 
-El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y seguridad para la producción de figuras con la información que se muestra en el siguiente gráfico, que está en la presentación de la CEP 2025:
+El objetivo de este script es mostrar las decisiones metodológicas para la construcción de los subíndices de migración y seguridad para la producción de figuras con la información que se muestra en el reporte CEP 2025:
 
 [https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/5/1](https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/CEP_2025/cep_2025.html#/5/1)
-
-## Cargar Librerías y espacio de trabajo
 
 ```{r}
 #| echo: false
@@ -112,7 +110,7 @@ slice(check1,1:10) %>% select(t06_01,t10,seg_sub, ola) # check ok
 ```{r}
 frq(check1$seg_sub) # ok
 ```
-Observamos que la distribución de las respuestas carga la mitad de los casos hasta el valor 3.5 -con el 48.96% de los casos acumulados- por lo que se justificaría la elección de aquellos valores <=3 como bajo, y 3< como alto. 
+De acuerdo con la distribución observada de los valores del índice de seguridad subjetiva, se aprecia que hasta el valor 3.00 se acumula aproximadamente un 39% de los casos, mientras que los valores superiores a 3 concentran el 61% restante. Este patrón respalda empíricamente la decisión de establecer un punto de corte en 3, distinguiendo entre un grupo bajo (≤ 3) y uno alto (> 3). El criterio no solo asegura una diferenciación significativa en términos de frecuencia relativa, sino que además se alinea con la lógica de la escala, en la cual el valor tres constituye un punto de referencia intermedio.
 
 ## Variación por ola
 
@@ -132,21 +130,12 @@ if (!exists("table_format")) table_format <- "simple"
 knitr::kable(seguridad_por_ola, format = table_format, caption = "Promedio de seguridad subjetiva por ola")
 ```
 
-Se observa que el promedio por ola se mantiene alrededor del valor 3.5, lo que aporta evidencia para la selección de los valores escogidos para agrupar las categorías de Alto-Bajo.
+Los promedios de seguridad subjetiva por ola permanecen relativamente estables (rango 3.28–3.63; promedio global = 3.43, DE ≈ 0.11), indicando un patrón general de percepción ligeramente superior al punto medio de la escala. No obstante, la distribución individual muestra que alrededor del 39% de los casos se ubica en ≤3, por lo que se adoptó el umbral ≤3 / >3 para diferenciar grupos con baja vs. alta seguridad subjetiva. Este corte combina justificación empírica (frecuencias acumuladas) y coherencia conceptual con la métrica usada.
+
+A continuación se presentan tablas que muestran el promedio de seguridad subjetiva por ola para cada categoría de respuesta en c37_05 y r12_04
 
 ```{r}
-# Tabla con el promedio de seguridad subjetiva por ola y por categorías de r12_04 (desempleo migrantes)
-
-seguridad_por_ola_migracion <- check1 %>%
-  group_by(ola, r12_04) %>%
-  summarise(promedio_seg_subjetiva = mean(seg_sub, na.rm = TRUE), n = n()) %>%
-  ungroup()
-
-knitr::kable(seguridad_por_ola_migracion, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (r12_04)")
-```
-
-```{r}
-# Tabla con el promedio de seguridad subjetiva por ola y por categorías de c37_05 (restricción migrante)
+# Tabla con el promedio de seguridad subjetiva por ola y por categorías de c37_05 (restricción migrantes) y r12_04 (desempleo migrantes)
 seguridad_por_ola_migracion <- check1 %>%
   group_by(ola, c37_05, r12_04) %>%
   summarise(promedio_seg_subjetiva = mean(seg_sub, na.rm = TRUE), n = n()) %>%
@@ -156,27 +145,10 @@ knitr::kable(seguridad_por_ola_migracion, format = table_format, caption = "Prom
 ```
 
 
-```{r}
-# Tabla ordenada por r12_04
-seguridad_por_ola_migracion_ordered <- seguridad_por_ola_migracion %>%
-  arrange(r12_04, ola)
-
-knitr::kable(seguridad_por_ola_migracion_ordered, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (r12_04) - Ordenado por r12_04")
-```
+## Recodificaciones para la preparación de gráficos
 
 ```{r}
-# Tabla ordenada por c37_05
-seguridad_por_ola_migracion_ordered <- seguridad_por_ola_migracion %>%
-  arrange(c37_05, ola)
-
-knitr::kable(seguridad_por_ola_migracion_ordered, format = table_format, caption = "Promedio de seguridad subjetiva por ola y categoría de migración (c37_05) - Ordenado por c37_05")
-```
-
-
-## Info Gráfico
-
-```{r}
-# recodificar indice seguridad subjetiva en bajo (1-2.5), medio (2.6-3.5) y alto (3.6-5)
+# recodificar indice seguridad subjetiva en bajo (<=3) y alto (>3)
 check1 <- check1 %>%
   mutate(seg_sub3 = case_when(
     seg_sub >=1 & seg_sub <= 3 ~ "Bajo",
@@ -186,6 +158,8 @@ check1 <- check1 %>%
 
 frq(check1$seg_sub3) # ok
 ```
+
+Como se señaló anteriormente, la concentración de casos en la escala de valores respaldan la decisión de establecer los puntos de corte para un grupo bajo (≤ 3) y uno alto (> 3) de seguridad subjetiva.
 
 ```{r}
 #reordenar alto, medio, bajo
@@ -213,6 +187,7 @@ check1 <- check1 %>%
 frq(check1$desempleo_migrantes1) # ok
 ```
 
+
 ```{r}
 # recodificar c37_05 (restriccion migrantes) en muy de acuerdo = 1, el resto=0, sacando los NAs
 check1 <- check1 %>%
@@ -232,18 +207,7 @@ check1 <- check1 %>%
   ))
 frq(check1$restriccion_migrantes1) # ok
 ```
-
-```{r}
-#Recodificar seguridad subjetiva en baja y alta
-check1 <- check1 %>%
-  mutate(seg_sub2 = case_when(
-    seg_sub >= 1 & seg_sub <= 3 ~ "Baja",
-    seg_sub > 3 & seg_sub <= 5 ~ "Alta",
-    TRUE ~ NA_character_
-  ))  
-check1$seg_sub2 <- factor(check1$seg_sub2, levels = c("Alta", "Baja"))
-frq(check1$seg_sub2)
-```
+Al examinar la distribución de las respuestas para las variables de migración, se observa que las categorías extremas concentran una fracción relativamente reducida de los casos: alrededor del 12% y el 14% para “Muy de acuerdo” y 6.5% y apenas 1.15% para “Muy en desacuerdo”. En contraste, cerca del 90% de las observaciones se ubican en categorías distintas a los extremos. Esta asimetría sugiere que, si bien es posible representar gráficamente los extremos frente al resto para enfatizar la presencia de posiciones polarizadas, la interpretación debe considerar que la mayor parte de la variación se concentra en la categoría agregada “Otro”. Por ello, dependiendo del objetivo analítico, puede ser preferible distinguir dos grupos (De acuerdo y En desacuerdo), lo que permite capturar con mayor claridad la disposición de las respuestas para fines visuales.
 
 
 Tabla cruzada entre Seguridad Subjetiva y Restricción de Migrantes para observar los porcentajes y su distribución por ola
@@ -274,7 +238,8 @@ tabla_cruzada <- check1 %>%
 knitr::kable(tabla_cruzada, format = table_format, caption = "Tabla cruzada de seguridad subjetiva y restricción migrantes (Muy en desacuerdo) por ola - porcentaje dentro de ola")
 ```
 
-## Seguridad Subjetiva y Desempleo migrantes
+
+## Gráficos: Seguridad Subjetiva y Desempleo migrantes
 
 ```{r}
 # Recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs
@@ -310,13 +275,10 @@ frq(check2$desempleo_migrantes) # ok
 ```
 
 
-
-## Gráficos
-
 ```{r}
-#| label: fig-seg-des
+#| label: fig-1
 #| fig-cap-location: bottom
-#| echo: false
+#| echo: true
 #| warning: false
 #| message: false
 #| fig.width: 12
@@ -324,7 +286,7 @@ frq(check2$desempleo_migrantes) # ok
 #| out-width: "100%"
 #| fig-align: "center"
 
-check2 <- check2 %>% 
+check2 <- check2 %>% # Se pondera la base
   as_survey_design(ids = segmento, 
                    strata = estrato, 
                    weights = ponderador_long_total,
@@ -406,7 +368,7 @@ check2 %>%
   )
 ``` 
 
-## Seguridad Subjetiva y Restricción Migrantes (Longitudinal)
+## Gráficos Seguridad Subjetiva y Restricción Migrantes (Longitudinal)
 
 ```{r}
 # Recodificar algo de acuerdo = 4 y muy de acuerdo = 5 como "De acuerdo", 3= "ni de acuerdo ni desacuerdo", y 1 y 2 como "en desacuerdo, sacando los NAs
@@ -428,12 +390,14 @@ frq(elsoc_long$restriccion_migrantes) # ok
 ```{r}
 # generar indice promedio de seguridad subjetiva con t06_01 y t10
 elsoc_long <- elsoc_long %>% 
-  mutate(seg_sub = rowMeans(select(., t06_01, t10), na.rm = TRUE))
+  mutate(seg_sub = rowMeans(select(., t06_01, t10), na.rm = TRUE)) 
 
 frq(elsoc_long$seg_sub) # ok
 ```
 
 ```{r}
+#Generar subset para nueva base ponderada
+
 check3 <- elsoc_long %>%
   select(ola, seg_sub, restriccion_migrantes, segmento, estrato, ponderador_long_total)
 
@@ -442,7 +406,8 @@ frq(check3$restriccion_migrantes) # ok
 ```
 
 ```{r}
-#recodificar seguridad subjetiva en baja y alta
+#Recodificar seguridad subjetiva en baja y alta en la nueva base
+
 check3 <- check3 %>%
   mutate(seg_sub2 = case_when(
     seg_sub >= 1 & seg_sub <= 3 ~ "Baja",
@@ -456,7 +421,17 @@ frq(check3$seg_sub2)
 ## Gráfico
 
 ```{r}
-check3 <- check3 %>% 
+#| label: fig-2
+#| fig-cap-location: bottom
+#| echo: true
+#| warning: false
+#| message: false
+#| fig.width: 12
+#| fig.height: 8
+#| out-width: "100%"
+#| fig-align: "center"
+
+check3 <- check3 %>% #Se pondera la base
   as_survey_design(ids = segmento, 
                    strata = estrato, 
                    weights = ponderador_long_total,
@@ -520,7 +495,7 @@ check3 %>%
     subtitle = "Porcentaje que responde...",
     x = NULL,
     y = NULL,
-    caption = "Fuente: elaboración propia con datos agrupados de ELSOC 2018-2023"
+    caption = "Fuente: Elaboración propia con datos agrupados de ELSOC 2018-2023"
   ) +
   theme_bw() +
   theme(
