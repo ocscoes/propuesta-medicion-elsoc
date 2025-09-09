@@ -64,7 +64,7 @@ elsoc_long <- elsoc_long %>%
 
 ## Univariados: Variables
 
-La dimensión de _seguridad subjetiva_ se asocia a los siguientes ítems
+La dimensión de **seguridad subjetiva** se asocia a los siguientes ítems
 
 - Satisfacción con la seguridad del barrio
 
