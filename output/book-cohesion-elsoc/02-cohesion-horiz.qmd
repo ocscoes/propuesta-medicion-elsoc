@@ -1,1 +1,50 @@
 # Propuesta de Cohesión Horizontal
+
+## Antecedentes
+
+El concepto de cohesión social horizontal se constituye a partir de una crítica a las definiciones previas, que solían confundir sus contenidos con condiciones externas como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a ello, Chan et al., 2006 proponen una definición minimalista que identifique los elementos constitutivos de la cohesión sin diluir su valor analítico. En este marco, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos dentro de la sociedad, independientemente del Estado.
+
+Conceptualmente, incluye la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales y el sentido compartido de pertenencia. Operacionalmente, estos componentes se expresan en indicadores subjetivos (confianza interpersonal, voluntad de cooperar, identificación con la comunidad) y objetivos (participación en asociaciones, voluntariado, donaciones, cooperación o divisiones entre grupos). Así, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
+
+Anteriormente, desde el Observatorio de Cohesión Social (OCS-COES) ya se ha incursionado en la representación empírica de la cohesión social horizontal. Específicamente desde una perspectiva comparada regional a partir de encuestas internacionales como LAPOP y WVS. En este marco, la cohesión parte de su comprensión como un entramado de vínculos entre ciudadanos y grupos sociales, expresada en actitudes subjetivas y prácticas objetivas de interacción. A nivel conceptual, esta dimensión se ha estructurado en tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales.
+
+![](images/hor-lapop.png)
+
+En primer lugar, el sentido de pertenencia mide el grado en que las personas se reconocen como parte de una comunidad política nacional y expresan orgullo de pertenecer a ella. LAPOP incluye indicadores de orgullo y deber de apoyar al sistema político, mientras que WVS incorpora preguntas sobre orgullo nacional y disposición a defender al país en caso de guerra. De acuerdo con los análisis factoriales realizados, el indicador más robusto para esta dimensión es el orgullo nacional (WVS).
+
+En segundo lugar, la calidad de vida en el vecindario combina tanto percepciones subjetivas como condiciones objetivas del entorno. LAPOP ofrece indicadores sobre seguridad urbana y victimización, así como satisfacción con servicios básicos; mientras que WVS incluye la confianza en los vecinos. El análisis empírico muestra que las variables más consistentes para esta subdimensión son la seguridad urbana y la confianza en los vecinos, lo que refleja cómo las experiencias cotidianas de convivencia impactan la percepción de cohesión.
+
+Finalmente, las redes sociales se refieren a la participación en organizaciones civiles y a comportamientos prosociales. LAPOP capta la asistencia a reuniones religiosas, escolares y vecinales, además de un indicador de confianza interpersonal, mientras que WVS aporta ítems de comportamiento cívico como el rechazo a sobornos, la disposición a pagar impuestos o el uso honesto del transporte público. Tras los análisis de consistencia interna, se consolidaron dos indicadores principales: la confianza interpersonal y las conductas prosociales.
+
+Este marco a nivel regional permite observar cómo la cohesión horizontal en América Latina se articula alrededor de un sentido compartido de pertenencia nacional, la calidad de las interacciones locales y la densidad de redes sociales. Si bien los indicadores específicos varían según encuesta, la lógica de Chan et al. (2006) se mantiene: integrar tanto actitudes subjetivas como comportamientos objetivos para capturar las relaciones entre ciudadanos y grupos sociales. 
+
+### Cohesión Social Horizontal en Chile
+
+![](images/hor-elsoc.png)
+
+Para el caso chileno, la encuesta ELSOC, como bien ya han mostrado Castillo et al. (2021), permite operacionalizar la dimensión horizontal de la cohesión social a partir de la distinción tanto de indicadores subjetivos —como el sentido de pertenencia, la confianza y la apertura a la diversidad— como indicadores objetivos —como la participación social y las prácticas prosociales—. Estos se organizan en cuatro grandes subdimensiones: sentido de pertenencia, confianza social, cohesión barrial y sociabilidad local, y participación y prosocialidad.
+
+La primera, sentido de pertenencia, se capta a través de ítems del módulo de Sociabilidad Política que indagan sobre el grado de identificación con Chile y el orgullo nacional. Estas preguntas reflejan el vínculo simbólico y afectivo de las personas con la comunidad política nacional y permiten observar hasta qué punto los individuos se reconocen como parte de un colectivo común.
+
+La segunda, confianza social, incluye indicadores tanto de confianza interpersonal generalizada como de confianza en los vecinos. Preguntas como “¿Se puede confiar en la mayoría de las personas o hay que tener cuidado?” o “¿Cuánto confía en sus vecinos?” miden las expectativas que los individuos tienen respecto al comportamiento de los otros, constituyendo un elemento central de la cohesión horizontal según Chan et al., en tanto facilita la cooperación entre desconocidos.
+
+La tercera, cohesión barrial y sociabilidad local, se refiere a la integración y calidad de las relaciones en el espacio cotidiano del vecindario. ELSOC incluye ítems sobre la percepción de integración al barrio, la identificación con sus habitantes y el nivel de colaboración entre vecinos. Estos indicadores permiten analizar la cohesión en un nivel micro, donde la interacción directa fortalece o debilita los lazos comunitarios.
+
+Finalmente, la subdimensión de participación social y prosocialidad incorpora conductas concretas que muestran la disposición de las personas a involucrarse en la vida social y apoyar a otros. ELSOC mide este aspecto a través de la participación en voluntariado, las donaciones a causas sociales, el apoyo económico o material a otras personas, y el acompañamiento en situaciones de dificultad. Estas acciones representan la expresión objetiva de la cohesión horizontal, pues reflejan la voluntad de contribuir activamente al bienestar colectivo.
+
+Un componente adicional lo constituye la aceptación de la diversidad, expresada en actitudes hacia grupos sociales distintos, como migrantes o minorías sexuales. Estos indicadores permiten observar hasta qué punto la cohesión se sustenta no solo en la homogeneidad, sino también en la inclusión de la diferencia y el reconocimiento mutuo, aspecto clave en el marco de sociedades crecientemente diversas.
+
+
+## Propuesta de Medición con ELSOC
+
+- Describir la propuesta de medición de esta dimensión usando los indicadores e información disponible en ELSOC.
+- Presentar con claridad las dimensiones, subdimensiones e indicadores.
+- Incluir un esquema o tabla de operacionalización (este es el punto más importante).
+- Agregar también una tabla con la disponibilidad de indicadores por ola, en formato wide (variables en filas, olas en columnas).
+
+### Análisis y Operacionalización
+
+- Likertplot descriptivo de cada ítem
+- Correlaciones (corrplot)
+- Análisis Factorial Exploratorio
+- Construcción de índices y sus descriptivos (Media, desviación estándar, distribución y consistencia con los ítems usados)

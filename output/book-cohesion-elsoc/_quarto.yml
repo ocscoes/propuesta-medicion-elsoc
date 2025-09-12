@@ -9,12 +9,8 @@ book:
   chapters:
     - index.qmd
     - 01-introduccion.qmd
-    - 02-marco-conceptual.qmd
-    - 03-migracion-chile.qmd
-    - 04-ch-seguridad.qmd 
-    - 05-ch-territorial.qmd
-    - 06-ch-redes.qmd
-    - 07-conclusiones.qmd
+    - 02-cohesion-horiz.qmd
+    - 03-cohesion-vert.qmd
     - anexos.qmd 
 
 format:
@@ -22,7 +18,7 @@ format:
     theme:
       - cosmo
 #  pdf:
-#    documentclass: scrreprt
+#    documentclass: scrreprt 
 
 
 
