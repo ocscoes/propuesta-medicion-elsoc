@@ -3,6 +3,7 @@ title: "Propuesta vertical"
 author: "Tomás Urzúa"
 format: html
 editor: visual
+code-fold: true
 ---
 
 ## Antecedentes
@@ -22,9 +23,9 @@ knitr::include_graphics('images/ocs-la.png')
 
 Confianza en instituciones mide el grado de fiabilidad que sienten las personas respecto al congreso, al poder judicial y a los partidos políticos.
 
-Actitudes hacia la democracia busca medir las percepciones afectivas en torno al sistema político actual, considerando cuánto apoya un individuo a la democracia, y además la satisfacción respecto a ella. 
+Actitudes hacia la democracia busca medir las percepciones afectivas en torno al sistema político actual, considerando cuánto apoya un individuo a la democracia, y además la satisfacción respecto a ella.
 
-Por último, justicia distributiva mide el grado de acuerdo con la idea de que los ingresos deberían ser redistribuidos igualitariamente en la sociedad. 
+Por último, justicia distributiva mide el grado de acuerdo con la idea de que los ingresos deberían ser redistribuidos igualitariamente en la sociedad.
 
 ## Nueva propuesta de medición con ELSOC
 
@@ -39,9 +40,9 @@ knitr::include_graphics('images/propuesta-ver.png')
 
 La nueva propuesta del OCS se visualiza en @fig-ocs-nueva, conformándose a partir de cuatro subdimensiones: Confianza en instituciones, prácticas y actitudes políticas, preferencias por sistema político y justicia distributiva.
 
-La subdimensión confianza en instituciones aborda dos factores; el primero considera el grado de confianza respecto a instituciones políticas, donde se considera el Gobierno, el Congreso y los partidos políticos; el segundo mide el grado de confianza hacia instituciones que buscan defender el orden y la seguridad pública, tales como carabineros y la fuerza armada. Todos los indicadores incluidos en esta subdimensión fueron medidos mediante una escala likert de cinco alternativas, yendo desde "Nada" hasta "Mucha". 
+La subdimensión confianza en instituciones aborda dos factores; el primero considera el grado de confianza respecto a instituciones políticas, donde se considera el Gobierno, el Congreso y los partidos políticos; el segundo mide el grado de confianza hacia instituciones que buscan defender el orden y la seguridad pública, tales como carabineros y la fuerza armada. Todos los indicadores incluidos en esta subdimensión fueron medidos mediante una escala likert de cinco alternativas, yendo desde "Nada" hasta "Mucha".
 
-Para entregar una mayor claridad respecto a cómo están operacionalizadas las variables, sus códigos originales y su disponibilidad en cada ola, se puede revisar la siguiente tabla. 
+Para entregar una mayor claridad respecto a los códigos originales de las variables y su disponibilidad en cada ola, se puede revisar la @tbl-propuesta-nueva.
 
 ```{r}
 #| label: tbl-propuesta-nueva
@@ -58,8 +59,7 @@ datatable(datos)
 
 ```
 
-
-## Análisis y operacionalización 
+## Análisis
 
 ```{r}
 #| label: packages
@@ -81,7 +81,8 @@ pacman::p_load(tidyverse,
                ggdist,
                purrr,
                psych,
-               corrplot)
+               corrplot,
+               skimr)
 
 
 options(scipen=999)
@@ -119,39 +120,60 @@ elsoc <- elsoc %>%
   mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
 ```
 
-### Descriptivos
+## Descriptivos 
 
-**Confianza en instituciones**
+::: {.panel-tabset}
 
-```{r}
-frq(elsoc$conf_gobierno)
-frq(elsoc$conf_pp)
-frq(elsoc$conf_congreso)
-frq(elsoc$conf_carabineros)
-frq(elsoc$conf_fa)
-```
+### Confianza en gobierno
 
 ```{r}
 #| label: fig-confianza
-#| fig-cap: Distribución de variables de confianza en instituciones
-#| fig-cap-location: top
 
-plot_stackfrq(
-  dplyr::select(elsoc, conf_gobierno, conf_pp, conf_congreso,
-              conf_carabineros, conf_fa),
-  show.prc = FALSE,
-  show.n = FALSE,
-  show.total = FALSE) + 
+plot_stackfrq(elsoc$conf_gobierno,
+              show.prc = FALSE,
+              show.n = FALSE,
+              show.total = TRUE) + 
   theme_ggdist()
 ```
 
-En @fig-confianza se puede observar la distribución de las frecuencias en torno a las cinco variables que componen la subdimensión de Confianza en instituciones. Es relevante destacar que, para el caso de las instituciones de administración política, se ve un patrón marcado por la desconfianza en tales organismos, en donde más 40% de las observaciones confía absolutamente nada en ellos, siendo los casos más preocupantes los partidos políticos y el Congreso, respectivamente. En concordancia con ello, las categorías que apuntan a un mayor grado de confianza son las que tienen un mínimo porcentaje de respuestas, confirmando el hecho que, a la mayoría de las personas, las instituciones políticas no les generan confianza. 
+### Confianza en partidos políticos
+```{r}
+plot_stackfrq(elsoc$conf_pp,
+              show.prc = FALSE,
+              show.n = FALSE,
+              show.total = TRUE) + 
+  theme_ggdist()
+```
 
-En cambio, en las instituciones como carabineros y fuerzas armadas, la distribución se vuelve mucho más pareja, notándose una presencia de los colores azules más oscuros, los cuales apuntan a un grado de confianza positivo De hecho, para el caso de carabineros se aprecia que la categoría intermedia es la que concentra la mayor cantidad de respuestas con un 29%. La confianza en fuerzas armadas también presenta una distribución más equitativa, pero un problema es que la variable tiene muchos NA (71%), lo cual se debe a su poca presencia a lo largo de las olas de ELSOC (sólo estuvo en dos). 
+### Confianza en congreso
+```{r}
+plot_stackfrq(elsoc$conf_congreso,
+              show.prc = FALSE,
+              show.n = FALSE,
+              show.total = TRUE) + 
+  theme_ggdist()
+```
 
+### Confianza en carabineros
+```{r}
+plot_stackfrq(elsoc$conf_carabineros,
+              show.prc = FALSE,
+              show.n = FALSE,
+              show.total = TRUE) + 
+  theme_ggdist()
+```
 
+### Confianza en fuerzas armadas
+```{r}
+plot_stackfrq(elsoc$conf_fa,
+              show.prc = FALSE,
+              show.n = FALSE,
+              show.total = TRUE) + 
+  theme_ggdist()
+```
+:::
 
-### Correlaciones
+## Correlaciones
 
 **Confianza en instituciones**
 
@@ -173,8 +195,6 @@ corrplot(poly_cor1$rho, method = "color",
          number.cex = 0.7)
 ```
 
-En @fig-corr-conf se presentan la matriz de correlaciones policóricas que contiene las variables que aluden a la confianza en instituciones. Se puede notar la existencia de correlaciones altas entre la confianza en el gobierno, en los partidos políticos y el congreso, todas estando por sobre .5, entendiéndose que, a medida que más se confíe en alguna de estas instituciones, se confiará más en las dos restantes. En la misma línea, confianza en carabineros correlaciona de manera muy alta con confianza en fuerzas armadas con un .71, lo cual sugiere que, a mayor confianza en carabineros, más se confía en las fuerzas armadas.
-
 ### Análisis factorial exploratorio (EFA)
 
 Ya que este paso se fundamenta en comprobar la dimensionalidad de los constructos, más que para averiguar si hay cambios en la estabilidad de las escalas, se aplicará el EFA sobre una base filtrada por la última ola que dispone de las variables a utilizar.
@@ -182,11 +202,17 @@ Ya que este paso se fundamenta en comprobar la dimensionalidad de los constructo
 **Confianza en instituciones**
 
 ```{r}
+#| include: false 
+
 elsoc_confianza <- elsoc %>%
   filter(ola == 6) %>%
   select(conf_gobierno, conf_pp, conf_congreso,
          conf_carabineros, conf_fa)
 
+cormat1  <- cor(elsoc_confianza, use = "pairwise.complete.obs") 
+ 
+ KMO(cormat1) 
+cortest.bartlett(cormat1, n = 2730)
 ```
 
 ```{r}
@@ -199,9 +225,7 @@ elsoc_confianza <- elsoc %>%
 tab_fa(elsoc_confianza, rotation = "varimax", show.comm = TRUE)
 ```
 
-En la @fig-efa-conf se desprenden dos factores latentes a partir de la subdimensión de confianza en instituciones. El primer factor que se reconoce contiene confianza en carabineros y fuerzas armadas, lo que podría comprenderse como confianza en instituciones de orden. Si bien, tiene una consistencia interna (Cronbach = .76), el indicador de fuerzas armadas tiene una carga factorial de 1, interpretándose que podría ser un factor por sí solo. 
-
-El segundo factor se compone por la confianza en el Gobierno, Congreso y partidos políticos, agrupándose como instituciones políticas. Todas las cargas factoriales son parecidas, con la excepción de partidos políticos que es un poco más alta que las demás. La consistencia de los ítems roza lo aceptable (Cronbach = .69), por lo que es viable emplear un constructo como este. 
+A partir del cálculo de la adecuación factorial de KMO y el test de esfericidad de Bartlett, se determina que es viable aplicar un análisis factorial exploratorio con los indicadores seleccionados. En @fig-efa-conf se puede apreciar que el análisis sugiere dos factores. En el primero se agrupan las instituciones de orden, mientras que en el segundo se reúnen las instituciones políticas.
 
 ### Construcción de índices
 
@@ -210,5 +234,31 @@ El segundo factor se compone por la confianza en el Gobierno, Congreso y partido
 ```{r}
 elsoc <- elsoc %>%
   mutate(conf_inst_pol = rowMeans(select(., conf_gobierno, conf_congreso, conf_pp), na.rm = TRUE))
-frq(elsoc$conf_inst_pol)
+```
+
+```{r}
+t_conf <- elsoc %>%
+  select(conf_inst_pol) %>%
+  skim() %>%
+  yank("numeric") %>%
+  as_tibble() %>%
+  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
+  mutate_if(is.numeric, ~ round(., 2)) %>%
+  select("Variable" = skim_variable,
+         "Mean" = mean,
+         "SD" = sd,
+         "Range" = range,
+         "Histogram" = hist)
+
+# 3. Calcular alfa de Cronbach de las 3 variables originales
+alpha_conf <- psych::alpha(elsoc %>%
+                             select(conf_gobierno, conf_congreso, conf_pp))
+
+cronbach_alpha <- round(alpha_conf$total$raw_alpha, 2)
+
+# 4. Agregar columna con alfa de Cronbach (misma fila del índice)
+t_conf <- t_conf %>%
+  mutate(Cronbach_Alpha = cronbach_alpha)
+
+t_conf
 ```
