@@ -1,0 +1,23 @@
+Variables,Subdimensión,Factor,Código original,Categorías de respuesta,Ola 1,Ola 2,Ola 3,Ola 4,Ola 5,Ola 6,Ola 7
+Grado de confianza: El Gobierno,Confianza en instituciones,Confianza en instituciones políticas,c05_01,Nada|Poca|Algo|Bastante|Mucha,Si,Si,Si,Si,Si,Si,Si
+Grado de confianza: Los Partidos Politicos,Confianza en instituciones,Confianza en instituciones políticas,c05_02,Nada|Poca|Algo|Bastante|Mucha,Si,Si,Si,Si,Si,Si,Si
+Grado de confianza: Congreso,Confianza en instituciones,Confianza en instituciones políticas,c05_07,Nada|Poca|Algo|Bastante|Mucha,Si,Si,Si,Si,Si,Si,Si
+Grado de confianza: Carabineros,Confianza en instituciones,Confianza en instituciones de orden,c05_03,Nada|Poca|Algo|Bastante|Mucha,Si,Si,Si,Si,Si,Si,Si
+Grado de confianza: Fuerzas armadas,Confianza en instituciones,Confianza en instituciones de orden,c05_10,Nada|Poca|Algo|Bastante|Mucha,No,No,No,Si,No,Si,No
+Frecuencia: Firma carta o peticion apoyando causa,Prácticas y actitudes políticas,Participación política,c08_01,Nunca|Casi nunca|A veces|Frecuentemente|Muy frecuentemente,Si,Si,Si,Si,No,Si,Si
+Frecuencia: Asiste a marcha o manifestacion pacifica,Prácticas y actitudes políticas,Participación política,c08_02,Nunca|Casi nunca|A veces|Frecuentemente|Muy frecuentemente,Si,Si,Si,Si,Si,Si,Si
+Frecuencia: Participo en huelga,Prácticas y actitudes políticas,Participación política,c08_03,Nunca|Casi nunca|A veces|Frecuentemente|Muy frecuentemente,Si,Si,Si,Si,No,Si,Si
+Frecuencia: Usa redes sociales para opinar en temas publicos,Prácticas y actitudes políticas,Participación política,c08_04,Nunca|Casi nunca|A veces|Frecuentemente|Muy frecuentemente,Si,Si,Si,Si,Si,Si,Si
+Grado de acuerdo: Votar es mi deber como ciudadano,Prácticas y actitudes políticas,Autoeficacia política ,c10_01,Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo,Si,Si,Si,Si,Si,Si,Si
+Grado de acuerdo: Mi voto influye en el resultado,Prácticas y actitudes políticas,Autoeficacia política ,c10_02,Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo,Si,Si,Si,Si,Si,Si,Si
+Grado de acuerdo: Votar permite expresar mis ideas,Prácticas y actitudes políticas,Autoeficacia política ,c10_03,Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo,Si,Si,Si,Si,Si,Si,Si
+Interes en la politica,Prácticas y actitudes políticas,Interés político,c13,Nada interesado|Poco interesado|Algo interesado|Bastante interesado|Muy interesado,Si,Si,Si,Si,Si,Si,Si
+Frecuencia: Habla de politica con familiares o amigos,Prácticas y actitudes políticas,Interés político,c14_01,Nunca|Casi nunca|A veces|Frecuentemente|Muy frecuentemente,Si,Si,Si,Si,Si,Si,Si
+Frecuencia: Se informa sobre politica en medios de comunicacion,Prácticas y actitudes políticas,Interés político,c14_02,Nunca|Casi nunca|A veces|Frecuentemente|Muy frecuentemente,Si,Si,Si,Si,Si,Si,Si
+Grado de acuerdo: Mas que derechos necesitamos un gobierno firme,Preferencias por sistema político,Preferencias por autoritarismo,c18_04,Totalmente en desacuerdo|En desacuerdo|Ni en desacuerdo ni de acuerdo|De acuerdo|Totalmente de acuerdo,Si,Si,Si,Si,Si,No,Si
+Grado de acuerdo: Pais necesita un mandatario fuerte,Preferencias por sistema político,Preferencias por autoritarismo,c18_05,Totalmente en desacuerdo|En desacuerdo|Ni en desacuerdo ni de acuerdo|De acuerdo|Totalmente de acuerdo,Si,Si,Si,Si,Si,Si,Si
+Grado de acuerdo: Obediencia y disciplina son claves para buena vida,Preferencias por sistema político,Preferencias por autoritarismo,c18_07,Totalmente en desacuerdo|En desacuerdo|Ni en desacuerdo ni de acuerdo|De acuerdo|Totalmente de acuerdo,Si,Si,Si,Si,Si,No,Si
+Satisfaccion con la democracia en Chile,Preferencias por sistema político,Actitud hacia democracia,c01,Nada satisfecho|Poco satisfecho|Algo satisfecho|Bastante satisfecho|Muy satisfecho,Si,Si,Si,Si,Si,Si,Si
+Grado de acuerdo: Justicia distributiva en pensiones,Justicia distributiva,Justicia distributiva,d02_01,Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo,Si,Si,Si,Si,No,Si,Si
+Grado de acuerdo: Justicia distributiva en educacion,Justicia distributiva,Justicia distributiva,d02_02,Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo,Si,Si,Si,Si,No,Si,Si
+Grado de acuerdo: Justicia distributiva en salud,Justicia distributiva,Justicia distributiva,d02_03,Totalmente en desacuerdo|En desacuerdo|Ni de acuerdo ni en desacuerdo|De acuerdo|Totalmente de acuerdo,Si,Si,Si,Si,No,Si,Si
