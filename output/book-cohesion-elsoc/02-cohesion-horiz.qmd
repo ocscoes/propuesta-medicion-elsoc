@@ -1,5 +1,14 @@
 # Propuesta de Cohesión Horizontal
 
+```{r}
+#| echo: false
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(readr)
+```
+
+
 ## Antecedentes
 
 El concepto de cohesión social horizontal se constituye a partir de una crítica a las definiciones previas, que solían confundir sus contenidos con condiciones externas como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a ello, Chan et al., 2006 proponen una definición minimalista que identifique los elementos constitutivos de la cohesión sin diluir su valor analítico. En este marco, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos dentro de la sociedad, independientemente del Estado.
@@ -34,15 +43,106 @@ Finalmente, la subdimensión de participación social y prosocialidad incorpora 
 
 Un componente adicional lo constituye la aceptación de la diversidad, expresada en actitudes hacia grupos sociales distintos, como migrantes o minorías sexuales. Estos indicadores permiten observar hasta qué punto la cohesión se sustenta no solo en la homogeneidad, sino también en la inclusión de la diferencia y el reconocimiento mutuo, aspecto clave en el marco de sociedades crecientemente diversas.
 
+Ahora bien, las propuestas presentadas tienen diferencias importantes.
+
+1) En primer lugar, con ELSOC es mucho más compleja en tanto tiene mayores niveles de granularidad y, consecuentemente, mayor cantidad de factores en comparación con la propuesta de que se construye para Latinoamérica con LAPOP, cuya perspectiva es más minimalista.
+
+Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones y democracia. En la propuesta con ELSOC esta se entiende como una subdimensión compuesta de dos factores: confianza en instituciones y satisfacción con la democracia. No así, en la propuesta construida con LAPOP estos factores se entienden como dos subdimensiones independientes.
+
+2) Por su parte, en la propuesta con ELSOC se consideran varias subdimensiones que no están presentes en el índice de Latinoamérica debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, no correlacionaba con los demás factores de su dimensión.
+
+3) Finalmente, hay que decir que las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran el índice confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden.
+
 
 ## Propuesta de Medición con ELSOC
 
-- Describir la propuesta de medición de esta dimensión usando los indicadores e información disponible en ELSOC.
-- Presentar con claridad las dimensiones, subdimensiones e indicadores.
+![](images/propuesta-elsoc.png)
+
+
+```{r}
+#| echo: false
+
+# Cargar los datos
+datos <- read_delim("../../input/tables/variables-final.csv", 
+                    delim = ";", 
+                    show_col_types = FALSE,
+                    locale = locale(encoding = "UTF-8"))
+
+# Función para formatear categorías de respuesta con saltos de línea
+formatear_categorias_kable <- function(datos) {
+  # Buscar columnas que contengan categorías de respuesta
+  columnas_categorias <- grep("categor|respuesta|opcion|alternativa", colnames(datos), ignore.case = TRUE)
+  
+  if(length(columnas_categorias) > 0) {
+    for(col in columnas_categorias) {
+      # Reemplazar separadores con saltos de línea HTML
+      datos[[col]] <- gsub(";", ";<br>", datos[[col]])
+      datos[[col]] <- gsub(",", ",<br>", datos[[col]])
+      datos[[col]] <- gsub("\\|", "<br>", datos[[col]])
+      datos[[col]] <- gsub("\\n", "<br>", datos[[col]])  # Por si ya hay saltos de línea
+    }
+  }
+  return(datos)
+}
+
+# Aplicar formateo
+datos_formateados <- formatear_categorias_kable(datos)
+
+# Crear tabla con kable + kableExtra
+tabla_principal <- datos_formateados %>%
+  kable(format = "html", 
+        caption = "<strong>Operacionalización de Variables</strong>",
+        escape = FALSE,  # Permitir HTML en las celdas
+        table.attr = "style='width:100%;'") %>%
+  
+  # Estilo general de la tabla
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = TRUE,
+    position = "center",
+    font_size = 12,
+    fixed_thead = TRUE  # Fijar encabezados al hacer scroll
+  ) %>%
+  
+  # Estilo de la primera columna (generalmente el nombre de la variable)
+  column_spec(1, 
+              bold = TRUE, 
+              background = "#f8f9fa",
+              width = "15em") %>%
+  
+  # Estilo para todas las columnas
+  column_spec(2:ncol(datos_formateados),
+              width = "20em",
+              extra_css = "vertical-align: top; line-height: 1.4;") %>%
+  
+  # Scroll horizontal y vertical
+  scroll_box(width = "100%", 
+             height = "600px",
+             extra_css = "border: 1px solid #ddd;") %>%
+  
+  # Agregar CSS personalizado para mejor formato
+  add_header_above(header = c(" " = ncol(datos_formateados)), 
+                   background = "#e9ecef",
+                   color = "#495057")
+
+# Mostrar la tabla
+tabla_principal 
+```
+
+La propuesta del OCS para medir la cohesión social horizontal a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria.
+
+La seguridad se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras y la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo. En el plano subjetivo, se incluyen la frecuencia de tráfico de drogas en el vecindario, la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los residentes evalúan y experimentan estas condiciones.
+
+Los vínculos territoriales buscan capturar el grado de identificación y valoración del espacio de residencia. Esta dimensión se divide en dos factores. El primero, la pertenencia al barrio, incluye cuatro indicadores: considerar que el barrio es ideal, sentirse integrado, identificarse con los vecinos y percibirlo como parte de la propia identidad. El segundo, la satisfacción con el barrio, se mide a través de la facilidad para hacer amigos, la sociabilidad, la cordialidad y la colaboración de los vecinos, reflejando así la calidad de las relaciones comunitarias.
+
+La tercera dimensión corresponde a las redes sociales, que permiten observar las dinámicas de confianza, solidaridad y cooperación entre personas. Se estructura en tres factores. La confianza interpersonal considera la disposición a confiar en los demás y la percepción de que las personas tienden a ayudar a otros o a centrarse en sí mismas. El comportamiento prosocial se mide mediante la participación en reuniones comunitarias y la realización de voluntariado en los últimos doce meses. Finalmente, la ayuda económica se evalúa a través de la disposición a prestar dinero y a colaborar en la búsqueda de empleo para alguien más.
+
+Este esquema integra distintos planos de análisis —condiciones objetivas, percepciones subjetivas, identidades territoriales y prácticas sociales— para ofrecer una mirada amplia de la cohesión horizontal.
+
 - Incluir un esquema o tabla de operacionalización (este es el punto más importante).
 - Agregar también una tabla con la disponibilidad de indicadores por ola, en formato wide (variables en filas, olas en columnas).
 
-### Análisis y Operacionalización
+### Análisis
 
 - Likertplot descriptivo de cada ítem
 - Correlaciones (corrplot)
