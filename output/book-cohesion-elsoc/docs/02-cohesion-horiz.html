@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -170,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-cohesion-vert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Propuesta de Cohesión Vertical</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Propuesta vertical</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -193,9 +158,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#cohesión-social-horizontal-en-chile" id="toc-cohesión-social-horizontal-en-chile" class="nav-link" data-scroll-target="#cohesión-social-horizontal-en-chile"><span class="header-section-number">2.1.1</span> Cohesión Social Horizontal en Chile</a></li>
   </ul></li>
-  <li><a href="#propuesta-de-medición-con-elsoc" id="toc-propuesta-de-medición-con-elsoc" class="nav-link" data-scroll-target="#propuesta-de-medición-con-elsoc"><span class="header-section-number">2.2</span> Propuesta de Medición con ELSOC</a>
+  <li><a href="#propuesta-de-medición-con-elsoc" id="toc-propuesta-de-medición-con-elsoc" class="nav-link" data-scroll-target="#propuesta-de-medición-con-elsoc"><span class="header-section-number">2.2</span> Propuesta de Medición con ELSOC</a></li>
+  <li><a href="#análisis" id="toc-análisis" class="nav-link" data-scroll-target="#análisis"><span class="header-section-number">2.3</span> Análisis</a>
   <ul class="collapse">
-  <li><a href="#análisis" id="toc-análisis" class="nav-link" data-scroll-target="#análisis"><span class="header-section-number">2.2.1</span> Análisis</a></li>
+  <li><a href="#descriptivos" id="toc-descriptivos" class="nav-link" data-scroll-target="#descriptivos"><span class="header-section-number">2.3.1</span> Descriptivos</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -223,40 +189,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>
-Adjuntando el paquete: 'dplyr'</code></pre>
+<pre><code>Warning: package 'pacman' was built under R version 4.4.2</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:kableExtra':
-
-    group_rows</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="antecedentes" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="antecedentes"><span class="header-section-number">2.1</span> Antecedentes</h2>
 <p>El concepto de cohesión social horizontal se constituye a partir de una crítica a las definiciones previas, que solían confundir sus contenidos con condiciones externas como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a ello, Chan et al., 2006 proponen una definición minimalista que identifique los elementos constitutivos de la cohesión sin diluir su valor analítico. En este marco, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos dentro de la sociedad, independientemente del Estado.</p>
 <p>Conceptualmente, incluye la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales y el sentido compartido de pertenencia. Operacionalmente, estos componentes se expresan en indicadores subjetivos (confianza interpersonal, voluntad de cooperar, identificación con la comunidad) y objetivos (participación en asociaciones, voluntariado, donaciones, cooperación o divisiones entre grupos). Así, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.</p>
 <p>Anteriormente, desde el Observatorio de Cohesión Social (OCS-COES) ya se ha incursionado en la representación empírica de la cohesión social horizontal. Específicamente desde una perspectiva comparada regional a partir de encuestas internacionales como LAPOP y WVS. En este marco, la cohesión parte de su comprensión como un entramado de vínculos entre ciudadanos y grupos sociales, expresada en actitudes subjetivas y prácticas objetivas de interacción. A nivel conceptual, esta dimensión se ha estructurado en tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales.</p>
-<p><img src="images/hor-lapop.png" class="img-fluid"></p>
-<p>En primer lugar, el sentido de pertenencia mide el grado en que las personas se reconocen como parte de una comunidad política nacional y expresan orgullo de pertenecer a ella. LAPOP incluye indicadores de orgullo y deber de apoyar al sistema político, mientras que WVS incorpora preguntas sobre orgullo nacional y disposición a defender al país en caso de guerra. De acuerdo con los análisis factoriales realizados, el indicador más robusto para esta dimensión es el orgullo nacional (WVS).</p>
-<p>En segundo lugar, la calidad de vida en el vecindario combina tanto percepciones subjetivas como condiciones objetivas del entorno. LAPOP ofrece indicadores sobre seguridad urbana y victimización, así como satisfacción con servicios básicos; mientras que WVS incluye la confianza en los vecinos. El análisis empírico muestra que las variables más consistentes para esta subdimensión son la seguridad urbana y la confianza en los vecinos, lo que refleja cómo las experiencias cotidianas de convivencia impactan la percepción de cohesión.</p>
-<p>Finalmente, las redes sociales se refieren a la participación en organizaciones civiles y a comportamientos prosociales. LAPOP capta la asistencia a reuniones religiosas, escolares y vecinales, además de un indicador de confianza interpersonal, mientras que WVS aporta ítems de comportamiento cívico como el rechazo a sobornos, la disposición a pagar impuestos o el uso honesto del transporte público. Tras los análisis de consistencia interna, se consolidaron dos indicadores principales: la confianza interpersonal y las conductas prosociales.</p>
-<p>Este marco a nivel regional permite observar cómo la cohesión horizontal en América Latina se articula alrededor de un sentido compartido de pertenencia nacional, la calidad de las interacciones locales y la densidad de redes sociales. Si bien los indicadores específicos varían según encuesta, la lógica de Chan et al.&nbsp;(2006) se mantiene: integrar tanto actitudes subjetivas como comportamientos objetivos para capturar las relaciones entre ciudadanos y grupos sociales.</p>
+<p>Otro antecedente importante, para la medición de cohesión socia en Chile, es la propuesta de Castillo et al.&nbsp;(2021), quienes operacionalizan la cohesión social horizontal distinguiendo entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Lo anterior lo hacen a través de la encuesta ELSOC,con la que se identifican ítems que capturan el sentido de pertenencia (identificación y orgullo nacional), la confianza social (interpersonal y hacia los vecinos), la cohesión barrial (integración e identificación con el vecindario) y las conductas prosociales (voluntariado, donaciones y apoyo a terceros), además de actitudes hacia grupos minoritarios y migrantes como expresión de inclusión social.</p>
+<p><img src="images/op-lapop.png" class="img-fluid"></p>
+<p>En primer lugar, la seguridad pública constituye un eje central de la cohesión horizontal, pues aborda tanto las condiciones objetivas como las percepciones de resguardo en el entorno inmediato. Dentro de la seguridad objetiva se incluyen indicadores como la victimización por delitos, que permite observar la exposición directa a situaciones de riesgo. En paralelo, la seguridad subjetiva se captura a través de la percepción de seguridad en el barrio, indicador que refleja la manera en que los ciudadanos evalúan su entorno más próximo. En conjunto, estos elementos permiten articular la dimensión objetiva de la seguridad con la vivencia subjetiva de sentirse protegido o vulnerable.</p>
+<p>En segundo lugar, la confianza interpersonal aparece como un componente clave de la cohesión social horizontal, al recoger tanto disposiciones actitudinales como vínculos comunitarios. Por un lado, se considera la confianza general en los vecinos, entendida como la disposición a asumir que los otros actuarán de manera cooperativa y predecible. Por otro, se incorpora la confianza interpersonal generalizada, que indaga en la creencia de que la mayoría de las personas son dignas de confianza. Ambos indicadores se complementan al situar la confianza tanto en el nivel inmediato de las relaciones barriales como en un plano más amplio de interacción social.</p>
+<p>De esta manera, el esquema de medición para América Latina integra dimensiones de seguridad y confianza desde un enfoque minimalista para capturar la cohesión horizontal.</p>
 <section id="cohesión-social-horizontal-en-chile" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="cohesión-social-horizontal-en-chile"><span class="header-section-number">2.1.1</span> Cohesión Social Horizontal en Chile</h3>
 <p><img src="images/hor-elsoc.png" class="img-fluid"></p>
@@ -279,7 +225,6 @@ Adjuntando el paquete: 'dplyr'</code></pre>
 </section>
 <section id="propuesta-de-medición-con-elsoc" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="propuesta-de-medición-con-elsoc"><span class="header-section-number">2.2</span> Propuesta de Medición con ELSOC</h2>
-<p><img src="images/propuesta-elsoc.png" class="img-fluid"></p>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; border: 1px solid #ddd;overflow-y: scroll; height:600px; overflow-x: scroll; width:100%; ">
@@ -661,16 +606,117 @@ Lo hizo mas de dos veces</td>
 <p>Los vínculos territoriales buscan capturar el grado de identificación y valoración del espacio de residencia. Esta dimensión se divide en dos factores. El primero, la pertenencia al barrio, incluye cuatro indicadores: considerar que el barrio es ideal, sentirse integrado, identificarse con los vecinos y percibirlo como parte de la propia identidad. El segundo, la satisfacción con el barrio, se mide a través de la facilidad para hacer amigos, la sociabilidad, la cordialidad y la colaboración de los vecinos, reflejando así la calidad de las relaciones comunitarias.</p>
 <p>La tercera dimensión corresponde a las redes sociales, que permiten observar las dinámicas de confianza, solidaridad y cooperación entre personas. Se estructura en tres factores. La confianza interpersonal considera la disposición a confiar en los demás y la percepción de que las personas tienden a ayudar a otros o a centrarse en sí mismas. El comportamiento prosocial se mide mediante la participación en reuniones comunitarias y la realización de voluntariado en los últimos doce meses. Finalmente, la ayuda económica se evalúa a través de la disposición a prestar dinero y a colaborar en la búsqueda de empleo para alguien más.</p>
 <p>Este esquema integra distintos planos de análisis —condiciones objetivas, percepciones subjetivas, identidades territoriales y prácticas sociales— para ofrecer una mirada amplia de la cohesión horizontal.</p>
+</section>
+<section id="análisis" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="análisis"><span class="header-section-number">2.3</span> Análisis</h2>
+<section id="descriptivos" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="descriptivos"><span class="header-section-number">2.3.1</span> Descriptivos</h3>
+<p><strong>Seguridad Pública</strong></p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-seguridad-obj" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seguridad-obj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Distribución de variables de Seguridad Objetiva
+</figcaption>
+<div aria-describedby="fig-seguridad-obj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-cohesion-horiz_files/figure-html/fig-seguridad-obj-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-seguridad-subj" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-seguridad-subj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Distribución de variables de Seguridad Subjetiva
+</figcaption>
+<div aria-describedby="fig-seguridad-subj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-cohesion-horiz_files/figure-html/fig-seguridad-subj-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Vínculos Territoriales</strong></p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-terr" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-terr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Distribución de variables de Vínculos Territoriales
+</figcaption>
+<div aria-describedby="fig-terr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-cohesion-horiz_files/figure-html/fig-terr-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Redes Sociales</strong></p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-redes" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Distribución de variables de Redes Sociales
+</figcaption>
+<div aria-describedby="fig-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-cohesion-horiz_files/figure-html/fig-redes-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Correlaciones</strong></p>
+<div class="[.panel-tabset]">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-seg" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-cohesion-horiz_files/figure-html/fig-corr-seg-1.png" id="fig-corr-seg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-corr-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-terr" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-terr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-cohesion-horiz_files/figure-html/fig-corr-terr-1.png" id="fig-corr-terr" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-corr-terr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-redes" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-cohesion-horiz_files/figure-html/fig-corr-redes-1.png" id="fig-corr-redes" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-corr-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.7
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <ul>
-<li>Incluir un esquema o tabla de operacionalización (este es el punto más importante).</li>
-<li>Agregar también una tabla con la disponibilidad de indicadores por ola, en formato wide (variables en filas, olas en columnas).</li>
-</ul>
-<section id="análisis" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="análisis"><span class="header-section-number">2.2.1</span> Análisis</h3>
-<ul>
-<li>Likertplot descriptivo de cada ítem</li>
-<li>Correlaciones (corrplot)</li>
-<li>Análisis Factorial Exploratorio</li>
+<li>Análisis Factorial Exploratorio y CFA</li>
 <li>Construcción de índices y sus descriptivos (Media, desviación estándar, distribución y consistencia con los ítems usados)</li>
 </ul>
 
@@ -1086,8 +1132,8 @@ Lo hizo mas de dos veces</td>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./03-cohesion-vert.html" class="pagination-link" aria-label="Propuesta de Cohesión Vertical">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Propuesta de Cohesión Vertical</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03-cohesion-vert.html" class="pagination-link" aria-label="Propuesta vertical">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Propuesta vertical</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

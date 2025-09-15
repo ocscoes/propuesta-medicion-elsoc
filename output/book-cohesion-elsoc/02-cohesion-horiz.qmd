@@ -1,11 +1,86 @@
 # Propuesta de Cohesión Horizontal
 
+
 ```{r}
+#| label: packages
+#| message: false 
+#| echo: false 
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               car,
+               sjmisc, 
+               here,
+               sjlabelled,
+               SciViews,
+               naniar,
+               readxl,
+               sjPlot,
+               lme4,
+               ggdist,
+               purrr,
+               psych,
+               corrplot,
+               patchwork,
+               kableExtra)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| echo: false 
+
+load(url("https://dataverse.harvard.edu/api/access/datafile/10797987"))
+```
+
+```{r}
+#| label: proccssing
 #| echo: false
-library(knitr)
-library(kableExtra)
-library(dplyr)
-library(readr)
+#| message: false
+#| warning: false
+
+elsoc_long_2016_2023[elsoc_long_2016_2023 ==-999] <- NA
+elsoc_long_2016_2023[elsoc_long_2016_2023 ==-888] <- NA
+elsoc_long_2016_2023[elsoc_long_2016_2023 ==-777] <- NA
+elsoc_long_2016_2023[elsoc_long_2016_2023 ==-666] <- NA
+
+# 3.1 Select ----
+
+db <- elsoc_long_2016_2023 %>% 
+  select(idencuesta, 
+         ola,
+         ponderador_long_total, 
+         segmento, 
+         estrato,
+         educacion = m01, 
+         sexo = m0_sexo, 
+         edad = m0_edad, 
+         seguridad_sat = t06_01, 
+         seguridad_perc = t10, 
+         peleas_calle = t09_01,
+         asaltos = t09_02,
+         trafico_drogas = t09_03,
+         barrio_ideal = t02_01,
+         barrio_integracion = t02_02, 
+         barrio_identidad = t02_03, 
+         barrio_pertenencia = t02_04, 
+         barrio_amigos = t03_01, 
+         barrio_sociable = t03_02, 
+         barrio_cordial = t03_03, 
+         barrio_colaborador = t03_04, 
+         confianza_gen = c02,
+         altruismo_gen = c03,
+         reunion_pub = c07_02, 
+         voluntariado = c07_04,
+         donar_dinero = c07_05, 
+         prestar_dinero = c07_06, 
+         ayuda_trabajo = c07_08) %>% 
+  as_tibble() %>% 
+  sjlabelled::drop_labels(., drop.na = FALSE)
 ```
 
 
@@ -15,17 +90,17 @@ El concepto de cohesión social horizontal se constituye a partir de una crític
 
 Conceptualmente, incluye la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales y el sentido compartido de pertenencia. Operacionalmente, estos componentes se expresan en indicadores subjetivos (confianza interpersonal, voluntad de cooperar, identificación con la comunidad) y objetivos (participación en asociaciones, voluntariado, donaciones, cooperación o divisiones entre grupos). Así, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
 
-Anteriormente, desde el Observatorio de Cohesión Social (OCS-COES) ya se ha incursionado en la representación empírica de la cohesión social horizontal. Específicamente desde una perspectiva comparada regional a partir de encuestas internacionales como LAPOP y WVS. En este marco, la cohesión parte de su comprensión como un entramado de vínculos entre ciudadanos y grupos sociales, expresada en actitudes subjetivas y prácticas objetivas de interacción. A nivel conceptual, esta dimensión se ha estructurado en tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales.
+Anteriormente, desde el Observatorio de Cohesión Social (OCS-COES) ya se ha incursionado en la representación empírica de la cohesión social horizontal. Específicamente desde una perspectiva comparada regional a partir de encuestas internacionales como LAPOP y WVS. En este marco, la cohesión parte de su comprensión como un entramado de vínculos entre ciudadanos y grupos sociales, expresada en actitudes subjetivas y prácticas objetivas de interacción. A nivel conceptual, esta dimensión se ha estructurado en tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales. 
 
-![](images/hor-lapop.png)
+Otro antecedente importante, para la medición de cohesión socia en Chile, es la propuesta de Castillo et al. (2021), quienes operacionalizan la cohesión social horizontal distinguiendo entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Lo anterior lo hacen a través de la encuesta ELSOC,con la que se identifican ítems que capturan el sentido de pertenencia (identificación y orgullo nacional), la confianza social (interpersonal y hacia los vecinos), la cohesión barrial (integración e identificación con el vecindario) y las conductas prosociales (voluntariado, donaciones y apoyo a terceros), además de actitudes hacia grupos minoritarios y migrantes como expresión de inclusión social.
 
-En primer lugar, el sentido de pertenencia mide el grado en que las personas se reconocen como parte de una comunidad política nacional y expresan orgullo de pertenecer a ella. LAPOP incluye indicadores de orgullo y deber de apoyar al sistema político, mientras que WVS incorpora preguntas sobre orgullo nacional y disposición a defender al país en caso de guerra. De acuerdo con los análisis factoriales realizados, el indicador más robusto para esta dimensión es el orgullo nacional (WVS).
+![](images/op-lapop.png)
 
-En segundo lugar, la calidad de vida en el vecindario combina tanto percepciones subjetivas como condiciones objetivas del entorno. LAPOP ofrece indicadores sobre seguridad urbana y victimización, así como satisfacción con servicios básicos; mientras que WVS incluye la confianza en los vecinos. El análisis empírico muestra que las variables más consistentes para esta subdimensión son la seguridad urbana y la confianza en los vecinos, lo que refleja cómo las experiencias cotidianas de convivencia impactan la percepción de cohesión.
+En primer lugar, la seguridad pública constituye un eje central de la cohesión horizontal, pues aborda tanto las condiciones objetivas como las percepciones de resguardo en el entorno inmediato. Dentro de la seguridad objetiva se incluyen indicadores como la victimización por delitos, que permite observar la exposición directa a situaciones de riesgo. En paralelo, la seguridad subjetiva se captura a través de la percepción de seguridad en el barrio, indicador que refleja la manera en que los ciudadanos evalúan su entorno más próximo. En conjunto, estos elementos permiten articular la dimensión objetiva de la seguridad con la vivencia subjetiva de sentirse protegido o vulnerable.
 
-Finalmente, las redes sociales se refieren a la participación en organizaciones civiles y a comportamientos prosociales. LAPOP capta la asistencia a reuniones religiosas, escolares y vecinales, además de un indicador de confianza interpersonal, mientras que WVS aporta ítems de comportamiento cívico como el rechazo a sobornos, la disposición a pagar impuestos o el uso honesto del transporte público. Tras los análisis de consistencia interna, se consolidaron dos indicadores principales: la confianza interpersonal y las conductas prosociales.
+En segundo lugar, la confianza interpersonal aparece como un componente clave de la cohesión social horizontal, al recoger tanto disposiciones actitudinales como vínculos comunitarios. Por un lado, se considera la confianza general en los vecinos, entendida como la disposición a asumir que los otros actuarán de manera cooperativa y predecible. Por otro, se incorpora la confianza interpersonal generalizada, que indaga en la creencia de que la mayoría de las personas son dignas de confianza. Ambos indicadores se complementan al situar la confianza tanto en el nivel inmediato de las relaciones barriales como en un plano más amplio de interacción social.
 
-Este marco a nivel regional permite observar cómo la cohesión horizontal en América Latina se articula alrededor de un sentido compartido de pertenencia nacional, la calidad de las interacciones locales y la densidad de redes sociales. Si bien los indicadores específicos varían según encuesta, la lógica de Chan et al. (2006) se mantiene: integrar tanto actitudes subjetivas como comportamientos objetivos para capturar las relaciones entre ciudadanos y grupos sociales. 
+De esta manera, el esquema de medición para América Latina integra dimensiones de seguridad y confianza desde un enfoque minimalista para capturar la cohesión horizontal.
 
 ### Cohesión Social Horizontal en Chile
 
@@ -56,11 +131,10 @@ Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones 
 
 ## Propuesta de Medición con ELSOC
 
-![](images/propuesta-elsoc.png)
-
-
 ```{r}
 #| echo: false
+#| message: false
+#| warning: false
 
 # Cargar los datos
 datos <- read_delim("../../input/tables/variables-final.csv", 
@@ -139,12 +213,245 @@ La tercera dimensión corresponde a las redes sociales, que permiten observar la
 
 Este esquema integra distintos planos de análisis —condiciones objetivas, percepciones subjetivas, identidades territoriales y prácticas sociales— para ofrecer una mirada amplia de la cohesión horizontal.
 
-- Incluir un esquema o tabla de operacionalización (este es el punto más importante).
-- Agregar también una tabla con la disponibilidad de indicadores por ola, en formato wide (variables en filas, olas en columnas).
 
-### Análisis
+## Análisis
 
-- Likertplot descriptivo de cada ítem
-- Correlaciones (corrplot)
-- Análisis Factorial Exploratorio
+### Descriptivos
+
+**Seguridad Pública**
+
+```{r}
+#| label: seg-obj-desc
+#| echo: false
+#| warning: false
+#| message: false
+#| results: false
+
+#Objetiva
+frq(db$peleas_calle)
+frq(db$asaltos)
+frq(db$trafico_drogas)
+
+#Subjetiva
+frq(db$seguridad_sat)
+frq(db$seguridad_perc)
+```
+
+```{r}
+#| label: fig-seguridad-obj
+#| fig-cap: Distribución de variables de Seguridad Objetiva 
+#| fig-cap-location: top
+#| echo: FALSE
+
+plot_stackfrq(
+  dplyr::select(db, peleas_calle,
+              asaltos, trafico_drogas),
+  show.prc = FALSE,
+  show.n = FALSE,
+  show.total = FALSE,
+  title = NULL) + 
+  theme_ggdist()
+```
+
+```{r}
+#| label: fig-seguridad-subj
+#| fig-cap: Distribución de variables de Seguridad Subjetiva
+#| fig-cap-location: top
+#| echo: false
+
+plot1 <- plot_stackfrq(
+  dplyr::select(db, seguridad_perc),
+  show.prc = FALSE,
+  show.n = FALSE,
+  show.total = FALSE,
+  coord.flip = TRUE,
+  title = NULL
+) + 
+  theme_ggdist() +
+  labs(y = "Percepción de seguridad") +
+  theme(axis.title.x = element_blank())
+
+# Plot 2: seguridad_sat con su propia leyenda  
+plot2 <- plot_stackfrq(
+  dplyr::select(db, seguridad_sat),
+  show.prc = FALSE,
+  show.n = FALSE, 
+  show.total = FALSE,
+  coord.flip = TRUE,
+  title = NULL
+) + 
+  theme_ggdist() +
+  labs(y = NULL)
+
+# Combinar los plots manteniendo ambas leyendas
+plot_final <- wrap_plots(plot1, plot2, ncol = 1) + 
+  plot_annotation(
+    title = NULL,
+    theme = theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
+  )
+
+print(plot_final)
+```
+
+**Vínculos Territoriales**
+
+```{r}
+#| label: pert-barrio-desc
+#| echo: false
+#| warning: false
+#| message: false
+#| results: false
+
+#Pertenencia Barrio
+frq(db$barrio_ideal)
+frq(db$barrio_integracion)
+frq(db$barrio_identidad)
+frq(db$barrio_pertenencia)
+
+#Satisfacción con el barrio
+frq(db$barrio_amigos)
+frq(db$barrio_sociable)
+frq(db$barrio_cordial)
+frq(db$barrio_colaborador)
+```
+
+```{r}
+#| label: fig-terr
+#| fig-cap: Distribución de variables de Vínculos Territoriales
+#| fig-cap-location: top
+#| echo: FALSE
+
+plot_stackfrq(
+  dplyr::select(db, barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia,
+              barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador),
+  show.prc = FALSE,
+  show.n = FALSE,
+  show.total = FALSE) + 
+  theme_ggdist()
+```
+
+**Redes Sociales**
+
+```{r}
+#| label: conf-desc
+#| echo: false
+#| warning: false
+#| message: false
+#| results: false
+
+#Confianza Interpersonal
+
+frq(db$confianza_gen)
+frq(db$altruismo_gen)
+
+#Comportamiento Prosocial
+
+frq(db$reunion_pub)
+frq(db$voluntariado)
+
+#Ayuda Económica
+
+frq(db$ayuda_trabajo)
+frq(db$donar_dinero)
+frq(db$prestar_dinero)
+```
+
+```{r}
+#| label: fig-redes
+#| fig-cap: Distribución de variables de Redes Sociales
+#| fig-cap-location: top
+#| echo: FALSE
+
+plot_stackfrq(
+  dplyr::select(db, confianza_gen, altruismo_gen, reunion_pub, voluntariado,
+              ayuda_trabajo, donar_dinero, prestar_dinero),
+  show.prc = FALSE,
+  show.n = FALSE,
+  show.total = FALSE) + 
+  theme_ggdist()
+```
+
+
+**Correlaciones**
+
+::: [.panel-tabset]
+
+```{r}
+#| label: corr-seg
+#| echo: false
+#| warning: false
+#| message: false
+
+
+seguridad <- db[, c("seguridad_sat", "seguridad_perc",
+                       "asaltos", "trafico_drogas", "peleas_calle")]
+
+poly_cor1 <- polychoric(seguridad)
+```
+
+```{r}
+#| label: fig-corr-seg
+#| echo: false
+
+corrplot(poly_cor1$rho, method = "color", 
+         type = "upper", 
+         tl.col = "black", 
+         tl.srt = 45, 
+         addCoef.col = "black", # muestra los coeficientes
+         number.cex = 0.7)
+```
+
+```{r}
+#| label: corr-terr
+#| echo: false
+#| warning: false
+#| message: false
+
+
+territorial <- db[, c("barrio_ideal", "barrio_integracion", "barrio_identidad", "barrio_pertenencia",
+              "barrio_amigos", "barrio_sociable", "barrio_cordial", "barrio_colaborador")]
+
+poly_cor2 <- polychoric(territorial)
+```
+
+```{r}
+#| label: fig-corr-terr
+#| echo: false
+
+corrplot(poly_cor2$rho, method = "color", 
+         type = "upper", 
+         tl.col = "black", 
+         tl.srt = 45, 
+         addCoef.col = "black", # muestra los coeficientes
+         number.cex = 0.7)
+```
+
+```{r}
+#| label: corr-redes
+#| echo: false
+#| warning: false
+#| message: false
+
+
+redes <- db[, c("confianza_gen", "altruismo_gen", "reunion_pub", "voluntariado",
+              "ayuda_trabajo", "donar_dinero", "prestar_dinero")]
+
+poly_cor3 <- polychoric(redes)
+```
+
+```{r}
+#| label: fig-corr-redes
+#| echo: false
+
+corrplot(poly_cor3$rho, method = "color", 
+         type = "upper", 
+         tl.col = "black", 
+         tl.srt = 45, 
+         addCoef.col = "black", # muestra los coeficientes
+         number.cex = 0.7)
+```
+
+:::
+
+- Análisis Factorial Exploratorio y CFA
 - Construcción de índices y sus descriptivos (Media, desviación estándar, distribución y consistencia con los ítems usados)
