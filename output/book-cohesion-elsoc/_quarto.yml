@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Medición de la cohesión social con ELSOC"
+  title: "Documento metodológico Medición de Cohesión Social en Chile con ELSOC"
   author: "Observatorio de Cohesión Social"
   date: today
   chapters:

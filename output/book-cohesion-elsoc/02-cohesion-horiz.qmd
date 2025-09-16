@@ -1,4 +1,17 @@
-# Propuesta de Cohesión Horizontal
+# Cohesión social horizontal
+
+```{r}
+#| label: setup
+#| include: false
+library(knitr)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
 
 
 ```{r}
@@ -13,11 +26,7 @@ pacman::p_load(tidyverse,
                sjmisc, 
                here,
                sjlabelled,
-               SciViews,
-               naniar,
-               readxl,
                sjPlot,
-               lme4,
                ggdist,
                purrr,
                psych,
@@ -86,25 +95,32 @@ db <- elsoc_long_2016_2023 %>%
 
 ## Antecedentes
 
-El concepto de cohesión social horizontal se constituye a partir de una crítica a las definiciones previas, que solían confundir sus contenidos con condiciones externas como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a ello, Chan et al., 2006 proponen una definición minimalista que identifique los elementos constitutivos de la cohesión sin diluir su valor analítico. En este marco, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos dentro de la sociedad, independientemente del Estado.
+El concepto de cohesión social horizontal surge como una respuesta crítica a definiciones previas que tendían a confundir sus contenidos con condiciones externas tales como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a estas limitaciones, Chan et al. (2006) proponen una definición de carácter minimalista, orientada a precisar los elementos constitutivos de la cohesión sin diluir su valor analítico. Desde esta perspectiva, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos en el seno de la sociedad, independientemente de la mediación estatal. En el plano conceptual, esta dimensión abarca la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales, así como el sentido compartido de pertenencia. En el plano operacional, tales componentes se expresan tanto en indicadores subjetivos (confianza interpersonal, disposición a cooperar, identificación con la comunidad) como en indicadores objetivos (participación en asociaciones, voluntariado, donaciones, prácticas de cooperación o existencia de divisiones entre grupos). De este modo, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
 
-Conceptualmente, incluye la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales y el sentido compartido de pertenencia. Operacionalmente, estos componentes se expresan en indicadores subjetivos (confianza interpersonal, voluntad de cooperar, identificación con la comunidad) y objetivos (participación en asociaciones, voluntariado, donaciones, cooperación o divisiones entre grupos). Así, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
+En Chile, el Observatorio de Cohesión Social (OCS-COES) ha desarrollado avances en la representación empírica de la cohesión social horizontal. Estos esfuerzos se han orientado, en una primera etapa, a la comparación regional a partir de encuestas internacionales como LAPOP y WVS. Bajo este enfoque, la cohesión horizontal se concibe como un entramado de vínculos entre ciudadanos y grupos sociales, expresados tanto en actitudes subjetivas como en prácticas objetivas de interacción. Conceptualmente, esta aproximación se ha estructurado en torno a tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales. <- Esto no se entiende bien. No queda claro si estas subdimensiones son de la nueva propuesta o de la lapop, que es de lo que habla este parrafo. 
 
-Anteriormente, desde el Observatorio de Cohesión Social (OCS-COES) ya se ha incursionado en la representación empírica de la cohesión social horizontal. Específicamente desde una perspectiva comparada regional a partir de encuestas internacionales como LAPOP y WVS. En este marco, la cohesión parte de su comprensión como un entramado de vínculos entre ciudadanos y grupos sociales, expresada en actitudes subjetivas y prácticas objetivas de interacción. A nivel conceptual, esta dimensión se ha estructurado en tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales. 
+```{r}
+#| label: fig-lapop
+#| fig-cap-location: top
+#| fig-cap: "Medición de cohesión horizontal para América Latina del Observatorio de Cohesión Social"
+#| fig-align: center
 
-Otro antecedente importante, para la medición de cohesión socia en Chile, es la propuesta de Castillo et al. (2021), quienes operacionalizan la cohesión social horizontal distinguiendo entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Lo anterior lo hacen a través de la encuesta ELSOC,con la que se identifican ítems que capturan el sentido de pertenencia (identificación y orgullo nacional), la confianza social (interpersonal y hacia los vecinos), la cohesión barrial (integración e identificación con el vecindario) y las conductas prosociales (voluntariado, donaciones y apoyo a terceros), además de actitudes hacia grupos minoritarios y migrantes como expresión de inclusión social.
+library(here)
 
-![](images/op-lapop.png)
+knitr::include_graphics(path = here("output/book-cohesion-elsoc/images/op-lapop.png"))
 
-En primer lugar, la seguridad pública constituye un eje central de la cohesión horizontal, pues aborda tanto las condiciones objetivas como las percepciones de resguardo en el entorno inmediato. Dentro de la seguridad objetiva se incluyen indicadores como la victimización por delitos, que permite observar la exposición directa a situaciones de riesgo. En paralelo, la seguridad subjetiva se captura a través de la percepción de seguridad en el barrio, indicador que refleja la manera en que los ciudadanos evalúan su entorno más próximo. En conjunto, estos elementos permiten articular la dimensión objetiva de la seguridad con la vivencia subjetiva de sentirse protegido o vulnerable.
+```
 
-En segundo lugar, la confianza interpersonal aparece como un componente clave de la cohesión social horizontal, al recoger tanto disposiciones actitudinales como vínculos comunitarios. Por un lado, se considera la confianza general en los vecinos, entendida como la disposición a asumir que los otros actuarán de manera cooperativa y predecible. Por otro, se incorpora la confianza interpersonal generalizada, que indaga en la creencia de que la mayoría de las personas son dignas de confianza. Ambos indicadores se complementan al situar la confianza tanto en el nivel inmediato de las relaciones barriales como en un plano más amplio de interacción social.
+La @fig-lapop retrata el modelo de medición de la cohesión social horizontal para América Latina del OCS. De acuerdo con esto, la seguridad pública constituye un eje central de la cohesión social horizontal, en tanto incorpora tanto condiciones objetivas como percepciones subjetivas de resguardo en el entorno inmediato. La seguridad objetiva se expresa mediante indicadores como la victimización por delitos, que permite observar la exposición directa de las personas a situaciones de riesgo. En paralelo, la seguridad subjetiva se capta a través de la percepción de seguridad en el barrio, indicador que refleja la manera en que los ciudadanos evalúan su entorno próximo. En conjunto, ambos elementos articulan la dimensión objetiva de la seguridad con la vivencia subjetiva de sentirse protegido o vulnerable.
 
-De esta manera, el esquema de medición para América Latina integra dimensiones de seguridad y confianza desde un enfoque minimalista para capturar la cohesión horizontal.
+Un segundo componente fundamental es la confianza interpersonal, entendida como un elemento clave de la cohesión social horizontal al recoger tanto disposiciones actitudinales como la calidad de los vínculos comunitarios. Este componente incluye, por una parte, la confianza en los vecinos, concebida como la disposición a asumir que las personas del entorno cercano actuarán de manera cooperativa y predecible; y, por otra, la confianza interpersonal generalizada, que alude a la creencia de que la mayoría de las personas son dignas de confianza. Ambos indicadores se complementan al situar la confianza en dos planos distintos: el nivel inmediato de las relaciones barriales y un ámbito más amplio de interacción social.
 
-### Cohesión Social Horizontal en Chile
+En síntesis, el esquema de medición para América Latina integra las dimensiones de seguridad y confianza bajo un enfoque minimalista, orientado a captar de manera precisa los componentes centrales de la cohesión social horizontal.
 
 ![](images/hor-elsoc.png)
+
+Un antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de Castillo et al. (2021). Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la Encuesta Longitudinal Social de Chile (ELSOC), de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.
+
 
 Para el caso chileno, la encuesta ELSOC, como bien ya han mostrado Castillo et al. (2021), permite operacionalizar la dimensión horizontal de la cohesión social a partir de la distinción tanto de indicadores subjetivos —como el sentido de pertenencia, la confianza y la apertura a la diversidad— como indicadores objetivos —como la participación social y las prácticas prosociales—. Estos se organizan en cuatro grandes subdimensiones: sentido de pertenencia, confianza social, cohesión barrial y sociabilidad local, y participación y prosocialidad.
 
@@ -129,7 +145,7 @@ Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones 
 3) Finalmente, hay que decir que las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran el índice confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden.
 
 
-## Propuesta de Medición con ELSOC
+## Propuesta de medición con ELSOC
 
 ```{r}
 #| echo: false
@@ -165,7 +181,7 @@ datos_formateados <- formatear_categorias_kable(datos)
 # Crear tabla con kable + kableExtra
 tabla_principal <- datos_formateados %>%
   kable(format = "html", 
-        caption = "<strong>Operacionalización de Variables</strong>",
+        caption = "<strong>Disponibilidad de Variables</strong>",
         escape = FALSE,  # Permitir HTML en las celdas
         table.attr = "style='width:100%;'") %>%
   
@@ -216,7 +232,7 @@ Este esquema integra distintos planos de análisis —condiciones objetivas, per
 
 ## Análisis
 
-### Descriptivos
+### Estadísticos descriptivos
 
 **Seguridad Pública**
 

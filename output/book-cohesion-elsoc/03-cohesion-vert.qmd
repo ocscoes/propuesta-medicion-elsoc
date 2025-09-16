@@ -1,6 +1,5 @@
 ---
-title: "Propuesta vertical"
-author: "Tomás Urzúa"
+title: "Cohesión social vertical"
 format: html
 editor: visual
 code-fold: true
@@ -27,7 +26,7 @@ Actitudes hacia la democracia busca medir las percepciones afectivas en torno al
 
 Por último, justicia distributiva mide el grado de acuerdo con la idea de que los ingresos deberían ser redistribuidos igualitariamente en la sociedad.
 
-## Nueva propuesta de medición con ELSOC
+## Propuesta de medición con ELSOC
 
 Con la idea de actualizar el marco analítico de la cohesión social, apuntando a una medición y operacionalización más pertinente, completa y fiable, se ha elaborado la siguiente propuesta, resumida en el siguiente esquema conceptual.
 
@@ -47,9 +46,8 @@ Para entregar una mayor claridad respecto a los códigos originales de las varia
 ```{r}
 #| label: tbl-propuesta-nueva
 #| echo: false 
-
-library(readr)
-library(DT)
+library(pacman)
+pacman::p_load(readr, DT)
 
 datos <- read_delim("tables/tbl-elsoc-ver.csv", 
                     delim = ",", 
