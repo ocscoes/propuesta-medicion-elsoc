@@ -118,10 +118,9 @@ elsoc <- elsoc %>%
   mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
 ```
 
-## Descriptivos 
+## Descriptivos
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Confianza en gobierno
 
 ```{r}
@@ -135,6 +134,7 @@ plot_stackfrq(elsoc$conf_gobierno,
 ```
 
 ### Confianza en partidos políticos
+
 ```{r}
 plot_stackfrq(elsoc$conf_pp,
               show.prc = FALSE,
@@ -144,6 +144,7 @@ plot_stackfrq(elsoc$conf_pp,
 ```
 
 ### Confianza en congreso
+
 ```{r}
 plot_stackfrq(elsoc$conf_congreso,
               show.prc = FALSE,
@@ -153,6 +154,7 @@ plot_stackfrq(elsoc$conf_congreso,
 ```
 
 ### Confianza en carabineros
+
 ```{r}
 plot_stackfrq(elsoc$conf_carabineros,
               show.prc = FALSE,
@@ -162,6 +164,7 @@ plot_stackfrq(elsoc$conf_carabineros,
 ```
 
 ### Confianza en fuerzas armadas
+
 ```{r}
 plot_stackfrq(elsoc$conf_fa,
               show.prc = FALSE,

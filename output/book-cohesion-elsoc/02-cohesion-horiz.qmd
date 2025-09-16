@@ -13,7 +13,6 @@ options(kableExtra.html.bsTable = T)
 options(knitr.kable.NA = "")
 ```
 
-
 ```{r}
 #| label: packages
 #| message: false 
@@ -26,13 +25,23 @@ pacman::p_load(tidyverse,
                sjmisc, 
                here,
                sjlabelled,
+               SciViews,
+               naniar,
+               readxl,
                sjPlot,
+               lme4,
                ggdist,
                purrr,
                psych,
                corrplot,
-               patchwork,
-               kableExtra)
+               skimr,
+               readr,
+               kableExtra,
+               patchwork)
+
+
+options(scipen=999)
+rm(list = ls())
 
 
 options(scipen=999)
@@ -92,12 +101,11 @@ db <- elsoc_long_2016_2023 %>%
   sjlabelled::drop_labels(., drop.na = FALSE)
 ```
 
-
 ## Antecedentes
 
 El concepto de cohesión social horizontal surge como una respuesta crítica a definiciones previas que tendían a confundir sus contenidos con condiciones externas tales como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a estas limitaciones, Chan et al. (2006) proponen una definición de carácter minimalista, orientada a precisar los elementos constitutivos de la cohesión sin diluir su valor analítico. Desde esta perspectiva, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos en el seno de la sociedad, independientemente de la mediación estatal. En el plano conceptual, esta dimensión abarca la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales, así como el sentido compartido de pertenencia. En el plano operacional, tales componentes se expresan tanto en indicadores subjetivos (confianza interpersonal, disposición a cooperar, identificación con la comunidad) como en indicadores objetivos (participación en asociaciones, voluntariado, donaciones, prácticas de cooperación o existencia de divisiones entre grupos). De este modo, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
 
-En Chile, el Observatorio de Cohesión Social (OCS-COES) ha desarrollado avances en la representación empírica de la cohesión social horizontal. Estos esfuerzos se han orientado, en una primera etapa, a la comparación regional a partir de encuestas internacionales como LAPOP y WVS. Bajo este enfoque, la cohesión horizontal se concibe como un entramado de vínculos entre ciudadanos y grupos sociales, expresados tanto en actitudes subjetivas como en prácticas objetivas de interacción. Conceptualmente, esta aproximación se ha estructurado en torno a tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales. <- Esto no se entiende bien. No queda claro si estas subdimensiones son de la nueva propuesta o de la lapop, que es de lo que habla este parrafo. 
+El [Observatorio de Cohesión Social (OCS-COES)](https://ocs-coes.com/) ha desarrollado avances en la representación empírica de la cohesión social horizontal. Estos esfuerzos se han orientado, en una primera etapa, a la comparación de América Latina a partir de encuestas internacionales como LAPOP y WVS. Bajo este enfoque, la cohesión horizontal se concibe como un entramado de vínculos entre ciudadanos y grupos sociales, expresados tanto en actitudes subjetivas como en prácticas objetivas de interacción. Esta aproximación se ha estructurado en torno a tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales.
 
 ```{r}
 #| label: fig-lapop
@@ -113,16 +121,15 @@ knitr::include_graphics(path = here("output/book-cohesion-elsoc/images/op-lapop.
 
 La @fig-lapop retrata el modelo de medición de la cohesión social horizontal para América Latina del OCS. De acuerdo con esto, la seguridad pública constituye un eje central de la cohesión social horizontal, en tanto incorpora tanto condiciones objetivas como percepciones subjetivas de resguardo en el entorno inmediato. La seguridad objetiva se expresa mediante indicadores como la victimización por delitos, que permite observar la exposición directa de las personas a situaciones de riesgo. En paralelo, la seguridad subjetiva se capta a través de la percepción de seguridad en el barrio, indicador que refleja la manera en que los ciudadanos evalúan su entorno próximo. En conjunto, ambos elementos articulan la dimensión objetiva de la seguridad con la vivencia subjetiva de sentirse protegido o vulnerable.
 
-Un segundo componente fundamental es la confianza interpersonal, entendida como un elemento clave de la cohesión social horizontal al recoger tanto disposiciones actitudinales como la calidad de los vínculos comunitarios. Este componente incluye, por una parte, la confianza en los vecinos, concebida como la disposición a asumir que las personas del entorno cercano actuarán de manera cooperativa y predecible; y, por otra, la confianza interpersonal generalizada, que alude a la creencia de que la mayoría de las personas son dignas de confianza. Ambos indicadores se complementan al situar la confianza en dos planos distintos: el nivel inmediato de las relaciones barriales y un ámbito más amplio de interacción social.
+Un segundo componente fundamental es la confianza interpersonal, entendida como un elemento clave de la cohesión social horizontal al recoger tanto disposiciones actitudinales como la calidad de los vínculos comunitarios. Este componente se mide a partir de la confianza en los vecinos, concebida como la disposición a asumir que las personas del entorno cercano actuarán de manera cooperativa y predecible.
 
-En síntesis, el esquema de medición para América Latina integra las dimensiones de seguridad y confianza bajo un enfoque minimalista, orientado a captar de manera precisa los componentes centrales de la cohesión social horizontal.
+Este esquema de medición para América Latina integra las dimensiones de seguridad y confianza bajo un enfoque minimalista, orientado a captar de manera precisa los componentes centrales de la cohesión social horizontal.
 
 ![](images/hor-elsoc.png)
 
-Un antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de Castillo et al. (2021). Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la Encuesta Longitudinal Social de Chile (ELSOC), de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.
+Otro antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de Castillo et al. (2021). Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la [Encuesta Longitudinal Social de Chile (ELSOC)](https://coes.cl/elsoc/), de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.
 
-
-Para el caso chileno, la encuesta ELSOC, como bien ya han mostrado Castillo et al. (2021), permite operacionalizar la dimensión horizontal de la cohesión social a partir de la distinción tanto de indicadores subjetivos —como el sentido de pertenencia, la confianza y la apertura a la diversidad— como indicadores objetivos —como la participación social y las prácticas prosociales—. Estos se organizan en cuatro grandes subdimensiones: sentido de pertenencia, confianza social, cohesión barrial y sociabilidad local, y participación y prosocialidad.
+De las anteriores, se puede destacar cuatro grandes subdimensiones: sentido de pertenencia, confianza social, cohesión barrial y sociabilidad local, y participación y prosocialidad.
 
 La primera, sentido de pertenencia, se capta a través de ítems del módulo de Sociabilidad Política que indagan sobre el grado de identificación con Chile y el orgullo nacional. Estas preguntas reflejan el vínculo simbólico y afectivo de las personas con la comunidad política nacional y permiten observar hasta qué punto los individuos se reconocen como parte de un colectivo común.
 
@@ -132,18 +139,11 @@ La tercera, cohesión barrial y sociabilidad local, se refiere a la integración
 
 Finalmente, la subdimensión de participación social y prosocialidad incorpora conductas concretas que muestran la disposición de las personas a involucrarse en la vida social y apoyar a otros. ELSOC mide este aspecto a través de la participación en voluntariado, las donaciones a causas sociales, el apoyo económico o material a otras personas, y el acompañamiento en situaciones de dificultad. Estas acciones representan la expresión objetiva de la cohesión horizontal, pues reflejan la voluntad de contribuir activamente al bienestar colectivo.
 
-Un componente adicional lo constituye la aceptación de la diversidad, expresada en actitudes hacia grupos sociales distintos, como migrantes o minorías sexuales. Estos indicadores permiten observar hasta qué punto la cohesión se sustenta no solo en la homogeneidad, sino también en la inclusión de la diferencia y el reconocimiento mutuo, aspecto clave en el marco de sociedades crecientemente diversas.
-
 Ahora bien, las propuestas presentadas tienen diferencias importantes.
 
-1) En primer lugar, con ELSOC es mucho más compleja en tanto tiene mayores niveles de granularidad y, consecuentemente, mayor cantidad de factores en comparación con la propuesta de que se construye para Latinoamérica con LAPOP, cuya perspectiva es más minimalista.
-
-Esto se expresa en, por ejemplo, la subdimensión de confianza en instituciones y democracia. En la propuesta con ELSOC esta se entiende como una subdimensión compuesta de dos factores: confianza en instituciones y satisfacción con la democracia. No así, en la propuesta construida con LAPOP estos factores se entienden como dos subdimensiones independientes.
-
-2) Por su parte, en la propuesta con ELSOC se consideran varias subdimensiones que no están presentes en el índice de Latinoamérica debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, no correlacionaba con los demás factores de su dimensión.
-
-3) Finalmente, hay que decir que las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran el índice confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden.
-
+1)  En primer lugar, con ELSOC cuenta con información que permite observar con mayores niveles de granularidad y, consecuentemente, identificar con mayor precisión las dimensiones y subdimensiones de la cohesión social en comparación con la propuesta de que se construye para Latinoamérica con LAPOP, cuya perspectiva es más minimalista.
+2)  Por su parte, en la propuesta con ELSOC se consideran varias subdimensiones que no están presentes en el índice de Latinoamérica debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, no correlacionaba con los demás factores de su dimensión.
+3)  Finalmente, hay que decir que las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran el índice confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden.
 
 ## Propuesta de medición con ELSOC
 
@@ -229,35 +229,15 @@ La tercera dimensión corresponde a las redes sociales, que permiten observar la
 
 Este esquema integra distintos planos de análisis —condiciones objetivas, percepciones subjetivas, identidades territoriales y prácticas sociales— para ofrecer una mirada amplia de la cohesión horizontal.
 
+## Estadísticos descriptivos
 
-## Análisis
-
-### Estadísticos descriptivos
-
-**Seguridad Pública**
+::: panel-tabset
+### Seguridad Objetiva
 
 ```{r}
-#| label: seg-obj-desc
-#| echo: false
-#| warning: false
-#| message: false
-#| results: false
+#| label: fig-seguridad
 
-#Objetiva
-frq(db$peleas_calle)
-frq(db$asaltos)
-frq(db$trafico_drogas)
-
-#Subjetiva
-frq(db$seguridad_sat)
-frq(db$seguridad_perc)
-```
-
-```{r}
-#| label: fig-seguridad-obj
-#| fig-cap: Distribución de variables de Seguridad Objetiva 
-#| fig-cap-location: top
-#| echo: FALSE
+# Seguridad Objetiva
 
 plot_stackfrq(
   dplyr::select(db, peleas_calle,
@@ -269,12 +249,9 @@ plot_stackfrq(
   theme_ggdist()
 ```
 
-```{r}
-#| label: fig-seguridad-subj
-#| fig-cap: Distribución de variables de Seguridad Subjetiva
-#| fig-cap-location: top
-#| echo: false
+### Seguridad Objetiva
 
+```{r}
 plot1 <- plot_stackfrq(
   dplyr::select(db, seguridad_perc),
   show.prc = FALSE,
@@ -309,33 +286,11 @@ plot_final <- wrap_plots(plot1, plot2, ncol = 1) +
 print(plot_final)
 ```
 
-**Vínculos Territoriales**
 
-```{r}
-#| label: pert-barrio-desc
-#| echo: false
-#| warning: false
-#| message: false
-#| results: false
-
-#Pertenencia Barrio
-frq(db$barrio_ideal)
-frq(db$barrio_integracion)
-frq(db$barrio_identidad)
-frq(db$barrio_pertenencia)
-
-#Satisfacción con el barrio
-frq(db$barrio_amigos)
-frq(db$barrio_sociable)
-frq(db$barrio_cordial)
-frq(db$barrio_colaborador)
-```
+### Vínculos Territoriales
 
 ```{r}
 #| label: fig-terr
-#| fig-cap: Distribución de variables de Vínculos Territoriales
-#| fig-cap-location: top
-#| echo: FALSE
 
 plot_stackfrq(
   dplyr::select(db, barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia,
@@ -346,40 +301,13 @@ plot_stackfrq(
   theme_ggdist()
 ```
 
-**Redes Sociales**
-
-```{r}
-#| label: conf-desc
-#| echo: false
-#| warning: false
-#| message: false
-#| results: false
-
-#Confianza Interpersonal
-
-frq(db$confianza_gen)
-frq(db$altruismo_gen)
-
-#Comportamiento Prosocial
-
-frq(db$reunion_pub)
-frq(db$voluntariado)
-
-#Ayuda Económica
-
-frq(db$ayuda_trabajo)
-frq(db$donar_dinero)
-frq(db$prestar_dinero)
-```
+### Redes Sociales
 
 ```{r}
 #| label: fig-redes
-#| fig-cap: Distribución de variables de Redes Sociales
-#| fig-cap-location: top
-#| echo: FALSE
 
 plot_stackfrq(
-  dplyr::select(db, confianza_gen, altruismo_gen, reunion_pub, voluntariado,
+  dplyr::select(db, reunion_pub, voluntariado,
               ayuda_trabajo, donar_dinero, prestar_dinero),
   show.prc = FALSE,
   show.n = FALSE,
@@ -387,13 +315,54 @@ plot_stackfrq(
   theme_ggdist()
 ```
 
+```{r}
+#| label: fig-redes-2
+#| fig-cap: Distribución de variables de Redes Sociales 2
+#| fig-cap-location: top
+#| echo: FALSE
 
-**Correlaciones**
+plot3 <- plot_stackfrq(
+  dplyr::select(db, confianza_gen),
+  show.prc = FALSE,
+  show.n = FALSE,
+  show.total = FALSE,
+  coord.flip = TRUE,
+  title = NULL
+) + 
+  theme_ggdist() +
+  labs(y = NULL) +
+  theme(axis.title.x = element_blank())
 
-::: [.panel-tabset]
+# Plot 2: seguridad_sat con su propia leyenda  
+plot4 <- plot_stackfrq(
+  dplyr::select(db, altruismo_gen),
+  show.prc = FALSE,
+  show.n = FALSE, 
+  show.total = FALSE,
+  coord.flip = TRUE,
+  title = NULL
+) + 
+  theme_ggdist() +
+  labs(y = NULL)
 
+# Combinar los plots manteniendo ambas leyendas
+plot_final2 <- wrap_plots(plot3, plot4, ncol = 1) + 
+  plot_annotation(
+    title = NULL,
+    theme = theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
+  )
+
+print(plot_final2)
+```
+:::
+
+## Correlaciones
+::: panel-tabset
+
+### Seguridad Pública
 ```{r}
 #| label: corr-seg
+#| fig-cap: Matriz de Correlaciones de Seguridad Pública
 #| echo: false
 #| warning: false
 #| message: false
@@ -417,6 +386,8 @@ corrplot(poly_cor1$rho, method = "color",
          number.cex = 0.7)
 ```
 
+### Vínculos Territoriales
+
 ```{r}
 #| label: corr-terr
 #| echo: false
@@ -432,6 +403,7 @@ poly_cor2 <- polychoric(territorial)
 
 ```{r}
 #| label: fig-corr-terr
+#| fig-cap: Matriz de Correlaciones de Vínculos Territoriales
 #| echo: false
 
 corrplot(poly_cor2$rho, method = "color", 
@@ -441,6 +413,8 @@ corrplot(poly_cor2$rho, method = "color",
          addCoef.col = "black", # muestra los coeficientes
          number.cex = 0.7)
 ```
+
+### Redes Sociales
 
 ```{r}
 #| label: corr-redes
@@ -457,6 +431,7 @@ poly_cor3 <- polychoric(redes)
 
 ```{r}
 #| label: fig-corr-redes
+#| fig-cap: Matriz de Correlaciones de Redes Sociales
 #| echo: false
 
 corrplot(poly_cor3$rho, method = "color", 
@@ -466,8 +441,400 @@ corrplot(poly_cor3$rho, method = "color",
          addCoef.col = "black", # muestra los coeficientes
          number.cex = 0.7)
 ```
-
 :::
 
-- Análisis Factorial Exploratorio y CFA
-- Construcción de índices y sus descriptivos (Media, desviación estándar, distribución y consistencia con los ítems usados)
+## Análisis Factorial Exploratorio y CFA
+
+
+::: panel-tabset
+### Seguridad Pública
+
+```{r}
+#| include: false 
+#| message: false
+#| warning: false 
+
+elsoc_seguridad <- db %>%
+  filter(ola == 6) %>%
+  select(seguridad_sat, seguridad_perc,
+                       asaltos, trafico_drogas, peleas_calle)
+
+cormat1  <- cor(elsoc_seguridad, use = "pairwise.complete.obs") 
+ 
+ KMO(cormat1) 
+cortest.bartlett(cormat1, n = 2730)
+```
+
+```{r}
+#| label: fig-efa-conf
+#| fig-cap: Tabla de factorial exploratorio de Seguridad Pública
+#| fig-cap-location: top
+#| echo: false 
+#| message: false 
+
+tab_fa(elsoc_seguridad, rotation = "varimax", show.comm = TRUE)
+```
+
+### Vínculos Territoriales
+```{r}
+#| include: false 
+#| message: false
+#| warning: false 
+
+elsoc_vinculos <- db %>%
+  filter(ola == 6) %>%
+  select(barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia,
+              barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador)
+
+cormat2  <- cor(elsoc_vinculos, use = "pairwise.complete.obs") 
+ 
+ KMO(cormat2) 
+cortest.bartlett(cormat1, n = 2730)
+```
+
+```{r}
+#| label: fig-efa-vinculos
+#| fig-cap: Tabla de factorial exploratorio de Vinculos Territoriales
+#| fig-cap-location: top
+#| echo: false 
+#| message: false 
+
+tab_fa(elsoc_vinculos, rotation = "varimax", show.comm = TRUE)
+```
+
+### Redes Sociales
+```{r}
+#| include: false 
+#| message: false
+#| warning: false 
+
+elsoc_redes <- db %>%
+  filter(ola == 5) %>% # A diferencia de las anteriores, la ola 5 es la última en la que se encuentran todas las variables de redes sociales
+  select(confianza_gen, altruismo_gen, reunion_pub, voluntariado,
+              ayuda_trabajo, donar_dinero, prestar_dinero)
+
+cormat3  <- cor(elsoc_redes, use = "pairwise.complete.obs") 
+ 
+ KMO(cormat3) 
+cortest.bartlett(cormat1, n = 2730)
+```
+
+```{r}
+#| label: fig-efa-redes
+#| fig-cap: Tabla de factorial exploratorio de Redes Sociales
+#| fig-cap-location: top
+#| echo: false 
+#| message: false 
+
+tab_fa(elsoc_redes, rotation = "varimax", show.comm = TRUE)
+```
+:::
+
+
+## Construcción de índices
+
+**Seguridad Pública**
+
+1. _Seguridad Objetiva_
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+elsoc <- db %>%
+  mutate(seguridad_objetiva = rowMeans(select(., asaltos, trafico_drogas, peleas_calle), na.rm = TRUE))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+t_seg_obj <- elsoc %>%
+  select(seguridad_objetiva) %>%
+  skim() %>%
+  yank("numeric") %>%
+  as_tibble() %>%
+  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
+  mutate_if(is.numeric, ~ round(., 2)) %>%
+  select("Variable" = skim_variable,
+         "Mean" = mean,
+         "SD" = sd,
+         "Range" = range,
+         "Histogram" = hist)
+
+# 3. Calcular alfa de Cronbach de las variables originales
+alpha_seg_obj <- psych::alpha(elsoc %>%
+                             select(asaltos, trafico_drogas, peleas_calle))
+
+cronbach_alpha <- round(alpha_seg_obj$total$raw_alpha, 2)
+
+# 4. Agregar columna con alfa de Cronbach (misma fila del índice)
+t_seg_obj <- t_seg_obj %>%
+  mutate(Cronbach_Alpha = cronbach_alpha)
+
+t_seg_obj
+```
+
+2. _Seguridad Subjetiva_
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+elsoc <- db %>%
+  mutate(seguridad_subjetiva = rowMeans(select(., seguridad_sat, seguridad_perc), na.rm = TRUE))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+t_seg_sub <- elsoc %>%
+  select(seguridad_subjetiva) %>%
+  skim() %>%
+  yank("numeric") %>%
+  as_tibble() %>%
+  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
+  mutate_if(is.numeric, ~ round(., 2)) %>%
+  select("Variable" = skim_variable,
+         "Mean" = mean,
+         "SD" = sd,
+         "Range" = range,
+         "Histogram" = hist)
+
+# 3. Calcular alfa de Cronbach de las 2 variables originales
+alpha_seg_sub <- psych::alpha(elsoc %>%
+                             select(seguridad_sat, seguridad_perc))
+
+cronbach_alpha <- round(alpha_seg_sub$total$raw_alpha, 2)
+
+# 4. Agregar columna con alfa de Cronbach (misma fila del índice)
+t_seg_sub <- t_seg_sub %>%
+  mutate(Cronbach_Alpha = cronbach_alpha)
+
+t_seg_sub
+```
+
+**Vínculos Territoriales**
+
+1. _Pertenencia al barrio_
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+elsoc <- db %>%
+  mutate(pertenencia_barrio = rowMeans(select(., barrio_integracion, barrio_identidad, barrio_pertenencia), na.rm = TRUE))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+t_pert <- elsoc %>%
+  select(pertenencia_barrio) %>%
+  skim() %>%
+  yank("numeric") %>%
+  as_tibble() %>%
+  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
+  mutate_if(is.numeric, ~ round(., 2)) %>%
+  select("Variable" = skim_variable,
+         "Mean" = mean,
+         "SD" = sd,
+         "Range" = range,
+         "Histogram" = hist)
+
+# 3. Calcular alfa de Cronbach de las variables originales
+alpha_pert <- psych::alpha(elsoc %>%
+                             select(barrio_integracion, barrio_identidad, barrio_pertenencia))
+
+cronbach_alpha <- round(alpha_pert$total$raw_alpha, 2)
+
+# 4. Agregar columna con alfa de Cronbach (misma fila del índice)
+t_pert <- t_pert %>%
+  mutate(Cronbach_Alpha = cronbach_alpha)
+
+t_pert
+```
+
+2. _Satisfacción con el barrio_
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+elsoc <- db %>%
+  mutate(satisfaccion_barrio = rowMeans(select(., barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador), na.rm = TRUE))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+t_satis <- elsoc %>%
+  select(satisfaccion_barrio) %>%
+  skim() %>%
+  yank("numeric") %>%
+  as_tibble() %>%
+  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
+  mutate_if(is.numeric, ~ round(., 2)) %>%
+  select("Variable" = skim_variable,
+         "Mean" = mean,
+         "SD" = sd,
+         "Range" = range,
+         "Histogram" = hist)
+
+# 3. Calcular alfa de Cronbach de las 2 variables originales
+alpha_satis <- psych::alpha(elsoc %>%
+                             select(barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador))
+
+cronbach_alpha <- round(alpha_satis$total$raw_alpha, 2)
+
+# 4. Agregar columna con alfa de Cronbach (misma fila del índice)
+t_satis <- t_satis %>%
+  mutate(Cronbach_Alpha = cronbach_alpha)
+
+t_satis
+```
+
+**Redes Sociales**
+
+1. _Confianza Interpersonal_
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+elsoc <- db %>%
+  mutate(confianza_interpersonal = rowMeans(select(., confianza_gen, altruismo_gen), na.rm = TRUE))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+t_conf <- elsoc %>%
+  select(confianza_interpersonal) %>%
+  skim() %>%
+  yank("numeric") %>%
+  as_tibble() %>%
+  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
+  mutate_if(is.numeric, ~ round(., 2)) %>%
+  select("Variable" = skim_variable,
+         "Mean" = mean,
+         "SD" = sd,
+         "Range" = range,
+         "Histogram" = hist)
+
+# 3. Calcular alfa de Cronbach de las 2 variables originales
+alpha_conf <- psych::alpha(elsoc %>%
+                             select(confianza_gen, altruismo_gen))
+
+cronbach_alpha <- round(alpha_conf$total$raw_alpha, 2)
+
+# Agregar columna con alfa de Cronbach (misma fila del índice)
+t_conf <- t_conf %>%
+  mutate(Cronbach_Alpha = cronbach_alpha)
+
+t_conf
+```
+
+2. _Comportamiento Prosocial_
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+elsoc <- db %>%
+  mutate(comportamiento_prosocial = rowMeans(select(.,  reunion_pub, voluntariado), na.rm = TRUE))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+t_prosoc <- elsoc %>%
+  select(comportamiento_prosocial) %>%
+  skim() %>%
+  yank("numeric") %>%
+  as_tibble() %>%
+  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
+  mutate_if(is.numeric, ~ round(., 2)) %>%
+  select("Variable" = skim_variable,
+         "Mean" = mean,
+         "SD" = sd,
+         "Range" = range,
+         "Histogram" = hist)
+
+# 3. Calcular alfa de Cronbach de las 2 variables originales
+alpha_prosoc <- psych::alpha(elsoc %>%
+                             select( reunion_pub, voluntariado))
+
+cronbach_alpha <- round(alpha_prosoc$total$raw_alpha, 2)
+
+# 4. Agregar columna con alfa de Cronbach (misma fila del índice)
+t_prosoc <- t_prosoc %>%
+  mutate(Cronbach_Alpha = cronbach_alpha)
+
+t_prosoc
+```
+
+3. _Ayuda Económica_
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+elsoc <- db %>%
+  mutate(ayuda_economica = rowMeans(select(.,  ayuda_trabajo, donar_dinero, prestar_dinero), na.rm = TRUE))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+t_ayuda <- elsoc %>%
+  select(ayuda_economica) %>%
+  skim() %>%
+  yank("numeric") %>%
+  as_tibble() %>%
+  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
+  mutate_if(is.numeric, ~ round(., 2)) %>%
+  select("Variable" = skim_variable,
+         "Mean" = mean,
+         "SD" = sd,
+         "Range" = range,
+         "Histogram" = hist)
+
+# 3. Calcular alfa de Cronbach de las 2 variables originales
+alpha_ayuda <- psych::alpha(elsoc %>%
+                             select( ayuda_trabajo, donar_dinero, prestar_dinero))
+
+cronbach_alpha <- round(alpha_ayuda$total$raw_alpha, 2)
+
+# 4. Agregar columna con alfa de Cronbach (misma fila del índice)
+t_ayuda <- t_ayuda %>%
+  mutate(Cronbach_Alpha = cronbach_alpha)
+
+t_ayuda
+```
+
+
