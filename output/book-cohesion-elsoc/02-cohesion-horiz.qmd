@@ -37,7 +37,8 @@ pacman::p_load(tidyverse,
                skimr,
                readr,
                kableExtra,
-               patchwork)
+               patchwork,
+               lavaan)
 
 
 options(scipen=999)
@@ -105,6 +106,8 @@ db <- elsoc_long_2016_2023 %>%
 
 El concepto de cohesión social horizontal surge como una respuesta crítica a definiciones previas que tendían a confundir sus contenidos con condiciones externas tales como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a estas limitaciones, Chan et al. (2006) proponen una definición de carácter minimalista, orientada a precisar los elementos constitutivos de la cohesión sin diluir su valor analítico. Desde esta perspectiva, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos en el seno de la sociedad, independientemente de la mediación estatal. En el plano conceptual, esta dimensión abarca la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales, así como el sentido compartido de pertenencia. En el plano operacional, tales componentes se expresan tanto en indicadores subjetivos (confianza interpersonal, disposición a cooperar, identificación con la comunidad) como en indicadores objetivos (participación en asociaciones, voluntariado, donaciones, prácticas de cooperación o existencia de divisiones entre grupos). De este modo, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
 
+### Esquema de Cohesión Horizontal Latinoamérica (Vis-Latam)
+
 El [Observatorio de Cohesión Social (OCS-COES)](https://ocs-coes.com/) ha desarrollado avances en la representación empírica de la cohesión social horizontal. Estos esfuerzos se han orientado, en una primera etapa, a la comparación de América Latina a partir de encuestas internacionales como LAPOP y WVS. Bajo este enfoque, la cohesión horizontal se concibe como un entramado de vínculos entre ciudadanos y grupos sociales, expresados tanto en actitudes subjetivas como en prácticas objetivas de interacción. Esta aproximación se ha estructurado en torno a tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales.
 
 ```{r}
@@ -119,13 +122,25 @@ knitr::include_graphics(path = here("output/book-cohesion-elsoc/images/op-lapop.
 
 ```
 
-La @fig-lapop retrata el modelo de medición de la cohesión social horizontal para América Latina del OCS. De acuerdo con esto, la seguridad pública constituye un eje central de la cohesión social horizontal, en tanto incorpora tanto condiciones objetivas como percepciones subjetivas de resguardo en el entorno inmediato. La seguridad objetiva se expresa mediante indicadores como la victimización por delitos, que permite observar la exposición directa de las personas a situaciones de riesgo. En paralelo, la seguridad subjetiva se capta a través de la percepción de seguridad en el barrio, indicador que refleja la manera en que los ciudadanos evalúan su entorno próximo. En conjunto, ambos elementos articulan la dimensión objetiva de la seguridad con la vivencia subjetiva de sentirse protegido o vulnerable.
+La @fig-lapop retrata el modelo de medición de cohesión social horizontal para América Latina del OCS. De acuerdo con esto, la seguridad pública constituye un eje central de la cohesión social horizontal, en tanto incorpora tanto condiciones objetivas como percepciones subjetivas de resguardo en el entorno inmediato. La seguridad objetiva se expresa mediante indicadores como la victimización por delitos, que permite observar la exposición directa de las personas a situaciones de riesgo. En paralelo, la seguridad subjetiva se capta a través de la percepción de seguridad en el barrio, indicador que refleja la manera en que los ciudadanos evalúan su entorno próximo. En conjunto, ambos elementos articulan la dimensión objetiva de la seguridad con la vivencia subjetiva de sentirse protegido o vulnerable.
 
 Un segundo componente fundamental es la confianza interpersonal, entendida como un elemento clave de la cohesión social horizontal al recoger tanto disposiciones actitudinales como la calidad de los vínculos comunitarios. Este componente se mide a partir de la confianza en los vecinos, concebida como la disposición a asumir que las personas del entorno cercano actuarán de manera cooperativa y predecible.
 
 Este esquema de medición para América Latina integra las dimensiones de seguridad y confianza bajo un enfoque minimalista, orientado a captar de manera precisa los componentes centrales de la cohesión social horizontal.
 
-![](images/hor-elsoc.png)
+### Esquema de Cohesión Vertical ELSOC
+
+```{r}
+#| label: fig-elsoc
+#| fig-cap-location: top
+#| fig-cap: "Medición de cohesión horizontal con ELSOC de Castillo et al.(2021)"
+#| fig-align: center
+
+library(here)
+
+knitr::include_graphics(path = here("output/book-cohesion-elsoc/images/hor-elsoc.png"))
+
+```
 
 Otro antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de Castillo et al. (2021). Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la [Encuesta Longitudinal Social de Chile (ELSOC)](https://coes.cl/elsoc/), de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.
 
@@ -142,10 +157,12 @@ Finalmente, la subdimensión de participación social y prosocialidad incorpora 
 Ahora bien, las propuestas presentadas tienen diferencias importantes.
 
 1)  En primer lugar, con ELSOC cuenta con información que permite observar con mayores niveles de granularidad y, consecuentemente, identificar con mayor precisión las dimensiones y subdimensiones de la cohesión social en comparación con la propuesta de que se construye para Latinoamérica con LAPOP, cuya perspectiva es más minimalista.
-2)  Por su parte, en la propuesta con ELSOC se consideran varias subdimensiones que no están presentes en el índice de Latinoamérica debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, no correlacionaba con los demás factores de su dimensión.
+2)  Por su parte, en la versión con ELSOC se consideran varias subdimensiones que no están presentes en el índice de Latinoamérica debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, [no correlacionaba con los demás factores de su dimensión.](https://ocscoes.github.io/medicion-cohesion-LA/cohesion-horizontal.html)
 3)  Finalmente, hay que decir que las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran el índice confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden.
 
 ## Propuesta de medición con ELSOC
+
+La propuesta del OCS para medir la cohesión social horizontal a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria.
 
 ```{r}
 #| echo: false
@@ -219,13 +236,24 @@ tabla_principal <- datos_formateados %>%
 tabla_principal 
 ```
 
-La propuesta del OCS para medir la cohesión social horizontal a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria.
-
 La seguridad se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras y la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo. En el plano subjetivo, se incluyen la frecuencia de tráfico de drogas en el vecindario, la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los residentes evalúan y experimentan estas condiciones.
 
 Los vínculos territoriales buscan capturar el grado de identificación y valoración del espacio de residencia. Esta dimensión se divide en dos factores. El primero, la pertenencia al barrio, incluye cuatro indicadores: considerar que el barrio es ideal, sentirse integrado, identificarse con los vecinos y percibirlo como parte de la propia identidad. El segundo, la satisfacción con el barrio, se mide a través de la facilidad para hacer amigos, la sociabilidad, la cordialidad y la colaboración de los vecinos, reflejando así la calidad de las relaciones comunitarias.
 
 La tercera dimensión corresponde a las redes sociales, que permiten observar las dinámicas de confianza, solidaridad y cooperación entre personas. Se estructura en tres factores. La confianza interpersonal considera la disposición a confiar en los demás y la percepción de que las personas tienden a ayudar a otros o a centrarse en sí mismas. El comportamiento prosocial se mide mediante la participación en reuniones comunitarias y la realización de voluntariado en los últimos doce meses. Finalmente, la ayuda económica se evalúa a través de la disposición a prestar dinero y a colaborar en la búsqueda de empleo para alguien más.
+
+```{r}
+#| label: fig-propuesta
+#| fig-cap-location: top
+#| fig-cap: "Medición de cohesión horizontal para Chile del Observatorio de Cohesión Social"
+#| fig-align: center
+
+library(here)
+
+knitr::include_graphics(path = here("output/book-cohesion-elsoc/images/propuesta-hor.png"))
+
+```
+
 
 Este esquema integra distintos planos de análisis —condiciones objetivas, percepciones subjetivas, identidades territoriales y prácticas sociales— para ofrecer una mirada amplia de la cohesión horizontal.
 
@@ -237,14 +265,16 @@ Este esquema integra distintos planos de análisis —condiciones objetivas, per
 ```{r}
 #| label: fig-seguridad
 
+db_filtrado <- db %>% filter(ola == 6)
+
 # Seguridad Objetiva
 
 plot_stackfrq(
-  dplyr::select(db, peleas_calle,
+  dplyr::select(db_filtrado, peleas_calle,
               asaltos, trafico_drogas),
   show.prc = FALSE,
   show.n = FALSE,
-  show.total = FALSE,
+  show.total = TRUE,
   title = NULL) + 
   theme_ggdist()
 ```
@@ -253,10 +283,10 @@ plot_stackfrq(
 
 ```{r}
 plot1 <- plot_stackfrq(
-  dplyr::select(db, seguridad_perc),
+  dplyr::select(db_filtrado, seguridad_perc),
   show.prc = FALSE,
   show.n = FALSE,
-  show.total = FALSE,
+  show.total = TRUE,
   coord.flip = TRUE,
   title = NULL
 ) + 
@@ -266,10 +296,10 @@ plot1 <- plot_stackfrq(
 
 # Plot 2: seguridad_sat con su propia leyenda  
 plot2 <- plot_stackfrq(
-  dplyr::select(db, seguridad_sat),
+  dplyr::select(db_filtrado, seguridad_sat),
   show.prc = FALSE,
   show.n = FALSE, 
-  show.total = FALSE,
+  show.total = TRUE,
   coord.flip = TRUE,
   title = NULL
 ) + 
@@ -286,18 +316,17 @@ plot_final <- wrap_plots(plot1, plot2, ncol = 1) +
 print(plot_final)
 ```
 
-
 ### Vínculos Territoriales
 
 ```{r}
 #| label: fig-terr
 
 plot_stackfrq(
-  dplyr::select(db, barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia,
+  dplyr::select(db_filtrado, barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia,
               barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador),
   show.prc = FALSE,
   show.n = FALSE,
-  show.total = FALSE) + 
+  show.total = TRUE) + 
   theme_ggdist()
 ```
 
@@ -306,12 +335,14 @@ plot_stackfrq(
 ```{r}
 #| label: fig-redes
 
+db_filtrado_2 <- db %>% filter(ola == 5)
+
 plot_stackfrq(
-  dplyr::select(db, reunion_pub, voluntariado,
+  dplyr::select(db_filtrado_2, reunion_pub, voluntariado,
               ayuda_trabajo, donar_dinero, prestar_dinero),
   show.prc = FALSE,
   show.n = FALSE,
-  show.total = FALSE) + 
+  show.total = TRUE) + 
   theme_ggdist()
 ```
 
@@ -322,10 +353,10 @@ plot_stackfrq(
 #| echo: FALSE
 
 plot3 <- plot_stackfrq(
-  dplyr::select(db, confianza_gen),
+  dplyr::select(db_filtrado_2, confianza_gen),
   show.prc = FALSE,
   show.n = FALSE,
-  show.total = FALSE,
+  show.total = TRUE,
   coord.flip = TRUE,
   title = NULL
 ) + 
@@ -335,7 +366,7 @@ plot3 <- plot_stackfrq(
 
 # Plot 2: seguridad_sat con su propia leyenda  
 plot4 <- plot_stackfrq(
-  dplyr::select(db, altruismo_gen),
+  dplyr::select(db_filtrado_2, altruismo_gen),
   show.prc = FALSE,
   show.n = FALSE, 
   show.total = FALSE,
@@ -357,18 +388,18 @@ print(plot_final2)
 :::
 
 ## Correlaciones
-::: panel-tabset
 
+::: panel-tabset
 ### Seguridad Pública
+
 ```{r}
 #| label: corr-seg
-#| fig-cap: Matriz de Correlaciones de Seguridad Pública
 #| echo: false
 #| warning: false
 #| message: false
 
 
-seguridad <- db[, c("seguridad_sat", "seguridad_perc",
+seguridad <- db_filtrado[, c("seguridad_sat", "seguridad_perc",
                        "asaltos", "trafico_drogas", "peleas_calle")]
 
 poly_cor1 <- polychoric(seguridad)
@@ -376,10 +407,12 @@ poly_cor1 <- polychoric(seguridad)
 
 ```{r}
 #| label: fig-corr-seg
+#| fig-cap: Matriz de Correlaciones de Seguridad Pública
 #| echo: false
 
 corrplot(poly_cor1$rho, method = "color", 
-         type = "upper", 
+         type = "upper",
+         diag = FALSE,
          tl.col = "black", 
          tl.srt = 45, 
          addCoef.col = "black", # muestra los coeficientes
@@ -395,7 +428,7 @@ corrplot(poly_cor1$rho, method = "color",
 #| message: false
 
 
-territorial <- db[, c("barrio_ideal", "barrio_integracion", "barrio_identidad", "barrio_pertenencia",
+territorial <- db_filtrado[, c("barrio_ideal", "barrio_integracion", "barrio_identidad", "barrio_pertenencia",
               "barrio_amigos", "barrio_sociable", "barrio_cordial", "barrio_colaborador")]
 
 poly_cor2 <- polychoric(territorial)
@@ -407,7 +440,8 @@ poly_cor2 <- polychoric(territorial)
 #| echo: false
 
 corrplot(poly_cor2$rho, method = "color", 
-         type = "upper", 
+         type = "upper",
+         diag = FALSE,
          tl.col = "black", 
          tl.srt = 45, 
          addCoef.col = "black", # muestra los coeficientes
@@ -423,7 +457,7 @@ corrplot(poly_cor2$rho, method = "color",
 #| message: false
 
 
-redes <- db[, c("confianza_gen", "altruismo_gen", "reunion_pub", "voluntariado",
+redes <- db_filtrado_2[, c("confianza_gen", "altruismo_gen", "reunion_pub", "voluntariado",
               "ayuda_trabajo", "donar_dinero", "prestar_dinero")]
 
 poly_cor3 <- polychoric(redes)
@@ -435,7 +469,8 @@ poly_cor3 <- polychoric(redes)
 #| echo: false
 
 corrplot(poly_cor3$rho, method = "color", 
-         type = "upper", 
+         type = "upper",
+         diag = FALSE,
          tl.col = "black", 
          tl.srt = 45, 
          addCoef.col = "black", # muestra los coeficientes
@@ -443,8 +478,7 @@ corrplot(poly_cor3$rho, method = "color",
 ```
 :::
 
-## Análisis Factorial Exploratorio y CFA
-
+## Análisis Factorial Exploratorio
 
 ::: panel-tabset
 ### Seguridad Pública
@@ -476,6 +510,7 @@ tab_fa(elsoc_seguridad, rotation = "varimax", show.comm = TRUE)
 ```
 
 ### Vínculos Territoriales
+
 ```{r}
 #| include: false 
 #| message: false
@@ -503,6 +538,7 @@ tab_fa(elsoc_vinculos, rotation = "varimax", show.comm = TRUE)
 ```
 
 ### Redes Sociales
+
 ```{r}
 #| include: false 
 #| message: false
@@ -530,12 +566,127 @@ tab_fa(elsoc_redes, rotation = "varimax", show.comm = TRUE)
 ```
 :::
 
+## Análisis Factoria Confirmatorio
+
+```{r}
+#| echo: false
+seguridad_m <- '
+seg_obj =~  asaltos + trafico_drogas + peleas_calle
+seg_sub =~ seguridad_sat + seguridad_perc
+'
+```
+
+```{r}
+#| echo: false
+seguridad_cfa <- cfa(model = seguridad_m,
+                     data = elsoc_seguridad,
+                     estimator = "WLSMV",
+                     ordered = TRUE,
+                     std.lv = FALSE)
+```
+
+```{r}
+#| echo: false
+vinculos_m <- '
+pertenencia =~ barrio_ideal + barrio_integracion + barrio_identidad + barrio_pertenencia
+satisfaccion =~ barrio_amigos + barrio_sociable + barrio_cordial + barrio_colaborador
+'
+```
+
+```{r}
+#| echo: false
+vinculos_cfa <- cfa(model = vinculos_m,
+                     data = elsoc_vinculos,
+                     estimator = "WLSMV",
+                     ordered = TRUE,
+                     std.lv = FALSE)
+```
+
+```{r}
+#| echo: false
+redes_m <- '
+interpersonal =~ confianza_gen + altruismo_gen
+prosocial =~ reunion_pub + voluntariado
+economica =~ ayuda_trabajo + donar_dinero + prestar_dinero
+'
+```
+
+```{r}
+#| echo: false
+redes_cfa <- cfa(model = redes_m,
+                     data = elsoc_redes,
+                     estimator = "WLSMV",
+                     ordered = TRUE,
+                     std.lv = FALSE)
+```
+
+
+::: panel-tabset
+### Seguridad Pública
+
+```{r}
+#| label: fig-seg-cfa
+#| fig-cap: Cargas estandarizadas del CFA de Seguridad Pública
+
+cat("RESUMEN DEL MODELO CFA")
+indices <- fitmeasures(seguridad_cfa, c("rmsea", "cfi", "tli"))
+cat("RMSEA =", round(indices["rmsea"], 3), "\n")
+cat("CFI =", round(indices["cfi"], 3), "\n")
+cat("TLI =", round(indices["tli"], 3), "\n\n")
+
+cat("Cargas factoriales estandarizadas:\n")
+standardizedSolution(seguridad_cfa) %>% 
+  dplyr::filter(op == "=~") %>% 
+  dplyr::select(lhs, rhs, est.std) %>%
+  print()
+```
+
+### Vínculos Territoriales
+
+```{r}
+#| label: fig-pol-est
+#| fig-cap: Cargas estandarizadas del CFA de Vínculos Territoriales
+
+cat("RESUMEN DEL MODELO CFA")
+indices <- fitmeasures(vinculos_cfa, c("rmsea", "cfi", "tli"))
+cat("RMSEA =", round(indices["rmsea"], 3), "\n")
+cat("CFI =", round(indices["cfi"], 3), "\n")
+cat("TLI =", round(indices["tli"], 3), "\n\n")
+
+cat("Cargas factoriales estandarizadas:\n")
+standardizedSolution(vinculos_cfa) %>% 
+  dplyr::filter(op == "=~") %>% 
+  dplyr::select(lhs, rhs, est.std) %>%
+  print()
+```
+
+### Redes Sociales
+
+```{r}
+#| label: fig-pref-est
+#| fig-cap: Cargas estandarizadas del CFA de Redes Sociales
+
+
+ cat("RESUMEN DEL MODELO CFA")
+indices <- fitmeasures(redes_cfa, c("rmsea", "cfi", "tli"))
+cat("RMSEA =", round(indices["rmsea"], 3), "\n")
+cat("CFI =", round(indices["cfi"], 3), "\n")
+cat("TLI =", round(indices["tli"], 3), "\n\n")
+
+cat("Cargas factoriales estandarizadas:\n")
+standardizedSolution(redes_cfa) %>% 
+  dplyr::filter(op == "=~") %>% 
+  dplyr::select(lhs, rhs, est.std) %>%
+  print()
+```
+
+:::
 
 ## Construcción de índices
 
 **Seguridad Pública**
 
-1. _Seguridad Objetiva_
+1.  *Seguridad Objetiva*
 
 ```{r}
 #| echo: false
@@ -575,10 +726,33 @@ cronbach_alpha <- round(alpha_seg_obj$total$raw_alpha, 2)
 t_seg_obj <- t_seg_obj %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
 
-t_seg_obj
+# 5. Tabla formateada
+
+tabla_seg_obj <- t_seg_obj %>%
+  kable(
+    format = "html",
+    caption = "Descriptivos del índice Seguridad Objetiva",
+    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
+    digits = 2,
+    align = c("l", "c", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2:3, width = "2cm") %>%
+  column_spec(4, width = "2.5cm") %>%
+  column_spec(5, width = "3cm") %>%
+  column_spec(6, width = "1.5cm")
+
+tabla_seg_obj
 ```
 
-2. _Seguridad Subjetiva_
+2.  *Seguridad Subjetiva*
 
 ```{r}
 #| echo: false
@@ -618,12 +792,33 @@ cronbach_alpha <- round(alpha_seg_sub$total$raw_alpha, 2)
 t_seg_sub <- t_seg_sub %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
 
-t_seg_sub
+tabla_seg_sub <- t_seg_sub %>%
+  kable(
+    format = "html",
+    caption = "Descriptivos del índice Seguridad Subjetiva",
+    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
+    digits = 2,
+    align = c("l", "c", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2:3, width = "2cm") %>%
+  column_spec(4, width = "2.5cm") %>%
+  column_spec(5, width = "3cm") %>%
+  column_spec(6, width = "1.5cm")
+
+tabla_seg_sub
 ```
 
 **Vínculos Territoriales**
 
-1. _Pertenencia al barrio_
+1.  *Pertenencia al barrio*
 
 ```{r}
 #| echo: false
@@ -663,10 +858,32 @@ cronbach_alpha <- round(alpha_pert$total$raw_alpha, 2)
 t_pert <- t_pert %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
 
-t_pert
+tabla_pert <- t_pert %>%
+  kable(
+    format = "html",
+    caption = "Descriptivos del índice Pertenencia al Barrio",
+    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
+    digits = 2,
+    align = c("l", "c", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2:3, width = "2cm") %>%
+  column_spec(4, width = "2.5cm") %>%
+  column_spec(5, width = "3cm") %>%
+  column_spec(6, width = "1.5cm")
+
+tabla_pert
 ```
 
-2. _Satisfacción con el barrio_
+2.  *Satisfacción con el barrio*
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -705,12 +922,34 @@ cronbach_alpha <- round(alpha_satis$total$raw_alpha, 2)
 t_satis <- t_satis %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
 
-t_satis
+tabla_satis <- t_satis %>%
+  kable(
+    format = "html",
+    caption = "Descriptivos del índice Satisfacción Con el Barrio",
+    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
+    digits = 2,
+    align = c("l", "c", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2:3, width = "2cm") %>%
+  column_spec(4, width = "2.5cm") %>%
+  column_spec(5, width = "3cm") %>%
+  column_spec(6, width = "1.5cm")
+
+tabla_satis
 ```
 
 **Redes Sociales**
 
-1. _Confianza Interpersonal_
+1.  *Confianza Interpersonal*
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -749,10 +988,31 @@ cronbach_alpha <- round(alpha_conf$total$raw_alpha, 2)
 t_conf <- t_conf %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
 
-t_conf
+tabla_conf <- t_conf %>%
+  kable(
+    format = "html",
+    caption = "Descriptivos del índice Confianza Interpersonal",
+    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
+    digits = 2,
+    align = c("l", "c", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2:3, width = "2cm") %>%
+  column_spec(4, width = "2.5cm") %>%
+  column_spec(5, width = "3cm") %>%
+  column_spec(6, width = "1.5cm")
+
+tabla_conf
 ```
 
-2. _Comportamiento Prosocial_
+2.  *Comportamiento Prosocial*
 
 ```{r}
 #| echo: false
@@ -792,10 +1052,32 @@ cronbach_alpha <- round(alpha_prosoc$total$raw_alpha, 2)
 t_prosoc <- t_prosoc %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
 
-t_prosoc
+tabla_prosoc <- t_prosoc %>%
+  kable(
+    format = "html",
+    caption = "Descriptivos del índice Comportamiento Prosocial",
+    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
+    digits = 2,
+    align = c("l", "c", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2:3, width = "2cm") %>%
+  column_spec(4, width = "2.5cm") %>%
+  column_spec(5, width = "3cm") %>%
+  column_spec(6, width = "1.5cm")
+
+tabla_prosoc
 ```
 
-3. _Ayuda Económica_
+3.  *Ayuda Económica*
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -834,7 +1116,24 @@ cronbach_alpha <- round(alpha_ayuda$total$raw_alpha, 2)
 t_ayuda <- t_ayuda %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
 
-t_ayuda
+tabla_ayuda <- t_ayuda %>%
+  kable(
+    format = "html",
+    caption = "Descriptivos del índice Ayuda Económica",
+    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
+    digits = 2,
+    align = c("l", "c", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2:3, width = "2cm") %>%
+  column_spec(4, width = "2.5cm") %>%
+  column_spec(5, width = "3cm") %>%
+  column_spec(6, width = "1.5cm")
 ```
-
-
