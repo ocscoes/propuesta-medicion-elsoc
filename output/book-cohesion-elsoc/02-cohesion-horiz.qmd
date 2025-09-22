@@ -3,6 +3,7 @@
 ```{r}
 #| label: setup
 #| include: false
+
 library(knitr)
 knitr::opts_chunk$set(echo = F,
                       warning = F,
@@ -134,6 +135,7 @@ Este esquema de medición para América Latina integra las dimensiones de seguri
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-cap: "Esquema de Medición de Cohesión Horizontal por Castillo et al.(2021)"
 
 # Cargar los datos - ajustar la ruta según tu archivo
 datos2 <- read_delim("../../input/tables//tbl-elsoc-hor.csv",  # Cambia por la ruta real de tu archivo
@@ -1000,6 +1002,7 @@ tabla_resumen_redes
 tabla_indices_redes
 tabla_cargas_redes
 ```
+
 
 :::
 
