@@ -131,15 +131,76 @@ Este esquema de medición para América Latina integra las dimensiones de seguri
 ### Esquema de Cohesión Horizontal Castillo et al. (2021)
 
 ```{r}
-#| label: fig-elsoc
-#| fig-cap-location: top
-#| fig-cap: "Medición de cohesión horizontal con ELSOC de Castillo et al.(2021)"
-#| fig-align: center
+#| echo: false
+#| message: false
+#| warning: false
 
-library(here)
+# Cargar los datos - ajustar la ruta según tu archivo
+datos2 <- read_delim("../../input/tables//tbl-elsoc-hor.csv",  # Cambia por la ruta real de tu archivo
+                    delim = ",",        # Usar coma como delimitador
+                    show_col_types = FALSE,
+                    locale = locale(encoding = "UTF-8"),
+                    col_names = TRUE)   # Si la primera fila contiene nombres de columnas
 
-knitr::include_graphics(path = here("output/book-cohesion-elsoc/images/hor-elsoc.png"))
+# Función para formatear categorías de respuesta con saltos de línea
+formatear_categorias_kable <- function(datos) {
+  # Buscar columnas que contengan categorías de respuesta
+  columnas_categorias <- grep("Dimensión|Subdimensión|Indicadores", colnames(datos), ignore.case = TRUE)
+  
+  if(length(columnas_categorias) > 0) {
+    for(col in columnas_categorias) {
+      # Reemplazar separadores con saltos de línea HTML
+      datos[[col]] <- gsub(";", ";<br>", datos[[col]])
+      datos[[col]] <- gsub(",", ",<br>", datos[[col]])
+      datos[[col]] <- gsub("\\|", "<br>", datos[[col]])
+      datos[[col]] <- gsub("\\n", "<br>", datos[[col]])  # Por si ya hay saltos de línea
+    }
+  }
+  return(datos)  # Corregido: retornar 'datos' en lugar de 'datos2'
+}
 
+# Aplicar formateo
+datos_formateados <- formatear_categorias_kable(datos2)
+
+# Crear tabla con kable + kableExtra
+tabla_principal <- datos_formateados %>%
+  kable(format = "html", 
+        caption = "<strong>Disponibilidad de Variables</strong>",
+        escape = FALSE,  # Permitir HTML en las celdas
+        table.attr = "style='width:100%;'") %>%
+  
+  # Estilo general de la tabla
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = TRUE,
+    position = "center",
+    font_size = 12,
+    fixed_thead = TRUE  # Fijar encabezados al hacer scroll
+  ) %>%
+  
+  # Estilo de la primera columna (generalmente el nombre de la variable)
+  column_spec(1, 
+              bold = TRUE, 
+              background = "#f8f9fa",
+              width = "15em") %>%
+  
+  # Estilo para todas las columnas
+  column_spec(2:ncol(datos_formateados),
+              width = "20em",
+              extra_css = "vertical-align: top; line-height: 1.4;") %>%
+  
+  # Scroll horizontal y vertical
+  scroll_box(width = "100%", 
+             height = "600px",
+             extra_css = "border: 1px solid #ddd;") %>%
+  
+  # Agregar CSS personalizado para mejor formato
+  add_header_above(header = c(" " = ncol(datos_formateados)), 
+                   background = "#e9ecef",
+                   color = "#495057")
+
+# Mostrar la tabla
+tabla_principal
 ```
 
 Otro antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de Castillo et al. (2021). Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la [Encuesta Longitudinal Social de Chile (ELSOC)](https://coes.cl/elsoc/), de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.
@@ -319,8 +380,10 @@ print(plot_final)
 ```{r}
 #| label: fig-terr
 
+db_filtrado_2 <- db %>% filter(ola == 7)
+
 plot_stackfrq(
-  dplyr::select(db_filtrado, barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia,
+  dplyr::select(db_filtrado_2, barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia,
               barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador),
   show.prc = FALSE,
   show.n = FALSE,
@@ -332,8 +395,6 @@ plot_stackfrq(
 
 ```{r}
 #| label: fig-redes
-
-db_filtrado_2 <- db %>% filter(ola == 5)
 
 plot_stackfrq(
   dplyr::select(db_filtrado_2, reunion_pub, voluntariado,
@@ -426,7 +487,7 @@ corrplot(poly_cor1$rho, method = "color",
 #| message: false
 
 
-territorial <- db_filtrado[, c("barrio_ideal", "barrio_integracion", "barrio_identidad", "barrio_pertenencia",
+territorial <- db_filtrado_2[, c("barrio_ideal", "barrio_integracion", "barrio_identidad", "barrio_pertenencia",
               "barrio_amigos", "barrio_sociable", "barrio_cordial", "barrio_colaborador")]
 
 poly_cor2 <- polychoric(territorial)
@@ -515,7 +576,7 @@ tab_fa(elsoc_seguridad, rotation = "varimax", show.comm = TRUE)
 #| warning: false 
 
 elsoc_vinculos <- db %>%
-  filter(ola == 6) %>%
+  filter(ola == 7) %>%
   select(barrio_ideal, barrio_integracion, barrio_identidad, barrio_pertenencia,
               barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador)
 
@@ -543,7 +604,7 @@ tab_fa(elsoc_vinculos, rotation = "varimax", show.comm = TRUE)
 #| warning: false 
 
 elsoc_redes <- db %>%
-  filter(ola == 5) %>% # A diferencia de las anteriores, la ola 5 es la última en la que se encuentran todas las variables de redes sociales
+  filter(ola == 7) %>% # A diferencia de las anteriores, la ola 5 es la última en la que se encuentran todas las variables de redes sociales
   select(confianza_gen, altruismo_gen, reunion_pub, voluntariado,
               ayuda_trabajo, donar_dinero, prestar_dinero)
 
@@ -626,81 +687,337 @@ redes_cfa <- cfa(model = redes_m,
 #| label: fig-seg-cfa
 #| fig-cap: Cargas estandarizadas del CFA de Seguridad Pública
 
-cat("RESUMEN DEL MODELO CFA")
-indices <- fitmeasures(seguridad_cfa, c("rmsea", "cfi", "tli"))
-cat("RMSEA =", round(indices["rmsea"], 3), "\n")
-cat("CFI =", round(indices["cfi"], 3), "\n")
-cat("TLI =", round(indices["tli"], 3), "\n\n")
+# 1. Crear tabla de índices de ajuste
+indices <- fitmeasures(seguridad_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower", 
+                                        "rmsea.ci.upper", "cfi", "tli", "srmr"))
 
-cat("Cargas factoriales estandarizadas:\n")
-standardizedSolution(seguridad_cfa) %>% 
+tabla_ajuste <- data.frame(
+  Indice = c("Chi-cuadrado", "gl", "p-valor", "RMSEA", "RMSEA IC inferior", 
+             "RMSEA IC superior", "CFI", "TLI", "SRMR"),
+  Valor = c(round(indices["chisq"], 3),
+            round(indices["df"], 0),
+            round(indices["pvalue"], 3),
+            round(indices["rmsea"], 3),
+            round(indices["rmsea.ci.lower"], 3),
+            round(indices["rmsea.ci.upper"], 3),
+            round(indices["cfi"], 3),
+            round(indices["tli"], 3),
+            round(indices["srmr"], 3)),
+  Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
+)
+
+# Tabla de índices de ajuste
+tabla_indices <- tabla_ajuste %>%
+  kable(format = "html",
+        caption = "<strong>Índices de Ajuste del Modelo CFA</strong>",
+        col.names = c("Índice", "Valor", "Criterio"),
+        align = c("l", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2:3, width = "2.5cm") %>%
+  # Destacar los índices principales
+  row_spec(4, background = "#f8f9fa") %>%  # RMSEA
+  row_spec(7, background = "#f8f9fa") %>%  # CFI
+  row_spec(8, background = "#f8f9fa")      # TLI
+
+# 2. Crear tabla de cargas factoriales
+cargas <- standardizedSolution(seguridad_cfa) %>% 
   dplyr::filter(op == "=~") %>% 
-  dplyr::select(lhs, rhs, est.std) %>%
-  print()
+  dplyr::select(lhs, rhs, est.std, se, pvalue) %>%
+  mutate(
+    est.std = round(est.std, 3),
+    se = round(se, 3),
+    pvalue = ifelse(pvalue < 0.001, "< 0.001", round(pvalue, 3)),
+    Significancia = ifelse(as.numeric(gsub("< ", "", pvalue)) < 0.05 | pvalue == "< 0.001", "***", "")
+  )
+
+tabla_cargas <- cargas %>%
+  kable(format = "html",
+        caption = "<strong>Cargas Factoriales Estandarizadas</strong>",
+        col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
+        align = c("l", "l", "c", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3:6, width = "2cm") %>%
+  # Destacar cargas altas (> 0.7)
+  column_spec(3, color = ifelse(cargas$est.std > 0.7, "darkgreen", "black"),
+              bold = ifelse(cargas$est.std > 0.7, TRUE, FALSE))
+
+# 3. Crear tabla de resumen del modelo
+n_obs <- nobs(seguridad_cfa)
+n_vars <- length(lavNames(seguridad_cfa, "ov"))
+n_factors <- length(lavNames(seguridad_cfa, "lv"))
+
+resumen_modelo <- data.frame(
+  Caracteristica = c("Observaciones", "Variables observadas", "Factores latentes", 
+                    "Parámetros estimados", "Grados de libertad"),
+  Valor = c(n_obs, n_vars, n_factors, 
+           fitmeasures(seguridad_cfa, "npar"),
+           fitmeasures(seguridad_cfa, "df"))
+)
+
+tabla_resumen <- resumen_modelo %>%
+  kable(format = "html",
+        caption = "<strong>Resumen del Modelo CFA</strong>",
+        col.names = c("Característica", "Valor"),
+        align = c("l", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2, width = "2.5cm")
+
+# Mostrar las tablas
+tabla_resumen
+tabla_indices 
+tabla_cargas
 ```
+
 
 ### Vínculos Territoriales
 
 ```{r}
-#| label: fig-pol-est
+#| label: fig-vin-cfa
 #| fig-cap: Cargas estandarizadas del CFA de Vínculos Territoriales
 
-cat("RESUMEN DEL MODELO CFA")
-indices <- fitmeasures(vinculos_cfa, c("rmsea", "cfi", "tli"))
-cat("RMSEA =", round(indices["rmsea"], 3), "\n")
-cat("CFI =", round(indices["cfi"], 3), "\n")
-cat("TLI =", round(indices["tli"], 3), "\n\n")
+# 1. Crear tabla de índices de ajuste para vínculos_cfa
+indices <- fitmeasures(vinculos_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower", 
+                                       "rmsea.ci.upper", "cfi", "tli", "srmr"))
 
-cat("Cargas factoriales estandarizadas:\n")
-standardizedSolution(vinculos_cfa) %>% 
+tabla_ajuste_vinculos <- data.frame(
+  Indice = c("Chi-cuadrado", "gl", "p-valor", "RMSEA", "RMSEA IC inferior", 
+             "RMSEA IC superior", "CFI", "TLI", "SRMR"),
+  Valor = c(round(indices["chisq"], 3),
+            round(indices["df"], 0),
+            round(indices["pvalue"], 3),
+            round(indices["rmsea"], 3),
+            round(indices["rmsea.ci.lower"], 3),
+            round(indices["rmsea.ci.upper"], 3),
+            round(indices["cfi"], 3),
+            round(indices["tli"], 3),
+            round(indices["srmr"], 3)),
+  Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
+)
+
+# Tabla de índices de ajuste
+tabla_indices_vinculos <- tabla_ajuste_vinculos %>%
+  kable(format = "html",
+        caption = "<strong>Índices de Ajuste del Modelo CFA - Vínculos Territoriales</strong>",
+        col.names = c("Índice", "Valor", "Criterio"),
+        align = c("l", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2:3, width = "2.5cm") %>%
+  # Destacar los índices principales
+  row_spec(4, background = "#f8f9fa") %>%  # RMSEA
+  row_spec(7, background = "#f8f9fa") %>%  # CFI
+  row_spec(8, background = "#f8f9fa")      # TLI
+
+# 2. Crear tabla de cargas factoriales
+cargas_vinculos <- standardizedSolution(vinculos_cfa) %>% 
   dplyr::filter(op == "=~") %>% 
-  dplyr::select(lhs, rhs, est.std) %>%
-  print()
+  dplyr::select(lhs, rhs, est.std, se, pvalue) %>%
+  mutate(
+    est.std = round(est.std, 3),
+    se = round(se, 3),
+    pvalue = ifelse(pvalue < 0.001, "< 0.001", round(pvalue, 3)),
+    Significancia = ifelse(as.numeric(gsub("< ", "", pvalue)) < 0.05 | pvalue == "< 0.001", "***", "")
+  )
+
+tabla_cargas_vinculos <- cargas_vinculos %>%
+  kable(format = "html",
+        caption = "<strong>Cargas Factoriales Estandarizadas - Vínculos Territoriales</strong>",
+        col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
+        align = c("l", "l", "c", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3:6, width = "2cm") %>%
+  # Destacar cargas altas (> 0.7)
+  column_spec(3, color = ifelse(cargas_vinculos$est.std > 0.7, "darkgreen", "black"),
+              bold = ifelse(cargas_vinculos$est.std > 0.7, TRUE, FALSE))
+
+# 3. Crear tabla de resumen del modelo
+n_obs_vinculos <- nobs(vinculos_cfa)
+n_vars_vinculos <- length(lavNames(vinculos_cfa, "ov"))
+n_factors_vinculos <- length(lavNames(vinculos_cfa, "lv"))
+
+resumen_modelo_vinculos <- data.frame(
+  Caracteristica = c("Observaciones", "Variables observadas", "Factores latentes", 
+                    "Parámetros estimados", "Grados de libertad"),
+  Valor = c(n_obs_vinculos, n_vars_vinculos, n_factors_vinculos, 
+           fitmeasures(vinculos_cfa, "npar"),
+           fitmeasures(vinculos_cfa, "df"))
+)
+
+tabla_resumen_vinculos <- resumen_modelo_vinculos %>%
+  kable(format = "html",
+        caption = "<strong>Resumen del Modelo CFA - Vínculos Territoriales</strong>",
+        col.names = c("Característica", "Valor"),
+        align = c("l", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2, width = "2.5cm")
+
+# Mostrar las tablas
+tabla_resumen_vinculos
+tabla_indices_vinculos
+tabla_cargas_vinculos
 ```
+
 
 ### Redes Sociales
 
 ```{r}
-#| label: fig-pref-est
+#| label: fig-redes-cfa
 #| fig-cap: Cargas estandarizadas del CFA de Redes Sociales
 
+# 1. Crear tabla de índices de ajuste para redes_cfa
+indices <- fitmeasures(redes_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower", 
+                                    "rmsea.ci.upper", "cfi", "tli", "srmr"))
 
-cat("RESUMEN DEL MODELO CFA")
-indices <- fitmeasures(redes_cfa, c("rmsea", "cfi", "tli"))
-cat("RMSEA =", round(indices["rmsea"], 3), "\n")
-cat("CFI =", round(indices["cfi"], 3), "\n")
-cat("TLI =", round(indices["tli"], 3), "\n\n")
+tabla_ajuste_redes <- data.frame(
+  Indice = c("Chi-cuadrado", "gl", "p-valor", "RMSEA", "RMSEA IC inferior", 
+             "RMSEA IC superior", "CFI", "TLI", "SRMR"),
+  Valor = c(round(indices["chisq"], 3),
+            round(indices["df"], 0),
+            round(indices["pvalue"], 3),
+            round(indices["rmsea"], 3),
+            round(indices["rmsea.ci.lower"], 3),
+            round(indices["rmsea.ci.upper"], 3),
+            round(indices["cfi"], 3),
+            round(indices["tli"], 3),
+            round(indices["srmr"], 3)),
+  Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
+)
 
-cat("Cargas factoriales estandarizadas:\n")
-standardizedSolution(redes_cfa) %>% 
+# Tabla de índices de ajuste
+tabla_indices_redes <- tabla_ajuste_redes %>%
+  kable(format = "html",
+        caption = "<strong>Índices de Ajuste del Modelo CFA - Redes Sociales</strong>",
+        col.names = c("Índice", "Valor", "Criterio"),
+        align = c("l", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2:3, width = "2.5cm") %>%
+  # Destacar los índices principales
+  row_spec(4, background = "#f8f9fa") %>%  # RMSEA
+  row_spec(7, background = "#f8f9fa") %>%  # CFI
+  row_spec(8, background = "#f8f9fa")      # TLI
+
+# 2. Crear tabla de cargas factoriales
+cargas_redes <- standardizedSolution(redes_cfa) %>% 
   dplyr::filter(op == "=~") %>% 
-  dplyr::select(lhs, rhs, est.std) %>%
-  print()
+  dplyr::select(lhs, rhs, est.std, se, pvalue) %>%
+  mutate(
+    est.std = round(est.std, 3),
+    se = round(se, 3),
+    pvalue = ifelse(pvalue < 0.001, "< 0.001", round(pvalue, 3)),
+    Significancia = ifelse(as.numeric(gsub("< ", "", pvalue)) < 0.05 | pvalue == "< 0.001", "***", "")
+  )
+
+tabla_cargas_redes <- cargas_redes %>%
+  kable(format = "html",
+        caption = "<strong>Cargas Factoriales Estandarizadas - Redes Sociales</strong>",
+        col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
+        align = c("l", "l", "c", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3:6, width = "2cm") %>%
+  # Destacar cargas altas (> 0.7)
+  column_spec(3, color = ifelse(cargas_redes$est.std > 0.7, "darkgreen", "black"),
+              bold = ifelse(cargas_redes$est.std > 0.7, TRUE, FALSE))
+
+# 3. Crear tabla de resumen del modelo
+n_obs_redes <- nobs(redes_cfa)
+n_vars_redes <- length(lavNames(redes_cfa, "ov"))
+n_factors_redes <- length(lavNames(redes_cfa, "lv"))
+
+resumen_modelo_redes <- data.frame(
+  Caracteristica = c("Observaciones", "Variables observadas", "Factores latentes", 
+                    "Parámetros estimados", "Grados de libertad"),
+  Valor = c(n_obs_redes, n_vars_redes, n_factors_redes, 
+           fitmeasures(redes_cfa, "npar"),
+           fitmeasures(redes_cfa, "df"))
+)
+
+tabla_resumen_redes <- resumen_modelo_redes %>%
+  kable(format = "html",
+        caption = "<strong>Resumen del Modelo CFA - Redes Sociales</strong>",
+        col.names = c("Característica", "Valor"),
+        align = c("l", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2, width = "2.5cm")
+
+# Mostrar las tablas
+tabla_resumen_redes
+tabla_indices_redes
+tabla_cargas_redes
 ```
 
 :::
 
 ## Construcción de índices
 
-**Seguridad Pública**
+A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices en base a los promedios de los indicadores de cada subdimensión con tal de simplificar y reporte e interpretación de los resultados.
 
-1.  *Seguridad Objetiva*
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 
-elsoc <- db %>%
+# Seguridad Objetiva
+
+elsoc <- db_filtrado %>%
   mutate(seguridad_objetiva = rowMeans(select(., asaltos, trafico_drogas, peleas_calle), na.rm = TRUE))
-```
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
-
+  
 t_seg_obj <- elsoc %>%
   select(seguridad_objetiva) %>%
   skim() %>%
@@ -723,51 +1040,20 @@ cronbach_alpha <- round(alpha_seg_obj$total$raw_alpha, 2)
 # 4. Agregar columna con alfa de Cronbach (misma fila del índice)
 t_seg_obj <- t_seg_obj %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
-
-# 5. Tabla formateada
-
-tabla_seg_obj <- t_seg_obj %>%
-  kable(
-    format = "html",
-    caption = "Descriptivos del índice Seguridad Objetiva",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
-    digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    font_size = 13,
-    position = "center"
-  ) %>%
-  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
-  column_spec(2:3, width = "2cm") %>%
-  column_spec(4, width = "2.5cm") %>%
-  column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
-
-tabla_seg_obj
 ```
 
-2.  *Seguridad Subjetiva*
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 
-elsoc <- db %>%
+# Seguridad Subjetiva
+
+elsoc <- db_filtrado %>%
   mutate(seguridad_subjetiva = rowMeans(select(., seguridad_sat, seguridad_perc), na.rm = TRUE))
-```
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
-
-t_seg_sub <- elsoc %>%
+  
+  t_seg_sub <- elsoc %>%
   select(seguridad_subjetiva) %>%
   skim() %>%
   yank("numeric") %>%
@@ -789,51 +1075,21 @@ cronbach_alpha <- round(alpha_seg_sub$total$raw_alpha, 2)
 # 4. Agregar columna con alfa de Cronbach (misma fila del índice)
 t_seg_sub <- t_seg_sub %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
-
-tabla_seg_sub <- t_seg_sub %>%
-  kable(
-    format = "html",
-    caption = "Descriptivos del índice Seguridad Subjetiva",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
-    digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    font_size = 13,
-    position = "center"
-  ) %>%
-  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
-  column_spec(2:3, width = "2cm") %>%
-  column_spec(4, width = "2.5cm") %>%
-  column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
-
-tabla_seg_sub
 ```
 
-**Vínculos Territoriales**
 
-1.  *Pertenencia al barrio*
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 
-elsoc <- db %>%
+# Pertenencia al Barrio
+
+elsoc <- db_filtrado_2 %>%
   mutate(pertenencia_barrio = rowMeans(select(., barrio_integracion, barrio_identidad, barrio_pertenencia), na.rm = TRUE))
-```
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
-
-t_pert <- elsoc %>%
+  
+  t_pert <- elsoc %>%
   select(pertenencia_barrio) %>%
   skim() %>%
   yank("numeric") %>%
@@ -855,47 +1111,18 @@ cronbach_alpha <- round(alpha_pert$total$raw_alpha, 2)
 # 4. Agregar columna con alfa de Cronbach (misma fila del índice)
 t_pert <- t_pert %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
-
-tabla_pert <- t_pert %>%
-  kable(
-    format = "html",
-    caption = "Descriptivos del índice Pertenencia al Barrio",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
-    digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    font_size = 13,
-    position = "center"
-  ) %>%
-  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
-  column_spec(2:3, width = "2cm") %>%
-  column_spec(4, width = "2.5cm") %>%
-  column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
-
-tabla_pert
 ```
 
-2.  *Satisfacción con el barrio*
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 
-elsoc <- db %>%
+# Satisfacción con el barrio
+
+elsoc <- db_filtrado_2 %>%
   mutate(satisfaccion_barrio = rowMeans(select(., barrio_amigos, barrio_sociable, barrio_cordial, barrio_colaborador), na.rm = TRUE))
-```
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
 
 t_satis <- elsoc %>%
   select(satisfaccion_barrio) %>%
@@ -919,48 +1146,18 @@ cronbach_alpha <- round(alpha_satis$total$raw_alpha, 2)
 # 4. Agregar columna con alfa de Cronbach (misma fila del índice)
 t_satis <- t_satis %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
-
-tabla_satis <- t_satis %>%
-  kable(
-    format = "html",
-    caption = "Descriptivos del índice Satisfacción Con el Barrio",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
-    digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    font_size = 13,
-    position = "center"
-  ) %>%
-  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
-  column_spec(2:3, width = "2cm") %>%
-  column_spec(4, width = "2.5cm") %>%
-  column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
-
-tabla_satis
 ```
 
-**Redes Sociales**
-
-1.  *Confianza Interpersonal*
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 
-elsoc <- db %>%
+# Confianza Interpersonal
+
+elsoc <- db_filtrado_2 %>%
   mutate(confianza_interpersonal = rowMeans(select(., confianza_gen, altruismo_gen), na.rm = TRUE))
-```
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
 
 
 t_conf <- elsoc %>%
@@ -985,47 +1182,18 @@ cronbach_alpha <- round(alpha_conf$total$raw_alpha, 2)
 # Agregar columna con alfa de Cronbach (misma fila del índice)
 t_conf <- t_conf %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
-
-tabla_conf <- t_conf %>%
-  kable(
-    format = "html",
-    caption = "Descriptivos del índice Confianza Interpersonal",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
-    digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    font_size = 13,
-    position = "center"
-  ) %>%
-  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
-  column_spec(2:3, width = "2cm") %>%
-  column_spec(4, width = "2.5cm") %>%
-  column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
-
-tabla_conf
 ```
 
-2.  *Comportamiento Prosocial*
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 
-elsoc <- db %>%
+# Comportamiento Prosocial
+
+elsoc <- db_filtrado_2 %>%
   mutate(comportamiento_prosocial = rowMeans(select(.,  reunion_pub, voluntariado), na.rm = TRUE))
-```
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
 
 t_prosoc <- elsoc %>%
   select(comportamiento_prosocial) %>%
@@ -1049,46 +1217,18 @@ cronbach_alpha <- round(alpha_prosoc$total$raw_alpha, 2)
 # 4. Agregar columna con alfa de Cronbach (misma fila del índice)
 t_prosoc <- t_prosoc %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
-
-tabla_prosoc <- t_prosoc %>%
-  kable(
-    format = "html",
-    caption = "Descriptivos del índice Comportamiento Prosocial",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
-    digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    font_size = 13,
-    position = "center"
-  ) %>%
-  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
-  column_spec(2:3, width = "2cm") %>%
-  column_spec(4, width = "2.5cm") %>%
-  column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
-
-tabla_prosoc
 ```
 
-3.  *Ayuda Económica*
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 
-elsoc <- db %>%
+# Ayuda Económica
+
+elsoc <- db_filtrado_2 %>%
   mutate(ayuda_economica = rowMeans(select(.,  ayuda_trabajo, donar_dinero, prestar_dinero), na.rm = TRUE))
-```
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
 
 
 t_ayuda <- elsoc %>%
@@ -1113,12 +1253,41 @@ cronbach_alpha <- round(alpha_ayuda$total$raw_alpha, 2)
 # 4. Agregar columna con alfa de Cronbach (misma fila del índice)
 t_ayuda <- t_ayuda %>%
   mutate(Cronbach_Alpha = cronbach_alpha)
+```
 
-tabla_ayuda <- t_ayuda %>%
+```{r}
+#| label: index-cons
+#| fig-cap: Tabla de índices cohesión horizontal
+#| echo: false
+#| warning: false
+#| message: false
+
+# Agregar nombres descriptivos a cada tabla existente
+t_seg_obj$Variable <- "Seguridad Objetiva"
+t_seg_sub$Variable <- "Seguridad Subjetiva"
+t_pert$Variable <- "Pertenencia al Barrio"
+t_satis$Variable <- "Satisfacción con el Barrio"
+t_conf$Variable <- "Confianza Interpersonal"
+t_prosoc$Variable <- "Comportamiento Prosocial"
+t_ayuda$Variable <- "Ayuda Económica"
+
+# Combinar todas las tablas en una sola
+tabla_consolidada <- bind_rows(
+  t_seg_obj,
+  t_seg_sub,
+  t_pert,
+  t_satis,
+  t_conf,
+  t_prosoc,
+  t_ayuda
+)
+
+# Crear la tabla final con kable
+tabla_final <- tabla_consolidada %>%
   kable(
     format = "html",
-    caption = "Descriptivos del índice Ayuda Económica",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
+    caption = "<strong>Descriptivos de los Índices de Cohesión Social</strong>",
+    col.names = c("Índice", "Media", "DE", "Rango", "Distribución", "α"),
     digits = 2,
     align = c("l", "c", "c", "c", "c", "c")
   ) %>%
@@ -1129,11 +1298,17 @@ tabla_ayuda <- t_ayuda %>%
     position = "center"
   ) %>%
   add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
   column_spec(2:3, width = "2cm") %>%
   column_spec(4, width = "2.5cm") %>%
   column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
+  column_spec(6, width = "1.5cm") %>%
+  # Agregar separadores visuales por dimensiones
+  pack_rows("Seguridad", 1, 2, label_row_css = "background-color: #f8f9fa; color: #495057;") %>%
+  pack_rows("Vínculos Territoriales", 3, 4, label_row_css = "background-color: #f8f9fa; color: #495057;") %>%
+  pack_rows("Redes Sociales", 5, 7, label_row_css = "background-color: #f8f9fa; color: #495057;")
 
-tabla_ayuda
+# Mostrar la tabla
+tabla_final
 ```
+
