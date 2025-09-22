@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.23">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,15 +34,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./02-cohesion-horiz.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-befd5f20fe4d0cb5af600f7bcf486e46.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,13 +70,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
 <link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
-
 <script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
-
 
 
 </head>
@@ -104,9 +99,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Documento metodológico Medición de Cohesión Social en Chile con ELSOC</a> 
     </div>
@@ -158,8 +151,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#antecedentes" id="toc-antecedentes" class="nav-link active" data-scroll-target="#antecedentes"><span class="header-section-number">3.1</span> Antecedentes</a></li>
-  <li><a href="#propuesta-de-medición-con-elsoc" id="toc-propuesta-de-medición-con-elsoc" class="nav-link" data-scroll-target="#propuesta-de-medición-con-elsoc"><span class="header-section-number">3.2</span> Propuesta de medición con ELSOC</a></li>
+  <li><a href="#antecedentes" id="toc-antecedentes" class="nav-link active" data-scroll-target="#antecedentes"><span class="header-section-number">3.1</span> Antecedentes</a>
+  <ul class="collapse">
+  <li><a href="#esquema-de-cohesión-vertical-latinoamérica-vislatam" id="toc-esquema-de-cohesión-vertical-latinoamérica-vislatam" class="nav-link" data-scroll-target="#esquema-de-cohesión-vertical-latinoamérica-vislatam"><span class="header-section-number">3.1.1</span> Esquema de Cohesión Vertical Latinoamérica (VisLatam)</a></li>
+  <li><a href="#esquema-de-cohesión-vertical-castillo-et-al.-2021" id="toc-esquema-de-cohesión-vertical-castillo-et-al.-2021" class="nav-link" data-scroll-target="#esquema-de-cohesión-vertical-castillo-et-al.-2021"><span class="header-section-number">3.1.2</span> Esquema de cohesión vertical Castillo et al.&nbsp;(2021)</a></li>
+  </ul></li>
+  <li><a href="#propuesta-de-medición-de-cohesión-vertical-chile-viselsoc" id="toc-propuesta-de-medición-de-cohesión-vertical-chile-viselsoc" class="nav-link" data-scroll-target="#propuesta-de-medición-de-cohesión-vertical-chile-viselsoc"><span class="header-section-number">3.2</span> Propuesta de medición de cohesión vertical Chile (VisELSOC)</a></li>
   <li><a href="#análisis" id="toc-análisis" class="nav-link" data-scroll-target="#análisis"><span class="header-section-number">3.3</span> Análisis</a>
   <ul class="collapse">
   <li><a href="#descriptivos" id="toc-descriptivos" class="nav-link" data-scroll-target="#descriptivos"><span class="header-section-number">3.3.1</span> Descriptivos</a></li>
@@ -195,37 +192,39 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="antecedentes" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="antecedentes"><span class="header-section-number">3.1</span> Antecedentes</h2>
-<p>A partir de una necesidad de aclarar una definición de cohesión social, Chan et al (2006) proponen un marco analítico minimalista con un enfoque bidimensional para la comprensión y medición de este concepto. La dimensión horizontal fue explicada el capítulo anterior, mientras que la dimensión vertical de la cohesión social alude a capturar las interacciones entre individuos e instituciones y/o aparatos supraindividuales de la sociedad.</p>
+<p>A partir de una necesidad de aclarar una definición de cohesión social, Chan et al (2006) proponen un marco analítico minimalista con un enfoque bidimensional para la comprensión y medición de este concepto. La dimensión horizontal fue explicada el <a href="https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-elsoc/docs/02-cohesion-horiz.html">capítulo anterior</a>, mientras que la dimensión vertical de la cohesión social alude a capturar las interacciones entre individuos e instituciones y/o aparatos supraindividuales de la sociedad.</p>
 <p>En cuanto a su operacionalización, esta dimensión posee dos componentes: el subjetivo y el objetivo. El primero refiere a las actitudes de los sujetos, expresado en la confianza hacia instituciones de la sociedad, o bien en la confianza en figuras públicas. El segundo componente apunta a las manifestaciones conductuales de las personas, abordando distintos planos de la participación política, tales como el voto o la pertenencia a agrupaciones políticas. De esta manera, la cohesión vertical adquiere una operacionalización pertinente, permitiendo estudiar empíricamente las dinámicas entre los individuos y las diversas instituciones de la sociedad.</p>
-<p>En momentos anteriores, el <a href="https://ocs-coes.com">Observatorio de Cohesión Social (OCS)</a> ya ha concentrado sus esfuerzos en proponer un marco analítico de cohesión social vertical en base a lo planteado por Chan et al.&nbsp;(2006), pero con una pretensión en el estudio de América Latina. Para ello, se utilizó la base de datos LAPOP y Latinobarómetro para construir la propuesta presentada en la <a href="#fig-ocs-la" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>. Conceptualmente, este esquema se conforma mediante tres subdimensiones: Confianza en instituciones, actitudes hacia la democracia y justicia distributiva.</p>
-<div class="cell">
+<section id="esquema-de-cohesión-vertical-latinoamérica-vislatam" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="esquema-de-cohesión-vertical-latinoamérica-vislatam"><span class="header-section-number">3.1.1</span> Esquema de Cohesión Vertical Latinoamérica (VisLatam)</h3>
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-ocs-la" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-ocs-la" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ocs-la-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ocs-la.png" class="img-fluid figure-img" width="480">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ocs-la-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Propuesta de medición de cohesión social para LATAM (OCS)
+Figure&nbsp;3.1: Propuesta de medición VisLatam (OCS)
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>La <a href="#fig-ocs-la" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> presenta el esquema conceptual de medición de la cohesión social para Latinoamérica, propuesta que fue levantada por el OCS. Se puede apreciar que la confianza en las instituciones ocupa un papel fundamental en la propuesta, incorporando algunos de los organismos más relevantes en el funcionamiento de la sociedad. En suma, confianza en instituciones mide el grado de fiabilidad que sienten las personas respecto al congreso, al poder judicial y a los partidos políticos.</p>
+<p>En momentos anteriores, el <a href="https://ocs-coes.com">Observatorio de Cohesión Social (OCS)</a> ya ha concentrado sus esfuerzos en proponer un marco analítico de cohesión social vertical en base a lo planteado por Chan et al.&nbsp;(2006), pero con una pretensión en el estudio de América Latina. Para ello, se utilizó la base de datos LAPOP y Latinobarómetro para construir la propuesta presentada en la <a href="#fig-ocs-la" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>. Conceptualmente, este esquema se conforma mediante tres subdimensiones: Confianza en instituciones, actitudes hacia la democracia y justicia distributiva.</p>
+<p>En la <a href="#fig-ocs-la" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> se puede apreciar que la confianza en las instituciones ocupa un papel fundamental en la propuesta, incorporando algunos de los organismos más relevantes en el funcionamiento de la sociedad. En suma, confianza en instituciones mide el grado de fiabilidad que sienten las personas respecto al congreso, al poder judicial y a los partidos políticos.</p>
 <p>Actitudes hacia la democracia aborda los elementos subjetivos que dan cuenta de la relación entre el individuo y el sistema político. Este factor se compone por el apoyo a la democracia, es decir, busca medir el respaldo que se le brinda a este sistema, y además considera satisfacción con la democracia, en donde se apunta más bien a una dimensión afectiva de la relación entre esta y el sujeto.</p>
 <p>Por último, justicia distributiva apunta a las preferencias en cuanto a la repartición de bienes entre los integrantes de la sociedad. Esto se mide a través del grado de acuerdo con la idea de que los ingresos deberían ser redistribuidos igualitariamente en la sociedad.</p>
-<div class="cell">
-<div id="tbl-propuesta-antigua" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+</section>
+<section id="esquema-de-cohesión-vertical-castillo-et-al.-2021" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="esquema-de-cohesión-vertical-castillo-et-al.-2021"><span class="header-section-number">3.1.2</span> Esquema de cohesión vertical Castillo et al.&nbsp;(2021)</h3>
+<div class="cell" data-tbl-cap-location="bottom">
+<div id="tbl-propuesta-antigua" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="bottom">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-propuesta-antigua-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: Propuesta de medición de cohesión social con ELSOC antigua
-</figcaption>
 <div aria-describedby="tbl-propuesta-antigua-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; border: 1px solid #ddd;overflow-y: scroll; height:600px; overflow-x: scroll; width:100%; ">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed do-not-create-environment cell caption-top table-sm small">
+<table class="table table-striped table-hover table-condensed do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
 <caption><strong>Disponibilidad de Variables</strong></caption>
 <thead>
 <tr class="header">
@@ -377,6 +376,9 @@ Table&nbsp;3.1: Propuesta de medición de cohesión social con ELSOC antigua
 </div>
 </div>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-propuesta-antigua-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: Propuesta de medición Castillo et al.&nbsp;(2021)
+</figcaption>
 </figure>
 </div>
 </div>
@@ -385,18 +387,19 @@ Table&nbsp;3.1: Propuesta de medición de cohesión social con ELSOC antigua
 <p>La subdimensión “<strong>Participación política</strong>” aborda elementos objetivos y subjetivos en lo que se refiere a la vinculación de los individuos con la política. En el plano objetivo, se consideran indicadores que apuntan a la participación ciudadana, desde acciones como firmar una petición u opinar de temas públicos en redes sociales, hasta un compromiso manifiesto en la participación directa en manifestaciones y/o huelgas. En el plano subjetivo, los ítems apuntan a la medición del interés en la política de los sujetos, lo cual se desglosa en un ítem que pregunta directamente por cuán interesado está el encuestado en la política, además de dos indicadores que miden la frecuencia de acciones que representan el interés político en la vida práctica, como hablar de política con conocidos e informarse de política a través de los medios.</p>
 <p>La tercera y última subdimensión “<strong>Percepción de justicia (distributiva)</strong>” pretende medir las percepciones en torno al mecanismo de repartición de recompensas que opera en la sociedad, lo cual es representado por el factor “Justicia distributiva y meritocracia” y, por otro lado, se miden las percepciones sobre cuáles son los elementos más determinantes que permiten alcanzar una movilidad social ascendente, enmarcado en el factor “Surgir en la vida”. Para el primer factor, se consideran dos ítems que apuntan al grado de acuerdo respecto a que, en Chile, las personas son recompensadas en función de su esfuerzo (1) o a partir de su talento (2). El segundo factor aborda indicadores que presentan un alto nivel educativo, tener ambición y trabajar duro como los elementos más importantes para surgir económicamente; aquí, se puede apreciar que son tomados en cuenta condiciones concretas, como el nivel educacional, así como aspectos subjetivos, sostenidos por el deseo de lograr algo, como es el caso de tener ambición.</p>
 </section>
-<section id="propuesta-de-medición-con-elsoc" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="propuesta-de-medición-con-elsoc"><span class="header-section-number">3.2</span> Propuesta de medición con ELSOC</h2>
+</section>
+<section id="propuesta-de-medición-de-cohesión-vertical-chile-viselsoc" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="propuesta-de-medición-de-cohesión-vertical-chile-viselsoc"><span class="header-section-number">3.2</span> Propuesta de medición de cohesión vertical Chile (VisELSOC)</h2>
 <p>Con la idea de actualizar el marco analítico de la cohesión social, apuntando a una medición y operacionalización más pertinente, completa y fiable, se ha elaborado la siguiente propuesta, resumida en el siguiente esquema conceptual.</p>
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-ocs-nueva" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-ocs-nueva" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ocs-nueva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/propuesta-ver.png" class="img-fluid figure-img" width="480">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ocs-nueva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: Nueva propuesta de medición de cohesión social con ELSOC
+Figure&nbsp;3.2: Propuesta de medición VisELSOC (OCS)
 </figcaption>
 </figure>
 </div>
@@ -408,17 +411,14 @@ Figure&nbsp;3.2: Nueva propuesta de medición de cohesión social con ELSOC
 <p>La siguiente subdimensión es “<strong>Preferencias por sistema político</strong>, la cual se conforma por un factor que refleja las preferencias por autoritarismo, y otro que mide la actitud hacia la democracia. El primero está compuesto por tres indicadores que miden características de gobiernos autoritarios, tales como la necesidad de un gobierno firme, un mandatario fuerte, y el rol clave de la disciplina en la vida. En cambio, actitudes hacia la democracia contiene un solo ítem que mide el grado de satisfacción hacia el sistema político.</p>
 <p>Por último, la subdimensión “<strong>Justicia distributiva</strong>” busca medir las preferencias respecto a la distribución de los bienes en la sociedad. En este caso, los indicadores tratan sobre la justicia en salud, educación y pensiones, planteando si se considera justo que la capacidad de pago individual sea el determinante de acceso a estos bienes. Esta subdimensión permite profundizar en los criterios normativos que emplean las personas, entregando luces del rechazo, o bien el acuerdo hacia la desigualdad económica en la sociedad.</p>
 <p>Para entregar una mayor claridad respecto a los códigos originales de las variables y su disponibilidad en cada ola, se puede revisar la <a href="#tbl-propuesta-nueva" class="quarto-xref">Table&nbsp;<span>3.2</span></a>.</p>
-<div class="cell">
-<div id="tbl-propuesta-nueva" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="cell" data-tbl-cap-location="bottom">
+<div id="tbl-propuesta-nueva" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="bottom">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-propuesta-nueva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.2: Tabla de disponibilidad de variables
-</figcaption>
 <div aria-describedby="tbl-propuesta-nueva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; border: 1px solid #ddd;overflow-y: scroll; height:600px; overflow-x: scroll; width:100%; ">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed do-not-create-environment cell caption-top table-sm small">
+<table class="table table-striped table-hover table-condensed do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
 <caption><strong>Disponibilidad de Variables</strong></caption>
 <colgroup>
 <col style="width: 8%">
@@ -856,6 +856,9 @@ Totalmente de acuerdo</td>
 </div>
 </div>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-propuesta-nueva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: Tabla de disponibilidad de variables para VisELSOC
+</figcaption>
 </figure>
 </div>
 </div>
@@ -865,18 +868,18 @@ Totalmente de acuerdo</td>
 <section id="descriptivos" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="descriptivos"><span class="header-section-number">3.3.1</span> Descriptivos</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Confianza en instituciones</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Participación política</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Actitudes políticas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Preferencias por sistema político</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Justicia distributiva</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Confianza en instituciones</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Participación y Actitudes políticas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Preferencias por sistema político</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Justicia distributiva</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-confianza" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-confianza" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-confianza-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-cohesion-vert_files/figure-html/fig-confianza-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confianza-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3: Distribución de los indicadores de Confianza en instituciones
+Figure&nbsp;3.3: Distribución de los indicadores de Confianza en instituciones (Ola 2023)
 </figcaption>
 </figure>
 </div>
@@ -884,15 +887,15 @@ Figure&nbsp;3.3: Distribución de los indicadores de Confianza en instituciones
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-participacion" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-actitudes" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-participacion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-cohesion-vert_files/figure-html/fig-participacion-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-actitudes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-cohesion-vert_files/figure-html/fig-actitudes-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-participacion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4: Distribución de los indicadores de Participación y actitudes políticas
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-actitudes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: Distribución de los indicadores de Participación y actitudes políticas (Ola 2023)
 </figcaption>
 </figure>
 </div>
@@ -900,15 +903,15 @@ Figure&nbsp;3.4: Distribución de los indicadores de Participación y actitudes 
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-actitudes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-preferencias" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-actitudes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-cohesion-vert_files/figure-html/fig-actitudes-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-preferencias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-cohesion-vert_files/figure-html/fig-preferencias-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-actitudes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5: Distribución de los indicadores de Participación y actitudes políticas
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-preferencias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: Distribución de los indicadores de Preferencias por sistema político (Ola 2023)
 </figcaption>
 </figure>
 </div>
@@ -916,31 +919,15 @@ Figure&nbsp;3.5: Distribución de los indicadores de Participación y actitudes 
 </div>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-preferencias" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-preferencias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-cohesion-vert_files/figure-html/fig-preferencias-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-preferencias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.6: Distribución de los indicadores de Preferencias por sistema político
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-justicia" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-justicia" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-justicia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-cohesion-vert_files/figure-html/fig-justicia-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-justicia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.7: Distribución de los indicadores de Justicia distributiva
+Figure&nbsp;3.6: Distribución de los indicadores de Justicia distributiva (Ola 2023)
 </figcaption>
 </figure>
 </div>
@@ -953,18 +940,18 @@ Figure&nbsp;3.7: Distribución de los indicadores de Justicia distributiva
 <section id="correlaciones" class="level3" data-number="3.3.2">
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="correlaciones"><span class="header-section-number">3.3.2</span> Correlaciones</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Confianza en instituciones</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Participación y actitudes políticas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Preferencias por sistema político</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Justicia distributiva</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Confianza en instituciones</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Participación y actitudes políticas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Preferencias por sistema político</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Justicia distributiva</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-corr-conf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-corr-conf" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corr-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-cohesion-vert_files/figure-html/fig-corr-conf-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.8: Correlaciones de los índices de Confianza en instituciones
+Figure&nbsp;3.7: Correlaciones de los índices de Confianza en instituciones (Ola 2023)
 </figcaption>
 </figure>
 </div>
@@ -972,15 +959,15 @@ Figure&nbsp;3.8: Correlaciones de los índices de Confianza en instituciones
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-corr-pol" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-corr-pol" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corr-pol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-cohesion-vert_files/figure-html/fig-corr-pol-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-pol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.9: Correlaciones de los índices de Participación y actitudes políticas
+Figure&nbsp;3.8: Correlaciones de los índices de Participación y actitudes políticas (Ola 2023)
 </figcaption>
 </figure>
 </div>
@@ -988,15 +975,15 @@ Figure&nbsp;3.9: Correlaciones de los índices de Participación y actitudes pol
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-corr-pref" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-corr-pref" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corr-pref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-cohesion-vert_files/figure-html/fig-corr-pref-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-pref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.10: Correlaciones de los índices de Preferencias por sistema político
+Figure&nbsp;3.9: Correlaciones de los índices de Preferencias por sistema político (Ola 2023)
 </figcaption>
 </figure>
 </div>
@@ -1004,15 +991,15 @@ Figure&nbsp;3.10: Correlaciones de los índices de Preferencias por sistema pol�
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output-display">
-<div id="fig-corr-just" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-corr-just" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corr-just-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-cohesion-vert_files/figure-html/fig-corr-just-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-just-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.11: Correlaciones de los índices de Justicia distributiva
+Figure&nbsp;3.10: Correlaciones de los índices de Justicia distributiva (Ola 2023)
 </figcaption>
 </figure>
 </div>
@@ -1026,140 +1013,91 @@ Figure&nbsp;3.11: Correlaciones de los índices de Justicia distributiva
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="análisis-factorial-exploratorio-efa"><span class="header-section-number">3.3.3</span> Análisis factorial exploratorio (EFA)</h3>
 <p>Se aplica un EFA dado que es necesario comprobar la existencia de constructos latentes y, con ello, determinar la dimensionalidad de los constructos. Para ello, se utiliza la última ola que dispone de las variables consideradas en la propuesta.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Confianza en instituciones</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Participación y actitudes políticas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Preferencias por sistema político</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">Justicia distributiva</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Confianza en instituciones</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Participación y actitudes políticas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Preferencias por sistema político</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">Justicia distributiva</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Parallel analysis suggests that the number of factors =  2  and the number of components =  NA </code></pre>
-</div>
+<div class="cell fig-cap-location-bottom">
 <div id="fig-efa-conf" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-efa-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table style="border-collapse:collapse; border:none;">
-<caption style="font-weight: bold; text-align:left;">
-Factor Analysis
-</caption>
-<tbody><tr>
-<th style="border-top:double black; padding:0.2cm;">
-&nbsp;
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-top:double black; padding:0.2cm;">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Factor 1
-</th>
-<th style="border-top:double black; padding:0.2cm;">
-Factor 2
-</th>
-<th style="border-top:double black; padding:0.2cm; font-style:italic; color:#666666;">
-Communality
+</div>
 </th>
 </tr>
 <tr>
-<td style=" border-top:1px solid black;">
-Grado de confianza: El Gobierno
-</td>
-<td style="padding:0.2cm; text-align:center; color:#cccccc; border-top:1px solid black;">
-0.01
-</td>
-<td style="padding:0.2cm; text-align:center; border-top:1px solid black;">
-0.58
-</td>
-<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center; border-top:1px solid black;">
-0.34
-</td>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:center;">
+Carga Factorial
+</th>
+<th style="text-align:center;">
+Comunalidad
+</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td style="">
-Grado de confianza: Los Partidos<br>Politicos
+<td style="text-align:left;">
+conf_gobierno
 </td>
-<td style="padding:0.2cm; text-align:center; color:#cccccc;">
-0.12
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.79
-</td>
-<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+<td style="text-align:center;font-weight: bold;color: darkgreen !important;">
 0.64
 </td>
-</tr>
-<tr>
-<td style="">
-Grado de confianza: El Congreso Nacional
-</td>
-<td style="padding:0.2cm; text-align:center; color:#cccccc;">
-0.27
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.64
-</td>
-<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
-0.49
+<td style="text-align:center;">
+0.41
 </td>
 </tr>
 <tr>
-<td style="">
-Grado de confianza: Carabineros
+<td style="text-align:left;">
+conf_pp
 </td>
-<td style="padding:0.2cm; text-align:center;">
-0.61
-</td>
-<td style="padding:0.2cm; text-align:center; color:#cccccc;">
-0.15
-</td>
-<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
-0.39
-</td>
-</tr>
-<tr>
-<td style="">
-Grado de confianza: Fuerzas Armadas
-</td>
-<td style="padding:0.2cm; text-align:center;">
-1.00
-</td>
-<td style="padding:0.2cm; text-align:center; color:#cccccc;">
-0.07
-</td>
-<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
-0.99
-</td>
-</tr>
-<tr>
-<td style="padding:0.2cm; font-style:italic;">
-Total Communalities
-</td>
-<td style="padding:0.2cm; text-align:center; font-style:italic;" colspan="2">
-</td>
-<td style="padding:0.2cm; text-align:center; font-style:italic;">
-2.85
-</td>
-</tr>
-<tr>
-<td style="padding:0.2cm; font-style:italic; border-bottom:double;">
-Cronbach’s α
-</td>
-<td style="padding:0.2cm; text-align:center; font-style:italic; border-bottom:double;">
+<td style="text-align:center;font-weight: bold;color: darkgreen !important;">
 0.76
 </td>
-<td style="padding:0.2cm; text-align:center; font-style:italic; border-bottom:double;">
-0.69
-</td>
-<td style="padding:0.2cm; text-align:center; font-style:italic; border-bottom:double;">
+<td style="text-align:center;">
+0.58
 </td>
 </tr>
-</tbody></table>
+<tr>
+<td style="text-align:left;">
+conf_congreso
+</td>
+<td style="text-align:center;font-weight: bold;color: darkgreen !important;">
+0.67
+</td>
+<td style="text-align:center;">
+0.45
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<span style="font-style: italic;">Nota:</span> <sup></sup> Método de extracción: Análisis de Factores Principales. Varianza explicada: 48.2%
+</td>
+</tr>
+</tfoot>
+</table>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-efa-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.12: Tabla de factorial exploratorio de Confianza en instituciones
+Figure&nbsp;3.11: Tabla de factorial exploratorio de Confianza en instituciones (Ola 2023)
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output cell-output-stdout">
-<pre><code>Parallel analysis suggests that the number of factors =  3  and the number of components =  NA </code></pre>
+<pre data-cap-location="bottom"><code>Parallel analysis suggests that the number of factors =  3  and the number of components =  NA </code></pre>
 </div>
 <div id="fig-efa-pol" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1384,14 +1322,14 @@ Cronbach’s α
 </tbody></table>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-efa-pol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.13: Tabla de factorial exploratorio de Participación y actitudes políticas
+Figure&nbsp;3.12: Tabla de factorial exploratorio de Participación y actitudes políticas (Ola 2023)
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div id="fig-efa-pref" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-efa-pref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1482,43 +1420,86 @@ Total Communalities
 </tbody></table>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-efa-pref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.14: Tabla de factorial exploratorio de Preferencias por sistema político
+Figure&nbsp;3.13: Tabla de factorial exploratorio de Preferencias por sistema político (Ola 2023)
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div id="fig-efa-just" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-efa-just-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table table-sm table-striped small">
-<caption>Cargas factoriales (1 factor)</caption>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">ML1</th>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Factor 1
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:center;">
+Carga Factorial
+</th>
+<th style="text-align:center;">
+Comunalidad
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">justicia_pensiones</td>
-<td style="text-align: right;">0.621</td>
+<tr>
+<td style="text-align:left;">
+justicia_pensiones
+</td>
+<td style="text-align:center;font-weight: bold;color: darkgreen !important;">
+0.62
+</td>
+<td style="text-align:center;">
+0.39
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">justicia_educacion</td>
-<td style="text-align: right;">0.916</td>
+<tr>
+<td style="text-align:left;">
+justicia_educacion
+</td>
+<td style="text-align:center;font-weight: bold;color: darkgreen !important;">
+0.91
+</td>
+<td style="text-align:center;">
+0.83
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">justicia_salud</td>
-<td style="text-align: right;">0.876</td>
+<tr>
+<td style="text-align:left;">
+justicia_salud
+</td>
+<td style="text-align:center;font-weight: bold;color: darkgreen !important;">
+0.88
+</td>
+<td style="text-align:center;">
+0.77
+</td>
 </tr>
 </tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<span style="font-style: italic;">Nota:</span> <sup></sup> Método de extracción: Análisis de Factores Principales. Varianza explicada: 66.3%
+</td>
+</tr>
+</tfoot>
 </table>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-efa-just-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.15: Tabla de factorial exploratorio de Justicia distributiva
+Figure&nbsp;3.14: Tabla de factorial exploratorio de Justicia distributiva (Ola 2023)
 </figcaption>
 </figure>
 </div>
@@ -1530,86 +1511,788 @@ Figure&nbsp;3.15: Tabla de factorial exploratorio de Justicia distributiva
 <section id="análisis-factorial-confirmatorio-cfa" class="level3" data-number="3.3.4">
 <h3 data-number="3.3.4" class="anchored" data-anchor-id="análisis-factorial-confirmatorio-cfa"><span class="header-section-number">3.3.4</span> Análisis factorial confirmatorio (CFA)</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Confianza en instituciones</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Participación y actitudes políticas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Preferencias por sistema político</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false" href="">Justicia distributiva</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Confianza en instituciones</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Participación y actitudes políticas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Preferencias por sistema político</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">Justicia distributiva</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>RESUMEN DEL MODELO CFA</code></pre>
+<div class="cell fig-cap-location-bottom">
+<div id="fig-conf-est-1" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-conf-est-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<strong>Resumen del Modelo CFA - Confianza Institucional</strong>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Característica
+</th>
+<th style="text-align:center;">
+Valor
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Observaciones
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Variables observadas
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Factores latentes
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Parámetros estimados
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Grados de libertad
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>RMSEA = 0.103 </code></pre>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conf-est-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.15: Cargas estandarizadas del CFA de Confianza en instituciones (Ola 2023)
+</figcaption>
+</figure>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>CFI = 0.988 </code></pre>
+<div id="fig-conf-est-2" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-conf-est-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<strong>Índices de Ajuste del Modelo CFA - Confianza Institucional</strong>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Índice
+</th>
+<th style="text-align:center;">
+Valor
+</th>
+<th style="text-align:center;">
+Criterio
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+chisq
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+Chi-cuadrado
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+df
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+gl
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+pvalue
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+p-valor
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+</td>
+<td style="text-align:center;">
+&gt; 0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
+rmsea
+</td>
+<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+RMSEA
+</td>
+<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+0
+</td>
+<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
+&lt; 0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+rmsea.ci.lower
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+RMSEA IC inferior
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+rmsea.ci.upper
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+RMSEA IC superior
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
+cfi
+</td>
+<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+CFI
+</td>
+<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+1
+</td>
+<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
+&gt; 0.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
+tli
+</td>
+<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+TLI
+</td>
+<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+1
+</td>
+<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
+&gt; 0.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+srmr
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+SRMR
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0
+</td>
+<td style="text-align:center;">
+&lt; 0.08
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>TLI = 0.969 </code></pre>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conf-est-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.16: Cargas estandarizadas del CFA de Confianza en instituciones (Ola 2023)
+</figcaption>
+</figure>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Cargas factoriales estandarizadas:</code></pre>
+<div id="fig-conf-est-3" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-conf-est-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<strong>Cargas Factoriales Estandarizadas - Confianza Institucional</strong>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Factor
+</th>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:center;">
+Carga
+</th>
+<th style="text-align:center;">
+EE
+</th>
+<th style="text-align:center;">
+p-valor
+</th>
+<th style="text-align:center;">
+Sig.
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+inst_politica
+</td>
+<td style="text-align:left;width: 4cm; ">
+conf_gobierno
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.710
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.015
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+inst_politica
+</td>
+<td style="text-align:left;width: 4cm; ">
+conf_pp
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.881
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.015
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+inst_politica
+</td>
+<td style="text-align:left;width: 4cm; ">
+conf_congreso
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.737
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.015
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            lhs              rhs est.std
-1 inst_politica    conf_gobierno   0.600
-2 inst_politica          conf_pp   0.865
-3 inst_politica    conf_congreso   0.798
-4    inst_orden conf_carabineros   0.807
-5    inst_orden          conf_fa   0.829</code></pre>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conf-est-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.17: Cargas estandarizadas del CFA de Confianza en instituciones (Ola 2023)
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>RESUMEN DEL MODELO CFA</code></pre>
+<div class="cell fig-cap-location-bottom">
+<div id="fig-pol-est-1" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pol-est-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<strong>Resumen del Modelo CFA - Participación Política</strong>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Característica
+</th>
+<th style="text-align:center;">
+Valor
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Observaciones
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2702
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Variables observadas
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Factores latentes
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Parámetros estimados
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+Grados de libertad
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+24
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>RMSEA = 0.051 </code></pre>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pol-est-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.18: Cargas estandarizadas del CFA de Participación y actitudes políticas (Ola 2023)
+</figcaption>
+</figure>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>CFI = 0.993 </code></pre>
+<div id="fig-pol-est-2" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pol-est-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<strong>Índices de Ajuste del Modelo CFA - Participación Política</strong>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Índice
+</th>
+<th style="text-align:center;">
+Valor
+</th>
+<th style="text-align:center;">
+Criterio
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+chisq
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+Chi-cuadrado
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+148.866
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+df
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+gl
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+24.000
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+pvalue
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+p-valor
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0.000
+</td>
+<td style="text-align:center;">
+&gt; 0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
+rmsea
+</td>
+<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+RMSEA
+</td>
+<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+0.044
+</td>
+<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
+&lt; 0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+rmsea.ci.lower
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+RMSEA IC inferior
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0.037
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+rmsea.ci.upper
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+RMSEA IC superior
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0.051
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
+cfi
+</td>
+<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+CFI
+</td>
+<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+0.996
+</td>
+<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
+&gt; 0.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
+tli
+</td>
+<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+TLI
+</td>
+<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
+0.994
+</td>
+<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
+&gt; 0.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; font-weight: bold;">
+srmr
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+SRMR
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+0.051
+</td>
+<td style="text-align:center;">
+&lt; 0.08
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>TLI = 0.99 </code></pre>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pol-est-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.19: Cargas estandarizadas del CFA de Participación y actitudes políticas (Ola 2023)
+</figcaption>
+</figure>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Cargas factoriales estandarizadas:</code></pre>
+<div id="fig-pol-est-3" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pol-est-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<strong>Cargas Factoriales Estandarizadas - Participación Política</strong>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Factor
+</th>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:center;">
+Carga
+</th>
+<th style="text-align:center;">
+EE
+</th>
+<th style="text-align:center;">
+p-valor
+</th>
+<th style="text-align:center;">
+Sig.
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+participacion
+</td>
+<td style="text-align:left;width: 4cm; ">
+firma_peticion
+</td>
+<td style="text-align:center;width: 2cm; color: black !important;">
+0.653
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.030
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+participacion
+</td>
+<td style="text-align:left;width: 4cm; ">
+asiste_marcha
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.920
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.033
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+participacion
+</td>
+<td style="text-align:left;width: 4cm; ">
+part_huelga
+</td>
+<td style="text-align:center;width: 2cm; color: black !important;">
+0.691
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.040
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+autoeficacia
+</td>
+<td style="text-align:left;width: 4cm; ">
+voto_deber
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.793
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.009
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+autoeficacia
+</td>
+<td style="text-align:left;width: 4cm; ">
+voto_influye
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.880
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.008
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+autoeficacia
+</td>
+<td style="text-align:left;width: 4cm; ">
+voto_expresion
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.832
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.009
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+interes
+</td>
+<td style="text-align:left;width: 4cm; ">
+interes_politica
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.854
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.010
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+interes
+</td>
+<td style="text-align:left;width: 4cm; ">
+hablar_politica
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.861
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.009
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; font-weight: bold;">
+interes
+</td>
+<td style="text-align:left;width: 4cm; ">
+infopolitica_medios
+</td>
+<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
+0.773
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.011
+</td>
+<td style="text-align:center;width: 2cm; ">
+&lt; 0.001
+</td>
+<td style="text-align:center;width: 2cm; ">
+***
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>             lhs                 rhs est.std
-1  participacion      firma_peticion   0.590
-2  participacion       asiste_marcha   0.811
-3  participacion         part_huelga   0.639
-4  participacion        opinion_rrss   0.801
-5   autoeficacia          voto_deber   0.793
-6   autoeficacia        voto_influye   0.881
-7   autoeficacia      voto_expresion   0.831
-8        interes    interes_politica   0.852
-9        interes     hablar_politica   0.866
-10       interes infopolitica_medios   0.769</code></pre>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pol-est-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.20: Cargas estandarizadas del CFA de Participación y actitudes políticas (Ola 2023)
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output cell-output-stdout">
-<pre><code>RESUMEN DEL MODELO CFA</code></pre>
+<pre data-cap-location="bottom"><code>RESUMEN DEL MODELO CFA</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>RMSEA = 0 </code></pre>
+<pre data-cap-location="bottom"><code>RMSEA = 0 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CFI = 1 </code></pre>
+<pre data-cap-location="bottom"><code>CFI = 1 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>TLI = 1 </code></pre>
+<pre data-cap-location="bottom"><code>TLI = 1 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Cargas factoriales estandarizadas:</code></pre>
+<pre data-cap-location="bottom"><code>Cargas factoriales estandarizadas:</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            lhs               rhs est.std
+<pre data-cap-location="bottom"><code>            lhs               rhs est.std
 1 autoritarismo    gobierno_firme   0.906
 2 autoritarismo mandatario_fuerte   0.892
 3 autoritarismo  vida_disciplinar   0.677</code></pre>
@@ -1617,24 +2300,24 @@ Figure&nbsp;3.15: Tabla de factorial exploratorio de Justicia distributiva
 </div>
 </div>
 <div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
-<div class="cell">
+<div class="cell fig-cap-location-bottom">
 <div class="cell-output cell-output-stdout">
-<pre><code>RESUMEN DEL MODELO CFA</code></pre>
+<pre data-cap-location="bottom"><code>RESUMEN DEL MODELO CFA</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>RMSEA = 0 </code></pre>
+<pre data-cap-location="bottom"><code>RMSEA = 0 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CFI = 1 </code></pre>
+<pre data-cap-location="bottom"><code>CFI = 1 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>TLI = 1 </code></pre>
+<pre data-cap-location="bottom"><code>TLI = 1 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Cargas factoriales estandarizadas:</code></pre>
+<pre data-cap-location="bottom"><code>Cargas factoriales estandarizadas:</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       lhs                rhs est.std
+<pre data-cap-location="bottom"><code>       lhs                rhs est.std
 1 justicia justicia_pensiones   0.701
 2 justicia justicia_educacion   0.959
 3 justicia     justicia_salud   0.921</code></pre>
@@ -1647,12 +2330,12 @@ Figure&nbsp;3.15: Tabla de factorial exploratorio de Justicia distributiva
 </section>
 <section id="construcción-de-índices" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="construcción-de-índices"><span class="header-section-number">3.4</span> Construcción de índices</h2>
-<p>A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices en base a los promedios de los indicadores de cada subdimensión con tal de simplificar y reporte e interpretación de los resultados.</p>
+<p>A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices en base a los promedios de los indicadores de cada subdimensión con tal de simplificar el reporte e interpretación de los resultados.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small">
-<caption>Descriptivos del índice Confianza en instituciones políticas</caption>
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Descriptivos del índice Confianza en instituciones políticas (Ola 2023)</caption>
 <colgroup>
 <col style="width: 16%">
 <col style="width: 16%">
@@ -1681,11 +2364,11 @@ Estadísticos descriptivos
 <tbody>
 <tr class="odd">
 <td style="text-align: left; width: 3cm; font-weight: bold;">conf_inst_pol</td>
-<td style="text-align: center; width: 2cm;">1.7</td>
-<td style="text-align: center; width: 2cm;">0.71</td>
+<td style="text-align: center; width: 2cm;">1.75</td>
+<td style="text-align: center; width: 2cm;">0.74</td>
 <td style="text-align: center; width: 2.5cm;">(1-5)</td>
 <td style="text-align: center; width: 3cm;">▇▃▂▁▁</td>
-<td style="text-align: center; width: 1.5cm;">0.72</td>
+<td style="text-align: center; width: 1.5cm;">0.71</td>
 </tr>
 </tbody>
 </table>
@@ -1695,8 +2378,8 @@ Estadísticos descriptivos
 <div class="cell">
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small">
-<caption>Descriptivos del índice Confianza en instituciones de orden</caption>
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>DEscriptivos de los índices de Participación y actitudes políticas (Ola 2023)</caption>
 <colgroup>
 <col style="width: 16%">
 <col style="width: 16%">
@@ -1724,56 +2407,28 @@ Estadísticos descriptivos
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left; width: 3cm; font-weight: bold;">conf_inst_ord</td>
-<td style="text-align: center; width: 2cm;">2.86</td>
-<td style="text-align: center; width: 2cm;">1.19</td>
-<td style="text-align: center; width: 2.5cm;">(1-5)</td>
-<td style="text-align: center; width: 3cm;">▆▇▇▇▃</td>
-<td style="text-align: center; width: 1.5cm;">0.83</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small">
-<caption>Descriptivos del índice Participación política</caption>
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
-<th colspan="4" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Estadísticos descriptivos
-</div></th>
-<th data-quarto-table-cell-role="th" style="text-align: center; empty-cells: hide; border-bottom: hidden;"></th>
+<td style="text-align: left; width: 4cm; font-weight: bold; border-bottom: 1px solid #ddd;">Participación política</td>
+<td style="text-align: center; width: 2cm; border-bottom: 1px solid #ddd;">1.32</td>
+<td style="text-align: center; width: 2cm; border-bottom: 1px solid #ddd;">0.50</td>
+<td style="text-align: center; width: 2.5cm; border-bottom: 1px solid #ddd;">(1-5)</td>
+<td style="text-align: center; width: 3cm; border-bottom: 1px solid #ddd;">▇▁▁▁▁</td>
+<td style="text-align: center; width: 1.5cm; border-bottom: 1px solid #ddd;">0.52</td>
 </tr>
 <tr class="even">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Media</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">DE</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Rango</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Distribución</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">α</th>
+<td style="text-align: left; width: 4cm; font-weight: bold; border-bottom: 1px solid #ddd;">Autoeficacia política</td>
+<td style="text-align: center; width: 2cm; border-bottom: 1px solid #ddd;">4.09</td>
+<td style="text-align: center; width: 2cm; border-bottom: 1px solid #ddd;">0.72</td>
+<td style="text-align: center; width: 2.5cm; border-bottom: 1px solid #ddd;">(1-5)</td>
+<td style="text-align: center; width: 3cm; border-bottom: 1px solid #ddd;">▁▁▂▇▆</td>
+<td style="text-align: center; width: 1.5cm; border-bottom: 1px solid #ddd;">0.80</td>
 </tr>
-</thead>
-<tbody>
 <tr class="odd">
-<td style="text-align: left; width: 3cm; font-weight: bold;">pp_politica</td>
-<td style="text-align: center; width: 2cm;">1.42</td>
-<td style="text-align: center; width: 2cm;">0.63</td>
+<td style="text-align: left; width: 4cm; font-weight: bold;">Interés político</td>
+<td style="text-align: center; width: 2cm;">2.34</td>
+<td style="text-align: center; width: 2cm;">0.99</td>
 <td style="text-align: center; width: 2.5cm;">(1-5)</td>
-<td style="text-align: center; width: 3cm;">▇▂▁▁▁</td>
-<td style="text-align: center; width: 1.5cm;">0.63</td>
+<td style="text-align: center; width: 3cm;">▇▆▆▂▁</td>
+<td style="text-align: center; width: 1.5cm;">0.81</td>
 </tr>
 </tbody>
 </table>
@@ -1783,95 +2438,7 @@ Estadísticos descriptivos
 <div class="cell">
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small">
-<caption>Descriptivos del índice Autoeficacia política</caption>
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
-<th colspan="4" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Estadísticos descriptivos
-</div></th>
-<th data-quarto-table-cell-role="th" style="text-align: center; empty-cells: hide; border-bottom: hidden;"></th>
-</tr>
-<tr class="even">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Media</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">DE</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Rango</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Distribución</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">α</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left; width: 3cm; font-weight: bold;">autoef_pol</td>
-<td style="text-align: center; width: 2cm;">4.03</td>
-<td style="text-align: center; width: 2cm;">0.83</td>
-<td style="text-align: center; width: 2.5cm;">(1-5)</td>
-<td style="text-align: center; width: 3cm;">▁▁▂▇▇</td>
-<td style="text-align: center; width: 1.5cm;">0.86</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small">
-<caption>Descriptivos del índice Interés político</caption>
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
-<th colspan="4" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Estadísticos descriptivos
-</div></th>
-<th data-quarto-table-cell-role="th" style="text-align: center; empty-cells: hide; border-bottom: hidden;"></th>
-</tr>
-<tr class="even">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Media</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">DE</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Rango</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Distribución</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">α</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left; width: 3cm; font-weight: bold;">interes_pol</td>
-<td style="text-align: center; width: 2cm;">2.42</td>
-<td style="text-align: center; width: 2cm;">1.03</td>
-<td style="text-align: center; width: 2.5cm;">(1-5)</td>
-<td style="text-align: center; width: 3cm;">▇▆▆▂▂</td>
-<td style="text-align: center; width: 1.5cm;">0.79</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
 <caption>Descriptivos del índice Preferencia por autoritarismo</caption>
 <colgroup>
 <col style="width: 16%">
@@ -1901,11 +2468,11 @@ Estadísticos descriptivos
 <tbody>
 <tr class="odd">
 <td style="text-align: left; width: 3cm; font-weight: bold;">pref_aut</td>
-<td style="text-align: center; width: 2cm;">3.69</td>
-<td style="text-align: center; width: 2cm;">0.87</td>
+<td style="text-align: center; width: 2cm;">3.86</td>
+<td style="text-align: center; width: 2cm;">0.8</td>
 <td style="text-align: center; width: 2.5cm;">(1-5)</td>
-<td style="text-align: center; width: 3cm;">▁▁▃▇▃</td>
-<td style="text-align: center; width: 1.5cm;">0.79</td>
+<td style="text-align: center; width: 3cm;">▁▁▃▇▅</td>
+<td style="text-align: center; width: 1.5cm;">0.82</td>
 </tr>
 </tbody>
 </table>
@@ -1915,7 +2482,7 @@ Estadísticos descriptivos
 <div class="cell">
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
 <caption>Descriptivos del índice Justicia distributiva</caption>
 <colgroup>
 <col style="width: 16%">
@@ -1945,10 +2512,10 @@ Estadísticos descriptivos
 <tbody>
 <tr class="odd">
 <td style="text-align: left; width: 3cm; font-weight: bold;">just_dist</td>
-<td style="text-align: center; width: 2cm;">2.01</td>
-<td style="text-align: center; width: 2cm;">0.85</td>
+<td style="text-align: center; width: 2cm;">2.23</td>
+<td style="text-align: center; width: 2cm;">0.89</td>
 <td style="text-align: center; width: 2.5cm;">(1-5)</td>
-<td style="text-align: center; width: 3cm;">▇▇▃▁▁</td>
+<td style="text-align: center; width: 3cm;">▆▇▅▂▁</td>
 <td style="text-align: center; width: 1.5cm;">0.83</td>
 </tr>
 </tbody>
@@ -2012,14 +2579,13 @@ Estadísticos descriptivos
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

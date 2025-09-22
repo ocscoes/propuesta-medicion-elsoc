@@ -20,29 +20,37 @@ options(knitr.kable.NA = "")
 
 ## Antecedentes
 
-A partir de una necesidad de aclarar una definición de cohesión social, Chan et al (2006) proponen un marco analítico minimalista con un enfoque bidimensional para la comprensión y medición de este concepto. La dimensión horizontal fue explicada el capítulo anterior, mientras que la dimensión vertical de la cohesión social alude a capturar las interacciones entre individuos e instituciones y/o aparatos supraindividuales de la sociedad.
+A partir de una necesidad de aclarar una definición de cohesión social, Chan et al (2006) proponen un marco analítico minimalista con un enfoque bidimensional para la comprensión y medición de este concepto. La dimensión horizontal fue explicada el [capítulo anterior](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-elsoc/docs/02-cohesion-horiz.html), mientras que la dimensión vertical de la cohesión social alude a capturar las interacciones entre individuos e instituciones y/o aparatos supraindividuales de la sociedad.
 
 En cuanto a su operacionalización, esta dimensión posee dos componentes: el subjetivo y el objetivo. El primero refiere a las actitudes de los sujetos, expresado en la confianza hacia instituciones de la sociedad, o bien en la confianza en figuras públicas. El segundo componente apunta a las manifestaciones conductuales de las personas, abordando distintos planos de la participación política, tales como el voto o la pertenencia a agrupaciones políticas. De esta manera, la cohesión vertical adquiere una operacionalización pertinente, permitiendo estudiar empíricamente las dinámicas entre los individuos y las diversas instituciones de la sociedad.
 
-En momentos anteriores, el [Observatorio de Cohesión Social (OCS)](https://ocs-coes.com) ya ha concentrado sus esfuerzos en proponer un marco analítico de cohesión social vertical en base a lo planteado por Chan et al. (2006), pero con una pretensión en el estudio de América Latina. Para ello, se utilizó la base de datos LAPOP y Latinobarómetro para construir la propuesta presentada en la @fig-ocs-la. Conceptualmente, este esquema se conforma mediante tres subdimensiones: Confianza en instituciones, actitudes hacia la democracia y justicia distributiva.
+### Esquema de Cohesión Vertical Latinoamérica (VisLatam)
 
 ```{r}
 #| label: fig-ocs-la
-#| fig-cap: Propuesta de medición de cohesión social para LATAM (OCS)
+#| fig-cap: Propuesta de medición VisLatam (OCS)
+#| fig-cap-location: bottom
 #| echo: false 
+
 
 knitr::include_graphics('images/ocs-la.png')
 ```
 
-La @fig-ocs-la presenta el esquema conceptual de medición de la cohesión social para Latinoamérica, propuesta que fue levantada por el OCS. Se puede apreciar que la confianza en las instituciones ocupa un papel fundamental en la propuesta, incorporando algunos de los organismos más relevantes en el funcionamiento de la sociedad. En suma, confianza en instituciones mide el grado de fiabilidad que sienten las personas respecto al congreso, al poder judicial y a los partidos políticos.
+En momentos anteriores, el [Observatorio de Cohesión Social (OCS)](https://ocs-coes.com) ya ha concentrado sus esfuerzos en proponer un marco analítico de cohesión social vertical en base a lo planteado por Chan et al. (2006), pero con una pretensión en el estudio de América Latina. Para ello, se utilizó la base de datos LAPOP y Latinobarómetro para construir la propuesta presentada en la @fig-ocs-la. Conceptualmente, este esquema se conforma mediante tres subdimensiones: Confianza en instituciones, actitudes hacia la democracia y justicia distributiva.
+
+
+En la @fig-ocs-la se puede apreciar que la confianza en las instituciones ocupa un papel fundamental en la propuesta, incorporando algunos de los organismos más relevantes en el funcionamiento de la sociedad. En suma, confianza en instituciones mide el grado de fiabilidad que sienten las personas respecto al congreso, al poder judicial y a los partidos políticos.
 
 Actitudes hacia la democracia aborda los elementos subjetivos que dan cuenta de la relación entre el individuo y el sistema político. Este factor se compone por el apoyo a la democracia, es decir, busca medir el respaldo que se le brinda a este sistema, y además considera satisfacción con la democracia, en donde se apunta más bien a una dimensión afectiva de la relación entre esta y el sujeto.
 
 Por último, justicia distributiva apunta a las preferencias en cuanto a la repartición de bienes entre los integrantes de la sociedad. Esto se mide a través del grado de acuerdo con la idea de que los ingresos deberían ser redistribuidos igualitariamente en la sociedad.
 
+### Esquema de cohesión vertical Castillo et al. (2021)
+
 ```{r}
 #| label: tbl-propuesta-antigua
-#| tbl-cap: Propuesta de medición de cohesión social con ELSOC antigua
+#| tbl-cap: Propuesta de medición Castillo et al. (2021)
+#| tbl-cap-location: bottom
 #| echo: false 
 
 pacman::p_load(readr, DT, kableExtra)
@@ -121,13 +129,14 @@ La subdimensión "**Participación política**" aborda elementos objetivos y sub
 
 La tercera y última subdimensión "**Percepción de justicia (distributiva)**" pretende medir las percepciones en torno al mecanismo de repartición de recompensas que opera en la sociedad, lo cual es representado por el factor "Justicia distributiva y meritocracia" y, por otro lado, se miden las percepciones sobre cuáles son los elementos más determinantes que permiten alcanzar una movilidad social ascendente, enmarcado en el factor "Surgir en la vida". Para el primer factor, se consideran dos ítems que apuntan al grado de acuerdo respecto a que, en Chile, las personas son recompensadas en función de su esfuerzo (1) o a partir de su talento (2). El segundo factor aborda indicadores que presentan un alto nivel educativo, tener ambición y trabajar duro como los elementos más importantes para surgir económicamente; aquí, se puede apreciar que son tomados en cuenta condiciones concretas, como el nivel educacional, así como aspectos subjetivos, sostenidos por el deseo de lograr algo, como es el caso de tener ambición.
 
-## Propuesta de medición con ELSOC
+## Propuesta de medición de cohesión vertical Chile (VisELSOC)
 
 Con la idea de actualizar el marco analítico de la cohesión social, apuntando a una medición y operacionalización más pertinente, completa y fiable, se ha elaborado la siguiente propuesta, resumida en el siguiente esquema conceptual.
 
 ```{r}
 #| label: fig-ocs-nueva
-#| fig-cap: Nueva propuesta de medición de cohesión social con ELSOC 
+#| fig-cap: Propuesta de medición VisELSOC (OCS)
+#| fig-cap-location: bottom
 #| echo: false
 
 knitr::include_graphics('images/propuesta-ver.png')
@@ -147,7 +156,8 @@ Para entregar una mayor claridad respecto a los códigos originales de las varia
 
 ```{r}
 #| label: tbl-propuesta-nueva
-#| tbl-cap: Tabla de disponibilidad de variables 
+#| tbl-cap: Tabla de disponibilidad de variables para VisELSOC
+#| tbl-cap-location: bottom
 #| echo: false 
 
 datos1 <- read_delim("tables/tbl-elsoc-ver.csv", 
@@ -241,7 +251,8 @@ pacman::p_load(tidyverse,
                psych,
                corrplot,
                skimr,
-               patchwork)
+               patchwork,
+               dplyr)
 
 options(scipen=999)
 rm(list = ls())
@@ -275,6 +286,10 @@ elsoc <- elsoc_long_2016_2023 %>%
 missing_codes <- c(-999, -888, -777, -666)
 elsoc <- elsoc %>%
   mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
+
+# Crear base filtrando solo por la última ola 
+elsoc <- elsoc %>%
+  filter(ola == 7)
 ```
 
 ### Descriptivos
@@ -284,37 +299,31 @@ elsoc <- elsoc %>%
 
 ```{r}
 #| label: fig-confianza
-#| fig-cap: Distribución de los indicadores de Confianza en instituciones
+#| fig-cap: Distribución de los indicadores de Confianza en instituciones (Ola 2023)
+#| fig-cap-location: bottom
 
 plot_stackfrq(
-  dplyr::select(elsoc, conf_gobierno, conf_pp, conf_congreso,
-               conf_carabineros, conf_fa),
+  dplyr::select(elsoc, conf_gobierno, conf_pp, conf_congreso),
               show.prc = FALSE,
               show.n = FALSE,
               show.total = TRUE) + 
   theme_ggdist()
 ```
 
-#### Participación política
+#### Participación y Actitudes políticas
 
 ```{r}
-#| label: fig-participacion
-#| fig-cap: Distribución de los indicadores de Participación y actitudes políticas
+#| label: fig-actitudes
+#| fig-cap: Distribución de los indicadores de Participación y actitudes políticas (Ola 2023)
+#| fig-cap-location: bottom
 
-plot_stackfrq(
+plot1 <- plot_stackfrq(
   dplyr::select(elsoc, firma_peticion, asiste_marcha,
                 part_huelga, opinion_rrss),
   show.prc = FALSE,
   show.n = FALSE,
   show.total = TRUE) + 
   theme_ggdist()
-```
-
-#### Actitudes políticas
-
-```{r}
-#| label: fig-actitudes
-#| fig-cap: Distribución de los indicadores de Participación y actitudes políticas
 
 plot2 <- plot_stackfrq(
   dplyr::select(elsoc, voto_deber, voto_influye, voto_expresion),
@@ -337,7 +346,7 @@ plot4 <- plot_stackfrq(
   theme_ggdist()
 
 # Combinar los cuatro gráficos usando wrap_plots
-plot_final <- wrap_plots(plot2, plot3, plot4, ncol = 1) + 
+plot_final <- wrap_plots(plot1, plot2, plot3, plot4, nrow = 4) + 
   plot_annotation(
     title = NULL,
     theme = theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))
@@ -351,7 +360,8 @@ plot_final
 
 ```{r}
 #| label: fig-preferencias
-#| fig-cap: Distribución de los indicadores de Preferencias por sistema político
+#| fig-cap: Distribución de los indicadores de Preferencias por sistema político (Ola 2023)
+#| fig-cap-location: bottom
 
 plot5 <- plot_stackfrq(
   dplyr::select(elsoc, gobierno_firme , mandatario_fuerte, vida_disciplinar),
@@ -379,7 +389,8 @@ plot_pref
 
 ```{r}
 #| label: fig-justicia
-#| fig-cap: Distribución de los indicadores de Justicia distributiva
+#| fig-cap: Distribución de los indicadores de Justicia distributiva (Ola 2023)
+#| fig-cap-location: bottom
 
 plot_stackfrq(
   dplyr::select(elsoc, justicia_pensiones, justicia_educacion,
@@ -397,7 +408,7 @@ plot_stackfrq(
 #| include: false
 
 confianza <- elsoc[, c("conf_gobierno", "conf_pp",
-                       "conf_congreso", "conf_carabineros", "conf_fa")]
+                       "conf_congreso")]
 
 politica <- elsoc[, c("firma_peticion" , "asiste_marcha",
                       "part_huelga", "opinion_rrss", "voto_deber", "voto_influye",    "voto_expresion", "interes_politica", "hablar_politica", "infopolitica_medios")]
@@ -417,7 +428,8 @@ poly_cor4 <- polychoric(justicia)
 
 ```{r}
 #| label: fig-corr-conf
-#| fig-cap: Correlaciones de los índices de Confianza en instituciones
+#| fig-cap: Correlaciones de los índices de Confianza en instituciones (Ola 2023)
+#| fig-cap-location: bottom
 
 corrplot(poly_cor1$rho, method = "color", 
          type = "upper", 
@@ -432,7 +444,8 @@ corrplot(poly_cor1$rho, method = "color",
 
 ```{r}
 #| label: fig-corr-pol
-#| fig-cap: Correlaciones de los índices de Participación y actitudes políticas
+#| fig-cap: Correlaciones de los índices de Participación y actitudes políticas (Ola 2023)
+#| fig-cap-location: bottom
 
 corrplot(poly_cor2$rho, method = "color", 
          type = "upper", 
@@ -447,7 +460,8 @@ corrplot(poly_cor2$rho, method = "color",
 
 ```{r}
 #| label: fig-corr-pref
-#| fig-cap: Correlaciones de los índices de Preferencias por sistema político
+#| fig-cap: Correlaciones de los índices de Preferencias por sistema político (Ola 2023)
+#| fig-cap-location: bottom
 
 corrplot(poly_cor3$rho, method = "color", 
          type = "upper", 
@@ -462,7 +476,8 @@ corrplot(poly_cor3$rho, method = "color",
 
 ```{r}
 #| label: fig-corr-just
-#| fig-cap: Correlaciones de los índices de Justicia distributiva
+#| fig-cap: Correlaciones de los índices de Justicia distributiva (Ola 2023)
+#| fig-cap-location: bottom
 
 corrplot(poly_cor4$rho, method = "color", 
          type = "upper", 
@@ -482,21 +497,18 @@ Se aplica un EFA dado que es necesario comprobar la existencia de constructos la
 #| include: false 
 
 elsoc_confianza <- elsoc %>%
-  filter(ola == 6) %>%
-  select(conf_gobierno, conf_pp, conf_congreso,
-         conf_carabineros, conf_fa)
+  select(conf_gobierno, conf_pp, conf_congreso)
 
 cormat1  <- cor(elsoc_confianza, use = "pairwise.complete.obs") 
  
  KMO(cormat1) 
-cortest.bartlett(cormat1, n = 2730)
+cortest.bartlett(cormat1, n = 2726)
 ```
 
 ```{r}
 #| include: false 
 
 elsoc_politica <- elsoc %>%
-  filter(ola == 7) %>%
   select(firma_peticion, asiste_marcha, part_huelga, opinion_rrss,
          voto_deber, voto_influye, voto_expresion, interes_politica,
          hablar_politica, infopolitica_medios)
@@ -511,7 +523,6 @@ cortest.bartlett(cormat2, n = 2726)
 #| include: false 
 
 elsoc_pref <- elsoc %>%
-  filter(ola == 7) %>%
   select(gobierno_firme, mandatario_fuerte, vida_disciplinar, sat_democracia)
 
 cormat3  <- cor(elsoc_pref, use = "pairwise.complete.obs") 
@@ -524,7 +535,6 @@ cortest.bartlett(cormat3, n = 2726)
 #| include: false 
 
 elsoc_justicia <- elsoc %>%
-  filter(ola == 7) %>%
   select(justicia_pensiones, justicia_educacion, justicia_salud)
 
 cormat4  <- cor(elsoc_justicia, use = "pairwise.complete.obs") 
@@ -538,25 +548,64 @@ cortest.bartlett(cormat4, n = 2726)
 
 ```{r}
 #| label: fig-efa-conf
-#| fig-cap: Tabla de factorial exploratorio de Confianza en instituciones
+#| fig-cap: Tabla de factorial exploratorio de Confianza en instituciones (Ola 2023)
+#| fig-cap-location: bottom
 
-tab_fa(elsoc_confianza, rotation = "varimax", show.comm = TRUE)
+afe_confianza <- fa(elsoc_confianza,
+                nfactors = 1, 
+                rotate = "none", # No necesitas rotación con un solo factor
+                fm = "pa", # método de factores principales
+                scores = TRUE)
+
+# Extraer información para la tabla
+cargas_matrix <- as.matrix(afe_confianza$loadings)
+comunalidades <- afe_confianza$communality
+
+# Crear tabla simplificada con solo cargas factoriales y comunalidad
+tabla_afe <- data.frame(
+  Variable = rownames(cargas_matrix),
+  Carga_Factorial = round(cargas_matrix[,1], 2),
+  Comunalidad = round(comunalidades, 2)
+)
+
+# Crear tabla con kableExtra
+tabla_afe %>%
+  kable(
+    col.names = c("Variable", "Carga Factorial", "Comunalidad"),
+    align = c("l", "c", "c"),
+    row.names = FALSE  # Eliminar números de fila automáticos
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Factor 1" = 2)) %>%
+  column_spec(2, bold = TRUE, color = ifelse(abs(tabla_afe$Carga_Factorial) >= 0.5, "darkgreen", "black")) %>%
+  footnote(
+    general = paste0("Método de extracción: Análisis de Factores Principales. ",
+                    "Varianza explicada: ", round(afe_confianza$Vaccounted[2,1] * 100, 1), "%"),
+    general_title = "Nota:",
+    footnote_as_chunk = TRUE
+  )
 ```
 
 #### Participación y actitudes políticas
 
 ```{r}
 #| label: fig-efa-pol
-#| fig-cap: Tabla de factorial exploratorio de Participación y actitudes políticas
+#| fig-cap: Tabla de factorial exploratorio de Participación y actitudes políticas (Ola 2023)
+#| fig-cap-location: bottom
 
-tab_fa(elsoc_politica, rotation = "varimax", show.comm = TRUE)
+ tab_fa(elsoc_politica, rotation = "varimax", show.comm = TRUE)
 ```
 
 #### Preferencias por sistema político
 
 ```{r}
 #| label: fig-efa-pref
-#| fig-cap: Tabla de factorial exploratorio de Preferencias por sistema político
+#| fig-cap: Tabla de factorial exploratorio de Preferencias por sistema político (Ola 2023)
+#| fig-cap-location: bottom
 
 f <- fa(elsoc_pref, nfactors = 2, fm = "ml", rotate = "varimax")
 tab_fa(f, show.comm = TRUE)
@@ -566,15 +615,46 @@ tab_fa(f, show.comm = TRUE)
 
 ```{r}
 #| label: fig-efa-just
-#| fig-cap: Tabla de factorial exploratorio de Justicia distributiva
+#| fig-cap: Tabla de factorial exploratorio de Justicia distributiva (Ola 2023)
+#| fig-cap-location: bottom
 
-f1 <- fa(elsoc_justicia, nfactors = 1, fm = "ml", rotate = "varimax")
+afe_justicia <- fa(elsoc_justicia,
+                nfactors = 1, 
+                rotate = "none", # No necesitas rotación con un solo factor
+                fm = "pa", # método de factores principales
+                scores = TRUE)
 
-loadings_df <- as.data.frame(unclass(f1$loadings))
+# Extraer información para la tabla
+cargas_matrix2 <- as.matrix(afe_justicia$loadings)
+comunalidades2 <- afe_justicia$communality
 
-kable(loadings_df, digits = 3,
-      caption = "Cargas factoriales (1 factor)")
+# Crear tabla simplificada con solo cargas factoriales y comunalidad
+tabla_afe2 <- data.frame(
+  Variable = rownames(cargas_matrix2),
+  Carga_Factorial = round(cargas_matrix2[,1], 2),
+  Comunalidad = round(comunalidades2, 2)
+)
 
+# Crear tabla con kableExtra
+tabla_afe2 %>%
+  kable(
+    col.names = c("Variable", "Carga Factorial", "Comunalidad"),
+    align = c("l", "c", "c"),
+    row.names = FALSE  # Eliminar números de fila automáticos
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Factor 1" = 2)) %>%
+  column_spec(2, bold = TRUE, color = ifelse(abs(tabla_afe2$Carga_Factorial) >= 0.5, "darkgreen", "black")) %>%
+  footnote(
+    general = paste0("Método de extracción: Análisis de Factores Principales. ",
+                    "Varianza explicada: ", round(afe_justicia$Vaccounted[2,1] * 100, 1), "%"),
+    general_title = "Nota:",
+    footnote_as_chunk = TRUE
+  )
 
 ```
 :::
@@ -585,7 +665,6 @@ kable(loadings_df, digits = 3,
 #| echo: false
 confianza_m <- '
 inst_politica =~ conf_gobierno + conf_pp + conf_congreso
-inst_orden =~ conf_carabineros + conf_fa
 '
 ```
 
@@ -601,7 +680,7 @@ confianza_cfa <- cfa(model = confianza_m,
 ```{r}
 #| echo: false
 politica_m <- '
-participacion =~ firma_peticion + asiste_marcha + part_huelga + opinion_rrss
+participacion =~ firma_peticion + asiste_marcha + part_huelga
 autoeficacia =~ voto_deber + voto_influye + voto_expresion
 interes =~ interes_politica + hablar_politica + infopolitica_medios
 '
@@ -610,7 +689,7 @@ interes =~ interes_politica + hablar_politica + infopolitica_medios
 ```{r}
 #| echo: false
 politica_cfa <- cfa(model = politica_m,
-                     data = elsoc_politica,
+                     data = elsoc,
                      estimator = "WLSMV",
                      ordered = TRUE,
                      std.lv = FALSE)
@@ -648,50 +727,242 @@ justicia_cfa <- cfa(model = justicia_m,
                      std.lv = FALSE)
 ```
 
+```{r}
+#| echo: false
+vertical_m <- '
+inst_politica =~ conf_gobierno + conf_pp + conf_congreso
+autoritarismo =~ gobierno_firme + mandatario_fuerte + vida_disciplinar
+preferencias_sis_pol =~ autoritarismo + sat_democracia
+justicia =~ justicia_pensiones + justicia_educacion + justicia_salud
+participacion =~ firma_peticion + asiste_marcha + part_huelga + opinion_rrss
+autoeficacia =~ voto_deber + voto_influye + voto_expresion
+interes =~ interes_politica + hablar_politica + infopolitica_medios
+pol =~ participacion + autoeficacia + interes
+horizontal* =~ inst_politica + pol + preferencias_sis_pol + justicia
+'
+```
+
 ::: panel-tabset
 #### Confianza en instituciones
 
 ```{r}
 #| label: fig-conf-est
-#| fig-cap: Cargas estandarizadas del CFA de Confianza en instituciones
+#| fig-cap: Cargas estandarizadas del CFA de Confianza en instituciones (Ola 2023)
+#| fig-cap-location: bottom
 
-cat("RESUMEN DEL MODELO CFA")
-indices <- fitmeasures(confianza_cfa, c("rmsea", "cfi", "tli"))
-cat("RMSEA =", round(indices["rmsea"], 3), "\n")
-cat("CFI =", round(indices["cfi"], 3), "\n")
-cat("TLI =", round(indices["tli"], 3), "\n\n")
+# 1. Crear tabla de índices de ajuste para confianza_cfa
+indices <- fitmeasures(confianza_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower",
+                                        "rmsea.ci.upper", "cfi", "tli", "srmr"))
 
-cat("Cargas factoriales estandarizadas:\n")
-standardizedSolution(confianza_cfa) %>% 
-  dplyr::filter(op == "=~") %>% 
-  dplyr::select(lhs, rhs, est.std) %>%
-  print()
+tabla_ajuste_confianza <- data.frame(
+  Indice = c("Chi-cuadrado", "gl", "p-valor", "RMSEA", "RMSEA IC inferior",
+             "RMSEA IC superior", "CFI", "TLI", "SRMR"),
+  Valor = c(round(indices["chisq"], 3),
+            round(indices["df"], 0),
+            round(indices["pvalue"], 3),
+            round(indices["rmsea"], 3),
+            round(indices["rmsea.ci.lower"], 3),
+            round(indices["rmsea.ci.upper"], 3),
+            round(indices["cfi"], 3),
+            round(indices["tli"], 3),
+            round(indices["srmr"], 3)),
+  Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
+)
+
+# Tabla de índices de ajuste
+tabla_indices_confianza <- tabla_ajuste_confianza %>%
+  kable(format = "html",
+        caption = "<strong>Índices de Ajuste del Modelo CFA - Confianza Institucional</strong>",
+        col.names = c("Índice", "Valor", "Criterio"),
+        align = c("l", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2:3, width = "2.5cm") %>%
+  # Destacar los índices principales
+  row_spec(4, background = "#f8f9fa") %>%  # RMSEA
+  row_spec(7, background = "#f8f9fa") %>%  # CFI
+  row_spec(8, background = "#f8f9fa")      # TLI
+
+# 2. Crear tabla de cargas factoriales
+cargas_confianza <- standardizedSolution(confianza_cfa) %>%
+  dplyr::filter(op == "=~") %>%
+  dplyr::select(lhs, rhs, est.std, se, pvalue) %>%
+  mutate(
+    est.std = round(est.std, 3),
+    se = round(se, 3),
+    pvalue = ifelse(pvalue < 0.001, "< 0.001", round(pvalue, 3)),
+    Significancia = ifelse(as.numeric(gsub("< ", "", pvalue)) < 0.05 | pvalue == "< 0.001", "***", "")
+  )
+
+tabla_cargas_confianza <- cargas_confianza %>%
+  kable(format = "html",
+        caption = "<strong>Cargas Factoriales Estandarizadas - Confianza Institucional</strong>",
+        col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
+        align = c("l", "l", "c", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3:6, width = "2cm") %>%
+  # Destacar cargas altas (> 0.7)
+  column_spec(3, color = ifelse(cargas_confianza$est.std > 0.7, "darkgreen", "black"),
+              bold = ifelse(cargas_confianza$est.std > 0.7, TRUE, FALSE))
+
+# 3. Crear tabla de resumen del modelo
+n_obs_confianza <- nobs(confianza_cfa)
+n_vars_confianza <- length(lavNames(confianza_cfa, "ov"))
+n_factors_confianza <- length(lavNames(confianza_cfa, "lv"))
+
+resumen_modelo_confianza <- data.frame(
+  Caracteristica = c("Observaciones", "Variables observadas", "Factores latentes",
+                     "Parámetros estimados", "Grados de libertad"),
+  Valor = c(n_obs_confianza, n_vars_confianza, n_factors_confianza,
+            fitmeasures(confianza_cfa, "npar"),
+            fitmeasures(confianza_cfa, "df"))
+)
+
+tabla_resumen_confianza <- resumen_modelo_confianza %>%
+  kable(format = "html",
+        caption = "<strong>Resumen del Modelo CFA - Confianza Institucional</strong>",
+        col.names = c("Característica", "Valor"),
+        align = c("l", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2, width = "2.5cm")
+
+# Mostrar las tablas
+tabla_resumen_confianza
+tabla_indices_confianza
+tabla_cargas_confianza
 ```
 
 #### Participación y actitudes políticas
 
 ```{r}
 #| label: fig-pol-est
-#| fig-cap: Cargas estandarizadas del CFA de Participación y actitudes políticas
+#| fig-cap: Cargas estandarizadas del CFA de Participación y actitudes políticas (Ola 2023)
+#| fig-cap-location: bottom
 
-cat("RESUMEN DEL MODELO CFA")
-indices <- fitmeasures(politica_cfa, c("rmsea", "cfi", "tli"))
-cat("RMSEA =", round(indices["rmsea"], 3), "\n")
-cat("CFI =", round(indices["cfi"], 3), "\n")
-cat("TLI =", round(indices["tli"], 3), "\n\n")
+# 1. Crear tabla de índices de ajuste para política_cfa
+indices <- fitmeasures(politica_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower",
+                                       "rmsea.ci.upper", "cfi", "tli", "srmr"))
 
-cat("Cargas factoriales estandarizadas:\n")
-standardizedSolution(politica_cfa) %>% 
-  dplyr::filter(op == "=~") %>% 
-  dplyr::select(lhs, rhs, est.std) %>%
-  print()
+tabla_ajuste_politica <- data.frame(
+  Indice = c("Chi-cuadrado", "gl", "p-valor", "RMSEA", "RMSEA IC inferior",
+             "RMSEA IC superior", "CFI", "TLI", "SRMR"),
+  Valor = c(round(indices["chisq"], 3),
+            round(indices["df"], 0),
+            round(indices["pvalue"], 3),
+            round(indices["rmsea"], 3),
+            round(indices["rmsea.ci.lower"], 3),
+            round(indices["rmsea.ci.upper"], 3),
+            round(indices["cfi"], 3),
+            round(indices["tli"], 3),
+            round(indices["srmr"], 3)),
+  Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
+)
+
+# Tabla de índices de ajuste
+tabla_indices_politica <- tabla_ajuste_politica %>%
+  kable(format = "html",
+        caption = "<strong>Índices de Ajuste del Modelo CFA - Participación Política</strong>",
+        col.names = c("Índice", "Valor", "Criterio"),
+        align = c("l", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2:3, width = "2.5cm") %>%
+  # Destacar los índices principales
+  row_spec(4, background = "#f8f9fa") %>%  # RMSEA
+  row_spec(7, background = "#f8f9fa") %>%  # CFI
+  row_spec(8, background = "#f8f9fa")      # TLI
+
+# 2. Crear tabla de cargas factoriales
+cargas_politica <- standardizedSolution(politica_cfa) %>%
+  dplyr::filter(op == "=~") %>%
+  dplyr::select(lhs, rhs, est.std, se, pvalue) %>%
+  mutate(
+    est.std = round(est.std, 3),
+    se = round(se, 3),
+    pvalue = ifelse(pvalue < 0.001, "< 0.001", round(pvalue, 3)),
+    Significancia = ifelse(as.numeric(gsub("< ", "", pvalue)) < 0.05 | pvalue == "< 0.001", "***", "")
+  )
+
+tabla_cargas_politica <- cargas_politica %>%
+  kable(format = "html",
+        caption = "<strong>Cargas Factoriales Estandarizadas - Participación Política</strong>",
+        col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
+        align = c("l", "l", "c", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3:6, width = "2cm") %>%
+  # Destacar cargas altas (> 0.7)
+  column_spec(3, color = ifelse(cargas_politica$est.std > 0.7, "darkgreen", "black"),
+              bold = ifelse(cargas_politica$est.std > 0.7, TRUE, FALSE))
+
+# 3. Crear tabla de resumen del modelo
+n_obs_politica <- nobs(politica_cfa)
+n_vars_politica <- length(lavNames(politica_cfa, "ov"))
+n_factors_politica <- length(lavNames(politica_cfa, "lv"))
+
+resumen_modelo_politica <- data.frame(
+  Caracteristica = c("Observaciones", "Variables observadas", "Factores latentes",
+                     "Parámetros estimados", "Grados de libertad"),
+  Valor = c(n_obs_politica, n_vars_politica, n_factors_politica,
+            fitmeasures(politica_cfa, "npar"),
+            fitmeasures(politica_cfa, "df"))
+)
+
+tabla_resumen_politica <- resumen_modelo_politica %>%
+  kable(format = "html",
+        caption = "<strong>Resumen del Modelo CFA - Participación Política</strong>",
+        col.names = c("Característica", "Valor"),
+        align = c("l", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2, width = "2.5cm")
+
+# Mostrar las tablas
+tabla_resumen_politica
+tabla_indices_politica
+tabla_cargas_politica
 ```
 
 #### Preferencias por sistema político
 
 ```{r}
 #| label: fig-pref-est
-#| fig-cap: Cargas estandarizadas del CFA de Preferencias por sistema político
+#| fig-cap: Cargas estandarizadas del CFA de Preferencias por sistema político (Ola 2023)
+#| fig-cap-location: bottom
 
 cat("RESUMEN DEL MODELO CFA")
 indices <- fitmeasures(pref_cfa, c("rmsea", "cfi", "tli"))
@@ -710,7 +981,8 @@ standardizedSolution(pref_cfa) %>%
 
 ```{r}
 #| label: fig-just-est
-#| fig-cap: Cargas estandarizadas del CFA de Justicia distributiva
+#| fig-cap: Cargas estandarizadas del CFA de Justicia distributiva (Ola 2023)
+#| fig-cap-location: bottom
 
 cat("RESUMEN DEL MODELO CFA")
 indices <- fitmeasures(justicia_cfa, c("rmsea", "cfi", "tli"))
@@ -728,9 +1000,11 @@ standardizedSolution(justicia_cfa) %>%
 
 ## Construcción de índices
 
-A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices en base a los promedios de los indicadores de cada subdimensión con tal de simplificar y reporte e interpretación de los resultados.
+A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices en base a los promedios de los indicadores de cada subdimensión con tal de simplificar el reporte e interpretación de los resultados.
 
 ```{r}
+#| label: Construcción de índices promediados
+
 elsoc <- elsoc %>%
   mutate(conf_inst_pol = rowMeans(select(., conf_gobierno, conf_congreso, conf_pp), na.rm = TRUE))
 
@@ -785,7 +1059,7 @@ t_conf <- t_conf %>%
 tabla_conf <- t_conf %>%
   kable(
     format = "html",
-    caption = "Descriptivos del índice Confianza en instituciones políticas",
+    caption = "Descriptivos del índice Confianza en instituciones políticas (Ola 2023)",
     col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
     digits = 2,
     align = c("l", "c", "c", "c", "c", "c")
@@ -808,34 +1082,65 @@ tabla_conf
 ```
 
 ```{r}
-# 1. Crear tabla de estadísticos descriptivos
-t_conf2 <- elsoc %>%
-  select(conf_inst_ord) %>%
-  skim() %>%
-  yank("numeric") %>%
-  as_tibble() %>%
-  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
-  mutate_if(is.numeric, ~ round(., 2)) %>%
-  select("Variable" = skim_variable,
-         "Media" = mean,
-         "Desviación Estándar" = sd,
-         "Rango" = range,
-         "Histograma" = hist)
 
-# 2. Calcular alfa de Cronbach de las 3 variables originales
-alpha_conf2 <- psych::alpha(elsoc %>%
-                             select(conf_carabineros, conf_fa))
-cronbach_alpha2 <- round(alpha_conf2$total$raw_alpha, 2)
+# Función para crear descriptivos de un índice
+crear_descriptivos <- function(data, variable_indice, variables_originales, nombre_variable) {
+  # Calcular descriptivos del índice
+  desc <- data %>%
+    select(!!sym(variable_indice)) %>%
+    skim() %>%
+    yank("numeric") %>%
+    as_tibble() %>%
+    mutate(range = paste0("(", p0, "-", p100, ")")) %>%
+    mutate_if(is.numeric, ~ round(., 2)) %>%
+    select("Variable" = skim_variable,
+           "Media" = mean,
+           "Desviación Estándar" = sd,
+           "Rango" = range,
+           "Histograma" = hist)
+  
+  # Calcular alfa de Cronbach
+  alpha_result <- psych::alpha(data %>% select(all_of(variables_originales)))
+  cronbach_alpha <- round(alpha_result$total$raw_alpha, 2)
+  
+  # Agregar alfa de Cronbach y cambiar nombre de variable
+  desc <- desc %>%
+    mutate(`Alfa de Cronbach` = cronbach_alpha,
+           Variable = nombre_variable)
+  
+  return(desc)
+}
 
-# 3. Agregar columna con alfa de Cronbach (misma fila del índice)
-t_conf2 <- t_conf2 %>%
-  mutate(`Alfa de Cronbach` = cronbach_alpha2)
+# Crear descriptivos para cada índice
+desc_part_pol <- crear_descriptivos(
+  data = elsoc,
+  variable_indice = "pp_politica",
+  variables_originales = c("firma_peticion", "asiste_marcha", "part_huelga"),
+  nombre_variable = "Participación política"
+)
 
-# 4. Crear tabla formateada con kable()
-tabla_conf2 <- t_conf2 %>%
+desc_autoef_pol <- crear_descriptivos(
+  data = elsoc,
+  variable_indice = "autoef_pol",
+  variables_originales = c("voto_deber", "voto_influye", "voto_expresion"),
+  nombre_variable = "Autoeficacia política"
+)
+
+desc_interes_pol <- crear_descriptivos(
+  data = elsoc,
+  variable_indice = "interes_pol",
+  variables_originales = c("interes_politica", "hablar_politica", "infopolitica_medios"),
+  nombre_variable = "Interés político"
+)
+
+# Combinar las tres tablas
+tabla_combinada <- bind_rows(desc_part_pol, desc_autoef_pol, desc_interes_pol)
+
+# Crear tabla formateada con kable()
+tabla_final <- tabla_combinada %>%
   kable(
     format = "html",
-    caption = "Descriptivos del índice Confianza en instituciones de orden",
+    caption = "DEscriptivos de los índices de Participación y actitudes políticas (Ola 2023)",
     col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
     digits = 2,
     align = c("l", "c", "c", "c", "c", "c")
@@ -847,165 +1152,17 @@ tabla_conf2 <- t_conf2 %>%
     position = "center"
   ) %>%
   add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
   column_spec(2:3, width = "2cm") %>%
   column_spec(4, width = "2.5cm") %>%
   column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
+  column_spec(6, width = "1.5cm") %>%
+  # Agregar líneas de separación entre índices para mayor claridad
+  row_spec(1, extra_css = "border-bottom: 1px solid #ddd;") %>%
+  row_spec(2, extra_css = "border-bottom: 1px solid #ddd;")
 
 # Mostrar tabla
-tabla_conf2
-```
-
-```{r}
-# 1. Crear tabla de estadísticos descriptivos
-t_part_pol <- elsoc %>%
-  select(pp_politica) %>%
-  skim() %>%
-  yank("numeric") %>%
-  as_tibble() %>%
-  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
-  mutate_if(is.numeric, ~ round(., 2)) %>%
-  select("Variable" = skim_variable,
-         "Media" = mean,
-         "Desviación Estándar" = sd,
-         "Rango" = range,
-         "Histograma" = hist)
-
-# 2. Calcular alfa de Cronbach de las 3 variables originales
-alpha_part_pol <- psych::alpha(elsoc %>%
-                             select(firma_peticion, asiste_marcha,
-                                    part_huelga))
-cronbach_alpha3 <- round(alpha_part_pol$total$raw_alpha, 2)
-
-# 3. Agregar columna con alfa de Cronbach (misma fila del índice)
-t_part_pol <- t_part_pol %>%
-  mutate(`Alfa de Cronbach` = cronbach_alpha3)
-
-# 4. Crear tabla formateada con kable()
-tabla_part_pol <- t_part_pol %>%
-  kable(
-    format = "html",
-    caption = "Descriptivos del índice Participación política",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
-    digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    font_size = 13,
-    position = "center"
-  ) %>%
-  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
-  column_spec(2:3, width = "2cm") %>%
-  column_spec(4, width = "2.5cm") %>%
-  column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
-
-# Mostrar tabla
-tabla_part_pol
-```
-
-```{r}
-# 1. Crear tabla de estadísticos descriptivos
-t_autoef_pol <- elsoc %>%
-  select(autoef_pol) %>%
-  skim() %>%
-  yank("numeric") %>%
-  as_tibble() %>%
-  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
-  mutate_if(is.numeric, ~ round(., 2)) %>%
-  select("Variable" = skim_variable,
-         "Media" = mean,
-         "Desviación Estándar" = sd,
-         "Rango" = range,
-         "Histograma" = hist)
-
-# 2. Calcular alfa de Cronbach de las 3 variables originales
-alpha_autoef_pol <- psych::alpha(elsoc %>%
-                               select(voto_deber, voto_influye, voto_expresion))
-cronbach_alpha4 <- round(alpha_autoef_pol$total$raw_alpha, 2)
-
-# 3. Agregar columna con alfa de Cronbach (misma fila del índice)
-t_autoef_pol <- t_autoef_pol %>%
-  mutate(`Alfa de Cronbach` = cronbach_alpha4)
-
-# 4. Crear tabla formateada con kable()
-tabla_autoef_pol <- t_autoef_pol %>%
-  kable(
-    format = "html",
-    caption = "Descriptivos del índice Autoeficacia política",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
-    digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    font_size = 13,
-    position = "center"
-  ) %>%
-  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
-  column_spec(2:3, width = "2cm") %>%
-  column_spec(4, width = "2.5cm") %>%
-  column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
-
-# Mostrar tabla
-tabla_autoef_pol
-```
-
-```{r}
-# 1. Crear tabla de estadísticos descriptivos
-t_interes_pol <- elsoc %>%
-  select(interes_pol) %>%
-  skim() %>%
-  yank("numeric") %>%
-  as_tibble() %>%
-  mutate(range = paste0("(", p0, "-", p100, ")")) %>%
-  mutate_if(is.numeric, ~ round(., 2)) %>%
-  select("Variable" = skim_variable,
-         "Media" = mean,
-         "Desviación Estándar" = sd,
-         "Rango" = range,
-         "Histograma" = hist)
-
-# 2. Calcular alfa de Cronbach de las 3 variables originales
-alpha_interes_pol <- psych::alpha(elsoc %>%
-                                select(interes_politica, hablar_politica, infopolitica_medios))
-cronbach_alpha5 <- round(alpha_interes_pol$total$raw_alpha, 2)
-
-# 3. Agregar columna con alfa de Cronbach (misma fila del índice)
-t_interes_pol <- t_interes_pol %>%
-  mutate(`Alfa de Cronbach` = cronbach_alpha5)
-
-# 4. Crear tabla formateada con kable()
-tabla_interes_pol <- t_interes_pol %>%
-  kable(
-    format = "html",
-    caption = "Descriptivos del índice Interés político",
-    col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
-    digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-    full_width = FALSE,
-    font_size = 13,
-    position = "center"
-  ) %>%
-  add_header_above(c(" " = 1, "Estadísticos descriptivos" = 4, " " = 1)) %>%
-  column_spec(1, bold = TRUE, width = "3cm") %>%
-  column_spec(2:3, width = "2cm") %>%
-  column_spec(4, width = "2.5cm") %>%
-  column_spec(5, width = "3cm") %>%
-  column_spec(6, width = "1.5cm")
-
-# Mostrar tabla
-tabla_interes_pol
+tabla_final
 ```
 
 ```{r}
@@ -1039,7 +1196,7 @@ tabla_pref_aut <- t_pref_aut %>%
     caption = "Descriptivos del índice Preferencia por autoritarismo",
     col.names = c("Variable", "Media", "DE", "Rango", "Distribución", "α"),
     digits = 2,
-    align = c("l", "c", "c", "c", "c", "c")
+    align = c("l", "c", "c", "c", "c", "c"),
   ) %>%
   kable_styling(
     bootstrap_options = c("striped", "hover", "condensed", "responsive"),
