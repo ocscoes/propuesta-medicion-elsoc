@@ -128,7 +128,7 @@ Un segundo componente fundamental es la confianza interpersonal, entendida como 
 
 Este esquema de medición para América Latina integra las dimensiones de seguridad y confianza bajo un enfoque minimalista, orientado a captar de manera precisa los componentes centrales de la cohesión social horizontal.
 
-### Esquema de Cohesión Vertical ELSOC
+### Esquema de Cohesión Horizontal Castillo et al. (2021)
 
 ```{r}
 #| label: fig-elsoc
@@ -260,7 +260,7 @@ Este esquema integra distintos planos de análisis —condiciones objetivas, per
 ## Estadísticos descriptivos
 
 ::: panel-tabset
-### Seguridad Objetiva
+### Seguridad Pública
 
 ```{r}
 #| label: fig-seguridad
@@ -277,11 +277,9 @@ plot_stackfrq(
   show.total = TRUE,
   title = NULL) + 
   theme_ggdist()
-```
 
-### Seguridad Objetiva
+# Seguridad Subjetiva
 
-```{r}
 plot1 <- plot_stackfrq(
   dplyr::select(db_filtrado, seguridad_perc),
   show.prc = FALSE,
@@ -349,7 +347,7 @@ plot_stackfrq(
 ```{r}
 #| label: fig-redes-2
 #| fig-cap: Distribución de variables de Redes Sociales 2
-#| fig-cap-location: top
+#| fig-cap-location: bottom
 #| echo: FALSE
 
 plot3 <- plot_stackfrq(
@@ -566,7 +564,7 @@ tab_fa(elsoc_redes, rotation = "varimax", show.comm = TRUE)
 ```
 :::
 
-## Análisis Factoria Confirmatorio
+## Análisis Factorial Confirmatorio
 
 ```{r}
 #| echo: false
@@ -667,7 +665,7 @@ standardizedSolution(vinculos_cfa) %>%
 #| fig-cap: Cargas estandarizadas del CFA de Redes Sociales
 
 
- cat("RESUMEN DEL MODELO CFA")
+cat("RESUMEN DEL MODELO CFA")
 indices <- fitmeasures(redes_cfa, c("rmsea", "cfi", "tli"))
 cat("RMSEA =", round(indices["rmsea"], 3), "\n")
 cat("CFI =", round(indices["cfi"], 3), "\n")
@@ -1136,4 +1134,6 @@ tabla_ayuda <- t_ayuda %>%
   column_spec(4, width = "2.5cm") %>%
   column_spec(5, width = "3cm") %>%
   column_spec(6, width = "1.5cm")
+
+tabla_ayuda
 ```
