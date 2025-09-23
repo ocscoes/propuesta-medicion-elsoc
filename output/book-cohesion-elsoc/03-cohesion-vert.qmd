@@ -20,9 +20,9 @@ options(knitr.kable.NA = "")
 
 ## Antecedentes
 
-A partir de una necesidad de aclarar una definición de cohesión social, Chan et al (2006) proponen un marco analítico minimalista con un enfoque bidimensional para la comprensión y medición de este concepto. La dimensión horizontal fue explicada el [capítulo anterior](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-elsoc/docs/02-cohesion-horiz.html), mientras que la dimensión vertical de la cohesión social alude a capturar las interacciones entre individuos e instituciones y/o aparatos supraindividuales de la sociedad.
+A partir de una necesidad de aclarar una definición de cohesión social, Chan et al (2006) proponen un marco analítico minimalista con un enfoque bidimensional para la comprensión y medición de este concepto. El área horizontal fue explicada el [capítulo anterior](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-elsoc/docs/02-cohesion-horiz.html), mientras que el área vertical de la cohesión social alude a capturar las interacciones entre individuos e instituciones y/o aparatos supraindividuales de la sociedad.
 
-En cuanto a su operacionalización, esta dimensión posee dos componentes: el subjetivo y el objetivo. El primero refiere a las actitudes de los sujetos, expresado en la confianza hacia instituciones de la sociedad, o bien en la confianza en figuras públicas. El segundo componente apunta a las manifestaciones conductuales de las personas, abordando distintos planos de la participación política, tales como el voto o la pertenencia a agrupaciones políticas. De esta manera, la cohesión vertical adquiere una operacionalización pertinente, permitiendo estudiar empíricamente las dinámicas entre los individuos y las diversas instituciones de la sociedad.
+En cuanto a su operacionalización, esta área posee dos componentes: el subjetivo y el objetivo. El primero refiere a las actitudes de los sujetos, expresado en la confianza hacia instituciones de la sociedad, o bien en la confianza en figuras públicas. El segundo componente apunta a las manifestaciones conductuales de las personas, abordando distintos planos de la participación política, tales como el voto o la pertenencia a agrupaciones políticas. De esta manera, la cohesión vertical adquiere una operacionalización pertinente, permitiendo estudiar empíricamente las dinámicas entre los individuos y las diversas instituciones de la sociedad.
 
 ### Esquema de Cohesión Vertical Latinoamérica (VisLatam)
 
@@ -36,8 +36,7 @@ En cuanto a su operacionalización, esta dimensión posee dos componentes: el su
 knitr::include_graphics('images/ocs-la.png')
 ```
 
-En momentos anteriores, el [Observatorio de Cohesión Social (OCS)](https://ocs-coes.com) ya ha concentrado sus esfuerzos en proponer un marco analítico de cohesión social vertical en base a lo planteado por Chan et al. (2006), pero con una pretensión en el estudio de América Latina. Para ello, se utilizó la base de datos LAPOP y Latinobarómetro para construir la propuesta presentada en la @fig-ocs-la. Conceptualmente, este esquema se conforma mediante tres subdimensiones: Confianza en instituciones, actitudes hacia la democracia y justicia distributiva.
-
+En momentos anteriores, el [Observatorio de Cohesión Social (OCS)](https://ocs-coes.com) ya ha concentrado sus esfuerzos en proponer un marco analítico de cohesión social vertical en base a lo planteado por Chan et al. (2006), pero con una pretensión en el estudio de América Latina. Para ello, se utilizó la base de datos LAPOP y Latinobarómetro para construir la propuesta presentada en la @fig-ocs-la. Conceptualmente, este esquema se conforma mediante tres dimensiones: Confianza en instituciones, actitudes hacia la democracia y justicia distributiva.
 
 En la @fig-ocs-la se puede apreciar que la confianza en las instituciones ocupa un papel fundamental en la propuesta, incorporando algunos de los organismos más relevantes en el funcionamiento de la sociedad. En suma, confianza en instituciones mide el grado de fiabilidad que sienten las personas respecto al congreso, al poder judicial y a los partidos políticos.
 
@@ -121,13 +120,13 @@ tabla_principal <- datos_formateados %>%
 tabla_principal
 ```
 
-El otro trabajo que representa un antecedente fundamental en la medición de la cohesión social es la propuesta realizada por Castillo et al. (2021) con los datos del [Estudio Longitudinal Social de Chile (ELSOC)](https://conferencias.coes.cl/encuesta-panel). La @tbl-propuesta-antigua contiene la operacionalización de las *subdimensiones* y los indicadores que componen cada una de ellas.
+El otro trabajo que representa un antecedente fundamental en la medición de la cohesión social es la propuesta realizada por Castillo et al. (2021) con los datos del [Estudio Longitudinal Social de Chile (ELSOC)](https://conferencias.coes.cl/encuesta-panel). La @tbl-propuesta-antigua contiene la operacionalización de las _*dimensiones*_ y los indicadores que componen cada una de ellas.
 
-La primera subdimensión es "**Confianza en instituciones y satisfacción con la democracia**". Una parte de este constructo se encarga de medir el grado de confianza de un individuo con distintos tipos de instituciones, considerando instituciones políticas (como el congreso y el gobierno), instituciones de orden (como carabineros) e incluso empresas privadas, lo que da cuenta del carácter integral al momento de operacionalizar el concepto de institución, tomando en cuenta tanto organismos públicos como privados. Además, dentro de está subdimensión también se mide la satisfacción con la democracia en el país, consultándose "*¿Cuán satisfecho o insatisfecho está usted con el funcionamiento de la democracia en Chile?*". Si bien, solamente se utiliza un indicador para ello, es sumamente importante abordar el componente afectivo de los individuos respecto al sistema político, pues puede comprenderse como un indicador más general que confianza en instituciones en tanto estas organizaciones se enmarcan en el funcionamiento de la democracia.
+La primera dimensión es "**Confianza en instituciones y satisfacción con la democracia**". Una parte de este constructo se encarga de medir el grado de confianza de un individuo con distintos tipos de instituciones, considerando instituciones políticas (como el congreso y el gobierno), instituciones de orden (como carabineros) e incluso empresas privadas, lo que da cuenta del carácter integral al momento de operacionalizar el concepto de institución, tomando en cuenta tanto organismos públicos como privados. Además, dentro de esta dimensión también se mide la satisfacción con la democracia en el país, consultándose "*¿Cuán satisfecho o insatisfecho está usted con el funcionamiento de la democracia en Chile?*". Si bien, solamente se utiliza un indicador para ello, es sumamente importante abordar el componente afectivo de los individuos respecto al sistema político, pues puede comprenderse como un indicador más general que confianza en instituciones en tanto estas organizaciones se enmarcan en el funcionamiento de la democracia.
 
-La subdimensión "**Participación política**" aborda elementos objetivos y subjetivos en lo que se refiere a la vinculación de los individuos con la política. En el plano objetivo, se consideran indicadores que apuntan a la participación ciudadana, desde acciones como firmar una petición u opinar de temas públicos en redes sociales, hasta un compromiso manifiesto en la participación directa en manifestaciones y/o huelgas. En el plano subjetivo, los ítems apuntan a la medición del interés en la política de los sujetos, lo cual se desglosa en un ítem que pregunta directamente por cuán interesado está el encuestado en la política, además de dos indicadores que miden la frecuencia de acciones que representan el interés político en la vida práctica, como hablar de política con conocidos e informarse de política a través de los medios.
+La dimensión "**Participación política**" aborda elementos objetivos y subjetivos en lo que se refiere a la vinculación de los individuos con la política. En el plano objetivo, se consideran indicadores que apuntan a la participación ciudadana, desde acciones como firmar una petición u opinar de temas públicos en redes sociales, hasta un compromiso manifiesto en la participación directa en manifestaciones y/o huelgas. En el plano subjetivo, los ítems apuntan a la medición del interés en la política de los sujetos, lo cual se desglosa en un ítem que pregunta directamente por cuán interesado está el encuestado en la política, además de dos indicadores que miden la frecuencia de acciones que representan el interés político en la vida práctica, como hablar de política con conocidos e informarse de política a través de los medios.
 
-La tercera y última subdimensión "**Percepción de justicia (distributiva)**" pretende medir las percepciones en torno al mecanismo de repartición de recompensas que opera en la sociedad, lo cual es representado por el factor "Justicia distributiva y meritocracia" y, por otro lado, se miden las percepciones sobre cuáles son los elementos más determinantes que permiten alcanzar una movilidad social ascendente, enmarcado en el factor "Surgir en la vida". Para el primer factor, se consideran dos ítems que apuntan al grado de acuerdo respecto a que, en Chile, las personas son recompensadas en función de su esfuerzo (1) o a partir de su talento (2). El segundo factor aborda indicadores que presentan un alto nivel educativo, tener ambición y trabajar duro como los elementos más importantes para surgir económicamente; aquí, se puede apreciar que son tomados en cuenta condiciones concretas, como el nivel educacional, así como aspectos subjetivos, sostenidos por el deseo de lograr algo, como es el caso de tener ambición.
+La tercera y última dimensión "**Percepción de justicia (distributiva)**" pretende medir las percepciones en torno al mecanismo de repartición de recompensas que opera en la sociedad, lo cual es representado por la subdimensión "Justicia distributiva y meritocracia" y, por otro lado, se miden las percepciones sobre cuáles son los elementos más determinantes que permiten alcanzar una movilidad social ascendente, enmarcado en el factor "Surgir en la vida". Para el primer factor, se consideran dos ítems que apuntan al grado de acuerdo respecto a que, en Chile, las personas son recompensadas en función de su esfuerzo (1) o a partir de su talento (2). El segundo factor aborda indicadores que presentan un alto nivel educativo, tener ambición y trabajar duro como los elementos más importantes para surgir económicamente; aquí, se puede apreciar que son tomados en cuenta condiciones concretas, como el nivel educacional, así como aspectos subjetivos, sostenidos por el deseo de lograr algo, como es el caso de tener ambición.
 
 ## Propuesta de medición de cohesión vertical Chile (VisELSOC)
 
@@ -142,15 +141,15 @@ Con la idea de actualizar el marco analítico de la cohesión social, apuntando 
 knitr::include_graphics('images/propuesta-ver.png')
 ```
 
-La nueva propuesta del OCS se visualiza en @fig-ocs-nueva, conformándose a partir de cuatro subdimensiones: Confianza en instituciones, prácticas y actitudes políticas, preferencias por sistema político y justicia distributiva.
+La nueva propuesta del OCS se visualiza en @fig-ocs-nueva, conformándose a partir de cuatro dimensiones: Confianza en instituciones, prácticas y actitudes políticas, preferencias por sistema político y justicia distributiva.
 
-La subdimensión "**Confianza en instituciones**" aborda dos factores; el primero considera el grado de confianza respecto a instituciones políticas, donde se considera el Gobierno, el Congreso y los partidos políticos; el segundo mide el grado de confianza hacia instituciones que buscan defender el orden y la seguridad pública, tales como carabineros y la fuerza armada. Todos los indicadores incluidos en esta subdimensión fueron medidos mediante una escala likert de cinco alternativas, yendo desde "Nada" hasta "Mucha".
+La imensión "**Confianza en instituciones**" aborda dos subdimensiones; el primero considera el grado de confianza respecto a instituciones políticas, donde se considera el Gobierno, el Congreso y los partidos políticos; el segundo mide el grado de confianza hacia instituciones que buscan defender el orden y la seguridad pública, tales como carabineros y la fuerza armada. Todos los indicadores incluidos en esta subdimensión fueron medidos mediante una escala likert de cinco alternativas, yendo desde "Nada" hasta "Mucha".
 
-La segunda subdimensión "**Participación y actitudes políticas**" aborda aspectos objetivos y subjetivos en relación a la actividad política. El primer factor mide la participación política de los individuos, tomando en cuenta aspectos como la firma por una causa, la participación en una manifestación pacífica y la participación en huelgas. El segundo factor contiene indicadores relacionados a la autopercepción de las personas respecto a la relevancia de sus actos políticos. Aquí, se consulta el grado de acuerdo respecto a sentencias como "votar permite expresar mis ideas" o "mi voto influye en el resultado". El último factor mide el interés político, consultando derechamente por el grado de interés en el campo, y también considerando hechos empíricos que demuestren el interés, tales como la frecuencia de hablar o informarse de política.
+La segunda dimensión "**Participación y actitudes políticas**" aborda aspectos objetivos y subjetivos en relación a la actividad política. La primer subdimensión mide la participación política de los individuos, tomando en cuenta aspectos como la firma por una causa, la participación en una manifestación pacífica y la participación en huelgas. La segunda subdimensión contiene indicadores relacionados a la autopercepción de las personas respecto a la relevancia de sus actos políticos. Aquí, se consulta el grado de acuerdo respecto a sentencias como "votar permite expresar mis ideas" o "mi voto influye en el resultado". La última subdimensión mide el interés político, consultando derechamente por el grado de interés en el campo, y también considerando hechos empíricos que demuestren el interés, tales como la frecuencia de hablar o informarse de política.
 
-La siguiente subdimensión es "**Preferencias por sistema político**, la cual se conforma por un factor que refleja las preferencias por autoritarismo, y otro que mide la actitud hacia la democracia. El primero está compuesto por tres indicadores que miden características de gobiernos autoritarios, tales como la necesidad de un gobierno firme, un mandatario fuerte, y el rol clave de la disciplina en la vida. En cambio, actitudes hacia la democracia contiene un solo ítem que mide el grado de satisfacción hacia el sistema político.
+La siguiente dimensión es "**Preferencias por sistema político**, la cual se conforma por una subdimensión que refleja las preferencias por autoritarismo, y otra que mide la actitud hacia la democracia. La primera está compuesto por tres indicadores que miden características de gobiernos autoritarios, tales como la necesidad de un gobierno firme, un mandatario fuerte, y el rol clave de la disciplina en la vida. En cambio, actitudes hacia la democracia contiene un solo ítem que mide el grado de satisfacción hacia el sistema político.
 
-Por último, la subdimensión "**Justicia distributiva**" busca medir las preferencias respecto a la distribución de los bienes en la sociedad. En este caso, los indicadores tratan sobre la justicia en salud, educación y pensiones, planteando si se considera justo que la capacidad de pago individual sea el determinante de acceso a estos bienes. Esta subdimensión permite profundizar en los criterios normativos que emplean las personas, entregando luces del rechazo, o bien el acuerdo hacia la desigualdad económica en la sociedad.
+Por último, la dimensión "**Justicia distributiva**" busca medir las preferencias respecto a la distribución de los bienes en la sociedad. En este caso, los indicadores tratan sobre la justicia en salud, educación y pensiones, planteando si se considera justo que la capacidad de pago individual sea el determinante de acceso a estos bienes. Esta dimensión permite profundizar en los criterios normativos que emplean las personas, entregando luces del acuerdo, o bien el rechazo en que las lógicas de mercado sean los principios rectores para la repartición de bienes en la sociedad.
 
 Para entregar una mayor claridad respecto a los códigos originales de las variables y su disponibilidad en cada ola, se puede revisar la @tbl-propuesta-nueva.
 
@@ -274,7 +273,6 @@ elsoc <- elsoc_long_2016_2023 %>%
          c08_01, c08_02, c08_03, c08_04, c10_01, c10_02, c10_03, c13, c14_01,
          c14_02, c18_04, c18_05, c18_07, d02_01, d02_02, d02_03, c01) %>%
   rename(conf_gobierno = c05_01, conf_pp = c05_02, conf_judicial = c05_05, conf_congreso = c05_07, 
-         conf_carabineros = c05_03, conf_fa = c05_10, 
          firma_peticion = c08_01, asiste_marcha = c08_02, part_huelga = c08_03,
          opinion_rrss = c08_04, voto_deber = c10_01, voto_influye = c10_02, 
          voto_expresion = c10_03, interes_politica = c13, 
@@ -727,21 +725,6 @@ justicia_cfa <- cfa(model = justicia_m,
                      std.lv = FALSE)
 ```
 
-```{r}
-#| echo: false
-vertical_m <- '
-inst_politica =~ conf_gobierno + conf_pp + conf_congreso
-autoritarismo =~ gobierno_firme + mandatario_fuerte + vida_disciplinar
-preferencias_sis_pol =~ autoritarismo + sat_democracia
-justicia =~ justicia_pensiones + justicia_educacion + justicia_salud
-participacion =~ firma_peticion + asiste_marcha + part_huelga + opinion_rrss
-autoeficacia =~ voto_deber + voto_influye + voto_expresion
-interes =~ interes_politica + hablar_politica + infopolitica_medios
-pol =~ participacion + autoeficacia + interes
-horizontal* =~ inst_politica + pol + preferencias_sis_pol + justicia
-'
-```
-
 ::: panel-tabset
 #### Confianza en instituciones
 
@@ -964,17 +947,104 @@ tabla_cargas_politica
 #| fig-cap: Cargas estandarizadas del CFA de Preferencias por sistema político (Ola 2023)
 #| fig-cap-location: bottom
 
-cat("RESUMEN DEL MODELO CFA")
-indices <- fitmeasures(pref_cfa, c("rmsea", "cfi", "tli"))
-cat("RMSEA =", round(indices["rmsea"], 3), "\n")
-cat("CFI =", round(indices["cfi"], 3), "\n")
-cat("TLI =", round(indices["tli"], 3), "\n\n")
+# 1. Crear tabla de índices de ajuste para pref_cfa
+indices <- fitmeasures(pref_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower",
+                                   "rmsea.ci.upper", "cfi", "tli", "srmr"))
 
-cat("Cargas factoriales estandarizadas:\n")
-standardizedSolution(pref_cfa) %>% 
-  dplyr::filter(op == "=~") %>% 
-  dplyr::select(lhs, rhs, est.std) %>%
-  print()
+tabla_ajuste_pref <- data.frame(
+  Indice = c("Chi-cuadrado", "gl", "p-valor", "RMSEA", "RMSEA IC inferior",
+             "RMSEA IC superior", "CFI", "TLI", "SRMR"),
+  Valor = c(round(indices["chisq"], 3),
+            round(indices["df"], 0),
+            round(indices["pvalue"], 3),
+            round(indices["rmsea"], 3),
+            round(indices["rmsea.ci.lower"], 3),
+            round(indices["rmsea.ci.upper"], 3),
+            round(indices["cfi"], 3),
+            round(indices["tli"], 3),
+            round(indices["srmr"], 3)),
+  Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
+)
+
+# Tabla de índices de ajuste
+tabla_indices_pref <- tabla_ajuste_pref %>%
+  kable(format = "html",
+        caption = "<strong>Índices de Ajuste del Modelo CFA - Preferencias</strong>",
+        col.names = c("Índice", "Valor", "Criterio"),
+        align = c("l", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2:3, width = "2.5cm") %>%
+  # Destacar los índices principales
+  row_spec(4, background = "#f8f9fa") %>%  # RMSEA
+  row_spec(7, background = "#f8f9fa") %>%  # CFI
+  row_spec(8, background = "#f8f9fa")      # TLI
+
+# 2. Crear tabla de cargas factoriales
+cargas_pref <- standardizedSolution(pref_cfa) %>%
+  dplyr::filter(op == "=~") %>%
+  dplyr::select(lhs, rhs, est.std, se, pvalue) %>%
+  mutate(
+    est.std = round(est.std, 3),
+    se = round(se, 3),
+    pvalue = ifelse(pvalue < 0.001, "< 0.001", round(pvalue, 3)),
+    Significancia = ifelse(as.numeric(gsub("< ", "", pvalue)) < 0.05 | pvalue == "< 0.001", "***", "")
+  )
+
+tabla_cargas_pref <- cargas_pref %>%
+  kable(format = "html",
+        caption = "<strong>Cargas Factoriales Estandarizadas - Preferencias</strong>",
+        col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
+        align = c("l", "l", "c", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3:6, width = "2cm") %>%
+  # Destacar cargas altas (> 0.7)
+  column_spec(3, color = ifelse(cargas_pref$est.std > 0.7, "darkgreen", "black"),
+              bold = ifelse(cargas_pref$est.std > 0.7, TRUE, FALSE))
+
+# 3. Crear tabla de resumen del modelo
+n_obs_pref <- nobs(pref_cfa)
+n_vars_pref <- length(lavNames(pref_cfa, "ov"))
+n_factors_pref <- length(lavNames(pref_cfa, "lv"))
+
+resumen_modelo_pref <- data.frame(
+  Caracteristica = c("Observaciones", "Variables observadas", "Factores latentes",
+                     "Parámetros estimados", "Grados de libertad"),
+  Valor = c(n_obs_pref, n_vars_pref, n_factors_pref,
+            fitmeasures(pref_cfa, "npar"),
+            fitmeasures(pref_cfa, "df"))
+)
+
+tabla_resumen_pref <- resumen_modelo_pref %>%
+  kable(format = "html",
+        caption = "<strong>Resumen del Modelo CFA - Preferencias</strong>",
+        col.names = c("Característica", "Valor"),
+        align = c("l", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2, width = "2.5cm")
+
+# Mostrar las tablas
+tabla_resumen_pref
+tabla_indices_pref
+tabla_cargas_pref
 ```
 
 #### Justicia distributiva
@@ -984,17 +1054,104 @@ standardizedSolution(pref_cfa) %>%
 #| fig-cap: Cargas estandarizadas del CFA de Justicia distributiva (Ola 2023)
 #| fig-cap-location: bottom
 
-cat("RESUMEN DEL MODELO CFA")
-indices <- fitmeasures(justicia_cfa, c("rmsea", "cfi", "tli"))
-cat("RMSEA =", round(indices["rmsea"], 3), "\n")
-cat("CFI =", round(indices["cfi"], 3), "\n")
-cat("TLI =", round(indices["tli"], 3), "\n\n")
+# 1. Crear tabla de índices de ajuste para justicia_cfa
+indices <- fitmeasures(justicia_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower",
+                                       "rmsea.ci.upper", "cfi", "tli", "srmr"))
 
-cat("Cargas factoriales estandarizadas:\n")
-standardizedSolution(justicia_cfa) %>% 
-  dplyr::filter(op == "=~") %>% 
-  dplyr::select(lhs, rhs, est.std) %>%
-  print()
+tabla_ajuste_justicia <- data.frame(
+  Indice = c("Chi-cuadrado", "gl", "p-valor", "RMSEA", "RMSEA IC inferior",
+             "RMSEA IC superior", "CFI", "TLI", "SRMR"),
+  Valor = c(round(indices["chisq"], 3),
+            round(indices["df"], 0),
+            round(indices["pvalue"], 3),
+            round(indices["rmsea"], 3),
+            round(indices["rmsea.ci.lower"], 3),
+            round(indices["rmsea.ci.upper"], 3),
+            round(indices["cfi"], 3),
+            round(indices["tli"], 3),
+            round(indices["srmr"], 3)),
+  Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
+)
+
+# Tabla de índices de ajuste
+tabla_indices_justicia <- tabla_ajuste_justicia %>%
+  kable(format = "html",
+        caption = "<strong>Índices de Ajuste del Modelo CFA - Justicia</strong>",
+        col.names = c("Índice", "Valor", "Criterio"),
+        align = c("l", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2:3, width = "2.5cm") %>%
+  # Destacar los índices principales
+  row_spec(4, background = "#f8f9fa") %>%  # RMSEA
+  row_spec(7, background = "#f8f9fa") %>%  # CFI
+  row_spec(8, background = "#f8f9fa")      # TLI
+
+# 2. Crear tabla de cargas factoriales
+cargas_justicia <- standardizedSolution(justicia_cfa) %>%
+  dplyr::filter(op == "=~") %>%
+  dplyr::select(lhs, rhs, est.std, se, pvalue) %>%
+  mutate(
+    est.std = round(est.std, 3),
+    se = round(se, 3),
+    pvalue = ifelse(pvalue < 0.001, "< 0.001", round(pvalue, 3)),
+    Significancia = ifelse(as.numeric(gsub("< ", "", pvalue)) < 0.05 | pvalue == "< 0.001", "***", "")
+  )
+
+tabla_cargas_justicia <- cargas_justicia %>%
+  kable(format = "html",
+        caption = "<strong>Cargas Factoriales Estandarizadas - Justicia</strong>",
+        col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
+        align = c("l", "l", "c", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3:6, width = "2cm") %>%
+  # Destacar cargas altas (> 0.7)
+  column_spec(3, color = ifelse(cargas_justicia$est.std > 0.7, "darkgreen", "black"),
+              bold = ifelse(cargas_justicia$est.std > 0.7, TRUE, FALSE))
+
+# 3. Crear tabla de resumen del modelo
+n_obs_justicia <- nobs(justicia_cfa)
+n_vars_justicia <- length(lavNames(justicia_cfa, "ov"))
+n_factors_justicia <- length(lavNames(justicia_cfa, "lv"))
+
+resumen_modelo_justicia <- data.frame(
+  Caracteristica = c("Observaciones", "Variables observadas", "Factores latentes",
+                     "Parámetros estimados", "Grados de libertad"),
+  Valor = c(n_obs_justicia, n_vars_justicia, n_factors_justicia,
+            fitmeasures(justicia_cfa, "npar"),
+            fitmeasures(justicia_cfa, "df"))
+)
+
+tabla_resumen_justicia <- resumen_modelo_justicia %>%
+  kable(format = "html",
+        caption = "<strong>Resumen del Modelo CFA - Justicia</strong>",
+        col.names = c("Característica", "Valor"),
+        align = c("l", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 13,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "4cm") %>%
+  column_spec(2, width = "2.5cm")
+
+# Mostrar las tablas
+tabla_resumen_justicia
+tabla_indices_justicia
+tabla_cargas_justicia
 ```
 :::
 
@@ -1007,9 +1164,6 @@ A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices
 
 elsoc <- elsoc %>%
   mutate(conf_inst_pol = rowMeans(select(., conf_gobierno, conf_congreso, conf_pp), na.rm = TRUE))
-
-elsoc <- elsoc %>%
-  mutate(conf_inst_ord = rowMeans(select(., conf_carabineros, conf_fa), na.rm = TRUE))
 
 elsoc <- elsoc %>%
   mutate(pp_politica = rowMeans(select(., firma_peticion, asiste_marcha,

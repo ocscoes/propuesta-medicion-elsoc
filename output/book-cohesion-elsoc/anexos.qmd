@@ -1,1 +1,102 @@
 # Anexos
+
+## Modelo Confirmatorio del área vertical completo
+
+```{r}
+#| label: packages
+#| message: false 
+#| echo: false 
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               car,
+               sjmisc, 
+               here,
+               sjlabelled,
+               SciViews,
+               naniar,
+               readxl,
+               sjPlot,
+               lme4,
+               lavaan,
+               ggdist,
+               purrr,
+               psych,
+               corrplot,
+               skimr,
+               patchwork,
+               dplyr)
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| echo: false 
+
+load(url("https://dataverse.harvard.edu/api/access/datafile/10797987"))
+```
+
+```{r}
+#| label: processing
+#| include: false 
+
+elsoc <- elsoc_long_2016_2023 %>%
+  select(idencuesta, ola, c05_01, c05_02, c05_05, c05_07, c05_03, c05_10,
+         c08_01, c08_02, c08_03, c08_04, c10_01, c10_02, c10_03, c13, c14_01,
+         c14_02, c18_04, c18_05, c18_07, d02_01, d02_02, d02_03, c01) %>%
+  rename(conf_gobierno = c05_01, conf_pp = c05_02, conf_judicial = c05_05, conf_congreso = c05_07, 
+         firma_peticion = c08_01, asiste_marcha = c08_02, part_huelga = c08_03,
+         opinion_rrss = c08_04, voto_deber = c10_01, voto_influye = c10_02, 
+         voto_expresion = c10_03, interes_politica = c13, 
+         hablar_politica = c14_01, infopolitica_medios = c14_02, 
+         gobierno_firme = c18_04, mandatario_fuerte = c18_05, 
+         vida_disciplinar = c18_07, justicia_pensiones = d02_01,
+         justicia_educacion = d02_02, justicia_salud = d02_03, sat_democracia = c01)
+
+missing_codes <- c(-999, -888, -777, -666)
+elsoc <- elsoc %>%
+  mutate(across(everything(), ~ sjlabelled::set_na(.x, na = missing_codes)))
+
+# Crear base filtrando solo por la última ola 
+elsoc <- elsoc %>%
+  filter(ola == 7)
+```
+
+```{r}
+#| echo: false
+vertical_m <- '
+inst_politica =~ conf_gobierno + conf_pp + conf_congreso
+autoritarismo =~ gobierno_firme + mandatario_fuerte + vida_disciplinar
+preferencias_sis_pol =~ autoritarismo + sat_democracia
+justicia =~ justicia_pensiones + justicia_educacion + justicia_salud
+participacion =~ firma_peticion + asiste_marcha + part_huelga + opinion_rrss
+autoeficacia =~ voto_deber + voto_influye + voto_expresion
+interes =~ interes_politica + hablar_politica + infopolitica_medios
+pol =~ participacion + autoeficacia + interes
+horizontal =~ inst_politica + pol + preferencias_sis_pol + justicia
+'
+```
+
+```{r}
+#| echo: false
+vertical_cfa <- cfa(model = vertical_m,
+                     data = elsoc,
+                     estimator = "WLSMV",
+                     ordered = TRUE,
+                     std.lv = FALSE)
+
+cat("RESUMEN DEL MODELO CFA")
+indices <- fitmeasures(pref_cfa, c("rmsea", "cfi", "tli"))
+cat("RMSEA =", round(indices["rmsea"], 3), "\n")
+cat("CFI =", round(indices["cfi"], 3), "\n")
+cat("TLI =", round(indices["tli"], 3), "\n\n")
+
+cat("Cargas factoriales estandarizadas:\n")
+standardizedSolution(vertical_cfa) %>% 
+  dplyr::filter(op == "=~") %>% 
+  dplyr::select(lhs, rhs, est.std) %>%
+  print()
+```
