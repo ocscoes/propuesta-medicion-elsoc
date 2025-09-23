@@ -44,10 +44,6 @@ pacman::p_load(tidyverse,
 
 options(scipen=999)
 rm(list = ls())
-
-
-options(scipen=999)
-rm(list = ls())
 ```
 
 ```{r}
@@ -109,7 +105,7 @@ El concepto de cohesión social horizontal surge como una respuesta crítica a d
 
 ### Esquema de Cohesión Horizontal Latinoamérica (Vis-Latam)
 
-El [Observatorio de Cohesión Social (OCS-COES)](https://ocs-coes.com/) ha desarrollado avances en la representación empírica de la cohesión social horizontal. Estos esfuerzos se han orientado, en una primera etapa, a la comparación de América Latina a partir de encuestas internacionales como LAPOP y WVS. Bajo este enfoque, la cohesión horizontal se concibe como un entramado de vínculos entre ciudadanos y grupos sociales, expresados tanto en actitudes subjetivas como en prácticas objetivas de interacción. Esta aproximación se ha estructurado en torno a tres subdimensiones principales: sentido de pertenencia, calidad de vida en el vecindario y redes sociales.
+El [Observatorio de Cohesión Social (OCS-COES)](https://ocs-coes.com/) ha desarrollado avances en la representación empírica de la cohesión social horizontal. Estos esfuerzos se han orientado, en una primera etapa, a la comparación de América Latina a partir de encuestas internacionales como LAPOP y WVS. Bajo este enfoque, la cohesión horizontal se concibe como un entramado de vínculos entre ciudadanos y grupos sociales, expresados tanto en actitudes subjetivas como en prácticas objetivas de interacción. Esta aproximación se ha estructurado en torno a dos subdimensiones: Seguridad Pública y Confianza Interpersonal.
 
 ```{r}
 #| label: fig-lapop
@@ -209,13 +205,13 @@ Otro antecedente particularmente relevante para la medición de la cohesión soc
 
 De las anteriores, se puede destacar cuatro grandes subdimensiones: sentido de pertenencia, confianza social, cohesión barrial y sociabilidad local, y participación y prosocialidad.
 
-La primera, sentido de pertenencia, se capta a través de ítems del módulo de Sociabilidad Política que indagan sobre el grado de identificación con Chile y el orgullo nacional. Estas preguntas reflejan el vínculo simbólico y afectivo de las personas con la comunidad política nacional y permiten observar hasta qué punto los individuos se reconocen como parte de un colectivo común.
+La primera, **sentido de pertenencia**, se capta a través de ítems del módulo de Sociabilidad Política que indagan sobre el grado de identificación con Chile y el orgullo nacional. Estas preguntas reflejan el vínculo simbólico y afectivo de las personas con la comunidad política nacional y permiten observar hasta qué punto los individuos se reconocen como parte de un colectivo común.
 
-La segunda, confianza social, incluye indicadores tanto de confianza interpersonal generalizada como de confianza en los vecinos. Preguntas como “¿Se puede confiar en la mayoría de las personas o hay que tener cuidado?” o “¿Cuánto confía en sus vecinos?” miden las expectativas que los individuos tienen respecto al comportamiento de los otros, constituyendo un elemento central de la cohesión horizontal según Chan et al., en tanto facilita la cooperación entre desconocidos.
+La segunda, **confianza social**, incluye indicadores tanto de confianza interpersonal generalizada como de confianza en los vecinos. Preguntas como “¿Se puede confiar en la mayoría de las personas o hay que tener cuidado?” o “¿Cuánto confía en sus vecinos?” miden las expectativas que los individuos tienen respecto al comportamiento de los otros, constituyendo un elemento central de la cohesión horizontal según Chan et al., en tanto facilita la cooperación entre desconocidos.
 
-La tercera, cohesión barrial y sociabilidad local, se refiere a la integración y calidad de las relaciones en el espacio cotidiano del vecindario. ELSOC incluye ítems sobre la percepción de integración al barrio, la identificación con sus habitantes y el nivel de colaboración entre vecinos. Estos indicadores permiten analizar la cohesión en un nivel micro, donde la interacción directa fortalece o debilita los lazos comunitarios.
+La tercera, **cohesión barrial y sociabilidad local**, se refiere a la integración y calidad de las relaciones en el espacio cotidiano del vecindario. ELSOC incluye ítems sobre la percepción de integración al barrio, la identificación con sus habitantes y el nivel de colaboración entre vecinos. Estos indicadores permiten analizar la cohesión en un nivel micro, donde la interacción directa fortalece o debilita los lazos comunitarios.
 
-Finalmente, la subdimensión de participación social y prosocialidad incorpora conductas concretas que muestran la disposición de las personas a involucrarse en la vida social y apoyar a otros. ELSOC mide este aspecto a través de la participación en voluntariado, las donaciones a causas sociales, el apoyo económico o material a otras personas, y el acompañamiento en situaciones de dificultad. Estas acciones representan la expresión objetiva de la cohesión horizontal, pues reflejan la voluntad de contribuir activamente al bienestar colectivo.
+Finalmente, la subdimensión de **participación social y prosocialidad** incorpora conductas concretas que muestran la disposición de las personas a involucrarse en la vida social y apoyar a otros. ELSOC mide este aspecto a través de la participación en voluntariado, las donaciones a causas sociales, el apoyo económico o material a otras personas, y el acompañamiento en situaciones de dificultad. Estas acciones representan la expresión objetiva de la cohesión horizontal, pues reflejan la voluntad de contribuir activamente al bienestar colectivo.
 
 Ahora bien, las propuestas presentadas tienen diferencias importantes.
 
@@ -225,7 +221,7 @@ Ahora bien, las propuestas presentadas tienen diferencias importantes.
 
 ## Propuesta de medición con ELSOC
 
-La propuesta del OCS para medir la cohesión social horizontal a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria.
+La propuesta del OCS para medir la **cohesión social horizontal** a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria.
 
 ```{r}
 #| echo: false
@@ -299,11 +295,11 @@ tabla_principal <- datos_formateados %>%
 tabla_principal 
 ```
 
-La seguridad se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras y la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo. En el plano subjetivo, se incluyen la frecuencia de tráfico de drogas en el vecindario, la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los residentes evalúan y experimentan estas condiciones.
+La **seguridad** se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras y la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo. En el plano subjetivo, se incluyen la frecuencia de tráfico de drogas en el vecindario, la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los residentes evalúan y experimentan estas condiciones.
 
-Los vínculos territoriales buscan capturar el grado de identificación y valoración del espacio de residencia. Esta dimensión se divide en dos factores. El primero, la pertenencia al barrio, incluye cuatro indicadores: considerar que el barrio es ideal, sentirse integrado, identificarse con los vecinos y percibirlo como parte de la propia identidad. El segundo, la satisfacción con el barrio, se mide a través de la facilidad para hacer amigos, la sociabilidad, la cordialidad y la colaboración de los vecinos, reflejando así la calidad de las relaciones comunitarias.
+Los **vínculos territoriales** buscan capturar el grado de identificación y valoración del espacio de residencia. Esta dimensión se divide en dos factores. El primero, la pertenencia al barrio, incluye cuatro indicadores: considerar que el barrio es ideal, sentirse integrado, identificarse con los vecinos y percibirlo como parte de la propia identidad. El segundo, la satisfacción con el barrio, se mide a través de la facilidad para hacer amigos, la sociabilidad, la cordialidad y la colaboración de los vecinos, reflejando así la calidad de las relaciones comunitarias.
 
-La tercera dimensión corresponde a las redes sociales, que permiten observar las dinámicas de confianza, solidaridad y cooperación entre personas. Se estructura en tres factores. La confianza interpersonal considera la disposición a confiar en los demás y la percepción de que las personas tienden a ayudar a otros o a centrarse en sí mismas. El comportamiento prosocial se mide mediante la participación en reuniones comunitarias y la realización de voluntariado en los últimos doce meses. Finalmente, la ayuda económica se evalúa a través de la disposición a prestar dinero y a colaborar en la búsqueda de empleo para alguien más.
+La tercera dimensión corresponde a las **redes sociales**, que permiten observar las dinámicas de confianza, solidaridad y cooperación entre personas. Se estructura en tres factores. La confianza interpersonal considera la disposición a confiar en los demás y la percepción de que las personas tienden a ayudar a otros o a centrarse en sí mismas. El comportamiento prosocial se mide mediante la participación en reuniones comunitarias y la realización de voluntariado en los últimos doce meses. Finalmente, la ayuda económica se evalúa a través de la disposición a prestar dinero y a colaborar en la búsqueda de empleo para alguien más.
 
 ```{r}
 #| label: fig-propuesta
@@ -327,6 +323,7 @@ Este esquema integra distintos planos de análisis —condiciones objetivas, per
 
 ```{r}
 #| label: fig-seguridad
+#| fig-cap: "Distribución de Variables de Seguridad Pública. Datos ELSOC Ola 2022 (Última ola disponible)"
 
 db_filtrado <- db %>% filter(ola == 6)
 
@@ -381,6 +378,7 @@ print(plot_final)
 
 ```{r}
 #| label: fig-terr
+#| fig-cap: "Distribución de Variables de Vínculos Territoriales. Datos ELSOC Ola 2023"
 
 db_filtrado_2 <- db %>% filter(ola == 7)
 
@@ -397,6 +395,7 @@ plot_stackfrq(
 
 ```{r}
 #| label: fig-redes
+#| fig-cap: "Distribución de Variables de Redes Sociales. Datos ELSOC Ola 2023"
 
 plot_stackfrq(
   dplyr::select(db_filtrado_2, reunion_pub, voluntariado,
@@ -409,7 +408,7 @@ plot_stackfrq(
 
 ```{r}
 #| label: fig-redes-2
-#| fig-cap: Distribución de variables de Redes Sociales 2
+#| fig-cap: "Distribución de Variables de Redes Sociales. Datos ELSOC Ola 2023"
 #| fig-cap-location: bottom
 #| echo: FALSE
 
@@ -468,7 +467,7 @@ poly_cor1 <- polychoric(seguridad)
 
 ```{r}
 #| label: fig-corr-seg
-#| fig-cap: Matriz de Correlaciones de Seguridad Pública
+#| fig-cap: "Matriz de Correlaciones de Seguridad Pública. Datos ELSOC 2022 (Última ola disponible)"
 #| echo: false
 
 corrplot(poly_cor1$rho, method = "color", 
@@ -497,7 +496,7 @@ poly_cor2 <- polychoric(territorial)
 
 ```{r}
 #| label: fig-corr-terr
-#| fig-cap: Matriz de Correlaciones de Vínculos Territoriales
+#| fig-cap: "Matriz de Correlaciones de Vínculos Territoriales. Datos ELSOC 2023"
 #| echo: false
 
 corrplot(poly_cor2$rho, method = "color", 
@@ -526,7 +525,7 @@ poly_cor3 <- polychoric(redes)
 
 ```{r}
 #| label: fig-corr-redes
-#| fig-cap: Matriz de Correlaciones de Redes Sociales
+#| fig-cap: "Matriz de Correlaciones de Redes Sociales. Datos ELSOC 2023"
 #| echo: false
 
 corrplot(poly_cor3$rho, method = "color", 
@@ -562,7 +561,7 @@ cortest.bartlett(cormat1, n = 2730)
 
 ```{r}
 #| label: fig-efa-conf
-#| fig-cap: Tabla de factorial exploratorio de Seguridad Pública
+#| fig-cap: "Tabla de factorial exploratorio de Seguridad Pública"
 #| fig-cap-location: top
 #| echo: false 
 #| message: false 
@@ -590,7 +589,7 @@ cortest.bartlett(cormat1, n = 2730)
 
 ```{r}
 #| label: fig-efa-vinculos
-#| fig-cap: Tabla de factorial exploratorio de Vinculos Territoriales
+#| fig-cap: "Tabla de factorial exploratorio de Vinculos Territoriales"
 #| fig-cap-location: top
 #| echo: false 
 #| message: false 
@@ -618,7 +617,7 @@ cortest.bartlett(cormat1, n = 2730)
 
 ```{r}
 #| label: fig-efa-redes
-#| fig-cap: Tabla de factorial exploratorio de Redes Sociales
+#| fig-cap: "Tabla de factorial exploratorio de Redes Sociales"
 #| fig-cap-location: top
 #| echo: false 
 #| message: false 
@@ -687,7 +686,7 @@ redes_cfa <- cfa(model = redes_m,
 
 ```{r}
 #| label: fig-seg-cfa
-#| fig-cap: Cargas estandarizadas del CFA de Seguridad Pública
+#| fig-cap: "Cargas estandarizadas del CFA de Seguridad Pública"
 
 # 1. Crear tabla de índices de ajuste
 indices <- fitmeasures(seguridad_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower", 
@@ -794,7 +793,7 @@ tabla_cargas
 
 ```{r}
 #| label: fig-vin-cfa
-#| fig-cap: Cargas estandarizadas del CFA de Vínculos Territoriales
+#| fig-cap: "Cargas estandarizadas del CFA de Vínculos Territoriales"
 
 # 1. Crear tabla de índices de ajuste para vínculos_cfa
 indices <- fitmeasures(vinculos_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower", 
@@ -901,7 +900,7 @@ tabla_cargas_vinculos
 
 ```{r}
 #| label: fig-redes-cfa
-#| fig-cap: Cargas estandarizadas del CFA de Redes Sociales
+#| fig-cap: "Cargas estandarizadas del CFA de Redes Sociales"
 
 # 1. Crear tabla de índices de ajuste para redes_cfa
 indices <- fitmeasures(redes_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower", 
@@ -1260,7 +1259,7 @@ t_ayuda <- t_ayuda %>%
 
 ```{r}
 #| label: index-cons
-#| fig-cap: Tabla de índices cohesión horizontal
+#| fig-cap: "Tabla de índices cohesión horizontal"
 #| echo: false
 #| warning: false
 #| message: false
