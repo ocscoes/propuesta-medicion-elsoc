@@ -1,0 +1,491 @@
+---
+title: "Hacia una nueva medición de cohesión social para Chile"
+Author: Equipo OCS
+lang: es
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true
+format: html
+editor_options:
+  chunk_output_type: console
+execute:
+  freeze: auto  # re-render only when source changes
+---
+# Marco Conceptual
+
+El Observatorio de Cohesión Social (OCS-COES) ha avanzado hacia una definición del concepto de cohesión social basada en Chan et al. (2006), con un enfoque bidimensional: Cohesión Horizontal (relaciones entre individuos y grupos) y Cohesión Vertical (interacciones entre individuos e instituciones).
+
+Esta definición minimalista responde críticamente a aproximaciones previas que tendían a confundir los contenidos de la cohesión social con sus condiciones externas, tales como la pobreza, la igualdad de oportunidades o la tolerancia. El enfoque adoptado permite precisar los elementos constitutivos de la cohesión sin diluir su valor analítico, estableciendo una distinción clara entre componentes subjetivos (actitudes y percepciones) y objetivos (comportamientos y prácticas observables).
+
+# Antecedentes de Medición
+
+## Vis-Latam (LAPOP/WVS/Latinobarómetro)
+
+Primer esfuerzo del OCS para medir cohesión con un enfoque minimalista, estuvo orientado a la comparación regional. Esta propuesta se estructuró en torno a indicadores centrales disponibles en encuestas internacionales:
+
+**Cohesión Horizontal**
+
+- Seguridad Pública: Incorpora condiciones objetivas (victimización por delitos) y percepciones subjetivas (percepción de seguridad en el barrio)
+
+- Confianza Interpersonal: Medida a través de la confianza en los vecinos como expresión de disposiciones cooperativas en el entorno cercano
+
+**Cohesión Vertical**
+
+- Confianza en Instituciones: Confianza en el congreso, poder judicial y partidos políticos
+
+- Actitudes hacia la Democracia: Apoyo y satisfacción con el sistema democrático
+
+- Justicia Distributiva: Acuerdo con la redistribución igualitaria de ingresos
+
+Esta aproximación permitió establecer una línea base para la comparación entre países de América Latina, aunque con limitaciones derivadas de la disponibilidad de variables en encuestas no diseñadas específicamente para medir cohesión social.
+
+## Castillo et al. (2021) con ELSOC
+
+Propuesta comprehensiva para Chile que aprovecha la riqueza de datos de la Encuesta Longitudinal Social de Chile (ELSOC). Esta propuesta operacionaliza la cohesión mediante la distinción entre indicadores subjetivos (actitudes) e indicadores objetivos (prácticas), organizándose en dimensiones específicas:
+
+**Cohesión Horizontal**
+
+- Sentido de Pertenencia: Identificación y orgullo nacional
+
+- Confianza Social: Confianza interpersonal generalizada y confianza en vecinos
+
+- Cohesión y Sociabilidad Barrial: Integración, identificación y calidad de relaciones vecinales (subdividida en cohesión barrial propiamente tal y sociabilidad local)
+
+- Participación y Prosocialidad: Voluntariado, donaciones, apoyo material y acompañamiento a terceros
+
+**Cohesión Vertical**
+
+- Confianza en Instituciones y Satisfacción con la Democracia: Confianza en instituciones políticas, de orden y privadas, junto con satisfacción democrática
+
+- Participación Política: Acciones concretas (firmas, manifestaciones, huelgas, uso de redes sociales) e interés político (declarado y manifestado)
+
+- Percepción de Justicia Distributiva: Percepciones sobre meritocracia y elementos determinantes para la movilidad social ascendente
+
+## Diferencias entre Propuestas Anteriores
+
+Las propuestas de Vis-Latam y Castillo et al. (2021) presentan diferencias significativas:
+
+- Nivel de granularidad: ELSOC permite observar dimensiones y subdimensiones con mayor precisión que las encuestas regionales de LAPOP/WVS.
+
+- Consistencia teórica y estadística: Algunas subdimensiones presentes en una propuesta no aparecen en la otra debido a limitaciones de datos o ajustes metodológicos. Por ejemplo, el comportamiento prosocial se intentó integrar con datos de WVS, pero aunque mostró consistencia interna aceptable, no correlacionaba adecuadamente con otros factores de su dimensión.
+
+- Estructura factorial: Aunque ambas propuestas integran confianza interpersonal, la versión ELSOC la considera un factor de segundo orden mientras que en LAPOP es de primer orden.
+
+- Cobertura temática: No comparten ningún factor de subdimensión en forma idéntica, reflejando adaptaciones al contexto y a las fuentes de datos disponibles.
+
+# Nueva Propuesta de medición con ELSOC
+
+La nueva propuesta de medición de parte del OCS representa un avance significativo que integra y expande las mediciones previas con innovaciones conceptuales y metodológicas que permiten capturar con mayor precisión las dinámicas de cohesión en Chile.
+
+## Cohesión Horizontal
+
+La dimensión horizontal se estructura en tres grandes áreas que integran condiciones objetivas, percepciones subjetivas y prácticas sociales:
+
+### Seguridad
+
+La seguridad constituye un eje central de la cohesión horizontal, incorporando tanto condiciones objetivas como percepciones subjetivas de resguardo en el entorno inmediato. A diferencia de propuestas anteriores que trataban la seguridad de manera tangencial, la nueva propuesta la reconoce como una dimensión autónoma esencial para la vida comunitaria.
+
+Estructura de medición:
+
+**Seguridad Objetiva**
+
+- Frecuencia de peleas callejeras en el barrio 
+- Frecuencia de robos y/o asaltos en el barrio 
+
+Lo anterior permite capturar la exposición real a situaciones de riesgo en el entorno inmediato
+
+**Seguridad Subjetiva**
+
+- Frecuencia percibida de tráfico de drogas en el vecindario
+
+- Satisfacción con la seguridad del barrio
+
+- Percepción individual de sentirse seguro o inseguro en el entorno
+
+Esto permite capturar la vivencia subjetiva y la evaluación personal del entorno
+
+La distinción entre seguridad objetiva y subjetiva permite observar tanto la realidad material del entorno como la experiencia vivida de los residentes, reconociendo que ambas dimensiones pueden no coincidir y que ambas son relevantes para la cohesión social.
+
+
+### Vínculos Territoriales
+
+Los vínculos con el territorio representan un componente fundamental de la cohesión horizontal que va más allá de la simple residencia. Esta dimensión profundiza la medición de cohesión barrial de propuestas anteriores, distinguiendo analíticamente entre el sentido de pertenencia y la evaluación de la calidad de las relaciones.
+
+Estructura de medición:
+
+**Pertenencia al Barrio**
+
+- Considerar que el barrio es ideal para mí
+
+- Sentirse integrado en el barrio
+
+- Identificarse con la gente del barrio
+
+- Percibir el barrio como parte de la propia identidad
+
+Lo anterior permite capturar los vínculos identitarios y afectivos con el territorio
+
+**Satisfacción con el Barrio**
+
+- Facilidad para hacer amigos en el barrio
+
+- Percepción de que la gente es sociable
+
+- Percepción de que la gente es cordial
+
+- Percepción de que la gente es colaboradora
+
+Esto permite evaluar la calidad de las relaciones vecinales y las dinámicas sociales del territorio
+
+La separación entre pertenencia y satisfacción permite observar que una persona puede sentirse identificada con su barrio pero evaluar negativamente las relaciones sociales (o viceversa). Esta distinción captura aspectos complementarios: los vínculos identitarios y la calidad de las interacciones cotidianas.
+
+### Redes Sociales
+
+Las redes sociales constituyen el núcleo de la cohesión horizontal, expresando las dinámicas de confianza, solidaridad y cooperación entre personas. La propuesta reorganiza la medición diferenciando tipos específicos de solidaridad social, superando aproximaciones que mezclaban actitudes y comportamientos de distinta naturaleza.
+
+Estructura de medición:
+
+- Confianza Interpersonal
+
+- Confianza social generalizada (¿se puede confiar en la mayoría de las personas?)
+
+- Altruismo social generalizado (¿las personas tratan de ayudar a los demás?)
+
+Capturar disposiciones actitudinales básicas hacia otros
+
+**Comportamiento Prosocial**
+
+- Frecuencia de asistencia a reuniones de temas públicos/comunitarios
+
+- Frecuencia de realización de voluntariado
+
+Medir prácticas concretas de participación comunitaria
+
+**Ayuda Económica**
+
+- Frecuencia de prestar $10.000 o más
+
+- Frecuencia de ayudar a alguien a conseguir trabajo
+
+- Función: Capturar apoyo material y solidaridad económica concreta
+
+La reorganización en tres factores específicos diferencia entre actitudes generalizadas (confianza), prácticas comunitarias (prosocialidad) y solidaridad material (ayuda económica). Esta estructura reconoce que son formas distintas de solidaridad social que pueden no correlacionar perfectamente entre sí.
+
+## Cohesión Vertical
+
+La dimensión vertical se reorganiza en cuatro grandes áreas que capturan las múltiples facetas de la relación entre ciudadanos e instituciones:
+
+### Confianza en Instituciones
+
+La confianza en instituciones constituye un componente subjetivo fundamental de la cohesión vertical, reflejando la percepción de fiabilidad y legitimidad de organismos centrales para el funcionamiento social. La propuesta distingue tipos de instituciones que cumplen funciones diferenciadas.
+
+Estructura de medición:
+
+- Confianza en Instituciones Políticas
+
+- Confianza en el Gobierno
+
+- Confianza en el Congreso Nacional
+
+- Confianza en los Partidos Políticos
+
+Capturar la confianza en el sistema democrático-representativo
+
+
+### Prácticas y Actitudes Políticas
+
+La participación política constituye el componente objetivo central de la cohesión vertical, pero debe entenderse en conjunto con las actitudes que la sustentan. La propuesta integra tres subdimensiones que tradicionalmente se medían por separado, reconociendo su interdependencia analítica.
+Estructura de medición:
+
+**Participación Política**
+
+- Frecuencia de firma de cartas o peticiones apoyando causas
+
+- Frecuencia de asistencia a marchas o manifestaciones pacíficas
+
+- Frecuencia de participación en huelgas
+
+- Frecuencia de uso de redes sociales para opinar en temas públicos
+
+Capturar acciones concretas de involucramiento político
+
+**Autoeficacia Política**
+
+- Acuerdo con que votar es un deber ciudadano
+
+- Acuerdo con que mi voto influye en el resultado
+
+- Acuerdo con que votar permite expresar mis ideas
+
+Medir la percepción sobre la relevancia y efectividad de la participación
+
+**Interés Político**
+
+- Nivel declarado de interés en la política
+
+- Frecuencia de hablar de política con familiares o amigos
+
+- Frecuencia de informarse sobre política en medios
+
+Capturar el compromiso subjetivo con lo político
+
+La integración de participación, autoeficacia e interés en una sola dimensión permite observar simultáneamente las prácticas ciudadanas, las percepciones de eficacia y el compromiso subjetivo. Esta estructura reconoce que son aspectos interrelacionados del vínculo político de los ciudadanos.
+
+### Preferencias por Sistema Político
+
+Las actitudes hacia el sistema político van más allá de la satisfacción democrática, incluyendo preferencias normativas sobre cómo debe organizarse el poder. La incorporación de preferencias autoritarias permite capturar tensiones y ambivalencias en las orientaciones políticas de la ciudadanía.
+
+Estructura de medición:
+
+**Preferencias por Autoritarismo**
+
+- Acuerdo con que más que derechos necesitamos un gobierno firme
+
+- Acuerdo con que el país necesita un mandatario fuerte
+
+- Acuerdo con que obediencia y disciplina son claves para una buena vida
+
+Capturar actitudes favorables a gobiernos fuertes y disciplina social
+
+**Actitud hacia la Democracia**
+
+- Satisfacción con el funcionamiento de la democracia en Chile
+
+Medir la evaluación del sistema democrático actual
+
+La incorporación de preferencias autoritarias como subdimensión autónoma permite observar tensiones entre apoyo democrático y preferencias por autoridad fuerte. Esta distinción es crucial para entender actitudes políticas ambivalentes, donde pueden coexistir insatisfacción democrática y rechazo al autoritarismo (o viceversa).
+
+### Justicia Distributiva
+
+Las preferencias sobre la distribución de bienes en la sociedad constituyen un componente normativo fundamental de la cohesión vertical. A diferencia de propuestas previas centradas en meritocracia, esta versión se enfoca en las preferencias sobre el rol del mercado en el acceso a derechos fundamentales.
+
+Estructura de medición:
+
+**Justicia Distributiva**
+
+- Acuerdo con que es justo que quien tiene más dinero pueda acceder a mejores pensiones
+
+- Acuerdo con que es justo que quien tiene más dinero pueda acceder a mejor educación
+
+- Acuerdo con que es justo que quien tiene más dinero pueda acceder a mejor salud
+
+Capturar preferencias normativas sobre mercado y derechos sociales
+
+La reformulación hacia preferencias sobre el rol del mercado en derechos fundamentales (salud, educación, pensiones) permite capturar directamente las orientaciones normativas sobre justicia distributiva en áreas centrales del debate público chileno. Esta aproximación es más directa que las mediciones previas centradas en percepciones meritocráticas.
+
+# Valor Agregado de la Nueva Propuesta
+
+La propuesta OCS-ELSOC representa un avance sustantivo en la medición de cohesión social en Chile, integrando y expandiendo aproximaciones previas:
+
+**Innovaciones en Cohesión Horizontal**
+
+1. **Autonomía de la seguridad:** Reconoce la seguridad como dimensión fundamental, distinguiendo entre condiciones objetivas y vivencia subjetiva del entorno
+2. **Diferenciación territorial:** Separa pertenencia identitaria de evaluación de relaciones vecinales
+3. **Tipología de solidaridad:** Distingue solidaridad actitudinal (confianza), comunitaria (prosocialidad) y económica (ayuda material)
+
+**Innovaciones en Cohesión Vertical**
+
+1. **Especificación institucional:** Diferencia confianza en instituciones políticas y de orden
+2. **Integración política:** Articula participación, autoeficacia e interés como dimensiones interrelacionadas del vínculo ciudadano
+3. **Incorporación de autoritarismo:** Captura tensiones y ambivalencias en orientaciones políticas
+4. **Reformulación distributiva:** Enfoca en preferencias sobre rol del mercado en derechos fundamentales
+
+Esta arquitectura integra condiciones objetivas, percepciones subjetivas, prácticas sociales y orientaciones normativas, manteniendo coherencia con el marco minimalista de Chan et al. (2006) mientras aprovecha las posibilidades que ofrece ELSOC para una medición comprehensiva de la cohesión social en Chile.
+
+# Cohesión Social en tiempos de desafección en Chile: Un análisis con una propuesta desde ELSOC
+
+Teniendo esta nueva propuesta de medición de cohesión social, se presentaun análisis empírico de los datos con ELSOC para examinar cómo se comportan estas dimensiones en la realidad chilena. 
+
+En este apartado, se verá la aplicación práctica de los indicadores desarrollados, explorando tanto la estructura factorial de las dimensiones propuestas como sus patrones de variación a lo largo del tiempo y entre diferentes grupos sociales. Los análisis que siguen buscan validar empíricamente la propuesta teórica presentada, identificar tendencias en la cohesión social chilena, y proporcionar evidencia sobre las dinámicas específicas que caracterizan tanto la cohesión horizontal (vínculos entre personas y con el territorio) como la cohesión vertical (relaciones ciudadano-instituciones) en el contexto nacional. 
+
+A través de estos análisis, se pretende no solo confirmar la pertinencia de la propuesta de medición, sino también generar conocimiento sustantivo sobre el estado y evolución de la cohesión social en Chile durante el período cubierto por ELSOC.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# 1. Packages  -----------------------------------------------------
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               car,
+               sjmisc, 
+               here,
+               sjlabelled,
+               SciViews,
+               naniar,
+               readxl,
+               sjPlot)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# 2. Data -----------------------------------------------------------------
+
+load(file = here("data/bases-vis-elsoc/db_madre.RData"))
+
+
+```
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# 1. Confianza en instituciones políticas
+# a) Por grupo de ingreso
+db_conf_inst_ing <- db_madre %>%
+  drop_na(ola, grupo_ingreso, sd_conf_inst_pol) %>%
+  group_by(ola, grupo_ingreso) %>%
+  summarise(media = mean(sd_conf_inst_pol),
+            se = sd(sd_conf_inst_pol) / sqrt(n())) %>%
+  ungroup()
+
+ggplot(db_conf_inst_ing, aes(x = ola, y = media, color = grupo_ingreso, group = grupo_ingreso)) +
+  geom_line(size = 1) + geom_point() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
+  labs(title = "Confianza en instituciones políticas por ingreso", x = "Ola", y = "Promedio", color = "Ingreso") +
+  theme_minimal(base_size = 14)
+
+# b) Por nivel educativo
+db_conf_inst_edu <- db_madre %>%
+  drop_na(ola, educacion, sd_conf_inst_pol) %>%
+  group_by(ola, educacion) %>%
+  summarise(media = mean(sd_conf_inst_pol),
+            se = sd(sd_conf_inst_pol) / sqrt(n())) %>%
+  ungroup()
+
+ggplot(db_conf_inst_edu, aes(x = ola, y = media, color = educacion, group = educacion)) +
+  geom_line(size = 1) + geom_point() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
+  labs(title = "Confianza en instituciones políticas por nivel educativo", x = "Ola", y = "Promedio", color = "Educación") +
+  theme_minimal(base_size = 14)
+
+# c) Por ideología
+db_conf_inst_ideo <- db_madre %>%
+  drop_na(ola, ideologia, sd_conf_inst_pol) %>%
+  group_by(ola, ideologia) %>%
+  summarise(media = mean(sd_conf_inst_pol),
+            se = sd(sd_conf_inst_pol) / sqrt(n())) %>%
+  ungroup()
+
+ggplot(db_conf_inst_ideo, aes(x = ola, y = media, color = ideologia, group = ideologia)) +
+  geom_line(size = 1) + geom_point() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
+  labs(title = "Confianza en instituciones políticas por ideología", x = "Ola", y = "Promedio", color = "Ideología") +
+  theme_minimal(base_size = 14)
+
+```
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# 2. Satisfacción con la democracia
+# a) Por grupo de ingreso
+db_satdem_ing <- db_madre %>%
+  drop_na(ola, grupo_ingreso, in_sat_democracia) %>%
+  group_by(ola, grupo_ingreso) %>%
+  summarise(media = mean(in_sat_democracia),
+            se = sd(in_sat_democracia) / sqrt(n())) %>%
+  ungroup()
+
+ggplot(db_satdem_ing, aes(x = ola, y = media, color = grupo_ingreso, group = grupo_ingreso)) +
+  geom_line(size = 1) + geom_point() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
+  labs(title = "Satisfacción con la democracia por ingreso", x = "Ola", y = "Promedio", color = "Ingreso") +
+  theme_minimal(base_size = 14)
+
+# b) Por nivel educativo
+db_satdem_edu <- db_madre %>%
+  drop_na(ola, educacion, in_sat_democracia) %>%
+  group_by(ola, educacion) %>%
+  summarise(media = mean(in_sat_democracia),
+            se = sd(in_sat_democracia) / sqrt(n())) %>%
+  ungroup()
+
+ggplot(db_satdem_edu, aes(x = ola, y = media, color = educacion, group = educacion)) +
+  geom_line(size = 1) + geom_point() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
+  labs(title = "Satisfacción con la democracia por nivel educativo", x = "Ola", y = "Promedio", color = "Educación") +
+  theme_minimal(base_size = 14)
+
+# c) Por ideología
+db_satdem_ideo <- db_madre %>%
+  drop_na(ola, ideologia, in_sat_democracia) %>%
+  group_by(ola, ideologia) %>%
+  summarise(media = mean(in_sat_democracia),
+            se = sd(in_sat_democracia) / sqrt(n())) %>%
+  ungroup()
+
+ggplot(db_satdem_ideo, aes(x = ola, y = media, color = ideologia, group = ideologia)) +
+  geom_line(size = 1) + geom_point() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
+  labs(title = "Satisfacción con la democracia por ideología", x = "Ola", y = "Promedio", color = "Ideología") +
+  theme_minimal(base_size = 14)
+
+```
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# 3. Seguridad pública (subjetiva)
+# a) Por grupo de ingreso
+db_segpub_ing <- db_madre %>%
+  drop_na(ola, grupo_ingreso, di_seguridad_pub) %>%
+  group_by(ola, grupo_ingreso) %>%
+  summarise(media = mean(di_seguridad_pub),
+            se = sd(di_seguridad_pub) / sqrt(n())) %>%
+  ungroup()
+
+ggplot(db_segpub_ing, aes(x = ola, y = media, color = grupo_ingreso, group = grupo_ingreso)) +
+  geom_line(size = 1) + geom_point() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
+  labs(title = "Seguridad pública por ingreso", x = "Ola", y = "Promedio", color = "Ingreso") +
+  theme_minimal(base_size = 14)
+
+# b) Por nivel educativo
+db_segpub_edu <- db_madre %>%
+  drop_na(ola, educacion, di_seguridad_pub) %>%
+  group_by(ola, educacion) %>%
+  summarise(media = mean(di_seguridad_pub),
+            se = sd(di_seguridad_pub) / sqrt(n())) %>%
+  ungroup()
+
+ggplot(db_segpub_edu, aes(x = ola, y = media, color = educacion, group = educacion)) +
+  geom_line(size = 1) + geom_point() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
+  labs(title = "Seguridad pública por nivel educativo", x = "Ola", y = "Promedio", color = "Educación") +
+  theme_minimal(base_size = 14)
+
+# c) Por ideología
+db_segpub_ideo <- db_madre %>%
+  drop_na(ola, ideologia, di_seguridad_pub) %>%
+  group_by(ola, ideologia) %>%
+  summarise(media = mean(di_seguridad_pub),
+            se = sd(di_seguridad_pub) / sqrt(n())) %>%
+  ungroup()
+
+ggplot(db_segpub_ideo, aes(x = ola, y = media, color = ideologia, group = ideologia)) +
+  geom_line(size = 1) + geom_point() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
+  labs(title = "Seguridad pública por ideología", x = "Ola", y = "Promedio", color = "Ideología") +
+  theme_minimal(base_size = 14)
+```
