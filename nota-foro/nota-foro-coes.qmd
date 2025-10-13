@@ -38,8 +38,8 @@ Ambas propuestas comparten el marco bidimensional horizontal-vertical y el enfoq
 
 # Nueva Propuesta de medición con ELSOC
 
-
-![](images/propuesta-hor.png){width=300px}
+![](images/propuesta-ver-elsoc.png){width=300px}
+![](images/propuesta-hor-elsoc.png){width=300px}
 
 La nueva propuesta del OCS integra y expande las mediciones previas con innovaciones que permiten capturar con mayor precisión las dinámicas de cohesión en Chile, manteniendo coherencia con el marco minimalista bidimensional.
 
@@ -138,180 +138,106 @@ rm(list = ls())
 
 # 2. Data -----------------------------------------------------------------
 
-load(file = here("data/bases-vis-elsoc/db_madre.RData"))
-
-
+load(file = here("data/proc_data/bivariados_long_categoricos.RData"))
 ```
 
 
+## Confianza en Instituciones Políticas
+
+Los gráficos de confianza en instituciones políticas revelan patrones diferenciados según las variables sociodemográficas analizadas:
+
 ```{r}
-#| label: fig-inst
+#| label: fig-confianza-inst-pol
 #| echo: false
 #| warning: false
 #| message: false
+#| fig-width: 10
+#| fig-height: 12
 
 # 1. Confianza en instituciones políticas
-# a) Por grupo de ingreso
-db_conf_inst_ing <- db_madre %>%
-  drop_na(ola, grupo_ingreso, sd_conf_inst_pol) %>%
-  mutate(alto = ifelse(sd_conf_inst_pol >= 4, 1, 0)) %>%
-  group_by(ola, grupo_ingreso) %>%
-  summarise(prop = mean(alto, na.rm = TRUE) * 100,
-            n = n(),
-            se = sqrt(prop * (100 - prop) / n)) %>%
-  ungroup()
 
-ggplot(db_conf_inst_ing, aes(x = ola, y = prop, color = grupo_ingreso, group = grupo_ingreso)) +
-  geom_line(size = 1) + geom_point() +
-  geom_errorbar(aes(ymin = prop - se, ymax = prop + se), width = 0.1, alpha = 0.5) +
+# a) Por grupo de ingreso
+ingreso_conf <- ingreso_categ %>% 
+  filter(categoria == "Alto", subdimension == "Confianza en instituciones políticas") %>%
+  mutate(prop = prop * 100)
+
+p1 <- ggplot(ingreso_conf, aes(x = ola, y = prop, color = grupo_ingreso, group = grupo_ingreso)) +
+  geom_line(size = 1.5) + 
+  geom_point(size = 2) +
   labs(title = "Confianza alta en instituciones políticas por ingreso", 
-       x = "Ola", y = "% con confianza alta (4-5)", color = "Ingreso") +
+       x = "Ola", y = "% con confianza alta (4-5)", color = "Ingreso", caption = "Fuente: ELSOC (2016-2023)") +
   theme_minimal(base_size = 14)
 
 # b) Por nivel educativo
-db_conf_inst_edu <- db_madre %>%
-  drop_na(ola, educacion, sd_conf_inst_pol) %>%
-  mutate(alto = ifelse(sd_conf_inst_pol >= 4, 1, 0)) %>%
-  group_by(ola, educacion) %>%
-  summarise(prop = mean(alto, na.rm = TRUE) * 100,
-            n = n(),
-            se = sqrt(prop * (100 - prop) / n)) %>%
-  ungroup()
+cine_conf <- cine_categ %>% 
+  filter(categoria == "Alto", subdimension == "Confianza en instituciones políticas") %>%
+  mutate(prop = prop * 100)
 
-ggplot(db_conf_inst_edu, aes(x = ola, y = prop, color = educacion, group = educacion)) +
-  geom_line(size = 1) + geom_point() +
-  geom_errorbar(aes(ymin = prop - se, ymax = prop + se), width = 0.1, alpha = 0.5) +
-  labs(title = "Confianza alta en instituciones políticas por nivel educativo", 
-       x = "Ola", y = "% con confianza alta (4-5)", color = "Educación") +
+p2 <- ggplot(cine_conf, aes(x = ola, y = prop, color = cine, group = cine)) +
+  geom_line(size = 1.5) + 
+  geom_point(size = 2) +
+  labs(title = "Confianza alta en instituciones políticas por educación", 
+       x = "Ola", y = "% con confianza alta (4-5)", color = "Educación",
+       caption = "Fuente: ELSOC (2016-2023)") +
   theme_minimal(base_size = 14)
 
-# c) Por ideología
-db_conf_inst_ideo <- db_madre %>%
-  drop_na(ola, ideologia, sd_conf_inst_pol) %>%
-  mutate(alto = ifelse(sd_conf_inst_pol >= 4, 1, 0)) %>%
-  group_by(ola, ideologia) %>%
-  summarise(prop = mean(alto, na.rm = TRUE) * 100,
-            n = n(),
-            se = sqrt(prop * (100 - prop) / n)) %>%
-  ungroup()
-
-ggplot(db_conf_inst_ideo, aes(x = ola, y = prop, color = ideologia, group = ideologia)) +
-  geom_line(size = 1) + geom_point() +
-  geom_errorbar(aes(ymin = prop - se, ymax = prop + se), width = 0.1, alpha = 0.5) +
-  labs(title = "Confianza alta en instituciones políticas por ideología", 
-       x = "Ola", y = "% con confianza alta (4-5)", color = "Ideología") +
-  theme_minimal(base_size = 14)
+print(p1)
+print(p2)
 
 ```
 
+Se observa una marcada estratificación en las trayectorias de confianza. El grupo de mayores ingresos (10%) mantiene consistentemente los niveles más altos de confianza a lo largo del período, iniciando cerca del 10% en 2016, experimentando un notable peak cercano al 20% en 2018, seguido de una caída dramática hasta aproximadamente 6% en 2019, para luego recuperarse sostenidamente hasta alcanzar valores cercanos al 18% en 2023. Los grupos de ingresos medios (50%) e ingresos bajos (40%) muestran trayectorias más cercanas entre sí, aunque con una clara diferenciación: ambos inician en torno al 7%, alcanzan peaks moderados en 2018 (alrededor de 11%), experimentan caídas pronunciadas en 2019 (llegando a 2-3%), y muestran recuperaciones diferenciadas en el período posterior, con los ingresos medios recuperándose más que los bajos, alcanzando aproximadamente 10% y 7% respectivamente en 2023.
+
+La diferenciación por educación muestra que el grupo con educación universitaria o más exhibe un comportamiento distintivo, partiendo de niveles moderados (~8-9% en 2016) experimentando un peak notable en 2018 (~14%), una caída dramática en 2019 (~5%), seguida de una recuperación extraordinaria que culmina en valores cercanos al 19% en 2022, los más altos de todos los grupos educativos. Los grupos de educación técnica y secundaria presentan trayectorias relativamente similares y moderadas, oscilando entre 5% y 11% a lo largo del período. El grupo con educación primaria o menos muestra los niveles más bajos y estables, manteniéndose generalmente entre 5% y 10%, con una leve recuperación hacia el final del período.
+
+Destaca el año 2019 como punto de inflexión crítico, donde todos los grupos experimentan una caída pronunciada en la confianza institucional, coincidiendo con el estallido social. La recuperación posterior es diferenciada según el grupo socioeconómico, siendo más pronunciada entre los sectores de mayores ingresos y mayor educación.
+
+## Seguridad Pública
+
+Los gráficos de seguridad alta (evaluaciones 4-5 en la escala) muestran dinámicas distintas pero igualmente reveladoras:
 
 ```{r}
-#| label: fig-satis
+#| label: fig-seguridad-publica
 #| echo: false
 #| warning: false
 #| message: false
+#| fig-width: 10
+#| fig-height: 12
 
-# 2. Satisfacción con la democracia
+# 2. Seguridad pública
+
 # a) Por grupo de ingreso
-db_satdem_ing <- db_madre %>%
-  drop_na(ola, grupo_ingreso, in_sat_democracia) %>%
-  mutate(alto = ifelse(in_sat_democracia >= 4, 1, 0)) %>%
-  group_by(ola, grupo_ingreso) %>%
-  summarise(prop = mean(alto, na.rm = TRUE) * 100,
-            n = n(),
-            se = sqrt(prop * (100 - prop) / n)) %>%
-  ungroup()
+ingreso_seg <- ingreso_categ %>% 
+  filter(categoria == "Alto", subdimension == "Seguridad pública") %>%
+  mutate(prop = prop * 100)
 
-ggplot(db_satdem_ing, aes(x = ola, y = prop, color = grupo_ingreso, group = grupo_ingreso)) +
-  geom_line(size = 1) + geom_point() +
-  geom_errorbar(aes(ymin = prop - se, ymax = prop + se), width = 0.1, alpha = 0.5) +
-  labs(title = "Satisfacción alta con la democracia por ingreso", 
-       x = "Ola", y = "% con satisfacción alta (4-5)", color = "Ingreso") +
+p4 <- ggplot(ingreso_seg, aes(x = ola, y = prop, color = grupo_ingreso, group = grupo_ingreso)) +
+  geom_line(size = 1.5) + 
+  geom_point(size = 2) +
+  labs(title = "Seguridad alta por ingreso", 
+       x = "Ola", y = "% con seguridad alta (4-5)", color = "Ingreso",
+       caption = "Fuente: ELSOC (2016-2023)") +
   theme_minimal(base_size = 14)
 
 # b) Por nivel educativo
-db_satdem_edu <- db_madre %>%
-  drop_na(ola, educacion, in_sat_democracia) %>%
-  mutate(alto = ifelse(in_sat_democracia >= 4, 1, 0)) %>%
-  group_by(ola, educacion) %>%
-  summarise(prop = mean(alto, na.rm = TRUE) * 100,
-            n = n(),
-            se = sqrt(prop * (100 - prop) / n)) %>%
-  ungroup()
+cine_seg <- cine_categ %>% 
+  filter(categoria == "Alto", subdimension == "Seguridad pública") %>%
+  mutate(prop = prop * 100)
 
-ggplot(db_satdem_edu, aes(x = ola, y = prop, color = educacion, group = educacion)) +
-  geom_line(size = 1) + geom_point() +
-  geom_errorbar(aes(ymin = prop - se, ymax = prop + se), width = 0.1, alpha = 0.5) +
-  labs(title = "Satisfacción alta con la democracia por nivel educativo", 
-       x = "Ola", y = "% con satisfacción alta (4-5)", color = "Educación") +
+p5 <- ggplot(cine_seg, aes(x = ola, y = prop, color = cine, group = cine)) +
+  geom_line(size = 1.5) + 
+  geom_point(size = 2) +
+  labs(title = "Seguridad alta por educación", 
+       x = "Ola", y = "% con seguridad alta (4-5)", color = "Educación", caption = "Fuente: ELSOC (2016-2023)") +
   theme_minimal(base_size = 14)
 
-# c) Por ideología
-db_satdem_ideo <- db_madre %>%
-  drop_na(ola, ideologia, in_sat_democracia) %>%
-  mutate(alto = ifelse(in_sat_democracia >= 4, 1, 0)) %>%
-  group_by(ola, ideologia) %>%
-  summarise(prop = mean(alto, na.rm = TRUE) * 100,
-            n = n(),
-            se = sqrt(prop * (100 - prop) / n)) %>%
-  ungroup()
-
-ggplot(db_satdem_ideo, aes(x = ola, y = prop, color = ideologia, group = ideologia)) +
-  geom_line(size = 1) + geom_point() +
-  geom_errorbar(aes(ymin = prop - se, ymax = prop + se), width = 0.1, alpha = 0.5) +
-  labs(title = "Satisfacción alta con la democracia por ideología", 
-       x = "Ola", y = "% con satisfacción alta (4-5)", color = "Ideología") +
-  theme_minimal(base_size = 14)
+print(p4)
+print(p5)
 
 ```
 
+Las trayectorias de percepción de seguridad alta presentan un patrón de convergencia-divergencia temporal. Entre 2016 y 2018, los tres grupos de ingreso muestran una notable convergencia, con todos experimentando incrementos desde niveles iniciales diferenciados (40% de menores ingresos en ~39%, 50% intermedios en ~41%, y 10% mayores ingresos en ~49%) hasta alcanzar peaks cercanos entre sí alrededor de 2019 (~47-50% para bajos, ~57% para medios, y ~61% para altos). Posterior a 2019, se observa una caída generalizada pero diferenciada, con el grupo de mayores ingresos manteniéndose consistentemente por encima (llegando a ~61% en 2023), seguido por ingresos medios (~52%), y menores ingresos (~43%). Esta estratificación sugiere que, si bien la percepción de seguridad mejoró para todos durante el período 2016-2019, las diferencias estructurales por nivel socioeconómico se mantienen e incluso se amplían en el período post-estallido.
 
-```{r}
-#| label: fig-seg
-#| echo: false
-#| warning: false
-#| message: false
+Ambos indicadores —confianza institucional y seguridad pública— muestran el año 2019 como momento crítico de cambio. Sin embargo, mientras la confianza institucional experimenta caídas dramáticas con recuperaciones diferenciadas, la seguridad pública muestra dinámicas más graduales. La estratificación por nivel socioeconómico y educativo es consistente en ambas dimensiones, sugiriendo que las experiencias de cohesión vertical están fuertemente condicionadas por la posición social. Los sectores más aventajados (mayores ingresos, educación universitaria) no solo parten de niveles más altos, sino que también muestran mayor capacidad de recuperación post-crisis, evidenciando una experiencia diferenciada de la cohesión social en Chile.
 
-# 3. Seguridad pública (subjetiva)
-# a) Por grupo de ingreso
-db_segpub_ing <- db_madre %>%
-  drop_na(ola, grupo_ingreso, di_seguridad_pub) %>%
-  group_by(ola, grupo_ingreso) %>%
-  summarise(media = mean(di_seguridad_pub),
-            se = sd(di_seguridad_pub) / sqrt(n())) %>%
-  ungroup()
 
-ggplot(db_segpub_ing, aes(x = ola, y = media, color = grupo_ingreso, group = grupo_ingreso)) +
-  geom_line(size = 1) + geom_point() +
-  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
-  labs(title = "Seguridad pública por ingreso", x = "Ola", y = "Promedio", color = "Ingreso") +
-  theme_minimal(base_size = 14)
-
-# b) Por nivel educativo
-db_segpub_edu <- db_madre %>%
-  drop_na(ola, educacion, di_seguridad_pub) %>%
-  group_by(ola, educacion) %>%
-  summarise(media = mean(di_seguridad_pub),
-            se = sd(di_seguridad_pub) / sqrt(n())) %>%
-  ungroup()
-
-ggplot(db_segpub_edu, aes(x = ola, y = media, color = educacion, group = educacion)) +
-  geom_line(size = 1) + geom_point() +
-  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
-  labs(title = "Seguridad pública por nivel educativo", x = "Ola", y = "Promedio", color = "Educación") +
-  theme_minimal(base_size = 14)
-
-# c) Por ideología
-db_segpub_ideo <- db_madre %>%
-  drop_na(ola, ideologia, di_seguridad_pub) %>%
-  group_by(ola, ideologia) %>%
-  summarise(media = mean(di_seguridad_pub),
-            se = sd(di_seguridad_pub) / sqrt(n())) %>%
-  ungroup()
-
-ggplot(db_segpub_ideo, aes(x = ola, y = media, color = ideologia, group = ideologia)) +
-  geom_line(size = 1) + geom_point() +
-  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.1, alpha = 0.5) +
-  labs(title = "Seguridad pública por ideología", x = "Ola", y = "Promedio", color = "Ideología") +
-  theme_minimal(base_size = 14)
-```
