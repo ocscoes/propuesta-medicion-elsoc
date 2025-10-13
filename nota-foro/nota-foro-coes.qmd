@@ -241,3 +241,16 @@ Las trayectorias de percepción de seguridad alta presentan un patrón de conver
 Ambos indicadores —confianza institucional y seguridad pública— muestran el año 2019 como momento crítico de cambio. Sin embargo, mientras la confianza institucional experimenta caídas dramáticas con recuperaciones diferenciadas, la seguridad pública muestra dinámicas más graduales. La estratificación por nivel socioeconómico y educativo es consistente en ambas dimensiones, sugiriendo que las experiencias de cohesión vertical están fuertemente condicionadas por la posición social. Los sectores más aventajados (mayores ingresos, educación universitaria) no solo parten de niveles más altos, sino que también muestran mayor capacidad de recuperación post-crisis, evidenciando una experiencia diferenciada de la cohesión social en Chile.
 
 
+# A modo de cierre
+
+La nueva propuesta presentada por el OCS, permite avanzar hacia una medición más precisa y útil de la cohesión social en Chile, coherente con un marco minimalista que distingue nítidamente entre dimensiones horizontales y verticales, y entre condiciones objetivas, percepciones subjetivas, prácticas y orientaciones normativas. 
+
+Esto permite aprovechar las capacidades de ELSOC para el seguimiento y la identificación de brechasn en las áreas de cohesión. Este diseño no solo integra aprendizajes de propuestas previas, sino que incorpora innovaciones sustantivas (autonomía de la seguridad, tipología de solidaridades, especificación institucional, e incorporación explícita de orientaciones autoritarias) que fortalecen el valor analítico y comparativo del enfoque.
+
+Los resultados empíricos muestran que 2019 constituyó un punto de inflexión en la cohesión vertical, con caídas abruptas en la confianza institucional y trayectorias de recuperación desiguales, mientras que la seguridad pública siguió un patrón más gradual. De manera consistente, observamos una estratificación por ingresos y educación: los grupos más aventajados parten de niveles más altos y se recuperan con mayor fuerza, sugiriendo que la experiencia de la cohesión social es diferencial en el país. E
+
+Estas evidencias refuerzan la necesidad de un monitoreo continuo y sensible a crisis, y de políticas focalizadas por territorio y grupo social que, en paralelo, fortalezcan la confianza institucional y mejoren condiciones de seguridad con estrategias diferenciadas. Próximos pasos incluyen validar invarianza de medición en el tiempo y entre grupos, consolidar series comparables, y traducir estos indicadores en herramientas de seguimiento para el debate público y la evaluación de políticas. 
+
+Esto constituye un paso para mantener en actualización permanente el sistema de medición para aportar evidencia rigurosa y oportuna a la discusión sobre cohesión social en Chile.
+
+
