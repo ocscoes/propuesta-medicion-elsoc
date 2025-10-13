@@ -50,7 +50,7 @@ La propuesta OCS-ELSOC representa un avance sustantivo en la medición de cohesi
 
 Esta arquitectura integra condiciones objetivas, percepciones subjetivas, prácticas sociales y orientaciones normativas, manteniendo coherencia con el marco minimalista de Chan et al. (2006) mientras aprovecha las posibilidades que ofrece ELSOC para una medición comprehensiva de la cohesión social en Chile.
 
-# Cohesión Social en tiempos de desafección en Chile: Un análisis con una propuesta desde ELSOC
+# Un análisis desde la nueva propuesta de medición ELSOC
 
 Con la nueva propuesta de medición, presentamos un análisis empírico con ELSOC que aplica los indicadores, evalúa su estructura factorial y describe su variación en el tiempo y entre grupos sociales. Este ejercicio busca validar la propuesta teórica, identificar tendencias de la cohesión social en Chile y aportar evidencia sobre las dinámicas de la cohesión horizontal (vínculos entre personas y territorio) y vertical (relación ciudadano–instituciones). En conjunto, los resultados permiten confirmar la pertinencia del enfoque y generar conocimiento sustantivo sobre el estado y la evolución de la cohesión social en el período cubierto por ELSOC.
 
