@@ -138,7 +138,7 @@ rm(list = ls())
 
 # 2. Data -----------------------------------------------------------------
 
-load(file = here("data/proc_data/bivariados_long_categoricos.RData"))
+load(file = here("input/data/proc_data/bivariados_long_categoricos.RData"))
 ```
 
 
