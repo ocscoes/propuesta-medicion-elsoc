@@ -94,7 +94,7 @@ load(file = here("input/data/proc_data/bivariados_long_categoricos.RData"))
 Los gráficos de confianza en instituciones políticas revelan patrones diferenciados según las variables sociodemográficas analizadas:
 
 ```{r}
-#| label: fig-confianza-inst-pol
+#| label: fig-conf-inst-pol
 #| fig-cap: "Porcentaje de personas que confían altamente en instituciones políticas"
 #| echo: false
 #| warning: false
@@ -177,7 +177,7 @@ Se observa una marcada estratificación socioeconómica. Los grupos de mayores i
 Los gráficos de seguridad alta (evaluaciones 4-5 en la escala) muestran dinámicas distintas pero igualmente reveladoras:
 
 ```{r}
-#| label: fig-seguridad-publica
+#| label: fig-seg-pub
 #| fig-cap: "Porcentaje de personas que sienten un alto nivel de seguridad pública"
 #| echo: false
 #| warning: false
