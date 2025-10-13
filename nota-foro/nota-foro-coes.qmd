@@ -14,27 +14,12 @@ editor_options:
 execute:
   freeze: auto  # re-render only when source changes
 ---
-# Marco Conceptual
+# Alcances de la Nota
 
-El Observatorio de Cohesión Social (OCS-COES) ha avanzado hacia una definición del concepto de cohesión social basada en Chan et al. (2006), con un enfoque bidimensional: Cohesión Horizontal (relaciones entre individuos y grupos) y Cohesión Vertical (interacciones entre individuos e instituciones).
+La cohesión social es clave para la vida colectiva y para orientar políticas públicas, pero su medición ha sido fragmentaria. El Observatorio de Cohesión Social (OCS) propone un marco minimalista, siguiendo a Chan et al. (2006), que distingue entre cohesión horizontal (vínculos entre personas y territorios) y cohesión vertical (vínculos con las instituciones), operacionalizable con datos de la Encuesta Longitudinal Social de Chile (ELSOC). Tres antecedentes orientan y complementan esta propuesta: las comparaciones regionales del Visualizador de América Latina (OCS-COES, 2025); las propuestas nacionales basadas en ELSOC, como la de Castillo, Iturra y Carrasco (2021); y la Radiografía de la Cohesión de COES (2024).
 
-Esta definición minimalista responde críticamente a aproximaciones previas que tendían a confundir los contenidos de la cohesión social con sus condiciones externas, tales como la pobreza, la igualdad de oportunidades o la tolerancia. El enfoque adoptado permite precisar los elementos constitutivos de la cohesión sin diluir su valor analítico, estableciendo una distinción clara entre componentes subjetivos (actitudes y percepciones) y objetivos (comportamientos y prácticas observables).
+Este reporte presenta la nueva propuesta del OCS para medir la cohesión social. Su valor agregado radica en la autonomía de la seguridad como dimensión, una tipología explícita de solidaridades, la especificación del ámbito institucional y la integración de prácticas y actitudes, mejorando la comparabilidad y el seguimiento longitudinal. Con este marco, ofrecemos análisis que validan la estructura propuesta y muestran brechas y trayectorias por grupo social.
 
-# Antecedentes de Medición
-
-El equipo del OCS ha desarrollado dos propuestas previas de medición de cohesión social que constituyen los antecedentes directos de la nueva aproximación presentada en este documento.
-
-## Vis-Latam: Medición Regional Comparativa
-
-La primera iniciativa del OCS, orientada a la comparación entre países de América Latina, utilizó datos de encuestas internacionales (LAPOP/WVS/Latinobarómetro) para construir indicadores de cohesión horizontal (confianza interpersonal y seguridad pública) y cohesión vertical (confianza institucional, actitudes democráticas y justicia distributiva). Esta propuesta estableció una línea base regional, aunque enfrentó limitaciones propias de fuentes no diseñadas específicamente para medir cohesión social.
-
-## Castillo, Iturra y Carrasco (2021): Una primera propuesta nacional desde ELSOC
-
-La propuesta de Castillo et al. (2021) aprovechó la riqueza de ELSOC para desarrollar una medición comprehensiva específica para Chile. Organizó la cohesión horizontal en sentido de pertenencia, confianza social, cohesión barrial y participación prosocial; mientras que la cohesión vertical incluyó confianza institucional, participación política y justicia distributiva. Esta aproximación incorporó la distinción entre indicadores subjetivos (actitudes) y objetivos (prácticas), estableciendo un marco más robusto para el análisis longitudinal.
-
-## Diferencias y Continuidades
-
-Ambas propuestas comparten el marco bidimensional horizontal-vertical y el enfoque minimalista, pero difieren en granularidad analítica y estructura factorial. La versión regional priorizó la comparabilidad internacional, mientras que la propuesta ELSOC privilegió la especificidad del contexto chileno. Estas diferencias reflejan tanto las posibilidades y limitaciones de cada fuente de datos como las decisiones metodológicas orientadas por objetivos analíticos distintos.
 
 # Nueva Propuesta de medición con ELSOC
 
@@ -43,43 +28,8 @@ Ambas propuestas comparten el marco bidimensional horizontal-vertical y el enfoq
 
 La nueva propuesta del OCS integra y expande las mediciones previas con innovaciones que permiten capturar con mayor precisión las dinámicas de cohesión en Chile, manteniendo coherencia con el marco minimalista bidimensional.
 
-## Cohesión Horizontal
+En este sentido, la propuesta organiza la cohesión social en dos planos. En lo horizontal, distingue tres áreas: seguridad (objetiva y subjetiva), vínculos territoriales (pertenencia e identificación vs. satisfacción barrial) y redes sociales (confianza interpersonal, prosocialidad y ayuda económica). En lo vertical, define cuatro áreas: confianza en instituciones políticas; prácticas y actitudes políticas (participación, autoeficacia e interés); preferencias por sistema político (autoritarismo vs. democracia); y justicia distributiva (rol del mercado en derechos). 
 
-La dimensión horizontal se estructura en tres áreas que integran condiciones objetivas, percepciones subjetivas y prácticas sociales:
-
-### Seguridad
-
-Reconoce la seguridad como dimensión autónoma, distinguiendo entre **seguridad objetiva** (frecuencia de peleas callejeras y robos/asaltos en el barrio) y **seguridad subjetiva** (percepción de tráfico de drogas, satisfacción con la seguridad barrial y sensación personal de seguridad). Esta distinción permite observar tanto la realidad material del entorno como la experiencia vivida de los residentes.
-
-
-### Vínculos Territoriales
-
-Distingue analíticamente entre **pertenencia al barrio** (considerarlo ideal, sentirse integrado, identificarse con la gente y percibir el barrio como parte de la identidad) y **satisfacción con el barrio** (facilidad para hacer amigos, percepción de sociabilidad, cordialidad y colaboración vecinal). Esta separación permite observar que los vínculos identitarios y la evaluación de las relaciones sociales pueden no coincidir, capturando aspectos complementarios de la cohesión territorial.
-
-### Redes Sociales
-
-Reorganiza la medición diferenciando tres tipos de solidaridad social: **confianza interpersonal** (confianza social generalizada y altruismo social), **comportamiento prosocial** (asistencia a reuniones comunitarias y voluntariado) y **ayuda económica** (prestar dinero y ayudar a conseguir trabajo). Esta estructura reconoce que son formas distintas de solidaridad que pueden no correlacionar perfectamente entre sí.
-
-## Cohesión Vertical
-
-La dimensión vertical se reorganiza en cuatro áreas que capturan las múltiples facetas de la relación ciudadano-instituciones:
-
-### Confianza en Instituciones
-
-Focaliza en la **confianza en instituciones políticas**, integrando confianza en el gobierno, congreso nacional y partidos políticos como expresión de la confianza en el sistema democrático-representativo.
-
-
-### Prácticas y Actitudes Políticas
-
-Integra **participación política** (firmas, marchas, huelgas, uso de redes sociales), **autoeficacia política** (percepción del voto como deber, influencia y expresión) e **interés político** (declarado, conversacional y informativo) en una dimensión que reconoce la interdependencia entre prácticas ciudadanas, percepciones de eficacia y compromiso subjetivo con lo político.
-
-### Preferencias por Sistema Político
-
-Distingue entre **preferencias autoritarias** (gobierno firme, mandatario fuerte, obediencia y disciplina) y **actitudes hacia la democracia** (satisfacción con el funcionamiento democrático). Esta distinción permite observar tensiones y ambivalencias en las orientaciones políticas, donde pueden coexistir insatisfacción democrática y rechazo al autoritarismo.
-
-### Justicia Distributiva
-
-Se enfoca en preferencias sobre el rol del mercado en derechos fundamentales, midiendo el acuerdo con que quien tiene más dinero acceda a mejores pensiones, educación y salud. Esta aproximación captura directamente las orientaciones normativas sobre justicia distributiva en áreas centrales del debate público chileno.
 
 # Valor Agregado de la Nueva Propuesta
 
@@ -102,11 +52,7 @@ Esta arquitectura integra condiciones objetivas, percepciones subjetivas, práct
 
 # Cohesión Social en tiempos de desafección en Chile: Un análisis con una propuesta desde ELSOC
 
-Teniendo esta nueva propuesta de medición de cohesión social, se presentaun análisis empírico de los datos con ELSOC para examinar cómo se comportan estas dimensiones en la realidad chilena. 
-
-En este apartado, se verá la aplicación práctica de los indicadores desarrollados, explorando tanto la estructura factorial de las dimensiones propuestas como sus patrones de variación a lo largo del tiempo y entre diferentes grupos sociales. Los análisis que siguen buscan validar empíricamente la propuesta teórica presentada, identificar tendencias en la cohesión social chilena, y proporcionar evidencia sobre las dinámicas específicas que caracterizan tanto la cohesión horizontal (vínculos entre personas y con el territorio) como la cohesión vertical (relaciones ciudadano-instituciones) en el contexto nacional. 
-
-A través de estos análisis, se pretende no solo confirmar la pertinencia de la propuesta de medición, sino también generar conocimiento sustantivo sobre el estado y evolución de la cohesión social en Chile durante el período cubierto por ELSOC.
+Con la nueva propuesta de medición, presentamos un análisis empírico con ELSOC que aplica los indicadores, evalúa su estructura factorial y describe su variación en el tiempo y entre grupos sociales. Este ejercicio busca validar la propuesta teórica, identificar tendencias de la cohesión social en Chile y aportar evidencia sobre las dinámicas de la cohesión horizontal (vínculos entre personas y territorio) y vertical (relación ciudadano–instituciones). En conjunto, los resultados permiten confirmar la pertinencia del enfoque y generar conocimiento sustantivo sobre el estado y la evolución de la cohesión social en el período cubierto por ELSOC.
 
 ```{r}
 #| echo: false
@@ -243,14 +189,8 @@ Ambos indicadores —confianza institucional y seguridad pública— muestran el
 
 # A modo de cierre
 
-La nueva propuesta presentada por el OCS, permite avanzar hacia una medición más precisa y útil de la cohesión social en Chile, coherente con un marco minimalista que distingue nítidamente entre dimensiones horizontales y verticales, y entre condiciones objetivas, percepciones subjetivas, prácticas y orientaciones normativas. 
+Esta nueva propuesta del OCS ofrece una medición más precisa y útil de la cohesión social en Chile, alineada con un marco minimalista que diferencia con claridad entre cohesión horizontal y vertical, y entre condiciones objetivas, percepciones, prácticas y orientaciones normativas. Al aprovechar las capacidades longitudinales de ELSOC e integrar aprendizajes previos, incorpora innovaciones sustantivas —autonomía de la seguridad, tipología de solidaridades, especificación institucional e inclusión de orientaciones autoritarias— que fortalecen el valor analítico y comparativo. Los resultados empíricos confirman 2019 como punto de quiebre en la cohesión vertical, con recuperaciones heterogéneas, y muestran que la seguridad evoluciona de forma más gradual. Además, la estratificación por ingresos y educación sugiere experiencias diferenciadas de cohesión, con ventajas sistemáticas para los grupos de mayor estatus.
 
-Esto permite aprovechar las capacidades de ELSOC para el seguimiento y la identificación de brechasn en las áreas de cohesión. Este diseño no solo integra aprendizajes de propuestas previas, sino que incorpora innovaciones sustantivas (autonomía de la seguridad, tipología de solidaridades, especificación institucional, e incorporación explícita de orientaciones autoritarias) que fortalecen el valor analítico y comparativo del enfoque.
-
-Los resultados empíricos muestran que 2019 constituyó un punto de inflexión en la cohesión vertical, con caídas abruptas en la confianza institucional y trayectorias de recuperación desiguales, mientras que la seguridad pública siguió un patrón más gradual. De manera consistente, observamos una estratificación por ingresos y educación: los grupos más aventajados parten de niveles más altos y se recuperan con mayor fuerza, sugiriendo que la experiencia de la cohesión social es diferencial en el país. E
-
-Estas evidencias refuerzan la necesidad de un monitoreo continuo y sensible a crisis, y de políticas focalizadas por territorio y grupo social que, en paralelo, fortalezcan la confianza institucional y mejoren condiciones de seguridad con estrategias diferenciadas. Próximos pasos incluyen validar invarianza de medición en el tiempo y entre grupos, consolidar series comparables, y traducir estos indicadores en herramientas de seguimiento para el debate público y la evaluación de políticas. 
-
-Esto constituye un paso para mantener en actualización permanente el sistema de medición para aportar evidencia rigurosa y oportuna a la discusión sobre cohesión social en Chile.
+Estas evidencias refuerzan la necesidad de un monitoreo continuo a los principales puntos sensibles de la cohesión, en paralelo, reconstruyan confianza institucional y mejoren condiciones de seguridad con estrategias diferenciadas. Los próximos pasos incluyen evaluar invarianza de medición en el tiempo y entre grupos, consolidar series comparables y traducir los indicadores en herramientas de seguimiento (tableros, alertas tempranas) para el debate público y la evaluación de políticas. Con ello, el sistema de medición podrá actualizarse de forma permanente y aportar evidencia rigurosa y oportuna sobre la evolución de la cohesión social en Chile.
 
 
