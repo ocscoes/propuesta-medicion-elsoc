@@ -1,9 +1,4 @@
----
-title: "Cohesión social vertical"
-format: html
-editor: visual
-code-fold: true
----
+# Cohesión social vertical {#vertical}
 
 ```{r}
 #| label: setup
@@ -20,7 +15,7 @@ options(knitr.kable.NA = "")
 
 ## Antecedentes
 
-A partir de una necesidad de aclarar una definición de cohesión social, Chan et al (2006) proponen un marco analítico minimalista con un enfoque bidimensional para la comprensión y medición de este concepto. El área horizontal fue explicada el [capítulo anterior](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-elsoc/docs/02-cohesion-horiz.html), mientras que el área vertical de la cohesión social alude a capturar las interacciones entre individuos e instituciones y/o aparatos supraindividuales de la sociedad.
+A partir de una necesidad de aclarar una definición de cohesión social, @chan_reconsidering_2006 proponen un marco analítico minimalista con un enfoque bidimensional para la comprensión y medición de este concepto. El área horizontal fue explicada el [capítulo anterior](https://ocscoes.github.io/propuesta-medicion-elsoc/output/book-cohesion-elsoc/docs/02-cohesion-horiz.html), mientras que el área vertical de la cohesión social alude a capturar las interacciones entre individuos e instituciones y/o aparatos supraindividuales de la sociedad.
 
 En cuanto a su operacionalización, esta área posee dos componentes: el subjetivo y el objetivo. El primero refiere a las actitudes de los sujetos, expresado en la confianza hacia instituciones de la sociedad, o bien en la confianza en figuras públicas. El segundo componente apunta a las manifestaciones conductuales de las personas, abordando distintos planos de la participación política, tales como el voto o la pertenencia a agrupaciones políticas. De esta manera, la cohesión vertical adquiere una operacionalización pertinente, permitiendo estudiar empíricamente las dinámicas entre los individuos y las diversas instituciones de la sociedad.
 
@@ -36,7 +31,7 @@ En cuanto a su operacionalización, esta área posee dos componentes: el subjeti
 knitr::include_graphics('images/ocs-la.png')
 ```
 
-En momentos anteriores, el [Observatorio de Cohesión Social (OCS)](https://ocs-coes.com) ya ha concentrado sus esfuerzos en proponer un marco analítico de cohesión social vertical en base a lo planteado por Chan et al. (2006), pero con una pretensión en el estudio de América Latina. Para ello, se utilizó la base de datos LAPOP y Latinobarómetro para construir la propuesta presentada en la @fig-ocs-la. Conceptualmente, este esquema se conforma mediante tres dimensiones: Confianza en instituciones, actitudes hacia la democracia y justicia distributiva.
+En momentos anteriores, el [Observatorio de Cohesión Social (OCS)](https://ocs-coes.com) ya ha concentrado sus esfuerzos en proponer un marco analítico de cohesión social vertical en base a lo planteado por @chan_reconsidering_2006, pero con una pretensión en el estudio de América Latina. Para ello, se utilizó la base de datos LAPOP y Latinobarómetro para construir la propuesta presentada en la @fig-ocs-la. Conceptualmente, este esquema se conforma mediante tres dimensiones: Confianza en instituciones, actitudes hacia la democracia y justicia distributiva.
 
 En la @fig-ocs-la se puede apreciar que la confianza en las instituciones ocupa un papel fundamental en la propuesta, incorporando algunos de los organismos más relevantes en el funcionamiento de la sociedad. En suma, confianza en instituciones mide el grado de fiabilidad que sienten las personas respecto al congreso, al poder judicial y a los partidos políticos.
 
@@ -44,7 +39,7 @@ Actitudes hacia la democracia aborda los elementos subjetivos que dan cuenta de 
 
 Por último, justicia distributiva apunta a las preferencias en cuanto a la repartición de bienes entre los integrantes de la sociedad. Esto se mide a través del grado de acuerdo con la idea de que los ingresos deberían ser redistribuidos igualitariamente en la sociedad.
 
-### Esquema de cohesión vertical Castillo et al. (2021)
+### Esquema de cohesión vertical @castillo_hacia_2021
 
 ```{r}
 #| label: tbl-propuesta-antigua
@@ -120,7 +115,7 @@ tabla_principal <- datos_formateados %>%
 tabla_principal
 ```
 
-El otro trabajo que representa un antecedente fundamental en la medición de la cohesión social es la propuesta realizada por Castillo et al. (2021) con los datos del [Estudio Longitudinal Social de Chile (ELSOC)](https://conferencias.coes.cl/encuesta-panel). La @tbl-propuesta-antigua contiene la operacionalización de las _*dimensiones*_ y los indicadores que componen cada una de ellas.
+El otro trabajo que representa un antecedente fundamental en la medición de la cohesión social es la propuesta realizada por @castillo_hacia_2021 con los datos del [Estudio Longitudinal Social de Chile (ELSOC)](https://conferencias.coes.cl/encuesta-panel). La @tbl-propuesta-antigua contiene la operacionalización de las _*dimensiones*_ y los indicadores que componen cada una de ellas.
 
 La primera dimensión es "**Confianza en instituciones y satisfacción con la democracia**". Una parte de este constructo se encarga de medir el grado de confianza de un individuo con distintos tipos de instituciones, considerando instituciones políticas (como el congreso y el gobierno), instituciones de orden (como carabineros) e incluso empresas privadas, lo que da cuenta del carácter integral al momento de operacionalizar el concepto de institución, tomando en cuenta tanto organismos públicos como privados. Además, dentro de esta dimensión también se mide la satisfacción con la democracia en el país, consultándose "*¿Cuán satisfecho o insatisfecho está usted con el funcionamiento de la democracia en Chile?*". Si bien, solamente se utiliza un indicador para ello, es sumamente importante abordar el componente afectivo de los individuos respecto al sistema político, pues puede comprenderse como un indicador más general que confianza en instituciones en tanto estas organizaciones se enmarcan en el funcionamiento de la democracia.
 

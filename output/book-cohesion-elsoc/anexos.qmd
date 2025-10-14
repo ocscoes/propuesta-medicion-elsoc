@@ -76,7 +76,7 @@ participacion =~ firma_peticion + asiste_marcha + part_huelga + opinion_rrss
 autoeficacia =~ voto_deber + voto_influye + voto_expresion
 interes =~ interes_politica + hablar_politica + infopolitica_medios
 pol =~ participacion + autoeficacia + interes
-horizontal =~ inst_politica + pol + preferencias_sis_pol + justicia
+vertical =~ inst_politica + pol + preferencias_sis_pol + justicia
 '
 ```
 
@@ -89,7 +89,7 @@ vertical_cfa <- cfa(model = vertical_m,
                      std.lv = FALSE)
 
 cat("RESUMEN DEL MODELO CFA")
-indices <- fitmeasures(pref_cfa, c("rmsea", "cfi", "tli"))
+indices <- fitmeasures(vertical_cfa, c("rmsea", "cfi", "tli"))
 cat("RMSEA =", round(indices["rmsea"], 3), "\n")
 cat("CFI =", round(indices["cfi"], 3), "\n")
 cat("TLI =", round(indices["tli"], 3), "\n\n")
