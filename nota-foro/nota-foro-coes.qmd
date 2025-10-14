@@ -31,7 +31,8 @@ pacman::p_load(tidyverse,
                SciViews,
                naniar,
                readxl,
-               sjPlot)
+               sjPlot,
+               ggbreak)
 
 
 options(scipen=999)
@@ -101,13 +102,13 @@ p4 <- ggplot(ingreso_seg, aes(x = ola, y = prop, color = grupo_ingreso, group = 
   geom_line(linewidth = 1.5) + 
   geom_point(size = 3) +
   scale_color_manual(values = colores_coes) +
-  scale_y_continuous(limits = c(0, 100), 
-                     breaks = c(0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100),
-                     minor_breaks = seq(0, 100, 5),
+  scale_y_continuous(breaks = seq(65, 100, 5),
                      labels = function(x) paste0(x, "%"),
-                     expand = expansion(mult = c(0, 0.02))) +
+                     expand = expansion(mult = c(0.02, 0.02))) +
   scale_x_continuous(breaks = unique(ingreso_seg$ola),
                      expand = expansion(mult = c(0.02, 0.02))) +
+  coord_cartesian(ylim = c(65, 100), clip = "off") +
+  annotate("text", x = 2015.5, y = 64, label = "0%", size = 3.5, color = "gray40", hjust = 1) +
   labs(title = "Porcentaje de personas con alta percepción de seguridad según ingresos", 
        x = NULL,
        y = "% con seguridad alta (3-5)", 
@@ -120,8 +121,7 @@ p4 <- ggplot(ingreso_seg, aes(x = ola, y = prop, color = grupo_ingreso, group = 
         legend.text = element_text(size = 11),
         plot.margin = margin(2, 2, 2, 2),
         legend.margin = margin(0, 0, 0, 0),
-        legend.box.margin = margin(0, 0, 0, 0),
-        panel.grid.minor = element_line(color = "gray90", linewidth = 0.3))
+        legend.box.margin = margin(0, 0, 0, 0))
 
 # b) Por nivel educativo
 cine_seg <- cine_categ %>% 
@@ -138,13 +138,13 @@ p5 <- ggplot(cine_seg, aes(x = ola, y = prop, color = cine, group = cine)) +
   geom_line(linewidth = 1.5) + 
   geom_point(size = 3) +
   scale_color_manual(values = colores_coes) +
-  scale_y_continuous(limits = c(0, 100), 
-                     breaks = c(0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100),
-                     minor_breaks = seq(0, 100, 5),
+  scale_y_continuous(breaks = seq(65, 100, 5),
                      labels = function(x) paste0(x, "%"),
-                     expand = expansion(mult = c(0, 0.02))) +
+                     expand = expansion(mult = c(0.02, 0.02))) +
   scale_x_continuous(breaks = unique(cine_seg$ola),
                      expand = expansion(mult = c(0.02, 0.02))) +
+  coord_cartesian(ylim = c(65, 100), clip = "off") +
+  annotate("text", x = 2015.5, y = 64, label = "0%", size = 3.5, color = "gray40", hjust = 1) +
   labs(title = "Porcentaje de personas con alta percepción de seguridad según educación", 
        x = NULL,
        y = "% con seguridad alta (3-5)", 
@@ -157,8 +157,7 @@ p5 <- ggplot(cine_seg, aes(x = ola, y = prop, color = cine, group = cine)) +
         legend.text = element_text(size = 11),
         plot.margin = margin(2, 2, 2, 2),
         legend.margin = margin(0, 0, 0, 0),
-        legend.box.margin = margin(0, 0, 0, 0),
-        panel.grid.minor = element_line(color = "gray90", linewidth = 0.3))
+        legend.box.margin = margin(0, 0, 0, 0))
 
 print(p4)
 print(p5)
@@ -201,13 +200,13 @@ p1 <- ggplot(ingreso_conf, aes(x = ola, y = prop, color = grupo_ingreso, group =
   geom_line(linewidth = 1.5) + 
   geom_point(size = 3) +
   scale_color_manual(values = colores_coes) +
-  scale_y_continuous(limits = c(0, 100), 
-                     breaks = c(0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100),
-                     minor_breaks = seq(0, 100, 5),
+  scale_y_continuous(breaks = seq(0, 30, 5),
                      labels = function(x) paste0(x, "%"),
-                     expand = expansion(mult = c(0, 0.02))) +
+                     expand = expansion(mult = c(0.02, 0.02))) +
   scale_x_continuous(breaks = unique(ingreso_conf$ola),
                      expand = expansion(mult = c(0.02, 0.02))) +
+  coord_cartesian(ylim = c(0, 30), clip = "off") +
+  annotate("text", x = 2015.5, y = 31, label = "100%", size = 3.5, color = "gray40", hjust = 1) +
   labs(title = "Porcentaje de personas que confían altamente en instituciones políticas según ingresos", 
        x = NULL, 
        y = "% con confianza alta (3-5)", 
@@ -220,8 +219,7 @@ p1 <- ggplot(ingreso_conf, aes(x = ola, y = prop, color = grupo_ingreso, group =
         legend.text = element_text(size = 11),
         plot.margin = margin(2, 2, 2, 2),
         legend.margin = margin(0, 0, 0, 0),
-        legend.box.margin = margin(0, 0, 0, 0),
-        panel.grid.minor = element_line(color = "gray90", linewidth = 0.3))
+        legend.box.margin = margin(0, 0, 0, 0))
 
 # b) Por nivel educativo
 cine_conf <- cine_categ %>% 
@@ -238,13 +236,13 @@ p2 <- ggplot(cine_conf, aes(x = ola, y = prop, color = cine, group = cine)) +
   geom_line(linewidth = 1.5) + 
   geom_point(size = 3) +
   scale_color_manual(values = colores_coes) +
-  scale_y_continuous(limits = c(0, 100), 
-                     breaks = c(0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100),
-                     minor_breaks = seq(0, 100, 5),
+  scale_y_continuous(breaks = seq(0, 30, 5),
                      labels = function(x) paste0(x, "%"),
-                     expand = expansion(mult = c(0, 0.02))) +
+                     expand = expansion(mult = c(0.02, 0.02))) +
   scale_x_continuous(breaks = unique(cine_conf$ola),
                      expand = expansion(mult = c(0.02, 0.02))) +
+  coord_cartesian(ylim = c(0, 30), clip = "off") +
+  annotate("text", x = 2015.5, y = 31, label = "100%", size = 3.5, color = "gray40", hjust = 1) +
   labs(title = "Porcentaje de personas que confían altamente en instituciones políticas según educación", 
        x = NULL,
        y = "% con confianza alta (3-5)", 
@@ -257,8 +255,7 @@ p2 <- ggplot(cine_conf, aes(x = ola, y = prop, color = cine, group = cine)) +
         legend.text = element_text(size = 11),
         plot.margin = margin(2, 2, 2, 2),
         legend.margin = margin(0, 0, 0, 0),
-        legend.box.margin = margin(0, 0, 0, 0),
-        panel.grid.minor = element_line(color = "gray90", linewidth = 0.3))
+        legend.box.margin = margin(0, 0, 0, 0))
 
 print(p1)
 print(p2)
