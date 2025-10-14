@@ -1,4 +1,4 @@
-# Cohesión social horizontal
+# Cohesión social horizontal {#horizontal}
 
 ```{r}
 #| label: setup
@@ -101,7 +101,7 @@ db <- elsoc_long_2016_2023 %>%
 
 ## Antecedentes
 
-El concepto de cohesión social horizontal surge como una respuesta crítica a definiciones previas que tendían a confundir sus contenidos con condiciones externas tales como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a estas limitaciones, Chan et al. (2006) proponen una definición de carácter minimalista, orientada a precisar los elementos constitutivos de la cohesión sin diluir su valor analítico. Desde esta perspectiva, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos en el seno de la sociedad, independientemente de la mediación estatal. En el plano conceptual, esta dimensión abarca la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales, así como el sentido compartido de pertenencia. En el plano operacional, tales componentes se expresan tanto en indicadores subjetivos (confianza interpersonal, disposición a cooperar, identificación con la comunidad) como en indicadores objetivos (participación en asociaciones, voluntariado, donaciones, prácticas de cooperación o existencia de divisiones entre grupos). De este modo, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
+El concepto de cohesión social horizontal surge como una respuesta crítica a definiciones previas que tendían a confundir sus contenidos con condiciones externas tales como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a estas limitaciones @chan_reconsidering_2006 proponen una definición de carácter minimalista, orientada a precisar los elementos constitutivos de la cohesión sin diluir su valor analítico. Desde esta perspectiva, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos en el seno de la sociedad, independientemente de la mediación estatal. En el plano conceptual, esta dimensión abarca la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales, así como el sentido compartido de pertenencia. En el plano operacional, tales componentes se expresan tanto en indicadores subjetivos (confianza interpersonal, disposición a cooperar, identificación con la comunidad) como en indicadores objetivos (participación en asociaciones, voluntariado, donaciones, prácticas de cooperación o existencia de divisiones entre grupos). De este modo, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
 
 ### Esquema de Cohesión Horizontal Latinoamérica (Vis-Latam)
 
@@ -125,7 +125,7 @@ Un segundo componente fundamental es la confianza interpersonal, entendida como 
 
 Este esquema de medición para América Latina integra las dimensiones de seguridad y confianza bajo un enfoque minimalista, orientado a captar de manera precisa los componentes centrales de la cohesión social horizontal.
 
-### Esquema de Cohesión Horizontal Castillo et al. (2021)
+### Esquema de Cohesión Horizontal @castillo_hacia_2021
 
 ```{r}
 #| echo: false
@@ -201,7 +201,7 @@ tabla_principal <- datos_formateados %>%
 tabla_principal
 ```
 
-Otro antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de Castillo et al. (2021). Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la [Encuesta Longitudinal Social de Chile (ELSOC)](https://coes.cl/elsoc/), de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.
+Otro antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de @castillo_hacia_2021. Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la [Encuesta Longitudinal Social de Chile (ELSOC)](https://coes.cl/elsoc/), de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.
 
 De las anteriores, se puede destacar cuatro grandes subdimensiones: sentido de pertenencia, confianza social, cohesión barrial y sociabilidad local, y participación y prosocialidad.
 
@@ -221,7 +221,7 @@ Ahora bien, las propuestas presentadas tienen diferencias importantes.
 
 ## Propuesta de medición con ELSOC
 
-La propuesta del OCS para medir la **cohesión social horizontal** a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas.
+La propuesta del OCS para medir la **cohesión social horizontal** a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria.
 
 ```{r}
 #| echo: false
@@ -295,7 +295,7 @@ tabla_principal <- datos_formateados %>%
 tabla_principal 
 ```
 
-La **seguridad** se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras y la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo. En el plano objetivo, se incluyen la frecuencia de tráfico de drogas en el vecindario, la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los ciudadanos evalúan y experimentan estas condiciones.
+La **seguridad** se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras y la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo. En el plano subjetivo, se incluyen la frecuencia de tráfico de drogas en el vecindario, la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los residentes evalúan y experimentan estas condiciones.
 
 Los **vínculos territoriales** buscan capturar el grado de identificación y valoración del espacio de residencia. Esta dimensión se divide en dos factores. El primero, la pertenencia al barrio, incluye cuatro indicadores: considerar que el barrio es ideal, sentirse integrado, identificarse con los vecinos y percibirlo como parte de la propia identidad. El segundo, la satisfacción con el barrio, se mide a través de la facilidad para hacer amigos, la sociabilidad, la cordialidad y la colaboración de los vecinos, reflejando así la calidad de las relaciones comunitarias.
 

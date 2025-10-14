@@ -1,3 +1,13 @@
-# Presentación {.unnumbered}
+---
+toc: false
+---
+# Presentación {#pres}
+Este documento presenta la propuesta metodológica desarrollada por el [Observatorio de Cohesión Social (OCS)](https://ocs-coes.com/) para medir la cohesión social en Chile a partir de los datos del [Estudio Longitudinal Social de Chile (ELSOC)](https://coes.cl/elsoc/), ambos pertenecientes al [Centro de Estudios de Conflicto y Cohesión Social (COES)](https://coes.cl/). Se trata de una propuesta de medición elaborada por el OCS que busca ofrecer una mirada sistemática, empírica y actualizada sobre el estado y la evolución de la cohesión social en el país.
 
-Este documento contiene la nueva propuesta de medición de cohesión social con ELSOC.
+La iniciativa surge de la necesidad de contar con una medición integral y consistente en el tiempo, capaz de observar las distintas dimensiones que componen la cohesión social —como el vínculo entre ciudadanos y la relación de estos con las instituciones—, así como sus diferencias según grupos sociales y características individuales. En un contexto nacional marcado por la desigualdad y la fragmentación social, disponer de una medición propia y metodológicamente sólida constituye un paso clave para comprender las condiciones que fortalecen o debilitan la vida colectiva en Chile.
+
+El documento presenta los principios conceptuales, las decisiones técnicas y los procedimientos analíticos que sustentan la construcción de esta medición, disponible para su **[exploración interactiva en el visualizador OCSVIS-ELSOC](https://ocs-coes.shinyapps.io/ocsvis-elsoc)**. Además, busca transparentar las fuentes, variables e indicadores utilizados, de modo que investigadores, instituciones públicas, actores sociales y la ciudadanía en general puedan conocer, evaluar y utilizar esta herramienta con confianza y precisión.
+
+Esta medición se enmarca en la agenda del OCS–COES, plataforma dedicada a la difusión de conocimiento basado en evidencia empírica sobre las dinámicas de cohesión social en Chile. A través de investigaciones, datos abiertos y visualizaciones interactivas, el OCS pone a disposición del público hallazgos clave provenientes de encuestas comparativas internacionales y estudios longitudinales nacionales. Su objetivo es promover una comprensión profunda y accesible de la cohesión, las desigualdades y los vínculos que estructuran la vida en común, aportando herramientas útiles para la ciudadanía, la academia y el diseño de políticas públicas.
+
+Con este documento, el Observatorio busca contribuir no solo a la comprensión académica del fenómeno, sino también a la instalación de un estándar metodológico de referencia para el análisis de la cohesión social con datos longitudinales. En definitiva, este documento metodológico constituye el respaldo técnico y conceptual de la medición de cohesión social desarrollada por el OCS, y pretende servir como base para futuras aplicaciones, comparaciones y discusiones sobre la cohesión social en Chile a partir de ELSOC.    
