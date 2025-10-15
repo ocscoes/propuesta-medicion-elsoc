@@ -113,7 +113,7 @@ p4 <- ggplot(ingreso_seg, aes(x = ola, y = prop, color = grupo_ingreso, group = 
        x = NULL,
        y = "% con seguridad alta (3-5)", 
        color = "Ingreso",
-       caption = paste0("Fuente: ELSOC (2016-2023). N=", format(n_total_seg, big.mark = "."))) +
+       caption = paste0("Fuente: ELSOC (2016-2023). N= 20.007")) +
   theme_minimal(base_size = 14) +
   theme(legend.position = "top",
         plot.title = element_text(size = 12, face = "bold"),
@@ -149,7 +149,7 @@ p5 <- ggplot(cine_seg, aes(x = ola, y = prop, color = cine, group = cine)) +
        x = NULL,
        y = "% con seguridad alta (3-5)", 
        color = "Educación", 
-       caption = paste0("Fuente: ELSOC (2016-2023). N=", format(n_total_seg_cine, big.mark = "."))) +
+       caption = paste0("Fuente: ELSOC (2016-2023). N= 20.007")) +
   theme_minimal(base_size = 14) +
   theme(legend.position = "top",
         plot.title = element_text(size = 12, face = "bold"),
@@ -211,7 +211,7 @@ p1 <- ggplot(ingreso_conf, aes(x = ola, y = prop, color = grupo_ingreso, group =
        x = NULL, 
        y = "% con confianza alta (3-5)", 
        color = "Ingreso", 
-       caption = paste0("Fuente: ELSOC (2016-2023). N=", format(n_total, big.mark = "."))) +
+       caption = paste0("Fuente: ELSOC (2016-2023). N= 20.007")) +
   theme_minimal(base_size = 14) +
   theme(legend.position = "top",
         plot.title = element_text(size = 12, face = "bold"),
@@ -247,7 +247,7 @@ p2 <- ggplot(cine_conf, aes(x = ola, y = prop, color = cine, group = cine)) +
        x = NULL,
        y = "% con confianza alta (3-5)", 
        color = "Educación",
-       caption = paste0("Fuente: ELSOC (2016-2023). N=", format(n_total_cine, big.mark = "."))) +
+       caption = paste0("Fuente: ELSOC (2016-2023). N= 20.007")) +
   theme_minimal(base_size = 14) +
   theme(legend.position = "top",
         plot.title = element_text(size = 12, face = "bold"),
