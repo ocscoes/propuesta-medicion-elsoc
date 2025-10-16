@@ -51,9 +51,9 @@ load(file = here("input/data/proc_data/bivariados_long_categoricos.RData"))
 
 ¿Cómo podemos saber si ha cambiado o no la cohesión social en Chile? Para responder, partimos por una definición mínima y operativa. Siguiendo a Chan et al. (2006), entendemos la cohesión social como la calidad de los vínculos entre personas (plano horizontal) y entre ciudadanía e instituciones (plano vertical). Esta definición se traduce en una medición con dimensiones y subdimensiones explícitas, comparable en el tiempo.
 
-Contamos con un instrumento privilegiado para ello: la Encuesta Longitudinal Social de Chile (ELSOC), realizada por COES. ELSOC ofrece datos panel entre 2016 y 2023, con diseño longitudinal y tamaños muestrales por ola en el orden de miles (ver sección de Datos), una ventaja prácticamente única en América Latina para estudiar cambios en cohesión social. Esta propuesta, además, se acompaña del Visualizador ELSOC del Observatorio de Cohesión Social (OCS), que permitirá a cualquier persona explorar los indicadores, realizar cruces y responder sus propias preguntas; en esa línea, el Observatorio ya opera un visualizador regional (VIS-LATAM) que servirá de referencia.
+El Observatorio de Cohesión Social (OCS-COES) ha desarrollado una propuesta para medir la evolución de la cohesión social en Chile, definiéndola como la cantidad y calidad de los vínculos sociales a nivel horizontal (entre personas) y vertical (entre personas e instituciones). Para ello, utilizan los datos del Estudio Longitudinal Social de Chile (ELSOC-COES), una encuesta representativa de la población adulta chilena realizada entre 2016 y 2023. A partir de esta información, se han construido índices para monitorear y comparar la cohesión a lo largo del tiempo y entre diferentes grupos.
 
-En este informe presentamos la organización de la medición en planos, dimensiones y subdimensiones, y mostramos —a modo de ejemplo— análisis empíricos con ELSOC que ilustran brechas y trayectorias por grupo social a lo largo del período 2016–2023.
+Los resultados y análisis están disponibles de forma abierta a través de la herramienta de visualización interactiva VIS-ELSOC, que permite a cualquier persona interesada explorar los datos y realizar sus propios análisis.
 
 
 # Conceptos y medición de Cohesión Social en perspectiva longitudinal 
@@ -79,8 +79,8 @@ Los gráficos de seguridad alta (evaluaciones 4-5 en la escala) muestran dinámi
 #| echo: false
 #| warning: false
 #| message: false
-#| fig-width: 10
-#| fig-height: 12
+#| fig-width: 5
+#| fig-height: 7
 
 # Definir colores COES
 colores_coes <- c("#824293", "#487FD3", "#7ABA21", "#FFCE00", "#F9913D", "#FF3E4E")
@@ -102,13 +102,11 @@ p4 <- ggplot(ingreso_seg, aes(x = ola, y = prop, color = grupo_ingreso, group = 
   geom_line(linewidth = 1.5) + 
   geom_point(size = 3) +
   scale_color_manual(values = colores_coes) +
-  scale_y_continuous(breaks = seq(65, 100, 5),
+  scale_y_continuous(breaks = c(0, seq(70, 100, 5)),
                      labels = function(x) paste0(x, "%"),
-                     expand = expansion(mult = c(0.02, 0.02))) +
+                     limits = c(0, 100)) +
   scale_x_continuous(breaks = unique(ingreso_seg$ola),
                      expand = expansion(mult = c(0.02, 0.02))) +
-  coord_cartesian(ylim = c(65, 100), clip = "off") +
-  annotate("text", x = 2015.5, y = 64, label = "0%", size = 3.5, color = "gray40", hjust = 1) +
   labs(title = "Porcentaje de personas con alta percepción de seguridad según ingresos", 
        x = NULL,
        y = "% con seguridad alta (3-5)", 
@@ -138,13 +136,11 @@ p5 <- ggplot(cine_seg, aes(x = ola, y = prop, color = cine, group = cine)) +
   geom_line(linewidth = 1.5) + 
   geom_point(size = 3) +
   scale_color_manual(values = colores_coes) +
-  scale_y_continuous(breaks = seq(65, 100, 5),
+  scale_y_continuous(breaks = c(0, seq(70, 100, 5)),
                      labels = function(x) paste0(x, "%"),
-                     expand = expansion(mult = c(0.02, 0.02))) +
+                     limits = c(0, 100)) +
   scale_x_continuous(breaks = unique(cine_seg$ola),
                      expand = expansion(mult = c(0.02, 0.02))) +
-  coord_cartesian(ylim = c(65, 100), clip = "off") +
-  annotate("text", x = 2015.5, y = 64, label = "0%", size = 3.5, color = "gray40", hjust = 1) +
   labs(title = "Porcentaje de personas con alta percepción de seguridad según educación", 
        x = NULL,
        y = "% con seguridad alta (3-5)", 
@@ -160,8 +156,22 @@ p5 <- ggplot(cine_seg, aes(x = ola, y = prop, color = cine, group = cine)) +
         legend.box.margin = margin(0, 0, 0, 0))
 
 print(p4)
+
+p4_recortado <- p4 + scale_y_break(c(1, 69))
+
+print(p4_recortado)
+
+# Guardar gráfico
+ggsave("images/p4_recortado.png", p4_recortado, width = 10, height = 6, dpi = 300)
+1
 print(p5)
 
+p5_recortado <- p5 + scale_y_break(c(1, 69))
+
+print(p5_recortado)
+
+# Guardar gráfico
+ggsave("images/p5_recortado.png", p5_recortado, width = 10, height = 6, dpi = 300)
 ```
 
 Las trayectorias de seguridad muestran convergencia en 2016–2018 y peaks similares en 2019 (≈47–50% bajos, ≈57% medios, ≈61% altos). Tras 2019 hay una caída generalizada con estratificación persistente: en 2023 altos ≈61%, medios ≈52% y bajos ≈43%. En conjunto con la confianza institucional, 2019 es un punto de inflexión; la seguridad cambia de forma más gradual y las brechas por estatus (ingreso/educación) se mantienen o se amplían, con niveles sistemáticamente mayores entre los grupos aventajados.
@@ -180,8 +190,8 @@ Los gráficos de confianza en instituciones políticas revelan patrones diferenc
 #| echo: false
 #| warning: false
 #| message: false
-#| fig-width: 10
-#| fig-height: 12
+#| fig-width: 8
+#| fig-height: 10
 
 # 2. Confianza en instituciones políticas
 
@@ -200,13 +210,11 @@ p1 <- ggplot(ingreso_conf, aes(x = ola, y = prop, color = grupo_ingreso, group =
   geom_line(linewidth = 1.5) + 
   geom_point(size = 3) +
   scale_color_manual(values = colores_coes) +
-  scale_y_continuous(breaks = seq(0, 30, 5),
+  scale_y_continuous(breaks = c(0, 5, 10, 15, 20, 100),
                      labels = function(x) paste0(x, "%"),
-                     expand = expansion(mult = c(0.02, 0.02))) +
+                     limits = c(0, 100)) +
   scale_x_continuous(breaks = unique(ingreso_conf$ola),
                      expand = expansion(mult = c(0.02, 0.02))) +
-  coord_cartesian(ylim = c(0, 30), clip = "off") +
-  annotate("text", x = 2015.5, y = 31, label = "100%", size = 3.5, color = "gray40", hjust = 1) +
   labs(title = "Porcentaje de personas que confían altamente en instituciones políticas según ingresos", 
        x = NULL, 
        y = "% con confianza alta (3-5)", 
@@ -220,6 +228,13 @@ p1 <- ggplot(ingreso_conf, aes(x = ola, y = prop, color = grupo_ingreso, group =
         plot.margin = margin(2, 2, 2, 2),
         legend.margin = margin(0, 0, 0, 0),
         legend.box.margin = margin(0, 0, 0, 0))
+
+p1_recortado <- p1 + scale_y_break(c(21, 99))
+
+print(p1_recortado)
+
+# Guardar gráfico
+ggsave("images/p1_recortado.png", p1_recortado, width = 10, height = 6, dpi = 300)
 
 # b) Por nivel educativo
 cine_conf <- cine_categ %>% 
@@ -236,13 +251,11 @@ p2 <- ggplot(cine_conf, aes(x = ola, y = prop, color = cine, group = cine)) +
   geom_line(linewidth = 1.5) + 
   geom_point(size = 3) +
   scale_color_manual(values = colores_coes) +
-  scale_y_continuous(breaks = seq(0, 30, 5),
+  scale_y_continuous(breaks = c(0, 5, 10, 15, 20, 100),
                      labels = function(x) paste0(x, "%"),
-                     expand = expansion(mult = c(0.02, 0.02))) +
+                     limits = c(0, 100)) +
   scale_x_continuous(breaks = unique(cine_conf$ola),
                      expand = expansion(mult = c(0.02, 0.02))) +
-  coord_cartesian(ylim = c(0, 30), clip = "off") +
-  annotate("text", x = 2015.5, y = 31, label = "100%", size = 3.5, color = "gray40", hjust = 1) +
   labs(title = "Porcentaje de personas que confían altamente en instituciones políticas según educación", 
        x = NULL,
        y = "% con confianza alta (3-5)", 
@@ -257,8 +270,14 @@ p2 <- ggplot(cine_conf, aes(x = ola, y = prop, color = cine, group = cine)) +
         legend.margin = margin(0, 0, 0, 0),
         legend.box.margin = margin(0, 0, 0, 0))
 
-print(p1)
-print(p2)
+
+
+p2_recortado <- p2 + scale_y_break(c(21, 99))
+
+print(p2_recortado)
+
+# Guardar gráfico
+ggsave("images/p2_recortado.png", p2_recortado, width = 10, height = 6, dpi = 300)
 
 ```
 

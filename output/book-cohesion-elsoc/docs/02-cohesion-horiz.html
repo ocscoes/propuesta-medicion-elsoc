@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.23">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -54,14 +54,15 @@ div.csl-indent {
 <link href="./01-introduccion.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -90,9 +91,13 @@ div.csl-indent {
   }
 }</script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 <link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+
 <script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
 
 
 </head>
@@ -119,7 +124,9 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Documento metodológico: Medición de Cohesión Social en Chile con ELSOC</a> 
     </div>
@@ -182,7 +189,7 @@ div.csl-indent {
   <li><a href="#esquema-de-cohesión-horizontal-latinoamérica-vis-latam" id="toc-esquema-de-cohesión-horizontal-latinoamérica-vis-latam" class="nav-link" data-scroll-target="#esquema-de-cohesión-horizontal-latinoamérica-vis-latam"><span class="header-section-number">3.1.1</span> Esquema de Cohesión Horizontal Latinoamérica (Vis-Latam)</a></li>
   <li><a href="#esquema-de-cohesión-horizontal-castillo_hacia_2021" id="toc-esquema-de-cohesión-horizontal-castillo_hacia_2021" class="nav-link" data-scroll-target="#esquema-de-cohesión-horizontal-castillo_hacia_2021"><span class="header-section-number">3.1.2</span> Esquema de Cohesión Horizontal <span class="citation" data-cites="castillo_hacia_2021">Castillo et al. (2021)</span></a></li>
   </ul></li>
-  <li><a href="#propuesta-de-medición-con-elsoc" id="toc-propuesta-de-medición-con-elsoc" class="nav-link" data-scroll-target="#propuesta-de-medición-con-elsoc"><span class="header-section-number">3.2</span> Propuesta de medición con ELSOC</a></li>
+  <li><a href="#propuesta-de-medición-de-cohesión-social-longitudinal-horizontal-viselsoc" id="toc-propuesta-de-medición-de-cohesión-social-longitudinal-horizontal-viselsoc" class="nav-link" data-scroll-target="#propuesta-de-medición-de-cohesión-social-longitudinal-horizontal-viselsoc"><span class="header-section-number">3.2</span> Propuesta de medición de Cohesión Social Longitudinal Horizontal (VisELSOC)</a></li>
   <li><a href="#estadísticos-descriptivos" id="toc-estadísticos-descriptivos" class="nav-link" data-scroll-target="#estadísticos-descriptivos"><span class="header-section-number">3.3</span> Estadísticos descriptivos</a></li>
   <li><a href="#correlaciones" id="toc-correlaciones" class="nav-link" data-scroll-target="#correlaciones"><span class="header-section-number">3.4</span> Correlaciones</a></li>
   <li><a href="#análisis-factorial-exploratorio" id="toc-análisis-factorial-exploratorio" class="nav-link" data-scroll-target="#análisis-factorial-exploratorio"><span class="header-section-number">3.5</span> Análisis Factorial Exploratorio</a></li>
@@ -215,19 +222,21 @@ div.csl-indent {
 
 <section id="antecedentes" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="antecedentes"><span class="header-section-number">3.1</span> Antecedentes</h2>
-<p>El concepto de cohesión social horizontal surge como una respuesta crítica a definiciones previas que tendían a confundir sus contenidos con condiciones externas tales como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a estas limitaciones <span class="citation" data-cites="chan_reconsidering_2006">Chan et al. (<a href="04-refs.html#ref-chan_reconsidering_2006" role="doc-biblioref">2006</a>)</span> proponen una definición de carácter minimalista, orientada a precisar los elementos constitutivos de la cohesión sin diluir su valor analítico. Desde esta perspectiva, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos en el seno de la sociedad, independientemente de la mediación estatal. En el plano conceptual, esta dimensión abarca la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales, así como el sentido compartido de pertenencia. En el plano operacional, tales componentes se expresan tanto en indicadores subjetivos (confianza interpersonal, disposición a cooperar, identificación con la comunidad) como en indicadores objetivos (participación en asociaciones, voluntariado, donaciones, prácticas de cooperación o existencia de divisiones entre grupos). De este modo, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.</p>
+<p>La presente sección capítulo se estructura en torno a tres momentos clave en la medición de la cohesión social horizontal. En primer lugar, se presenta la experiencia inicial de medición comparada para América Latina desarrollada por el <a href="https://ocs-coes.com/">Observatorio de Cohesión Social (OCS-COES)</a>, donde se conceptualiza la cohesión horizontal desde una perspectiva minimalista orientada a la comparación regional. En segundo lugar, se expone la propuesta de <span class="citation" data-cites="castillo_hacia_2021">Castillo et al. (<a href="04-refs.html#ref-castillo_hacia_2021" role="doc-biblioref">2021</a>)</span>, que amplía esta mirada mediante el uso de la Encuesta Longitudinal Social de Chile (ELSOC), incorporando nuevas subdimensiones y mayor granularidad en los indicadores. Finalmente, se presenta la propuesta de medición longitudinal para Chile del OCS con ELSOC, que integra y refina los aprendizajes previos para construir un esquema que articula seguridad, vínculos territoriales y redes sociales a lo largo del tiempo.</p>
+<p>Como se introdujo previamente, el concepto de cohesión social horizontal surge como una respuesta crítica a definiciones previas que tendían a confundir sus contenidos con condiciones externas tales como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a estas limitaciones <span class="citation" data-cites="chan_reconsidering_2006">Chan et al. (<a href="04-refs.html#ref-chan_reconsidering_2006" role="doc-biblioref">2006</a>)</span> proponen una definición de carácter minimalista, orientada a precisar los elementos constitutivos de la cohesión sin diluir su valor analítico. Desde esta perspectiva, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos en el seno de la sociedad, independientemente de la mediación estatal.</p>
+<p>En el plano conceptual, esta dimensión abarca la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales, así como el sentido compartido de pertenencia. En el plano operacional, tales componentes se expresan tanto en indicadores subjetivos (confianza interpersonal, disposición a cooperar, identificación con la comunidad) como en indicadores objetivos (participación en asociaciones, voluntariado, donaciones, prácticas de cooperación o existencia de divisiones entre grupos). De este modo, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.</p>
 <section id="esquema-de-cohesión-horizontal-latinoamérica-vis-latam" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="esquema-de-cohesión-horizontal-latinoamérica-vis-latam"><span class="header-section-number">3.1.1</span> Esquema de Cohesión Horizontal Latinoamérica (Vis-Latam)</h3>
 <p>El <a href="https://ocs-coes.com/">Observatorio de Cohesión Social (OCS-COES)</a> ha desarrollado avances en la representación empírica de la cohesión social horizontal. Estos esfuerzos se han orientado, en una primera etapa, a la comparación de América Latina a partir de encuestas internacionales como LAPOP y WVS. Bajo este enfoque, la cohesión horizontal se concibe como un entramado de vínculos entre ciudadanos y grupos sociales, expresados tanto en actitudes subjetivas como en prácticas objetivas de interacción. Esta aproximación se ha estructurado en torno a dos subdimensiones: Seguridad Pública y Confianza Interpersonal.</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-lapop" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-lapop" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-lapop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.1: Medición de cohesión horizontal para América Latina del Observatorio de Cohesión Social
 </figcaption>
 <div aria-describedby="fig-lapop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/op-lapop.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="577">
+<img src="images/op-lapop.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 </figure>
 </div>
@@ -239,6 +248,7 @@ Figure&nbsp;3.1: Medición de cohesión horizontal para América Latina del Obse
 </section>
 <section id="esquema-de-cohesión-horizontal-castillo_hacia_2021" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="esquema-de-cohesión-horizontal-castillo_hacia_2021"><span class="header-section-number">3.1.2</span> Esquema de Cohesión Horizontal <span class="citation" data-cites="castillo_hacia_2021">Castillo et al. (<a href="04-refs.html#ref-castillo_hacia_2021" role="doc-biblioref">2021</a>)</span></h3>
+<p>Otro antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de <span class="citation" data-cites="castillo_hacia_2021">Castillo et al. (<a href="04-refs.html#ref-castillo_hacia_2021" role="doc-biblioref">2021</a>)</span>. Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la <a href="https://coes.cl/elsoc/">Encuesta Longitudinal Social de Chile (ELSOC)</a>, de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; border: 1px solid #ddd;overflow-y: scroll; height:600px; overflow-x: scroll; width:100%; ">
@@ -611,28 +621,27 @@ Ha ayudado a alguien a conseguir trabajo
 <p>Esquema de Medición de Cohesión Horizontal por Castillo et al.(2021)</p>
 </div>
 </div>
-<p>Otro antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de <span class="citation" data-cites="castillo_hacia_2021">Castillo et al. (<a href="04-refs.html#ref-castillo_hacia_2021" role="doc-biblioref">2021</a>)</span>. Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la <a href="https://coes.cl/elsoc/">Encuesta Longitudinal Social de Chile (ELSOC)</a>, de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.</p>
 <p>De las anteriores, se puede destacar cuatro grandes subdimensiones: sentido de pertenencia, confianza social, cohesión barrial y sociabilidad local, y participación y prosocialidad.</p>
 <p>La primera, <strong>sentido de pertenencia</strong>, se capta a través de ítems del módulo de Sociabilidad Política que indagan sobre el grado de identificación con Chile y el orgullo nacional. Estas preguntas reflejan el vínculo simbólico y afectivo de las personas con la comunidad política nacional y permiten observar hasta qué punto los individuos se reconocen como parte de un colectivo común.</p>
 <p>La segunda, <strong>confianza social</strong>, incluye indicadores tanto de confianza interpersonal generalizada como de confianza en los vecinos. Preguntas como “¿Se puede confiar en la mayoría de las personas o hay que tener cuidado?” o “¿Cuánto confía en sus vecinos?” miden las expectativas que los individuos tienen respecto al comportamiento de los otros, constituyendo un elemento central de la cohesión horizontal según Chan et al., en tanto facilita la cooperación entre desconocidos.</p>
 <p>La tercera, <strong>cohesión barrial y sociabilidad local</strong>, se refiere a la integración y calidad de las relaciones en el espacio cotidiano del vecindario. ELSOC incluye ítems sobre la percepción de integración al barrio, la identificación con sus habitantes y el nivel de colaboración entre vecinos. Estos indicadores permiten analizar la cohesión en un nivel micro, donde la interacción directa fortalece o debilita los lazos comunitarios.</p>
 <p>Finalmente, la subdimensión de <strong>participación social y prosocialidad</strong> incorpora conductas concretas que muestran la disposición de las personas a involucrarse en la vida social y apoyar a otros. ELSOC mide este aspecto a través de la participación en voluntariado, las donaciones a causas sociales, el apoyo económico o material a otras personas, y el acompañamiento en situaciones de dificultad. Estas acciones representan la expresión objetiva de la cohesión horizontal, pues reflejan la voluntad de contribuir activamente al bienestar colectivo.</p>
+</section>
+</section>
+<section id="propuesta-de-medición-de-cohesión-social-longitudinal-horizontal-viselsoc" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="propuesta-de-medición-de-cohesión-social-longitudinal-horizontal-viselsoc"><span class="header-section-number">3.2</span> Propuesta de medición de Cohesión Social Longitudinal Horizontal (VisELSOC)</h2>
 <p>Ahora bien, las propuestas presentadas tienen diferencias importantes.</p>
 <ol type="1">
 <li>En primer lugar, con ELSOC cuenta con información que permite observar con mayores niveles de granularidad y, consecuentemente, identificar con mayor precisión las dimensiones y subdimensiones de la cohesión social en comparación con la propuesta de que se construye para Latinoamérica con LAPOP, cuya perspectiva es más minimalista.</li>
 <li>Por su parte, en la versión con ELSOC se consideran varias subdimensiones que no están presentes en el índice de Latinoamérica debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, <a href="https://ocscoes.github.io/medicion-cohesion-LA/cohesion-horizontal.html">no correlacionaba con los demás factores de su dimensión.</a></li>
 <li>Finalmente, hay que decir que las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran el índice confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden.</li>
 </ol>
-</section>
-</section>
-<section id="propuesta-de-medición-con-elsoc" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="propuesta-de-medición-con-elsoc"><span class="header-section-number">3.2</span> Propuesta de medición con ELSOC</h2>
-<p>La propuesta del OCS para medir la <strong>cohesión social horizontal</strong> a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria.</p>
+<p>En este sentido, y con la idea de actualizar el marco y la operacionalización de la cohesión social, la propuesta del OCS para medir la <strong>cohesión horizontal</strong> a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria. La siguiente tabla presenta la propuesta en extenso.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; border: 1px solid #ddd;overflow-y: scroll; height:600px; overflow-x: scroll; width:100%; ">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small">
 <caption><strong>Disponibilidad de Variables</strong></caption>
 <colgroup>
 <col style="width: 7%">
@@ -1025,18 +1034,18 @@ Lo hizo mas de dos veces</td>
 </div>
 </div>
 </div>
-<p>La <strong>seguridad</strong> se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras y la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo. En el plano subjetivo, se incluyen la frecuencia de tráfico de drogas en el vecindario, la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los residentes evalúan y experimentan estas condiciones.</p>
+<p>La <strong>seguridad</strong> se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras, la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo, así como también se incluyen la frecuencia de tráfico de drogas en el vecindario. Mientras que en el plano subjetivo se incorpora la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los ciudadanos evalúan y experimentan estas condiciones.</p>
 <p>Los <strong>vínculos territoriales</strong> buscan capturar el grado de identificación y valoración del espacio de residencia. Esta dimensión se divide en dos factores. El primero, la pertenencia al barrio, incluye cuatro indicadores: considerar que el barrio es ideal, sentirse integrado, identificarse con los vecinos y percibirlo como parte de la propia identidad. El segundo, la satisfacción con el barrio, se mide a través de la facilidad para hacer amigos, la sociabilidad, la cordialidad y la colaboración de los vecinos, reflejando así la calidad de las relaciones comunitarias.</p>
 <p>La tercera dimensión corresponde a las <strong>redes sociales</strong>, que permiten observar las dinámicas de confianza, solidaridad y cooperación entre personas. Se estructura en tres factores. La confianza interpersonal considera la disposición a confiar en los demás y la percepción de que las personas tienden a ayudar a otros o a centrarse en sí mismas. El comportamiento prosocial se mide mediante la participación en reuniones comunitarias y la realización de voluntariado en los últimos doce meses. Finalmente, la ayuda económica se evalúa a través de la disposición a prestar dinero y a colaborar en la búsqueda de empleo para alguien más.</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-propuesta" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-propuesta" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-propuesta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.2: Medición de cohesión horizontal para Chile del Observatorio de Cohesión Social
 </figcaption>
 <div aria-describedby="fig-propuesta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/propuesta-hor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="484">
+<img src="images/propuesta-hor-elsoc.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 </figure>
 </div>
@@ -1047,30 +1056,27 @@ Figure&nbsp;3.2: Medición de cohesión horizontal para Chile del Observatorio d
 <section id="estadísticos-descriptivos" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="estadísticos-descriptivos"><span class="header-section-number">3.3</span> Estadísticos descriptivos</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Seguridad Pública</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Vínculos Territoriales</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Redes Sociales</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Seguridad Pública</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Vínculos Territoriales</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Redes Sociales</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-seguridad-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-seguridad-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-cohesion-horiz_files/figure-html/fig-seguridad-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seguridad-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3: Distribución de Variables de Seguridad Pública. Datos ELSOC Ola 2022 (Última ola disponible)
-</figcaption>
+<div>
+<figure class="figure">
+<p><img src="02-cohesion-horiz_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="cell-output-display">
-<div id="fig-seguridad-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-seguridad-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-cohesion-horiz_files/figure-html/fig-seguridad-2.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seguridad-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4: Distribución de Variables de Seguridad Pública. Datos ELSOC Ola 2022 (Última ola disponible)
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-seg" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-cohesion-horiz_files/figure-html/fig-seg-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Distribución de Variables de Seguridad Pública. Datos ELSOC Ola 2022
 </figcaption>
 </figure>
 </div>
@@ -1086,7 +1092,7 @@ Figure&nbsp;3.4: Distribución de Variables de Seguridad Pública. Datos ELSOC O
 <img src="02-cohesion-horiz_files/figure-html/fig-terr-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-terr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5: Distribución de Variables de Vínculos Territoriales. Datos ELSOC Ola 2023
+Figure&nbsp;3.4: Distribución de Variables de Vínculos Territoriales. Datos ELSOC Ola 2023
 </figcaption>
 </figure>
 </div>
@@ -1102,7 +1108,7 @@ Figure&nbsp;3.5: Distribución de Variables de Vínculos Territoriales. Datos EL
 <img src="02-cohesion-horiz_files/figure-html/fig-redes-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.6: Distribución de Variables de Redes Sociales. Datos ELSOC Ola 2023
+Figure&nbsp;3.5: Distribución de Variables de Redes Sociales. Datos ELSOC Ola 2023
 </figcaption>
 </figure>
 </div>
@@ -1116,7 +1122,7 @@ Figure&nbsp;3.6: Distribución de Variables de Redes Sociales. Datos ELSOC Ola 2
 <img src="02-cohesion-horiz_files/figure-html/fig-redes-2-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-redes-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.7: Distribución de Variables de Redes Sociales. Datos ELSOC Ola 2023
+Figure&nbsp;3.6: Distribución de Variables de Redes Sociales. Datos ELSOC Ola 2023
 </figcaption>
 </figure>
 </div>
@@ -1125,11 +1131,17 @@ Figure&nbsp;3.7: Distribución de Variables de Redes Sociales. Datos ELSOC Ola 2
 </div>
 </div>
 </div>
+<p>En la <a href="#fig-seg" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> se puede observar la distribución de las frecuencias de las variables que componen la dimensión de seguridad pública. La primera parte del gráfico muestra los tres indicadores de seguridad objetiva. En cuanto a la frecuencia de tráfico de drogas en el barrio, se observa una distribución relativamente heterogénea, donde aproximadamente el 40% de los encuestados reporta que nunca o pocas veces ocurre este fenómeno, mientras que otro 40% señala que ocurre algunas, muchas veces o siempre. Para robos y asaltos, cerca del 60% indica que nunca o pocas veces han ocurrido en su barrio, aunque un porcentaje considerable reporta experiencias frecuentes. En el caso de riñas o peleas callejeras, más del 50% señala que estos eventos ocurren nunca o pocas veces, siendo este el indicador con menor frecuencia reportada.</p>
+<p>La parte inferior del gráfico presenta los indicadores de seguridad subjetiva. Respecto a la percepción de seguridad del barrio, se evidencia una distribución equilibrada entre quienes se sienten seguros e inseguros, con aproximadamente 40% en cada extremo. Por su parte, el grado de satisfacción con la seguridad del barrio muestra que más del 50% de los encuestados se encuentra insatisfecho o totalmente insatisfecho, revelando una valoración negativa predominante de las condiciones de seguridad en el entorno inmediato. Esta distribución sugiere que, si bien las experiencias objetivas de inseguridad varían, existe una percepción subjetiva generalizada de vulnerabilidad y descontento con la seguridad barrial.</p>
+<p>En la <a href="#fig-terr" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> se presentan las distribuciones de los ocho indicadores que conforman la dimensión de vínculos territoriales. Los primeros cuatro indicadores corresponden al factor de pertenencia al barrio. Se observa que la mayoría de los encuestados tiende a expresar acuerdo con las afirmaciones positivas sobre su barrio: más del 60% está de acuerdo o muy de acuerdo con que su barrio es ideal para vivir, se siente integrado al barrio, se identifica con la gente que vive en él y siente que el barrio es parte de su identidad. Esta distribución revela un vínculo significativo con el territorio, aunque persiste un porcentaje no menor (entre 20-30%) que expresa desacuerdo con estas afirmaciones.</p>
+<p>Los siguientes cuatro indicadores miden la satisfacción con el barrio a través de la calidad percibida de las relaciones vecinales. Aquí también se observa una tendencia positiva: más del 60% de los encuestados está de acuerdo o muy de acuerdo en que en su barrio es fácil hacer amigos, la gente es sociable, la gente es cordial y amable, y se ayudan entre vecinos. Estos resultados sugieren que la mayoría de las personas valora positivamente tanto su identificación con el espacio barrial como la calidad de los vínculos sociales en su entorno inmediato, elementos centrales de la cohesión territorial.</p>
+<p>En las figuras <a href="#fig-redes" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> y <a href="#fig-redes-2" class="quarto-xref">Figure&nbsp;<span>3.6</span></a> se presentan los indicadores que conforman la dimensión de redes sociales. La <a href="#fig-redes" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> muestra cinco indicadores de comportamiento prosocial y ayuda económica. Se observa que la participación en reuniones públicas del barrio es bastante limitada, con más del 80% de los encuestados señalando que nunca o pocas veces participa. De manera similar, el voluntariado presenta niveles muy bajos, con más del 90% indicando que no ha participado en los últimos 12 meses. En cuanto a la ayuda económica, los indicadores de ayudar a buscar trabajo, donar dinero y prestar dinero muestran patrones mixtos: mientras que más del 60% nunca o pocas veces dona dinero o presta dinero a otros, la ayuda para buscar trabajo presenta una distribución más equilibrada, con aproximadamente 40% señalando que lo hace algunas veces o más.</p>
+<p>La <a href="#fig-redes-2" class="quarto-xref">Figure&nbsp;<span>3.6</span></a> presenta dos indicadores fundamentales de confianza interpersonal. En el primer gráfico, se observa una clara tendencia hacia la desconfianza generalizada: aproximadamente el 60% de los encuestados señala que “siempre hay que tener cuidado” al tratar con otras personas, mientras que solo cerca del 30% considera que “se puede confiar en la mayoría de las personas”. El segundo indicador, referido a la percepción sobre si las personas tienden a ayudar a otros o a preocuparse solo de sí mismas, muestra una distribución más balanceada pero con una ligera inclinación hacia el egoísmo percibido, donde alrededor del 50% considera que las personas se preocupan principalmente de sí mismas. Estos resultados evidencian niveles bajos tanto de participación activa en redes sociales como de confianza interpersonal, elementos que constituyen desafíos importantes para la cohesión social horizontal.</p>
 </section>
 <section id="correlaciones" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="correlaciones"><span class="header-section-number">3.4</span> Correlaciones</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Seguridad Pública</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Vínculos Territoriales</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Redes Sociales</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Seguridad Pública</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Vínculos Territoriales</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Redes Sociales</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
@@ -1140,7 +1152,7 @@ Figure&nbsp;3.7: Distribución de Variables de Redes Sociales. Datos ELSOC Ola 2
 <img src="02-cohesion-horiz_files/figure-html/fig-corr-seg-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-seg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.8: Matriz de Correlaciones de Seguridad Pública. Datos ELSOC 2022 (Última ola disponible)
+Figure&nbsp;3.7: Matriz de Correlaciones de Seguridad Pública. Datos ELSOC 2022 (Última ola disponible)
 </figcaption>
 </figure>
 </div>
@@ -1156,7 +1168,7 @@ Figure&nbsp;3.8: Matriz de Correlaciones de Seguridad Pública. Datos ELSOC 2022
 <img src="02-cohesion-horiz_files/figure-html/fig-corr-terr-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-terr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.9: Matriz de Correlaciones de Vínculos Territoriales. Datos ELSOC 2023
+Figure&nbsp;3.8: Matriz de Correlaciones de Vínculos Territoriales. Datos ELSOC 2023
 </figcaption>
 </figure>
 </div>
@@ -1172,7 +1184,7 @@ Figure&nbsp;3.9: Matriz de Correlaciones de Vínculos Territoriales. Datos ELSOC
 <img src="02-cohesion-horiz_files/figure-html/fig-corr-redes-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.10: Matriz de Correlaciones de Redes Sociales. Datos ELSOC 2023
+Figure&nbsp;3.9: Matriz de Correlaciones de Redes Sociales. Datos ELSOC 2023
 </figcaption>
 </figure>
 </div>
@@ -1181,11 +1193,18 @@ Figure&nbsp;3.10: Matriz de Correlaciones de Redes Sociales. Datos ELSOC 2023
 </div>
 </div>
 </div>
+<p>En la <a href="#fig-corr-seg" class="quarto-xref">Figure&nbsp;<span>3.7</span></a> se presenta la matriz de correlaciones policóricas entre los cinco indicadores que componen la dimensión de seguridad pública. Se observa un patrón diferenciado entre los dos grupos de variables. Por un lado, los indicadores de seguridad objetiva (asaltos, tráfico de drogas y peleas callejeras) muestran correlaciones positivas fuertes entre sí, destacando la asociación entre asaltos y peleas callejeras (0.61) y entre asaltos y tráfico de drogas (0.65). Por otro lado, las variables de seguridad subjetiva (satisfacción con la seguridad y percepción de seguridad) presentan una correlación muy alta entre ellas (0.65), lo que sugiere que ambos indicadores capturan de manera consistente la dimensión subjetiva de la seguridad.</p>
+<p>Lo más relevante es que se identifican correlaciones negativas moderadas entre los indicadores objetivos y subjetivos de seguridad. Específicamente, la satisfacción con la seguridad del barrio correlaciona negativamente con peleas callejeras (-0.53), asaltos (-0.54) y tráfico de drogas (-0.53). De manera similar, la percepción de seguridad muestra correlaciones negativas con estos tres indicadores objetivos (entre -0.56 y -0.62). Este patrón confirma que la exposición a situaciones de inseguridad objetiva en el barrio se asocia con menores niveles de satisfacción y percepción de seguridad, validando la distinción conceptual entre ambas dimensiones mientras se evidencia su interrelación empírica.</p>
+<p>En la <a href="#fig-corr-terr" class="quarto-xref">Figure&nbsp;<span>3.8</span></a> se muestra la matriz de correlaciones policóricas de los ocho indicadores que conforman la dimensión de vínculos territoriales. Se observa un patrón de correlaciones positivas consistente y robusto entre todos los indicadores, con magnitudes que oscilan entre moderadas y altas, confirmando la coherencia interna de esta dimensión. Los primeros cuatro indicadores relacionados con la pertenencia al barrio (ideal, integración, identidad y pertenencia) presentan correlaciones muy altas entre sí, destacando las asociaciones entre integración e identidad (0.79), integración y pertenencia (0.79), e identidad y pertenencia (0.77). Esto sugiere que estos componentes capturan aspectos estrechamente relacionados del sentido de pertenencia territorial.</p>
+<p>Los siguientes cuatro indicadores referidos a la satisfacción con el barrio (facilidad para hacer amigos, sociabilidad, cordialidad y colaboración vecinal) también muestran correlaciones elevadas entre sí, siendo la correlación entre sociabilidad y cordialidad particularmente alta (0.79). Más aún, se identifican correlaciones substanciales entre los indicadores de pertenencia y los de satisfacción, con magnitudes que van de 0.44 a 0.64. Esto revela que el sentido de identificación con el territorio está fuertemente vinculado con la percepción positiva de las relaciones sociales en el barrio, confirmando que ambos factores constituyen elementos complementarios e integrados de la cohesión territorial. El patrón general de correlaciones positivas y moderadas a altas entre todos los indicadores sugiere que los vínculos territoriales operan como una dimensión cohesionada donde la identificación con el espacio y la calidad de las relaciones vecinales se refuerzan mutuamente.</p>
+<p>En la <a href="#fig-corr-redes" class="quarto-xref">Figure&nbsp;<span>3.9</span></a> se presenta la matriz de correlaciones policóricas entre los siete indicadores que componen la dimensión de redes sociales. El patrón de correlaciones revela una estructura compleja con tres agrupaciones diferenciadas. En primer lugar, los dos indicadores de confianza interpersonal (confianza generalizada y altruismo generalizado) muestran una correlación positiva débil entre sí (0.38), sugiriendo que, si bien conceptualmente relacionados, capturan aspectos parcialmente distintos de las actitudes hacia los demás.</p>
+<p>En segundo lugar, los indicadores de comportamiento prosocial (reunión pública y voluntariado) presentan una correlación positiva moderada (0.44), mientras que los tres indicadores de ayuda económica (ayuda para buscar trabajo, donar dinero y prestar dinero) también correlacionan positivamente entre sí, con magnitudes que oscilan entre 0.33 y 0.60. Particularmente, donar dinero y prestar dinero muestran una asociación moderada-alta (0.60), indicando que estas formas de solidaridad económica tienden a coocurrir.</p>
+<p>Lo más destacable es que las correlaciones entre los indicadores de confianza interpersonal y las conductas prosociales o de ayuda económica son consistentemente débiles o cercanas a cero (entre -0.10 y 0.02). Esto sugiere que las actitudes de confianza hacia otros no se traducen necesariamente en comportamientos concretos de participación o ayuda, revelando una desconexión entre las dimensiones actitudinales y conductuales de las redes sociales. Por su parte, los indicadores de comportamiento prosocial y ayuda económica muestran correlaciones débiles a moderadas entre sí (0.24 a 0.35), indicando cierta complementariedad pero también especificidad en estas formas de participación social.</p>
 </section>
 <section id="análisis-factorial-exploratorio" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="análisis-factorial-exploratorio"><span class="header-section-number">3.5</span> Análisis Factorial Exploratorio</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Seguridad Pública</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Vínculos Territoriales</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Redes Sociales</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Seguridad Pública</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Vínculos Territoriales</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Redes Sociales</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell fig-cap-location-top">
@@ -1309,7 +1328,7 @@ Cronbach’s α
 </tbody></table>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-efa-conf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.11: Tabla de factorial exploratorio de Seguridad Pública
+Figure&nbsp;3.10: Tabla de factorial exploratorio de Seguridad Pública
 </figcaption>
 </figure>
 </div>
@@ -1479,7 +1498,7 @@ Cronbach’s α
 </tbody></table>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-efa-vinculos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.12: Tabla de factorial exploratorio de Vinculos Territoriales
+Figure&nbsp;3.11: Tabla de factorial exploratorio de Vinculos Territoriales
 </figcaption>
 </figure>
 </div>
@@ -1662,7 +1681,7 @@ Cronbach’s α
 </tbody></table>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-efa-redes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.13: Tabla de factorial exploratorio de Redes Sociales
+Figure&nbsp;3.12: Tabla de factorial exploratorio de Redes Sociales
 </figcaption>
 </figure>
 </div>
@@ -1670,1201 +1689,683 @@ Figure&nbsp;3.13: Tabla de factorial exploratorio de Redes Sociales
 </div>
 </div>
 </div>
+<p>En la <a href="#fig-efa-conf" class="quarto-xref">Figure&nbsp;<span>3.10</span></a> se presentan los resultados del análisis factorial exploratorio de la dimensión de seguridad pública, el cual detectó dos factores claramente diferenciados. El primer factor agrupa los tres indicadores de seguridad objetiva: asaltos (0.76), tráfico de drogas (0.85) y peleas callejeras (0.75), todos con cargas factoriales buenas a muy buenas. Las comunalidades de estos indicadores también son satisfactorias, oscilando entre 0.58 y 0.72, lo que indica que el factor explica adecuadamente la varianza de estas variables. El segundo factor incluye los dos indicadores de seguridad subjetiva: satisfacción con la seguridad del barrio (0.90) y percepción de seguridad (0.88), ambos con cargas factoriales excelentes y comunalidades muy altas (0.80 y 0.77 respectivamente). Esta estructura bifactorial confirma empíricamente la distinción conceptual entre las dimensiones objetiva y subjetiva de la seguridad, validando la propuesta teórica de que, aunque relacionadas, estas capturan aspectos diferenciados de la experiencia de seguridad en el entorno barrial.</p>
+<p>En la <a href="#fig-efa-vinculos" class="quarto-xref">Figure&nbsp;<span>3.11</span></a> se muestran los resultados del análisis factorial exploratorio de vínculos territoriales, el cual identificó dos factores consistentes con la propuesta teórica. El primer factor agrupa los cuatro indicadores de pertenencia al barrio: barrio ideal (0.66), integración (0.82), identidad (0.85) y pertenencia (0.84), todos con cargas factoriales que van de aceptables a muy buenas. Las comunalidades de estos indicadores son satisfactorias, variando entre 0.56 y 0.77, siendo la variable de barrio ideal la que presenta la menor comunalidad pero aún aceptable. El segundo factor reúne los cuatro indicadores de satisfacción con el barrio: facilidad para hacer amigos (0.61), sociabilidad (0.86), cordialidad (0.85) y colaboración vecinal (0.76). Estos indicadores también presentan cargas factoriales de aceptables a muy buenas, con comunalidades que oscilan entre 0.59 y 0.78. La estructura bifactorial obtenida confirma que la dimensión de vínculos territoriales se compone efectivamente de dos subdimensiones complementarias: una referida a la identificación y sentido de pertenencia con el territorio, y otra vinculada a la valoración de la calidad de las relaciones sociales en el entorno barrial. Ambos factores muestran una validez empírica robusta.</p>
+<p>En la <a href="#fig-efa-redes" class="quarto-xref">Figure&nbsp;<span>3.12</span></a> se presentan los resultados del análisis factorial exploratorio de redes sociales, el cual detectó tres factores diferenciados. El primer factor agrupa los dos indicadores de confianza interpersonal: confianza generalizada (0.77) y altruismo generalizado (0.77), ambos con cargas factoriales buenas y comunalidades aceptables (0.60 para ambos), confirmando que estos indicadores capturan adecuadamente una dimensión actitudinal común de confianza hacia otros. El segundo factor incluye los dos indicadores de comportamiento prosocial: participación en reuniones públicas (0.70) y voluntariado (0.81), con cargas factoriales buenas y comunalidades satisfactorias (0.56 y 0.73 respectivamente), validando la existencia de una dimensión conductual de participación comunitaria.</p>
+<p>El tercer factor reúne los tres indicadores de ayuda económica: ayuda para buscar trabajo (0.49), donar dinero (0.81) y prestar dinero (0.72). Aquí se observa mayor variabilidad en las cargas factoriales, siendo particularmente baja la de ayuda para buscar trabajo (0.49), con una comunalidad también modesta (0.36). En contraste, donar dinero presenta una carga factorial muy buena (0.81) y una comunalidad alta (0.71), mientras que prestar dinero muestra valores buenos (0.72 y 0.65). Esta estructura trifactorial confirma que la dimensión de redes sociales comprende tres subdimensiones: actitudes de confianza, comportamientos prosociales de participación, y prácticas de solidaridad económica. Sin embargo, la debilidad del indicador de ayuda para buscar trabajo sugiere que este captura aspectos parcialmente distintos de la ayuda económica, lo que deberá considerarse en el análisis factorial confirmatorio.</p>
 </section>
 <section id="análisis-factorial-confirmatorio" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="análisis-factorial-confirmatorio"><span class="header-section-number">3.6</span> Análisis Factorial Confirmatorio</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Seguridad Pública</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Vínculos Territoriales</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Redes Sociales</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Seguridad Pública</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Vínculos Territoriales</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Redes Sociales</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell">
-<div id="fig-seg-cfa-1" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-seg-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<strong>Resumen del Modelo CFA</strong>
-</caption>
+<div id="tbl-seg-cfa" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-seg-cfa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: Análisis Factorial Confirmatorio de Seguridad Pública (Ola 2022)
+</figcaption>
+<div aria-describedby="tbl-seg-cfa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-seg-cfa" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-seg-cfa-1" class="table table-striped table-hover table-condensed table-responsive do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-seg-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Resumen del Modelo
+</figcaption>
+<div aria-describedby="tbl-seg-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table id="tbl-seg-cfa-1" class="table table-striped table-hover table-condensed do-not-create-environment caption-top">
 <thead>
-<tr>
-<th style="text-align:left;">
-Característica
-</th>
-<th style="text-align:center;">
-Valor
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Característica</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Valor</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Observaciones
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2403
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Observaciones</td>
+<td style="text-align: center; width: 2.5cm;">2403</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Variables observadas
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-5
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Variables observadas</td>
+<td style="text-align: center; width: 2.5cm;">5</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Factores latentes
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Factores latentes</td>
+<td style="text-align: center; width: 2.5cm;">2</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Parámetros estimados
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-26
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Parámetros estimados</td>
+<td style="text-align: center; width: 2.5cm;">26</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Grados de libertad
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-4
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Grados de libertad</td>
+<td style="text-align: center; width: 2.5cm;">4</td>
 </tr>
 </tbody>
 </table>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seg-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.14: Cargas estandarizadas del CFA de Seguridad Pública
-</figcaption>
+</div>
 </figure>
 </div>
-<div id="fig-seg-cfa-2" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-seg-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<strong>Índices de Ajuste del Modelo CFA</strong>
-</caption>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-seg-cfa" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-seg-cfa-2" class="table table-striped table-hover table-condensed table-responsive do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-seg-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Índices de Ajuste
+</figcaption>
+<div aria-describedby="tbl-seg-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table id="tbl-seg-cfa-2" class="table table-striped table-hover table-condensed do-not-create-environment caption-top">
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-Índice
-</th>
-<th style="text-align:center;">
-Valor
-</th>
-<th style="text-align:center;">
-Criterio
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Índice</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Valor</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Criterio</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-chisq
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-Chi-cuadrado
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-10.109
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">chisq</td>
+<td style="text-align: left; width: 2.5cm;">Chi-cuadrado</td>
+<td style="text-align: center; width: 2.5cm;">10.109</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-df
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-gl
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-4.000
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">df</td>
+<td style="text-align: left; width: 2.5cm;">gl</td>
+<td style="text-align: center; width: 2.5cm;">4.000</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-pvalue
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-p-valor
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.039
-</td>
-<td style="text-align:center;">
-&gt; 0.05
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">pvalue</td>
+<td style="text-align: left; width: 2.5cm;">p-valor</td>
+<td style="text-align: center; width: 2.5cm;">0.039</td>
+<td style="text-align: center;">&gt; 0.05</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
-rmsea
-</td>
-<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-RMSEA
-</td>
-<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-0.025
-</td>
-<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
-&lt; 0.08
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">rmsea</td>
+<td style="text-align: left; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">RMSEA</td>
+<td style="text-align: center; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">0.025</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">&lt; 0.08</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-rmsea.ci.lower
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-RMSEA IC inferior
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.005
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">rmsea.ci.lower</td>
+<td style="text-align: left; width: 2.5cm;">RMSEA IC inferior</td>
+<td style="text-align: center; width: 2.5cm;">0.005</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-rmsea.ci.upper
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-RMSEA IC superior
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.045
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">rmsea.ci.upper</td>
+<td style="text-align: left; width: 2.5cm;">RMSEA IC superior</td>
+<td style="text-align: center; width: 2.5cm;">0.045</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
-cfi
-</td>
-<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-CFI
-</td>
-<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-1.000
-</td>
-<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
-&gt; 0.90
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">cfi</td>
+<td style="text-align: left; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">CFI</td>
+<td style="text-align: center; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">1.000</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">&gt; 0.90</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
-tli
-</td>
-<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-TLI
-</td>
-<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-0.999
-</td>
-<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
-&gt; 0.90
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">tli</td>
+<td style="text-align: left; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">TLI</td>
+<td style="text-align: center; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">0.999</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">&gt; 0.90</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-srmr
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-SRMR
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.012
-</td>
-<td style="text-align:center;">
-&lt; 0.08
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">srmr</td>
+<td style="text-align: left; width: 2.5cm;">SRMR</td>
+<td style="text-align: center; width: 2.5cm;">0.012</td>
+<td style="text-align: center;">&lt; 0.08</td>
 </tr>
 </tbody>
 </table>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seg-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.15: Cargas estandarizadas del CFA de Seguridad Pública
-</figcaption>
+</div>
 </figure>
 </div>
-<div id="fig-seg-cfa-3" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-seg-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<strong>Cargas Factoriales Estandarizadas</strong>
-</caption>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-seg-cfa" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-seg-cfa-3" class="table table-striped table-hover table-condensed table-responsive do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-seg-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Cargas Factoriales Estandarizadas
+</figcaption>
+<div aria-describedby="tbl-seg-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table id="tbl-seg-cfa-3" class="table table-striped table-hover table-condensed do-not-create-environment caption-top">
 <thead>
-<tr>
-<th style="text-align:left;">
-Factor
-</th>
-<th style="text-align:left;">
-Variable
-</th>
-<th style="text-align:center;">
-Carga
-</th>
-<th style="text-align:center;">
-EE
-</th>
-<th style="text-align:center;">
-p-valor
-</th>
-<th style="text-align:center;">
-Sig.
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Factor</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Carga</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">EE</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-valor</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sig.</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-seg_obj
-</td>
-<td style="text-align:left;width: 4cm; ">
-asaltos
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.785
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.011
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">seg_obj</td>
+<td style="text-align: left; width: 4cm;">asaltos</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.785</td>
+<td style="text-align: center; width: 2cm;">0.011</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-seg_obj
-</td>
-<td style="text-align:left;width: 4cm; ">
-trafico_drogas
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.814
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.011
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="even">
+<td style="text-align: left; width: 3cm; font-weight: bold;">seg_obj</td>
+<td style="text-align: left; width: 4cm;">trafico_drogas</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.814</td>
+<td style="text-align: center; width: 2cm;">0.011</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-seg_obj
-</td>
-<td style="text-align:left;width: 4cm; ">
-peleas_calle
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.842
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.010
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">seg_obj</td>
+<td style="text-align: left; width: 4cm;">peleas_calle</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.842</td>
+<td style="text-align: center; width: 2cm;">0.010</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-seg_sub
-</td>
-<td style="text-align:left;width: 4cm; ">
-seguridad_sat
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.826
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.011
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="even">
+<td style="text-align: left; width: 3cm; font-weight: bold;">seg_sub</td>
+<td style="text-align: left; width: 4cm;">seguridad_sat</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.826</td>
+<td style="text-align: center; width: 2cm;">0.011</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-seg_sub
-</td>
-<td style="text-align:left;width: 4cm; ">
-seguridad_perc
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.786
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.013
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">seg_sub</td>
+<td style="text-align: left; width: 4cm;">seguridad_perc</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.786</td>
+<td style="text-align: center; width: 2cm;">0.013</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
 </tbody>
 </table>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seg-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.16: Cargas estandarizadas del CFA de Seguridad Pública
-</figcaption>
+</div>
 </figure>
 </div>
+</div>
+</div>
+</div>
+</figure>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell">
-<div id="fig-vin-cfa-1" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vin-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<strong>Resumen del Modelo CFA - Vínculos Territoriales</strong>
-</caption>
+<div id="tbl-vin-cfa" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vin-cfa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: Análisis Factorial Confirmatorio de Vínculos Territoriales (Ola 2023)
+</figcaption>
+<div aria-describedby="tbl-vin-cfa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-vin-cfa" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-vin-cfa-1" class="table table-striped table-hover table-condensed table-responsive do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-vin-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Resumen del Modelo
+</figcaption>
+<div aria-describedby="tbl-vin-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table id="tbl-vin-cfa-1" class="table table-striped table-hover table-condensed do-not-create-environment caption-top">
 <thead>
-<tr>
-<th style="text-align:left;">
-Característica
-</th>
-<th style="text-align:center;">
-Valor
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Característica</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Valor</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Observaciones
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2697
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Observaciones</td>
+<td style="text-align: center; width: 2.5cm;">2697</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Variables observadas
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-8
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Variables observadas</td>
+<td style="text-align: center; width: 2.5cm;">8</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Factores latentes
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Factores latentes</td>
+<td style="text-align: center; width: 2.5cm;">2</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Parámetros estimados
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-41
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Parámetros estimados</td>
+<td style="text-align: center; width: 2.5cm;">41</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Grados de libertad
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-19
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Grados de libertad</td>
+<td style="text-align: center; width: 2.5cm;">19</td>
 </tr>
 </tbody>
 </table>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vin-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.17: Cargas estandarizadas del CFA de Vínculos Territoriales
-</figcaption>
+</div>
 </figure>
 </div>
-<div id="fig-vin-cfa-2" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vin-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<strong>Índices de Ajuste del Modelo CFA - Vínculos Territoriales</strong>
-</caption>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-vin-cfa" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-vin-cfa-2" class="table table-striped table-hover table-condensed table-responsive do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-vin-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Índices de Ajuste
+</figcaption>
+<div aria-describedby="tbl-vin-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table id="tbl-vin-cfa-2" class="table table-striped table-hover table-condensed do-not-create-environment caption-top">
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-Índice
-</th>
-<th style="text-align:center;">
-Valor
-</th>
-<th style="text-align:center;">
-Criterio
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Índice</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Valor</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Criterio</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-chisq
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-Chi-cuadrado
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-181.127
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">chisq</td>
+<td style="text-align: left; width: 2.5cm;">Chi-cuadrado</td>
+<td style="text-align: center; width: 2.5cm;">181.127</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-df
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-gl
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-19.000
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">df</td>
+<td style="text-align: left; width: 2.5cm;">gl</td>
+<td style="text-align: center; width: 2.5cm;">19.000</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-pvalue
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-p-valor
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.000
-</td>
-<td style="text-align:center;">
-&gt; 0.05
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">pvalue</td>
+<td style="text-align: left; width: 2.5cm;">p-valor</td>
+<td style="text-align: center; width: 2.5cm;">0.000</td>
+<td style="text-align: center;">&gt; 0.05</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
-rmsea
-</td>
-<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-RMSEA
-</td>
-<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-0.056
-</td>
-<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
-&lt; 0.08
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">rmsea</td>
+<td style="text-align: left; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">RMSEA</td>
+<td style="text-align: center; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">0.056</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">&lt; 0.08</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-rmsea.ci.lower
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-RMSEA IC inferior
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.049
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">rmsea.ci.lower</td>
+<td style="text-align: left; width: 2.5cm;">RMSEA IC inferior</td>
+<td style="text-align: center; width: 2.5cm;">0.049</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-rmsea.ci.upper
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-RMSEA IC superior
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.064
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">rmsea.ci.upper</td>
+<td style="text-align: left; width: 2.5cm;">RMSEA IC superior</td>
+<td style="text-align: center; width: 2.5cm;">0.064</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
-cfi
-</td>
-<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-CFI
-</td>
-<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-0.998
-</td>
-<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
-&gt; 0.90
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">cfi</td>
+<td style="text-align: left; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">CFI</td>
+<td style="text-align: center; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">0.998</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">&gt; 0.90</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
-tli
-</td>
-<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-TLI
-</td>
-<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-0.998
-</td>
-<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
-&gt; 0.90
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">tli</td>
+<td style="text-align: left; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">TLI</td>
+<td style="text-align: center; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">0.998</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">&gt; 0.90</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-srmr
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-SRMR
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.028
-</td>
-<td style="text-align:center;">
-&lt; 0.08
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">srmr</td>
+<td style="text-align: left; width: 2.5cm;">SRMR</td>
+<td style="text-align: center; width: 2.5cm;">0.028</td>
+<td style="text-align: center;">&lt; 0.08</td>
 </tr>
 </tbody>
 </table>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vin-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.18: Cargas estandarizadas del CFA de Vínculos Territoriales
-</figcaption>
+</div>
 </figure>
 </div>
-<div id="fig-vin-cfa-3" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vin-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<strong>Cargas Factoriales Estandarizadas - Vínculos Territoriales</strong>
-</caption>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-vin-cfa" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-vin-cfa-3" class="table table-striped table-hover table-condensed table-responsive do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-vin-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Cargas Factoriales Estandarizadas
+</figcaption>
+<div aria-describedby="tbl-vin-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table id="tbl-vin-cfa-3" class="table table-striped table-hover table-condensed do-not-create-environment caption-top">
 <thead>
-<tr>
-<th style="text-align:left;">
-Factor
-</th>
-<th style="text-align:left;">
-Variable
-</th>
-<th style="text-align:center;">
-Carga
-</th>
-<th style="text-align:center;">
-EE
-</th>
-<th style="text-align:center;">
-p-valor
-</th>
-<th style="text-align:center;">
-Sig.
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Factor</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Carga</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">EE</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-valor</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sig.</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-pertenencia
-</td>
-<td style="text-align:left;width: 4cm; ">
-barrio_ideal
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.772
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.009
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">pertenencia</td>
+<td style="text-align: left; width: 4cm;">barrio_ideal</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.772</td>
+<td style="text-align: center; width: 2cm;">0.009</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-pertenencia
-</td>
-<td style="text-align:left;width: 4cm; ">
-barrio_integracion
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.884
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.006
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="even">
+<td style="text-align: left; width: 3cm; font-weight: bold;">pertenencia</td>
+<td style="text-align: left; width: 4cm;">barrio_integracion</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.884</td>
+<td style="text-align: center; width: 2cm;">0.006</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-pertenencia
-</td>
-<td style="text-align:left;width: 4cm; ">
-barrio_identidad
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.898
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.005
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">pertenencia</td>
+<td style="text-align: left; width: 4cm;">barrio_identidad</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.898</td>
+<td style="text-align: center; width: 2cm;">0.005</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-pertenencia
-</td>
-<td style="text-align:left;width: 4cm; ">
-barrio_pertenencia
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.861
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.006
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="even">
+<td style="text-align: left; width: 3cm; font-weight: bold;">pertenencia</td>
+<td style="text-align: left; width: 4cm;">barrio_pertenencia</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.861</td>
+<td style="text-align: center; width: 2cm;">0.006</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-satisfaccion
-</td>
-<td style="text-align:left;width: 4cm; ">
-barrio_amigos
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.815
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.008
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">satisfaccion</td>
+<td style="text-align: left; width: 4cm;">barrio_amigos</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.815</td>
+<td style="text-align: center; width: 2cm;">0.008</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-satisfaccion
-</td>
-<td style="text-align:left;width: 4cm; ">
-barrio_sociable
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.868
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.006
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="even">
+<td style="text-align: left; width: 3cm; font-weight: bold;">satisfaccion</td>
+<td style="text-align: left; width: 4cm;">barrio_sociable</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.868</td>
+<td style="text-align: center; width: 2cm;">0.006</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-satisfaccion
-</td>
-<td style="text-align:left;width: 4cm; ">
-barrio_cordial
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.868
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.007
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">satisfaccion</td>
+<td style="text-align: left; width: 4cm;">barrio_cordial</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.868</td>
+<td style="text-align: center; width: 2cm;">0.007</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-satisfaccion
-</td>
-<td style="text-align:left;width: 4cm; ">
-barrio_colaborador
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.762
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.009
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="even">
+<td style="text-align: left; width: 3cm; font-weight: bold;">satisfaccion</td>
+<td style="text-align: left; width: 4cm;">barrio_colaborador</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.762</td>
+<td style="text-align: center; width: 2cm;">0.009</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
 </tbody>
 </table>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vin-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.19: Cargas estandarizadas del CFA de Vínculos Territoriales
-</figcaption>
+</div>
 </figure>
 </div>
+</div>
+</div>
+</div>
+</figure>
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
-<div class="cell">
-<div id="fig-redes-cfa-1" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-redes-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<strong>Resumen del Modelo CFA - Redes Sociales</strong>
-</caption>
+<div id="tbl-redes-cfa" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-redes-cfa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.3: Análisis Factorial Confirmatorio de Redes Sociales (Ola 2023)
+</figcaption>
+<div aria-describedby="tbl-redes-cfa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-redes-cfa" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-redes-cfa-1" class="table table-striped table-hover table-condensed table-responsive do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-redes-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Resumen del Modelo
+</figcaption>
+<div aria-describedby="tbl-redes-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table id="tbl-redes-cfa-1" class="table table-striped table-hover table-condensed do-not-create-environment caption-top">
 <thead>
-<tr>
-<th style="text-align:left;">
-Característica
-</th>
-<th style="text-align:center;">
-Valor
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Característica</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Valor</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Observaciones
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2713
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Observaciones</td>
+<td style="text-align: center; width: 2.5cm;">2713</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Variables observadas
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-7
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Variables observadas</td>
+<td style="text-align: center; width: 2.5cm;">7</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Factores latentes
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-3
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Factores latentes</td>
+<td style="text-align: center; width: 2.5cm;">3</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Parámetros estimados
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-24
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Parámetros estimados</td>
+<td style="text-align: center; width: 2.5cm;">24</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-Grados de libertad
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-11
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">Grados de libertad</td>
+<td style="text-align: center; width: 2.5cm;">11</td>
 </tr>
 </tbody>
 </table>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-redes-cfa-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.20: Cargas estandarizadas del CFA de Redes Sociales
-</figcaption>
+</div>
 </figure>
 </div>
-<div id="fig-redes-cfa-2" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-redes-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<strong>Índices de Ajuste del Modelo CFA - Redes Sociales</strong>
-</caption>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-redes-cfa" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-redes-cfa-2" class="table table-striped table-hover table-condensed table-responsive do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-redes-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Índices de Ajuste
+</figcaption>
+<div aria-describedby="tbl-redes-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table id="tbl-redes-cfa-2" class="table table-striped table-hover table-condensed do-not-create-environment caption-top">
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-Índice
-</th>
-<th style="text-align:center;">
-Valor
-</th>
-<th style="text-align:center;">
-Criterio
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Índice</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Valor</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Criterio</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-chisq
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-Chi-cuadrado
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-52.661
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">chisq</td>
+<td style="text-align: left; width: 2.5cm;">Chi-cuadrado</td>
+<td style="text-align: center; width: 2.5cm;">52.661</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-df
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-gl
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-11.000
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">df</td>
+<td style="text-align: left; width: 2.5cm;">gl</td>
+<td style="text-align: center; width: 2.5cm;">11.000</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-pvalue
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-p-valor
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.000
-</td>
-<td style="text-align:center;">
-&gt; 0.05
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">pvalue</td>
+<td style="text-align: left; width: 2.5cm;">p-valor</td>
+<td style="text-align: center; width: 2.5cm;">0.000</td>
+<td style="text-align: center;">&gt; 0.05</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
-rmsea
-</td>
-<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-RMSEA
-</td>
-<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-0.037
-</td>
-<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
-&lt; 0.08
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">rmsea</td>
+<td style="text-align: left; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">RMSEA</td>
+<td style="text-align: center; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">0.037</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">&lt; 0.08</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-rmsea.ci.lower
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-RMSEA IC inferior
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.028
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">rmsea.ci.lower</td>
+<td style="text-align: left; width: 2.5cm;">RMSEA IC inferior</td>
+<td style="text-align: center; width: 2.5cm;">0.028</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-rmsea.ci.upper
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-RMSEA IC superior
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.048
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold;">rmsea.ci.upper</td>
+<td style="text-align: left; width: 2.5cm;">RMSEA IC superior</td>
+<td style="text-align: center; width: 2.5cm;">0.048</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
-cfi
-</td>
-<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-CFI
-</td>
-<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-0.985
-</td>
-<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
-&gt; 0.90
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">cfi</td>
+<td style="text-align: left; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">CFI</td>
+<td style="text-align: center; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">0.985</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">&gt; 0.90</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;background-color: rgba(248, 249, 250, 255) !important;">
-tli
-</td>
-<td style="text-align:left;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-TLI
-</td>
-<td style="text-align:center;width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">
-0.971
-</td>
-<td style="text-align:center;background-color: rgba(248, 249, 250, 255) !important;">
-&gt; 0.90
-</td>
+<tr class="even">
+<td style="text-align: left; width: 4cm; font-weight: bold; background-color: rgba(248, 249, 250, 255) !important;">tli</td>
+<td style="text-align: left; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">TLI</td>
+<td style="text-align: center; width: 2.5cm; background-color: rgba(248, 249, 250, 255) !important;">0.971</td>
+<td style="text-align: center; background-color: rgba(248, 249, 250, 255) !important;">&gt; 0.90</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; font-weight: bold;">
-srmr
-</td>
-<td style="text-align:left;width: 2.5cm; ">
-SRMR
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.034
-</td>
-<td style="text-align:center;">
-&lt; 0.08
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 4cm; font-weight: bold;">srmr</td>
+<td style="text-align: left; width: 2.5cm;">SRMR</td>
+<td style="text-align: center; width: 2.5cm;">0.034</td>
+<td style="text-align: center;">&lt; 0.08</td>
 </tr>
 </tbody>
 </table>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-redes-cfa-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.21: Cargas estandarizadas del CFA de Redes Sociales
-</figcaption>
+</div>
 </figure>
 </div>
-<div id="fig-redes-cfa-3" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-redes-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<strong>Cargas Factoriales Estandarizadas - Redes Sociales</strong>
-</caption>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-redes-cfa" style="flex-basis: 100.0%;justify-content: center;">
+<div id="tbl-redes-cfa-3" class="table table-striped table-hover table-condensed table-responsive do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-redes-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Cargas Factoriales Estandarizadas
+</figcaption>
+<div aria-describedby="tbl-redes-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table id="tbl-redes-cfa-3" class="table table-striped table-hover table-condensed do-not-create-environment caption-top">
 <thead>
-<tr>
-<th style="text-align:left;">
-Factor
-</th>
-<th style="text-align:left;">
-Variable
-</th>
-<th style="text-align:center;">
-Carga
-</th>
-<th style="text-align:center;">
-EE
-</th>
-<th style="text-align:center;">
-p-valor
-</th>
-<th style="text-align:center;">
-Sig.
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Factor</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Carga</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">EE</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-valor</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sig.</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-interpersonal
-</td>
-<td style="text-align:left;width: 4cm; ">
-confianza_gen
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.712
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.151
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">interpersonal</td>
+<td style="text-align: left; width: 4cm;">confianza_gen</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.712</td>
+<td style="text-align: center; width: 2cm;">0.151</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-interpersonal
-</td>
-<td style="text-align:left;width: 4cm; ">
-altruismo_gen
-</td>
-<td style="text-align:center;width: 2cm; color: black !important;">
-0.536
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.115
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="even">
+<td style="text-align: left; width: 3cm; font-weight: bold;">interpersonal</td>
+<td style="text-align: left; width: 4cm;">altruismo_gen</td>
+<td style="text-align: center; width: 2cm; color: black !important;">0.536</td>
+<td style="text-align: center; width: 2cm;">0.115</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-prosocial
-</td>
-<td style="text-align:left;width: 4cm; ">
-reunion_pub
-</td>
-<td style="text-align:center;width: 2cm; color: black !important;">
-0.571
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.027
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">prosocial</td>
+<td style="text-align: left; width: 4cm;">reunion_pub</td>
+<td style="text-align: center; width: 2cm; color: black !important;">0.571</td>
+<td style="text-align: center; width: 2cm;">0.027</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-prosocial
-</td>
-<td style="text-align:left;width: 4cm; ">
-voluntariado
-</td>
-<td style="text-align:center;width: 2cm; font-weight: bold;color: darkgreen !important;">
-0.762
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.032
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="even">
+<td style="text-align: left; width: 3cm; font-weight: bold;">prosocial</td>
+<td style="text-align: left; width: 4cm;">voluntariado</td>
+<td style="text-align: center; width: 2cm; font-weight: bold; color: darkgreen !important;">0.762</td>
+<td style="text-align: center; width: 2cm;">0.032</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-economica
-</td>
-<td style="text-align:left;width: 4cm; ">
-ayuda_trabajo
-</td>
-<td style="text-align:center;width: 2cm; color: black !important;">
-0.614
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.022
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">economica</td>
+<td style="text-align: left; width: 4cm;">ayuda_trabajo</td>
+<td style="text-align: center; width: 2cm; color: black !important;">0.614</td>
+<td style="text-align: center; width: 2cm;">0.022</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-economica
-</td>
-<td style="text-align:left;width: 4cm; ">
-donar_dinero
-</td>
-<td style="text-align:center;width: 2cm; color: black !important;">
-0.642
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.022
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="even">
+<td style="text-align: left; width: 3cm; font-weight: bold;">economica</td>
+<td style="text-align: left; width: 4cm;">donar_dinero</td>
+<td style="text-align: center; width: 2cm; color: black !important;">0.642</td>
+<td style="text-align: center; width: 2cm;">0.022</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 3cm; font-weight: bold;">
-economica
-</td>
-<td style="text-align:left;width: 4cm; ">
-prestar_dinero
-</td>
-<td style="text-align:center;width: 2cm; color: black !important;">
-0.634
-</td>
-<td style="text-align:center;width: 2cm; ">
-0.023
-</td>
-<td style="text-align:center;width: 2cm; ">
-&lt; 0.001
-</td>
-<td style="text-align:center;width: 2cm; ">
-***
-</td>
+<tr class="odd">
+<td style="text-align: left; width: 3cm; font-weight: bold;">economica</td>
+<td style="text-align: left; width: 4cm;">prestar_dinero</td>
+<td style="text-align: center; width: 2cm; color: black !important;">0.634</td>
+<td style="text-align: center; width: 2cm;">0.023</td>
+<td style="text-align: center; width: 2cm;">&lt; 0.001</td>
+<td style="text-align: center; width: 2cm;">***</td>
 </tr>
 </tbody>
 </table>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-redes-cfa-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.22: Cargas estandarizadas del CFA de Redes Sociales
-</figcaption>
+</div>
 </figure>
 </div>
 </div>
 </div>
 </div>
+</figure>
 </div>
+</div>
+</div>
+</div>
+<p>En la <a href="#tbl-seg-cfa" class="quarto-xref">Table&nbsp;<span>3.1</span></a> se da cuenta que la dimensión “Seguridad Pública” tiene índices de ajuste que demuestran una excelente bondad del modelo (RMSEA = 0.034; CFI = 0.998; TLI = 0.995), mientras que las cargas factoriales son todas altas, variando entre 0.759 y 0.897. Los tres indicadores de seguridad objetiva presentan cargas de 0.759 a 0.859, mientras que los dos indicadores de seguridad subjetiva muestran cargas de 0.860 y 0.897. Junto a los índices de ajuste, se confirma la validez del modelo bifactorial que distingue entre las dimensiones objetiva y subjetiva de la seguridad.</p>
+<p>En la <a href="#tbl-vin-cfa" class="quarto-xref">Table&nbsp;<span>3.2</span></a> se observa que la dimensión “Vínculos Territoriales” presenta índices de ajuste satisfactorios (RMSEA = 0.054; CFI = 0.987; TLI = 0.982), con cargas factoriales que varían entre 0.690 y 0.886. El factor de pertenencia al barrio muestra cargas entre 0.705 y 0.886, mientras que el factor de satisfacción con el barrio presenta cargas entre 0.690 y 0.881. Estos resultados confirman la validez del modelo bifactorial que articula la identificación territorial con la valoración de las relaciones vecinales.</p>
+<p>En la <a href="#tbl-redes-cfa" class="quarto-xref">Table&nbsp;<span>3.3</span></a> se evidencia que la dimensión “Redes Sociales” tiene índices de ajuste aceptables (RMSEA = 0.046; CFI = 0.977; TLI = 0.959), con cargas factoriales que oscilan entre 0.539 y 0.824. El factor de confianza interpersonal presenta cargas entre 0.738 y 0.818, el factor de comportamiento prosocial muestra cargas entre 0.713 y 0.824, y el factor de ayuda económica exhibe cargas entre 0.539 y 0.813. Destaca la carga moderada del indicador “ayuda para buscar trabajo” con 0.539, aunque aún aceptable. En conjunto, los índices de ajuste confirman la validez del modelo trifactorial propuesto.</p>
 </section>
 <section id="construcción-de-índices" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="construcción-de-índices"><span class="header-section-number">3.7</span> Construcción de índices</h2>
-<p>A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices en base a los promedios de los indicadores de cada subdimensión con tal de simplificar y reporte e interpretación de los resultados.</p>
+<p>A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices en base a los promedios de los indicadores de cada subdimensión con tal de simplificar y reporte e interpretación de los resultados. En cada uno de ellos se reporta el promedio, la desviaicón estándar, el rango, la forma de la distribución y el alfa de Cronbach.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 13px; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -3129,13 +2630,14 @@ Chan, J., To, H.-P., &amp; Chan, E. (2006). Reconsidering <span>Social Cohesion<
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

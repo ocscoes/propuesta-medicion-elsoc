@@ -101,7 +101,11 @@ db <- elsoc_long_2016_2023 %>%
 
 ## Antecedentes
 
-El concepto de cohesión social horizontal surge como una respuesta crítica a definiciones previas que tendían a confundir sus contenidos con condiciones externas tales como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a estas limitaciones @chan_reconsidering_2006 proponen una definición de carácter minimalista, orientada a precisar los elementos constitutivos de la cohesión sin diluir su valor analítico. Desde esta perspectiva, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos en el seno de la sociedad, independientemente de la mediación estatal. En el plano conceptual, esta dimensión abarca la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales, así como el sentido compartido de pertenencia. En el plano operacional, tales componentes se expresan tanto en indicadores subjetivos (confianza interpersonal, disposición a cooperar, identificación con la comunidad) como en indicadores objetivos (participación en asociaciones, voluntariado, donaciones, prácticas de cooperación o existencia de divisiones entre grupos). De este modo, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
+La presente sección capítulo se estructura en torno a tres momentos clave en la medición de la cohesión social horizontal. En primer lugar, se presenta la experiencia inicial de medición comparada para América Latina desarrollada por el [Observatorio de Cohesión Social (OCS-COES)](https://ocs-coes.com/), donde se conceptualiza la cohesión horizontal desde una perspectiva minimalista orientada a la comparación regional. En segundo lugar, se expone la propuesta de @castillo_hacia_2021, que amplía esta mirada mediante el uso de la Encuesta Longitudinal Social de Chile (ELSOC), incorporando nuevas subdimensiones y mayor granularidad en los indicadores. Finalmente, se presenta la propuesta de medición longitudinal para Chile del OCS con ELSOC, que integra y refina los aprendizajes previos para construir un esquema que articula seguridad, vínculos territoriales y redes sociales a lo largo del tiempo.
+
+Como se introdujo previamente, el concepto de cohesión social horizontal surge como una respuesta crítica a definiciones previas que tendían a confundir sus contenidos con condiciones externas tales como la pobreza, la igualdad de oportunidades o la tolerancia. Frente a estas limitaciones @chan_reconsidering_2006 proponen una definición de carácter minimalista, orientada a precisar los elementos constitutivos de la cohesión sin diluir su valor analítico. Desde esta perspectiva, la cohesión horizontal se entiende como el conjunto de actitudes y comportamientos que regulan las relaciones entre individuos y grupos en el seno de la sociedad, independientemente de la mediación estatal. 
+
+En el plano conceptual, esta dimensión abarca la confianza generalizada entre ciudadanos, la disposición a cooperar y ayudar más allá de las fronteras grupales, así como el sentido compartido de pertenencia. En el plano operacional, tales componentes se expresan tanto en indicadores subjetivos (confianza interpersonal, disposición a cooperar, identificación con la comunidad) como en indicadores objetivos (participación en asociaciones, voluntariado, donaciones, prácticas de cooperación o existencia de divisiones entre grupos). De este modo, la cohesión horizontal adquiere una forma precisa y medible, lo que permite evaluar comparativamente el grado de integración social entre ciudadanos en distintos contextos.
 
 ### Esquema de Cohesión Horizontal Latinoamérica (Vis-Latam)
 
@@ -112,6 +116,7 @@ El [Observatorio de Cohesión Social (OCS-COES)](https://ocs-coes.com/) ha desar
 #| fig-cap-location: top
 #| fig-cap: "Medición de cohesión horizontal para América Latina del Observatorio de Cohesión Social"
 #| fig-align: center
+#| out-width: "100%"
 
 library(here)
 
@@ -127,6 +132,8 @@ Este esquema de medición para América Latina integra las dimensiones de seguri
 
 ### Esquema de Cohesión Horizontal @castillo_hacia_2021
 
+Otro antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de @castillo_hacia_2021. Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la [Encuesta Longitudinal Social de Chile (ELSOC)](https://coes.cl/elsoc/), de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.
+
 ```{r}
 #| echo: false
 #| message: false
@@ -134,7 +141,7 @@ Este esquema de medición para América Latina integra las dimensiones de seguri
 #| fig-cap: "Esquema de Medición de Cohesión Horizontal por Castillo et al.(2021)"
 
 # Cargar los datos - ajustar la ruta según tu archivo
-datos2 <- read_delim("../../input/tables//tbl-elsoc-hor.csv",  # Cambia por la ruta real de tu archivo
+datos2 <- read_delim(here::here("input/tables/tbl-elsoc-hor.csv"),
                     delim = ",",        # Usar coma como delimitador
                     show_col_types = FALSE,
                     locale = locale(encoding = "UTF-8"),
@@ -201,8 +208,6 @@ tabla_principal <- datos_formateados %>%
 tabla_principal
 ```
 
-Otro antecedente particularmente relevante para la medición de la cohesión social en Chile es la propuesta de @castillo_hacia_2021. Dicho trabajo operacionaliza la cohesión social horizontal mediante la distinción entre indicadores subjetivos —actitudes de pertenencia, confianza y aceptación de la diversidad— e indicadores objetivos, vinculados a la participación social y las prácticas prosociales. Esta propuesta se implementa a través de la [Encuesta Longitudinal Social de Chile (ELSOC)](https://coes.cl/elsoc/), de la cual se identifican ítems que capturan dimensiones clave tales como: sentido de pertenencia (identificación y orgullo nacional), confianza social (interpersonal y hacia los vecinos), cohesión barrial (integración e identificación con el vecindario) y conductas prosociales (voluntariado, donaciones y apoyo a terceros). Asimismo, se incorporan actitudes hacia grupos minoritarios y personas migrantes como expresión de inclusión social.
-
 De las anteriores, se puede destacar cuatro grandes subdimensiones: sentido de pertenencia, confianza social, cohesión barrial y sociabilidad local, y participación y prosocialidad.
 
 La primera, **sentido de pertenencia**, se capta a través de ítems del módulo de Sociabilidad Política que indagan sobre el grado de identificación con Chile y el orgullo nacional. Estas preguntas reflejan el vínculo simbólico y afectivo de las personas con la comunidad política nacional y permiten observar hasta qué punto los individuos se reconocen como parte de un colectivo común.
@@ -213,15 +218,15 @@ La tercera, **cohesión barrial y sociabilidad local**, se refiere a la integrac
 
 Finalmente, la subdimensión de **participación social y prosocialidad** incorpora conductas concretas que muestran la disposición de las personas a involucrarse en la vida social y apoyar a otros. ELSOC mide este aspecto a través de la participación en voluntariado, las donaciones a causas sociales, el apoyo económico o material a otras personas, y el acompañamiento en situaciones de dificultad. Estas acciones representan la expresión objetiva de la cohesión horizontal, pues reflejan la voluntad de contribuir activamente al bienestar colectivo.
 
+## Propuesta de medición de Cohesión Social Longitudinal Horizontal (VisELSOC)
+
 Ahora bien, las propuestas presentadas tienen diferencias importantes.
 
 1)  En primer lugar, con ELSOC cuenta con información que permite observar con mayores niveles de granularidad y, consecuentemente, identificar con mayor precisión las dimensiones y subdimensiones de la cohesión social en comparación con la propuesta de que se construye para Latinoamérica con LAPOP, cuya perspectiva es más minimalista.
 2)  Por su parte, en la versión con ELSOC se consideran varias subdimensiones que no están presentes en el índice de Latinoamérica debido a decisiones basadas en inconsistencia teórica y/o estadística, tal como el factor de comportamiento prosocial, el cual intentó integrarse en con datos de WVS y, si bien la consistencia interna del factor era aceptable, [no correlacionaba con los demás factores de su dimensión.](https://ocscoes.github.io/medicion-cohesion-LA/cohesion-horizontal.html)
 3)  Finalmente, hay que decir que las propuestas no comparten ningún factor de sus subdimensiones. Si bien ambas integran el índice confianza interpersonal en su medición, ELSOC la considera como un factor de segundo orden, mientras que en la propuesta de LAPOP es un factor de primer orden.
 
-## Propuesta de medición con ELSOC
-
-La propuesta del OCS para medir la **cohesión social horizontal** a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria.
+En este sentido, y con la idea de actualizar el marco y la operacionalización de la cohesión social, la propuesta del OCS para medir la **cohesión horizontal** a través de la ELSOC se organiza en tres dimensiones principales: seguridad, vínculos territoriales y redes sociales. Cada una integra factores e indicadores específicos que permiten observar tanto las condiciones objetivas como las percepciones y prácticas asociadas a la vida comunitaria. La siguiente tabla presenta la propuesta en extenso.
 
 ```{r}
 #| echo: false
@@ -229,7 +234,7 @@ La propuesta del OCS para medir la **cohesión social horizontal** a través de 
 #| warning: false
 
 # Cargar los datos
-datos <- read_delim("../../input/tables/variables-final.csv", 
+datos <- read_delim(here::here("input/tables/variables-final.csv"), 
                     delim = ";", 
                     show_col_types = FALSE,
                     locale = locale(encoding = "UTF-8"))
@@ -295,7 +300,7 @@ tabla_principal <- datos_formateados %>%
 tabla_principal 
 ```
 
-La **seguridad** se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras y la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo. En el plano subjetivo, se incluyen la frecuencia de tráfico de drogas en el vecindario, la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los residentes evalúan y experimentan estas condiciones.
+La **seguridad** se mide desde un plano objetivo y subjetivo. En el primer caso, se consideran la frecuencia de peleas callejeras, la frecuencia de robos y/o asaltos en el barrio durante los últimos doce meses, indicadores que muestran la exposición a situaciones de riesgo, así como también se incluyen la frecuencia de tráfico de drogas en el vecindario. Mientras que en el plano subjetivo se incorpora la satisfacción con la seguridad del barrio y la percepción individual de sentirse seguro o inseguro en su entorno, lo que aporta una mirada sobre cómo los ciudadanos evalúan y experimentan estas condiciones.
 
 Los **vínculos territoriales** buscan capturar el grado de identificación y valoración del espacio de residencia. Esta dimensión se divide en dos factores. El primero, la pertenencia al barrio, incluye cuatro indicadores: considerar que el barrio es ideal, sentirse integrado, identificarse con los vecinos y percibirlo como parte de la propia identidad. El segundo, la satisfacción con el barrio, se mide a través de la facilidad para hacer amigos, la sociabilidad, la cordialidad y la colaboración de los vecinos, reflejando así la calidad de las relaciones comunitarias.
 
@@ -306,10 +311,11 @@ La tercera dimensión corresponde a las **redes sociales**, que permiten observa
 #| fig-cap-location: top
 #| fig-cap: "Medición de cohesión horizontal para Chile del Observatorio de Cohesión Social"
 #| fig-align: center
+#| out-width: "100%"
 
 library(here)
 
-knitr::include_graphics(path = here("output/book-cohesion-elsoc/images/propuesta-hor.png"))
+knitr::include_graphics(path = here("output/book-cohesion-elsoc/images/propuesta-hor-elsoc.png"))
 
 ```
 
@@ -322,8 +328,7 @@ Este esquema integra distintos planos de análisis —condiciones objetivas, per
 ### Seguridad Pública
 
 ```{r}
-#| label: fig-seguridad
-#| fig-cap: "Distribución de Variables de Seguridad Pública. Datos ELSOC Ola 2022 (Última ola disponible)"
+#| echo: false
 
 db_filtrado <- db %>% filter(ola == 6)
 
@@ -364,6 +369,13 @@ plot2 <- plot_stackfrq(
   theme_ggdist() +
   labs(y = NULL)
 
+```
+
+```{r}
+#| label: fig-seg
+#| fig-cap: "Distribución de Variables de Seguridad Pública. Datos ELSOC Ola 2022"
+
+# (Última ola disponible)"
 # Combinar los plots manteniendo ambas leyendas
 plot_final <- wrap_plots(plot1, plot2, ncol = 1) + 
   plot_annotation(
@@ -373,6 +385,7 @@ plot_final <- wrap_plots(plot1, plot2, ncol = 1) +
 
 print(plot_final)
 ```
+
 
 ### Vínculos Territoriales
 
@@ -445,7 +458,20 @@ plot_final2 <- wrap_plots(plot3, plot4, ncol = 1) +
 
 print(plot_final2)
 ```
+
 :::
+
+En la @fig-seg se puede observar la distribución de las frecuencias de las variables que componen la dimensión de seguridad pública. La primera parte del gráfico muestra los tres indicadores de seguridad objetiva. En cuanto a la frecuencia de tráfico de drogas en el barrio, se observa una distribución relativamente heterogénea, donde aproximadamente el 40% de los encuestados reporta que nunca o pocas veces ocurre este fenómeno, mientras que otro 40% señala que ocurre algunas, muchas veces o siempre. Para robos y asaltos, cerca del 60% indica que nunca o pocas veces han ocurrido en su barrio, aunque un porcentaje considerable reporta experiencias frecuentes. En el caso de riñas o peleas callejeras, más del 50% señala que estos eventos ocurren nunca o pocas veces, siendo este el indicador con menor frecuencia reportada.
+
+La parte inferior del gráfico presenta los indicadores de seguridad subjetiva. Respecto a la percepción de seguridad del barrio, se evidencia una distribución equilibrada entre quienes se sienten seguros e inseguros, con aproximadamente 40% en cada extremo. Por su parte, el grado de satisfacción con la seguridad del barrio muestra que más del 50% de los encuestados se encuentra insatisfecho o totalmente insatisfecho, revelando una valoración negativa predominante de las condiciones de seguridad en el entorno inmediato. Esta distribución sugiere que, si bien las experiencias objetivas de inseguridad varían, existe una percepción subjetiva generalizada de vulnerabilidad y descontento con la seguridad barrial.
+
+En la @fig-terr se presentan las distribuciones de los ocho indicadores que conforman la dimensión de vínculos territoriales. Los primeros cuatro indicadores corresponden al factor de pertenencia al barrio. Se observa que la mayoría de los encuestados tiende a expresar acuerdo con las afirmaciones positivas sobre su barrio: más del 60% está de acuerdo o muy de acuerdo con que su barrio es ideal para vivir, se siente integrado al barrio, se identifica con la gente que vive en él y siente que el barrio es parte de su identidad. Esta distribución revela un vínculo significativo con el territorio, aunque persiste un porcentaje no menor (entre 20-30%) que expresa desacuerdo con estas afirmaciones.
+
+Los siguientes cuatro indicadores miden la satisfacción con el barrio a través de la calidad percibida de las relaciones vecinales. Aquí también se observa una tendencia positiva: más del 60% de los encuestados está de acuerdo o muy de acuerdo en que en su barrio es fácil hacer amigos, la gente es sociable, la gente es cordial y amable, y se ayudan entre vecinos. Estos resultados sugieren que la mayoría de las personas valora positivamente tanto su identificación con el espacio barrial como la calidad de los vínculos sociales en su entorno inmediato, elementos centrales de la cohesión territorial.
+
+En las figuras @fig-redes y @fig-redes-2 se presentan los indicadores que conforman la dimensión de redes sociales. La @fig-redes muestra cinco indicadores de comportamiento prosocial y ayuda económica. Se observa que la participación en reuniones públicas del barrio es bastante limitada, con más del 80% de los encuestados señalando que nunca o pocas veces participa. De manera similar, el voluntariado presenta niveles muy bajos, con más del 90% indicando que no ha participado en los últimos 12 meses. En cuanto a la ayuda económica, los indicadores de ayudar a buscar trabajo, donar dinero y prestar dinero muestran patrones mixtos: mientras que más del 60% nunca o pocas veces dona dinero o presta dinero a otros, la ayuda para buscar trabajo presenta una distribución más equilibrada, con aproximadamente 40% señalando que lo hace algunas veces o más.
+
+La @fig-redes-2 presenta dos indicadores fundamentales de confianza interpersonal. En el primer gráfico, se observa una clara tendencia hacia la desconfianza generalizada: aproximadamente el 60% de los encuestados señala que "siempre hay que tener cuidado" al tratar con otras personas, mientras que solo cerca del 30% considera que "se puede confiar en la mayoría de las personas". El segundo indicador, referido a la percepción sobre si las personas tienden a ayudar a otros o a preocuparse solo de sí mismas, muestra una distribución más balanceada pero con una ligera inclinación hacia el egoísmo percibido, donde alrededor del 50% considera que las personas se preocupan principalmente de sí mismas. Estos resultados evidencian niveles bajos tanto de participación activa en redes sociales como de confianza interpersonal, elementos que constituyen desafíos importantes para la cohesión social horizontal.
 
 ## Correlaciones
 
@@ -536,7 +562,22 @@ corrplot(poly_cor3$rho, method = "color",
          addCoef.col = "black", # muestra los coeficientes
          number.cex = 0.7)
 ```
+
 :::
+
+En la @fig-corr-seg se presenta la matriz de correlaciones policóricas entre los cinco indicadores que componen la dimensión de seguridad pública. Se observa un patrón diferenciado entre los dos grupos de variables. Por un lado, los indicadores de seguridad objetiva (asaltos, tráfico de drogas y peleas callejeras) muestran correlaciones positivas fuertes entre sí, destacando la asociación entre asaltos y peleas callejeras (0.61) y entre asaltos y tráfico de drogas (0.65). Por otro lado, las variables de seguridad subjetiva (satisfacción con la seguridad y percepción de seguridad) presentan una correlación muy alta entre ellas (0.65), lo que sugiere que ambos indicadores capturan de manera consistente la dimensión subjetiva de la seguridad.
+
+Lo más relevante es que se identifican correlaciones negativas moderadas entre los indicadores objetivos y subjetivos de seguridad. Específicamente, la satisfacción con la seguridad del barrio correlaciona negativamente con peleas callejeras (-0.53), asaltos (-0.54) y tráfico de drogas (-0.53). De manera similar, la percepción de seguridad muestra correlaciones negativas con estos tres indicadores objetivos (entre -0.56 y -0.62). Este patrón confirma que la exposición a situaciones de inseguridad objetiva en el barrio se asocia con menores niveles de satisfacción y percepción de seguridad, validando la distinción conceptual entre ambas dimensiones mientras se evidencia su interrelación empírica.
+
+En la @fig-corr-terr se muestra la matriz de correlaciones policóricas de los ocho indicadores que conforman la dimensión de vínculos territoriales. Se observa un patrón de correlaciones positivas consistente y robusto entre todos los indicadores, con magnitudes que oscilan entre moderadas y altas, confirmando la coherencia interna de esta dimensión. Los primeros cuatro indicadores relacionados con la pertenencia al barrio (ideal, integración, identidad y pertenencia) presentan correlaciones muy altas entre sí, destacando las asociaciones entre integración e identidad (0.79), integración y pertenencia (0.79), e identidad y pertenencia (0.77). Esto sugiere que estos componentes capturan aspectos estrechamente relacionados del sentido de pertenencia territorial.
+
+Los siguientes cuatro indicadores referidos a la satisfacción con el barrio (facilidad para hacer amigos, sociabilidad, cordialidad y colaboración vecinal) también muestran correlaciones elevadas entre sí, siendo la correlación entre sociabilidad y cordialidad particularmente alta (0.79). Más aún, se identifican correlaciones substanciales entre los indicadores de pertenencia y los de satisfacción, con magnitudes que van de 0.44 a 0.64. Esto revela que el sentido de identificación con el territorio está fuertemente vinculado con la percepción positiva de las relaciones sociales en el barrio, confirmando que ambos factores constituyen elementos complementarios e integrados de la cohesión territorial. El patrón general de correlaciones positivas y moderadas a altas entre todos los indicadores sugiere que los vínculos territoriales operan como una dimensión cohesionada donde la identificación con el espacio y la calidad de las relaciones vecinales se refuerzan mutuamente.
+
+En la @fig-corr-redes se presenta la matriz de correlaciones policóricas entre los siete indicadores que componen la dimensión de redes sociales. El patrón de correlaciones revela una estructura compleja con tres agrupaciones diferenciadas. En primer lugar, los dos indicadores de confianza interpersonal (confianza generalizada y altruismo generalizado) muestran una correlación positiva débil entre sí (0.38), sugiriendo que, si bien conceptualmente relacionados, capturan aspectos parcialmente distintos de las actitudes hacia los demás.
+
+En segundo lugar, los indicadores de comportamiento prosocial (reunión pública y voluntariado) presentan una correlación positiva moderada (0.44), mientras que los tres indicadores de ayuda económica (ayuda para buscar trabajo, donar dinero y prestar dinero) también correlacionan positivamente entre sí, con magnitudes que oscilan entre 0.33 y 0.60. Particularmente, donar dinero y prestar dinero muestran una asociación moderada-alta (0.60), indicando que estas formas de solidaridad económica tienden a coocurrir.
+
+Lo más destacable es que las correlaciones entre los indicadores de confianza interpersonal y las conductas prosociales o de ayuda económica son consistentemente débiles o cercanas a cero (entre -0.10 y 0.02). Esto sugiere que las actitudes de confianza hacia otros no se traducen necesariamente en comportamientos concretos de participación o ayuda, revelando una desconexión entre las dimensiones actitudinales y conductuales de las redes sociales. Por su parte, los indicadores de comportamiento prosocial y ayuda económica muestran correlaciones débiles a moderadas entre sí (0.24 a 0.35), indicando cierta complementariedad pero también especificidad en estas formas de participación social.
 
 ## Análisis Factorial Exploratorio
 
@@ -624,7 +665,16 @@ cortest.bartlett(cormat1, n = 2730)
 
 tab_fa(elsoc_redes, rotation = "varimax", show.comm = TRUE)
 ```
+
 :::
+
+En la @fig-efa-conf se presentan los resultados del análisis factorial exploratorio de la dimensión de seguridad pública, el cual detectó dos factores claramente diferenciados. El primer factor agrupa los tres indicadores de seguridad objetiva: asaltos (0.76), tráfico de drogas (0.85) y peleas callejeras (0.75), todos con cargas factoriales buenas a muy buenas. Las comunalidades de estos indicadores también son satisfactorias, oscilando entre 0.58 y 0.72, lo que indica que el factor explica adecuadamente la varianza de estas variables. El segundo factor incluye los dos indicadores de seguridad subjetiva: satisfacción con la seguridad del barrio (0.90) y percepción de seguridad (0.88), ambos con cargas factoriales excelentes y comunalidades muy altas (0.80 y 0.77 respectivamente). Esta estructura bifactorial confirma empíricamente la distinción conceptual entre las dimensiones objetiva y subjetiva de la seguridad, validando la propuesta teórica de que, aunque relacionadas, estas capturan aspectos diferenciados de la experiencia de seguridad en el entorno barrial.
+
+En la @fig-efa-vinculos se muestran los resultados del análisis factorial exploratorio de vínculos territoriales, el cual identificó dos factores consistentes con la propuesta teórica. El primer factor agrupa los cuatro indicadores de pertenencia al barrio: barrio ideal (0.66), integración (0.82), identidad (0.85) y pertenencia (0.84), todos con cargas factoriales que van de aceptables a muy buenas. Las comunalidades de estos indicadores son satisfactorias, variando entre 0.56 y 0.77, siendo la variable de barrio ideal la que presenta la menor comunalidad pero aún aceptable. El segundo factor reúne los cuatro indicadores de satisfacción con el barrio: facilidad para hacer amigos (0.61), sociabilidad (0.86), cordialidad (0.85) y colaboración vecinal (0.76). Estos indicadores también presentan cargas factoriales de aceptables a muy buenas, con comunalidades que oscilan entre 0.59 y 0.78. La estructura bifactorial obtenida confirma que la dimensión de vínculos territoriales se compone efectivamente de dos subdimensiones complementarias: una referida a la identificación y sentido de pertenencia con el territorio, y otra vinculada a la valoración de la calidad de las relaciones sociales en el entorno barrial. Ambos factores muestran una validez empírica robusta.
+
+En la @fig-efa-redes se presentan los resultados del análisis factorial exploratorio de redes sociales, el cual detectó tres factores diferenciados. El primer factor agrupa los dos indicadores de confianza interpersonal: confianza generalizada (0.77) y altruismo generalizado (0.77), ambos con cargas factoriales buenas y comunalidades aceptables (0.60 para ambos), confirmando que estos indicadores capturan adecuadamente una dimensión actitudinal común de confianza hacia otros. El segundo factor incluye los dos indicadores de comportamiento prosocial: participación en reuniones públicas (0.70) y voluntariado (0.81), con cargas factoriales buenas y comunalidades satisfactorias (0.56 y 0.73 respectivamente), validando la existencia de una dimensión conductual de participación comunitaria.
+
+El tercer factor reúne los tres indicadores de ayuda económica: ayuda para buscar trabajo (0.49), donar dinero (0.81) y prestar dinero (0.72). Aquí se observa mayor variabilidad en las cargas factoriales, siendo particularmente baja la de ayuda para buscar trabajo (0.49), con una comunalidad también modesta (0.36). En contraste, donar dinero presenta una carga factorial muy buena (0.81) y una comunalidad alta (0.71), mientras que prestar dinero muestra valores buenos (0.72 y 0.65). Esta estructura trifactorial confirma que la dimensión de redes sociales comprende tres subdimensiones: actitudes de confianza, comportamientos prosociales de participación, y prácticas de solidaridad económica. Sin embargo, la debilidad del indicador de ayuda para buscar trabajo sugiere que este captura aspectos parcialmente distintos de la ayuda económica, lo que deberá considerarse en el análisis factorial confirmatorio.
 
 ## Análisis Factorial Confirmatorio
 
@@ -680,13 +730,18 @@ redes_cfa <- cfa(model = redes_m,
                      std.lv = FALSE)
 ```
 
-
 ::: panel-tabset
+
 ### Seguridad Pública
 
 ```{r}
-#| label: fig-seg-cfa
-#| fig-cap: "Cargas estandarizadas del CFA de Seguridad Pública"
+#| label: tbl-seg-cfa
+#| tbl-cap: "Análisis Factorial Confirmatorio de Seguridad Pública (Ola 2022)"
+#| tbl-subcap: 
+#|   - "Resumen del Modelo"
+#|   - "Índices de Ajuste"
+#|   - "Cargas Factoriales Estandarizadas"
+#| layout-ncol: 1
 
 # 1. Crear tabla de índices de ajuste
 indices <- fitmeasures(seguridad_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower", 
@@ -707,10 +762,9 @@ tabla_ajuste <- data.frame(
   Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
 )
 
-# Tabla de índices de ajuste
+# Tabla de índices de ajuste (SIN caption interno)
 tabla_indices <- tabla_ajuste %>%
   kable(format = "html",
-        caption = "<strong>Índices de Ajuste del Modelo CFA</strong>",
         col.names = c("Índice", "Valor", "Criterio"),
         align = c("l", "c", "c")) %>%
   kable_styling(
@@ -739,7 +793,6 @@ cargas <- standardizedSolution(seguridad_cfa) %>%
 
 tabla_cargas <- cargas %>%
   kable(format = "html",
-        caption = "<strong>Cargas Factoriales Estandarizadas</strong>",
         col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
         align = c("l", "l", "c", "c", "c", "c")) %>%
   kable_styling(
@@ -751,7 +804,6 @@ tabla_cargas <- cargas %>%
   column_spec(1, bold = TRUE, width = "3cm") %>%
   column_spec(2, width = "4cm") %>%
   column_spec(3:6, width = "2cm") %>%
-  # Destacar cargas altas (> 0.7)
   column_spec(3, color = ifelse(cargas$est.std > 0.7, "darkgreen", "black"),
               bold = ifelse(cargas$est.std > 0.7, TRUE, FALSE))
 
@@ -770,7 +822,6 @@ resumen_modelo <- data.frame(
 
 tabla_resumen <- resumen_modelo %>%
   kable(format = "html",
-        caption = "<strong>Resumen del Modelo CFA</strong>",
         col.names = c("Característica", "Valor"),
         align = c("l", "c")) %>%
   kable_styling(
@@ -782,18 +833,22 @@ tabla_resumen <- resumen_modelo %>%
   column_spec(1, bold = TRUE, width = "4cm") %>%
   column_spec(2, width = "2.5cm")
 
-# Mostrar las tablas
+# Mostrar las tablas en orden
 tabla_resumen
-tabla_indices 
+tabla_indices
 tabla_cargas
 ```
-
 
 ### Vínculos Territoriales
 
 ```{r}
-#| label: fig-vin-cfa
-#| fig-cap: "Cargas estandarizadas del CFA de Vínculos Territoriales"
+#| label: tbl-vin-cfa
+#| tbl-cap: "Análisis Factorial Confirmatorio de Vínculos Territoriales (Ola 2023)"
+#| tbl-subcap: 
+#|   - "Resumen del Modelo"
+#|   - "Índices de Ajuste"
+#|   - "Cargas Factoriales Estandarizadas"
+#| layout-ncol: 1
 
 # 1. Crear tabla de índices de ajuste para vínculos_cfa
 indices <- fitmeasures(vinculos_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower", 
@@ -814,10 +869,9 @@ tabla_ajuste_vinculos <- data.frame(
   Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
 )
 
-# Tabla de índices de ajuste
+# Tabla de índices de ajuste (SIN caption interno)
 tabla_indices_vinculos <- tabla_ajuste_vinculos %>%
   kable(format = "html",
-        caption = "<strong>Índices de Ajuste del Modelo CFA - Vínculos Territoriales</strong>",
         col.names = c("Índice", "Valor", "Criterio"),
         align = c("l", "c", "c")) %>%
   kable_styling(
@@ -828,10 +882,9 @@ tabla_indices_vinculos <- tabla_ajuste_vinculos %>%
   ) %>%
   column_spec(1, bold = TRUE, width = "4cm") %>%
   column_spec(2:3, width = "2.5cm") %>%
-  # Destacar los índices principales
-  row_spec(4, background = "#f8f9fa") %>%  # RMSEA
-  row_spec(7, background = "#f8f9fa") %>%  # CFI
-  row_spec(8, background = "#f8f9fa")      # TLI
+  row_spec(4, background = "#f8f9fa") %>%
+  row_spec(7, background = "#f8f9fa") %>%
+  row_spec(8, background = "#f8f9fa")
 
 # 2. Crear tabla de cargas factoriales
 cargas_vinculos <- standardizedSolution(vinculos_cfa) %>% 
@@ -846,7 +899,6 @@ cargas_vinculos <- standardizedSolution(vinculos_cfa) %>%
 
 tabla_cargas_vinculos <- cargas_vinculos %>%
   kable(format = "html",
-        caption = "<strong>Cargas Factoriales Estandarizadas - Vínculos Territoriales</strong>",
         col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
         align = c("l", "l", "c", "c", "c", "c")) %>%
   kable_styling(
@@ -858,7 +910,6 @@ tabla_cargas_vinculos <- cargas_vinculos %>%
   column_spec(1, bold = TRUE, width = "3cm") %>%
   column_spec(2, width = "4cm") %>%
   column_spec(3:6, width = "2cm") %>%
-  # Destacar cargas altas (> 0.7)
   column_spec(3, color = ifelse(cargas_vinculos$est.std > 0.7, "darkgreen", "black"),
               bold = ifelse(cargas_vinculos$est.std > 0.7, TRUE, FALSE))
 
@@ -877,7 +928,6 @@ resumen_modelo_vinculos <- data.frame(
 
 tabla_resumen_vinculos <- resumen_modelo_vinculos %>%
   kable(format = "html",
-        caption = "<strong>Resumen del Modelo CFA - Vínculos Territoriales</strong>",
         col.names = c("Característica", "Valor"),
         align = c("l", "c")) %>%
   kable_styling(
@@ -889,18 +939,23 @@ tabla_resumen_vinculos <- resumen_modelo_vinculos %>%
   column_spec(1, bold = TRUE, width = "4cm") %>%
   column_spec(2, width = "2.5cm")
 
-# Mostrar las tablas
+# Mostrar las tablas en orden
 tabla_resumen_vinculos
 tabla_indices_vinculos
 tabla_cargas_vinculos
 ```
 
-
 ### Redes Sociales
 
 ```{r}
-#| label: fig-redes-cfa
-#| fig-cap: "Cargas estandarizadas del CFA de Redes Sociales"
+#| label: tbl-redes-cfa
+#| tbl-cap: "Análisis Factorial Confirmatorio de Redes Sociales (Ola 2023)"
+#| tbl-subcap: 
+#|   - "Resumen del Modelo"
+#|   - "Índices de Ajuste"
+#|   - "Cargas Factoriales Estandarizadas"
+#| layout-ncol: 1
+#| message: false
 
 # 1. Crear tabla de índices de ajuste para redes_cfa
 indices <- fitmeasures(redes_cfa, c("chisq", "df", "pvalue", "rmsea", "rmsea.ci.lower", 
@@ -921,10 +976,9 @@ tabla_ajuste_redes <- data.frame(
   Criterio = c("", "", "> 0.05", "< 0.08", "", "", "> 0.90", "> 0.90", "< 0.08")
 )
 
-# Tabla de índices de ajuste
+# Tabla de índices de ajuste (SIN caption interno)
 tabla_indices_redes <- tabla_ajuste_redes %>%
   kable(format = "html",
-        caption = "<strong>Índices de Ajuste del Modelo CFA - Redes Sociales</strong>",
         col.names = c("Índice", "Valor", "Criterio"),
         align = c("l", "c", "c")) %>%
   kable_styling(
@@ -953,7 +1007,6 @@ cargas_redes <- standardizedSolution(redes_cfa) %>%
 
 tabla_cargas_redes <- cargas_redes %>%
   kable(format = "html",
-        caption = "<strong>Cargas Factoriales Estandarizadas - Redes Sociales</strong>",
         col.names = c("Factor", "Variable", "Carga", "EE", "p-valor", "Sig."),
         align = c("l", "l", "c", "c", "c", "c")) %>%
   kable_styling(
@@ -965,7 +1018,6 @@ tabla_cargas_redes <- cargas_redes %>%
   column_spec(1, bold = TRUE, width = "3cm") %>%
   column_spec(2, width = "4cm") %>%
   column_spec(3:6, width = "2cm") %>%
-  # Destacar cargas altas (> 0.7)
   column_spec(3, color = ifelse(cargas_redes$est.std > 0.7, "darkgreen", "black"),
               bold = ifelse(cargas_redes$est.std > 0.7, TRUE, FALSE))
 
@@ -984,7 +1036,6 @@ resumen_modelo_redes <- data.frame(
 
 tabla_resumen_redes <- resumen_modelo_redes %>%
   kable(format = "html",
-        caption = "<strong>Resumen del Modelo CFA - Redes Sociales</strong>",
         col.names = c("Característica", "Valor"),
         align = c("l", "c")) %>%
   kable_styling(
@@ -996,18 +1047,23 @@ tabla_resumen_redes <- resumen_modelo_redes %>%
   column_spec(1, bold = TRUE, width = "4cm") %>%
   column_spec(2, width = "2.5cm")
 
-# Mostrar las tablas
+# Mostrar las tablas en orden
 tabla_resumen_redes
 tabla_indices_redes
 tabla_cargas_redes
 ```
 
-
 :::
+
+En la @tbl-seg-cfa se da cuenta que la dimensión "Seguridad Pública" tiene índices de ajuste que demuestran una excelente bondad del modelo (RMSEA = 0.034; CFI = 0.998; TLI = 0.995), mientras que las cargas factoriales son todas altas, variando entre 0.759 y 0.897. Los tres indicadores de seguridad objetiva presentan cargas de 0.759 a 0.859, mientras que los dos indicadores de seguridad subjetiva muestran cargas de 0.860 y 0.897. Junto a los índices de ajuste, se confirma la validez del modelo bifactorial que distingue entre las dimensiones objetiva y subjetiva de la seguridad.
+
+En la @tbl-vin-cfa se observa que la dimensión "Vínculos Territoriales" presenta índices de ajuste satisfactorios (RMSEA = 0.054; CFI = 0.987; TLI = 0.982), con cargas factoriales que varían entre 0.690 y 0.886. El factor de pertenencia al barrio muestra cargas entre 0.705 y 0.886, mientras que el factor de satisfacción con el barrio presenta cargas entre 0.690 y 0.881. Estos resultados confirman la validez del modelo bifactorial que articula la identificación territorial con la valoración de las relaciones vecinales.
+
+En la @tbl-redes-cfa se evidencia que la dimensión "Redes Sociales" tiene índices de ajuste aceptables (RMSEA = 0.046; CFI = 0.977; TLI = 0.959), con cargas factoriales que oscilan entre 0.539 y 0.824. El factor de confianza interpersonal presenta cargas entre 0.738 y 0.818, el factor de comportamiento prosocial muestra cargas entre 0.713 y 0.824, y el factor de ayuda económica exhibe cargas entre 0.539 y 0.813. Destaca la carga moderada del indicador "ayuda para buscar trabajo" con 0.539, aunque aún aceptable. En conjunto, los índices de ajuste confirman la validez del modelo trifactorial propuesto.
 
 ## Construcción de índices
 
-A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices en base a los promedios de los indicadores de cada subdimensión con tal de simplificar y reporte e interpretación de los resultados.
+A pesar de haber aplicado EFA y CFA en el punto anterior, se construyen índices en base a los promedios de los indicadores de cada subdimensión con tal de simplificar y reporte e interpretación de los resultados. En cada uno de ellos se reporta el promedio, la desviaicón estándar, el rango, la forma de la distribución y el alfa de Cronbach.
 
 
 ```{r}
