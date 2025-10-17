@@ -1,0 +1,108 @@
+---
+pagetitle: "Foro III: Cohesión Social en tiempos de Desafección Política"
+Author: Equipo OCS
+bibliography: "input/bib/OCS-LIT.bib"
+csl: "input/bib/apa6.csl"
+lang: es
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true
+format:
+  revealjs:
+    slide-number: true
+    theme: "libs/edumer.scss"
+    auto-stretch: false
+    title-slide-attributes:
+      visibility: false
+    transition: fade
+    transition-speed: slow
+    auto-play-media: true
+    mathjax: "default"
+  pdf:
+    format: beamer
+    keep-tex: true  # Debug LaTeX output if needed
+editor_options:
+  chunk_output_type: console
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(knitr)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+
+
+::: columns
+
+
+::: {.column width="20%"}
+
+
+![](images/coes.png)
+
+
+![](images/LOGO-OCS.png)
+
+![](images/qrcode.png)
+
+:::
+
+::: {.column .column-right width="80%"}
+
+</br>
+
+# **Cohesión social en tiempos de desafección política**:
+
+------------------------------------------------------------------------
+
+**Juan Carlos Castillo^1^**, **Andreas Laffert^2^**, **Tomás Urzúa^1^**, 
+<br>
+
+**René Canales^2^**, **Julio Iturra^3^**
+
+::: {.medium}
+
+[**Centro de Estudios de Conflicto y Cohesión Social - COES**]{style="color: #383a70;"}
+
+[**^1^Universidad de Chile**]{style="color: #383a70;"}
+
+[**^2^Pontificia Universidad Católica de Chile**]{style="color: #383a70;"}
+
+[**^3^Bremen International Graduate School of Social Sciences**]{style="color: #383a70;"}
+
+:::
+
+Tercer Foro de Cohesión Social -  COES
+
+Santiago, 22 de Octubre 2025
+
+:::
+:::
+
+{{< include 01-antecedentes.qmd >}}
+
+{{< include 02-medicion-elsoc.qmd >}}
+
+{{< include 03-visualizador.qmd >}}
+
+{{< include 04-analisis.qmd >}}
+
+{{< include 05-cierre.qmd >}}
+
+## Referencias
+
+::: {#refs}
+:::
