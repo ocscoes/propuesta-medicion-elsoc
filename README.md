@@ -6,3 +6,4 @@ Este repositorio aloja la nueva propuesta de medición de cohesión social con d
 
 [Nota "Medición de Cohesión Social en Chile con ELSOC"](https://ocscoes.github.io/propuesta-medicion-elsoc/nota-foro/nota-foro-coes.html)
 
+[Presentación Conferencia COES 2025](https://ocscoes.github.io/propuesta-medicion-elsoc/presentations/coes_2025/coes_2025.html)
