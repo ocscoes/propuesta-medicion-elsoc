@@ -1,0 +1,82 @@
+## Un enfoque de medición de cohesión social para Chile {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### ¿Por qué una nueva propuesta?
+
+- Necesidad de una medición **integral, sistemática y longitudinal** de la cohesión social en Chile
+- Ante un contexto de desigualdad y fragmentación, este es un paso clave contar con una medición propia y metodológicamente sólida
+
+### Marco teórico
+
+- Definición **minimalista y relacional** (Chan et al., 2006)
+- La cohesión como un **estado de las relaciones sociales**, no como sus causas (ej. igualdad) o consecuencias (ej. estabilidad)
+
+:::
+
+::: {.column width="50%"}
+### Dos áreas de la cohesión
+
+::: {.callout-note icon=false}
+## Cohesión Horizontal
+
+**Vínculos entre ciudadanos**
+
+- Confianza interpersonal
+- Pertenencia territorial
+- Redes sociales
+:::
+
+<br>
+
+::: {.callout-tip icon=false}
+## Cohesión Vertical
+
+**Vínculos ciudadanos-instituciones**
+
+- Confianza institucional
+- Participación cívica
+- Justicia distributiva
+:::
+:::
+
+::::
+
+## Fuente de Datos: Estudio Longitudinal Social de Chile (ELSOC) {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Características de ELSOC
+
+- **Encuesta panel longitudinal:** 7 olas (2016-2023)
+- Sigue a los mismos individuos a lo largo del tiempo
+- Permite medir la **evolución y cambios** 
+
+### Ventajas para medir cohesión
+
+- **Riqueza de variables:** Permite medir las dimensiones de cohesión con mayor granularidad.
+- **Seguimiento temporal:** Captura dinámicas y tendencias en el contexto chileno.
+:::
+
+::: {.column width="50%"}
+### Cobertura de las dimensiones
+
+::: {.callout-note icon=false}
+## Horizontal
+**Vínculos entre ciudadanos: seguridad, territorio, redes**
+:::
+
+::: {.callout-tip icon=false}
+## Vertical
+**Vínculos con instituciones: confianza, participación, justicia**
+:::
+
+:::
+
+::::
+
+## Esquema de Medición: Cohesión Horizontal {background-image="images/propuesta-hor-elsoc.png" background-size="57%"}
+
+## Esquema de Medición: Cohesión Vertical {background-image="images/elsoc-ver.png" background-size="57%"}

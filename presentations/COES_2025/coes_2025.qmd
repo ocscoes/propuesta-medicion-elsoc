@@ -53,7 +53,6 @@ options(knitr.kable.NA = "")
 
 ![](images/coes.png)
 
-
 ![](images/LOGO-OCS.png)
 
 ![](images/qrcode.png)
@@ -64,16 +63,13 @@ options(knitr.kable.NA = "")
 
 </br>
 
-# **Cohesión social en tiempos de desafección política**:
+# **Cohesión social en tiempos de desafección política**
 
 ------------------------------------------------------------------------
 
-**Juan Carlos Castillo^1^**, **Andreas Laffert^2^**, **Tomás Urzúa^1^**, 
-<br>
+**Juan Carlos Castillo^1^**, **Andreas Laffert^2^**, **Tomás Urzúa^1^**, **René Canales^2^**, **Julio Iturra^3^**
 
-**René Canales^2^**, **Julio Iturra^3^**
-
-::: {.medium}
+::: {.small}
 
 [**Centro de Estudios de Conflicto y Cohesión Social - COES**]{style="color: #383a70;"}
 
@@ -83,11 +79,11 @@ options(knitr.kable.NA = "")
 
 [**^3^Bremen International Graduate School of Social Sciences**]{style="color: #383a70;"}
 
-:::
-
-Tercer Foro de Cohesión Social -  COES
+Tercer Foro de Cohesión Social (OCS-COES)
 
 Santiago, 22 de Octubre 2025
+
+:::
 
 :::
 :::
