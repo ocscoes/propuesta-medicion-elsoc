@@ -2,7 +2,7 @@
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%" .large}
 ### ¿Por qué una nueva propuesta?
 
 - Necesidad de una medición **integral, sistemática y longitudinal** de la cohesión social en Chile
@@ -15,7 +15,7 @@
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="50%" .large}
 ### Dos áreas de la cohesión
 
 ::: {.callout-note icon=false}
@@ -47,7 +47,7 @@
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%" .large}
 ### Características de ELSOC
 
 - **Encuesta panel longitudinal:** 7 olas (2016-2023)
@@ -63,12 +63,12 @@
 ::: {.column width="50%"}
 ### Cobertura de las dimensiones
 
-::: {.callout-note icon=false}
+::: {.callout-note}
 ## Horizontal
 **Vínculos entre ciudadanos: seguridad, territorio, redes**
 :::
 
-::: {.callout-tip icon=false}
+::: {.callout-tip}
 ## Vertical
 **Vínculos con instituciones: confianza, participación, justicia**
 :::
@@ -77,6 +77,6 @@
 
 ::::
 
-## Esquema de Medición: Cohesión Horizontal {background-image="images/propuesta-hor-elsoc.png" background-size="57%"}
+## {background-image="images/propuesta-hor-elsoc.png" background-size="60%"}
 
-## Esquema de Medición: Cohesión Vertical {background-image="images/elsoc-ver.png" background-size="57%"}
+## {background-image="images/elsoc-ver.png" background-size="60%"}
