@@ -1,7 +1,4 @@
-## Visualizador Longitudinal de Cohesión Social en Chile {.smaller}
-
-
-::: {.column width="55%" .larg}
+## Visualizador Longitudinal de Cohesión Social en Chile {.xlarge}
 
 ### ¿Qué es el VisELSOC?
 
@@ -11,22 +8,26 @@ Una **herramienta interactiva** construida a partir de los datos del Estudio Lon
 
 - De libre acceso
 
-
-
-### Funcionalidades
-
+::: {style="text-align: center;"}
+![](images/viselsoc-logo.png){width=60%}
 :::
 
-**1. Visualización Longitudinal:** Compara promedios de dimensiones a través del tiempo (gráficos de líneas).
+## Funcionalidades del VisELSOC {.xlarge}
 
-**2. Visualización Ranking:** Muestra cambios temporales en los indicadores específicos de cada subdimensión.
+### 1. Visualización Longitudinal
 
-**3. Visualización Bivariada:** Cruza subdimensiones de cohesión con variables sociodemográficas.
+Compara promedios de dimensiones a través del tiempo (gráficos de líneas)
 
+### 2. Visualización Ranking
 
-::: {.column width="45%" .large}
+Muestra cambios temporales en los indicadores específicos de cada subdimensión
 
-::: 
-### Construcción de Índices
+### 3. Visualización Bivariada
+
+Cruza subdimensiones de cohesión con variables sociodemográficas
+
+## Construcción de Índices {.xlarge}
+
+### Metodología
+
 Todos los indicadores, subdimensiones y dimensiones fueron construidos a partir de **índices promediados**
-

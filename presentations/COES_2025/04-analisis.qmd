@@ -1,0 +1,51 @@
+## Análisis longitudinal de variables de desafección política {.xlarge}
+
+![](images/var-pol-long.png){width=90%}
+
+## Confianza en Instituciones Políticas por Edad {.xlarge}
+
+![](images/conf-pol-biv-edad.png){width=90%}
+
+## Confianza en Instituciones Políticas por Educación {.xlarge}
+
+![](images/conf-pol-biv-educ.png){width=90%}
+
+## Confianza en Instituciones Políticas por Ideología {.xlarge}
+
+![](images/conf-pol-biv-ideol.png){width=90%}
+
+## Confianza en Instituciones Políticas por Ingreso {.xlarge}
+
+![](images/conf-pol-biv-ing.png){width=90%}
+
+## Preferencias Autoritarias por Edad {.xlarge}
+
+![](images/pref-aut-biv-edad.png){width=90%}
+
+## Preferencias Autoritarias por Educación {.xlarge}
+
+![](images/pref-aut-biv-educ.png){width=90%}
+
+## Preferencias Autoritarias por Ideología {.xlarge}
+
+![](images/pref-aut-biv-ideol.png){width=90%}
+
+## Preferencias Autoritarias por Ingreso {.xlarge}
+
+![](images/pref-aut-biv-ing.png){width=90%}
+
+## Confianza Interpersonal por Edad {.xlarge}
+
+![](images/conf-int-biv-edad.png){width=90%}
+
+## Confianza Interpersonal por Educación {.xlarge}
+
+![](images/conf-int-biv-educ.png){width=90%}
+
+## Confianza Interpersonal por Ideología {.xlarge}
+
+![](images/conf-int-biv-ideol.png){width=90%}
+
+## Confianza Interpersonal por Ingreso {.xlarge}
+
+![](images/conf-int-biv-ing.png){width=90%}
