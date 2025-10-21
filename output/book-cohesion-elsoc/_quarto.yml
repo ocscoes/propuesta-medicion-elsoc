@@ -4,7 +4,6 @@ project:
 
 book:
   title: "Documento metodológico: Medición de Cohesión Social en Chile con ELSOC"
-  author: "Observatorio de Cohesión Social"
   date: today
   chapters:
     - index.qmd
@@ -13,6 +12,39 @@ book:
     - 03-cohesion-vert.qmd
     - 04-refs.qmd
     - anexos.qmd 
+author:
+  - name: Tomás Urzúa
+    orcid: 0009-0008-3167-6819
+    email: tomas.urzua@ug.uchile.cl
+    affiliations:
+      - ref: 1
+      - ref: 3
+  - name: René Canales
+    orcid: 0009-0002-4299-2725
+    email: renecanales@uc.cl
+    affiliations:
+      - ref: 2
+      - ref: 3
+  - name: Andreas Laffert
+    orcid: 0000-0002-9008-2454
+    email: alaffertt@estudiante.uc.cl 
+    affiliations:
+      - ref: 2
+      - ref: 3
+  - name: Juan Carlos Castillo
+    corresponding: true
+    orcid: 0000-0003-1265-7854
+    email: juancastillov@uchile.cl
+    affiliations:
+      - ref: 1
+      - ref: 3
+affiliations: 
+  - id: 1
+    name: Departamento de Sociología, Universidad de Chile
+  - id: 2 
+    name: Instituto de Sociología, Pontificia Universidad Católica de Chile
+  - id: 3
+    name: Centro de estudios del conflicto y cohesión social (COES)
 
 format:
   html:
