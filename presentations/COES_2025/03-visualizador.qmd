@@ -25,7 +25,16 @@ Una **herramienta interactiva** construida a partir de los datos del Estudio Lon
 
 - Cruza subdimensiones de cohesión con variables sociodemográficas
 
-## Construcción de Índices
+## Característicoas VISELSOC
 
+- Todos los indicadores, subdimensiones y dimensiones fueron construidos a partir de porcentajes de respuestas a categorías alta y muy alta.
 
-Todos los indicadores, subdimensiones y dimensiones fueron construidos a partir de porcentajes de respuestas a categorías alta y muy alta .
+- Los gráficos del visualizador se pueden descargar y utilizar libremente. 
+
+::: {.callout-tip .xlarge}
+
+# Para citar:
+
+Urzúa, T., Iturra, J., Canales, R., Laffert, A. & Castillo, J. (2025). Visualizador Longitudinal de Cohesión Social de Chile 2016-2023. Observatorio de Cohesión Social OCS, https://doi.org/10.5281/zenodo.17408345.
+
+:::

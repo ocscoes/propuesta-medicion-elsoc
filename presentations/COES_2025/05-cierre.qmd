@@ -1,6 +1,8 @@
 
-## Conclusiones {background-color="#40764bff"}
+## **Conclusiones** {background-color="#40764bff"}
 
+
+:::{.incremental}
 - Cohesión como concepto resiliente
 
 - Conceptualización multidimensional minimalista
@@ -9,8 +11,17 @@
 
 - Edad, educación e ideología se relacionan con cambios en indicadores de cohesión social
 
-- Posibilidades: variables territoriales, modelamiento longitudinal, asociación entre dimensiones
+- Orientación para políticas de cohesión social
 
+- Posibilidades: variables territoriales, modelamiento longitudinal, asociación entre dimensiones
+:::
+
+
+## Equipo OCS 2025
+
+</br> </br>
+
+![](images/equipo.png)
 
 
 

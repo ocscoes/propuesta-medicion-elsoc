@@ -97,7 +97,7 @@ XII Conferencia COES, Santiago, 22 de Octubre 2025
 </br>
 
 :::: columns
-::: {.column width="38%" style="font-size:40px;"}
+::: {.incremental .column width="38%" style="font-size:40px;"}
 
 <div style="text-align:center; font-size:2em;">(-)</div>
 
@@ -111,7 +111,7 @@ XII Conferencia COES, Santiago, 22 de Octubre 2025
 :::
 
 
-::: {.column width="38%"style="font-size:40px;"}
+::: {.incremental .column width="38%"style="font-size:40px;"}
 
 <div style="text-align:center; font-size:2em;">(+)</div>
 
@@ -131,21 +131,22 @@ XII Conferencia COES, Santiago, 22 de Octubre 2025
 
 <hr>
 
-### - Ecosocial (2007)
 
 ::: {.incremental}
 
-### - CEPAL
+- Ecosocial (2007)
 
-### - Radar de Cohesión Social (Europa, Bertelsmann Stiftung)
+- CEPAL
 
-### - Scanlon Monash Social Cohesion Index (Australia)
+- Radar de Cohesión Social (Europa, Bertelsmann Stiftung)
 
-### - Consejo Asesor Para la Cohesión Social (2020)
+- Scanlon Monash Social Cohesion Index (Australia)
 
-### - Medición de Cohesión Social en CASEN (pobreza multidimensional)
+- Consejo Asesor Para la Cohesión Social (2020)
 
-### - [Observatorio de Cohesión Social COES](https://ocs-coes.com/)
+- Medición de Cohesión Social en CASEN (pobreza multidimensional)
+
+- [Observatorio de Cohesión Social OCS COES](https://ocs-coes.com/)
 
 :::
 
@@ -157,33 +158,51 @@ Castillo, J., Olivos, F., y Iturra, J. (2021). Conceptos y Medición de Cohesió
 
 </br>
 
-### _“La cohesión social es un estado de cosas relativo tanto a las interacciones verticales como horizontales entre los miembros de la sociedad, caracterizado por un conjunto de actitudes y normas que incluye la confianza, el sentido de pertenencia y la disposición a participar y ayudar, así como sus manifestaciones conductuales”_  [@chan_reconsidering_2006, p.290] {font-size=0.5em}
+ _“La cohesión social es un estado de cosas relativo tanto a las interacciones **verticales** como **horizontales** entre los miembros de la sociedad, caracterizado por un conjunto de actitudes y normas que incluye la confianza, el sentido de pertenencia y la disposición a participar y ayudar, así como sus manifestaciones conductuales”_  [@chan_reconsidering_2006, p.290] 
+
+</br>
+
+::: {.small}
+Chan, J., To, H.-P., & Chan, E. (2006). Reconsidering Social Cohesion: Developing a Definition and Analytical Framework for Empirical Research. _Social Indicators Research_, 75(2), 273-302. https://doi.org/10.1007/s11205-005-2118-1
+:::
+
 
 ## Cohesión social [@chan_reconsidering_2006]
 
+:::{.incremental}
 - Definición **minimalista y relacional**: corresponde a un estado de las relaciones sociales que vinculan a los individuos entre sí y con las instituciones
 
 - Hace referencia a un **colectivo**  
 
 - La cohesión como un **estado de las relaciones sociales**, no como sus causas (ej. igualdad) o consecuencias (ej. estabilidad)
+:::
 
 ## Cohesión horizontal y vertical {.xlarge}
 
+</br>
+
+::::{.columns}
+
+::: {.column width="48%"}
 ::: {.callout-note icon=false .xlarge}
-## Cohesión Horizontal
+## **Cohesión Horizontal**
 
 - Confianza interpersonal
 - Pertenencia territorial
 - Redes sociales
 :::
+:::
 
+::: {.column width="48%"}
 ::: {.callout-tip icon=false .xlarge}
-## Cohesión Vertical
+## **Cohesión Vertical**
 
 - Confianza institucional
 - Participación cívica
 - Justicia distributiva
 :::
+:::
+::::
 
 # (otra) Propuesta {background-color="#40764bff"}
 
@@ -200,17 +219,42 @@ Castillo, J., Olivos, F., y Iturra, J. (2021). Conceptos y Medición de Cohesió
 - Necesidad de contar con información robusta en un tema donde hasta ahora **sabemos poco**
   
 
-## Cobertura de las dimensiones en ELSOC {.xlarge}
+## Cobertura en ELSOC {.xlarge}
 
+::::{.columns}
+
+::: {.column width="48%"}
 ::: {.callout-note .xlarge}
 ## Horizontal
-**Vínculos entre ciudadanos: seguridad, territorio, redes**
+**Vínculos entre ciudadanos:** 
+
+- seguridad
+- territorio
+- redes
+:::
 :::
 
-::: {.callout-tip .xlarge}
+::: {.column width="48%"}
+::: {.callout-important .xlarge}
 ## Vertical
-**Vínculos con instituciones: confianza, participación, justicia**
+**Vínculos institucionales:**
+
+- confianza
+- participación
+- justicia
 :::
+:::
+::::
+
+::: {.callout-tip}
+
+# Para citar:
+
+Urzúa, T., Canales, R., Laffert, A. & Castillo, JC (2025) Documento metodológico: Medición de Cohesión Social en Chile con ELSOC. _Observatorio de Cohesión Social OCS_, doi.org/10.5281/zenodo.17408345.
+
+:::
+
+
 
 ## {background-image="images/propuesta-hor-elsoc.png" background-size="75%"}
 
