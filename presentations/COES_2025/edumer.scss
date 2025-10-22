@@ -1,8 +1,6 @@
 // Include theme-specific fonts
 @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url(./fonts/league-gothic/league-gothic.css);
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:ital@0;1&display=swap');/* Updated font import */
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');/* Updated font import */
 
 /*-- scss:defaults --*/
 // Override theme settings (see ../template/settings.scss)
@@ -22,8 +20,8 @@ $blockMargin: 20px;
 
 // Headings
 $headingMargin: 0 0 $blockMargin 0;
-$presentation-heading-font: "Montserrat", sans-serif !default;
-$headingColor: #383a70;
+$headingFont: 'Roboto', Impact, sans-serif; /* Updated font */
+$headingColor: #1d2c20ff;
 $headingLineHeight: 1.2;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
@@ -33,14 +31,14 @@ $heading1TextShadow: $headingTextShadow;
 
 
 $heading1Size: 1.5em;
-$heading2Size: 1.7em;
-$heading3Size: 1.00em;
-$heading4Size: 0.5em;
+$heading2Size: 2em;
+$heading3Size: 1.2em;
+$heading4Size: 1.00em;
 
 $codeFont: monospace;
 
 // Links and actions
-$linkColor: #00b5b5;
+$linkColor: #F27983;
 $linkColorHover: $headingColor;
 
 // Text selection
@@ -142,8 +140,7 @@ $selectionColor: #fff;
     font-size: 70px;
 }
 .remark-slide-content h2 {
-    font-size: 58px;
-    margin-bottom: 30px;
+    font-size: 48px;
 }
 .remark-slide-content h3 {
     font-size: 40px;
@@ -204,7 +201,7 @@ iframe {
 }
 
 .final h1{
-  font-size: 2.00em
+  font-size: 2.5em
 }
 
 
@@ -353,7 +350,3 @@ blockquote {
   border-left: solid 5px #cb4b16;
   padding-left: 1em;
 }
-
-.callout-note {
-  font-size: 5em;  /* Aumenta el tamaño del texto (ej. 1.1em o 110%) */
-} 

@@ -57,6 +57,6 @@
 **Vínculos con instituciones: confianza, participación, justicia**
 :::
 
-## {background-image="images/propuesta-hor-elsoc.png" background-size="75%"}
+## {background-image="images/elsoc-hor.png" background-size="75%"}
 
 ## {background-image="images/elsoc-ver.png" background-size="75%"}

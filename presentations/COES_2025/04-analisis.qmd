@@ -1,51 +1,56 @@
-## Análisis longitudinal de variables de desafección política {.xlarge}
+# Análisis longitudinal VISELSOC{background-color="#40764bff"} 
+
+## 
+
+![](images/elsoc-ver.png)
+##
 
 ![](images/var-pol-long.png){width=90%}
 
-## Confianza en Instituciones Políticas por Edad {.xlarge}
+## Confianza en Instituciones Políticas por Edad  
 
 ![](images/conf-pol-biv-edad.png){width=90%}
 
-## Confianza en Instituciones Políticas por Educación {.xlarge}
+## Confianza en Instituciones Políticas por Educación  
 
 ![](images/conf-pol-biv-educ.png){width=90%}
 
-## Confianza en Instituciones Políticas por Ideología {.xlarge}
+## Confianza en Instituciones Políticas por Ideología  
 
 ![](images/conf-pol-biv-ideol.png){width=90%}
 
-## Confianza en Instituciones Políticas por Ingreso {.xlarge}
+## Confianza en Instituciones Políticas por Ingreso  
 
 ![](images/conf-pol-biv-ing.png){width=90%}
 
-## Preferencias Autoritarias por Edad {.xlarge}
+## Preferencias Autoritarias por Edad  
 
 ![](images/pref-aut-biv-edad.png){width=90%}
 
-## Preferencias Autoritarias por Educación {.xlarge}
+## Preferencias Autoritarias por Educación  
 
 ![](images/pref-aut-biv-educ.png){width=90%}
 
-## Preferencias Autoritarias por Ideología {.xlarge}
+## Preferencias Autoritarias por Ideología  
 
 ![](images/pref-aut-biv-ideol.png){width=90%}
 
-## Preferencias Autoritarias por Ingreso {.xlarge}
+## Preferencias Autoritarias por Ingreso  
 
 ![](images/pref-aut-biv-ing.png){width=90%}
 
-## Confianza Interpersonal por Edad {.xlarge}
+## Confianza Interpersonal por Edad  
 
 ![](images/conf-int-biv-edad.png){width=90%}
 
-## Confianza Interpersonal por Educación {.xlarge}
+## Confianza Interpersonal por Educación  
 
 ![](images/conf-int-biv-educ.png){width=90%}
 
-## Confianza Interpersonal por Ideología {.xlarge}
+## Confianza Interpersonal por Ideología  
 
 ![](images/conf-int-biv-ideol.png){width=90%}
 
-## Confianza Interpersonal por Ingreso {.xlarge}
+## Confianza Interpersonal por Ingreso  
 
 ![](images/conf-int-biv-ing.png){width=90%}

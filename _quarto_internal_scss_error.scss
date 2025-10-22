@@ -1,4 +1,4 @@
-// quarto-scss-analysis-annotation { "quarto-version": "1.8.23" }
+// quarto-scss-analysis-annotation { "quarto-version": "1.7.33" }
 
 // quarto-scss-analysis-annotation { "origin": "'use' section from format" }
 
@@ -91,7 +91,7 @@ $backgroundColor: #ffffff;
 
 // Primary/body text
 $mainFont: 'Noto Serif', sans-serif; /* Updated font */
-$mainFontSize: 27px;
+$mainFontSize: 35px;
 $mainColor: #272828;
 
 // Vertical spacing between blocks of text
@@ -109,8 +109,8 @@ $headingFontWeight: normal;
 $heading1TextShadow: $headingTextShadow;
 
 
-$heading1Size: 1.70em;
-$heading2Size: 1.70em;
+$heading1Size: 1.5em;
+$heading2Size: 1.7em;
 $heading3Size: 1.00em;
 $heading4Size: 0.5em;
 
@@ -219,7 +219,8 @@ $selectionColor: #fff;
     font-size: 70px;
 }
 .remark-slide-content h2 {
-    font-size: 48px;
+    font-size: 58px;
+    margin-bottom: 30px;
 }
 .remark-slide-content h3 {
     font-size: 40px;
@@ -635,7 +636,7 @@ $overlayElementFgColor: 0, 0, 0 !default;
 
 // -- END setting.scss --
 
-$code-copy-selector: "div.code-copy-outer-scaffold:hover > " !default;
+$code-copy-selector: "pre.sourceCode:hover > " !default;
 $code-white-space: pre !default;
 $tbl-cap-location: top !default;
 // main colors
@@ -1379,7 +1380,8 @@ details > summary > p:only-child {
 }
 
 // codeCopy
-div.code-copy-outer-scaffold {
+pre.sourceCode,
+code.sourceCode {
   position: relative;
 }
 

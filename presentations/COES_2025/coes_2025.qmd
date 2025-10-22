@@ -50,10 +50,9 @@ options(knitr.kable.NA = "")
 
 ::: {.column width="20%"}
 
-
-![](images/coes.png)
-
 ![](images/LOGO-OCS.png)
+
+</br></br></br></br>
 
 ![](images/qrcode.png)
 
@@ -63,25 +62,26 @@ options(knitr.kable.NA = "")
 
 </br>
 
-# **Cohesión social en tiempos de desafección política**
-
+::: {.small}
+# **Cohesión social  </br> en tiempos de </br> desafección política**
+:::
 ------------------------------------------------------------------------
 
-**Juan Carlos Castillo^1^**, **Andreas Laffert^2^**, **Tomás Urzúa^1^**, **René Canales^2^**, **Julio Iturra^3^**
+
+<span style="font-size:0.9em">
+Juan Carlos Castillo^1^, Andreas Laffert^2^, Tomás Urzúa^1^, <br/> & René Canales^2^
+</span>
 
 ::: {.small}
 
-[**Centro de Estudios de Conflicto y Cohesión Social - COES**]{style="color: #383a70;"}
+[**Centro de Estudios de Conflicto y Cohesión Social - COES**]{style="color: #000000ff;"}</br>
+[**^1^Universidad de Chile**]{style="color: #0b0b0bff;"} </br>
+[**^2^Pontificia Universidad Católica de Chile**]{style="color: #000000ff;"} </br>
 
-[**^1^Universidad de Chile**]{style="color: #383a70;"}
 
-[**^2^Pontificia Universidad Católica de Chile**]{style="color: #383a70;"}
+### Tercer Foro de Cohesión Social 2025 (OCS-COES)
 
-[**^3^Bremen International Graduate School of Social Sciences**]{style="color: #383a70;"}
-
-Tercer Foro de Cohesión Social (OCS-COES)
-
-Santiago, 22 de Octubre 2025
+XII Conferencia COES, Santiago, 22 de Octubre 2025
 
 :::
 
@@ -90,7 +90,132 @@ Santiago, 22 de Octubre 2025
 
 {{< include 01-antecedentes.qmd >}}
 
-{{< include 02-medicion-elsoc.qmd >}}
+# Antecedentes {background-color="#40764bff"}
+
+## ¿Por qué cohesión social?
+
+</br>
+
+:::: columns
+::: {.column width="38%" style="font-size:40px;"}
+
+<div style="text-align:center; font-size:2em;">(-)</div>
+
+- Concepto polisémico
+
+- Fama normativa
+
+- Funcionalista
+
+- Poco académico
+:::
+
+
+::: {.column width="38%"style="font-size:40px;"}
+
+<div style="text-align:center; font-size:2em;">(+)</div>
+
+- Bisagra 
+
+- Resistente
+
+- Ideal/esperanzador
+
+- Poco académico
+
+:::
+::::
+
+
+## Experiencias
+
+<hr>
+
+### - Ecosocial (2007)
+
+::: {.incremental}
+
+### - CEPAL
+
+### - Radar de Cohesión Social (Europa, Bertelsmann Stiftung)
+
+### - Scanlon Monash Social Cohesion Index (Australia)
+
+### - Consejo Asesor Para la Cohesión Social (2020)
+
+### - Medición de Cohesión Social en CASEN (pobreza multidimensional)
+
+### - [Observatorio de Cohesión Social COES](https://ocs-coes.com/)
+
+:::
+
+::: {.small}
+Castillo, J., Olivos, F., y Iturra, J. (2021). Conceptos y Medición de Cohesión Social En Proyectos Internacionales. Serie Documentos de Trabajo COES, Documento de Trabajo N47, Pp. 1-32.
+:::
+
+## Una definición
+
+</br>
+
+### _“La cohesión social es un estado de cosas relativo tanto a las interacciones verticales como horizontales entre los miembros de la sociedad, caracterizado por un conjunto de actitudes y normas que incluye la confianza, el sentido de pertenencia y la disposición a participar y ayudar, así como sus manifestaciones conductuales”_  [@chan_reconsidering_2006, p.290] {font-size=0.5em}
+
+## Cohesión social [@chan_reconsidering_2006]
+
+- Definición **minimalista y relacional**: corresponde a un estado de las relaciones sociales que vinculan a los individuos entre sí y con las instituciones
+
+- Hace referencia a un **colectivo**  
+
+- La cohesión como un **estado de las relaciones sociales**, no como sus causas (ej. igualdad) o consecuencias (ej. estabilidad)
+
+## Cohesión horizontal y vertical {.xlarge}
+
+::: {.callout-note icon=false .xlarge}
+## Cohesión Horizontal
+
+- Confianza interpersonal
+- Pertenencia territorial
+- Redes sociales
+:::
+
+::: {.callout-tip icon=false .xlarge}
+## Cohesión Vertical
+
+- Confianza institucional
+- Participación cívica
+- Justicia distributiva
+:::
+
+# (otra) Propuesta {background-color="#40764bff"}
+
+## Estándares
+
+![](https://jc-castillo.com/images/albums/gallery/standards.png){width=85%}
+
+## ¿Por qué una nueva propuesta?
+
+- ELSOC: Estudio Longitudinal Social de Chile (2016-2023, 7 olas)
+  
+- Oportunidad de medir por primera vez cambios en indicadores de cohesión social en Chile con **datos panel** 
+  
+- Necesidad de contar con información robusta en un tema donde hasta ahora **sabemos poco**
+  
+
+## Cobertura de las dimensiones en ELSOC {.xlarge}
+
+::: {.callout-note .xlarge}
+## Horizontal
+**Vínculos entre ciudadanos: seguridad, territorio, redes**
+:::
+
+::: {.callout-tip .xlarge}
+## Vertical
+**Vínculos con instituciones: confianza, participación, justicia**
+:::
+
+## {background-image="images/propuesta-hor-elsoc.png" background-size="75%"}
+
+## {background-image="images/elsoc-ver.png" background-size="75%"}
+
 
 {{< include 03-visualizador.qmd >}}
 
